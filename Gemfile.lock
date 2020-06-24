@@ -204,7 +204,7 @@ GEM
       method_source (~> 0.9.0)
     public_suffix (3.0.2)
     puma (3.12.4)
-    rack (2.2.2)
+    rack (2.2.3)
     rack-attack (5.4.1)
       rack (>= 1.0, < 3)
     rack-test (1.1.0)
