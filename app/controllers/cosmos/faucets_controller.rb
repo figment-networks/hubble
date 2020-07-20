@@ -1,2 +1,2 @@
-class Cosmos::FaucetsController < Common::FaucetsController
+class Cosmos::FaucetsController < Cosmoslike::FaucetsController
 end

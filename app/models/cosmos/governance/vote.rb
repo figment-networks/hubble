@@ -1,3 +1,3 @@
 class Cosmos::Governance::Vote < ApplicationRecord
-  include ::Governance::Votelike
+  include ::Cosmoslike::Governance::Votelike
 end

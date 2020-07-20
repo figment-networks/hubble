@@ -1,2 +1,2 @@
-class Kava::Governance::MainController < Common::Governance::MainController
+class Kava::Governance::MainController < Cosmoslike::Governance::MainController
 end

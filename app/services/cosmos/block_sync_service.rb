@@ -1,2 +1,2 @@
-class Cosmos::BlockSyncService < Common::BlockSyncService
+class Cosmos::BlockSyncService < Cosmoslike::BlockSyncService
 end

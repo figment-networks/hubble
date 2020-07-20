@@ -1,2 +1,2 @@
-class Cosmos::AccountFinder < Common::AccountFinder
+class Cosmos::AccountFinder < Cosmoslike::AccountFinder
 end

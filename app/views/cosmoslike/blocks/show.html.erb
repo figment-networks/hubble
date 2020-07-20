@@ -1,0 +1,48 @@
+<% content_for :body_class, 'block-show' %>
+
+<%= render partial: '/cosmoslike/shared/chain_header', locals: { summary_link: true } %>
+
+<h2 class='mb-4'>
+  <label class='text-muted'>Block</label>
+  <span class='technical text-lg'><%= @block.id_hash %></span>
+</h2>
+
+<div class='row'>
+  <div class='col-12 col-md-3 order-0 order-md-1 info-cards'>
+    <div class='card'>
+      <h5 class='card-header'>Height</h5>
+      <div class='card-body'>
+        <% if (prev_block = @block.previous_block) -%>
+          <a href='<%= namespaced_path( 'block', prev_block ) %>' class='text-muted'><span class='fas fa-chevron-left'></span></a>
+        <% end -%>
+        <span class='large-number technical'><%= @block.height %></span>
+        <% if (next_block = @block.next_block) -%>
+          <a href='<%= namespaced_path( 'block', next_block ) %>' class='text-muted'><span class='fas fa-chevron-right'></span></a>
+        <% end -%>
+      </div>
+    </div>
+    <div class='card'>
+      <h5 class='card-header'>Timestamp</h5>
+      <div class='card-body'>
+        <span class='technical'><%= @block.timestamp.strftime("%Y-%m-%d @ %H:%M %Z") %></span>
+      </div>
+    </div>
+    <div class='card'>
+      <h5 class='card-header'>Raw JSON</h5>
+      <div class='card-body text-nowrap'>
+        <% if @chain.enabled? -%>
+          <a target='_blank' class='btn btn-outline-secondary btn-sm' href='<%= namespaced_path( 'block', @block, kind: 'block', format: 'json' ) %>'>Block</a>
+          <a target='_blank' class='btn btn-outline-secondary btn-sm' href='<%= namespaced_path( 'block', @block, kind: 'commit', format: 'json' ) %>'>Commit</a>
+          <a target='_blank' class='btn btn-outline-secondary btn-sm' href='<%= namespaced_path( 'block', @block, kind: 'set', format: 'json' ) %>'>Val. Set</a>
+        <% else -%>
+          <span class='text-muted'>&mdash;</span>
+        <% end -%>
+      </div>
+    </div>
+  </div>
+
+  <div class='col-12 col-md-9 order-1 order-md-0'>
+    <%= render partial: 'transactions' %>
+    <%= render partial: 'validators' %>
+  </div>
+</div>

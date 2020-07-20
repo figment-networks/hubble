@@ -1,2 +1,2 @@
-class Iris::DashboardController < Common::DashboardController
+class Iris::DashboardController < Cosmoslike::DashboardController
 end

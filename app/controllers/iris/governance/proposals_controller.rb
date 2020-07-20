@@ -1,2 +1,2 @@
-class Iris::Governance::ProposalsController < Common::Governance::ProposalsController
+class Iris::Governance::ProposalsController < Cosmoslike::Governance::ProposalsController
 end

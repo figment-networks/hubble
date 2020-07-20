@@ -1,0 +1,14 @@
+<% if n == @current_cycle.number %>
+  <div class="chart-container <%= 'current' if n == @cycle.number %>" data-toggle="tooltip" title="<div class='text-center'><strong><%= n %></strong> <br/> <%= (@current_cycle.percentage_complete * 100).round %>% complete</div>">
+    <canvas id="cycle-chart" width="65" height="65" data-percentage="<%= (@current_cycle.percentage_complete * 100).round %>"></canvas>
+    <% if n == @cycle.number %>
+      <span style="position: absolute; left: 0; width: 100%; top: 50%; transform: translateY(-50%); text-align: center; font-weight: bold;"><%= n %></span>
+    <% end %>
+  </div>
+<% else %>
+  <div class="cycle <%= 'future' if n > @current_cycle.number %> <%= 'current' if n == @cycle.number %>" data-toggle="tooltip" title="<%= n %>">
+    <% if n == @cycle.number %>
+      <span><%= n %></span>
+    <% end %>
+  </div>
+<% end %>

@@ -1,2 +1,2 @@
-class Terra::Governance::MainController < Common::Governance::MainController
+class Terra::Governance::MainController < Cosmoslike::Governance::MainController
 end

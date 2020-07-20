@@ -1,11 +1,11 @@
 namespace :sync do
   task :all do
-    %w{ cosmos terra iris kava }.each do |network|
+    %w{ cosmos terra iris kava emoney livepeer }.each do |network|
       Rake::Task["sync:#{network}"].invoke
     end
   end
 
-  %w{ cosmos terra iris kava }.each do |network|
+  %w{ cosmos terra iris kava emoney }.each do |network|
     task :"#{network.to_sym}" => :environment do
       $stdout.sync = true
       puts "\nStarting sync:#{network} task at #{Time.now.utc.strftime(TASK_DATETIME_FORMAT)}"
@@ -104,6 +104,16 @@ namespace :sync do
         end
       end
       puts "Completed sync:#{network} task at #{Time.now.utc.strftime(TASK_DATETIME_FORMAT)}\n\n"
+    end
+  end
+
+  task livepeer: :environment do
+    $stdout.sync = true
+
+    Livepeer::Chain.enabled.find_each do |chain|
+      TaskLock.with_lock!(:sync, "livepeer-#{chain.slug}") do
+        Livepeer::ChainSyncService.new(chain).call
+      end
     end
   end
 end

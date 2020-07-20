@@ -1,2 +1,2 @@
-class Terra::TransactionsController < Common::TransactionsController
+class Terra::TransactionsController < Cosmoslike::TransactionsController
 end

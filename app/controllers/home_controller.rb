@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
-  layout 'account'
-
+  layout 'redesign/home'
+  
   def index
     page_title 'Hubble'
   end

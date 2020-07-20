@@ -8,13 +8,17 @@ module ApplicationHelper
 
       # class namespaces
       Stats: {},
-      Common: {}
+      Cosmoslike: {},
+      Livepeer: {},
+      Near: {},
+      Oasis: {}
     }
 
-    if @chain && @chain.primary_token
+    if @chain.try(:primary_token)
       primary_token = @chain.primary_token
       obj[:config].merge!(
         network: @chain.network_name,
+        namespace: @chain.class.to_s.split("::").first.downcase,
         denom: @chain.token_map[primary_token]['display'],
         remoteDenom: primary_token,
         remoteScaleFactor: 10 ** @chain.token_map[primary_token]['factor'],

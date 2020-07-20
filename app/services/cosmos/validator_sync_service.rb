@@ -1,2 +1,2 @@
-class Cosmos::ValidatorSyncService < Common::ValidatorSyncService
+class Cosmos::ValidatorSyncService < Cosmoslike::ValidatorSyncService
 end

@@ -1,2 +1,2 @@
-class Kava::Transactions::MessageDecorator < Common::Transactions::MessageDecorator
+class Kava::Transactions::MessageDecorator < Cosmoslike::Transactions::MessageDecorator
 end

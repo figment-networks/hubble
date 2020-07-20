@@ -1,2 +1,2 @@
-class Iris::HaltedChainService < Common::HaltedChainService
+class Iris::HaltedChainService < Cosmoslike::HaltedChainService
 end

@@ -1,0 +1,97 @@
+.chains-list li {
+  margin-top: 32px;
+}
+.chains-list__card {
+  height: 100%;
+  border-radius: 8px;
+}
+.chains-list__card-link {
+  z-index: 5;
+}
+.chains-list__launch {
+  margin: 0;
+  opacity: 0.55;
+  color: $primary;
+  font-size: 12px;
+  letter-spacing: 0;
+  line-height: 16px;
+}
+.chains-list__label {
+  color: $primary;
+  font-size: 12px;
+  letter-spacing: 0;
+  line-height: 15px;
+}
+.chains-list__data {
+  color: $primary;
+  font-family: $font-family-monospace;
+  font-size: 22px;
+  letter-spacing: 0;
+  line-height: 28px;
+}
+.chains-list__data sup {
+  opacity: 0.55;
+  color: #000000;
+  font-family: $font-family-monospace;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 15px;
+}
+.chains-list__img {
+  min-height: 40px;
+  margin-bottom: 8px;
+}
+.e-money-img {
+  height: 40px;
+  width: 140px;
+}
+.terra-img {
+  width: 128px;
+  height: 36px;
+}
+.oasis-img {
+  height: 32px;
+  width: 140px;
+}
+.livepeer-img {
+  height: 40px;
+  width: 140px;
+}
+.kava-img {
+  width: 110px;
+  height: 32px;
+}
+.cosmos-img {
+  width: 134px;
+  height: 24px;
+}
+.iris-img {
+  height: 40px;
+  width: 127px;
+}
+.near-img {
+  max-width: 140px;
+}
+.tezos-img {
+  height: 40px;
+  width: 120px;
+}
+.chains-list__img-fallback {
+  min-height: 40px;
+  font-weight: 700;
+  font-size: 24px;
+}
+.chains-list__img-fallback.visible {
+  display: block;
+}
+@media (max-width: 991px) {
+  .chains-list__card {
+    padding: 2rem !important;
+  }
+}
+@media (max-width: 575px) {
+  .chains-list__card {
+    padding: 1rem !important;
+  }
+}

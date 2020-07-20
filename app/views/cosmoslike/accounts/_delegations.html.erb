@@ -1,0 +1,46 @@
+<div class='delegations mb-5'>
+  <div class='delegations-table-header'>
+    <h4>Delegations</h4>
+  </div>
+  <div class='delegations-table'>
+    <table data-empty='<%= @account.delegations.blank? %>'>
+      <thead>
+        <tr>
+          <th>Validator</th>
+          <th>Amount</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% delegations = @account.delegations %>
+        <% if delegations.nil? %>
+          <tr>
+            <td class='p-3 text-center' colspan='5'>Unable to retrieve delegation data.</td>
+          </tr>
+        <% elsif delegations.empty? %>
+          <tr>
+            <td class='p-3 text-center' colspan='5'>No delegations.</td>
+          </tr>
+        <% else %>
+          <% delegations.each do |del| %>
+            <tr>
+              <td>
+                <% if del[:validator] %>
+                  <%= link_to del[:validator].short_name, namespaced_path( 'validator', del[:validator] ) %>
+                <% else %>
+                  <tt><%= del[:raw_operator] %></tt>
+                <% end %>
+              </td>
+              <td data-order='<%= del[:amount] %>'>
+                <%= format_amount( del[:amount], @chain, denom: @chain.token_map[@chain.primary_token]['display'] ) %>
+              </td>
+              <td>
+                <span class='badge badge-pill badge-primary'><%= del[:status].upcase %></span>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

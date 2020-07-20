@@ -1,3 +1,3 @@
 class Iris::Block < ApplicationRecord
-  include Blocklike
+  include Cosmoslike::Blocklike
 end

@@ -1,2 +1,2 @@
-class Terra::AccountDecorator < Common::AccountDecorator
+class Terra::AccountDecorator < Cosmoslike::AccountDecorator
 end

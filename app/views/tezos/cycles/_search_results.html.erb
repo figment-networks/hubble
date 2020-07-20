@@ -1,0 +1,15 @@
+<% if @search.results.none? %>
+  <div class="card bg-light">
+    <div class="card-body p-5 text-center">
+      <h1>Nothing Found!</h1>
+      <p>We couldn't find anything to show you for that search. Please try a different Baker name or address.</p>
+    </div>
+  </div>
+<% end %>
+
+<div class="list-group">
+  <% @search.results.each do |result| %>
+    <%# TODO: If we ever want to return objects other than Bakers, can't call long_name %>
+    <%= link_to result.long_name, tezos_baker_path(result.id), class: "list-group-item" %>
+  <% end %>
+</div>

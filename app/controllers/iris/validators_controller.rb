@@ -1,2 +1,2 @@
-class Iris::ValidatorsController < Common::ValidatorsController
+class Iris::ValidatorsController < Cosmoslike::ValidatorsController
 end

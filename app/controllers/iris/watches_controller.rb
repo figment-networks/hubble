@@ -1,2 +1,2 @@
-class Iris::WatchesController < Common::WatchesController
+class Iris::WatchesController < Cosmoslike::WatchesController
 end

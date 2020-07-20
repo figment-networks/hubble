@@ -1,2 +1,2 @@
-class Kava::ValidatorSyncService < Common::ValidatorSyncService
+class Kava::ValidatorSyncService < Cosmoslike::ValidatorSyncService
 end

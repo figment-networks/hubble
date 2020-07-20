@@ -4,8 +4,11 @@ Rails.application.config.assets.precompile += %w(
   admin.js admin.scss
   errors.scss
   account.js account.scss
-  cosmos.js cosmos.scss
-  terra.js terra.scss
-  iris.js iris.scss
-  kava.js kava.scss
+  cosmoslike.js cosmoslike.scss
+  oasis.js oasis.scss
+  livepeer.js livepeer.scss
+  tezos.js tezos.scss
+  near.js near.scss
+  polkadot.js polkadot.scss
+  redesign/home.scss home.js
 )

@@ -1,3 +1,3 @@
 class Terra::Faucet < ApplicationRecord
-  include Faucetlike
+  include Cosmoslike::Faucetlike
 end

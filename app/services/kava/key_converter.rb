@@ -1,2 +1,2 @@
-class Kava::KeyConverter < Common::KeyConverter
+class Kava::KeyConverter < Cosmoslike::KeyConverter
 end

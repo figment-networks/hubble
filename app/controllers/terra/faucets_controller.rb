@@ -1,2 +1,2 @@
-class Terra::FaucetsController < Common::FaucetsController
+class Terra::FaucetsController < Cosmoslike::FaucetsController
 end

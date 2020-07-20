@@ -1,2 +1,2 @@
-class Cosmos::AccountsController < Common::AccountsController
+class Cosmos::AccountsController < Cosmoslike::AccountsController
 end

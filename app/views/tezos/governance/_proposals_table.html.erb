@@ -1,0 +1,38 @@
+<div class='gov-proposals-table'>
+  <table data-empty='<%= proposals.empty? %>' data-with-validator='<%= !!defined?(with_validator) %>' class='table'>
+    <thead>
+      <tr role='row'>
+        <th>Title</th>
+        <th>Status</th>
+        <th>Submitted</th>
+        <th>Voting Period</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if proposals.empty? -%>
+        <tr>
+          <td colspan='4' class='text-center py-3'>
+            Unable to retrieve governance activity data.
+          </td>
+        </tr>
+      <% else %>
+        <% proposals.each do |proposal| -%>
+          <tr>
+            <td data-order='<%= proposal.name %>'>
+              <a href='<%= tezos_governance_proposal_path( proposal.id )%>'><%= proposal.name ? proposal.name : proposal.id.truncate(15) %></a>
+            </td>
+            <td data-order='<%= proposal.status %>'>
+              <div class='badge badge-pill badge-primary text-uppercase'><%= proposal.status %></div>
+            </td>
+            <td data-order='<%= proposal.submitted_time.to_i %>'>
+                <pre class='m-0'><%= DateTime.parse(proposal.submitted_time).strftime("%Y-%m-%d<br/>at %H:%M %Z").html_safe %></pre>
+            </td>
+            <td data-order='<%= proposal.start_period %>'>
+              <%= proposal.start_period %>
+            </td>
+          </tr>
+        <% end -%>
+      <% end -%>
+    </tbody>
+  </table>
+</div>

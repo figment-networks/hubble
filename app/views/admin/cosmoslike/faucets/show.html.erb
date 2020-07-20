@@ -1,0 +1,63 @@
+<h2 class='header'>
+  <div>Faucet Transaction Logs for <%= @chain.network_name %> <span class='text-muted'>/</span> <%= @chain.name %></div>
+  <small><a class='btn btn-sm btn-outline-secondary' href='<%= namespaced_path( admin: true ) %>'>back</a></small>
+</h2>
+<h3>
+  <span class='technical'><%= @chain.faucet.address %></span>
+</h3>
+
+<table class='table mt-4'>
+  <thead class='thead-light'>
+    <tr>
+      <th>Date</th>
+      <th>Details</th>
+      <th class='text-right'>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @transactions.empty? -%>
+      <tr>
+        <td colspan='3'><div class='text-center text-muted'>No transactions.</div></td>
+      </tr>
+    <% end -%>
+    <% @transactions.each do |tr| -%>
+      <tr>
+        <td class='text-nowrap'>
+          <%= tr.created_at.strftime("%B %d, %Y @ %H:%M %Z") %>
+          <div class='text-sm text-muted'><%= distance_of_time_in_words( tr.created_at, Time.now, true, highest_measures: 2 ) %> ago</div>
+        </td>
+        <td>
+          <span class='text-muted'>Recipient:</span>
+          <span class='technical'><%= tr.address %></span>
+          <div class='text-sm mt-1'>
+            <% if tr.user %>
+              On behalf of user <a href='<%= admin_user_path(tr.user) %>'><%= tr.user.name %></a>
+            <% end -%>
+            (<label class='text-muted mb-0'>IP</label> <span class='technical'><%= tr.ip %></span>)
+          </div>
+        </td>
+        <td class='text-nowrap text-right'>
+          <% if tr.failed? -%>
+            <div class='text-danger status' data-status='failed'>
+              <span class='fas fa-exclamation-triangle'></span>
+              <span class='ml-1'>Failed</span>
+            </div>
+          <% elsif !tr.completed? -%>
+            <div class='text-muted status' data-status='pending'>
+              <span class='fas fa-sync fa-spin'></span>
+              <span class='ml-1'>Pending</span>
+            </div>
+          <% else -%>
+            <div class='status' data-status='success'>
+              <span class='fas fa-check text-success'></span>
+              <span class='ml-1'>Completed</span>
+            </div>
+            <div class='mt-2'>
+              <%= link_to 'View Transaction', namespaced_path( 'transaction', tr.txhash ), class: 'btn btn-sm btn-outline-secondary' %>
+            </div>
+          <% end -%>
+        </td>
+      </tr>
+    <% end -%>
+  </tbody>
+</table>

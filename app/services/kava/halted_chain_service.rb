@@ -1,2 +1,2 @@
-class Kava::HaltedChainService < Common::HaltedChainService
+class Kava::HaltedChainService < Cosmoslike::HaltedChainService
 end

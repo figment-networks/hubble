@@ -1,0 +1,17 @@
+<%= render partial: '/tezos/shared/network_header', locals: { governance_link: true } %>
+
+<% if @search %>
+
+  <%= render "search_results" %>
+
+<% else %>
+
+  <%= render "header" %>
+  <%= render "donut_charts" %>
+  <%= render "start_and_end" %>
+  <%= render "stats" %>
+  <%= render "events" %>
+  <%= render "baker_performance" %>
+  <%= render "modals" %>
+
+<% end %>

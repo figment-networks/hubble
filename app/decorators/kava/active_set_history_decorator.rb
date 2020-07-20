@@ -1,2 +1,2 @@
-class Kava::ActiveSetHistoryDecorator < Common::ActiveSetHistoryDecorator
+class Kava::ActiveSetHistoryDecorator < Cosmoslike::ActiveSetHistoryDecorator
 end

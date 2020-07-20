@@ -1,2 +1,2 @@
-class Iris::ValidatorSyncService < Common::ValidatorSyncService
+class Iris::ValidatorSyncService < Cosmoslike::ValidatorSyncService
 end

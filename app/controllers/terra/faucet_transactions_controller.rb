@@ -1,2 +1,2 @@
-class Terra::FaucetTransactionsController < Common::FaucetTransactionsController
+class Terra::FaucetTransactionsController < Cosmoslike::FaucetTransactionsController
 end

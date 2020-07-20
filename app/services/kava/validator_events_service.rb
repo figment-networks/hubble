@@ -1,2 +1,2 @@
-class Kava::ValidatorEventsService < Common::ValidatorEventsService
+class Kava::ValidatorEventsService < Cosmoslike::ValidatorEventsService
 end

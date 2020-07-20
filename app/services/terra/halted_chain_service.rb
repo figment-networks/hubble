@@ -1,2 +1,2 @@
-class Terra::HaltedChainService < Common::HaltedChainService
+class Terra::HaltedChainService < Cosmoslike::HaltedChainService
 end

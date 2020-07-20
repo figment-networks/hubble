@@ -1,0 +1,84 @@
+<% content_for :body_class, 'transaction-show' -%>
+
+<%= render partial: '/oasis/shared/chain_header', locals: { summary_link: true } %>
+
+<h2 class='mb-4'>
+    <label class='text-muted'>Tx</label>
+    <span class='technical text-lg'><%= params['id'] %></span>
+  </h2>
+
+<% if @transaction.blank? %>
+  <div class='error-content d-flex justify-content-between align-items-center flex-column'>
+    <h1 class='display'>No Transaction Found</h1>
+    <p>Sorry! We are unable to find a transaction with the provided public key and/or height.</p>
+  </div>
+<% else %>
+
+  <div class='row'>
+    <div class='col-12 col-md-3 order-0 order-md-1 info-cards'>
+      <div class='card'>
+        <h5 class='card-header d-flex justify-content-between align-items-center'>
+          Height
+          <a href='<%= oasis_chain_block_path( @chain.slug, @block.height ) %>' class='text-sm text-white'><span class='fas fa-chevron-left'></span> back</a>
+        </h5>
+        <div class='card-body'>
+          <span class='large-number technical'><%= @block.height %></span>
+        </div>
+      </div>
+
+      <div class='card'>
+        <h5 class='card-header'>Timestamp</h5>
+        <div class='card-body'>
+          <span class='technical'><%= @block.time.strftime('%Y-%m-%d @ %H:%M %Z') %></span>
+        </div>
+      </div>
+
+      <div class='card'>
+        <h5 class='card-header'>Fees</h5>
+        <div class='card-body'>
+          <ul class='list-unstyled mb-0'>
+              <li><%= format_amount(@transaction.fee, denom: 'noasis') %></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class='col-12 col-md-9 order-1 order-md-0'>
+      <section class='card'>
+        <header class='card-header d-flex align-items-center justify-content-between'>
+          <h4 class='m-0'>Transaction Details</h4>
+          <span class='d-none d-md-flex badge badge-pill badge-light text-uppercase'><%= @transaction.method %></span>
+        </header>
+        <main>
+
+          <section>
+            <div class='table-responsive'>
+              <table class='table table-sm'>
+                <thead>
+                  <tr class='text-uppercase text-secondary'>
+                    <th>Parameter</th>
+                    <th>Value</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class='text-nowrap'>Nonce</td>
+                    <td><%= format_amount(@transaction.nonce, denom: 'noasis') %></td>
+                  </tr>
+                  <tr>
+                    <td class='text-nowrap'>Gas Limit</td>
+                    <td><%= format_amount(@transaction.gas_limit, denom: 'GAS') %></td>
+                  </tr>
+                  <tr>
+                    <td class='text-nowrap'>Gas Price</td>
+                    <td><%= format_amount(@transaction.gas_price, denom: 'GAS') %></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </main>
+      </section>
+    </div>
+  </div>
+<% end %>

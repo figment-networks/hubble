@@ -1,2 +1,2 @@
-class Cosmos::AverageSnapshotsGeneratorService < Common::AverageSnapshotsGeneratorService
+class Cosmos::AverageSnapshotsGeneratorService < Cosmoslike::AverageSnapshotsGeneratorService
 end

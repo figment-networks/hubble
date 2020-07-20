@@ -1,2 +1,2 @@
-class Iris::TransactionsController < Common::TransactionsController
+class Iris::TransactionsController < Cosmoslike::TransactionsController
 end

@@ -1,4 +1,4 @@
-class Iris::AccountDecorator < Common::AccountDecorator
+class Iris::AccountDecorator < Cosmoslike::AccountDecorator
   protected
 
   def decorate_unbonding( unbonding, entry )

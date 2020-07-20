@@ -1,2 +1,2 @@
-class Cosmos::Transactions::TagDecorator < Common::Transactions::TagDecorator
+class Cosmos::Transactions::TagDecorator < Cosmoslike::Transactions::TagDecorator
 end

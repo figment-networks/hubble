@@ -1,3 +1,3 @@
 class Iris::Account < ApplicationRecord
-  include Accountlike
+  include Cosmoslike::Accountlike
 end

@@ -1,0 +1,20 @@
+<% content_for :body_class, 'chain-show' %>
+
+<%= render "chain_header" %>
+<%= render_flash_messages %>
+
+<div class='row info-cards'>
+  <div class='col-12 col-md-9 order-1 order-md-0'>
+    <%= render "near/chains/sections/validators",
+      validators: @validators,
+      validator_intervals: @validator_intervals
+    %>
+  </div>
+  <div class='col-12 col-md-3 order-0 order-md-1 info-cards'>
+    <%= render "near/chains/sections/current_block", block: @block %>
+    <%= render "near/chains/sections/avg_block_times",
+      block_times: @block_times,
+      block_intervals: @block_intervals
+    %>
+  </div>
+</div>

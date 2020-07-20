@@ -1,2 +1,2 @@
-class Terra::KeyConverter < Common::KeyConverter
+class Terra::KeyConverter < Cosmoslike::KeyConverter
 end

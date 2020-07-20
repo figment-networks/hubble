@@ -1,2 +1,2 @@
-class Cosmos::GovernanceParamsDecorator < Common::GovernanceParamsDecorator
+class Cosmos::GovernanceParamsDecorator < Cosmoslike::GovernanceParamsDecorator
 end

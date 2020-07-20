@@ -18,8 +18,12 @@ class Admin::SessionsController < Admin::BaseController
     params[:email] = params[:email].downcase
     a = Administrator.where( email: params[:email].downcase ).first
     if a &&
-       a.authenticate( params[:password] ) &&
-       (!a.otp_secret_key? || Rails.env.development? || a.authenticate_otp(params[:otp_code]))
+      a.authenticate(params[:password]) &&
+      (!a.otp_secret_key? ||
+        Rails.env.development? ||
+        Rails.env.test? ||
+        a.authenticate_otp(params[:otp_code])
+      )
       session[:admin_id] = a.id
       cookies.signed[:admin_id] = a.id
       if !a.otp_secret_key?

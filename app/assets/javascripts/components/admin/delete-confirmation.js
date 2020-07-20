@@ -2,7 +2,7 @@ $(document).ready( function() {
   $('.action-delete-confirmation').click( function( e ) {
     const button = $(e.currentTarget)
     if( button.data('confirming') ) {
-      button.text('deleting...').attr('disabled', true).addClass('disabled')
+      button.text('deleting...').addClass('disabled')
       return true
     }
     else {

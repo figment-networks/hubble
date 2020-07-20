@@ -1,7 +1,7 @@
 namespace :dev do
   task :skip_to_now => :environment do
     exit(1) if !Rails.env.development?
-    [ Cosmos, Kava, Iris, Terra ].each do |network|
+    [ Cosmos, Kava, Iris, Terra, Emoney ].each do |network|
       network::Chain.enabled.each do |chain|
         chain.skip_to_now!
       end

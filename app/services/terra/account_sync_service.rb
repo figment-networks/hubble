@@ -1,2 +1,2 @@
-class Terra::AccountSyncService < Common::AccountSyncService
+class Terra::AccountSyncService < Cosmoslike::AccountSyncService
 end

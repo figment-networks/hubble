@@ -1,2 +1,2 @@
-class Cosmos::ValidatorDelegationsDecorator < Common::ValidatorDelegationsDecorator
+class Cosmos::ValidatorDelegationsDecorator < Cosmoslike::ValidatorDelegationsDecorator
 end

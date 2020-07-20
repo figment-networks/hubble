@@ -2,4 +2,6 @@
 
 require_relative 'config/environment'
 
+use Rack::Revision
+
 run Rails.application

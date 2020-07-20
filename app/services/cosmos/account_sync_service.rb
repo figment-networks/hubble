@@ -1,2 +1,2 @@
-class Cosmos::AccountSyncService < Common::AccountSyncService
+class Cosmos::AccountSyncService < Cosmoslike::AccountSyncService
 end

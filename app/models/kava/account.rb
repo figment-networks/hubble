@@ -1,3 +1,3 @@
 class Kava::Account < ApplicationRecord
-  include Accountlike
+  include Cosmoslike::Accountlike
 end

@@ -45,7 +45,7 @@ class SessionsController < ApplicationController
       user.update_attributes password_reset_token: SecureRandom.hex
       UserMailer.with(user: user).forgot_password.deliver_now
     else
-      redirect_to forgot_path
+      redirect_to forgot_password_path
     end
   end
 

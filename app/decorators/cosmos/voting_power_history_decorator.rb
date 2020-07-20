@@ -1,2 +1,2 @@
-class Cosmos::VotingPowerHistoryDecorator < Common::VotingPowerHistoryDecorator
+class Cosmos::VotingPowerHistoryDecorator < Cosmoslike::VotingPowerHistoryDecorator
 end

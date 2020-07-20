@@ -1,0 +1,45 @@
+<div class='such-progress'>
+
+  <% if @tally_result -%>
+    <div class='proposal-progress-wrapper'>
+      <div class='proposal-progress'>
+
+        <div class='marker text-muted' style='left: <%= round_if_whole(@voting_period.quorum_percent, 0) %>%;'><div class='notch bg-secondary'></div>Quorum (<%= @voting_period.quorum_percent %>%)</div>
+
+        <div class='progress'>
+          <div class='progress-bar bg-success' data-toggle='tooltip' title="<div class='text-center'><div class='mb-1 text-strong text-success'>Yes</div><span class='technical'><%= @tally_result.percent_yay %>%</span></div>" style='width: <%= @tally_result.progress_yay %>%;'></div>
+          <div class='progress-bar bg-secondary' data-toggle='tooltip' title="<div class='text-center'><div class='mb-1 text-strong text-secondary'>Abstain</div><span class='technical'><%= @tally_result.percent_pass %>%</span></div>" style='width: <%= @tally_result.progress_pass %>%;'></div>
+          <div class='progress-bar bg-danger' data-toggle='tooltip' title="<div class='text-center'><div class='mb-1 text-strong text-danger'>No</div><span class='technical'><%= @tally_result.percent_nay %>%</span></div>" style='width: <%= @tally_result.progress_nay %>%;'></div>
+
+          <div class='progress-bar bg-light' data-toggle='tooltip' title="<div class='text-center'><div class='mb-1 text-strong text-dark'>Has Not Voted</div><span class='technical'><%= @tally_result.percent_didntvote %>%</span></div>" style='flex-grow: 1;'></div>
+        </div>
+      </div>
+    </div>
+
+    <div class='vote-tallies mt-5'>
+      <div class='tally flex-column align-items-center text-center border-success'>
+        <h6 class='tally-title'>YAY</h6>
+        <div class='technical tally-value text-lg'><%= @tally_result.percent_yay %>%</div>
+        <div class='tally-voting-power text-muted mb-0'><%= number_with_delimiter(@tally_result.raw_yay, :delimiter => ',') %> rolls</div>
+        <div class='tally-voting-power text-muted'><%= @tally_result.yay_voters %> baker<% if @tally_result.yay_voters != 1 %>s<% end %></div>
+      </div>
+      <div class='tally flex-column align-items-center text-center border-secondary'>
+        <h6 class='tally-title'>PASS</h6>
+        <div class='technical tally-value text-lg'><%= @tally_result.percent_pass %>%</div>
+        <div class='tally-voting-power text-muted mb-0'><%= number_with_delimiter(@tally_result.raw_pass, :delimiter => ',') %> rolls</div>
+        <div class='tally-voting-power text-muted'><%= @tally_result.pass_voters %> baker<% if @tally_result.pass_voters != 1 %>s<% end %></div>
+      </div>
+      <div class='tally flex-column align-items-center text-center border-danger'>
+        <h6 class='tally-title'>NAY</h6>
+        <div class='technical tally-value text-lg'><%= @tally_result.percent_nay %>%</div>
+        <div class='tally-voting-power text-muted mb-0'><%= number_with_delimiter(@tally_result.raw_nay, :delimiter => ',') %> rolls</div>
+        <div class='tally-voting-power text-muted'><%= @tally_result.nay_voters %> baker<% if @tally_result.nay_voters != 1 %>s<% end %></div>
+      </div>
+
+    </div>
+
+    <div class='technical text-center'>
+      Yay's have <%= round_if_whole(@tally_result.non_abstain_voting_percent * 100, 2) %>% of the non-passing votes - supermajority <% if !@tally_result.supermajority_reached? %>not <% end %>reached.
+    </div>
+  <% end -%>
+</div>

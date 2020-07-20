@@ -1,3 +1,3 @@
 class Terra::Governance::Proposal < ApplicationRecord
-  include ::Governance::Proposallike
+  include ::Cosmoslike::Governance::Proposallike
 end

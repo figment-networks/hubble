@@ -1,0 +1,71 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://localhost:1111/block?height=292864
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (darwin19.5.0 x86_64) ruby/2.6.6p146
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - localhost:1111
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 09 Jul 2020 15:18:39 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '847'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"app_version":1638400,"block_version":10,"chain_id":"a634d2224d549b856038acd9bdad47684d13262d87e1c0b8ca","height":292864,"time":"2020-07-08T14:14:33Z","last_block_id_hash":"B3ABCF9FC42989B17D394CF3DE6B26237C69060D29E8BB4A88C7AAC2FCF7B34F","last_commit_hash":"2DA9F55BE420C8633164120D752388F40A7E424E7314C4B7F2EE4855275B4046","data_hash":"95170C190FE11F49F71E77B3691D22C065010BC4D51FB8E3963AADB37DFCCDFC","validators_hash":"F96E0F215A295B1E68B299675C939DB722DC33E4CFBCA8AA997B69011EA8CA2C","next_validators_hash":"F96E0F215A295B1E68B299675C939DB722DC33E4CFBCA8AA997B69011EA8CA2C","consensus_hash":"048091BC7DDC283F77BFBF91D73C44DA58C3DF8A9CBC867405D8B7F3DAADA22F","app_hash":"EADF521AB56DE92C452B16AFDCA94F41BC993590AE47423A15CC207BF9A6E48E","last_results_hash":"","evidence_hash":"","proposer_address":"A021156E5071B3648EA33044944CAF9008332E9B"}
+
+        '
+  recorded_at: Thu, 09 Jul 2020 15:18:39 GMT
+- request:
+    method: get
+    uri: https://localhost:1111/transactions?height=292864
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (darwin19.5.0 x86_64) ruby/2.6.6p146
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - localhost:1111
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 09 Jul 2020 15:18:39 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '234'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"items":[{"public_key":"J5m87x/cLUhIW5QZtZZrHJv3NvtBFvXB29xDAwH0jzQ=","hash":"12d86291a8d09b48e00515b11cb69b89de1b0f7718d851e2d77e3122dd8d4b30","nonce":10379,"fee":0,"gas_limit":1172,"gas_price":0,"method":"registry.RegisterNode"}]}
+
+        '
+  recorded_at: Thu, 09 Jul 2020 15:18:39 GMT
+recorded_with: VCR 6.0.0

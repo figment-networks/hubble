@@ -1,0 +1,6 @@
+<% if !@chain.last_sync_time -%>
+  <div class='alert alert-warning sync-error-alert'>
+    <span class='fas fa-fw mr-2 fa-exclamation-triangle'></span>
+    Waiting for first sync...
+  </div>
+<% end -%>

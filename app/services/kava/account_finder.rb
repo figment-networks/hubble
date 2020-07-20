@@ -1,2 +1,2 @@
-class Kava::AccountFinder < Common::AccountFinder
+class Kava::AccountFinder < Cosmoslike::AccountFinder
 end

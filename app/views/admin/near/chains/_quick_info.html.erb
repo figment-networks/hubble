@@ -1,0 +1,43 @@
+<table class='table m-0'>
+  <thead>
+    <tr class='bg-light'>
+      <th class='pl-3 pt-2 pb-2 w-auto'>Name</th>
+      <th class='pl-3 pt-2 pb-2' width='15%'>Version</th>
+      <th class='pl-3 pt-2 pb-2' width='15%'>Status</th>
+      <th class='pl-3 pt-2 pb-2' width='20%'>Block Height</th>
+      <th class='pl-3 pt-2 pb-2' width='20%'>Block Time</th>
+      <th class='pl-3 pt-2 pb-2' width='10%'>&nbsp;</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% if chains.empty? %>
+      <tr>
+        <td colspan='4' class='text-center py-5'>
+          <span class='text-muted'>No chains yet.</span>
+        </td>
+      </tr>
+    <% end %>
+
+    <% chains.each do |chain| status = chain.status rescue nil %>
+      <tr>
+        <td>
+          <%= chain.name %>
+          <% if chain.enabled? -%>
+            <span class='fas fa-sync fa-spin text-success' data-toggle='tooltip' data-tooltip-side='top'title='Syncing'></span>
+          <% else %>
+            <span class='fas fa-exclamation-triangle text-warning' data-toggle='tooltip' data-tooltip-side='top'title='Disabled'></span>
+          <% end %>
+        </td>
+        <td class="text-muted"><%= status&.app_version || "N/A" %></td>
+        <td class="text-muted"><%= status&.sync_status || "N/A" %></td>
+        <td class="text-muted"><%= status&.last_block_height || "N/A" %></td>
+        <td class="text-muted"><%= status ? time_ago_in_words(status.last_block_time) : "N/A" %></td>
+        <td class="text-right">
+          <a class='btn btn-sm btn-outline-secondary' href='<%= namespaced_path(chain: chain, admin: true) %>'><span class='fas fa-edit'></span></a>
+          <a class='btn btn-sm btn-outline-secondary' href='<%= namespaced_path(chain: chain) %>' target='_blank'><span class='fas fa-eye'></span></a>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

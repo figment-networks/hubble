@@ -1,0 +1,114 @@
+<style>
+.nowrap {
+  white-space: nowrap;
+}
+</style>
+
+<div class="card">
+  <div class="card-header">
+    Latest Events
+
+    <div id="eventFilters" class="dropdown float-right">
+      <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fa fas fa-filter mr-2"></i> Filter
+      </button>
+      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+        <%= form_with(method: :get, local: true) do |f| %>
+          <div class="px-2 mb-2 nowrap">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="filterMissedBakes" name="types[]" value="missed_bakes" <%= 'checked' if params[:types].nil? || params[:types].include?("missed_bakes") %>>
+              <label class="form-check-label" for="filterMissedBakes">
+                Missed Bakes
+              </label>
+            </div>
+          </div>
+          <div class="px-2 mb-2 nowrap">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="filterMissedEndorsements" name="types[]" value="missed_endorsements" <%= 'checked' if params[:types].nil? || params[:types].include?("missed_endorsements") %>>
+              <label class="form-check-label" for="filterMissedEndorsements">
+                Missed Endorsements
+              </label>
+            </div>
+          </div>
+          <div class="px-2 mb-2 nowrap">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="filterSteals" name="types[]" value="steals" <%= 'checked' if params[:types].nil? || params[:types].include?("steals") %>>
+              <label class="form-check-label" for="filterSteals">
+                Steals
+              </label>
+            </div>
+          </div>
+          <div class="px-2 mb-2 nowrap">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="filterDoubleBakes" name="types[]" value="double_bakes" <%= 'checked' if params[:types].nil? || params[:types].include?("double_bakes") %>>
+              <label class="form-check-label" for="filterDoubleBakes">
+                Double Bakes
+              </label>
+            </div>
+          </div>
+          <div class="px-2 mb-2 nowrap">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="filterDoubleEndorsements" name="types[]" value="double_endorsements" <%= 'checked' if params[:types].nil? || params[:types].include?("double_endorsements") %>>
+              <label class="form-check-label" for="filterDoubleEndorsements">
+                Double Endorsements
+              </label>
+            </div>
+          </div>
+
+          <div class="px-2">
+            <%= f.submit "Update", name: nil, class: "btn btn-sm btn-info" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+  </div>
+  <table class="table table-hover mb-0">
+    <thead>
+      <tr>
+        <th>Event</th>
+        <th>Sender</th>
+        <th>Receiver</th>
+        <th>Reward</th>
+        <th>Block</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @events.none? %>
+        <tr>
+          <td class="text-center" colspan="4">None</td>
+        </tr>
+      <% else %>
+        <% @events[:events].each do |event| %>
+          <tr class="linked">
+            <td>
+              <%= link_to tezos_baker_path(event.baker_address) do %>
+                <i class="fas fa-fw mr-2 <%= event_icon(event.type) %>"></i>
+                <%= event.type.titleize %>
+              <% end %>
+            </td>
+            <td><%= link_to event.baker_long_name, tezos_baker_path(event.baker_address) %></td>
+            <td><%= link_to event.offender_long_name, tezos_baker_path(event.baker_address) if event.offender_address.present? %></td>
+            <td>
+              <%= link_to "#{number_with_precision(event.reward / 1000000.0, precision: 6)} XTZ", tezos_baker_path(event.baker_address) if event.reward.present? %>
+            </td>
+            <td><%= link_to number_with_delimiter(event.block_id, delimiter: ","), tezos_baker_path(event.baker_address) %></td>
+            <td>
+              <% if event.related_block_id.present?  %>
+                <%= link_to "In block #{number_with_delimiter(event.related_block_id, delimiter: ",")}", tezos_baker_path(event.baker_address) %>
+              <% elsif event.slot.present? %>
+                <%= link_to "Slot #{event.slot}", tezos_baker_path(event.baker_address) %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+        <tr class="linked">
+          <td class="text-center" colspan="6">
+            <%= link_to "View All", tezos_cycle_baker_events_path(@cycle.number) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,69 @@
+<% content_for :body_class, 'transaction-show' -%>
+
+<%= render partial: '/polkadot/shared/chain_header', locals: { summary_link: true } %>
+
+<h2 class='mb-4'>
+  <label class='text-muted'>Tx</label>
+  <span class='technical text-lg'><%= @transaction.id %></span>
+</h2>
+
+<% if @error -%>
+  <%= render partial: 'shared/display_error' %>
+<% else -%>
+  <div class='row'>
+    <div class='col-12 col-md-3 order-0 order-md-1 info-cards'>
+      <div class='card'>
+        <h5 class='card-header d-flex justify-content-between align-items-center'>
+          Height
+          <a href='<%= polkadot_chain_block_path(@chain.slug, @transaction.block, @chain.id) %>' class='text-sm text-white'><span class='fas fa-chevron-left'></span>
+            back</a>
+        </h5>
+        <div class='card-body'>
+          <span class='large-number technical'><%= @transaction.block %></span>
+        </div>
+      </div>
+
+      <div class='card'>
+        <h5 class='card-header'>Timestamp</h5>
+        <div class='card-body'>
+          <span class='technical'><%= @transaction.time.strftime('%Y-%m-%d @ %H:%M %Z') %></span>
+        </div>
+      </div>
+    </div>
+
+    <div class='col-12 col-md-9 order-1 order-md-0'>
+      <section class='card'>
+        <header class='card-header d-flex align-items-center justify-content-between'>
+          <h4 class='m-0'>Transaction Details</h4>
+        </header>
+        <main>
+          <section>
+            <div class='table-responsive pt-2'>
+              <table class='table table-sm table-borderless'>
+                <tbody>
+                  <tr>
+                    <td class='text-nowrap border-none'><%= @transaction.humanized_call %></td>
+                    <td class='m-0 p-0 border-none'>
+                      <table class='table m-0 no-first-row-top-border'>
+                        <tr>
+                          <td class='text-nowrap'><span>From</span></td>
+                          <td><%= @transaction.address %></td>
+                        </tr>
+                        <% @transaction.humanized_parameters.each do |parameter| %>
+                          <tr>
+                            <td class='text-nowrap'><span><%= parameter[0] %></span></td>
+                            <td><%= parameter[1] %></td>
+                          </tr>
+                        <% end -%>
+                      </table>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </main>
+      </section>
+    </div>
+  </div>
+<% end -%>

@@ -1,0 +1,46 @@
+<div class="mb-3">
+  <%= form_for [:admin, chain] do |f| %>
+    <div class='row'>
+      <div class='col-12 col-md-4'>
+
+        <div class='form-group'>
+          <label class='d-block'>Chain Name</label>
+          <%= f.text_field :name, class: 'form-control', placeholder: 'Name' %>
+        </div>
+
+        <div class='form-group'>
+          <label class='d-block'>URL Slug</label>
+          <%= f.text_field :slug, class: 'form-control', placeholder: 'slug' %>
+        </div>
+
+        <div class='form-group'>
+          <label class='d-block'>Indexer API Base URL</label>
+          <%= f.text_field :indexer_api_base_url, class: 'form-control', placeholder: "http://localhost:3000/tezos" %>
+        </div>
+
+        <div class="form-group form-check">
+          <%= f.check_box :primary, class: "form-check-input" %>
+          <%= f.label :primary, "Primary for network?", class: "form-check-label" %>
+        </div>
+
+        <%= f.submit 'Update Chain', class: 'btn btn-lg btn-primary' %>
+      </div>
+    </div>
+  <% end -%>
+</div>
+
+<% if chain.enabled? %>
+
+  <%= form_for [:admin, chain] do |f| %>
+    <%= f.hidden_field :disabled, value: true %>
+    <%= f.button "<span class='fas fa-exclamation-triangle'></span> disable".html_safe, class: 'btn btn-sm btn-warning', data: chain.primary? ? { toggle: 'tooltip' } : nil, title: chain.primary? ? "Warning, this is the primary #{chain.network_name} chain!" : nil %>
+  <% end -%>
+
+<% else %>
+
+  <%= form_for [:admin, chain] do |f| %>
+    <%= f.hidden_field :disabled, value: false %>
+    <%= f.button "<span class='fas fa-play-circle'></span> enable".html_safe, class: 'btn btn-sm btn-primary', data: { toggle: 'tooltip' }, title: 'Node is up and ready to enable syncing.' %>
+  <% end -%>
+
+<% end %>

@@ -1,2 +1,2 @@
-class Kava::ValidatorDelegationsDecorator < Common::ValidatorDelegationsDecorator
+class Kava::ValidatorDelegationsDecorator < Cosmoslike::ValidatorDelegationsDecorator
 end

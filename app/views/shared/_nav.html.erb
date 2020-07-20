@@ -29,7 +29,11 @@
             *Cosmos::Chain.alive.has_synced.to_a,
             *Terra::Chain.alive.has_synced.to_a,
             *Iris::Chain.alive.has_synced.to_a,
-            *Kava::Chain.alive.has_synced.to_a
+            *Kava::Chain.alive.has_synced.to_a,
+            *Emoney::Chain.alive.has_synced.to_a,
+            *Livepeer::Chain.has_synced.to_a,
+            *Oasis::Chain.enabled.to_a,
+            *Tezos::Chain.enabled.to_a
           ].group_by(&:network_name) -%>
 
           <% if !@no_chain_select && grouped_chains.any? -%>
@@ -56,7 +60,7 @@
         <% end -%>
 
         <% if current_user -%>
-          <% if @chain -%>
+          <% if @chain && @chain.has_dashboard? -%>
             <li class='nav-item'>
               <a class='nav-link' href='<%= namespaced_path( 'dashboard', chain: @chain || Cosmos::Chain.primary ) %>'>Dashboard</a>
             </li>
@@ -69,6 +73,7 @@
             </a>
             <div class='dropdown-menu' aria-labelledby='account-menu-link'>
               <a class='dropdown-item' href='<%= settings_users_path %>'>Settings</a>
+              <a class='dropdown-item' href='<%= telegram_account_path %>'>Telegram Account</a>
               <a class='dropdown-item' href='<%= logout_path %>'>Logout</a>
             </div>
           </li>

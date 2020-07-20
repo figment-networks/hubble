@@ -1,0 +1,59 @@
+<% content_for :body_class, 'faucet-show' %>
+
+<% balance = @faucet.balance -%>
+
+<% if @faucet.disabled? -%>
+  <div class='error-content d-flex justify-content-between align-items-center flex-column'>
+    <h1 class='display'>Faucet Unavailable</h1>
+    <p>Sorry! The community faucet is not able to disburse <%= @faucet.denom %> at the moment. Please try again later.</p>
+  </div>
+<% elsif balance.nil? -%>
+  <div class='error-content d-flex justify-content-between align-items-center flex-column'>
+    <h1 class='display'>Faucet Unavailable</h1>
+    <p>Sorry! We're having some trouble communicating with our full node. Please try again later.</p>
+  </div>
+<% else -%>
+  <% enough = balance.to_f >= (@faucet.disbursement_amount.to_f + (@faucet.fee_amount.to_f * 2)) -%>
+  <%= form_for @chain.faucet.transactions.build, url: namespaced_path( 'faucet_transactions' ), html: { class: 'my-5' } do |f| %>
+    <h3 class='text-center mb-5'><%= @chain.network_name %> / <%= @chain.name %> Community Faucet</h3>
+
+    <div class='alert alert-primary text-center'>
+      <div class='text-sm text-muted'>This faucet is community funded. Please contribute!</div>
+      <div>
+        <span class='technical'><%= @faucet.address %></span>
+        <% if balance -%>
+          (<%= format_amount balance.to_f, denom: @faucet.denom %>)
+        <% end -%>
+      </div>
+    </div>
+
+    <div class='faucet-error-container'>
+      <% if flash[:error] -%>
+        <div class='alert alert-danger text-center'>
+          Sorry, the transaction was not successfully completed.<br/>
+          <small><%= flash[:error].html_safe %></small>
+        </div>
+      <% end -%>
+    </div>
+
+    <div class='row mt-3'>
+      <div class='col-12'>
+        <input class='form-control form-control-lg text-monospace text-center' type='text' name='fund_this_address' placeholder='<%= @chain.prefixes[:account_address] %>...' />
+      </div>
+    </div>
+
+    <div class='row mt-5'>
+      <div class='col-12 text-center'>
+        <button class='submit-button btn btn-lg btn-primary <%= 'disabled' if !enough %>'
+                <%= 'disabled' if !enough -%>
+                data-sitekey='<%= Rails.application.secrets.recaptcha[:site] %>'>
+          Send
+          <%= format_amount( @faucet.disbursement_amount.to_f, denom: @faucet.denom, html: false ) %>
+          <span class='ml-2 fas fa-chevron-right'></span>
+        </button>
+      </div>
+    </div>
+  <% end -%>
+
+  <script src='https://www.google.com/recaptcha/api.js?render=explicit'></script>
+<% end -%>

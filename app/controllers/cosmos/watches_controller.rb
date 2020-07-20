@@ -1,2 +1,2 @@
-class Cosmos::WatchesController < Common::WatchesController
+class Cosmos::WatchesController < Cosmoslike::WatchesController
 end

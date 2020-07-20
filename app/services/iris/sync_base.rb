@@ -1,4 +1,4 @@
-class Iris::SyncBase < Common::SyncBase
+class Iris::SyncBase < Cosmoslike::SyncBase
 
   def get_stake_info
     path = 'stake/validators'

@@ -1,7 +1,8 @@
 class Iris::Chain < ApplicationRecord
-  include Chainlike
+  include Cosmoslike::Chainlike
 
   SYNC_OFFSET = 1
+  SYNC_INTERVAL = 1.minute
   SUPPORTS_LEDGER = false
 
   PREFIXES = {

@@ -1,0 +1,21 @@
+{
+  "id": 69677,
+  "created_at": "2020-06-02T22:38:51.797626-05:00",
+  "updated_at": "2020-06-02T22:38:51.797626-05:00",
+  "height": 6554049,
+  "time": "2020-06-02T22:38:49.529573-05:00",
+  "app_version": "1.0.0-a4f57f91",
+  "producer": "akme.betanet",
+  "hash": "A4KyHBm8LSZvq7mn7WinreWTpF7jZTiDBAPmTQ7hLuVJ",
+  "prev_hash": "DEhSQsbUnvypThZDg94WJ54j4r4gLF1mjSetv1ft5Aab",
+  "epoch": "11111111111111111111111111111111",
+  "gas_price": "5000",
+  "gas_allowed": 0,
+  "gas_used": 0,
+  "rent_paid": "0",
+  "validator_reward": "0",
+  "total_supply": "1003709654487041889740243125707688",
+  "signature": "ed25519:3YuyvNNXuSfxCUkzHaQvAwuUkkqGaXPkMvHSU2VVTdr34EhfPL17XRt88Ao3KRD3Qn5bYXwu7wrdRi6VvZuuEW3",
+  "chunks_count": 0,
+  "transactions_count": 0
+}

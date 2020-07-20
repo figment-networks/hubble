@@ -1,0 +1,20 @@
+<div class='table-responsive'>
+  <table class='table table-sm votes-table'>
+    <thead>
+      <tr role="row">
+        <td>Name</td>
+        <td>Hash Id</td>
+        <td>Rolls For</td>
+      </tr>
+    </thead>
+    <tbody>
+      <% @tally_result.props.each do |prop| -%>
+        <tr>
+          <td><a href='<%= tezos_governance_proposal_path( prop[1] ) %>'><%= prop[0] %></a></td>
+          <td><a href='<%= tezos_governance_proposal_path( prop[1] ) %>'><%= prop[1].truncate(20) %></a></td>
+          <td><a href='<%= tezos_governance_proposal_path( prop[1] ) %>'><%= number_with_delimiter(prop[2].to_i, :delimiter => ',') %></a></td>
+        </tr>
+      <% end -%>
+    </tbody>
+  </table>
+</div>

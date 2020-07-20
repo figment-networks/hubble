@@ -1,2 +1,2 @@
-class Cosmos::ProposalTallyDecorator < Common::ProposalTallyDecorator
+class Cosmos::ProposalTallyDecorator < Cosmoslike::ProposalTallyDecorator
 end

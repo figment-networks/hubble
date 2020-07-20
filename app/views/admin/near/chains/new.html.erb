@@ -1,0 +1,8 @@
+<% content_for :body_class, 'admin-chain-new' %>
+
+<h2 class='header'>
+  Creating <%= @chain.network_name %> Chain
+  <a class='btn btn-sm btn-outline-secondary' href='<%= admin_root_path %>'>back</a>
+</h2>
+
+<%= render "form", chain: @chain %>

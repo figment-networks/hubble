@@ -1,2 +1,2 @@
-class Terra::AccountsController < Common::AccountsController
+class Terra::AccountsController < Cosmoslike::AccountsController
 end

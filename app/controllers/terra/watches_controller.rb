@@ -1,2 +1,2 @@
-class Terra::WatchesController < Common::WatchesController
+class Terra::WatchesController < Cosmoslike::WatchesController
 end

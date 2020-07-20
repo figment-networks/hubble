@@ -1,2 +1,2 @@
-class Kava::AccountDecorator < Common::AccountDecorator
+class Kava::AccountDecorator < Cosmoslike::AccountDecorator
 end

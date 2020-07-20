@@ -1,4 +1,4 @@
-class Iris::Transactions::MessageDecorator < Common::Transactions::MessageDecorator
+class Iris::Transactions::MessageDecorator < Cosmoslike::Transactions::MessageDecorator
   private
 
   def humanized_type

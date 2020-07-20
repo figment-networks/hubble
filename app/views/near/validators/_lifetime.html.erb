@@ -1,0 +1,21 @@
+<div class="card">
+  <h5 class="card-header">Lifetime</h5>
+  <div class="card-body">
+    <label>First Seen</label>
+    <div class="stat-value">
+      <%= validator.start_time.try(:strftime, "%B %d, %Y at %H:%M %Z") || "N/A" %>
+    </div>
+    <label>Last Seen</label>
+    <div class="stat-value">
+      <%= validator.last_time.try(:strftime, "%B %d, %Y at %H:%M %Z") || "N/A" %>
+    </div>
+    <label>Total Produced Blocks</label>
+    <div class="stat-value">
+      <%= validator.produced_blocks %>
+    </div>
+    <label>Overall Efficiency</label>
+    <div class="stat-value">
+      <%= validator.efficiency.round(2) %>%
+    </div>
+  </div>
+</div>

@@ -1,0 +1,100 @@
+<% latest_block = @chain.blocks.first -%>
+
+<div class='card'>
+  <h5 class='card-header'>Current Voting Power</h5>
+  <div class='card-body'>
+    <div class='large-number'><%= format_amount(@validator.current_voting_power, denom: @chain.token_map[@chain.primary_token]['display']) %></div>
+
+    <% if @validator.info_field('jailed') -%>
+      <span class='badge badge-danger'>JAILED</span>
+    <% elsif !@validator.in_active_set?( latest_block ) -%>
+      <span class='badge badge-danger'>NOT IN VOTING SET</span>
+    <% else -%>
+      <div>
+        <label class='text-muted d-inline mb-0'>Proposal Probability</label>
+        <span class='technical'><%= round_if_whole @validator.proposal_probability * 100, 2 %>%</span>
+      </div>
+    <% end -%>
+  </div>
+</div>
+
+<% if @validator.has_info? && @validator.info_field('commission') -%>
+  <div class='card'>
+    <h5 class='card-header'>Commission</h5>
+    <div class='card-body'>
+      <span class='large-number technical'><%= round_if_whole(@validator.current_commission * 100, 0) %>%</span>
+      <span class='text-sm text-muted ml-2'>max <span class='technical'><%= round_if_whole(@validator.max_commission * 100, 0) %>%</span>,</span>
+      <span class='text-sm text-muted ml-1'>change rate &#177;<span class='technical'><%= round_if_whole(@validator.commission_change_rate * 100, 0) %>%</span></span>
+    </div>
+  </div>
+<% end -%>
+
+<% if current_admin -%>
+  <div class='card'>
+    <h5 class='card-header'>Pending Rewards</h5>
+    <div class='card-body'>
+      <% begin -%>
+        <% validator_reward_data = @chain.syncer.get_validator_rewards( @validator.owner ) -%>
+        <% if validator_reward_data.nil? || validator_reward_data.empty? -%>
+          <span class='text-muted'>&mdash;</span>
+        <% else -%>
+          <% validator_reward_data.each do |vrd| -%>
+            <div><%= format_amount( vrd['amount'].to_f, @chain, denom: vrd['denom'] ) %></div>
+          <% end -%>
+        <% end -%>
+      <% rescue @chain.namespace::SyncBase::CriticalError, TypeError -%>
+        <span class='text-muted'>Could not load data.</span>
+      <% end -%>
+    </div>
+  </div>
+<% end -%>
+
+<div class='card'>
+  <h5 class='card-header'>Blocks</h5>
+  <div class='card-body'>
+    <label class='text-muted'>Last 50</label>
+    <div class='block-heatmap-container'>
+      <div class='block-heatmap'>
+        <% @chain.blocks.limit( 50 ).reverse_each do |block| -%>
+          <% precommitted = block.precommitters.include?(@validator.address) -%>
+          <% proposed = block.proposer_address == @validator.address -%>
+          <a class='block <%= precommitted ? 'ok' : 'missed' %> <%= proposed ? 'proposed' : '' %>'
+             href='<%= namespaced_path( 'block', block ) %>'
+             title="Block <%= block.height %> <span class='fas fa-arrow-right text-sm text-muted mx-2'></span> <span class='badge badge-<%= precommitted ? 'success' : 'danger' %>'><%= precommitted ? 'OK' : 'MISSED' %></span>"></a>
+        <% end -%>
+      </div>
+    </div>
+
+    <% if false -%>
+      <div>
+        <label class='text-muted d-inline mb-0'>Total Pre-commits</label>
+        <span class='technical large-number'><%= @validator.total_precommits %></span>
+      </div>
+
+      <div>
+        <label class='text-muted d-inline mb-0'>Total Proposals</label>
+        <span class='technical large-number'><%= @validator.total_proposals %></span>
+        <span class='text-muted'>
+          (<span class='technical'>
+            <%= round_if_whole (@validator.total_proposals / @validator.total_precommits.to_f) * 100, 2 %>%
+          </span>)
+        </span>
+      </div>
+    <% end -%>
+  </div>
+</div>
+
+<div class='card'>
+  <h5 class='card-header'>Lifetime</h5>
+  <div class='card-body'>
+    <label>First Seen:</label>
+    <div class='stat-value'>
+      <%= @validator.first_seen_at.try(:strftime, '%B %d, %Y at %H:%M %Z') || 'Never' %>
+    </div>
+
+    <label>Voting Power Last Updated:</label>
+    <div class='stat-value'>
+      <%= @validator.last_updated.try(:strftime, "%B %d, %Y at %H:%M %Z") || 'Never' %>
+    </div>
+  </div>
+</div>

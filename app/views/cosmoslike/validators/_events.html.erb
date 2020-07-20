@@ -1,0 +1,66 @@
+<a name='events'></a>
+<div class='card'>
+  <h5 class='card-header'>
+    <div class='card-header-parts'>
+      <div>Event History <small>&mdash; most recent 20</small></div>
+      <% if !current_user -%>
+        <div data-toggle='tooltip' title='Sign up to subscribe to alerts!'>
+          <a class='btn btn-sm btn-outline-light'
+             href='<%= new_user_path %>'>Subscribe</a>
+        </div>
+      <% else -%>
+        <div>
+          <a class='btn btn-sm btn-outline-light'
+             href='<%= namespaced_path( 'validator_subscriptions', @validator ) %>'>
+           <%= current_user.subscribed_to?(@validator) ? 'Edit Subscription' : 'Subscribe to Alerts' %>
+          </a>
+        </div>
+      <% end -%>
+    </div>
+  </h5>
+
+  <div class='card-body p-1'>
+    <% events = @validator.events.where( 'timestamp >= ?', (@chain.cutoff_at || Time.at(0)) ) -%>
+
+    <% if events.empty? -%>
+      <p class='text-muted py-4 mb-0 text-center'>No events yet.</p>
+    <% else -%>
+      <ul class='list-group list-group-flush'>
+        <% events.limit(20).each do |event| -%>
+
+          <li class='list-group-item'>
+            <div class='inner-event d-flex align-items-start flex-column flex-md-row align-items-md-center'>
+              <% icon_classes = "fa fa-#{event.icon_name} text-#{event.positive? ? 'success' : 'danger'}" %>
+              <div class='d-none d-md-block <%= icon_classes %> mr-3'></div>
+              <div class='event-content'>
+                <%= render partial: event.to_partial_path, locals: { event: event, icon_classes: icon_classes } %>
+              </div>
+              <div class='timestamp ml-md-auto text-sm text-muted ml-md-3 mt-2 mt-md-0 text-nowrap text-md-right'>
+                <a href='<%= namespaced_path( 'event', event ) %>'>
+                  <% date_string = event.timestamp.strftime("%B %d, %Y") -%>
+                  <% time_string = event.timestamp.strftime("at %H:%M %Z") -%>
+                  <div class='d-inline d-md-block'><%= date_string %></div>
+                  <div class='d-inline d-md-block'><%= time_string %></div>
+                </a>
+              </div>
+              <% if current_admin -%>
+                <div class='ml-3'>
+                  <%= button_to admin_common_validator_event_path(event), method: 'delete', class: 'text-danger btn btn-link px-0', form: { class: 'd-inline' } do %>
+                    <span class='fas fa-times'></span>
+                  <% end -%>
+                </div>
+              <% end -%>
+            </div>
+          </li>
+
+        <% end -%>
+
+        <% if events.count > 20 -%>
+          <li class='list-group-item text-center text-muted text-sm'>
+            <a class='text-muted' href='<%= namespaced_path( 'events', validator: @validator ) %>'>all events...</a>
+          </li>
+        <% end -%>
+      </ul>
+    <% end -%>
+  </div>
+</div>

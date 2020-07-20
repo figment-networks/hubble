@@ -1,2 +1,2 @@
-class Iris::ActiveSetHistoryDecorator < Common::ActiveSetHistoryDecorator
+class Iris::ActiveSetHistoryDecorator < Cosmoslike::ActiveSetHistoryDecorator
 end

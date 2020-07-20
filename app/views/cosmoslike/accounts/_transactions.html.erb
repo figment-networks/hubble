@@ -1,0 +1,55 @@
+<% transactions = @account.delegation_transactions %>
+
+<div class='transactions mb-5'>
+  <div class='transactions-table-header'>
+    <h4>Recent Delegation Transactions</h4>
+  </div>
+  <div class='transactions-table'>
+    <table data-empty='<%= transactions.blank? %>'>
+      <thead>
+        <tr>
+          <th>Hash</th>
+          <th>Height</th>
+          <th>Type</th>
+          <th>&nbsp;</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if transactions.nil? %>
+          <tr>
+            <td class='p-3 text-center' colspan='5'>Unable to retrieve transactions data.</td>
+          </tr>
+        <% elsif transactions.empty? %>
+          <tr>
+            <td class='p-3 text-center' colspan='5'>No transactions.</td>
+          </tr>
+        <% else %>
+          <% transactions.reverse_each do |tr| %>
+            <tr>
+              <td data-order='<%= tr.hash %>'>
+                <div class='text-nowrap'>
+                  <span class='technical'>
+                    <%= tr.hash.truncate(30, separator: '...') %>
+                  </span>
+                  <button class='btn btn-link btn-tiny copy-button' data-hash='<%= tr.hash %>'><span class='fas fa-copy'></span></button>
+                </div>
+              </td>
+              <td>
+                <a href='<%= namespaced_path( 'block', tr.height ) %>'>
+                  <span class='technical'><%= tr.height %></span>
+                </a>
+              <td>
+                <% tr.messages.map { |m| m.type(tooltip: false) }.uniq.each do |type| %>
+                  <span class='badge badge-pill badge-secondary'><%= type %></span>
+                <% end %>
+              </td>
+              <td class='text-right'>
+                <a class='btn btn-outline-primary btn-sm' href='<%= namespaced_path( 'block_transaction', tr.height, tr ) %>'>Details...</a>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

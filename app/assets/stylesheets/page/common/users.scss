@@ -1,0 +1,13 @@
+.user-settings {
+  .subscription-chain-header {
+    border: none;
+    margin-top: 40px;
+    &:first-child { margin-top: 0; }
+  }
+
+  .users-alert-subscription {
+    .badge.badge-secondary {
+      background-color: $gray-500;
+    }
+  }
+}

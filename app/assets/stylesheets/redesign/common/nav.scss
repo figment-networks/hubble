@@ -1,0 +1,66 @@
+// the nav is fixed, so push down content
+.content-wrapper {
+  margin-top: 40px;
+  margin-bottom: 60px;
+}
+
+.navbar {
+  background-color: transparent !important;
+
+  .figment-logo {
+    display: flex;
+    align-items: center;
+    img { margin-left: 6px; }
+  }
+  .figment-logo__text {
+    color: $primary;
+    font-size: 16px;
+    letter-spacing: 0;
+    line-height: 20px;
+  }
+
+  .figment-logo {
+    display: none;
+    @include media-breakpoint-up(md) {
+      display: inline-block;
+    }
+  }
+  .navbar-nav {
+    li.sep {
+      display: none;
+      @include media-breakpoint-up(md) {
+        display: flex;
+      }
+      align-items: center;
+      text-align: center;
+      color: $gray-100;
+      margin: 0 10px;
+    }
+  }
+
+  .top-nav-chain-select {
+    .dropdown-menu {
+      padding-top: 0px;
+    }
+    .dropdown-divider {
+      margin-bottom: 0;
+    }
+    .dropdown-divider:last-child { display: none; }
+    .dropdown-label {
+      padding: 0.25rem 1rem;
+      background: #F4F4F4;
+      color: $primary;
+      padding-top: 0.4rem;
+      &:first-child {
+        border-top-left-radius: $border-radius;
+        border-top-right-radius: $border-radius;
+      }
+    }
+    a.dropdown-item {
+      padding: 0.25rem 1rem;
+      &.current-chain {
+        color: $secondary;
+      }
+    }
+  }
+}

@@ -1,2 +1,2 @@
-class Terra::AverageSnapshotsGeneratorService < Common::AverageSnapshotsGeneratorService
+class Terra::AverageSnapshotsGeneratorService < Cosmoslike::AverageSnapshotsGeneratorService
 end

@@ -1,0 +1,79 @@
+<div class="card">
+  <div class="card-header">
+    <div class="row">
+      <div class="col">
+        <% if @cycle.number > 0 -%>
+          <%= link_to tezos_cycle_baker_events_path(@cycle.number - 1), class: "btn btn-light" do %>
+            <span class="fas fa-fw fa-chevron-left"></span>
+          <% end %>
+        <% end -%>
+      </div>
+      <div class="col text-center">
+        <h3 class="text-white mt-1 mb-0">
+          Cycle <%= @cycle.number %>
+        </h3>
+      </div>
+      <div class="col text-right">
+        <% if !@cycle.current? -%>
+          <%= link_to tezos_cycle_baker_events_path(@cycle.number + 1), class: "btn btn-light" do %>
+            <span class="fas fa-fw fa-chevron-right"></span>
+          <% end %>
+        <% end -%>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    Events
+    <%= link_to tezos_cycle_path(@cycle.number), class: "btn btn-sm btn-light float-right" do %>
+      <i class="far fa-fw fa-times"></i>
+    <% end %>
+  </div>
+  <table class="table table-hover mb-0">
+    <thead>
+      <tr>
+        <th>Event</th>
+        <th>Sender</th>
+        <th>Receiver</th>
+        <th>Reward</th>
+        <th>Block</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @events.none? %>
+        <tr>
+          <td colspan="4">None</td>
+        </tr>
+      <% else %>
+        <% @events[:events].each do |event| %>
+          <tr class="linked">
+            <td>
+              <%= link_to tezos_baker_path(event.baker_address) do %>
+                <i class="fas fa-fw mr-2 <%= event_icon(event.type) %>"></i>
+                <%= event.type.titleize %>
+              <% end %>
+            </td>
+            <td><%= link_to event.baker_long_name, tezos_baker_path(event.baker_address) %></td>
+            <td><%= link_to event.offender_long_name, tezos_baker_path(event.baker_address) if event.offender_address.present? %></td>
+            <td>
+              <%= link_to "#{number_with_precision(event.reward / 1000000.0, precision: 6)} XTZ", tezos_baker_path(event.baker_address) if event.reward.present? %>
+            </td>
+            <td><%= link_to number_with_delimiter(event.block_id, delimiter: ","), tezos_baker_path(event.baker_address) %></td>
+            <td>
+              <% if event.related_block_id.present?  %>
+                <%= link_to "In block #{number_with_delimiter(event.related_block_id, delimiter: ",")}", tezos_baker_path(event.baker_address) %>
+              <% elsif event.slot.present? %>
+                <%= link_to "Slot #{event.slot}", tezos_baker_path(event.baker_address) %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%== pagy_bootstrap_nav(@pagy) %>

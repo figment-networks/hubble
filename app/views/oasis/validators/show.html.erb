@@ -1,0 +1,30 @@
+<% content_for :body_class, 'validator-show' %>
+
+<%= render partial: '/oasis/shared/chain_header', locals: { summary_link: true } %>
+<%= render partial: '/oasis/shared/sync_errors' %>
+
+
+<h2 class='mb-3'>
+  <%= @validator.address %>
+</h2>
+
+<div class='row mb-4'>
+  <div class='col-12 col-md-8'>
+    <div class='info'>
+      <h5 class='mb-0'>
+        <label class='text-muted'>Entity ID</label>
+        <span class='technical'><%= @validator.entity_uid %></span>
+      </h5>
+    </div>
+  </div>
+</div>
+
+<div class='row'>
+  <div class='col-12 col-md-8 order-1 order-md-0'>
+    <%= render partial: 'big_charts', locals: {chain: @chain, validator: @validator} %>
+  </div>
+
+  <div class='col-12 col-md-4 order-0 order-md-1 info-cards'>
+    <%= render partial: 'sidebar', locals: {validator: @validator, chain: @chain} %>
+  </div>
+</div>

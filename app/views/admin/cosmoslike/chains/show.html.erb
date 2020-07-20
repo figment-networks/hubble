@@ -1,0 +1,355 @@
+<% content_for :body_class, 'admin-chain-show' %>
+
+<% good_node = @chain.can_communicate_with_node? -%>
+
+<h2 class='header'>
+  <span>
+    <%= @chain.network_name %> / <%= @chain.name %>
+    <%= @chain.primary? ? "<span class='fas fa-star text-primary' title='Primary Cosmos Chain'></span>".html_safe : '' %>
+    <%= @chain.testnet? ? "<span class='fas fa-vial text-info' title='Testnet Chain'></span>".html_safe : "<span class='fas fa-link text-success' title='Mainnet Chain'></span>".html_safe %>
+  </span>
+  <div class='buttons'>
+    <a class='btn btn-sm btn-outline-primary' href='<%= namespaced_path %>'>view</a>
+    <a class='btn btn-sm btn-outline-secondary' href='<%= namespaced_path( 'logs' ) %>'>sync logs</a>
+    <a class='btn btn-sm btn-outline-secondary' href='<%= admin_root_path %>'>back</a>
+  </div>
+</h2>
+
+<table class='table table-sm mb-5'>
+  <tbody>
+    <tr>
+      <th class='align-middle' style='border-top: none;'>Status:</th>
+      <td style='border-top: none;'>
+        <div class='chain-status d-flex'>
+          <% if @chain.enabled? %>
+            <div class='sync-status text-muted'><span class='fas fa-sync fa-spin text-success'></span> Syncing</div>
+
+            <%= form_for [:admin, @chain] do |f| %>
+              <%= f.hidden_field :disabled, value: true %>
+              <%= f.button "<span class='fas fa-exclamation-triangle'></span> disable".html_safe, class: 'btn btn-sm btn-warning', data: @chain.primary? ? { toggle: 'tooltip' } : nil, title: @chain.primary? ? "Warning, this is the primary #{@chain.network_name} chain!" : nil %>
+            <% end -%>
+
+            <% if !@chain.primary? -%>
+              <%= form_for [:admin, @chain] do |f| %>
+                <%= f.hidden_field :primary, value: true %>
+                <%= f.button "<span class='fas fa-star'></span> make primary".html_safe, class: 'btn btn-sm btn-dark' %>
+              <% end -%>
+            <% end -%>
+
+          <% else -%>
+            <% if @chain.dead? -%>
+              <div class='sync-status text-muted'><span class='fas fa-skull-crossbones text-dark'></span> Dead</div>
+            <% else -%>
+              <div class='sync-status text-muted'><span class='fas fa-exclamation-triangle text-warning'></span> Disabled</div>
+
+              <%= form_for [:admin, @chain] do |f| %>
+                <%= f.hidden_field :disabled, value: false %>
+                <%= f.button "<span class='fas fa-play-circle'></span> enable".html_safe, class: 'btn btn-sm btn-primary', data: { toggle: 'tooltip' }, title: good_node ? 'Node is up and ready to enable syncing.' : 'Cannot communicate with RPC and/or LCD on specified host<br/>or node\'s chain does not match.' %>
+              <% end -%>
+
+              <%= form_for [:admin, @chain] do |f| %>
+                <%= f.hidden_field :dead, value: true %>
+                <%= f.button "<span class='fas fa-skull-crossbones'></span> mark as dead".html_safe, class: 'btn btn-sm btn-warning' %>
+              <% end -%>
+            <% end -%>
+
+            <%= button_to namespaced_path( admin: true ), method: 'delete', class: 'btn btn-sm btn-danger action-delete-confirmation' do "<span class='fas fa-times'></span> delete".html_safe end %>
+          <% end -%>
+        </div>
+      </td>
+    </tr>
+
+    <tr>
+      <th class='align-middle'>External ID:</th>
+      <td>
+        <%= @chain.ext_id || 'Not yet set' %>
+      </td>
+    </tr>
+    <tr>
+      <th class='align-middle'>Last Sync:</th>
+      <td>
+        <%= @chain.last_sync_time.try(:utc).try(:strftime, "%Y-%m-%d at %H:%M %Z") || 'Never' %>
+        <% if @chain.last_sync_time -%>
+          <small class='text-muted'>(<%= time_ago_in_words @chain.last_sync_time %> ago)</small>
+        <% end -%>
+      </td>
+    </tr>
+    <% if @chain.cutoff_at -%>
+      <tr>
+        <th class='align-middle'>Sync Cutoff:</th>
+        <td>
+          <%= @chain.cutoff_at.utc.strftime("%Y-%m-%d %H:%M:%S %Z") %>
+        </td>
+      </tr>
+    <% end -%>
+    <tr>
+      <th class='align-middle'>Syncs:</th>
+      <td>
+        <%= @chain.daily_sync_logs.sum(&:sync_count) + @chain.sync_logs.count %> syncs
+        <small class='text-muted'>(<%= @chain.daily_sync_logs.sum(&:fail_count) + @chain.sync_logs.failed.count %> failed)</small>
+      </td>
+    </tr>
+
+    <tr>
+      <th class='align-middle'>Blocks:</th>
+      <td>
+        <%= @chain.latest_local_height %>
+        <small class='text-muted'>(<%= @chain.blocks.count %> cached)</small>
+      </td>
+    </tr>
+
+    <tr>
+      <th class='align-middle'>Validators:</th>
+      <td>
+        <%= @chain.validators.count %> total
+        <small class='text-muted'>(<%= @chain.active_validators_at_height(@chain.latest_local_height).count %> active)</small>
+      </td>
+    </tr>
+
+    <tr>
+      <th class='align-middle'>Accounts:</th>
+      <td><%= @chain.accounts.count %> total</td>
+    </tr>
+
+    <tr>
+      <th class='align-middle'>RPC:</th>
+      <td>
+        <%= form_for [:admin, @chain] do |f| %>
+          <div class='rpc-host-edit d-flex'>
+            <%= f.text_field :rpc_host, class: 'mr-2 w-50 form-control technical', placeholder: 'rpc host' %>
+            <%= f.text_field :rpc_port, class: 'mr-2 w-15 form-control technical', placeholder: 'rpc port', value: (f.object.rpc_port || API_DEFAULTS[:rpc_port]) %>
+            <%= f.text_field :rpc_path, class: 'mr-2 w-25 form-control technical', placeholder: 'rpc path' %>
+
+            <div class='text-nowrap mr-4'><label class='text-sm text-muted mb-0'>
+              <%= f.check_box :use_ssl_for_rpc, class: 'form-control d-inline h-auto w-auto' %>
+              SSL?
+            </label></div>
+
+            <%= f.submit 'update', disabled: @chain.dead? || !@chain.disabled?, class: 'btn btn-sm btn-primary ml-auto', data: { toggle: 'tooltip' }, title: @chain.disabled? ? nil : 'Disable syncing to change.' %>
+          </div>
+        <% end -%>
+      </td>
+    </tr>
+
+    <tr>
+      <th class='align-middle'>LCD:</th>
+      <td>
+        <%= form_for [:admin, @chain] do |f| %>
+          <div class='rpc-host-edit d-flex'>
+            <%= f.text_field :lcd_host, class: 'mr-2 w-50 form-control technical', placeholder: 'lcd host' %>
+            <%= f.text_field :lcd_port, class: 'mr-2 w-15 form-control technical', placeholder: 'lcd port', value: (f.object.lcd_port || API_DEFAULTS[:lcd_port]) %>
+            <%= f.text_field :lcd_path, class: 'mr-2 w-25 form-control technical', placeholder: 'rpc path' %>
+
+            <div class='text-nowrap mr-4'><label class='text-sm text-muted mb-0'>
+              <%= f.check_box :use_ssl_for_lcd, class: 'form-control d-inline h-auto w-auto' %>
+              SSL?
+            </label></div>
+
+            <%= f.submit 'update', disabled: @chain.dead? || !@chain.disabled?, class: 'btn btn-sm btn-primary ml-auto', data: { toggle: 'tooltip' }, title: @chain.disabled? ? nil : 'Disable syncing to change.' %>
+          </div>
+        <% end -%>
+      </td>
+    </tr>
+
+    <tr>
+      <th class='align-middle'>
+        Tokens:
+      </th>
+      <td class='py-3'>
+        <div class='d-flex align-items-center'>
+          <div>
+            <ul class='list-group list-group-flush'>
+              <% sorted_token_map(@chain).each do |remote, info| -%>
+                <li class='list-group-item'>
+                  <div class='d-flex align-items-center justify-content-between'>
+                    <tt class='w-10 text-nowrap'><%= remote %></tt>
+                    <tt class='w-10 text-nowrap'><%= info['display'] %></tt>
+                    <tt class='w-10 text-nowrap'>10 ^ <%= info['factor'] %></tt>
+                    <div class='w-25'>
+                      <% if info['primary'] %><span class='badge badge-sm badge-primary'>primary</span><% end -%>
+                    </div>
+                    <%= form_for [:admin, @chain] do |f| %>
+                      <input type='hidden' name='remove_token' value='<%= remote %>' />
+                      <button class='btn btn-tiny btn-danger'>
+                        <span class='fas fa-times'></span>
+                      </button>
+                    <% end -%>
+                  </div>
+                </li>
+              <% end -%>
+              <li class='list-group-item'>
+                <%= form_for [:admin, @chain] do |f| %>
+                  <div class='d-flex align-items-center justify-content-between'>
+                    <input type='text' class='d-inline form-control form-control-sm w-third mr-2' name='new_token[remote]' placeholder='RPC Denom' />
+                    <input type='text' class='d-inline form-control form-control-sm w-third mr-2' name='new_token[display]' placeholder='Display Denom' />
+                    <span class='technical mr-2'>
+                      10 <tt>^</tt>
+                      <input type='number' name='new_token[factor]' class='d-inline w-third form-control technical' placeholder='0' />
+                    </span>
+                    <div>
+                      <label class='mb-0 text-muted text-sm'>
+                        <input type='checkbox' name='new_token[primary]' />
+                        Primary?
+                      </label>
+                    </div>
+                    <%= f.submit 'add', disabled: @chain.dead?, class: 'ml-2 btn btn-sm btn-primary' %>
+                  </div>
+                <% end -%>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </td>
+    </tr>
+
+    <tr>
+      <th class='align-middle'>SDK:</th>
+      <td>
+        <%= form_for [:admin, @chain] do |f| %>
+          <div class='d-flex align-items-center'>
+            <label class='mb-0 text-sm text-muted mr-2'>Version:</label>
+            <%= f.text_field :sdk_version, class: 'w-20 form-control technical' %>
+            <%= f.submit 'update', disabled: @chain.dead?, class: 'btn btn-sm btn-primary ml-auto' %>
+          </div>
+        <% end -%>
+      </td>
+    </tr>
+
+    <tr>
+      <th class='align-middle'>Notes:</th>
+      <td>
+        <%= form_for [:admin, @chain] do |f| %>
+          <div class='d-flex align-items-center'>
+            <%= f.text_area :notes, class: 'w-75 form-control technical' %>
+            <%= f.submit 'update', disabled: @chain.dead?, class: 'btn btn-sm btn-primary ml-auto' %>
+          </div>
+        <% end -%>
+        <% if !@chain.notes.blank? -%>
+          <label class='mt-3 mb-0 text-sm text-muted d-block'>Current:</label>
+          <%= Redcarpet::Markdown.new(Redcarpet::Render::HTML).render(@chain.notes).html_safe %>
+        <% end -%>
+      </td>
+    </tr>
+
+    <tr>
+      <th class='align-middle w-20'>
+        Event Defs:
+        <a class='btn btn-tiny btn-outline-secondary' href='<%= namespaced_path( 'validator_events', admin: true ) %>'>debug</a>
+        <% if !@chain.enabled? && !@chain.dead? -%>
+          <button class='btn btn-tiny btn-outline-primary action-add-new-validator-event-definition'>+ add</button>
+          <button class='btn btn-tiny btn-primary action-event-definitions-save d-none'>save</button>
+        <% end -%>
+      </th>
+      <td class='py-3'>
+        <%= form_for namespaced_path( admin: true ), html: { id: 'chain-validator-event-defs-form', method: 'PATCH' } do |f| %>
+          <div class='validator-event-defs-list' data-defs='<%= @chain.validator_event_defs.to_json %>'></div>
+        <% end -%>
+      </td>
+    </tr>
+
+    <tr>
+      <th class='align-middle'>Twitter Events:</th>
+      <td>
+        <%= form_for [:admin, @chain] do |f| %>
+          <div class='d-flex flex-column py-3'>
+            <div class='d-flex'>
+              <div class='w-100 mr-4'>
+                <%= label_tag "#{@chain.network_name.downcase}_chain[twitter_events_config][consumer_key]", 'Consumer Key', class: 'text-muted text-sm mb-0' %>
+                <%= text_field_tag "#{@chain.network_name.downcase}_chain[twitter_events_config][consumer_key]", @chain.twitter_events_config['consumer_key'], class: 'form-control form-control-sm' %>
+              </div>
+              <div class='w-100 ml-4'>
+                <%= label_tag "#{@chain.network_name.downcase}_chain[twitter_events_config][consumer_secret]", 'Consumer Secret', class: 'text-muted text-sm mb-0' %>
+                <%= text_field_tag "#{@chain.network_name.downcase}_chain[twitter_events_config][consumer_secret]", @chain.twitter_events_config['consumer_secret'], class: 'form-control form-control-sm' %>
+              </div>
+            </div>
+
+            <div class='d-flex'>
+              <div class='w-100 mr-4'>
+                <%= label_tag "#{@chain.network_name.downcase}_chain[twitter_events_config][access_token]", 'Access Token', class: 'text-muted text-sm mb-0 mt-3' %>
+                <%= text_field_tag "#{@chain.network_name.downcase}_chain[twitter_events_config][access_token]", @chain.twitter_events_config['access_token'], class: 'form-control form-control-sm' %>
+              </div>
+              <div class='w-100 ml-4'>
+                <%= label_tag "#{@chain.network_name.downcase}_chain[twitter_events_config][access_secret]", 'Access Secret', class: 'text-muted text-sm mb-0 mt-3' %>
+                <%= text_field_tag "#{@chain.network_name.downcase}_chain[twitter_events_config][access_secret]", @chain.twitter_events_config['access_secret'], class: 'form-control form-control-sm' %>
+              </div>
+            </div>
+
+            <%= f.submit 'update', class: 'mt-3 ml-auto btn btn-sm btn-primary' %>
+          </div>
+        <% end -%>
+      </td>
+    </tr>
+
+    <tr>
+      <th class='align-middle'>
+        Faucet:
+      </th>
+      <td class='py-3'>
+        <% if @chain.faucet -%>
+          <% begin -%>
+            <%= form_for [:admin, @chain, @chain.faucet], url: namespaced_path( 'faucet', admin: true ), html: { class: 'chain-validator-faucet-form' } do |f| %>
+              <div class='faucet-line mb-3'>
+                <label class='text-sm text-muted mb-0'>Address:</label>
+                <div class='text-monospace ml-2 text-lg'><%= @chain.faucet.address %></div>
+              </div>
+              <div class='faucet-line mb-3'>
+                <label class='text-sm text-muted mb-0'>Balance:</label>
+                <% account_info = @chain.syncer(1000).get_account_info(@chain.faucet.address) rescue nil -%>
+                <% if account_info && !account_info.has_key?('error') -%>
+                  <div class='ml-2'>
+                    <%= format_amount account_info['value']['coins'].find { |c| c['denom'] == @chain.faucet.denom }.try(:fetch, 'amount', "0").to_f, denom: @chain.faucet.denom %>
+                  </div>
+                  <label class='text-sm text-muted mb-0 ml-3'>Sequence:</label>
+                  <div class='ml-2'><%= @chain.faucet.current_sequence %></div>
+                <% else -%>
+                  <div class='ml-2 alert alert-danger mb-0 py-1'>
+                    <% if account_info.nil? -%>
+                      Account not found. Fund the account.
+                    <% else -%>
+                      <%= debug account_info %>
+                    <% end -%>
+                  </div>
+                <% end -%>
+              </div>
+              <div class='faucet-line mb-3'>
+                <label class='mb-0 text-sm text-muted'>Disbursement:</label>
+                <input class='form-control technical amount-field w-15 ml-2' name='<%= @chain.network_name.downcase %>_faucet[disbursement_amount]' value='<%= @chain.faucet.disbursement_amount %>' />
+                <label class='mb-0 ml-3 text-sm text-muted'>Fee:</label>
+                <input class='form-control technical amount-field w-15 ml-2' name='<%= @chain.network_name.downcase %>_faucet[fee_amount]' value='<%= @chain.faucet.fee_amount %>' />
+                <label class='mb-0 ml-3 text-sm text-muted'>Denom:</label>
+                <input class='form-control technical denom-field w-15 ml-2' name='<%= @chain.network_name.downcase %>_faucet[denom]' value='<%= @chain.faucet.denom %>' />
+              </div>
+              <div class='faucet-line'>
+                <a href='<%= namespaced_path( 'faucet', admin: true ) %>' class='btn btn-light btn-sm'>logs</a>
+                <% if !@chain.faucet.disabled? -%>
+                  <input type='submit' name='disable' class='btn btn-sm btn-warning ml-2' value='disable' />
+                <% else -%>
+                  <input type='submit' name='enable' class='btn btn-sm btn-success ml-2' value='enable' />
+                <% end -%>
+                <input type='submit' class='btn btn-sm btn-primary ml-2' value='update' />
+                <input type='submit' name='destroy' class='btn btn-sm btn-danger ml-2' value='delete' onclick='return confirm("Are you sure? This will delete all records related to this faucet from the database.")' />
+              </div>
+            <% end -%>
+          <% rescue -%>
+            ERROR
+          <% end -%>
+
+        <% elsif !@chain.dead? -%>
+          <%= form_tag namespaced_path( 'faucets', admin: true ), method: 'POST' do %>
+            <div class='faucet-line'>
+              <input type='submit' class='btn btn-sm btn-primary' value='create' />
+              <label class='mb-0 ml-3 mr-2 text-sm text-muted'>Seed Words (optional):</label>
+              <textarea class='form-control technical' name='words' rows='3'></textarea>
+            </div>
+          <% end -%>
+        <% else -%>
+          &mdash;
+        <% end -%>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<script>
+  App.config.chainIsSyncing = <%= @chain.enabled?.to_json.html_safe %>;
+</script>

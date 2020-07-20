@@ -1,2 +1,2 @@
-class Iris::ValidatorEventsService < Common::ValidatorEventsService
+class Iris::ValidatorEventsService < Cosmoslike::ValidatorEventsService
 end

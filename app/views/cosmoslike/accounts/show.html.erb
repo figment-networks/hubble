@@ -1,0 +1,62 @@
+<% content_for :body_class, 'account-show' %>
+
+<%= render partial: '/cosmoslike/shared/chain_header', locals: { summary_link: true } %>
+
+<h2 class='mb-0'>
+  <label class='text-muted'>Account</label>
+  <span class='technical text-lg'><%= params[:id] %></span>
+</h2>
+<% if @found_account && @found_account.validator -%>
+  <h5 class='mb-4'>
+    <label class='text-muted'>Owner</label>
+    <a href='<%= namespaced_path( 'validator', @found_account.validator ) %>'>
+      <span class='technical'><%= @found_account.validator.long_name %></span>
+    </a>
+  </h5>
+<% end -%>
+
+<% @account = @chain.namespace::AccountDecorator.new( @chain, params[:id] ) -%>
+
+<% if @account.error? -%>
+  <%= render partial: 'shared/display_error' %>
+<% else -%>
+  <div class='row'>
+    <div class='col-12 col-md-3 order-0 order-md-1 info-cards'>
+      <div class='card'>
+        <h5 class='card-header'>Balance</h5>
+        <div class='card-body'>
+          <% @account.balances.each do |balance| -%>
+            <div><%= format_amount( balance[:amount], @chain, denom: balance[:denom] ) %></div>
+          <% end -%>
+        </div>
+      </div>
+      <div class='card'>
+        <h5 class='card-header'>Pending Rewards</h5>
+        <div class='card-body'>
+          <% if @account.has_outstanding_rewards? -%>
+            <% @account.outstanding_rewards.each do |reward| -%>
+              <div><%= format_amount( reward[:amount], @chain, denom: reward[:denom] ) %></div>
+            <% end -%>
+          <% else -%>
+            <span class='text-muted'>None</span>
+          <% end -%>
+        </div>
+      </div>
+      <div class='card'>
+        <h5 class='card-header'>Delegation</h5>
+        <div class='card-body'>
+          <label class='text-muted mb-0 mt-0'>Bonded</label>
+          <%= format_amount( @account.total_delegations( filter: :bonded ), @chain, denom: @chain.token_map[@chain.primary_token]['display'] ) %>
+
+          <label class='text-muted mb-0 mt-3'>Unbonding</label>
+          <%= format_amount( @account.total_delegations( filter: :unbonding ), @chain, denom: @chain.token_map[@chain.primary_token]['display'] ) %>
+        </div>
+      </div>
+    </div>
+
+    <div class='col-12 col-md-9 order-1 order-md-0'>
+      <%= render partial: 'delegations' %>
+      <%= render partial: 'transactions' %>
+    </div>
+  </div>
+<% end -%>

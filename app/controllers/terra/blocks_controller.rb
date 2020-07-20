@@ -1,2 +1,2 @@
-class Terra::BlocksController < Common::BlocksController
+class Terra::BlocksController < Cosmoslike::BlocksController
 end

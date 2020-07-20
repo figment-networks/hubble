@@ -1,3 +1,3 @@
 class Cosmos::Block < ApplicationRecord
-  include Blocklike
+  include Cosmoslike::Blocklike
 end

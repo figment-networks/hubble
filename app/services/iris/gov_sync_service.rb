@@ -1,4 +1,4 @@
-class Iris::GovSyncService < Common::GovSyncService
+class Iris::GovSyncService < Cosmoslike::GovSyncService
   private
 
   def build_proposal( proposal )

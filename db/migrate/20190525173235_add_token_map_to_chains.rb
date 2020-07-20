@@ -9,7 +9,8 @@ class AddTokenMapToChains < ActiveRecord::Migration[5.2]
       map[chain.remote_denom] = {
         factor: chain.token_factor,
         display: chain.token_denom,
-        primary: true
+        primary: true,
+        report: true
       }
       chain.update_attributes token_map: map
     end

@@ -1,0 +1,18 @@
+<div class='card'>
+  <h5 class='card-header'>Average Block Time</h5>
+  <div class='card-body'>
+    <label>Last <%= block_times.count %> blocks:</label>
+    <div class='stat-value technical'>
+      <%= block_times.avg %> seconds
+    </div>
+
+    <label>Past 48 hours:</label>
+    <div class='small-average-block-time-chart-container'>
+      <canvas class='average-block-time-chart'></canvas>
+    </div>
+
+    <script>
+      App.seed.AVERAGE_BLOCK_TIME = <%= block_intervals.to_json.html_safe %>
+    </script>
+  </div>
+</div>

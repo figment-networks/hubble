@@ -1,2 +1,2 @@
-class Cosmos::DashboardController < Common::DashboardController
+class Cosmos::DashboardController < Cosmoslike::DashboardController
 end

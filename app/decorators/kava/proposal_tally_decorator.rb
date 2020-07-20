@@ -1,2 +1,2 @@
-class Kava::ProposalTallyDecorator < Common::ProposalTallyDecorator
+class Kava::ProposalTallyDecorator < Cosmoslike::ProposalTallyDecorator
 end

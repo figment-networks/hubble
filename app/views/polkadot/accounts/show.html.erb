@@ -1,0 +1,60 @@
+<% content_for :body_class, 'account-show' %>
+
+<%= render partial: '/polkadot/shared/chain_header', locals: { summary_link: true } %>
+
+<h2 class='mb-0'>
+  <label class='text-muted'>Account</label>
+  <span class='technical text-lg'><%= params[:id] %></span>
+</h2>
+<% if @identity.display_name %>
+  <h5 class='mb-4'>
+    <label class='text-muted'>Owner</label>
+    <span class='technical'><%= @identity.display_name %></span>
+  </h5>
+<% end %>
+
+<% unless @account %>
+  <%= render partial: 'shared/display_error' %>
+<% else %>
+  <div class='row'>
+    <div class='col-12 col-md-3 order-0 order-md-1 info-cards'>
+      <% @account.balances.each do |balance| %>
+        <%= render layout: 'shared/sidebar_card', locals: { header: balance[:header] } do %>
+          <%= format_amount(balance[:balance], @chain, denom: 'KSM') %>
+        <% end %>
+      <% end %>
+
+      <%= render layout: 'shared/sidebar_card', locals: { header: 'Commission' } do %>
+        <%= @account.commission %>
+      <% end %>
+    </div>
+
+    <div class='col-12 col-md-9 order-1 order-md-0'>
+      <section class='card'>
+        <header class='card-header d-flex align-items-center justify-content-between'>
+          <h4 class='m-0'>Account Details</h4>
+        </header>
+        <main>
+          <section>
+            <div class='table-responsive'>
+              <table class='table table-sm'>
+                <tbody>
+                <% @identity.identity_fields.each do |field| %>
+                  <tr>
+                    <td><%= field[:label] %></td>
+                    <td><%= field[:value] %></td>
+                  </tr>
+                <% end %>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </main>
+      </section>
+
+      <%# TODO: move these to shared when we have feature tests for Cosmos or during redesign %>
+      <%= render partial: 'cosmoslike/accounts/delegations' %>
+      <%= render partial: 'cosmoslike/accounts/transactions' %>
+    </div>
+  </div>
+<% end %>

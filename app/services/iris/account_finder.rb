@@ -1,2 +1,2 @@
-class Iris::AccountFinder < Common::AccountFinder
+class Iris::AccountFinder < Cosmoslike::AccountFinder
 end

@@ -1,0 +1,37 @@
+<div class="row mb-3">
+  <div class="col text-center">
+    <div class="card bg-light">
+      <div class="card-body">
+        <small>START</small> <br>
+        <% if @cycle.start_time %>
+          <strong><%= local_time(@cycle.start_time, "%b %d, %H:%M %Z") %></strong> <br>
+          <small>Block <%= number_with_delimiter @cycle.start_height, delimiter: ',' %></small>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <% if @cycle.current? %>
+    <div class="col text-center">
+      <div class="card bg-light">
+        <div class="card-body">
+          <small>TIME LEFT</small> <br>
+          <strong><%= distance_of_time_in_words(Time.current.utc, @cycle.end_time.utc) %></strong> <br>
+          <small>until cycle ends</small>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="col text-center">
+    <div class="card bg-light">
+      <div class="card-body">
+        <small>END</small> <br>
+        <% if @cycle.end_time %>
+          <strong><%= local_time(@cycle.end_time, "%b %d, %H:%M %Z") %></strong> <br>
+          <small>Block <%= number_with_delimiter @cycle.end_height, delimiter: ',' %></small>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

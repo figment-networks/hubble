@@ -1,0 +1,10 @@
+<div class='delegator input-group mb-2'>
+  <div class='input-group-prepend'>
+    <span class='input-group-text technical'>0x</span>
+  </div>
+  <input class='form-control technical' name='delegator_list[addresses][]' type='text'
+    value='<%= delegator.sub(/^0x/i, '').upcase %>' pattern='[0-9A-F]{40}' required>
+  <div class='input-group-append'>
+    <button class='remove-delegator btn btn-outline-danger' type='button' tabindex='-1'>Remove</button>
+  </div>
+</div>

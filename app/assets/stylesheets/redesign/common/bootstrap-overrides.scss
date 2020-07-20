@@ -1,0 +1,124 @@
+$veto: darken($danger, 20%);
+
+.card {
+  box-shadow: $box-shadow;
+  margin-bottom: 30px;
+
+  &.light-shadow {
+    box-shadow: none;
+  }
+
+  .card-header {
+    color: white;
+  }
+
+  a,
+  a * {
+    text-decoration: none !important;
+  }
+
+  > a {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+  }
+
+  &.with-hover:hover {
+    background: #fefefe;
+  }
+}
+
+.badge {
+  cursor: default;
+}
+
+.btn-round {
+  border-radius: 1000px;
+}
+.btn-wide {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.btn-tiny {
+  padding: 0.19rem 0.25rem;
+  font-size: 0.7rem;
+  line-height: 1;
+  border-radius: 0.2rem;
+}
+
+.btn.btn-primary {
+  color: $figment-yellow;
+  &:hover {
+    color: white;
+  }
+}
+.btn.btn-figment-yellow {
+  color: $primary;
+  background-color: $figment-yellow;
+  border: 4px solid $primary;
+  border-radius: 5px;
+  border-width: 2px;
+}
+
+dl {
+  dd {
+    margin-bottom: 0;
+  }
+
+  dt {
+    margin-bottom: 1rem;
+
+    ul {
+      margin-left: 0rem;
+      margin-top: 0.5rem;
+    }
+  }
+}
+
+.table-sm {
+  th,
+  td {
+    padding: 0.25rem 1.2rem;
+  }
+
+  th {
+    font-size: 12px;
+  }
+}
+
+.text-veto { color: $veto; }
+.badge-veto { background-color: $veto; color: white; }
+.bg-veto { background-color: $veto; }
+.border-veto { border-color: $veto; }
+
+.secret-link {
+  text-decoration: none !important;
+  color: $body-color;
+}
+
+.user-select-none {
+  user-select: none;
+}
+
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+    @each $prop, $abbrev in (width: w, height: h) {
+      @each $size, $length in $sizes {
+        .#{$abbrev}#{$infix}-#{$size} { #{$prop}: $length !important; }
+      }
+    }
+  }
+}
+@media (min-width: 1200px) {
+  .container,
+  .container-lg,
+  .container-md,
+  .container-sm,
+  .container-xl {
+    max-width: 1300px;
+  }
+}
