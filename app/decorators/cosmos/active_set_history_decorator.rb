@@ -1,2 +1,2 @@
-class Cosmos::ActiveSetHistoryDecorator < Common::ActiveSetHistoryDecorator
+class Cosmos::ActiveSetHistoryDecorator < Cosmoslike::ActiveSetHistoryDecorator
 end

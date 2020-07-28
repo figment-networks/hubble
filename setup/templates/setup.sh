@@ -39,7 +39,7 @@ else
     exit 1
   fi
   echo "gem: --no-rdoc --no-ri" > ~/.gemrc
-  /hubble/ruby-2.5.0/bin/gem install bundler
+  /hubble/ruby-2.5.0/gem install bundler
   echo "DONE"
 fi
 

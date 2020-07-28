@@ -1,2 +1,2 @@
-class Kava::TransactionDecorator < Common::TransactionDecorator
+class Kava::TransactionDecorator < Cosmoslike::TransactionDecorator
 end

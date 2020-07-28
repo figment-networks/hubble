@@ -1,2 +1,2 @@
-class Iris::BlockSyncService < Common::BlockSyncService
+class Iris::BlockSyncService < Cosmoslike::BlockSyncService
 end

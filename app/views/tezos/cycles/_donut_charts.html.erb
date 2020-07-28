@@ -1,0 +1,19 @@
+<div class="table-responsive">
+  <table class="table" id="cycles-table">
+    <tbody>
+      <tr>
+        <% (@cycle.number - 7..@cycle.number + 7).each do |n| %>
+          <td>
+            <% if n > @current_cycle.number %>
+              <%= render "cycle_chart", n: n %>
+            <% else %>
+              <%= link_to tezos_cycle_path(n) do %>
+                <%= render "cycle_chart", n: n %>
+              <% end %>
+            <% end %>
+          </td>
+        <% end %>
+      </tr>
+    </tbody>
+  </table>
+</div>

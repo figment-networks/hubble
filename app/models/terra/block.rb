@@ -1,3 +1,3 @@
 class Terra::Block < ApplicationRecord
-  include Blocklike
+  include Cosmoslike::Blocklike
 end

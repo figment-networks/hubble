@@ -1,2 +1,2 @@
-class Kava::FaucetsController < Common::FaucetsController
+class Kava::FaucetsController < Cosmoslike::FaucetsController
 end

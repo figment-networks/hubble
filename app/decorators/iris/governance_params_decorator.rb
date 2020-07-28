@@ -1,2 +1,2 @@
-class Iris::GovernanceParamsDecorator < Common::GovernanceParamsDecorator
+class Iris::GovernanceParamsDecorator < Cosmoslike::GovernanceParamsDecorator
 end

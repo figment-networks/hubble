@@ -1,2 +1,2 @@
-class Cosmos::FaucetTransactionsController < Common::FaucetTransactionsController
+class Cosmos::FaucetTransactionsController < Cosmoslike::FaucetTransactionsController
 end

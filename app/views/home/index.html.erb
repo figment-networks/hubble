@@ -1,30 +1,38 @@
 <% content_for :body_class, 'homepage' %>
 
-<% grouped_chains = [
-  *Cosmos::Chain.alive.has_synced.to_a,
-  *Terra::Chain.alive.has_synced.to_a,
-  *Iris::Chain.alive.has_synced.to_a,
-  *Kava::Chain.alive.has_synced.to_a
-].group_by(&:network_name) -%>
-
-<% if !grouped_chains.any? -%>
+<% if !primary_chains.any? -%>
   <p>No chains configured.</p>
 <% end -%>
-
-<br />
-<% grouped_chains.each do |network, chains| -%>
-  <div class='d-flex flex-column flex-md-row align-items-md-center mb-5'>
-    <h3 class='m-0 mr-md-5 w-md-15 flex-shrink-0 mb-3 mb-md-0'><%= network %></h3>
-    <div class='d-flex align-items-stretch flex-wrap flex-grow-0'>
-      <% chains.each do |chain| -%>
-        <div class='card mr-2 mb-2 shadow-none'>
-          <div class='card-body p-0'>
-            <a class='d-block px-4 py-3' href='<%= namespaced_path( chain: chain ) %>'>
-              <%= chain.name %>
-            </a>
-          </div>
+    
+<ul class='chains-list row p-0 list-unstyled'>
+  <% primary_chains.each do |chain| -%>
+    <li class='col-xl-4 col-lg-6 col-md-6 px-3'>
+      <div class='chains-list__card card px-5 pt-5 pb-1 shadow-none'>
+        <%= link_to '', namespaced_path( chain: chain ), class: 'chains-list__card-link'%>
+        <div class='card-body p-0 d-flex flex-column'>
+          <% if network_has_image?(chain.network_name) -%>
+            <%= image_tag network_image(chain.network_name), class: "chains-list__img #{chain.network_name.downcase}-img" %>
+          <% else -%>
+            <p class='chains-list__img-fallback'><%= chain.network_name %></p>
+          <% end -%>
+          <p class='chains-list__launch'>Launched in <%= chain.created_at.strftime("%B %Y") %></p>
+          <ul class='d-flex list-unstyled justify-content-between flex-wrap mt-4'>
+            <% if chain.respond_to?(:validators) && chain.validators.any? -%>
+              <li class='col-6 p-0 mt-3'>
+                <p class='chains-list__label m-0'>Validator Set Size</p>
+                <p class='chains-list__data m-0'><%= chain.validators.count %></p>
+              </li>
+            <% end -%>
+            <% if chain.respond_to?(:average_block_time) && chain.average_block_time -%>
+              <li class='col-6 p-0 mt-3'>
+                <p class='chains-list__label m-0'>Block Time</p>
+                <p class='chains-list__data m-0'><%= chain.average_block_time.round(2) %><sup>SEC</sup></p>
+              </li>
+            <% end -%>
+          </ul>
         </div>
-      <% end -%>
-    </div>
-  </div>
-<% end -%>
+      </div>
+    </li>
+  <% end -%>
+</ul>
+

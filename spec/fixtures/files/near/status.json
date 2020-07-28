@@ -1,0 +1,9 @@
+{
+  "app_name": "near-indexer",
+  "app_version": "0.1.0",
+  "git_commit": "-",
+  "go_version": "-",
+  "last_block_height": 6553133,
+  "last_block_time": "2020-06-02T22:15:46.197789-05:00",
+  "sync_status": "current"
+}

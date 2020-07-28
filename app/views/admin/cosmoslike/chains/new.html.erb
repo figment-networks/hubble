@@ -1,0 +1,48 @@
+<% content_for :body_class, 'admin-chain-new' %>
+
+<h2 class='header'>
+  Creating <%= @chain.network_name %> Chain
+  <a class='btn btn-sm btn-outline-secondary' href='<%= admin_root_path %>'>back</a>
+</h2>
+
+<%= form_for [:admin, @chain] do |f| %>
+  <%= f.hidden_field :disabled, value: true %>
+  <div class='row'>
+    <div class='col-12 col-md-4'>
+      <div class='form-group'>
+        <label class='d-block'>Chain Name</label>
+        <%= f.text_field :name, class: 'form-control', placeholder: 'Name' %>
+      </div>
+      <div class='form-group'>
+        <label class='d-block'>URL Slug</label>
+        <%= f.text_field :slug, class: 'form-control', placeholder: 'slug' %>
+      </div>      
+      <div class='form-group'>
+        <label class='d-block'>SDK Version</label>
+        <%= f.text_field :sdk_version, class: 'form-control technical' %>
+      </div>
+      <div class='form-group'>
+        <label class='d-block'>Sync Start:</label>
+        <%= text_field_tag :start_height, '', class: 'form-control technical' %>
+      </div>
+      
+
+
+      <div class='form-group'>
+        <div><label>
+          <%= f.check_box :primary, class: 'form-control d-inline h-auto w-auto' %>
+          Primary for network?
+        </label></div>
+        <div><label>
+          <%= f.check_box :testnet, class: 'form-control d-inline h-auto w-auto' %>
+          Testnet?
+        </label></div>
+        <div><small class='text-muted'>
+          <span class='fas fa-info-circle'></span>
+          Chain will start with syncing disabled.
+        </small></div>
+      </div>
+      <%= f.submit 'Create Chain', class: 'btn btn-lg btn-primary' %>
+    </div>
+  </div>
+<% end -%>

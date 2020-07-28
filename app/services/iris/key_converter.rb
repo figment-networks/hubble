@@ -1,2 +1,2 @@
-class Iris::KeyConverter < Common::KeyConverter
+class Iris::KeyConverter < Cosmoslike::KeyConverter
 end

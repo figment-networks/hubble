@@ -1,2 +1,2 @@
-class Kava::WatchesController < Common::WatchesController
+class Kava::WatchesController < Cosmoslike::WatchesController
 end

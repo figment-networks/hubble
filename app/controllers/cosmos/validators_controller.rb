@@ -1,2 +1,2 @@
-class Cosmos::ValidatorsController < Common::ValidatorsController
+class Cosmos::ValidatorsController < Cosmoslike::ValidatorsController
 end

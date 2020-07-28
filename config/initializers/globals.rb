@@ -21,3 +21,8 @@ REQUIRE_HTTP_BASIC = if !Rails.application.secrets.http_basic_password.blank?
 else
   false
 end
+
+API_DEFAULTS = {
+  rpc_port: 26657,
+  lcd_port: 1317
+}

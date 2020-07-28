@@ -1,2 +1,2 @@
-class Kava::TransactionsController < Common::TransactionsController
+class Kava::TransactionsController < Cosmoslike::TransactionsController
 end

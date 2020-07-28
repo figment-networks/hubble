@@ -1,0 +1,142 @@
+<% content_for :body_class, 'admin-chain-show' %>
+
+<h2 class='header'>
+  <span>
+    <%= @chain.network_name %> / <%= @chain.name %>
+    <%= @chain.primary? ? "<span class='fas fa-star text-primary' title='Primary Cosmos Chain'></span>".html_safe : '' %>
+    <%= @chain.testnet? ? "<span class='fas fa-vial text-info' title='Testnet Chain'></span>".html_safe : "<span class='fas fa-link text-success' title='Mainnet Chain'></span>".html_safe %>
+  </span>
+  <div class='buttons'>
+    <a class='btn btn-sm btn-outline-primary' href='<%= namespaced_path %>'>view</a>
+    <a class='btn btn-sm btn-outline-secondary' href='<%= admin_root_path %>'>back</a>
+  </div>
+</h2>
+
+<table class='table table-sm mb-5'>
+  <tbody>
+    <tr>
+      <th class='align-middle' style='border-top: none;'>Status:</th>
+      <td style='border-top: none;'>
+        <div class='chain-status d-flex'>
+
+          <% if @chain.enabled? %>
+            <div class='sync-status text-muted'>Remotely Indexed</div>
+
+            <%= form_for [:admin, @chain] do |f| %>
+              <%= f.hidden_field :disabled, value: true %>
+              <%= f.button "<span class='fas fa-exclamation-triangle'></span> disable".html_safe, class: 'btn btn-sm btn-warning', data: @chain.primary? ? { toggle: 'tooltip' } : nil, title: @chain.primary? ? "Warning, this is the primary #{@chain.network_name} chain!" : nil %>
+            <% end -%>
+
+            <% if !@chain.primary? -%>
+              <%= form_for [:admin, @chain] do |f| %>
+                <%= f.hidden_field :primary, value: true %>
+                <%= f.button "<span class='fas fa-star'></span> make primary".html_safe, class: 'btn btn-sm btn-dark' %>
+              <% end -%>
+            <% end -%>
+
+          <% else -%>
+            <% if @chain.dead? -%>
+              <div class='sync-status text-muted'><span class='fas fa-skull-crossbones text-dark'></span> Dead</div>
+            <% else -%>
+              <div class='sync-status text-muted'><span class='fas fa-exclamation-triangle text-warning'></span> Disabled</div>
+
+              <%= form_for [:admin, @chain] do |f| %>
+                <%= f.hidden_field :disabled, value: false %>
+                <%= f.button "<span class='fas fa-play-circle'></span> enable".html_safe, class: 'btn btn-sm btn-primary' %>
+              <% end -%>
+
+              <%= form_for [:admin, @chain] do |f| %>
+                <%= f.hidden_field :dead, value: true %>
+                <%= f.button "<span class='fas fa-skull-crossbones'></span> mark as dead".html_safe, class: 'btn btn-sm btn-warning' %>
+              <% end -%>
+            <% end -%>
+
+            <%= button_to namespaced_path( admin: true ), method: 'delete', class: 'btn btn-sm btn-danger action-delete-confirmation' do "<span class='fas fa-times'></span> delete".html_safe end %>
+          <% end %>
+
+        </div>
+      </td>
+    </tr>
+
+    <tr>
+      <th class='align-middle'>Blocks:</th>
+      <td>
+        <%= @chain.client.status.last_indexed_height %>
+      </td>
+    </tr>
+
+    <tr>
+      <th class='align-middle'>Validators:</th>
+      <td>
+        <%= @chain.client.validators.count %> total
+      </td>
+    </tr>
+
+    <tr>
+      <th class='align-middle'>API URL:</th>
+      <td>
+        <%= form_for [:admin, @chain] do |f| %>
+          <div class='rpc-host-edit d-flex'>
+            <%= f.text_field :api_url, class: 'mr-2 w-50 form-control technical', placeholder: 'api_url' %>
+            <%= f.submit 'update', disabled: @chain.dead? || !@chain.disabled?, class: 'btn btn-sm btn-primary ml-auto', data: { toggle: 'tooltip' }, title: @chain.disabled? ? nil : 'Disable syncing to change.' %>
+          </div>
+        <% end -%>
+      </td>
+    </tr>
+
+    <tr>
+      <th class='align-middle'>
+        Tokens:
+      </th>
+      <td class='py-3'>
+        <div class='d-flex align-items-center'>
+          <div>
+            <ul class='list-group list-group-flush'>
+              <% sorted_token_map(@chain).each do |remote, info| -%>
+                <li class='list-group-item'>
+                  <div class='d-flex align-items-center justify-content-between'>
+                    <tt class='w-10 text-nowrap'><%= remote %></tt>
+                    <tt class='w-10 text-nowrap'><%= info['display'] %></tt>
+                    <tt class='w-10 text-nowrap'>10 ^ <%= info['factor'] %></tt>
+                    <div class='w-25'>
+                      <% if info['primary'] %><span class='badge badge-sm badge-primary'>primary</span><% end -%>
+                    </div>
+                    <%= form_for [:admin, @chain] do |f| %>
+                      <input type='hidden' name='remove_token' value='<%= remote %>' />
+                      <button class='btn btn-tiny btn-danger'>
+                        <span class='fas fa-times'></span>
+                      </button>
+                    <% end -%>
+                  </div>
+                </li>
+              <% end -%>
+              <li class='list-group-item'>
+                <%= form_for [:admin, @chain] do |f| %>
+                  <div class='d-flex align-items-center justify-content-between'>
+                    <input type='text' class='d-inline form-control form-control-sm w-third mr-2' name='new_token[remote]' placeholder='RPC Denom' />
+                    <input type='text' class='d-inline form-control form-control-sm w-third mr-2' name='new_token[display]' placeholder='Display Denom' />
+                    <span class='technical mr-2'>
+                      10 <tt>^</tt>
+                      <input type='number' name='new_token[factor]' class='d-inline w-third form-control technical' placeholder='0' />
+                    </span>
+                    <div>
+                      <label class='mb-0 text-muted text-sm'>
+                        <input type='checkbox' name='new_token[primary]' />
+                        Primary?
+                      </label>
+                    </div>
+                    <%= f.submit 'add', disabled: @chain.dead?, class: 'ml-2 btn btn-sm btn-primary' %>
+                  </div>
+                <% end -%>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<script>
+  App.config.chainIsSyncing = <%= @chain.enabled?.to_json.html_safe %>;
+</script>

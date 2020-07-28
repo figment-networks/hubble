@@ -1,2 +1,2 @@
-class Kava::EventsController < Common::EventsController
+class Kava::EventsController < Cosmoslike::EventsController
 end

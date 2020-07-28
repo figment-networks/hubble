@@ -1,2 +1,2 @@
-class Terra::ValidatorSyncService < Common::ValidatorSyncService
+class Terra::ValidatorSyncService < Cosmoslike::ValidatorSyncService
 end

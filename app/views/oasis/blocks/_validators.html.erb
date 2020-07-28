@@ -1,0 +1,60 @@
+<section class='validators'>
+  <div class='validator-table-header'>
+    <h4>
+      Validators
+      <small>&nbsp;&mdash; <%= validators.count %> total&nbsp;</small>
+    </h4>
+
+    <div class='controls'>
+      <input type='text' class='form-control form-control-sm validator-search' placeholder='filter validators...'>
+      <script>
+        App.config.currentValidatorFilter = '_all_'
+      </script>
+    </div>
+  </div>
+
+  <div class='validator-table'>
+    <table>
+      <thead>
+        <tr>
+          <th>Address/Name</th>
+          <th>Voting Power</th>
+          <th>Voting Power %</th>
+          <th>State</th>
+          <th class='d-none'></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% validators.each do |validator| -%>
+          <% up = validator.precommit_validated -%>
+          <% proposer = validator.proposed -%>
+          <tr>
+            <td data-order='<%= validator.address %>'>
+              <a href='<%= oasis_chain_validator_path( @chain.slug, url_encode(validator.address) ) %>'>
+                <strong><%= validator.address.truncate(30) %></strong>
+              </a>
+            </td>
+            <td data-order='<%= validator.total_shares %>'><%= format_amount(validator.total_shares, denom: 'noasis') %></td>
+            <td data-order='<%= validator.total_shares %>'><%= voting_power_percent(validator.total_shares, @voting_power) %>%</td>
+            <td data-order='<%= proposer ? -1 : (up ? 0 : 1) %>'>
+              <div class='text-nowrap'>
+                <% if up -%>
+                  <span class='badge badge-lg badge-success'>UP</span>
+                <% else -%>
+                  <span class='badge badge-lg badge-danger'>DOWN</span>
+                <% end -%>
+                <% if proposer -%>
+                  <span class='badge badge-lg badge-primary'>PROPOSER</span>
+                <% end -%>
+              </div>
+            </td>
+            <td class='search-criteria d-none'>
+              _all_
+              <%= validator.address %>
+            </td>
+          </tr>
+        <% end -%>
+      </tbody>
+    </table>
+  </div>
+</section>

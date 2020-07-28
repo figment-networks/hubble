@@ -1,2 +1,2 @@
-class Kava::VotingPowerHistoryDecorator < Common::VotingPowerHistoryDecorator
+class Kava::VotingPowerHistoryDecorator < Cosmoslike::VotingPowerHistoryDecorator
 end

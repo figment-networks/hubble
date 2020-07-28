@@ -1,2 +1,2 @@
-class Iris::AccountsController < Common::AccountsController
+class Iris::AccountsController < Cosmoslike::AccountsController
 end

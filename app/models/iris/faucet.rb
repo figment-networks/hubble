@@ -1,3 +1,3 @@
 class Iris::Faucet < ApplicationRecord
-  include Faucetlike
+  include Cosmoslike::Faucetlike
 end

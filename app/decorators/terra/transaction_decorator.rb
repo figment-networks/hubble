@@ -1,4 +1,4 @@
-class Terra::TransactionDecorator < Common::TransactionDecorator
+class Terra::TransactionDecorator < Cosmoslike::TransactionDecorator
   private
 
   def get_amount_msg_type

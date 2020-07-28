@@ -1,3 +1,3 @@
 class Kava::Block < ApplicationRecord
-  include Blocklike
+  include Cosmoslike::Blocklike
 end

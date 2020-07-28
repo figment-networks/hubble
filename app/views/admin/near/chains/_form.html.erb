@@ -1,0 +1,43 @@
+<%= form_for [:admin, chain] do |f| %>
+  <div class='row'>
+    <div class='col-12 col-md-4'>
+      <div class='form-group'>
+        <label class='d-block'>Chain Name</label>
+        <%= f.text_field :name, class: 'form-control', placeholder: 'Name' %>
+      </div>
+      <div class='form-group'>
+        <label class='d-block'>URL Slug</label>
+        <%= f.text_field :slug, class: 'form-control', placeholder: 'slug' %>
+      </div>
+
+      <div class='form-group'>
+        <label class='d-block'>Indexer API URL</label>
+        <%= f.text_field :api_url, class: 'form-control' %>
+      </div>
+
+      <div class='form-group'>
+        <div>
+          <label>
+            <%= f.check_box :primary, class: 'form-control d-inline h-auto w-auto' %>
+            Primary?
+          </label>
+        </div>
+
+        <div>
+          <label>
+            <%= f.check_box :testnet, class: 'form-control d-inline h-auto w-auto' %>
+            Testnet?
+          </label>
+        </div>
+        <div>
+          <label>
+            <%= f.check_box :disabled, class: 'form-control d-inline h-auto w-auto' %>
+            Disabled?
+          </label>
+        </div>
+      </div>
+
+      <%= f.submit class: 'btn btn-lg btn-primary' %>
+    </div>
+  </div>
+<% end %>

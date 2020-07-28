@@ -9,18 +9,15 @@ module ChainHelper
   end
 
   def chain_header_tooltip_info
-    logs_path = namespaced_path( 'logs' )
-    sync_time = @chain.last_sync_time ? "#{distance_of_time_in_words(Time.now, @chain.last_sync_time, true, highest_measures: 2)} ago" : 'Never'
+    logs_path = namespaced_path( 'logs' ) if @chain.respond_to?( 'sync_logs' )
 
-    # TODO: move this to constants somewhere or something
-    sync_interval = 1
+    sync_time = @chain.last_sync_time ? "#{distance_of_time_in_words(Time.now, @chain.last_sync_time, true, highest_measures: 2)} ago" : 'Never'
+    sync_interval = distance_of_time_in_words(@chain.class::SYNC_INTERVAL)
 
     [
-      "<p><label class='text-muted'>Last synced:</label> #{sync_time}</p>",
-      "<p><label class='text-muted'>Sync interval:</label> #{sync_interval} sync/minute</p>",
-      "<div class='buttons'>",
-        "<a class='btn btn-sm btn-outline-primary' href='#{logs_path}'>View Log</a>",
-      "</div>"
+      "<p><label class='text-muted'>Last synced:</label>#{sync_time}</p>",
+      "<p><label class='text-muted'>Sync interval:</label>#{sync_interval}</p>",
+      ("<div class='buttons'><a class='btn btn-sm btn-outline-primary' href='#{logs_path}'>View Log</a></div>" if logs_path)
     ].join('')
   end
 

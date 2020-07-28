@@ -1,0 +1,44 @@
+<% content_for :body_class, 'governance-index' %>
+
+<%= render partial: '/tezos/shared/network_header', locals: { summary_link: true } %>
+
+<div class='governance-proposals-list'>
+  <div class='row'>
+    <div class='col-12 col-md-9'>
+      <section class='gov-proposals'>
+        <div class='gov-proposals-table-header d-flex align-items-center justify-content-between'>
+          <h4>Governance Proposals</h4>
+          <% if false -%>
+            <div class='controls'>
+              <button class='btn btn-sm btn-outline-light' data-toggle='modal' data-target='#proposal-modal'>New Proposal</button>
+            </div>
+          <% end -%>
+        </div>
+
+        <%= render 'tezos/governance/proposals_table', proposals: @proposals %>
+      </section>
+    </div>
+
+    <div class='col-12 col-md-3'>
+      <div class='card'>
+        <h5 class='card-header'>Current Period</h5>
+        <div class='card-body'>
+          <label class='text-muted mb-0 mt-0'>Period Number</label>
+          <div class='technical'>
+            <%= @current_period.id %>
+          </div>
+
+          <label class='text-muted mb-0 mt-3'>Period Type</label>
+          <div class='technical'>
+            <%= @current_period.period_type.sub('_', ' ').capitalize %>
+          </div>
+
+          <label class='text-muted mb-0 mt-3'>Approx. Period End</label>
+          <div class='technical'>
+            <%= DateTime.parse(@current_period.end_time_approximation).strftime("%Y-%m-%d<br/>at %H:%M %Z").html_safe %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

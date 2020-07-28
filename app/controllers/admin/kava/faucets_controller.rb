@@ -1,4 +1,4 @@
-class Admin::Kava::FaucetsController < Admin::Common::FaucetsController
+class Admin::Kava::FaucetsController < Admin::Cosmoslike::FaucetsController
   protected
 
   def ensure_chain

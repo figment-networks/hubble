@@ -1,2 +1,2 @@
-class Cosmos::AccountDecorator < Common::AccountDecorator
+class Cosmos::AccountDecorator < Cosmoslike::AccountDecorator
 end

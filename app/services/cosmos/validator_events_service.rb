@@ -1,2 +1,2 @@
-class Cosmos::ValidatorEventsService < Common::ValidatorEventsService
+class Cosmos::ValidatorEventsService < Cosmoslike::ValidatorEventsService
 end

@@ -1,0 +1,65 @@
+<% chains = chains.order('last_sync_time DESC NULLS LAST') -%>
+
+<table class='table m-0'>
+  <thead>
+    <tr class='bg-light'>
+      <th class='pl-3 pt-2 pb-2 w-auto'>Name</th>
+      <th class='pl-3 pt-2 pb-2' width='20%'>Local Height</th>
+      <th class='pl-3 pt-2 pb-2' width='20%'>Last Sync</th>
+      <th class='pl-3 pt-2 pb-2' width='20%'>&nbsp;</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% if chains.empty? -%>
+      <tr><td colspan='6' class='text-center py-5'><span class='text-muted'>No chains yet.</span></td></tr>
+    <% end -%>
+
+    <% chains.each do |chain| -%>
+      <tr>
+        <td class='align-middle pl-3'>
+          <a href='<%= namespaced_path( chain: chain, admin: true ) %>'>
+            <span class='text-lg'><%= chain.name %></span>
+          </a>
+
+          <% if chain.primary? -%>
+            <span class='fas fa-star text-primary' data-toggle='tooltip' data-tooltip-side='top'title='Primary Chain'></span>
+          <% end -%>
+          <% if chain.testnet? -%>
+            <span class='fas fa-vial text-info' data-toggle='tooltip' data-tooltip-side='top' title='Testnet Chain'></span>
+          <% else -%>
+            <span class='fas fa-link text-success' data-toggle='tooltip' data-tooltip-side='top'title='Mainnet Chain'></span>
+          <% end -%>
+
+          <% if chain.enabled? -%>
+            <span class='fas fa-sync fa-spin text-success' data-toggle='tooltip' data-tooltip-side='top'title='Syncing'></span>
+          <% else -%>
+            <span class='fas fa-exclamation-triangle text-warning' data-toggle='tooltip' data-tooltip-side='top'title='Disabled'></span>
+          <% end -%>
+        </td>
+
+        <td class='align-middle pl-3'>
+          <b><%= chain.latest_local_height %></b> rounds
+        </td>
+        <td class='align-middle pl-3'>
+          <% if chain.last_sync_time -%>
+            <div><%= time_ago_in_words chain.last_sync_time, highest_measure_only: true %> ago</div>
+          <% else -%>
+            <div class='text-danger'>Not yet synced</div>
+          <% end %>
+        </td>
+
+        <td class='text-right'>
+          <%= button_to namespaced_path('move_up', chain: chain, pre_path: true, admin: true), method: 'post', class: 'btn btn-sm btn-outline-secondary', form: { class: 'd-inline' } do %>
+            <span class='fas fa-arrow-up'></span>
+          <% end -%>
+          <%= button_to namespaced_path('move_down', chain: chain, pre_path: true, admin: true), method: 'post', class: 'btn btn-sm btn-outline-secondary', form: { class: 'd-inline' } do %>
+            <span class='fas fa-arrow-down'></span>
+          <% end -%>
+          <a class='btn btn-sm btn-outline-secondary' href='<%= namespaced_path(chain: chain, admin: true) %>'><span class='fas fa-edit'></span></a>
+          <a class='btn btn-sm btn-outline-secondary' href='<%= namespaced_path(chain: chain) %>'><span class='fas fa-eye'></span></a>
+        </td>
+      </tr>
+    <% end -%>
+  </tbody>
+</table>

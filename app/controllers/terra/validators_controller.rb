@@ -1,2 +1,2 @@
-class Terra::ValidatorsController < Common::ValidatorsController
+class Terra::ValidatorsController < Cosmoslike::ValidatorsController
 end

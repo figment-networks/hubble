@@ -1,0 +1,16 @@
+<div class="card">
+  <h5 class="card-header">Block Production</h5>
+  <div class="card-body">
+    <label class="text-muted">Last 50</label>
+    <div class="block-heatmap-container">
+      <div class="block-heatmap validator-blocks-heatmap">
+        <% blocks.reverse.each do |block| producer = block.producer == account_id %>
+          <a
+            class="block <%= producer ? "proposed" : "ok" %>"
+            title="Block <%= block.height %> <span class='fas fa-arrow-right text-sm text-muted mx-2'></span> <span class='badge badge-success'><%= producer ? "PRODUCER" : "OK" %></span>">
+          </a>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

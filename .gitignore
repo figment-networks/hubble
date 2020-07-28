@@ -18,6 +18,7 @@
 npm-debug.log
 
 .byebug_history
+.DS_Store
 
 # Ignore encrypted secrets key
 config/secrets.yml.key
@@ -29,3 +30,5 @@ bin/deploy*.sh
 tmp/localhost.crt
 tmp/localhost.key
 
+# Ignore master key for decrypting credentials and more.
+/config/master.key

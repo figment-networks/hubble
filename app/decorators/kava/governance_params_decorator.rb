@@ -1,2 +1,2 @@
-class Kava::GovernanceParamsDecorator < Common::GovernanceParamsDecorator
+class Kava::GovernanceParamsDecorator < Cosmoslike::GovernanceParamsDecorator
 end

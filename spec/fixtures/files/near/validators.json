@@ -1,0 +1,17 @@
+[
+  {
+    "id": 7519,
+    "created_at": "2020-05-22T19:14:46.349282-05:00",
+    "updated_at": "2020-05-22T23:36:54.333056-05:00",
+    "account_id": "huglester.betanet",
+    "start_height": 5804412,
+    "start_time": "2020-05-22T19:14:44.655378-05:00",
+    "last_height": 5811758,
+    "last_time": "2020-05-22T22:08:01.382613-05:00",
+    "expected_blocks": 267,
+    "produced_blocks": 267,
+    "slashed": false,
+    "stake": "215178680334618822503803908659",
+    "efficiency": 100
+  }
+]

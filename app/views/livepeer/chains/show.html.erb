@@ -1,0 +1,94 @@
+<% content_for :body_class, 'chain-show' %>
+
+<%= render partial: 'chain_header', locals: { delegator_lists_link: true } %>
+<%= render partial: 'sync_errors' %>
+
+<div class='row info-cards'>
+  <div class='col-12 col-md-9 order-1 order-md-0'>
+    <section class='transcoders'>
+      <div class='transcoders-table-header'>
+        <h4>
+          Orchestrators
+          <small>&nbsp;&mdash; <%= @transcoders.count %> total&nbsp;</small>
+        </h4>
+
+        <div class='controls'>
+          <input type='text' class='form-control form-control-sm transcoders-search' placeholder='filter orchestrators...'>
+          <a tabindex=0 class='btn btn-sm btn-outline-light transcoders-table-settings-target'><span class='fas fa-cog'></span></a>
+          <div class='transcoders-table-settings d-none'>
+            <div class='btn-group' role='group' aria-label='Orchestrators table filter'>
+              <button type='button' data-target='⭐️' class='btn btn-outline-primary'>All</button>
+              <button type='button' data-target='✔' class='btn btn-outline-primary'>Active</button>
+              <button type='button' data-target='𐄂' class='btn btn-outline-primary'>Inactive</button>
+            </div>
+          </div>
+          <script>
+            App.config.currentTranscodersFilter = '⭐️'
+          </script>
+        </div>
+      </div>
+
+      <div class='transcoders-table'>
+        <table>
+          <thead>
+            <tr>
+              <th>Address/Name</th>
+              <th>Reward Cut</th>
+              <th>Fee Share</th>
+              <th class='d-none'></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @transcoders.each do |transcoder| -%>
+              <tr>
+                <td><%= transcoder_link(transcoder) %></td>
+                <td class='technical' data-order='<%= transcoder.reward_cut %>'><%= number_to_percentage(transcoder.reward_cut) %></td>
+                <td class='technical' data-order='<%= transcoder.fee_share %>'><%= number_to_percentage(transcoder.fee_share) %></td>
+                <td class='d-none'>⭐️ <%= transcoder.active ? '✔' : '𐄂' %></td>
+              </tr>
+            <% end -%>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <div class='col-12 col-md-3 order-0 order-md-1 info-cards'>
+    <div class='card'>
+      <h5 class='card-header'>Current Round</h5>
+      <div class='card-body'>
+        <% if @latest_round.present? -%>
+          <span class='large-number technical'><%= @latest_round.number + 1 %></span>
+        <% else -%>
+          <span class='text-muted'>&mdash;</span>
+        <% end -%>
+      </div>
+    </div>
+    <div class='card'>
+      <h5 class='card-header'>Latest Round</h5>
+      <div class='card-body'>
+        <% if @latest_round.present? -%>
+          <a class='large-number' href='<%= namespaced_path('round', @latest_round) %>'>
+            <span class='technical'><%= @latest_round.number %></span>
+          </a>
+          <div class='sub-info'>
+            <small class='text-muted technical'><%= @latest_round.initialized_at&.strftime('%Y-%m-%d %H:%M %Z') %></small>
+            <small class='text-muted'><%= time_ago_in_words(@latest_round.initialized_at, true) %> ago</small>
+          </div>
+        <% else -%>
+          <span class='text-muted'>&mdash;</span>
+        <% end -%>
+      </div>
+    </div>
+    <div class='card'>
+      <h5 class='card-header'>Last Sync</h5>
+      <div class='card-body'>
+        <% if @chain.last_sync_time -%>
+          <span class='technical'><%= @chain.last_sync_time.strftime('%Y-%m-%d @ %H:%M %Z') %></span>
+        <% else -%>
+          <span class='text-muted'>&mdash;</span>
+        <% end -%>
+      </div>
+    </div>
+  </div>
+</div>

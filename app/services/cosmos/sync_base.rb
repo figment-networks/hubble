@@ -1,2 +1,2 @@
-class Cosmos::SyncBase < Common::SyncBase
+class Cosmos::SyncBase < Cosmoslike::SyncBase
 end

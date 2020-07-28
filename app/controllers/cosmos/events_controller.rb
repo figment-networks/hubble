@@ -1,2 +1,2 @@
-class Cosmos::EventsController < Common::EventsController
+class Cosmos::EventsController < Cosmoslike::EventsController
 end

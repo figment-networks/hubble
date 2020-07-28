@@ -1,2 +1,2 @@
-class Terra::ProposalTallyDecorator < Common::ProposalTallyDecorator
+class Terra::ProposalTallyDecorator < Cosmoslike::ProposalTallyDecorator
 end

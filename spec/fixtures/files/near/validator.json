@@ -1,0 +1,70 @@
+{
+  "account": {
+    "id": 162,
+    "created_at": "2020-06-17T21:40:23.094356-05:00",
+    "updated_at": "2020-06-19T19:00:50.635094-05:00",
+    "name": "sc.foxnorth1210.betanet",
+    "start_height": 7518452,
+    "start_time": "2020-06-17T11:43:37.440233-05:00",
+    "last_height": 7649867,
+    "last_time": "2020-06-19T18:32:45.971144-05:00",
+    "balance": "0",
+    "staking_balance": "110126398356833136432425915370"
+  },
+  "blocks": [
+    {
+      "id": 121857,
+      "created_at": "2020-06-19T19:00:50.6155-05:00",
+      "updated_at": "2020-06-19T19:00:50.6155-05:00",
+      "height": 7649867,
+      "time": "2020-06-19T18:32:45.971144-05:00",
+      "app_version": "1.1.0-8f7f0250",
+      "producer": "bambarello",
+      "hash": "9Nc2tyYc9Aw9QLJotuZVY6Hqj99oWQB57JoLRsYPD5fN",
+      "prev_hash": "51gh1rQM5vssRtQibuUCJResCp8RoCjR6khitbQxaC13",
+      "epoch": "st757z5MBHTZRKrD2UxM83J7kf1A13EVSCmAVLjZDQd",
+      "gas_price": "5000",
+      "gas_allowed": 0,
+      "gas_used": 0,
+      "rent_paid": "0",
+      "validator_reward": "0",
+      "total_supply": "1004008129647504149626007061343092",
+      "signature": "ed25519:4UJduiYQGjFLwUYj1Lp8u516HDfGdpiMR6EUgmPmSydZGDtGDoXL7QRLpjNBKCdRenBKFsSruA2dF3CYT2FZo9pG",
+      "chunks_count": 0,
+      "transactions_count": 0
+    }
+  ],
+  "epochs": [
+    {
+      "epoch": "st757z5MBHTZRKrD2UxM83J7kf1A13EVSCmAVLjZDQd",
+      "last_height": 7649867,
+      "last_time": "2020-06-19T18:32:45.971144-05:00",
+      "expected_blocks": 24,
+      "produced_blocks": 23,
+      "efficiency": 95.83333333333333
+    },
+    {
+      "epoch": "ukLmMGSRHiixmzVDHJ18UuGT6SbuJZi9SKSVj3ZXPfG",
+      "last_height": 7627485,
+      "last_time": "2020-06-19T06:36:46.860391-05:00",
+      "expected_blocks": 100,
+      "produced_blocks": 99,
+      "efficiency": 99
+    }
+  ],
+  "validator": {
+    "id": 162,
+    "created_at": "2020-06-17T21:40:23.083881-05:00",
+    "updated_at": "2020-06-19T19:00:50.622889-05:00",
+    "account_id": "sc.foxnorth1210.betanet",
+    "start_height": 7518452,
+    "start_time": "2020-06-17T11:43:37.440233-05:00",
+    "last_height": 7649867,
+    "last_time": "2020-06-19T18:32:45.971144-05:00",
+    "expected_blocks": 1124,
+    "produced_blocks": 1098,
+    "slashed": false,
+    "stake": "109848173561716442621170194337",
+    "efficiency": 97.56944444444444
+  }
+}

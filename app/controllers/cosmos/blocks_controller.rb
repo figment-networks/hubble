@@ -1,2 +1,2 @@
-class Cosmos::BlocksController < Common::BlocksController
+class Cosmos::BlocksController < Cosmoslike::BlocksController
 end

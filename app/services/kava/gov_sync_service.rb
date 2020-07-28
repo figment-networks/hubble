@@ -1,8 +1,34 @@
-class Kava::GovSyncService < Common::GovSyncService
+class Kava::GovSyncService < Cosmoslike::GovSyncService
   private
 
   def build_proposal( proposal )
-    if @chain.sdk_gte?( '0.37.0' )
+    if @chain.sdk_gte?( '0.38.0' )
+      return nil if proposal['id'] == '0' || proposal['content'].nil?
+      h = {
+        ext_id: proposal['id'].to_i,
+        proposal_type: proposal['content']['type'],
+        proposal_status: proposal['proposal_status'],
+        title: proposal['content']['value']['title'],
+        description: proposal['content']['value']['description'],
+        additional_data: proposal['content']['value'].except(*%w{ title description }),
+        submit_time: DateTime.parse(proposal['submit_time']),
+        deposit_end_time: DateTime.parse(proposal['deposit_end_time']),
+        voting_start_time: DateTime.parse(proposal['voting_start_time']),
+        voting_end_time: DateTime.parse(proposal['voting_end_time']),
+        total_deposit: proposal['total_deposit']
+      }
+
+      # on 0.38 voting start and end times will be invalid
+      # if voting hasn't yet started. also seems to affect old
+      # proposals from a previous chain
+      if h[:voting_start_time].year == 1
+        h.delete :voting_start_time
+        h.delete :voting_end_time
+      end
+
+      h.stringify_keys
+
+    elsif @chain.sdk_gte?( '0.37.0' )
       return nil if proposal['id'] == '0' || proposal['content'].nil?
       {
         ext_id: proposal['id'].to_i,

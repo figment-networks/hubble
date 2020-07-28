@@ -1,0 +1,69 @@
+<% content_for :body_class, 'delegator-list-index' %>
+
+<%= render partial: 'chain_header', locals: { summary_link: true } %>
+<%= render partial: 'sync_errors' %>
+
+<div class='row'>
+  <div class='col-12 col-md-9 order-1 order-md-0'>
+    <div class='delegator-lists'>
+      <div class='delegator-lists-table-header'>
+        <h4>Delegator Lists</h4>
+        <a class='btn btn-sm btn-outline-light' href='<%= namespaced_path('delegator_list', pre_path: 'new') %>'>
+          <span class='fas fa-plus'>
+        </a>
+      </div>
+      <div class='delegator-lists-table'>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Delegators</th>
+              <th>Email Alerts</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @delegator_lists.each do |delegator_list| %>
+              <tr>
+                <td><%= delegator_list.id %></td>
+                <td><%= delegator_list.name %></td>
+                <td><%= delegator_list.addresses.count %></td>
+                <td>
+                  <% if delegator_list.email_alerts_enabled -%>
+                    <span class='badge badge-success'>ENABLED</span>
+                  <% else -%>
+                    <span class='badge badge-danger'>DISABLED</span>
+                  <% end -%>
+                </td>
+                <td class='text-right'>
+                  <a class='btn btn-outline-primary btn-sm' href='<%= namespaced_path('delegator_list_report', delegator_list, pre_path: 'new') %>'>
+                    <span class='fas fa-file'>
+                  </a>
+                  <a class='btn btn-outline-primary btn-sm' href='<%= namespaced_path('delegator_list', delegator_list, pre_path: 'edit') %>'>
+                    <span class='fas fa-pen'>
+                  </a>
+                  <a class='btn btn-outline-primary btn-sm' href='<%= namespaced_path('delegator_list', delegator_list) %>'
+                    data-method='delete' data-confirm='Are you sure?'>
+                    <span class='fas fa-trash'>
+                  </a>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class='col-12 col-md-3 order-0 order-md-1 info-cards'>
+    <div class='card'>
+      <h5 class='card-header'>Count</h5>
+      <div class='card-body'>
+        <span class='large-number technical'>
+          <%= current_user.livepeer_delegator_lists.for(@chain).count %>/<%= Livepeer::DelegatorList::RECORDS_LIMIT %>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,166 @@
+{
+  "data": {
+    "rounds": [
+      {
+        "id": "1663",
+        "mintableTokens": "17859737930247454986706",
+        "startBlock": "9578880",
+        "pools": [
+          {
+            "delegate": {
+              "id": "0x0119a06b51c83d0eec79708b921a57247dc37e66"
+            },
+            "fees": null,
+            "rewardTokens": "16823873130293102597",
+            "shares": [
+              {
+                "delegator": {
+                  "id": "0x0119a06b51c83d0eec79708b921a57247dc37e66"
+                },
+                "fees": null,
+                "rewardTokens": "338605305004622307"
+              },
+              {
+                "delegator": {
+                  "id": "0x1161f84e66fd7e810f0bd81c9d17d19007b13dc9"
+                },
+                "fees": null,
+                "rewardTokens": "645740996368581426"
+              }
+            ],
+            "totalStake": "11899397590785399894921"
+          },
+          {
+            "delegate": {
+              "id": "0x21d1130dc36958db75fbb0e5a9e3e5f5680238ff"
+            },
+            "fees": null,
+            "rewardTokens": "374750880990382347986",
+            "shares": [
+              {
+                "delegator": {
+                  "id": "0x03d66da60a634efb0228fc85dc5d76681a3abef3"
+                },
+                "fees": null,
+                "rewardTokens": "13150773021222758"
+              },
+              {
+                "delegator": {
+                  "id": "0x0ad65faede353a3657e40e3c460fb4eb22ae6f0f"
+                },
+                "fees": null,
+                "rewardTokens": "271545691573356426"
+              }
+            ],
+            "totalStake": "264878819105461471433604"
+          },
+          {
+            "delegate": {
+              "id": "0x31990bebc4fd07ac4898e7c67210f38651f1d2e8"
+            },
+            "fees": null,
+            "rewardTokens": "85530284947955061931",
+            "shares": [
+              {
+                "delegator": {
+                  "id": "0x31990bebc4fd07ac4898e7c67210f38651f1d2e8"
+                },
+                "fees": null,
+                "rewardTokens": "3525049724537187506"
+              },
+              {
+                "delegator": {
+                  "id": "0xb307f6330b14969a5a4fb41efc5bd716556a55a9"
+                },
+                "fees": null,
+                "rewardTokens": "0"
+              }
+            ],
+            "totalStake": "60463188906887185894603"
+          }
+        ],
+        "timestamp": "1583058688"
+      },
+      {
+        "id": "1664",
+        "mintableTokens": "17817375673954043909133",
+        "startBlock": "9584640",
+        "pools": [
+          {
+            "delegate": {
+              "id": "0x0119a06b51c83d0eec79708b921a57247dc37e66"
+            },
+            "fees": null,
+            "rewardTokens": "16801785260538663406",
+            "shares": [
+              {
+                "delegator": {
+                  "id": "0x0119a06b51c83d0eec79708b921a57247dc37e66"
+                },
+                "fees": null,
+                "rewardTokens": "339247345078033507"
+              },
+              {
+                "delegator": {
+                  "id": "0x1161f84e66fd7e810f0bd81c9d17d19007b13dc9"
+                },
+                "fees": null,
+                "rewardTokens": "646042111842656833"
+              }
+            ],
+            "totalStake": "11916221463915692997518"
+          },
+          {
+            "delegate": {
+              "id": "0x21d1130dc36958db75fbb0e5a9e3e5f5680238ff"
+            },
+            "fees": null,
+            "rewardTokens": "374057984898991197828",
+            "shares": [
+              {
+                "delegator": {
+                  "id": "0x03d66da60a634efb0228fc85dc5d76681a3abef3"
+                },
+                "fees": null,
+                "rewardTokens": "13172493466811939"
+              },
+              {
+                "delegator": {
+                  "id": "0x0ad65faede353a3657e40e3c460fb4eb22ae6f0f"
+                },
+                "fees": null,
+                "rewardTokens": "271282162748937781"
+              }
+            ],
+            "totalStake": "265253569986451853781590"
+          },
+          {
+            "delegate": {
+              "id": "0x31990bebc4fd07ac4898e7c67210f38651f1d2e8"
+            },
+            "fees": null,
+            "rewardTokens": "85380864229587778412",
+            "shares": [
+              {
+                "delegator": {
+                  "id": "0x03d66da60a634efb0228fc85dc5d76681a3abef3"
+                },
+                "fees": null,
+                "rewardTokens": "13172493466811939"
+              },
+              {
+                "delegator": {
+                  "id": "0x0ad65faede353a3657e40e3c460fb4eb22ae6f0f"
+                },
+                "fees": null,
+                "rewardTokens": "271282162748937781"
+              }
+            ],
+            "totalStake": "60548719191835140956534"
+          }
+        ],
+        "timestamp": "1583135665"
+      }
+    ]
+  }
+}

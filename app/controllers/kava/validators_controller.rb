@@ -1,2 +1,2 @@
-class Kava::ValidatorsController < Common::ValidatorsController
+class Kava::ValidatorsController < Cosmoslike::ValidatorsController
 end

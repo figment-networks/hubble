@@ -1,2 +1,2 @@
-class Terra::Governance::ProposalsController < Common::Governance::ProposalsController
+class Terra::Governance::ProposalsController < Cosmoslike::Governance::ProposalsController
 end

@@ -1,0 +1,50 @@
+<tr>
+  <th class='align-middle'>
+    Tokens:
+  </th>
+  <td class='py-3'>
+    <div class='d-flex align-items-center'>
+      <div>
+        <ul class='list-group list-group-flush'>
+          <% sorted_token_map(@chain).each do |remote, info| -%>
+            <li class='list-group-item'>
+              <div class='d-flex align-items-center justify-content-between'>
+                <tt class='w-10 text-nowrap'><%= remote %></tt>
+                <tt class='w-10 text-nowrap'><%= info['display'] %></tt>
+                <tt class='w-10 text-nowrap'>10 ^ <%= info['factor'] %></tt>
+                <div class='w-25'>
+                  <% if info['primary'] %><span class='badge badge-sm badge-primary'>primary</span><% end -%>
+                </div>
+                <%= form_for [:admin, @chain] do |f| %>
+                  <input type='hidden' name='remove_token' value='<%= remote %>' />
+                  <button class='btn btn-tiny btn-danger'>
+                    <span class='fas fa-times'></span>
+                  </button>
+                <% end -%>
+              </div>
+            </li>
+          <% end -%>
+          <li class='list-group-item'>
+            <%= form_for [:admin, @chain] do |f| %>
+              <div class='d-flex align-items-center justify-content-between'>
+                <input type='text' class='d-inline form-control form-control-sm w-third mr-2' name='new_token[remote]' placeholder='RPC Denom' />
+                <input type='text' class='d-inline form-control form-control-sm w-third mr-2' name='new_token[display]' placeholder='Display Denom' />
+                <span class='technical mr-2'>
+                  10 <tt>^</tt>
+                  <input type='number' name='new_token[factor]' class='d-inline w-third form-control technical' placeholder='0' />
+                </span>
+                <div>
+                  <label class='mb-0 text-muted text-sm'>
+                    <input type='checkbox' name='new_token[primary]' />
+                    Primary?
+                  </label>
+                </div>
+                <%= f.submit 'add', disabled: @chain.dead?, class: 'ml-2 btn btn-sm btn-primary' %>
+              </div>
+            <% end -%>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </td>
+</tr>

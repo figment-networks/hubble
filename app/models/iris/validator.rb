@@ -1,3 +1,3 @@
 class Iris::Validator < ApplicationRecord
-  include Validatorlike
+  include Cosmoslike::Validatorlike
 end

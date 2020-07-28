@@ -1,0 +1,52 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://localhost:9292/polkadot/transactions/example
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (darwin18.0.0 x86_64) ruby/2.6.3p62
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - localhost:9292
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      X-Content-Type-Options:
+      - nosniff
+      Content-Length:
+      - '1992'
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "id": "example",
+          "time": "2020-06-22T12:39:00-05:00",
+          "block": 2870442,
+          "extrinsic_index": 3,
+          "extrinsic_hash": "0xa31ed4a7785bcb52612175800df244b8baf848156a33a0873f615af7360d01a1",
+          "module": "balances",
+          "call": "transfer",
+          "description": "Transfer some liquid free balance to another account. `transfer` will set the `FreeBalance` of the sender and receiver. It will decrease the total issuance of the system by the `TransferFee`. If the sender's account is below the existential deposit as a result of the transfer, the account will be reaped. The dispatch origin for this call must be `Signed` by the transactor. # <weight> - Dependent on arguments but not critical, given proper implementations for input config types. See related functions below. - It contains a limited number of reads and writes internally and no complex computation. Related functions: - `ensure_can_withdraw` is always called internally but has a bounded complexity. - Transferring balances to accounts that did not exist before will cause `T::OnNewAccount::on_new_account` to be called. - Removing enough funds from an account will trigger `T::DustRemoval::on_unbalanced`. - `transfer_keep_alive` works the same way as `transfer`, but has an additional check that the transfer will not kill the origin account. --------------------------------- - Base Weight: 73.64 µs, worst case scenario (account created, account removed) - DB Weight: 1 Read and 1 Write to destination account - Origin account is already in memory, so no DB operations for them. # </weight>",
+          "address": "FBL1t4FnLy274B7wnLckFeNrSmqSHjhf58SHYtBvZNDf4U2",
+          "nonce": 42,
+          "section": "utility",
+          "signature": "0x54cb9be9b44a25b2493512ab9d413c0a6388f6bc4b607693b99d6e5230efc923669e7d4dd621d48dc67301b0380690f9d4994213e0e7d7b88cb3adcafdbe8582",
+          "signer": "HA4FRTrk4n5f2gvsfNLYY4b9Tw5eincNBXpxpSV21qGVXvB",
+          "parameters": {
+            "destination": "FM6tj5T9bKD964xCi7ZG8vEQQF9dYXEwPnHnU21pNS9di4D",
+            "value": "3.37 KSM"
+          }
+        }
+  recorded_at: Wed, 01 Jul 2020 09:12:03 GMT
+recorded_with: VCR 6.0.0

@@ -1,4 +1,4 @@
-class Iris::ValidatorDelegationsDecorator < Common::ValidatorDelegationsDecorator
+class Iris::ValidatorDelegationsDecorator < Cosmoslike::ValidatorDelegationsDecorator
   protected
 
   def decorate_delegation( delegation )

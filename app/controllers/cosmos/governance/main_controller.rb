@@ -1,2 +1,2 @@
-class Cosmos::Governance::MainController < Common::Governance::MainController
+class Cosmos::Governance::MainController < Cosmoslike::Governance::MainController
 end

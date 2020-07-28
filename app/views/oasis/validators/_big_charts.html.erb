@@ -1,0 +1,32 @@
+<div class='card'>
+  <h5 class='card-header'>Voting Power History <small>&mdash; Last 90 Days</small></h5>
+  <div class='card-body'>
+    <div class='voting-power-history-chart-container'>
+      <canvas class='voting-power-history-chart'></canvas>
+      <script>
+        App.seed.VOTING_POWER_HISTORY = <%= chain.namespace::VotingPowerHistoryDecorator.new(chain, validator).as_json.to_json.html_safe %>
+        App.seed.ACTIVE_SET_HISTORY = <%= chain.namespace::ActiveSetHistoryDecorator.new(validator).as_json.to_json.html_safe %>
+      </script>
+    </div>
+  </div>
+</div>
+
+<div class='card'>
+  <h5 class='card-header'>
+    <div class='card-header-parts'>
+      <div>Uptime History <small>&mdash; Last 48 Hours</small></div>
+    </div>
+  </h5>
+  <div class='card-body'>
+    <div class='uptime-history-last48h-chart-container'>
+      <canvas class='uptime-history-last48h-chart'></canvas>
+    </div>
+    <% current_uptime = validator.current_uptime_percent -%>
+    <script>
+      App.seed.UPTIME_HISTORY = {
+        last48h: <%= Oasis::AverageSnapshotDecorator.new(chain, 'validator-uptime', 'hour', '48 hours', validator.entity_uid).as_json( override_current_time_value: current_uptime ).to_json.html_safe %>
+      }
+
+    </script>
+  </div>
+</div>

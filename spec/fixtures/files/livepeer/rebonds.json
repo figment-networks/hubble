@@ -1,0 +1,30 @@
+{
+  "data": {
+    "rebonds": [
+      {
+        "amount": "2865967725408334756128",
+        "delegate": {
+          "id": "0xda43d85b8d419a9c51bbf0089c9bd5169c23f2f9"
+        },
+        "delegator": {
+          "id": "0x5f40189a2349544d4a60e2d433b07db14f67bf79"
+        },
+        "timestamp": "1583941739",
+        "transactionHash": "0x88a137db80dc62ef423759148a4f09c4ec077965a6a966d53e53f48b3d085ea5",
+        "unbondingLockId": 0
+      },
+      {
+        "amount": "651996011695268083230",
+        "delegate": {
+          "id": "0x525419ff5707190389bfb5c87c375d710f5fcb0e"
+        },
+        "delegator": {
+          "id": "0xa3a549d8d10d7ef34eaef65377d9ce388369efa3"
+        },
+        "timestamp": "1584110348",
+        "transactionHash": "0x203bee6f5e3abe9f9c6216a276a996637307271ed3593c1c66e4611438a5e557",
+        "unbondingLockId": 2
+      }
+    ]
+  }
+}

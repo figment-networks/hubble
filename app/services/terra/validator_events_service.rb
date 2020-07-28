@@ -1,2 +1,2 @@
-class Terra::ValidatorEventsService < Common::ValidatorEventsService
+class Terra::ValidatorEventsService < Cosmoslike::ValidatorEventsService
 end

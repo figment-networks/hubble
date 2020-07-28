@@ -1,0 +1,139 @@
+<% content_for :body_class, 'governance-proposal' %>
+
+<%= render partial: '/tezos/shared/network_header', locals: { summary_link: true, governance_link: true } %>
+
+<div class='row'>
+  <div class='col-12 col-md-9'>
+    <div class='card'>
+      <h5 class='card-header d-flex align-items-center justify-content-between'>
+        <%= @proposal.name ? @proposal.name : @proposal.id.truncate(15) %>
+        <span class='d-none d-md-inline badge badge-pill badge-primary badge-light badge-sm text-uppercase'><%= @proposal.status %></span>
+      </h5>
+      <div class='card-body'>
+        <label class='text-muted mb-0 mt-0'>Hash ID</label>
+        <div class='technical'><%=  @proposal.id %></div>
+        <label class='text-muted mb-0 mt-3'>Status</label>
+        <div class='technical'><%=  tezos_proposal_status_string(@proposal, @voting_period, @votes) %></div>
+        <% if @proposal.description %>
+          <label class='text-muted mb-0 mt-3'>Description&nbsp;&nbsp;</label><button class='btn btn-sm btn-outline' id='description-button'>SHOW</button>
+          <div class='proposal-description-text' id='description' style='display: none;'><%=  @proposal.description.html_safe %></div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class='card'>
+      <div class='card-header d-flex align-items-center justify-content-center'>
+        <div class='btn-group btn-group-sm'>
+          <button type='button' class='btn btn-outline-light <%= @voting_period.period_type == "proposal" ? "active" : "" %>'>
+            <a href='<%= tezos_governance_proposal_path @proposal.id %>' style='color: inherit;'>Proposal Period</a>
+          </button>
+
+          <% if @proposal.passed_prop_period %>
+            <button type='button' class='btn btn-outline-light <%= @voting_period.period_type == "testing_vote" ? "active" : "" %>'>
+              <a href='<%= tezos_governance_proposal_path @proposal.id, :voting_period => @proposal.eval_period_id %>' style='color: inherit;'>Evaluation Period</a>
+            </button>
+          <% end %>
+          <% if @proposal.passed_eval_period %>
+            <button type='button' class='btn btn-outline-light <%= @voting_period.period_type == "testing" ? "active" : "" %>'>
+              <a href='<%= tezos_governance_proposal_path @proposal.id, :voting_period => @proposal.testing_period_id %>' style='color: inherit;'>Testing Period</a>
+            </button>
+            <button type='button' class='btn btn-outline-light <%= @voting_period.period_type == "promotion_vote" ? "active" : "" %>'>
+              <a href='<%= tezos_governance_proposal_path @proposal.id, :voting_period => @proposal.promotion_period_id %>' style='color: inherit;'>Promotion Period</a>
+            </button>
+          <% end %>
+        </div>
+      </div>
+
+      <div class='card-body'>
+        <div class='proposal-details'>
+          <% if (@voting_period.period_type == 'testing_vote') || (@voting_period.period_type == 'promotion_vote') %>
+            <%= render partial: 'tezos/governance/voting_period_voting_summary' %>
+          <% elsif @voting_period.period_type == 'proposal' %>
+            <%= render partial: 'tezos/governance/prop_period_voting_summary' %>
+          <% else %>
+            <div class='technical text-center'>Testing period - no voting</div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+
+    <div class='mt-5'>
+      <div class='title mb-1'>
+        VOTES
+        <% if @voting_period.period_type == "proposal" %>
+          <small> - proposal period voting is decided by a plurality of rolls</small>
+        <% end%>
+      </div>
+      <div class='table-responsive'>
+        <table class='table table-sm votes-table'>
+          <thead>
+            <tr role="row">
+              <% unless @voting_period.period_type == 'proposal' %>
+                <td>Direction</td>
+              <% end %>
+              <td>Baker</td>
+              <td>Rolls</td>
+            </tr>
+          </thead>
+          <tbody>
+            <% if @votes.empty? %>
+              <tr>
+                <td colspan='2' align='middle'>
+                  <% if @voting_period.period_type == 'testing' %>
+                    Testing period - no voting
+                  <% else %>
+                    No votes cast.
+                  <% end %>
+                </td>
+              </tr>
+            <% else -%>
+              <% @votes.each do |vote| -%>
+                <tr data-vote-id='<%= vote.id %>'>
+                  <% unless @voting_period.period_type == 'proposal' %>
+                    <td class='text-uppercase text-md vote-option vote-yes'><%= vote.vote %></td>
+                  <% end %>
+                  <td>
+                    <a href='<%= tezos_baker_path vote.baker_id %>'>
+                      <span class='technical'><%= vote.baker_id %></span>
+                    </a>
+                  </td>
+                  <td><%= vote.rolls %></td>
+                </tr>
+              <% end -%>
+            <% end -%>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class='col-12 col-md-3'>
+    <%= render partial: 'tezos/governance/proposal_info_card' %>
+
+    <div class='card'>
+      <h5 class='card-header'>Tallying Procedure</h5>
+      <div class='card-body'>
+        <label class='text-muted mb-0 mt-0'>Quorum</label>
+        <div class='technical'>
+          <%= @voting_period.quorum_percent %>%
+        </div>
+
+        <label class='text-muted mb-0 mt-3'>Supermajority</label>
+        <div class='technical'>
+          80%
+        </div>
+
+        <label class='text-muted mb-0 mt-3'>Potential Votes</label>
+        <div class='technical'>
+          <%= number_with_delimiter(@voting_period.total_voters, :delimiter => ',') %> bakers
+        </div>
+
+        <label class='text-muted mb-0 mt-3'>Total Voting Power</label>
+        <div class='technical'>
+          <%= number_with_delimiter(@voting_period.total_rolls, :delimiter => ',') %> rolls
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

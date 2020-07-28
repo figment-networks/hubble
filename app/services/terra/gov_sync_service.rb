@@ -1,4 +1,4 @@
-class Terra::GovSyncService < Common::GovSyncService
+class Terra::GovSyncService < Cosmoslike::GovSyncService
   private
 
   def build_proposal( proposal )

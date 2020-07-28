@@ -1,0 +1,72 @@
+<% content_for :body_class, 'round-show' %>
+
+<%= render partial: 'chain_header', locals: { summary_link: true } %>
+
+<h2 class='mb-4'>
+  <label class='text-muted'>Round</label>
+  <span class='technical text-lg'><%= @round.number %></span>
+</h2>
+
+<div class='row'>
+  <div class='col-12 col-md-9 order-1 order-md-0'>
+    <div class='pools'>
+      <div class='pools-table-header'>
+        <h4>Pools</h4>
+      </div>
+      <div class='pools-table'>
+        <table>
+          <thead>
+            <tr>
+              <th>Orchestrator Address</th>
+              <th>Total Stake</th>
+              <th>Reward Tokens</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @pools.each do |pool| %>
+              <tr>
+                <% transcoder = OpenStruct.new(address: pool.transcoder_address) %>
+                <td><%= transcoder_link(transcoder) %></td>
+                <td data-order='<%= pool.total_stake %>'><%= lpt_amount(pool.total_stake) %></td>
+                <td data-order='<%= pool.reward_tokens %>'>
+                  <% if pool.reward_tokens.present? -%>
+                    <%= lpt_amount(pool.reward_tokens) %>
+                  <% else -%>
+                    <span class="text-muted">MISSED</span>
+                  <% end -%>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class='col-12 col-md-3 order-0 order-md-1 info-cards'>
+    <div class='card'>
+      <h5 class='card-header'>Round</h5>
+      <div class='card-body'>
+        <% if (previous_round = @round.previous_round) -%>
+          <a href='<%= namespaced_path('round', previous_round) %>' class='text-muted'><span class='fas fa-chevron-left'></span></a>
+        <% end -%>
+        <span class='large-number technical'><%= @round.number %></span>
+        <% if (next_round = @round.next_round) -%>
+          <a href='<%= namespaced_path('round', next_round) %>' class='text-muted'><span class='fas fa-chevron-right'></span></a>
+        <% end -%>
+      </div>
+    </div>
+    <div class='card'>
+      <h5 class='card-header'>Timestamp</h5>
+      <div class='card-body'>
+        <span class='technical'><%= @round.initialized_at.strftime('%Y-%m-%d @ %H:%M %Z') %></span>
+      </div>
+    </div>
+    <div class='card'>
+      <h5 class='card-header'>Mintable Tokens</h5>
+      <div class='card-body'>
+        <span class='technical'><%= lpt_amount(@round.mintable_tokens) %></span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,7 +1,8 @@
 class Cosmos::Chain < ApplicationRecord
-  include Chainlike
+  include Cosmoslike::Chainlike
 
   SYNC_OFFSET = 1
+  SYNC_INTERVAL = 1.minute
   SUPPORTS_LEDGER = true
 
   PREFIXES = {
@@ -18,4 +19,5 @@ class Cosmos::Chain < ApplicationRecord
   DEFAULT_TOKEN_FACTOR = 6
 
   def network_name; 'Cosmos'; end
+  def has_csir?; true; end
 end

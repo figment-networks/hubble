@@ -1,7 +1,8 @@
 class Kava::Chain < ApplicationRecord
-  include Chainlike
+  include Cosmoslike::Chainlike
 
   SYNC_OFFSET = 1
+  SYNC_INTERVAL = 1.minute
   SUPPORTS_LEDGER = false
 
   PREFIXES = {
@@ -18,4 +19,6 @@ class Kava::Chain < ApplicationRecord
   DEFAULT_TOKEN_FACTOR = 6
 
   def network_name; 'Kava'; end
+  def has_csir?; true; end
+
 end

@@ -1,0 +1,154 @@
+#cycles-table {
+  .chart-container {
+    position: relative;
+    margin: 6px 0 0 0;
+    width: 50px;
+    height: 50px;
+
+    &.current {
+      margin-top: 0;
+      width: 65px;
+      height: 65px;
+    }
+  }
+
+  .cycle {
+    display: inline-block;
+    float: left;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #fff;
+    border: 6px solid #1a80f2;
+    margin: 10px 0 0 0;
+    color: #333;
+    line-height: 30px;
+    text-align: center;
+    box-sizing: content-box;
+
+    &.current {
+      width: 50px;
+      height: 50px;
+      line-height: 50px;
+      margin-top: 0;
+      font-weight: bold;
+    }
+
+    &.future {
+      border-color: #ccc;
+    }
+  }
+
+  td {
+    border: none;
+  }
+
+  [data-toggle="modal"] {
+    cursor: pointer;
+  }
+}
+
+// Donut Chart Mixin
+.donut-chart {
+  display: inline-block;
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+
+  .slice {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .chart-center {
+    position: absolute;
+    border-radius: 50%;
+
+    span {
+      display: block;
+      text-align: center;
+    }
+  }
+}
+
+@mixin donut-chart(
+  $name,
+  $perc,
+  $size,
+  $width,
+  $base,
+  $center,
+  $color,
+  $textColor: $color,
+  $textSize: 40px
+) {
+  $color2: $color;
+  $base2: $base;
+  $deg: ($perc/100 * 360) + deg;
+  $deg1: 90deg;
+  $deg2: $deg;
+
+  // If percentage is less than 50%
+  @if $perc < 50 {
+    $base: $color;
+    $color: $base2;
+    $color2: $base2;
+    $deg1: ($perc/100 * 360+90) + deg;
+    $deg2: 0deg;
+  }
+
+  .donut-chart {
+    &#{$name} {
+      width: $size;
+      height: $size;
+      background: $base;
+
+      .slice {
+        &.one {
+          clip: rect(0 $size $size/2 0);
+          -webkit-transform: rotate($deg1);
+          transform: rotate($deg1);
+          background: $color;
+        }
+
+        &.two {
+          clip: rect(0 $size/2 $size 0);
+          -webkit-transform: rotate($deg2);
+          transform: rotate($deg2);
+          background: $color2;
+        }
+      }
+
+      .chart-center {
+        top: $width;
+        left: $width;
+        width: $size - ($width * 2);
+        height: $size - ($width * 2);
+        background: $center;
+
+        span {
+          font-size: $textSize;
+          line-height: $size - ($width * 2);
+          color: $textColor;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+} // mixin
+
+// Charts
+@include donut-chart(
+  ".chart1",
+  30,
+  62px,
+  6px,
+  #e1e1e1,
+  #fff,
+  #1a80f2,
+  #333,
+  16px
+);

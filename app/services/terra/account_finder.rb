@@ -1,2 +1,2 @@
-class Terra::AccountFinder < Common::AccountFinder
+class Terra::AccountFinder < Cosmoslike::AccountFinder
 end

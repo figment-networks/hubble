@@ -1,4 +1,4 @@
-class Admin::Iris::FaucetsController < Admin::Common::FaucetsController
+class Admin::Iris::FaucetsController < Admin::Cosmoslike::FaucetsController
   protected
 
   def ensure_chain

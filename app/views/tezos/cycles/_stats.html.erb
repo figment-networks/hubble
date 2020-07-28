@@ -1,0 +1,39 @@
+<div class="row mb-3">
+  <div class="col text-center">
+    <div class="card bg-light">
+      <div class="card-body">
+        <small class="text-uppercase">MISSED BAKES</small> <br>
+        <h2 class="display-3 mb-0"><%= @cycle.missed_priorities %></h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="col text-center">
+    <div class="card bg-light">
+      <div class="card-body">
+        <small class="text-uppercase">MISSED ENDORSEMENT SLOTS</small> <br>
+        <h2 class="display-3 mb-0"><%= @cycle.missed_slots %></h2>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row mb-3">
+  <div class="col text-center">
+    <div class="card bg-light">
+      <div class="card-body">
+        <small class="text-uppercase">SNAPSHOT CYCLE</small> <br>
+        <h2 class="display-5 mb-0"><%= link_to @cycle.snapshot_cycle_number, "#snapshotModal", data: { toggle: "modal" }, class: "stretched-link" %></h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="col text-center">
+    <div class="card bg-light">
+      <div class="card-body">
+        <small class="text-uppercase">REWARDS AVAILABLE</small> <br>
+        <h2 class="display-5 mb-0"><%= link_to @cycle.rewards_unfrozen_cycle_number, "#rewardsModal", data: { toggle: "modal" }, class: "stretched-link" %></h2>
+      </div>
+    </div>
+  </div>
+</div>

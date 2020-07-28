@@ -1,0 +1,44 @@
+.validator-show {
+  .block-heatmap-container {
+    position: relative;
+    margin-bottom: 10px;
+
+    #chartjs-tooltip-bhm div {
+      display: flex;
+      align-items: center;
+      .fa { margin: 0 8px; }
+      .badge { font-size: $font-size-base * 1.1; }
+    }
+  }
+  
+  .block-heatmap {
+    display: flex;
+
+    .block {
+      width: 2%;
+      height: 30px;
+      background: black;
+      border-right: 1px solid white;
+      &.ok { background: $success; &:hover { background: lighten($success, 10%); } }
+      &.missed { background: $danger; &:hover { background: lighten($danger, 10%); } }
+      &.produced { background: $primary; &:hover { background: lighten($primary, 10%); } }
+      &:last-child {
+        border-right: none;
+      }
+    }
+  }
+
+  table.validator-epochs-table {
+    margin-bottom: 0;
+  }
+
+  .validator-epochs-performance-chart-container {
+    height: 30px;
+
+    .chartjs-tooltip {
+      color: $body-color;
+      font-size: 14px;
+      font-family: $font-family-monospace;
+    }
+  }
+}

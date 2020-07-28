@@ -1,4 +1,4 @@
-class Terra::SyncBase < Common::SyncBase
+class Terra::SyncBase < Cosmoslike::SyncBase
   def get_transactions( params=nil )
     params ||= {}
     params['limit'] = 1000
@@ -12,5 +12,10 @@ class Terra::SyncBase < Common::SyncBase
 
   def get_community_pool
     nil
+  end
+
+  # terra doesn't have governance?
+  def get_governance
+    {}
   end
 end

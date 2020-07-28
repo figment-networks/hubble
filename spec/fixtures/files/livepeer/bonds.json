@@ -1,0 +1,48 @@
+{
+  "data": {
+    "bonds": [
+      {
+        "additionalAmount": "18000000000000000000",
+        "delegator": {
+          "id": "0x08c5565c3db883100f7d4e9288dc35aef37ff4d0"
+        },
+        "newDelegate": {
+          "id": "0xe9e284277648fcdb09b8efc1832c73c09b5ecf59"
+        },
+        "oldDelegate": {
+          "id": "0xdac817294c0c87ca4fa1895ef4b972eade99f2fd"
+        },
+        "timestamp": "1584330150",
+        "transactionHash": "0xd3db77b9509f2eed37955803f5b3e8b7be4b99bedba19acc2e4265626de3b8cd"
+      },
+      {
+        "additionalAmount": "258484014142942874461",
+        "delegator": {
+          "id": "0x3643962417da87156836052af92647810dc65d49"
+        },
+        "newDelegate": {
+          "id": "0xe9e284277648fcdb09b8efc1832c73c09b5ecf59"
+        },
+        "oldDelegate": {
+          "id": "0x0000000000000000000000000000000000000000"
+        },
+        "timestamp": "1584334387",
+        "transactionHash": "0xdb73beee81f4e111e78e363da1fe5eaf4b03b285fd689b1a0342eadc4177d376"
+      },
+      {
+        "additionalAmount": "303000000000000000000",
+        "delegator": {
+          "id": "0xa3a549d8d10d7ef34eaef65377d9ce388369efa3"
+        },
+        "newDelegate": {
+          "id": "0xda43d85b8d419a9c51bbf0089c9bd5169c23f2f9"
+        },
+        "oldDelegate": {
+          "id": "0xda43d85b8d419a9c51bbf0089c9bd5169c23f2f9"
+        },
+        "timestamp": "1584422111",
+        "transactionHash": "0x146ffc79c570f91570f681319e121cdea893f785a8e758fe5421e59bf456cb47"
+      }
+    ]
+  }
+}

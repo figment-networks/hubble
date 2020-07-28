@@ -1,0 +1,38 @@
+<section class='validator-epochs'>
+  <div class='validator-epochs-table-header'>
+    <h4>
+      Epoch Performance
+      <div class='validator-epochs-performance-chart-container'>
+        <canvas class='validator-epochs-performance-chart'></canvas>
+      </div>
+      <script>
+        App.seed.VALIDATOR_EPOCHS_PERFORMANCE_CHART = <%= performance_chart.to_json.html_safe %>;
+      </script>
+    </h4>
+  </div>
+
+  <div class="validator-epochs-table">
+    <table class="table-striped">
+      <thead>
+        <tr role="row">
+          <th>Time</th>
+          <th>Epoch</th>
+          <th>Expected</th>
+          <th>Produced</th>
+          <th>Efficiency</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% epochs.each_with_index do |epoch, idx| %>
+          <tr>
+            <td data-order="<%= idx %>"><%= epoch.last_time %></div>
+            <td><small><%= epoch.epoch.truncate(12) %></small></td>
+            <td><%= epoch.expected_blocks %></td>
+            <td><%= epoch.produced_blocks %></td>
+            <td data-order="<%= epoch.efficiency %>"><%= epoch.efficiency.round(2) %>%</td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</section>

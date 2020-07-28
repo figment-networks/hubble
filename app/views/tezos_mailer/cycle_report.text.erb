@@ -1,0 +1,13 @@
+Cycle Report for Tezos Cycle <%= @cycle.number %>
+
+<% @user.subscriptions.each do |subscription| %>
+<% next if @cycle.cached_baking_stats[subscription.baker_id].nil? || @cycle.cached_endorsing_stats[subscription.baker_id].nil? %>
+
+**<%= subscription.baker.long_name %>**
+<%= @cycle.cached_baking_stats[subscription.baker_id].blocks_baked %> Bakes (<%= @cycle.cached_baking_stats[subscription.baker_id].blocks_missed %> Missed)
+<%= @cycle.cached_endorsing_stats[subscription.baker_id].endorsed_slots %> Endorsements (<%= @cycle.cached_endorsing_stats[subscription.baker_id].missed_slots %> Missed)
+<%= @cycle.cached_baking_stats[subscription.baker_id].blocks_stolen %> Steals
+
+View cycle details for this Baker: <%= tezos_baker_url(subscription.baker_id) %>
+
+<% end %>

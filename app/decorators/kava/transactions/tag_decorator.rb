@@ -1,2 +1,2 @@
-class Kava::Transactions::TagDecorator < Common::Transactions::TagDecorator
+class Kava::Transactions::TagDecorator < Cosmoslike::Transactions::TagDecorator
 end

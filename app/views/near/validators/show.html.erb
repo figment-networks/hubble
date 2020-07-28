@@ -1,0 +1,20 @@
+<% content_for :body_class, "validator-show" %>
+
+<%= render "chain_header", summary_link: true %>
+<%= render_flash_messages %>
+
+<h2 class='mb-3'>
+  <label class='text-muted'>Validator</label>
+  <%= @validator.account_id %>
+</h2>
+
+<div class='row info-cards'>
+  <div class='col-12 col-md-8 order-1 order-md-0'>
+    <%= render "epochs", epochs: @validator.epochs, performance_chart: @performance_chart %>
+  </div>
+  <div class='col-12 col-md-4 order-0 order-md-1 info-cards'>
+    <%= render "staking", account: @validator.account %>
+    <%= render "lifetime", validator: @validator %>
+    <%= render "blocks", blocks: @validator.blocks, account_id: @validator.account_id %>
+  </div>
+</div>

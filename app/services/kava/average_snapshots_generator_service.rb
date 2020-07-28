@@ -1,2 +1,2 @@
-class Kava::AverageSnapshotsGeneratorService < Common::AverageSnapshotsGeneratorService
+class Kava::AverageSnapshotsGeneratorService < Cosmoslike::AverageSnapshotsGeneratorService
 end

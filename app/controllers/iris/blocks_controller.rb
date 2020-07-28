@@ -1,2 +1,2 @@
-class Iris::BlocksController < Common::BlocksController
+class Iris::BlocksController < Cosmoslike::BlocksController
 end

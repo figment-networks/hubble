@@ -1,0 +1,220 @@
+.governance-proposal {
+  // .proposal-header {
+  //   margin-top: 0px;
+  //   background: $primary;
+  //   color: white;
+  //   padding: 4px 6px;
+  //   padding-right: 10px;
+
+  //   display: flex;
+  //   align-items: center;
+  //   justify-content: space-between;
+
+  //   border-top-left-radius: 3px;
+  //   border-top-right-radius: 3px;
+
+  //   h4 {
+  //     max-width: 100%;
+  //     padding: 8px 10px;
+  //     margin-bottom: 0;
+  //   }
+  //   .controls {
+  //     display: flex;
+  //     align-items: center;
+  //   }
+  // }
+
+  .proposal-details {
+    .title {
+      color: #57727c;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+
+    .proposal-description-text {
+      white-space: pre-wrap;
+    }
+
+    .chart-status-string {
+      margin-top: 26px;
+      margin-bottom: 10px;
+      display: flex;
+      flex-direction: column;
+      @include media-breakpoint-up(md) {
+        display: block;
+      }
+    }
+
+    .proposal-progress {
+      position: relative;
+      .progress {
+        height: 40px;
+        border-radius: $border-radius;
+      }
+      .marker {
+        top: 100%;
+        position: absolute;
+        display: flex;
+        align-items: center;
+        font-size: smaller;
+        .notch {
+          width: 2px;
+          border-bottom-left-radius: 4px;
+          border-bottom-right-radius: 4px;
+          height: 20px;
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+
+  .vote-tallies {
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+
+    .tally {
+      position: relative;
+      flex: 1 1 0%;
+
+      border-width: 1px;
+      border-style: solid;
+      border-radius: $border-radius;
+      margin: 10px 0;
+      box-sizing: padding-box;
+      overflow: hidden;
+
+      .title {
+        text-align: center;
+        color: #57727c;
+        font-size: 12px;
+        font-weight: 700;
+        margin: 0;
+        letter-spacing: 2px;
+      }
+      .tally-value {
+      }
+      .tally-title {
+        text-align: center;
+        color: #57727c;
+        font-size: 12px;
+        font-weight: 700;
+        padding: 5px 15px;
+        padding-top: 15px;
+        letter-spacing: 2px;
+        margin-bottom: 0;
+      }
+      .tally-voting-power {
+        margin-bottom: 10px;
+      }
+    }
+    .mini-progress {
+      position: absolute;
+      bottom: 0px;
+      width: 100%;
+      height: 7px;
+    }
+
+    @include media-breakpoint-up(md) {
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: space-around;
+
+      .tally {
+        margin: 10px;
+        &:first-child { margin-left: 0; }
+        &:last-child { margin-right: 0; }
+        .tally-title {
+          .tally-voting-power {
+            margin-bottom: 3px;
+          }
+        }
+      }
+    }
+  }
+
+  .proposal-period-progress, .network-voting-progress {
+    .proposal-period-text, .network-voting-progress-text {
+      font-size: 14px;
+      color: white;
+      text-shadow: 0 0 3px black, 0 0 10px $primary;
+      line-height: 16px;
+    }
+    .proposal-period-time-left, .network-voting-atoms {
+      font-size: 12px;
+      .text-sm { font-size: 10px; }
+    }
+  }
+
+  .deposits-table {
+    margin-bottom: 50px;
+  }
+  .deposits-table, .votes-table {
+    &.table-sm td {
+      padding-left: 4px;
+    }
+    .vote-option {
+      font-weight: bold;
+      vertical-align: middle;
+    }
+    .vote-yes { color: $success; }
+    .vote-abstain { color: $secondary; }
+    .vote-no { color: $danger; }
+    .vote-nowithveto { color: $veto; }
+  }
+  .param-changes-table {
+    &.table-sm td, &.table-sm th {
+      padding-left: 4px;
+    }
+    pre { margin-bottom: 0; }
+  }
+}
+
+#proposal-modal, #proposal-deposit-modal, #proposal-vote-modal {
+  .proposal-step {
+    .fa-spin {
+      font-size: 4em;
+    }
+  }
+
+  .vote-options {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    .vote-option {
+      cursor: pointer;
+      padding: 18px 14px;
+      margin-bottom: 12px;
+      margin-left: 40px;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-width: 1px;
+      border-style: solid;
+      border-radius: $border-radius;
+
+      &:hover {
+        background: #F8F8F8;
+      }
+
+      &.vote-option-yes { color: $success !important; border-color: $success !important; }
+      &.vote-option-abstain { color: $secondary !important; border-color: $secondary !important; }
+      &.vote-option-no { color: $danger !important; border-color: $danger !important; }
+      &.vote-option-veto { color: $veto !important; border-color: $veto !important; }
+
+      &.selected {
+        &.vote-option-yes { background: $success !important; }
+        &.vote-option-abstain { background: $secondary !important; }
+        &.vote-option-no { background: $danger !important; }
+        &.vote-option-veto { background: $veto !important; }
+        color: white !important;
+      }
+
+      input { display: none; }
+    }
+  }
+}

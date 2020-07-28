@@ -1,2 +1,2 @@
-class Terra::EventsController < Common::EventsController
+class Terra::EventsController < Cosmoslike::EventsController
 end

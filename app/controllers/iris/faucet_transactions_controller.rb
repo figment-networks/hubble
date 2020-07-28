@@ -1,2 +1,2 @@
-class Iris::FaucetTransactionsController < Common::FaucetTransactionsController
+class Iris::FaucetTransactionsController < Cosmoslike::FaucetTransactionsController
 end

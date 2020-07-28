@@ -1,0 +1,49 @@
+<div class='transactions mb-5'>
+  <div class='transactions-table-header'>
+    <h4>Transactions</h4>
+  </div>
+  <div class='transactions-table'>
+    <table data-empty='<%= transactions.blank? %>' class='table'>
+      <thead>
+        <tr>
+          <th>Hash</th>
+          <th>Fees</th>
+          <th>Gas Limit</th>
+          <th>Gas Price</th>
+          <th>&nbsp;</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if transactions.nil? -%>
+          <tr>
+            <td class='p-3 text-center' colspan='5'>Unable to retrieve transaction data.</td>
+          </tr>
+        <% elsif transactions.empty? -%>
+          <tr>
+            <td class='p-3 text-center' colspan='5'>No transactions in this block.</td>
+          </tr>
+        <% end -%>
+
+        <% (transactions||[]).each do |tr| -%>
+          <tr>
+            <td data-order='<%= tr.hash %>'>
+              <span class='technical'><%= tr.public_key.truncate(30) %></span>
+            </td>
+            <td data-order='<%= tr.fee %>'>
+                <%= tr.fee %>
+            </td>
+            <td data-order='<%= tr.gas_limit %>'>
+              <%= tr.gas_limit %>
+            </td>
+            <td data-order='<%= tr.gas_price %>'>
+              <%= tr.gas_price %>
+            </td>
+            <td class='text-right'>
+              <a class='btn btn-outline-primary btn-sm' href='<%= oasis_chain_block_transaction_path(@chain.slug, @block.height, tr.public_key) %>'>Details...</a>
+            </td>
+          </tr>
+        <% end -%>
+      </tbody>
+    </table>
+  </div>
+</div>

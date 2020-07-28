@@ -1,0 +1,61 @@
+<header class='network-chain-header'>
+  <h1>
+    <a class='secret-link' href='<%= namespaced_path %>'>
+      <%= @chain.network_name %>
+      <% if @chain -%>
+        <small class='chain-info text-muted'>
+          <span class='d-none d-md-inline'>&mdash;</span>
+          <%= @chain.name %>
+          <% if @chain.testnet? %>
+            <span class='d-none d-md-inline badge badge-pill badge-light'>TESTNET</span>
+            <span class='d-inline d-md-none text-muted'><span class='fas fa-vial'></span></span>
+          <% end %>
+        </small>
+      <% end -%>
+    </a>
+  </h1>
+
+  <div class='buttons ml-auto'>
+    <% if @chain -%>
+      <% if current_admin -%>
+        <a class='ml-1 btn btn-info' href='<%= namespaced_path( admin: true ) %>'>
+          <span class='d-none d-md-inline'>Admin</span>
+          <span class='d-inline d-md-none fa fa-crown'></span>
+        </a>
+      <% end -%>
+      <% if defined?(faucet_link) && @chain.faucet && @chain.faucet.enabled? -%>
+        <a class='ml-1 btn btn-outline-primary' href='<%= namespaced_path( 'faucet' ) %>'>Faucet</a>
+      <% end -%>
+      <% if defined?(events_link) -%>
+        <a class='ml-1 btn btn-outline-primary' href='<%= namespaced_path( 'events' ) %>'>Events</a>
+      <% end -%>
+      <% if defined?(reports_link) -%>
+        <% if @chain.has_csir? -%>
+          <a class='ml-1 btn btn-outline-primary' href="https://app.figment.network/csir" target="_blank">Reports</a>
+        <% end -%>
+      <% end -%>
+      <% if defined? governance_link -%>
+        <a class='btn btn-outline-secondary ml-1' href='<%= namespaced_path( 'governance_root' ) %>'>
+          <span class='d-none d-md-inline'>Proposals</span>
+          <span class='d-inline d-md-none fa fa-chevron-left'></span>
+        </a>
+      <% end -%>
+      <% if defined? summary_link -%>
+        <a class='ml-1 btn btn-outline-secondary' href='<%= namespaced_path %>'>
+          <span class='d-none d-md-inline'>Summary</span>
+          <span class='d-inline d-md-none fa fa-arrow-circle-up'></span>
+        </a>
+      <% end -%>
+      <a href='<%= namespaced_path( 'logs' ) %>' class='ml-1 tooltip-target info-tooltip-target' data-toggle='tooltip' title='<%= chain_header_tooltip_info %>'>
+        <span class='fas fa-info'></span>
+      </a>
+    <% end -%>
+  </div>
+</header>
+
+<% if !@chain.notes.blank? -%>
+  <div class='alert alert-info chain-notes d-flex align-items-center'>
+    <span class='fas fa-fw fa-info-circle mr-2'></span>
+    <%= Redcarpet::Markdown.new(Redcarpet::Render::HTML).render(@chain.notes).html_safe %>
+  </div>
+<% end -%>

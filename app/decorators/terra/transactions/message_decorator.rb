@@ -1,2 +1,2 @@
-class Terra::Transactions::MessageDecorator < Common::Transactions::MessageDecorator
+class Terra::Transactions::MessageDecorator < Cosmoslike::Transactions::MessageDecorator
 end

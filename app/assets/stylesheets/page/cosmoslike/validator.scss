@@ -1,0 +1,77 @@
+.validator-show {
+  .hero {
+    background-position: bottom -250px center, top left;
+    background-image: image-url('angle-bg/up-right-to-left.svg'), image-url('hero/cosmos.png');
+  }
+
+  .block-heatmap-container {
+    position: relative;
+    margin-bottom: 10px;
+    #chartjs-tooltip-bhm div {
+      display: flex;
+      align-items: center;
+      .fa { margin: 0 8px; }
+      .badge { font-size: $font-size-base * 1.1; }
+    }
+  }
+  .block-heatmap {
+    display: flex;
+    .block {
+      width: 2%;
+      height: 30px;
+      background: black;
+      border-right: 1px solid white;
+      &.ok { background: $success; &:hover { background: lighten($success, 10%); } }
+      &.missed { background: $danger; &:hover { background: lighten($danger, 10%); } }
+      &.proposed { background: $primary; &:hover { background: lighten($primary, 10%); } }
+      &:last-child {
+        border-right: none;
+      }
+    }
+  }
+
+  .voting-power-history-chart-container {
+    height: 150px;
+  }
+  .uptime-history-last48h-chart-container,
+  .uptime-history-alltime-chart-container {
+    height: 100px;
+  }
+  // .uptime-history-last48h-chart-container {
+  //   display: none;
+  // }
+  .gov-proposals-table, .delegations-table {
+    table.dataTable {
+      thead {
+        th {
+          background-color: $gray-200;
+          color: $primary;
+          border-bottom: none;
+          &:first-child { padding-left: 20px; }
+        }
+      }
+      tbody {
+        td:first-child {
+          padding-left: 20px;
+        }
+      }
+    }
+  }
+}
+
+.validator-subscriptions {
+  .daily-digest-description {
+    width: 100%;
+    @include media-breakpoint-up(md) {
+      width: 40%;
+    }
+  }
+}
+
+#delegation-modal {
+  .delegation-step {
+    .fa-spin {
+      font-size: 4em;
+    }
+  }
+}

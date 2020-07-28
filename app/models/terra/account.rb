@@ -1,3 +1,3 @@
 class Terra::Account < ApplicationRecord
-  include Accountlike
+  include Cosmoslike::Accountlike
 end

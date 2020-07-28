@@ -1,4 +1,4 @@
-class Iris::TransactionDecorator < Common::TransactionDecorator
+class Iris::TransactionDecorator < Cosmoslike::TransactionDecorator
   def hash
     @object['hash']
   end

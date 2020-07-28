@@ -1,0 +1,14 @@
+<%= form_with(model: @account, url: telegram_account_path, local: true) do |form| %>
+  <% if @account.errors.any? %>
+    <div class="alert alert-danger">
+      Sorry, the username you provided <%= @account.errors[:username].first %>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :username %>
+    <%= form.text_field :username, class: "form-control" %>
+  </div>
+
+  <%= form.submit "Save", class: "btn btn-primary" %>
+<% end %>

@@ -1,0 +1,58 @@
+<h1 style="text-align: center;">
+  Cycle Report for Tezos Cycle <%= @cycle.number %>
+</h1>
+
+<% @user.subscriptions.each do |subscription| %>
+  <% next if @cycle.cached_baking_stats[subscription.baker_id].nil? || @cycle.cached_endorsing_stats[subscription.baker_id].nil? %>
+
+  <h2 style="text-align: center;">
+    <%= link_to subscription.baker.long_name, tezos_baker_url(subscription.baker_id) %>
+  </h2>
+
+  <table style="width: 100%; margin-bottom: 30px;">
+    <tbody style="text-align: center;">
+      <tr>
+        <td style="width: 33.33333%; font-size: 30px; font-weight: bold; color: #333;">
+          <%= @cycle.cached_baking_stats[subscription.baker_id].blocks_baked %>
+        </td>
+        <td style="width: 33.33333%; font-size: 30px; font-weight: bold; color: #333;">
+          <%= @cycle.cached_endorsing_stats[subscription.baker_id].endorsed_slots %>
+        </td>
+        <td style="width: 33.33333%; font-size: 30px; font-weight: bold; color: #333;">
+          <%= @cycle.cached_baking_stats[subscription.baker_id].blocks_stolen %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Bakes
+        </td>
+        <td>
+          Endorsements
+        </td>
+        <td>
+          Steals
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <small>
+            <%= @cycle.cached_baking_stats[subscription.baker_id].blocks_missed %> Missed
+          </small>
+        </td>
+        <td>
+          <small>
+            <%= @cycle.cached_endorsing_stats[subscription.baker_id].missed_slots %> Missed
+          </small>
+        </td>
+        <td>
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p style="text-align: center; margin-bottom: 30px;">
+    <%= link_to "View cycle details for this Baker", tezos_baker_url(subscription.baker_id) %>
+  </p>
+<% end %>

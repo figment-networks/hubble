@@ -1,2 +1,2 @@
-class Kava::DashboardController < Common::DashboardController
+class Kava::DashboardController < Cosmoslike::DashboardController
 end

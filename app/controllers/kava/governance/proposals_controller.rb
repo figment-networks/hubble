@@ -1,2 +1,2 @@
-class Kava::Governance::ProposalsController < Common::Governance::ProposalsController
+class Kava::Governance::ProposalsController < Cosmoslike::Governance::ProposalsController
 end

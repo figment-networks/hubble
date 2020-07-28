@@ -1,0 +1,47 @@
+<h2 class='header text-center d-block'>
+  Telegram Account
+</h2>
+
+<% if @account.persisted? %>
+
+  <div class='row clearfix mt-2 pt-3 justify-content-md-center'>
+    <div class='col-12 col-md-5'>
+      <div class='card'>
+        <h5 class='card-header'>
+          <%= @account.username %>
+        </h5>
+        <div class='card-body'>
+          <% if @account.chat_id.blank? %>
+            <div class="alert alert-info" id="waiting-for-telegram-chat-id">
+              <p>Please visit the link below to start a conversation with <%= Rails.application.secrets.telegram_bot_name %> on Telegram.
+              This will allow us to send you notifications when events you subscribe to happen.</p>
+              <%= link_to "Open Telegram", "https://t.me/#{Rails.application.secrets.telegram_bot_name}", target: "_blank", class: "btn btn-info" %>
+            </div>
+          <% end %>
+          <div class="alert alert-success <%= 'd-none' if @account.chat_id.blank? %>" id="connected-to-telegram">
+            You have started a chat with <%= Rails.application.secrets.telegram_bot_name %>. Unless you stop the bot, we will
+            be able to send you alerts to that chat!
+          </div>
+
+          <%= link_to "Disconnect from Telegram", telegram_account_path, method: :delete, class: "btn btn-outline-danger" %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<% else %>
+
+  <div class='row clearfix mt-2 pt-3 justify-content-md-center'>
+    <div class='col-12 col-md-5'>
+      <div class='card'>
+        <h5 class='card-header'>
+          Connect to Telegram
+        </h5>
+        <div class='card-body'>
+          <%= render 'form', account: @account %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<% end %>

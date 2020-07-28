@@ -1,4 +1,4 @@
-class Iris::AccountSyncService < Common::AccountSyncService
+class Iris::AccountSyncService < Cosmoslike::AccountSyncService
 
   private
 

@@ -1,3 +1,3 @@
 class Cosmos::Account < ApplicationRecord
-  include Accountlike
+  include Cosmoslike::Accountlike
 end

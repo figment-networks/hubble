@@ -1,2 +1,2 @@
-class Kava::AccountsController < Common::AccountsController
+class Kava::AccountsController < Cosmoslike::AccountsController
 end

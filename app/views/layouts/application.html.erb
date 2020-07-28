@@ -18,10 +18,10 @@
       <meta name='description' content='<%= meta_description %>' />
     <% end -%>
 
-    <%= stylesheet_link_tag @chain.class.name.deconstantize.downcase, media: 'all' %>
+    <%= stylesheet_link_tag @chain.class::ASSET, media: 'all' %>
 
     <%= js_namespace %>
-    <%= javascript_include_tag @chain.class.name.deconstantize.downcase, media: 'all' %>
+    <%= javascript_include_tag @chain.class::ASSET, media: 'all' %>
   </head>
 
   <body class='<%= yield :body_class %> <%= monitor_body_classes %>'>

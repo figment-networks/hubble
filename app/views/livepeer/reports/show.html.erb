@@ -1,0 +1,86 @@
+<% content_for :body_class, 'report-show' %>
+
+<%= render partial: 'chain_header', locals: { delegator_lists_link: true } %>
+<%= render partial: 'sync_errors' %>
+
+<div class='row'>
+  <div class='col-12 col-md-9 order-1 order-md-0'>
+    <div class='report'>
+      <div class='report-table-header'>
+        <h4>Delegator List Report</h4>
+      </div>
+      <div class='report-table'>
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Delegator</th>
+              <th>Fees</th>
+              <th>Reward Tokens</th>
+              <th>Pending Stake</th>
+              <th>Unclaimed Stake</th>
+              <th>Unbonding Tokens</th>
+              <th>Unbonded Tokens</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @report.data.each.with_index do |data, index| %>
+              <tr>
+                <td><%= index + 1 %></td>
+                <td><%= delegator_link(data[:delegator_address]) %></td>
+                <td><%= eth_amount(data[:fees]) %></td>
+                <td><%= lpt_amount(data[:reward_tokens]) %></td>
+                <td><%= lpt_amount(data[:pending_stake]) %></td>
+                <td><%= lpt_amount(data[:unclaimed_stake]) %></td>
+                <td><%= lpt_amount(data[:unbonding_tokens]) %></td>
+                <td><%= lpt_amount(data[:unbonded_tokens]) %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class='col-12 col-md-3 order-0 order-md-1 info-cards'>
+    <div class='card'>
+      <h5 class='card-header'>Delegator List</h5>
+      <div class='card-body'>
+        <a href='<%= namespaced_path('delegator_list', @delegator_list, pre_path: 'edit') %>' target='_blank'>
+          <%= @delegator_list.name %>
+        </a>
+      </div>
+    </div>
+    <% if params[:range_type] == 'round' -%>
+      <div class='card'>
+        <h5 class='card-header'>Round</h5>
+        <div class='card-body'>
+          <a class='large-number' href='<%= namespaced_path('round', params[:round_number]) %>'>
+            <span class='technical'><%= params[:round_number] %></span>
+          </a>
+        </div>
+      </div>
+    <% end -%>
+    <% if params[:range_type] == 'date' -%>
+      <div class='card'>
+        <h5 class='card-header'>Date Range</h5>
+        <div class='card-body'>
+          <div>
+            <label class='d-inline'>Start date:</label>
+            <span class='technical'><%= params[:start_date] %></span>
+          </div>
+          <div>
+            <label class='d-inline'>End date:</label>
+            <span class='technical'><%= params[:end_date] %></span>
+          </div>
+        </div>
+      </div>
+    <% end -%>
+    <div class='card'>
+      <h5 class='card-header'>CSV</h5>
+      <div class='card-body'>
+        <%= link_to 'Export CSV', report_params.merge(format: 'csv'), class: 'btn btn-outline-secondary btn-sm' %>
+      </div>
+    </div>
+  </div>
+</div>

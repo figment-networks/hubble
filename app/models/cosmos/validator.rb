@@ -1,5 +1,5 @@
 class Cosmos::Validator < ApplicationRecord
-  include Validatorlike
+  include Cosmoslike::Validatorlike
 
   def current_commission
     return super if chain.sdk_lt?( '0.36.0' )

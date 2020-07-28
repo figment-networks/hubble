@@ -1,2 +1,2 @@
-class Terra::ActiveSetHistoryDecorator < Common::ActiveSetHistoryDecorator
+class Terra::ActiveSetHistoryDecorator < Cosmoslike::ActiveSetHistoryDecorator
 end

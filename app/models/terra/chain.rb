@@ -1,7 +1,8 @@
 class Terra::Chain < ApplicationRecord
-  include Chainlike
+  include Cosmoslike::Chainlike
 
   SYNC_OFFSET = 1
+  SYNC_INTERVAL = 1.minute
   SUPPORTS_LEDGER = false
 
   PREFIXES = {
@@ -18,4 +19,5 @@ class Terra::Chain < ApplicationRecord
   DEFAULT_TOKEN_FACTOR = 6
 
   def network_name; 'Terra'; end
+  def has_csir?; true; end
 end

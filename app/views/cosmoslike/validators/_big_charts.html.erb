@@ -1,0 +1,39 @@
+<div class='card'>
+  <h5 class='card-header'>Voting Power History <small>&mdash; All Changes</small></h5>
+  <div class='card-body'>
+    <div class='voting-power-history-chart-container'>
+      <canvas class='voting-power-history-chart'></canvas>
+      <script>
+        App.seed.VOTING_POWER_HISTORY = <%= @chain.namespace::VotingPowerHistoryDecorator.new(@validator).as_json.to_json.html_safe %>
+        App.seed.ACTIVE_SET_HISTORY = <%= @chain.namespace::ActiveSetHistoryDecorator.new(@validator).as_json.to_json.html_safe %>
+      </script>
+    </div>
+  </div>
+</div>
+
+<div class='card'>
+  <h5 class='card-header'>
+    <div class='card-header-parts'>
+      <div>Uptime History <small>&mdash; Last 48 Hours</small></div>
+      <!-- <div class='validator-uptime-switcher btn-group btn-group-sm'>
+        <button type='button' data-target='alltime' class='btn btn-outline-light'>All Time</button>
+        <button type='button' data-target='last48h' class='btn btn-outline-light'>Past 48h</button>
+      </div> -->
+    </div>
+  </h5>
+  <div class='card-body'>
+    <!-- <div class='uptime-history-alltime-chart-container'>
+      <canvas class='uptime-history-alltime-chart'></canvas>
+    </div> -->
+    <div class='uptime-history-last48h-chart-container'>
+      <canvas class='uptime-history-last48h-chart'></canvas>
+    </div>
+    <% current_uptime = round_if_whole((@validator.current_uptime * 100).round(0)) -%>
+    <script>
+      App.seed.UPTIME_HISTORY = {
+        alltime: <%= [].to_json.html_safe || AverageSnapshotDecorator.new(@chain, 'validator-uptime', 'day', nil, @validator).as_json( with_todays_average: true, override_current_time_value: current_uptime ).to_json.html_safe %>,
+        last48h: <%= AverageSnapshotDecorator.new(@chain, 'validator-uptime', 'hour', 48, @validator).as_json( override_current_time_value: current_uptime ).to_json.html_safe %>
+      }
+    </script>
+  </div>
+</div>

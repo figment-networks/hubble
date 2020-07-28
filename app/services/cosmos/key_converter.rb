@@ -1,2 +1,2 @@
-class Cosmos::KeyConverter < Common::KeyConverter
+class Cosmos::KeyConverter < Cosmoslike::KeyConverter
 end

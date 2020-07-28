@@ -1,2 +1,2 @@
-class Iris::VotingPowerHistoryDecorator < Common::VotingPowerHistoryDecorator
+class Iris::VotingPowerHistoryDecorator < Cosmoslike::VotingPowerHistoryDecorator
 end

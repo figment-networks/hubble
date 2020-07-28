@@ -1,2 +1,2 @@
-class Iris::EventsController < Common::EventsController
+class Iris::EventsController < Cosmoslike::EventsController
 end

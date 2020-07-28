@@ -1,0 +1,21 @@
+{
+  "data": {
+    "delegators": [
+      {
+        "bondedAmount": "7995",
+        "id": "0x000817415963a38c16ba6ccc98f4002684c97697",
+        "pendingStake": "7995"
+      },
+      {
+        "bondedAmount": "81551884481024178446",
+        "id": "0x00260ddd1d175bf20c18f1407162db63b840b944",
+        "pendingStake": "96820278948273318209"
+      },
+      {
+        "bondedAmount": "1011797477652759385142",
+        "id": "0x002f9caf40a444f20813da783d152bdfaf42852f",
+        "pendingStake": "1105861010861148433724"
+      }
+    ]
+  }
+}

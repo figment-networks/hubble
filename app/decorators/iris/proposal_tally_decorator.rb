@@ -1,2 +1,2 @@
-class Iris::ProposalTallyDecorator < Common::ProposalTallyDecorator
+class Iris::ProposalTallyDecorator < Cosmoslike::ProposalTallyDecorator
 end

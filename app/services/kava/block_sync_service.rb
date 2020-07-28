@@ -1,2 +1,2 @@
-class Kava::BlockSyncService < Common::BlockSyncService
+class Kava::BlockSyncService < Cosmoslike::BlockSyncService
 end

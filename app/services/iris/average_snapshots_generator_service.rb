@@ -1,2 +1,2 @@
-class Iris::AverageSnapshotsGeneratorService < Common::AverageSnapshotsGeneratorService
+class Iris::AverageSnapshotsGeneratorService < Cosmoslike::AverageSnapshotsGeneratorService
 end

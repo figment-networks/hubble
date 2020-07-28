@@ -1,0 +1,60 @@
+<div class='validators'>
+  <div class='validator-table-header'>
+    <h4>Validators</h4>
+    <input type='text' class='validator-search' placeholder='search...'>
+  </div>
+  <div class='validator-table'>
+    <table>
+      <thead>
+        <tr>
+          <th>Address</th>
+          <th>Voting Power</th>
+          <th>State</th>
+        </tr>
+        <tbody>
+          <% @chain.active_validators_at_height(@block.height).each do |v| -%>
+            <% up = @block.precommitters.include?(v.address) -%>
+            <% proposer = @block.proposer_address == v.address -%>
+
+            <tr>
+              <td>
+                <a href='<%= namespaced_path( 'validator', v ) %>'>
+                  <% if v.moniker -%>
+                    <strong><%= v.moniker.truncate(40, separator: '...') %></strong>
+                  <% else %>
+                    <span class='technical'><%= (v.owner || v.address).truncate(40, separator: '...') %></span>
+                  <% end -%>
+                </a>
+              </td>
+
+              <td data-order='<%= v.current_voting_power %>'>
+                <%= format_amount(v.voting_power_at_height(@block.height), denom: @chain.token_map[@chain.primary_token]['display']) %>
+              </td>
+
+              <td data-order='<%= proposer ? -1 : (up ? 0 : 1) %>'>
+                <div class='text-nowrap'>
+                  <% if up -%>
+                    <span class='badge badge-lg badge-success'>UP</span>
+                  <% else -%>
+                    <span class='badge badge-lg badge-danger'>DOWN</span>
+                  <% end -%>
+                  <% if proposer -%>
+                    <span class='badge badge-lg badge-primary'>PROPOSER</span>
+                  <% end -%>
+                </div>
+              </td>
+
+              <td class='d-none'>
+                ⭐️ <%= v.active? ? '✔' : '𐄂' %> <!-- for the gear toggles -->
+                <%= v.owner %> <%= v.address %> <!-- so you can paste your address into search -->
+              </td>
+            </tr>
+          <% end -%>
+        </tbody>
+      </thead>
+    </table>
+    <script>
+      App.config.currentValidatorFilter = '⭐️'
+    </script>
+  </div>
+</div>

@@ -9,7 +9,13 @@ default: &default
 
 development:
   <<: *default
+
+test:
+  <<: *default
+  database: 'hubble_test'
+
 staging:
   <<: *default
+
 production:
   <<: *default

@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   include ApplicationHelper
   include NamespacedChainsHelper
   include AdminHelper
+  include HomeHelper
   include ActionView::Helpers::DateHelper
 
   before_action :http_basic_auth if REQUIRE_HTTP_BASIC
@@ -41,12 +42,11 @@ class ApplicationController < ActionController::Base
 
     authenticate_or_request_with_http_basic do |username, password|
       username == HTTP_BASIC_USERNAME &&
-      password == HTTP_BASIC_PASSWORD
+        password == HTTP_BASIC_PASSWORD
     end
   end
 
-  def render_404( e=nil )
-    logger.error( "#{e.message} : #{e.backtrace.first rescue nil}" ) if e
+  def render_404
     respond_to do |format|
       format.html {
         render template: '/errors/404', status: 404, layout: 'errors'
@@ -60,8 +60,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def render_403( e=nil )
-    logger.error( "#{e.message} : #{e.backtrace.first rescue nil}" ) if e
+  def render_403
     respond_to do |format|
       format.html {
         render template: '/errors/403', status: 403, layout: 'errors'
@@ -75,8 +74,8 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def render_500( e=nil )
-    logger.error( "\nRENDER_500!\n\n" + e.message + "\n" + e.backtrace.join("\n") + "\n" )
+  def render_500(e = nil)
+    logger.error("\nRENDER_500!\n\n" + e.message + "\n" + e.backtrace.join("\n") + "\n")
     respond_to do |format|
       format.html {
         render template: '/errors/500', status: 500, layout: 'errors'

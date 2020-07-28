@@ -1,2 +1,2 @@
-class Cosmos::HaltedChainService < Common::HaltedChainService
+class Cosmos::HaltedChainService < Cosmoslike::HaltedChainService
 end

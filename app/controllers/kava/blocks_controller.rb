@@ -1,2 +1,2 @@
-class Kava::BlocksController < Common::BlocksController
+class Kava::BlocksController < Cosmoslike::BlocksController
 end

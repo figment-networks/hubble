@@ -1,2 +1,2 @@
-class Iris::Governance::MainController < Common::Governance::MainController
+class Iris::Governance::MainController < Cosmoslike::Governance::MainController
 end

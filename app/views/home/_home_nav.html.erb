@@ -1,0 +1,43 @@
+<nav class='navbar navbar-expand-lg home-navbar navbar-light bg-white'>
+  <div class='container home-navbar__container'>
+    <a class='link link--about' href='https://figment.network/solutions/hubble/' target="_blank">About</a>
+    
+    <div class='brands d-flex flex-column align-items-center'>
+      <%= image_tag 'hubble-logo-dark.png', class: "home-navbar__logo", alt: 'Hubble logo' %>
+      <div class='figment-logo mt-3'>
+        <span class='figment-logo__text'>Proof of Stake Platform by</span>
+        <a class='text-decoration-none' href='https://figment.network' target="_blank">
+          <%= image_tag 'figment-inline.svg', class: "home-navbar__figment-logo", alt: 'figment.networks logo' %>
+        </a>
+      </div>
+    </div>
+
+    <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarNavDropdown' aria-controls='navbarNavDropdown' aria-expanded='false' aria-label='Toggle navigation'>
+      <span class='navbar-toggler-icon'></span>
+    </button>
+    <div class='collapse navbar-collapse home-navbar__collapse' id='navbarNavDropdown'>
+      <ul class='navbar-nav ml-auto'>
+        <% if current_user -%>
+          <li class='nav-item dropdown'>
+            <a class='link dropdown-toggle' href='#' id='account-menu-link' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+              Account
+            </a>
+            <div class='dropdown-menu dropdown-menu-right' aria-labelledby='account-menu-link'>
+              <%= link_to 'Settings', settings_users_path, class: "dropdown-item link" %>
+              <%= link_to 'Telegram Account', telegram_account_path, class: "dropdown-item link" %>
+              <%= link_to 'Logout', logout_path, class: "dropdown-item link" %>
+            </div>
+          </li>
+        <% else -%>
+          <li class='nav-item'>
+            <%= link_to 'Login', login_path, class: "link" %>
+          </li>
+          <li class='sep'>/</li>
+          <li class='nav-item'>
+            <%= link_to 'Signup', new_user_path, class: "link" %>
+          </li>
+        <% end -%>
+      </ul>
+    </div>
+  </div>
+</nav>

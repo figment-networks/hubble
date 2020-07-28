@@ -1,0 +1,133 @@
+<%= render "tezos/shared/network_header", locals: { governance_link: true } %>
+
+<div class="row">
+  <div class="col-md-6">
+    <h2 class="mb-0"><%= @baker.long_name %></h2>
+    <p class="small text-muted"><%= @baker.address %></p>
+  </div>
+  <div class="col-md-6 text-right">
+    <% if current_user && subscription = current_user.subscriptions.find_by(baker_id: @baker.id) %>
+      <%= link_to "Subscribed", "#unsubscribeModal", data: { toggle: "modal" }, class: "btn btn-secondary" %>
+    <% else %>
+      <%= link_to "Subscribe", tezos_baker_subscriptions_path(@baker.id), method: :post, class: "btn btn-success" %>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="card text-center">
+      <div class="card-header">
+        All Time Baking %
+      </div>
+      <div class="card-body">
+        <h1 class="display-3">
+          <%= number_to_percentage(@baker.lifetime_baking_stats.percent_baked * 100, precision: 1) %>
+        </h1>
+        <div class="row text-muted">
+          <div class="col">
+            <%= number_with_delimiter @baker.lifetime_baking_stats.blocks_baked, delimiter: "," %> baked blocks
+          </div>
+          <div class="col">
+            <%= number_with_delimiter @baker.lifetime_baking_stats.total_rights, delimiter: "," %> total rights
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="card text-center">
+      <div class="card-header">
+        All Time Endorsing %
+      </div>
+      <div class="card-body">
+        <h1 class="display-3">
+          <%= number_to_percentage(@baker.lifetime_endorsing_stats.percent_endorsed * 100, precision: 1) %>
+        </h1>
+        <div class="row text-muted">
+          <div class="col">
+            <%= number_with_delimiter @baker.lifetime_endorsing_stats.endorsed_slots, delimiter: "," %> endorsed slots
+          </div>
+          <div class="col">
+            <%= number_with_delimiter @baker.lifetime_endorsing_stats.total_slots, delimiter: "," %> total rights
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    Baking History by Cycle
+  </div>
+  <div class="card-body">
+    <%= line_chart([
+      { name: "Blocks Baked", data: @baker.baking_stats_history.except(@current_cycle.number.to_s).transform_values { |v| v.blocks_baked } },
+    ]) %>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    Endorsing History by Cycle
+  </div>
+  <div class="card-body">
+    <%= line_chart([
+      { name: "Slots Endorsed", data: @baker.endorsing_stats_history.except(@current_cycle.number.to_s).transform_values { |v| v.endorsed_slots } },
+    ]) %>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    Cycle Reports
+  </div>
+  <table class="table table-hover m-0">
+    <thead>
+      <tr>
+        <th>Cycle</th>
+        <th>Blocks Baked</th>
+        <th>Blocks Stolen</th>
+        <th>Blocks Missed</th>
+        <th>% Missed</th>
+        <th>Slots Endorsed</th>
+        <th>Slots Missed</th>
+        <th>% Missed</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @cycle_reports.each do |cycle, baking_stats| %>
+        <tr class="linked">
+          <td><%= link_to cycle, tezos_cycle_url(cycle) %></td>
+          <td><%= link_to baking_stats.blocks_baked, tezos_cycle_url(cycle) %></td>
+          <td><%= link_to baking_stats.blocks_stolen, tezos_cycle_url(cycle) %></td>
+          <td><%= link_to baking_stats.blocks_missed, tezos_cycle_url(cycle) %></td>
+          <td><%= link_to number_to_percentage(baking_stats.percent_missed * 100, precision: 1), tezos_cycle_url(cycle) %></td>
+          <td><%= link_to @baker.endorsing_stats_history[cycle].endorsed_slots, tezos_cycle_url(cycle) %></td>
+          <td><%= link_to @baker.endorsing_stats_history[cycle].missed_slots, tezos_cycle_url(cycle) %></td>
+          <td><%= link_to number_to_percentage(@baker.endorsing_stats_history[cycle].percent_missed * 100, precision: 1), tezos_cycle_url(cycle) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%== pagy_bootstrap_nav(@pagy) %>
+
+<% if subscription %>
+  <div class="modal fade" id="unsubscribeModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-body py-5 text-center">
+          Unsubscribe from updates for <%= @baker.long_name %>?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <%= link_to "Unsubscribe", [:tezos, subscription], method: :delete, class: "btn btn-danger" %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -9,4 +9,6 @@ require 'capistrano/linked_files'
 require 'capistrano/scm/git'
 install_plugin Capistrano::SCM::Git
 
+require 'capistrano/slackify'
+
 Dir.glob('lib/capistrano/tasks/*.rake').each { |r| import r }

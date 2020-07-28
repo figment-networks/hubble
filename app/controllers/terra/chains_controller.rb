@@ -1,2 +1,2 @@
-class Terra::ChainsController < Common::ChainsController
+class Terra::ChainsController < Cosmoslike::ChainsController
 end

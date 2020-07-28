@@ -1,2 +1,2 @@
-class Terra::DashboardController < Common::DashboardController
+class Terra::DashboardController < Cosmoslike::DashboardController
 end

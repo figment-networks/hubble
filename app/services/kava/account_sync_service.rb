@@ -1,2 +1,2 @@
-class Kava::AccountSyncService < Common::AccountSyncService
+class Kava::AccountSyncService < Cosmoslike::AccountSyncService
 end

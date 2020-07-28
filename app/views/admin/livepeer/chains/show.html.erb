@@ -1,0 +1,99 @@
+<% content_for :body_class, 'admin-chain-show' %>
+
+<h2 class='header'>
+  <span>
+    <%= @chain.network_name %> / <%= @chain.name %>
+    <%= @chain.primary? ? "<span class='fas fa-star text-primary' title='Primary Livepeer Chain'></span>".html_safe : '' %>
+    <%= @chain.testnet? ? "<span class='fas fa-vial text-info' title='Testnet Chain'></span>".html_safe : "<span class='fas fa-link text-success' title='Mainnet Chain'></span>".html_safe %>
+  </span>
+  <div class='buttons'>
+    <a class='btn btn-sm btn-outline-primary' href='<%= namespaced_path %>'>view</a>
+    <a class='btn btn-sm btn-outline-secondary' href='<%= admin_root_path %>'>back</a>
+  </div>
+</h2>
+
+<table class='table table-sm mb-5'>
+  <tbody>
+    <tr>
+      <th class='align-middle' style='border-top: none;'>Status:</th>
+      <td style='border-top: none;'>
+        <div class='chain-status d-flex'>
+          <% if @chain.enabled? %>
+            <div class='sync-status text-muted'><span class='fas fa-sync fa-spin text-success'></span> Syncing</div>
+
+            <%= form_for [:admin, @chain] do |f| %>
+              <%= f.hidden_field :disabled, value: true %>
+              <%= f.button "<span class='fas fa-exclamation-triangle'></span> disable".html_safe, class: 'btn btn-sm btn-warning', data: @chain.primary? ? { toggle: 'tooltip' } : nil, title: @chain.primary? ? "Warning, this is the primary #{@chain.network_name} chain!" : nil %>
+            <% end -%>
+
+            <% if !@chain.primary? -%>
+              <%= form_for [:admin, @chain] do |f| %>
+                <%= f.hidden_field :primary, value: true %>
+                <%= f.button "<span class='fas fa-star'></span> make primary".html_safe, class: 'btn btn-sm btn-dark' %>
+              <% end -%>
+            <% end -%>
+
+          <% else -%>
+            <div class='sync-status text-muted'><span class='fas fa-exclamation-triangle text-warning'></span> Disabled</div>
+
+            <%= form_for [:admin, @chain] do |f| %>
+              <%= f.hidden_field :disabled, value: false %>
+              <%= f.button "<span class='fas fa-play-circle'></span> enable".html_safe, class: 'btn btn-sm btn-primary', data: { toggle: 'tooltip' }, title: 'Node is up and ready to enable syncing.' %>
+            <% end -%>
+
+            <%= button_to namespaced_path( admin: true ), method: 'delete', class: 'btn btn-sm btn-danger action-delete-confirmation' do "<span class='fas fa-times'></span> delete".html_safe end %>
+          <% end -%>
+        </div>
+      </td>
+    </tr>
+
+    <tr>
+      <th class='align-middle'>Subgraph URL:</th>
+      <td>
+        <%= @chain.subgraph_url %>
+      </td>
+    </tr>
+
+    <tr>
+      <th class='align-middle'>Last Sync:</th>
+      <td>
+        <%= @chain.last_sync_time.try(:utc).try(:strftime, "%Y-%m-%d at %H:%M %Z") || 'Never' %>
+        <% if @chain.last_sync_time -%>
+          <small class='text-muted'>(<%= time_ago_in_words @chain.last_sync_time %> ago)</small>
+        <% end -%>
+      </td>
+    </tr>
+
+    <tr>
+      <th class='align-middle'>Rounds:</th>
+      <td>
+        <%= @chain.latest_local_height %>
+        <small class='text-muted'>(<%= @chain.rounds.count %> cached)</small>
+      </td>
+    </tr>
+
+    <tr>
+      <th class='align-middle'>Orchestrators:</th>
+      <td>
+        <%= @chain.transcoders.count %> total
+        <small class='text-muted'>(<%= @chain.transcoders.active.count %> active)</small>
+      </td>
+    </tr>
+
+    <tr>
+      <th class='align-middle'>Notes:</th>
+      <td>
+        <%= form_for [:admin, @chain] do |f| %>
+          <div class='d-flex align-items-center'>
+            <%= f.text_area :notes, class: 'w-75 form-control technical' %>
+            <%= f.submit 'update', class: 'btn btn-sm btn-primary ml-auto' %>
+          </div>
+        <% end -%>
+        <% if @chain.notes.present? -%>
+          <label class='mt-3 mb-0 text-sm text-muted d-block'>Current:</label>
+          <%= Redcarpet::Markdown.new(Redcarpet::Render::HTML).render(@chain.notes).html_safe %>
+        <% end -%>
+      </td>
+    </tr>
+  </tbody>
+</table>

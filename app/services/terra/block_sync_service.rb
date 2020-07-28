@@ -1,2 +1,2 @@
-class Terra::BlockSyncService < Common::BlockSyncService
+class Terra::BlockSyncService < Cosmoslike::BlockSyncService
 end

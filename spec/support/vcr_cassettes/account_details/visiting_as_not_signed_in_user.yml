@@ -1,0 +1,74 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://localhost:9292/polkadot/account/identity?params%5Baddress%5D=DSpbbk6HKKyS78c4KDLSxCetqbwnsemv2iocVXwNe2FAvWC
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (darwin18.0.0 x86_64) ruby/2.6.6p146
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - localhost:9292
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      X-Content-Type-Options:
+      - nosniff
+      Content-Length:
+      - '305'
+    body:
+      encoding: UTF-8
+      string: "{\n  \"deposit\": \"10000000000000\",\n  \"display_name\": \"\\u0011DragonStake
+        \U0001F432\",\n  \"legal_name\": \"\\fDragonStake\",\n  \"web_name\": \"\\u0017https://dragonstake.io\",\n
+        \ \"riot_name\": \"\\u0015@derfredy:matrix.org\",\n  \"email_name\": \"\\u001bdragonstake@protonmail.com\",\n
+        \ \"twitter_name\": \"\\r@DragonStake\",\n  \"image\": \"\"\n}\n"
+  recorded_at: Tue, 07 Jul 2020 08:58:12 GMT
+- request:
+    method: get
+    uri: http://localhost:9292/polkadot/account/by_height?params%5Baddress%5D=DSpbbk6HKKyS78c4KDLSxCetqbwnsemv2iocVXwNe2FAvWC
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (darwin18.0.0 x86_64) ruby/2.6.6p146
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - localhost:9292
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      X-Content-Type-Options:
+      - nosniff
+      Content-Length:
+      - '175'
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "nonce": 37,
+          "referendum_count": 2,
+          "free": "211969710818710",
+          "reserved": "10393333333332",
+          "misc_frozen": "159408040804203",
+          "fee_frozen": "159408040804203"
+        }
+  recorded_at: Tue, 07 Jul 2020 08:58:12 GMT
+recorded_with: VCR 6.0.0

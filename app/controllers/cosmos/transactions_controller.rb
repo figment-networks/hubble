@@ -1,2 +1,2 @@
-class Cosmos::TransactionsController < Common::TransactionsController
+class Cosmos::TransactionsController < Cosmoslike::TransactionsController
 end
