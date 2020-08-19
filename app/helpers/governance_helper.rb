@@ -76,9 +76,7 @@ module GovernanceHelper
            when 'no' then 'danger'
            when 'nowithveto' then 'veto'
            end
-      tag.div( class: 'd-flex align-items-center' ) do
-        tag.span( class: "badge badge-pill badge-#{bg}" ) { vote.short_option.upcase }
-      end
+      tag.span( class: "color-#{bg}" ) { vote.short_option.upcase }
     end
   end
 

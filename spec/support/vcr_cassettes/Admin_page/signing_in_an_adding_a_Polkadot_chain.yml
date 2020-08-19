@@ -1,0 +1,72 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://localhost:1111/polkadot/status
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (darwin18.0.0 x86_64) ruby/2.6.6p146
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - localhost:1111
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Cowboy
+      Date:
+      - Tue, 14 Jul 2020 23:27:52 GMT
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      X-Content-Type-Options:
+      - nosniff
+      Content-Length:
+      - '984'
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "app_name": "polkadothub-indexer",
+          "app_version": "0.1.1",
+          "go_version": "1.14",
+          "client_info": "@polkadot/api v1.21.1",
+          "chain_name": "Kusama",
+          "chain_type": "Live",
+          "node_name": "Parity Polkadot",
+          "node_version": "0.8.12-03067290-x86_64-linux-gnu",
+          "node_local_peer_uid": "12D3KooWS9kZyq9RYZDsqaiGzJUQswqeJgJVHvDoh7Mwtj8R4pvN",
+          "node_health": "{\"peers\":48,\"isSyncing\":false,\"shouldHavePeers\":true}",
+          "node_roles": [
+            "Full"
+          ],
+          "node_properties": {
+            "registry": "[object Object]",
+            "ss58Format": "2",
+            "tokenDecimals": "12",
+            "tokenSymbol": "KSM"
+          },
+          "genesis_hash": "0xb0a8d493285c2df73290dfb7e61f870f17b41801197a149ca93654499ea3dafe",
+          "indexing_started": true,
+          "last_index_version": 1,
+          "last_indexed_height": 396,
+          "last_indexed_session": 0,
+          "last_indexed_era": 0,
+          "chain_spec_version": "",
+          "last_indexed_time": "2019-11-28T18:07:54Z",
+          "last_indexed_at": "2020-06-30T09:00:48.706696Z",
+          "indexing_lag": 2999628
+        }
+  recorded_at: Tue, 14 Jul 2020 23:27:53 GMT
+recorded_with: VCR 6.0.0

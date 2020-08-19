@@ -1,0 +1,206 @@
+<% content_for :body_class, 'validator-show' %>
+
+<div class='validator-header'>
+  <div class='container'>
+    <div class='d-flex flex-wrap'>
+      <div class='mr-auto pb-4'>
+        <div class='d-flex align-items-center flex-wrap'>
+          <% if @validator.has_info? %>
+            <h2 class='validator-header__title'><%= @validator.moniker.truncate(40, separator: '...') %></h2>
+            <% if @validator.info_field( 'description', 'website' ) && (url = Addressable::URI.heuristic_parse(@validator.info_field( 'description', 'website' )).to_s rescue nil) %>
+              <%= link_to url, class: "external-link" do %>
+                <%= url %>&nbsp;&nbsp;<span class='fas fa-external-link-alt'></span>
+              <% end -%>  
+            <% end -%>
+          <% end -%>
+        </div>
+        <% if @chain.class::SUPPORTS_LEDGER -%>
+          <button class='stake-button' data-toggle='modal' data-target='#delegation-modal'>Stake Now</button>
+        <% end -%>
+      </div>
+      <div class='validator-info pb-4'>
+        <ul class="validator-info__list">
+          <% if @validator.has_info? -%>
+            <li class="validator-info__item">
+              <p class="text-label validator-info__label">Owner</p>
+              <p class="validator-info__value technical"><%= @validator.owner %></p>
+            </li>
+          <% end -%>
+          <li class="validator-info__item">
+            <p class="text-label validator-info__label"><%= @validator.has_info? ? 'Address' : 'Validator' %></p>
+            <p class="validator-info__value technical"><%= @validator.address %></p>
+          </li>
+          <% if @validator.account -%>
+            <li class="validator-info__item">
+              <p class="text-label validator-info__label">Account</p>
+              <%= link_to namespaced_path( 'account', @validator.account ), class: "validator-info__value technical" do %>
+                <%= @validator.account.address %>
+              <% end -%>
+            </li>
+          <% end -%>
+        </ul>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+<div class='content'>
+  <div class='container'>
+    <%= render partial: '/cosmoslike/shared/sync_errors' %>
+
+    <div class='row'>
+      <div class='col-md-12 col-lg-6 mb-4 pb-2'>
+        <ul class="data-blocks__list">
+          <li class="data-blocks__item">
+            <%= render partial: 'current_voting_power' %>
+          </li>
+          <li class="data-blocks__item">
+            <%= render partial: 'uptime' %>
+          </li>
+          <li class="data-blocks__item">
+            <%= render partial: 'lifetime' %>
+          </li>
+          <li class="data-blocks__item">
+            <%= render partial: 'commission' %>
+          </li>
+        </ul>
+        <%= render partial: 'big_charts' %>
+        <% if true || @chain.governance_params_synced? -%>
+          <%= render partial: 'governance' %>
+        <% end -%>
+        <%= render partial: 'delegations' %>
+      </div>
+
+      <div class='col-md-12 col-lg-6'>
+        <%= render partial: 'blocks' %>
+        <%= render partial: 'events' %>
+        <%= render partial: 'pending_rewards' %>
+      </div>
+    </div>
+
+
+    <% content_for :modals do -%>
+      <div class='modal fade' id='delegation-modal' tabindex='-1' role='dialog'>
+        <div class='modal-dialog modal-dialog-centered' role='document'>
+          <div class='modal-content'>
+            <div class='modal-body'>
+              <button type='button' class='close float-right' data-dismiss='modal' aria-label='Close'>
+                <span aria-hidden='true'>&times;</span>
+              </button>
+
+              <div class='delegation-step step-error text-center p-5'>
+                <h3>An Error Occurred</h3>
+                <p>
+                  Sorry, something went wrong. Please disconnect
+                  your Ledger, refresh the page, and try again.
+                </p>
+                <div class='alert alert-danger mt-4 mb-0'>
+                  <p class='delegation-error mb-0'></p>
+                </div>
+              </div>
+
+              <div class='delegation-step step-setup text-center p-5'>
+                <h3>Connecting...</h3>
+                <p>Connect, unlock, and open the Cosmos app on your ledger.</p>
+                <div class='p-4'>
+                  <span class='fas fa-spin fa-slash text-muted'></span>
+                </div>
+              </div>
+
+              <div class='delegation-step step-choice text-center p-5'>
+                <div class='d-flex flex-column align-items-center'>
+                  <button class='mt-4 btn btn-lg btn-outline-primary choice-new-delegation'>New Delegation</button>
+                  <button class='mt-3 btn btn-lg btn-outline-primary choice-redelegate'>Withdraw & Re-delegate</button>
+                  <div class='text-muted text-sm mt-1'>Pending Rewards: <span class='ml-2 reward-balance text-monospace text-md'></span></div>
+                </div>
+              </div>
+
+              <div class='delegation-step step-new-delegation text-center py-5 px-3'>
+                <h3>New Delegation</h3>
+
+                <form class='delegation-form mt-3'>
+                  <div class='d-flex align-items-center'>
+                    <div class='w-50'>
+                      <div class='d-flex flex-column mt-3'>
+                        <label class='text-muted mb-0'>Validator:</label>
+                        <span class='validator-name'><%= @validator.long_name %></span>
+                      </div>
+                      <div class='d-flex flex-column mt-3'>
+                        <label class='text-muted mb-0'>Account Address:</label>
+                        <span class='account-address text-monospace'></span>
+                      </div>
+                      <div class='d-flex flex-column mt-3'>
+                        <label class='text-muted mb-0'>Account Balance:</label>
+                        <span class='account-balance text-monospace'></span>
+                      </div>
+                    </div>
+
+                    <div class='w-50'>
+                      <div>
+                        <label class='text-muted mb-0 d-inline'>Amount:</label>
+
+                        <div class='d-flex align-items-center justify-content-center'>
+                          <input class='form-control delegation-amount w-third text-monospace' />
+                          <span class='ml-2 text-monospace'><%= @chain.token_map[@chain.primary_token]['display'] %></span>
+                        </div>
+                      </div>
+
+                      <div class='d-flex flex-column mt-3'>
+                        <label class='text-muted mb-0'>Transaction Fee:</label>
+                        <span class='transaction-fee text-monospace'></span>
+                      </div>
+                      <div class='d-flex flex-column mt-3'>
+                        <label class='text-muted mb-0'>Total:</label>
+                        <span class='transaction-total text-monospace'>&mdash;</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class='d-flex justify-content-center'>
+                    <div class='amount-error alert alert-danger mb-0 mt-5 text-sm'></div>
+                    <div class='amount-warning alert alert-warning mb-0 mt-5 text-sm'></div>
+                  </div>
+
+                  <div class='text-center'>
+                    <button type='submit' class='mt-4 btn btn-primary submit-delegation' disabled>Sign with Ledger</button>
+                  </div>
+                </form>
+              </div>
+
+              <div class='delegation-step step-confirm text-center'>
+                <div class='p-5'>
+                  <h3>Confirm Transaction</h3>
+                  <p>Review the details on your Ledger and sign the transaction.</p>
+                  <div class='p-4'>
+                    <span class='fas fa-spin fa-slash text-muted'></span>
+                  </div>
+                  <button class='mt-4 btn btn-sm btn-outline-secondary show-transaction-json'>View Raw Transaction</button>
+                </div>
+                <div class='transaction-json-container'>
+                  <pre class='transaction-json text-left'></pre>
+                </div>
+              </div>
+
+              <div class='delegation-step step-complete text-center p-5'>
+                <h3>Success</h3>
+                <p>Delegation successfully submitted!</p>
+                <div class='p-4 text-center'>
+                  <%= link_to 'View Transaction', class: "btn btn-primary view-transaction" %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end -%>
+
+  </div>
+</div>
+
+<script>
+  App.config.validatorOperatorAddress = '<%= @validator.owner %>';
+  App.config.addressInfoPathTemplate = '<%= namespaced_path( 'account', 'ADDRESS' ) %>';
+  App.config.broadcastTxPath = '<%= namespaced_path( 'broadcast', pre_path: true ) %>';
+  App.config.viewTxPath = '<%= namespaced_path( 'transaction', 'TRANSACTION_HASH' ) %>';
+</script>

@@ -1,0 +1,47 @@
+.data-table {
+  margin-top: 32px;
+  border: 1px solid $table-border;
+  border-radius: 6px;
+  overflow-x: auto;
+}
+.data-table__header {
+  padding: 16px 18px;
+  border-bottom: 1px solid $table-border;
+}
+.data-table__title {
+  margin: 0;
+  color: $primary;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 32px;
+}
+.data-table th {
+  padding: 8px 16px !important;
+  color: $primary;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  line-height: 15px;
+  white-space: nowrap;
+  text-transform: uppercase;
+  border-bottom: 1px solid $table-border !important;
+}
+.data-table td {
+  padding: 8px 16px;
+  white-space: nowrap;
+}
+.data-table tbody tr + tr td {
+  border-top: 1px solid $table-border;
+}
+.data-table .data-table__empty {
+  margin: 0;
+  padding: 16px;
+  color: $secondary;
+  font-size: 14px;
+  letter-spacing: 0;
+  line-height: 17px;
+}
+.data-table .list-group-item {
+  padding: 9px 23px 15px 14px;
+}

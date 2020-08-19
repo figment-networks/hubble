@@ -4,7 +4,11 @@ $(document).ready( function() {
   new App.Cosmoslike.ValidatorVotingPowerHistory( $('.voting-power-history-chart') ).render()
   new App.Cosmoslike.GovProposalsTable( $('.gov-proposals-table') ).render()
   new App.Cosmoslike.DelegationsTable( $('.delegations-table') ).render()
-
+  document.querySelectorAll('.status-pie-chart').forEach(function(td) {
+    new App.Cosmoslike.GovernanceProposalActivity(td).render();
+  })
+  
+  
   new App.Cosmoslike.DelegationModal( $('#delegation-modal') )
 
   // 2 charts
@@ -14,18 +18,6 @@ $(document).ready( function() {
   }
 
   new App.Cosmoslike.ValidatorUptimeHistory( $(`.uptime-history-last48h-chart`), 'last48h' ).render()
-
-  // const switcherButtons = $('.validator-uptime-switcher button')
-
-  // switcherButtons.click( ( e ) => {
-  //   e.preventDefault()
-  //   const button = $(e.currentTarget)
-  //   const target = button.data('target')
-  //   $(`.uptime-history-${target}-chart-container`).siblings().hide().end().show()
-  //   charts[target] = charts[target] || new App.Cosmoslike.ValidatorUptimeHistory( $(`.uptime-history-${target}-chart`), target ).render()
-  //   button.siblings().removeClass('active').end().addClass('active')
-  // } )
-  // switcherButtons.first().trigger('click')
 
   // block heatmap
   const heatmap = $('.block-heatmap')

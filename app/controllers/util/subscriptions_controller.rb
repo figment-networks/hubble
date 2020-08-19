@@ -6,13 +6,13 @@ class Util::SubscriptionsController < ApplicationController
       redirect_to new_user_path
       return
     end
-    @subscription = current_user.alert_subscriptions.where( alertable: @validator ).first
-    page_title @chain.network_name, @chain.name, "Event Subscription for #{@validator.name_and_owner}"
+    @subscription = current_user.alert_subscriptions.find_or_initialize_by( alertable: @alertable )
+    @event_defs = @chain.validator_event_defs.group_by { |defn| defn['kind'] }
+    page_title @chain.network_name, @chain.name, "Event Subscription for #{@alertable.name_and_owner}"
   end
 
   def create
-    @subscription = current_user.alert_subscriptions.where( alertable: @validator ).first
-    @subscription ||= current_user.alert_subscriptions.where( alertable: @validator ).new
+    @subscription = current_user.alert_subscriptions.find_or_initialize_by( alertable: @alertable )
 
     @subscription.assign_attributes sanitize_sub_params
 
@@ -29,12 +29,12 @@ class Util::SubscriptionsController < ApplicationController
       else
         flash[:notice] = "Subscribed to events for this validator!"
       end
-      redirect_to namespaced_path( 'validator_subscriptions', @validator )
+      redirect_to namespaced_path('validator_subscriptions', @validator.address)
     else
       if !@subscription.subscribes_to_something?
         @subscription.destroy
         flash[:notice] = "No alerts selected. Subscription removed."
-        redirect_to namespaced_path( 'validator_subscriptions', @validator )
+        redirect_to namespaced_path('validator_subscriptions', @validator.address)
       else
         render :index
       end
@@ -60,7 +60,6 @@ class Util::SubscriptionsController < ApplicationController
       event_kinds: [],
       data: valid_subscription_data_fields
     )
-
     p
   end
 
@@ -69,7 +68,6 @@ class Util::SubscriptionsController < ApplicationController
     return [] if event_kinds.empty?
 
     defn = @chain.validator_event_defs.find { |defn| defn['kind'].in?(event_kinds) }
-    # Rails.logger.debug "DATA KIND: #{defn.inspect}"
 
     case defn['kind']
     when 'voting_power_change' then %i{ percent_change }
@@ -78,9 +76,17 @@ class Util::SubscriptionsController < ApplicationController
   end
 
   def set_chain_and_validator
-    @chain = params[:network].titleize.constantize::Chain.find_by( slug: params[:chain_id] )
-    @namespace = @chain.namespace
-    @validator = @chain.validators.find_by( address: params[:validator_id] )
+    @namespace = params[:network].titleize.constantize
+    @chain = @namespace::Chain.find_by!( slug: params[:chain_id] )
+
+    if Common.remotely_indexed?(@chain)
+      @alertable = AlertableAddress.find_or_initialize_by(chain: @chain, address: params[:validator_id])
+      @validator = @chain.client.validator(params[:validator_id])
+      raise ActiveRecord::RecordNotFound unless @validator
+    else
+      @validator = @chain.validators.find_by( address: params[:validator_id] )
+      @alertable = @validator
+    end
   end
 
 end

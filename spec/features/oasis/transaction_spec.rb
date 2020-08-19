@@ -2,8 +2,8 @@ require 'features_helper'
 
 feature 'oasis transactions' do
   let!(:chain) { create(:oasis_chain, api_url: 'https://localhost:1111') }
-  let(:transaction_id) { 'J5m87x%2FcLUhIW5QZtZZrHJv3NvtBFvXB29xDAwH0jzQ=.1' }
-  let(:block_id) { 292864 }
+  let(:transaction_id) { 'CeK2kK5crFPeQaYmRG%2Fy3H7xt+j+yKDFoIluRKRGXgM=' }
+  let(:block_id) { 5933 }
 
   context 'logged out' do
     scenario 'visiting Oasis Transaction View as not signed in user', :vcr do

@@ -30,4 +30,15 @@ class Cosmoslike::ValidatorsController < Cosmoslike::BaseController
     end
   end
 
+  private
+
+  def find_chain
+    @namespace = self.class.name.split('::').first.constantize
+    # `.includes(:accounts)` eliminates an N+1
+    @chain = @namespace::Chain.alive.includes(:accounts).find_by!(slug: slug)
+  end
+
+  def slug
+    (params[:chain_id] || params[:id]).try(:downcase)
+  end
 end

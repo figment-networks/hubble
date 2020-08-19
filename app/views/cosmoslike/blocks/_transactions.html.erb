@@ -29,7 +29,7 @@
         <% (transactions||[]).each do |tr| -%>
           <tr>
             <td data-order='<%= tr.hash %>'>
-              <span class='technical'><%= tr.hash.truncate(30, separator: '...') %></span>
+              <span class='technical'><%= tr.hash.truncate(30) %></span>
             </td>
             <td data-order='<%= tr.fees_raw %>'>
               <ul class='list-unstyled mb-0'>

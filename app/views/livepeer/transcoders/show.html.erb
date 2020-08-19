@@ -1,0 +1,82 @@
+<% content_for :body_class, 'transcoder-show' %>
+
+<%= render partial: 'chain_header', locals: { summary_link: false } %>
+<%= render partial: 'sync_errors' %>
+
+<% if @transcoder.name.present? -%>
+  <h2 class='mb-3' title='<%= @transcoder.description %>'><%= @transcoder.name %></h2>
+<% end -%>
+
+<div class='row mb-4'>
+  <div class='col-12 col-md-8'>
+    <div class='info'>
+      <h5 class='mb-0'>
+        <label class='text-muted'>Address</label>
+        <span class='technical'><%= livepeer_address(@transcoder.address) %></span>
+      </h5>
+    </div>
+  </div>
+</div>
+
+<div class='row'>
+  <div class='col-12 col-md-8 order-1 order-md-0'>
+    <a name='events'></a>
+    <div class='card'>
+      <h5 class='card-header'>
+        <div class='card-header-parts'>
+          <div>Event History <small>&mdash; most recent 20</small></div>
+          <a class='btn btn-sm btn-outline-light' href='<%= namespaced_path('events', transcoder_address: @transcoder.address) %>'>
+            <span>All Events</span>
+          </a>
+        </div>
+      </h5>
+
+      <div class='card-body p-1'>
+        <% if @events.empty? -%>
+          <p class='text-muted py-4 mb-0 text-center'>No events yet.</p>
+        <% else -%>
+          <ul class='list-group list-group-flush'>
+            <% @events.limit(20).each do |event| -%>
+              <li class='list-group-item'>
+                <div class='inner-event d-flex align-items-start flex-column flex-md-row align-items-md-center'>
+                  <% icon_classes = "fa fa-#{event.icon_name} text-#{event.positive? ? 'success' : 'danger'}" %>
+                  <div class='d-none d-md-block <%= icon_classes %> mr-3'></div>
+                  <div class='event-content'>
+                    <%= render partial: event.to_partial_path, locals: { event: event, icon_classes: icon_classes } %>
+                  </div>
+                  <div class='timestamp ml-md-auto text-sm ml-md-3 mt-2 mt-md-0 text-nowrap text-md-right'>
+                    <div class='d-inline d-md-block'><%= event.timestamp.strftime("%B %d, %Y") %></div>
+                    <div class='d-inline d-md-block'><%= event.timestamp.strftime("at %H:%M %Z") %></div>
+                  </div>
+                </div>
+              </li>
+            <% end -%>
+          </ul>
+        <% end -%>
+      </div>
+    </div>
+  </div>
+
+  <div class='col-12 col-md-4 order-0 order-md-1 info-cards'>
+    <div class='card'>
+      <h5 class='card-header'>Reward Cut</h5>
+      <div class='card-body'>
+        <span class='large-number technical'><%= number_to_percentage(@transcoder.reward_cut) %></span>
+      </div>
+    </div>
+
+    <div class='card'>
+      <h5 class='card-header'>Fee Share</h5>
+      <div class='card-body'>
+        <span class='large-number technical'><%= number_to_percentage(@transcoder.fee_share) %></span>
+      </div>
+    </div>
+
+    <div class='card'>
+      <h5 class='card-header'>Total Stake</h5>
+      <div class='card-body'>
+        <span class='large-number technical'><%= livepeer_lpt_amount(@transcoder.total_stake) %></span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,79 @@
+<% content_for :body_class, 'subscription-index' %>
+
+<% url = namespaced_path(:delegator_list_subscriptions, @delegator_list) %>
+
+<%= form_for @subscription, url: url, html: { method: 'POST', class: 'subscription-form' } do |f| -%>
+  <h1 class='header'>
+    Subscribe to Events
+    <div class='d-flex align-items-center'>
+      <a class='btn btn-sm btn-outline-secondary' href='<%= namespaced_path('delegator_lists') %>'>back</a>
+      <%= f.submit 'save subscription', class: 'btn btn btn-primary ml-2' %>
+    </div>
+  </h1>
+
+  <h2>
+    <label class='text-muted'>Delegator List</label>
+    <span class='technical'><%= @delegator_list.short_name %></span>
+  </h2>
+
+  <% if flash[:notice] %>
+    <div class='alert alert-primary auto-alert-hide'>
+      <%= flash[:notice].html_safe %>
+    </div>
+  <% end -%>
+  <% if @subscription && @subscription.errors.any? -%>
+    <div class='alert alert-warning'>
+      <% @subscription.errors.full_messages.each do |message| -%>
+        <div><%= message %></div>
+      <% end -%>
+    </div>
+  <% end -%>
+
+  <div class='row event-kinds-container mb-3 mt-4'>
+    <% event_kind = 'reward_cut_change' %>
+    <% selected = @subscription && @subscription.subscribes_to_kind?(event_kind) -%>
+    <div class='col-12 col-md-6'>
+      <div class='card'>
+        <h5 class='card-header'>
+          <div class='card-header-parts'>
+            <div><%= event_kind_to_name(event_kind) %></div>
+            <div class='btn-group btn-group-toggle' data-toggle='buttons'>
+              <label class='btn btn-outline-light btn-sm <%= 'active' unless selected %>'>
+                <input type='radio' name='alert_subscription[event_kinds][<%= event_kind %>]' <%= 'checked=true' unless selected %> value='off' autocomplete='off'> Off
+              </label>
+              <label class='btn btn-outline-light btn-sm <%= 'active' if selected %>'>
+                <input type='radio' name='alert_subscription[event_kinds][<%= event_kind %>]' <%= 'checked=true' if selected %> value='on' autocomplete='off'> On
+              </label>
+            </div>
+          </div>
+        </h5>
+        <div class='card-body'>
+          <div class='info'>
+            You will receive an email up to once every <%= time_ago_in_words(ALERT_MINIMUM_TIMEOUT.ago) %>
+            about this type of event.
+          </div>
+
+          <div class='recent-event-count mt-4'>
+            There have been
+            <% type = livepeer_event_kind_to_type(event_kind) -%>
+            <%= @delegator_list.recent_events(type, 1.week.ago).count %> instances in the past week.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class='d-flex flex-column align-items-center justify-content-center mt-5'>
+    <% selected = @subscription && @subscription.wants_daily_digest? -%>
+    <span class='text-muted text-lg'>Receive Daily Digest?</span>
+    <span class='text-muted text-sm text-center daily-digest-description'>All events will be included regardless of instant notification settings above.</span>
+    <div class='btn-group btn-group-toggle mt-4' data-toggle='buttons'>
+      <label class='btn btn-outline-primary <%= 'active' unless selected %>'>
+        <input type='radio' name='alert_subscription[wants_daily_digest]' <%= 'checked=true' unless selected %> value='off' autocomplete='off'> Off
+      </label>
+      <label class='btn btn-outline-primary <%= 'active' if selected %>'>
+        <input type='radio' name='alert_subscription[wants_daily_digest]' <%= 'checked=true' if selected %> value='on' autocomplete='off'> On
+      </label>
+    </div>
+  </div>
+<% end -%>

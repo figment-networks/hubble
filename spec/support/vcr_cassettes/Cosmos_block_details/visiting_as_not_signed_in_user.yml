@@ -1,0 +1,95 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://localhost/apikey/XXXX/status
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Typhoeus - https://github.com/typhoeus/typhoeus
+      Expect:
+      - ''
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Date:
+      - Tue, 28 Jul 2020 14:46:10 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '1098'
+      X-Server-Time:
+      - '1595947570'
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+          "jsonrpc": "2.0",
+          "id": "",
+          "result": {
+            "node_info": {
+              "protocol_version": {
+                "p2p": "7",
+                "block": "10",
+                "app": "0"
+              },
+              "id": "d00c64e49ad8494f15aae65957655303375c2632",
+              "listen_addr": "tcp://0.0.0.0:26656",
+              "network": "cosmoshub-3",
+              "version": "0.32.10",
+              "channels": "4020212223303800",
+              "moniker": "8wYmpIXztY",
+              "other": {
+                "tx_index": "on",
+                "rpc_address": "tcp://0.0.0.0:26657"
+              }
+            },
+            "sync_info": {
+              "latest_block_hash": "C2F0767196EDCCCB36FAB1755B72075AE46FF03216EC946CDF4547522F4A175D",
+              "latest_app_hash": "FFA12C83F1E709BF4AA3592016538169587270A9441FA39CEBD97CEE4E9BD8FB",
+              "latest_block_height": "2783324",
+              "latest_block_time": "2020-07-28T14:45:56.825569536Z",
+              "catching_up": false
+            },
+            "validator_info": {
+              "address": "E70DF0E770D301ECA29B1A070EC735467594856F",
+              "pub_key": {
+                "type": "tendermint/PubKeyEd25519",
+                "value": "s5gKYnpfUjbnHVAhq9hsS5JsqRMiK60ngsATAIkPYlk="
+              },
+              "voting_power": "0"
+            }
+          }
+        }
+  recorded_at: Tue, 28 Jul 2020 14:46:10 GMT
+- request:
+    method: get
+    uri: https://localhost/apikey/XXXX/txs/4407c0f7f87d9b36ae19f853543cf7de50fe1f1f3104486d3d17ba226bdc5dae
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Typhoeus - https://github.com/typhoeus/typhoeus
+      Expect:
+      - ''
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Date:
+      - Tue, 28 Jul 2020 14:46:10 GMT
+      Content-Type:
+      - application/json
+      X-Server-Time:
+      - '1595947570'
+    body:
+      encoding: UTF-8
+      string: '{"height":"2686237","txhash":"4407C0F7F87D9B36AE19F853543CF7DE50FE1F1F3104486D3D17BA226BDC5DAE","raw_log":"[{\"msg_index\":0,\"success\":true,\"log\":\"\",\"events\":[{\"type\":\"message\",\"attributes\":[{\"key\":\"sender\",\"value\":\"cosmos1jv65s3grqf6v6jl3dp4t6c9t9rk99cd88lyufl\"},{\"key\":\"module\",\"value\":\"distribution\"},{\"key\":\"sender\",\"value\":\"cosmos1y6yvdel7zys8x60gz9067fjpcpygsn62ae9x46\"},{\"key\":\"action\",\"value\":\"withdraw_delegator_reward\"}]},{\"type\":\"transfer\",\"attributes\":[{\"key\":\"recipient\",\"value\":\"cosmos1y6yvdel7zys8x60gz9067fjpcpygsn62ae9x46\"},{\"key\":\"amount\",\"value\":\"197uatom\"}]},{\"type\":\"withdraw_rewards\",\"attributes\":[{\"key\":\"amount\",\"value\":\"197uatom\"},{\"key\":\"validator\",\"value\":\"cosmosvaloper12w6tynmjzq4l8zdla3v4x0jt8lt4rcz5gk7zg2\"}]}]},{\"msg_index\":1,\"success\":true,\"log\":\"\",\"events\":[{\"type\":\"delegate\",\"attributes\":[{\"key\":\"validator\",\"value\":\"cosmosvaloper12w6tynmjzq4l8zdla3v4x0jt8lt4rcz5gk7zg2\"},{\"key\":\"amount\",\"value\":\"394\"}]},{\"type\":\"message\",\"attributes\":[{\"key\":\"module\",\"value\":\"staking\"},{\"key\":\"sender\",\"value\":\"cosmos1y6yvdel7zys8x60gz9067fjpcpygsn62ae9x46\"},{\"key\":\"action\",\"value\":\"delegate\"}]}]}]","logs":[{"msg_index":0,"success":true,"log":"","events":[{"type":"message","attributes":[{"key":"sender","value":"cosmos1jv65s3grqf6v6jl3dp4t6c9t9rk99cd88lyufl"},{"key":"module","value":"distribution"},{"key":"sender","value":"cosmos1y6yvdel7zys8x60gz9067fjpcpygsn62ae9x46"},{"key":"action","value":"withdraw_delegator_reward"}]},{"type":"transfer","attributes":[{"key":"recipient","value":"cosmos1y6yvdel7zys8x60gz9067fjpcpygsn62ae9x46"},{"key":"amount","value":"197uatom"}]},{"type":"withdraw_rewards","attributes":[{"key":"amount","value":"197uatom"},{"key":"validator","value":"cosmosvaloper12w6tynmjzq4l8zdla3v4x0jt8lt4rcz5gk7zg2"}]}]},{"msg_index":1,"success":true,"log":"","events":[{"type":"delegate","attributes":[{"key":"validator","value":"cosmosvaloper12w6tynmjzq4l8zdla3v4x0jt8lt4rcz5gk7zg2"},{"key":"amount","value":"394"}]},{"type":"message","attributes":[{"key":"module","value":"staking"},{"key":"sender","value":"cosmos1y6yvdel7zys8x60gz9067fjpcpygsn62ae9x46"},{"key":"action","value":"delegate"}]}]}],"gas_wanted":"300000","gas_used":"158086","tx":{"type":"cosmos-sdk/StdTx","value":{"msg":[{"type":"cosmos-sdk/MsgWithdrawDelegationReward","value":{"delegator_address":"cosmos1y6yvdel7zys8x60gz9067fjpcpygsn62ae9x46","validator_address":"cosmosvaloper12w6tynmjzq4l8zdla3v4x0jt8lt4rcz5gk7zg2"}},{"type":"cosmos-sdk/MsgDelegate","value":{"delegator_address":"cosmos1y6yvdel7zys8x60gz9067fjpcpygsn62ae9x46","validator_address":"cosmosvaloper12w6tynmjzq4l8zdla3v4x0jt8lt4rcz5gk7zg2","amount":{"denom":"uatom","amount":"394"}}}],"fee":{"amount":[{"denom":"uatom","amount":"0"}],"gas":"300000"},"signatures":[{"pub_key":{"type":"tendermint/PubKeySecp256k1","value":"A9E/2C2Tibu+oguuOS2AwO9sGwy1ejes+u8hBdGJ2gui"},"signature":"V+X+r/3NPHz6mJbldTAkEwgDqfWFdfEQNh2F9e5UOHYRqnTi2znx8Le/aObMIwWywVR45XbYMXE9KJgX9+xDGg=="}],"memo":""}},"timestamp":"2020-07-20T12:21:37Z","events":[{"type":"delegate","attributes":[{"key":"validator","value":"cosmosvaloper12w6tynmjzq4l8zdla3v4x0jt8lt4rcz5gk7zg2"},{"key":"amount","value":"394"}]},{"type":"message","attributes":[{"key":"sender","value":"cosmos1jv65s3grqf6v6jl3dp4t6c9t9rk99cd88lyufl"},{"key":"module","value":"distribution"},{"key":"sender","value":"cosmos1y6yvdel7zys8x60gz9067fjpcpygsn62ae9x46"},{"key":"action","value":"withdraw_delegator_reward"},{"key":"module","value":"staking"},{"key":"sender","value":"cosmos1y6yvdel7zys8x60gz9067fjpcpygsn62ae9x46"},{"key":"action","value":"delegate"}]},{"type":"transfer","attributes":[{"key":"recipient","value":"cosmos1y6yvdel7zys8x60gz9067fjpcpygsn62ae9x46"},{"key":"amount","value":"197uatom"}]},{"type":"withdraw_rewards","attributes":[{"key":"amount","value":"197uatom"},{"key":"validator","value":"cosmosvaloper12w6tynmjzq4l8zdla3v4x0jt8lt4rcz5gk7zg2"}]}]}'
+  recorded_at: Tue, 28 Jul 2020 14:46:10 GMT
+recorded_with: VCR 6.0.0

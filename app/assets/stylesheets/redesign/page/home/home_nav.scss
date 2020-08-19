@@ -1,5 +1,6 @@
 .home-navbar {
   padding: 77px 1rem 50px;
+  background: transparent !important;
   @include media-breakpoint-up(md) {
     padding: 77px 0 50px;
   }
@@ -10,7 +11,7 @@
 }
 .home-navbar__figment-logo {
   width: 133px;
-  height: 18px;
+  height: 21px;
 }
 .home-navbar__container {
   @include media-breakpoint-up(md) {
@@ -19,20 +20,6 @@
 }
 .home-navbar__collapse {
   flex-grow: initial;
-}
-.link {
-  color: $primary;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0;
-  line-height: 20px;
-}
-.link--about {
-  width: 56px;
-  @include media-breakpoint-up(lg) {
-    max-width: 98px;
-    width: 100%;
-  }
 }
 .navbar-light .navbar-nav .nav-link {
   color: $primary;

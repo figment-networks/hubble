@@ -7,7 +7,7 @@ FactoryBot.define do
     transcoder_address { '0xd44e364f985ceaae31e5d7b5782d5822a89db41d' }
     amount { rand(1000) }
     initialized_at { 20.minutes.ago }
-    withdraw_round_number { round.number + 7 }
+    withdraw_round_number { round.number + Livepeer::UNBONDING_PERIOD }
     sequence(:unbonding_lock_id, 10)
   end
 end

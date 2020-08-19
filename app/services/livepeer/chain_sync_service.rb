@@ -7,6 +7,7 @@ class Livepeer::ChainSyncService
     Livepeer::Chain.transaction do
       synchronize(:rounds)
       synchronize(:transcoders, delete: true)
+      synchronize(:delegators, delete: true)
 
       update_local_height
       update_synchronization_time

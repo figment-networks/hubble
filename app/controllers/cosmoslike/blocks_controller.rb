@@ -4,21 +4,14 @@ class Cosmoslike::BlocksController < Cosmoslike::BaseController
     @block = @chain.blocks.find_by( height: params[:id] ) ||
              (@namespace::Block.stub_from_cache( @chain, params[:id] ) rescue nil)
 
+    raise ActiveRecord::RecordNotFound if @block.nil?
+
     page_title @chain.network_name, @chain.name, "Transactions and Validators for block #{@block.height}"
     meta_description "#{@chain.network_name} -- #{@chain.name} - Transactions, Validators and Voting Power"
 
     respond_to do |format|
-      format.html {
-        if @block.nil?
-          raise ActiveRecord::RecordNotFound
-        end
-      }
+      format.html
       format.json do
-        if @block.nil?
-          render json: { error: "Could not retrieve block." }
-          return
-        end
-
         begin
           case params[:kind]
           when 'commit'
@@ -36,5 +29,4 @@ class Cosmoslike::BlocksController < Cosmoslike::BaseController
       end
     end
   end
-
 end

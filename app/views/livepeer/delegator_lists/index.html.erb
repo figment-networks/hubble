@@ -1,6 +1,6 @@
 <% content_for :body_class, 'delegator-list-index' %>
 
-<%= render partial: 'chain_header', locals: { summary_link: true } %>
+<%= render partial: 'chain_header', locals: { summary_link: true, events_link: true } %>
 <%= render partial: 'sync_errors' %>
 
 <div class='row'>
@@ -8,9 +8,9 @@
     <div class='delegator-lists'>
       <div class='delegator-lists-table-header'>
         <h4>Delegator Lists</h4>
-        <a class='btn btn-sm btn-outline-light' href='<%= namespaced_path('delegator_list', pre_path: 'new') %>'>
-          <span class='fas fa-plus'>
-        </a>
+        <%= link_to namespaced_path('delegator_list', pre_path: 'new'), class: 'btn btn-sm btn-outline-light' do %>
+          <span class='fas fa-plus'/>
+        <% end %>
       </div>
       <div class='delegator-lists-table'>
         <table>
@@ -30,23 +30,28 @@
                 <td><%= delegator_list.name %></td>
                 <td><%= delegator_list.addresses.count %></td>
                 <td>
-                  <% if delegator_list.email_alerts_enabled -%>
-                    <span class='badge badge-success'>ENABLED</span>
+                  <% if delegator_list.alert_subscriptions.present? -%>
+                    <span class='badge badge-success'>SUBSCRIBED</span>
                   <% else -%>
-                    <span class='badge badge-danger'>DISABLED</span>
+                    <span class='badge badge-danger'>NOT SUBSCRIBED</span>
                   <% end -%>
                 </td>
                 <td class='text-right'>
-                  <a class='btn btn-outline-primary btn-sm' href='<%= namespaced_path('delegator_list_report', delegator_list, pre_path: 'new') %>'>
-                    <span class='fas fa-file'>
-                  </a>
-                  <a class='btn btn-outline-primary btn-sm' href='<%= namespaced_path('delegator_list', delegator_list, pre_path: 'edit') %>'>
-                    <span class='fas fa-pen'>
-                  </a>
-                  <a class='btn btn-outline-primary btn-sm' href='<%= namespaced_path('delegator_list', delegator_list) %>'
-                    data-method='delete' data-confirm='Are you sure?'>
-                    <span class='fas fa-trash'>
-                  </a>
+                  <%= link_to namespaced_path('delegator_list_report', delegator_list, pre_path: 'new'), class: 'btn btn-outline-primary btn-sm' do %>
+                    <span class='fas fa-file'/>
+                  <% end %>
+                  <%= link_to namespaced_path('delegator_list_events', delegator_list), class: 'btn btn-outline-primary btn-sm' do %>
+                    <span class='fas fa-clock'/>
+                  <% end %>
+                  <%= link_to namespaced_path('delegator_list_subscriptions', delegator_list), class: 'btn btn-outline-primary btn-sm' do %>
+                    <span class='fas fa-bell'/>
+                  <% end %>
+                  <%= link_to namespaced_path('delegator_list', delegator_list, pre_path: 'edit') ,class: 'btn btn-outline-primary btn-sm' do %>
+                    <span class='fas fa-pen'/>
+                  <% end %>
+                  <%= link_to namespaced_path('delegator_list', delegator_list), class: 'btn btn-outline-primary btn-sm', data: { method:'delete', confirm:'Are you sure?' } do %>
+                    <span class='fas fa-trash'/>
+                  <% end %>
                 </td>
               </tr>
             <% end %>

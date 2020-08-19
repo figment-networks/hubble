@@ -1,0 +1,37 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://localhost:1111/validator/oasis1qzhwl87e7d6up3tf3wu08e9n8gqk6vkw2v8gqc2j?sequences_limit=0
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (linux-gnu x86_64) ruby/2.6.6p146
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - localhost:1111
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 12 Aug 2020 17:49:50 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '704'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"id":53,"created_at":"2020-08-12T16:51:34.745763Z","updated_at":"2020-08-12T17:49:50.637068Z","started_at_height":1,"started_at":"2020-08-06T16:00:00Z","recent_at_height":7304,"recent_at":"2020-08-07T04:31:03Z","address":"oasis1qzhwl87e7d6up3tf3wu08e9n8gqk6vkw2v8gqc2j","entity_uid":"wgMBa/9qR/XwnlgYXAXvqHMXT+LvkOX0JcQc0CcW4HQ=","recent_tendermint_address":"EE27CC6A54B71DB6712348067E8DF177EF0F2BE6","recent_voting_power":80027799472843,"recent_total_shares":1265000000000000,"recent_active_escrow_balance":1280465214659913,"recent_as_validator_height":7304,"recent_proposed_height":7301,"accumulated_proposed_count":839,"uptime":0.938912477742775,"logo_url":"","entity_name":"","last_sequences":null}
+
+'
+  recorded_at: Wed, 12 Aug 2020 17:49:50 GMT
+recorded_with: VCR 6.0.0

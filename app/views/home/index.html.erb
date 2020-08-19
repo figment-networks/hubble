@@ -1,11 +1,11 @@
 <% content_for :body_class, 'homepage' %>
 
-<% if !primary_chains.any? -%>
+<% if !decorated_primary_chains.any? -%>
   <p>No chains configured.</p>
 <% end -%>
     
 <ul class='chains-list row p-0 list-unstyled'>
-  <% primary_chains.each do |chain| -%>
+  <% decorated_primary_chains.each do |chain| -%>
     <li class='col-xl-4 col-lg-6 col-md-6 px-3'>
       <div class='chains-list__card card px-5 pt-5 pb-1 shadow-none'>
         <%= link_to '', namespaced_path( chain: chain ), class: 'chains-list__card-link'%>
@@ -13,20 +13,61 @@
           <% if network_has_image?(chain.network_name) -%>
             <%= image_tag network_image(chain.network_name), class: "chains-list__img #{chain.network_name.downcase}-img" %>
           <% else -%>
-            <p class='chains-list__img-fallback'><%= chain.network_name %></p>
+            <p class='logo-fallback'><%= chain.network_name %></p>
           <% end -%>
           <p class='chains-list__launch'>Launched in <%= chain.created_at.strftime("%B %Y") %></p>
           <ul class='d-flex list-unstyled justify-content-between flex-wrap mt-4'>
-            <% if chain.respond_to?(:validators) && chain.validators.any? -%>
+            <% if chain.validator_count -%>
               <li class='col-6 p-0 mt-3'>
                 <p class='chains-list__label m-0'>Validator Set Size</p>
-                <p class='chains-list__data m-0'><%= chain.validators.count %></p>
+                <p class='chains-list__data m-0'><%= chain.validator_count %></p>
+              </li>
+            <% elsif chain.transcoder_count # Livepeer -%>
+              <li class='col-6 p-0 mt-3'>
+                <p class='chains-list__label m-0'>Orchestrator Set Size</p>
+                <p class='chains-list__data m-0'><%= chain.transcoder_count %></p>
+              </li>
+            <% elsif chain.baker_count # Tezos -%>
+              <li class='col-6 p-0 mt-3'>
+                <p class='chains-list__label m-0'>Baker Set Size</p>
+                <p class='chains-list__data m-0'><%= chain.baker_count %></p>
               </li>
             <% end -%>
-            <% if chain.respond_to?(:average_block_time) && chain.average_block_time -%>
+
+            <% if chain.avg_block_time -%>
               <li class='col-6 p-0 mt-3'>
                 <p class='chains-list__label m-0'>Block Time</p>
-                <p class='chains-list__data m-0'><%= chain.average_block_time.round(2) %><sup>SEC</sup></p>
+                <p class='chains-list__data m-0'><%= chain.avg_block_time.round(2) %><sup class='sup'>SEC</sup></p>
+              </li>
+            <% end -%>
+
+            <% if chain.rewards_rate && chain.daily_rewards -%>
+              <% cache("#{chain.cache_key}-#{Date.today.cweek}-rewards") do %>
+                <li class='col-6 p-0 mt-3'>
+                  <p class='chains-list__label m-0'>Rewards</p>
+                  <p class='chains-list__data m-0'><%= chain.rewards_rate.round(2) %>%</p>
+                </li>
+
+                <li class='col-6 p-0 mt-3'>
+                  <p class='chains-list__label m-0'>Daily Rewards</p>
+                  <p class='chains-list__data m-0'><%= chain.daily_rewards.round(2) %><sup class='sup'><%= chain.token_display %></sup></p>
+                </li>
+              <% end -%>
+            <% end %>
+
+            <% if chain.staking_participation %>
+              <% cache("#{chain.cache_key}-#{Date.today.cweek}-staking_participation") do %>
+                <li class='col-6 p-0 mt-3'>
+                  <p class='chains-list__label m-0'>Staking Participation</p>
+                  <p class='chains-list__data m-0'><%= chain.staking_participation.truncate %>%</p>
+                </li>
+              <% end %>
+            <% end %>
+
+            <% if chain.token_price? -%>
+              <li class='col-6 p-0 mt-3'>
+                <p class='chains-list__label m-0'>Token Price</p>
+                <p class='chains-list__data m-0'>$<%= chain.token_price.round(2) %></p>
               </li>
             <% end -%>
           </ul>
@@ -35,4 +76,3 @@
     </li>
   <% end -%>
 </ul>
-

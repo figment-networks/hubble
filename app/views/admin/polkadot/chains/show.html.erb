@@ -58,7 +58,7 @@
     <% if @status %>
       <tr>
         <th class='align-middle'>App Version</th>
-        <td><%= @status.app_version %>, commit: <%= @status.git_commit %></td>
+        <td><%= @status.app_version %></td>
       </tr>
       <tr>
         <th class='align-middle'>App Runtime</th>
@@ -71,10 +71,6 @@
       <tr>
         <th class='align-middle'>Last Block Time</th>
         <td><%= @status.last_block_time %></td>
-      </tr>
-      <tr>
-        <th class='align-middle'>Sync Status</th>
-        <td><%= @status.stale? ? "STALE" : "CURRENT" %></td>
       </tr>
     <% end %>
   </tbody>

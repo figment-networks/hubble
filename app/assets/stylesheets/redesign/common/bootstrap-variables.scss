@@ -8,7 +8,13 @@ $headings-font-family: $font-family-sans-serif;
 $body-bg: #F5F5F5;
 
 $primary: #111111;
+$secondary: #666666;
 $info: #1a80f2;
+$success: #4BAE0A;
+
+$bg-light: #FEFEFE;
+
+$border-color: #ddd;
 
 $figment-light-gray: #f1f1f1;
 $figment-yellow: #FFF29B;
@@ -24,6 +30,8 @@ $tooltip-color: #70707a;
 $tooltip-bg: white;
 $tooltip-opacity: 1.0;
 $tooltip-border-radius: 8px;
+
+$table-border: #dee2e6;
 
 $sizes: (
   10: 10%, 15: 15%, 60: 60%, 20: 20%,

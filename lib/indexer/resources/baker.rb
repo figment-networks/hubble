@@ -16,6 +16,12 @@ module Indexer
       new(data)
     end
 
+    def self.count
+      resp = RestClient.get("#{Tezos::Chain.primary.indexer_api_base_url}/bakers/count")
+      data = JSON.parse(resp.body)
+      data["bakers_count"]
+    end
+
     def self.list(query: nil)
       url = "#{Tezos::Chain.primary.indexer_api_base_url}/bakers"
       resp = RestClient.get(url, params: { query: query })

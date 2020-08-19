@@ -16,6 +16,6 @@ class Indexer::BaseController < ApplicationController
   end
 
   def client
-    namespace::Client.new(@chain.api_url)
+    @client ||= namespace::Client.new(@chain.api_url)
   end
 end

@@ -9,8 +9,8 @@
   </a>
 </h1>
 
-<% all_subs = current_user.alert_subscriptions -%>
-<% subs = all_subs.select { |sub| sub.alertable.chain == @chain } -%>
+<% all_subscriptions = current_user.alert_subscriptions -%>
+<% subscriptions = all_subscriptions.select { |subscription| subscription.alertable.chain == @chain } -%>
 
 <% all_watched_accounts = current_user.watches.where( chainlike: @chain, watchable_type: "#{@chain.namespace}::Account" ) -%>
 <% watched_accounts = all_watched_accounts.select { |acc| acc.chain == @chain } -%>
@@ -77,7 +77,7 @@
         <button type='submit' class='btn btn-sm btn-primary'>Add Validator</button>
       <% end -%>
 
-      <% [watched_validators, watched_accounts.select(&:validator).map(&:validator), subs.map(&:alertable).select { |al| al.is_a?(Cosmos::Validator) }].flatten.uniq.each do |validator| -%>
+      <% [watched_validators, watched_accounts.select(&:validator).map(&:validator), subscriptions.map(&:alertable).select { |al| al.is_a?(Cosmos::Validator) }].flatten.uniq.each do |validator| -%>
         <div>
           <a href='<%= namespaced_path( 'validator', validator ) %>'>
             <%= validator.long_name %>
@@ -91,17 +91,17 @@
 <div class='card'>
   <h5 class='card-header'>Alert Subscriptions</h5>
   <div class='card-body alert-subscription-list'>
-    <% if subs.empty? -%>
+    <% if subscriptions.empty? -%>
       No validators subscribed to yet.
     <% else -%>
       <div class='list-group list-group-flush users-alert-subscription mb-0'>
-        <% subs.each_with_index do |sub, i| -%>
+        <% subscriptions.each_with_index do |subscription, i| -%>
           <div class='list-group-item d-flex flex-column flex-md-row align-items-md-center justify-content-between pl-0 pr-0 pt-0'>
             <div class='info'>
-              <%= render partial: 'users/settings/alertable_info', locals: { sub: sub } %>
+              <%= render partial: 'users/settings/alertable_info', locals: { subscription: subscription } %>
             </div>
             <div class='details d-flex flex-column align-items-md-end pt-1'>
-              <%= render partial: 'users/settings/alertable_badges', locals: { sub: sub } %>
+              <%= render partial: 'users/settings/alertable_badges', locals: { subscription: subscription } %>
             </div>
           </div>
         <% end -%>

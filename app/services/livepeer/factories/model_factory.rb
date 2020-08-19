@@ -4,7 +4,7 @@ class Livepeer::Factories::ModelFactory
   end
 
   def call
-    Livepeer.const_get(class_name)
+    class_name.constantize
   end
 
   private
@@ -12,6 +12,6 @@ class Livepeer::Factories::ModelFactory
   attr_reader :resource
 
   def class_name
-    resource.classify
+    "Livepeer::#{resource.classify}"
   end
 end

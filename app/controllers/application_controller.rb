@@ -9,9 +9,11 @@ class ApplicationController < ActionController::Base
   before_action :http_basic_auth if REQUIRE_HTTP_BASIC
   before_action :get_user
 
-  if !Rails.env.development?
+  if !Rails.env.development? && !Rails.env.test?
     rescue_from StandardError,
                   with: :render_500
+  end
+  if !Rails.env.development?
     rescue_from ActionController::Denied,
                 ActionController::InvalidAuthenticityToken,
                   with: :render_403
@@ -20,6 +22,7 @@ class ApplicationController < ActionController::Base
                 ActionView::MissingTemplate,
                 ActionController::NotFound,
                 ActiveRecord::RecordNotFound,
+                Common::IndexerClient::NotFoundError,
                   with: :render_404
   end
 

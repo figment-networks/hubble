@@ -12,6 +12,6 @@ class Livepeer::Factories::GraphQueryFactory
   attr_reader :resource
 
   def class_name
-    "#{resource.capitalize}Query"
+    "#{resource.classify.pluralize}Query"
   end
 end

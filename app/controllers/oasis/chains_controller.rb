@@ -12,7 +12,7 @@ class Oasis::ChainsController < Oasis::BaseController
     end
     @validators = @chain.client.validators
     @common_pool = @chain.client.staking(@height).common_pool
-    @voting_power = @validators.sum(&:recent_total_shares)
+    @voting_power = @validators.sum(&:recent_active_escrow_balance)
   end
 
   def search

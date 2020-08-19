@@ -5,6 +5,14 @@ class Emoney::Chain < ApplicationRecord
   SYNC_INTERVAL = 1.minute
   SUPPORTS_LEDGER = true
 
+  DEFAULT_TOKEN_DISPLAY = 'NGM'
+  DEFAULT_TOKEN_REMOTE = 'ungm'
+  DEFAULT_TOKEN_FACTOR = 6
+
+  # total supply is fixed on E-money, thus so is inflation
+  TOTAL_SUPPLY = 100_000_000_000_000
+  INFLATION = 0
+
   PREFIXES = {
     account_address: 'emoney1',
     account_public_key: 'emoneypub1',
@@ -14,9 +22,13 @@ class Emoney::Chain < ApplicationRecord
     validator_operator_public_key: 'emoneyvaloperpub1'
   }
 
-  DEFAULT_TOKEN_DISPLAY = 'NGM'
-  DEFAULT_TOKEN_REMOTE = 'ungm'
-  DEFAULT_TOKEN_FACTOR = 6
-
   def network_name; 'e-Money'; end
+
+  def total_supply
+    TOTAL_SUPPLY
+  end
+
+  def inflation
+    INFLATION
+  end
 end

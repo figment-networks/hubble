@@ -1,41 +1,35 @@
 module LivepeerHelper
-  def transcoder_link(transcoder)
-    livepeer_explorer_link(transcoder.address, page: :campaign) do
-      if transcoder.name.present?
-        tag.strong(transcoder.name, title: transcoder.description)
-      else
-        transcoder.address.sub(/^0x/i, '').upcase
-      end
-    end
+  def livepeer_address(value, short: false)
+    address = value.sub(/^0x/i, '').upcase
+    short ? "#{address[0, 4]}...#{address[-4, 4]}" : address
   end
 
-  def delegator_link(address)
-    livepeer_explorer_link(address, page: :staking) do
-      address = address.sub(/^0x/i, '').upcase
-      "#{address[0, 4]}...#{address[-4, 4]}"
-    end
-  end
-
-  def livepeer_explorer_link(address, page: nil, &block)
+  def livepeer_explorer_link(address, page: nil, short: false)
     url = "https://explorer.livepeer.org/accounts/#{address}/#{page}"
-    link_to(url, class: 'text-monospace', target: '_blank', &block)
+
+    link_to(url, class: 'text-monospace', target: '_blank') do
+      livepeer_address(address, short: short)
+    end
   end
 
-  def lpt_amount(value)
-    amount_with_currency(value, 'LPT')
+  def livepeer_lpt_amount(value)
+    livepeer_amount(value, 'LPT')
   end
 
-  def eth_amount(value)
-    amount_with_currency(value, 'ETH')
+  def livepeer_eth_amount(value)
+    livepeer_amount(value, 'ETH')
   end
 
-  def amount_with_currency(value, currency_code)
+  def livepeer_amount(value, currency)
     return if value.nil?
 
     safe_join([
       tag.span(number_to_human(value), class: 'text-monospace'),
-      ' ',
-      tag.span(currency_code, class: 'text-sm text-muted')
+      tag.span(" #{currency}", class: 'text-sm text-muted')
     ])
+  end
+
+  def livepeer_event_kind_to_type(kind)
+    "Livepeer::Events::#{kind.classify}"
   end
 end

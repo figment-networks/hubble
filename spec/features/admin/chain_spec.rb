@@ -3,7 +3,7 @@ require 'features_helper'
 feature 'Admin page' do
   let!(:admin) { create(:admin) }
 
-  scenario 'signing in an adding a Polkadot chain' do
+  scenario 'signing in an adding a Polkadot chain', :vcr do
     visit "/admin"
 
     expect(page).to have_content("Login")
@@ -22,7 +22,7 @@ feature 'Admin page' do
 
     fill_in 'polkadot_chain_name', with: 'Polkadot test name'
     fill_in 'polkadot_chain_slug', with: 'test-slug'
-    fill_in 'polkadot_chain_api_url', with: 'https://figment-mock-data.herokuapp.com/polkadot'
+    fill_in 'polkadot_chain_api_url', with: 'https://localhost:1111/polkadot'
 
     click_button 'Create Chain'
 

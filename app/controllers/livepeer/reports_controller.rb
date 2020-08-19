@@ -2,6 +2,8 @@ class Livepeer::ReportsController < Livepeer::BaseController
   before_action :require_user
   before_action :require_chain
 
+  helper_method :round_range?
+  helper_method :date_range?
   helper_method :report_params
 
   def new
@@ -13,17 +15,20 @@ class Livepeer::ReportsController < Livepeer::BaseController
 
   def show
     @delegator_list = delegator_lists.find(params[:delegator_list_id])
-    @report = Livepeer::Report.new(@delegator_list, params)
 
     respond_to do |format|
-      format.html
+      format.html do
+        @report = Livepeer::SummaryReport.new(@delegator_list, params)
+      end
+
       format.csv do
-        send_data(@report.to_csv, filename: csv_filename)
+        report = Livepeer::DetailedReport.new(@delegator_list, params)
+        send_data(report.to_csv, filename: csv_filename)
       end
     end
 
     page_title 'Delegator List Report'
-    meta_description 'Fees, Rewards, Unbonding Tokens and Unbonded Tokens'
+    meta_description 'Fees, Rewards, Pending Stake, Unclaimed Stake, Unbonding Tokens and Unbonded Tokens'
   end
 
   private
@@ -33,14 +38,23 @@ class Livepeer::ReportsController < Livepeer::BaseController
   end
 
   def csv_filename
-    case params[:range_type]
-    when 'round'
-      "report-#{params[:round_number]}.csv"
-    when 'date'
-      "report-#{params[:start_date]}-#{params[:end_date]}.csv"
-    else
-      "report.csv"
-    end
+    name = @delegator_list.name.parameterize
+    range =
+      if round_range?
+        params[:round_number]
+      elsif date_range?
+        "#{params[:start_date]}-#{params[:end_date]}"
+      end
+
+    "delegator-list-report-#{name}-#{range}.csv"
+  end
+
+  def round_range?
+    params[:range_type] == 'round'
+  end
+
+  def date_range?
+    params[:range_type] == 'date'
   end
 
   def report_params

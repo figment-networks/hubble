@@ -1,0 +1,45 @@
+<div class='transactions mb-5'>
+  <div class='transactions-table-header'>
+    <h4>Transactions</h4>
+  </div>
+  <div class='transactions-table'>
+    <table data-empty='<%= transactions.blank? %>'>
+      <thead>
+      <tr>
+        <th>Hash</th>
+        <th>Result</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% if transactions.nil? -%>
+        <tr>
+          <td class='p-3 text-center' colspan='5'>Unable to retrieve transaction data.</td>
+        </tr>
+      <% elsif transactions.empty? -%>
+        <tr>
+          <td class='p-3 text-center' colspan='5'>No transactions in this block.</td>
+        </tr>
+      <% end -%>
+
+      <% transactions.each do |transaction| -%>
+        <tr>
+          <td data-order='<%= transaction.id %>'>
+            <span class='technical'><%= transaction.id.truncate(60) %></span>
+          </td>
+          <td data-order='<%= transaction.is_success %>'>
+            <% if transaction.is_success -%>
+              <span class='badge badge-success'>SUCCESS</span>
+            <% else -%>
+              <span class='badge badge-danger'>ERROR</span>
+            <% end -%>
+          </td>
+          <td class='text-right'>
+            <a class='btn btn-outline-primary btn-sm' href='<%= namespaced_path( 'block_transaction', transaction.block, transaction.id ) %>'>Details...</a>
+          </td>
+        </tr>
+      <% end -%>
+      </tbody>
+    </table>
+  </div>
+</div>

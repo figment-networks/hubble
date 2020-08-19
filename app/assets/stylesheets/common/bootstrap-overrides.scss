@@ -27,7 +27,7 @@ $veto: darken($danger, 20%);
   }
 
   &.with-hover:hover {
-    background: #fefefe;
+    background: $bg-light;
   }
 }
 

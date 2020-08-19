@@ -91,6 +91,9 @@ GEM
       activemodel (>= 5.0)
     buftok (0.2.0)
     builder (3.2.4)
+    bullet (6.1.0)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.11)
     byebug (10.0.2)
     capistrano (3.11.0)
       airbrussh (>= 1.0.0)
@@ -127,6 +130,9 @@ GEM
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     crass (1.0.6)
+    cryptocompare (0.14.0)
+      faraday
+      json
     css_parser (1.6.0)
       addressable
     curb (0.9.10)
@@ -369,6 +375,7 @@ GEM
     unicorn (5.4.0)
       kgio (~> 2.6)
       raindrops (~> 0.7)
+    uniform_notifier (1.13.0)
     useragent (0.16.8)
     validate_url (1.0.8)
       activemodel (>= 3.0.0)
@@ -412,6 +419,7 @@ DEPENDENCIES
   bitcoin-secp256k1
   bootsnap
   bootstrap_form (~> 4.3.0)
+  bullet
   byebug
   capistrano (~> 3.11)
   capistrano-linked-files
@@ -420,6 +428,7 @@ DEPENDENCIES
   capistrano-slackify (~> 2.10.3)
   capybara (~> 3.33)
   chartkick
+  cryptocompare
   curb
   dalli
   dotiw

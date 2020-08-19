@@ -4,7 +4,8 @@ class Livepeer::Queries::ReportQuery
     @chain = delegator_list.chain
     @range_type = params[:range_type]&.to_sym
     @round_number = params[:round_number]
-    @date_range = params[:start_date]..params[:end_date]
+    @start_date = params[:start_date]
+    @end_date = params[:end_date]
   end
 
   def call
@@ -17,7 +18,8 @@ class Livepeer::Queries::ReportQuery
   attr_reader :chain
   attr_reader :range_type
   attr_reader :round_number
-  attr_reader :date_range
+  attr_reader :start_date
+  attr_reader :end_date
 
   def filter_by_range(relation)
     case range_type
@@ -35,7 +37,9 @@ class Livepeer::Queries::ReportQuery
   end
 
   def filter_by_date(relation)
-    relation.where(livepeer_rounds: { initialized_at: date_range })
+    relation.where(<<~SQL, start_date, end_date)
+      date(livepeer_rounds.initialized_at) BETWEEN ? AND ?
+    SQL
   end
 
   def filter_by_delegators(relation)
@@ -44,5 +48,12 @@ class Livepeer::Queries::ReportQuery
 
   def group_by_delegator(relation)
     relation.group(:delegator_address).select(self.class::FIELDS)
+  end
+
+  def group_by_round_and_delegator(relation)
+    relation
+      .group(:round_number, :delegator_address)
+      .select(self.class::FIELDS)
+      .order(:round_number)
   end
 end

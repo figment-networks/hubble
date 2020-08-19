@@ -5,7 +5,7 @@
 
 <% if @validator.has_info? %>
   <h2 class='mb-3'>
-    <%= @validator.moniker.truncate(40, separator: '...') %>
+    <%= @validator.moniker.truncate(40) %>
     <% if @validator.info_field( 'description', 'website' ) && (url = Addressable::URI.heuristic_parse(@validator.info_field( 'description', 'website' )).to_s rescue nil) %>
       <a class='btn btn-outline-primary ml-3' href='<%= url %>' target='_blank'>Visit Site&nbsp;&nbsp;<span class='fas fa-external-link-alt'></span></a>
     <% end -%>

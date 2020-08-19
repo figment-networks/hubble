@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
   def new
     page_title 'Hubble', 'Login'
     referrer = URI(request.referrer) rescue nil
-    if referrer
+    if referrer && Rails.application.secrets.application_host
       referrer.host, referrer.port = Rails.application.secrets.application_host.split(':')
       referrer.port = nil if referrer.port == 80
       @return_path = referrer.to_s

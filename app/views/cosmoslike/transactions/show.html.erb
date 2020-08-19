@@ -39,7 +39,7 @@
       <div class='card'>
         <h5 class='card-header'>Timestamp</h5>
         <div class='card-body'>
-          <span class='technical'><%= @block.timestamp.strftime('%Y-%m-%d @ %H:%M %Z') %></span>
+          <span class='technical'><%= format_timestamp(@block.timestamp) %></span>
         </div>
       </div>
 

@@ -1,0 +1,69 @@
+<div class='gov-proposals-table'>
+  <table data-empty='<%= proposals.empty? %>' data-with-validator='<%= !!defined?(with_validator) %>'>
+    <thead>
+      <tr role='row'>
+        <th>Title</th>
+        <th>Status</th>
+        <% if defined? with_validator -%>
+          <th>Activity</th>
+        <% else -%>
+          <th>Submitted</th>
+        <% end -%>
+      </tr>
+    </thead>
+    <tbody>
+      <% if proposals.empty? -%>
+        <tr>
+          <td colspan='<% if defined? with_validator -%>4<% else -%>3<% end -%>' class='data-table__empty'>
+            <% if defined? with_validator -%>
+              <% if with_validator.has_info? -%>
+                No governance proposal activity yet.
+              <% else -%>
+                Unable to retrieve governance activity data.
+              <% end -%>
+            <% else -%>
+              No proposals have been submitted yet.
+            <% end -%>
+          </td>
+        </tr>
+      <% else %>
+        <script>
+          App.seed.GOVERNANCE_PROPOSAL_ACTIVITY = {}
+        </script>
+        <% proposals.select(&:valid_proposal?).each do |proposal| -%>
+          <tr>
+            <td data-order='<%= proposal.title %>'>
+              <%= link_to proposal.title, namespaced_path( 'governance_proposal', proposal ) %>
+            </td>
+            <td data-order='<%= proposal.proposal_status %>'>
+              <% if !proposal.ended? -%>
+                <div class='text-sm text-muted'>Current: <%= proposal_status_string(proposal).html_safe %></div>
+              <% end -%>
+              <div class="chart-container">
+                <canvas id='<%= proposal.id %>' class='status-pie-chart'></canvas>
+              </div>
+              <script>
+                App.seed.GOVERNANCE_PROPOSAL_ACTIVITY[<%= proposal.id %>] = [
+                  <%= proposal.tally_result_yes %>,
+                  <%= proposal.tally_result_abstain %>,
+                  <%= proposal.tally_result_no %>,
+                  <%= proposal.tally_result_nowithveto %>
+                ]
+              </script>
+            </td>
+            <% if defined? with_validator -%>
+              <td>
+                <%= deposits_for_proposal_by_account( proposal, with_validator.account ) %>
+                <%= vote_for_proposal_by_account( proposal, with_validator.account ) %>
+              </td>
+            <% else -%>
+              <td data-order='<%= proposal.submit_time.to_i %>'>
+                <pre class='m-0'><%= proposal.submit_time.strftime("%Y-%m-%d<br/>at %H:%M %Z").html_safe %></pre>
+              </td>
+            <% end -%>
+          </tr>
+        <% end -%>
+      <% end -%>
+    </tbody>
+  </table>
+</div>

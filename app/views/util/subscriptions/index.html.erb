@@ -1,19 +1,17 @@
 <% content_for :body_class, 'validator-subscriptions' %>
 
-<% url = namespaced_path( 'validator_subscriptions', @validator ) %>
-
-<%= form_for (@subscription || AlertSubscription.new), url: url, html: { method: 'POST', class: 'validator-subscription-form' } do |f| -%>
+<%= form_for @subscription, url: namespaced_path('validator_subscriptions', @validator.address), html: { method: 'POST', class: 'validator-subscription-form' } do |f| -%>
   <h1 class='header'>
     Subscribe to Events
     <div class='d-flex align-items-center'>
-      <a class='btn btn-sm btn-outline-secondary' href='<%= namespaced_path( 'validator', @validator ) %>'>back</a>
+      <%= link_to 'back', namespaced_path('validator', @validator.address), class:'btn btn-sm btn-outline-secondary' %>
       <%= f.submit 'save subscription', class: 'btn btn btn-primary ml-2' %>
     </div>
   </h1>
 
   <h2>
     <label class='text-muted'>Validator</label>
-    <span class='technical'><%= @validator.short_name %></span>
+    <span class='technical'><%= @alertable.short_name %></span>
   </h2>
 
   <% if flash[:notice] %>
@@ -29,12 +27,12 @@
     </div>
   <% end -%>
 
-  <div class='row event-kinds-container mb-3 mt-4'>
-    <% grouped = @chain.validator_event_defs.group_by { |defn| defn['kind'] } -%>
-    <% grouped.keys.in_groups_of(2, false).each do |kind_group| -%>
-      <div class='col-12 col-md-6'>
+
+  <% @event_defs.keys.in_groups_of(2, false).each do |kind_group| %>
+    <div class='row event-kinds-container mb-3 mt-4'>
+      <div class='card-deck'>
         <% kind_group.each do |event_kind| -%>
-          <% definitions = grouped[event_kind] -%>
+          <% definitions = @event_defs[event_kind] -%>
           <% selected = @subscription && @subscription.subscribes_to_kind?(event_kind) -%>
           <div class='card'>
             <h5 class='card-header'>
@@ -97,14 +95,15 @@
               <div class='recent-event-count mt-4'>
                 There have been
                 <% klass = event_kind_to_class( event_kind ) -%>
-                <%= @validator.recent_events(klass, 1.week.ago).count %> instances in the past week.
+                <%= @alertable.recent_events(klass, 1.week.ago).count %> instances in the past week.
               </div>
             </div>
           </div>
         <% end -%>
       </div>
-    <% end -%>
-  </div>
+    </div>
+  <% end -%>
+
 
   <div class='d-flex flex-column align-items-center justify-content-center mt-5'/>
     <% selected = @subscription && @subscription.wants_daily_digest? -%>

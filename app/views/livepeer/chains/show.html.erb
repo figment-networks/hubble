@@ -1,6 +1,6 @@
 <% content_for :body_class, 'chain-show' %>
 
-<%= render partial: 'chain_header', locals: { delegator_lists_link: true } %>
+<%= render partial: 'chain_header', locals: { delegator_lists_link: true, events_link: true } %>
 <%= render partial: 'sync_errors' %>
 
 <div class='row info-cards'>
@@ -41,7 +41,7 @@
           <tbody>
             <% @transcoders.each do |transcoder| -%>
               <tr>
-                <td><%= transcoder_link(transcoder) %></td>
+                <td><%= render partial: 'transcoder_link', locals: { transcoder: transcoder } %></td>
                 <td class='technical' data-order='<%= transcoder.reward_cut %>'><%= number_to_percentage(transcoder.reward_cut) %></td>
                 <td class='technical' data-order='<%= transcoder.fee_share %>'><%= number_to_percentage(transcoder.fee_share) %></td>
                 <td class='d-none'>⭐️ <%= transcoder.active ? '✔' : '𐄂' %></td>
@@ -84,7 +84,7 @@
       <h5 class='card-header'>Last Sync</h5>
       <div class='card-body'>
         <% if @chain.last_sync_time -%>
-          <span class='technical'><%= @chain.last_sync_time.strftime('%Y-%m-%d @ %H:%M %Z') %></span>
+          <span class='technical'><%= format_timestamp(@chain.last_sync_time) %></span>
         <% else -%>
           <span class='text-muted'>&mdash;</span>
         <% end -%>

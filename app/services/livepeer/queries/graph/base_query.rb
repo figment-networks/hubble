@@ -32,7 +32,8 @@ class Livepeer::Queries::Graph::BaseQuery
       end
     end
   ensure
-    log("Fetched #{objects.count} #{resource_name}")
+    count = objects.count
+    log("Fetched #{count} #{resource_name.pluralize(count)}")
   end
 
   private
@@ -41,10 +42,12 @@ class Livepeer::Queries::Graph::BaseQuery
   attr_reader :round_data
 
   def resource
-    self.class.name.demodulize.delete_suffix('Query').underscore
+    self.class.name.demodulize.delete_suffix('Query').camelize(:lower)
   end
 
-  alias :resource_name :resource
+  def resource_name
+    resource.to_s.underscore.humanize.downcase
+  end
 
   def batch_size
     [self.class::BATCH_SIZE, self.class::LIMIT].compact.min

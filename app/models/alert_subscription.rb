@@ -5,6 +5,8 @@ class AlertSubscription < ApplicationRecord
   validate :subscribes_to_something?
   validate :appropriate_data?
 
+  after_destroy :check_orphaned_alertable_address
+
   scope :eligible_for_instant_alert, -> { where( 'last_instant_at <= ?', ALERT_MINIMUM_TIMEOUT.ago ) }
   scope :wants_daily_digest, -> { where( wants_daily_digest: true ) }
   scope :daily_digest_due, -> { wants_daily_digest.where( 'last_daily_at <= ?', 1.day.ago.end_of_day ) }
@@ -51,4 +53,11 @@ class AlertSubscription < ApplicationRecord
       errors.add( :base, "That is not a valid percent of voting power change to notify on." )
     end
   end
+
+  def check_orphaned_alertable_address
+    if alertable_type == "AlertableAddress"
+      alertable.destroy_if_orphaned
+    end
+  end
+
 end

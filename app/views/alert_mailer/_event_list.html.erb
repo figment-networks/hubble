@@ -42,6 +42,14 @@
                 as of block
                 <a href='<%= namespaced_path( 'block', event.height, chain: @alertable.chain, full: true ) %>'><%= event.height %></a>
               </p>
+            <% when 'Livepeer::Events::RewardCutChange' %>
+              Reward cut changed to <%= number_to_percentage(event.reward_cut) %>
+              <p class='sub'>
+                for orchestrator
+                <%= link_to namespaced_path('transcoder', event.transcoder, chain: @alertable.chain, full: true) do %>
+                  <%= event.transcoder.name_or_address %>
+                <% end -%>
+              </p>
             <% end -%>
           </td>
         </tr>

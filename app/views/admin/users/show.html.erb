@@ -58,35 +58,35 @@
             <td colspan=4>Not subscribed to anything.</td>
           </tr>
         <% end -%>
-        <% @user.alert_subscriptions.each do |sub| -%>
+        <% @user.alert_subscriptions.each do |subscription| -%>
           <tr>
             <td>
               <div>
-                <strong><%= sub.alertable.short_name %></strong>
+                <strong><%= subscription.alertable.short_name %></strong>
               </div>
               <span class='text-muted text-sm'>
-                <%= sub.alertable.chain.network_name %> /
-                <%= sub.alertable.chain.name %>
+                <%= subscription.alertable.chain.network_name %> /
+                <%= subscription.alertable.chain.name %>
               </span>
             </td>
 
             <td>
               <div>
                 <label class='text-muted text-sm'>Instant</label>
-                <%= sub.last_instant_at.strftime( '%Y-%m-%d %H:%M %Z' ) %>
+                <%= subscription.last_instant_at.strftime( '%Y-%m-%d %H:%M %Z' ) %>
               </div>
               <div>
                 <label class='text-muted text-sm'>Daily</label>
-                <%= sub.last_daily_at.strftime( '%Y-%m-%d %H:%M %Z' ) %>
+                <%= subscription.last_daily_at.strftime( '%Y-%m-%d %H:%M %Z' ) %>
               </div>
             </td>
 
             <td>
-              <%= render partial: '/users/settings/alertable_badges', locals: { sub: sub } %>
+              <%= render partial: '/users/settings/alertable_badges', locals: { subscription: subscription } %>
             </td>
 
             <td class='text-right'>
-              <%= button_to 'delete'.html_safe, admin_user_alert_subscription_path(sub.user, sub), method: 'delete', class: 'btn btn-danger btn-sm', onclick: "return confirm('Are you sure?');", form: { class: 'd-inline' } %>
+              <%= button_to 'delete'.html_safe, admin_user_alert_subscription_path(subscription.user, subscription), method: 'delete', class: 'btn btn-danger btn-sm', onclick: "return confirm('Are you sure?');", form: { class: 'd-inline' } %>
             </td>
           </tr>
         <% end -%>

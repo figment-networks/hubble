@@ -33,7 +33,8 @@
             *Emoney::Chain.alive.has_synced.to_a,
             *Livepeer::Chain.has_synced.to_a,
             *Oasis::Chain.enabled.to_a,
-            *Tezos::Chain.enabled.to_a
+            *Tezos::Chain.enabled.to_a,
+            *Near::Chain.enabled.to_a
           ].group_by(&:network_name) -%>
 
           <% if !@no_chain_select && grouped_chains.any? -%>

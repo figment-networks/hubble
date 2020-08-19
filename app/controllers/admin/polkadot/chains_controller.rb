@@ -1,11 +1,7 @@
 class Admin::Polkadot::ChainsController < Admin::BaseChainsController
-# TODO: rescue a common Client error 
   def show
-    begin
-      @status = @chain.status
-    rescue StandardError => error
-      flash[:error] = "Cant fetch service status: #{error}"
-    end
+    @status = @chain.status
+    flash[:error] = "Can't fetch service status" unless @status.success?
   end
 
   private

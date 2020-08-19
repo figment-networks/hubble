@@ -4,7 +4,7 @@ RSpec.describe Livepeer::RoundSyncService, livepeer: :graph do
   let(:chain) { create(:livepeer_chain) }
 
   let(:data) do
-    {
+    Hashie::Mash::Rash.new(
       id: '1666',
       mintable_tokens: '17774867900755010381877',
       start_block: '9596160',
@@ -28,16 +28,17 @@ RSpec.describe Livepeer::RoundSyncService, livepeer: :graph do
         }
       ],
       timestamp: '1583211347'
-    }
+    )
   end
 
   subject { described_class.new(chain, data) }
 
   before do
-    stub_graph_query(Livepeer::Queries::Graph::StakesQuery, :delegators)
+    stub_graph_query(Livepeer::Queries::Graph::StakesQuery, :stakes)
     stub_graph_query(Livepeer::Queries::Graph::BondsQuery, :bonds)
     stub_graph_query(Livepeer::Queries::Graph::UnbondsQuery, :unbonds)
     stub_graph_query(Livepeer::Queries::Graph::RebondsQuery, :rebonds)
+    stub_graph_query(Livepeer::Queries::Graph::RewardCutChangesQuery, :reward_cut_changes)
   end
 
   context 'without an existing round' do
@@ -52,7 +53,7 @@ RSpec.describe Livepeer::RoundSyncService, livepeer: :graph do
 
       expect(round.pools.count).to eq(1)
 
-      expect(round.pools[0].transcoder_address).to eq(data[:pools][0][:delegate][:id])
+      expect(round.pools[0].transcoder_address).to eq(data.pools[0].delegate.id)
       expect(round.pools[0].total_stake).to eq(BigDecimal('11933.023249176231660924'))
       expect(round.pools[0].fees).to eq(nil)
       expect(round.pools[0].reward_tokens).to eq(BigDecimal('16.761700430411974790'))
@@ -67,6 +68,8 @@ RSpec.describe Livepeer::RoundSyncService, livepeer: :graph do
       expect(round.bonds.count).to eq(3)
       expect(round.unbonds.count).to eq(2)
       expect(round.rebonds.count).to eq(2)
+
+      expect(round.reward_cut_changes.count).to eq(2)
     end
   end
 
@@ -94,6 +97,8 @@ RSpec.describe Livepeer::RoundSyncService, livepeer: :graph do
       expect(round.bonds).to be_empty
       expect(round.unbonds).to be_empty
       expect(round.rebonds).to be_empty
+
+      expect(round.reward_cut_changes).to be_empty
     end
   end
 end

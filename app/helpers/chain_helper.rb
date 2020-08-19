@@ -1,5 +1,19 @@
 module ChainHelper
 
+  def alive_with_synced_chains
+    @alive_with_synced_chains ||= [
+      *Cosmos::Chain.alive.has_synced.to_a,
+      *Terra::Chain.alive.has_synced.to_a,
+      *Iris::Chain.alive.has_synced.to_a,
+      *Kava::Chain.alive.has_synced.to_a,
+      *Emoney::Chain.alive.has_synced.to_a,
+      *Livepeer::Chain.has_synced.to_a,
+      *Oasis::Chain.enabled.to_a,
+      *Tezos::Chain.enabled.to_a,
+      *Near::Chain.enabled.to_a
+    ].sort_by!{ |chain| chain.network_name.downcase }
+  end
+
   def sort_chains( chains )
     chains.sort_by { |c| c.primary? ? 1.minute.from_now : (c.last_sync_time || Time.at(1)) }.reverse
   end

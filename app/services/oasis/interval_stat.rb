@@ -27,7 +27,13 @@ module Oasis
                   :not_validated_sum,
                   :proposed_sum,
                   :uptime_avg,
-                  :index_version
+                  :index_version,
+                  :active_escrow_balance_avg,
+                  :active_escrow_balance_max,
+                  :active_escrow_balance_min,
+                  :commission_avg,
+                  :commission_max,
+                  :commission_min
 
     def point
       { t: Time.zone.parse(time_bucket).iso8601, y: block_time_avg || uptime_avg }

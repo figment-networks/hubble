@@ -18,19 +18,19 @@
       </tr>
     <% end %>
 
-    <% chains.each do |chain| status = chain.status %>
+    <% chains.each do |chain| %>
       <tr>
         <td>
           <%= chain.name %>
-          <% if chain.enabled? -%>
+          <% if chain.status.success? -%>
             <span class='fas fa-sync fa-spin text-success' data-toggle='tooltip' data-tooltip-side='top'title='Syncing'></span>
           <% else %>
             <span class='fas fa-exclamation-triangle text-warning' data-toggle='tooltip' data-tooltip-side='top'title='Disabled'></span>
           <% end %>
         </td>
-        <td class="text-muted"><%= status.app_version %></td>
-        <td class="text-muted"><%= status.last_block_height %></td>
-        <td class="text-muted"><%= time_ago_in_words(status.last_block_time) if status.last_block_time %></td>
+        <td class="text-muted"><%= chain.status.app_version %></td>
+        <td class="text-muted"><%= chain.status.last_block_height %></td>
+        <td class="text-muted"><%= time_ago_in_words(chain.status.last_block_time) if chain.status.last_block_time %></td>
         <td class="text-right">
           <a class='btn btn-sm btn-outline-secondary' href='<%= namespaced_path(chain: chain, admin: true) %>'><span class='fas fa-edit'></span></a>
         </td>

@@ -1,0 +1,39 @@
+<% content_for :body_class, 'events-show' %>
+
+<%= render partial: 'chain_header', locals: { events_link: true } %>
+<%= render partial: 'sync_errors' %>
+
+<h3>
+  Transcoder Event for
+  <a href='<%= namespaced_path('transcoder', @transcoder) %>'><%= @transcoder.name_or_address %></a>
+</h3>
+
+<div class='mt-3'>
+  <% icon_classes = "fa fa-#{@event.icon_name} text-#{@event.positive? ? 'success' : 'danger'}" %>
+  <div class='d-flex align-items-center text-lg'>
+    <div class='d-none d-md-block <%= icon_classes %> mr-3'></div>
+    <div class='event-content'>
+      <%= render partial: @event.to_partial_path, locals: { event: @event, icon_classes: icon_classes } %>
+    </div>
+    <span class='timestamp text-sm text-muted text-nowrap ml-auto'>
+      <% date_string = @event.timestamp.strftime("%B %d, %Y") -%>
+      <% time_string = @event.timestamp.strftime("at %H:%M %Z") -%>
+      <%= date_string %> <%= time_string %>
+    </span>
+  </div>
+</div>
+
+<div class='mt-3'>
+  <% more_events_count = @chain.events.where(transcoder_address: @transcoder.address).where('timestamp > ?', @event.timestamp).count -%>
+  <% if more_events_count.zero? -%>
+    This is the most recent event for this transcoder
+  <% else -%>
+    This transcoder has had
+    <%= pluralize(more_events_count, 'more event') %>
+    since this event
+  <% end -%>
+  &nbsp;
+  <a class='btn btn-primary btn-tiny' href='<%= namespaced_path('events', transcoder_address: @transcoder.address) %>'>
+    show all <span class='fas fa-chevron-right'></span>
+  </a>
+</div>

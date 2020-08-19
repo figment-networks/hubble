@@ -1,0 +1,12 @@
+<% if @validator.has_info? && @validator.info_field('commission') -%>
+  <div class='data-block'>
+    <h3 class='data-block__title'>Commission</h3>
+    <div class="d-flex align align-items-center">
+      <span class='data-block__large-number technical'><%= round_if_whole(@validator.current_commission * 100, 0) %>%</span>
+      <div class="ml-2">
+        <span class='d-block text-label'>max <span class='technical'><%= round_if_whole(@validator.max_commission * 100, 0) %>%</span>,</span>
+        <span class='d-block text-label'>change rate &#177;<span class='technical'><%= round_if_whole(@validator.commission_change_rate * 100, 0) %>%</span></span>
+      </div>
+    </div>
+  </div>
+<% end -%>

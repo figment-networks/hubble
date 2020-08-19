@@ -18,13 +18,13 @@ class Livepeer::Adapters::BaseAdapter
     @attributes << name unless @attributes.include?(name)
   end
 
-  def self.has_many(resource)
+  def self.has_many(resource, model_class = nil)
     attribute(resource)
 
     define_method(resource) do
       data[resource].map do |resource_data|
         adapter_class = Livepeer::Factories::AdapterFactory.new(resource).call
-        model_class = Livepeer::Factories::ModelFactory.new(resource).call
+        model_class ||= Livepeer::Factories::ModelFactory.new(resource).call
 
         model_class.new(adapter_class.new(resource_data).to_h)
       end

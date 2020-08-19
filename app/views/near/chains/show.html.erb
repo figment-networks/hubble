@@ -1,6 +1,7 @@
 <% content_for :body_class, 'chain-show' %>
 
 <%= render "chain_header" %>
+<%= render "chain_status", status: @status %>
 <%= render_flash_messages %>
 
 <div class='row info-cards'>

@@ -13,11 +13,15 @@ module Near
     # Get the most recent block
     def current_block
       Near::Block.new(get("/block"))
+    rescue Common::IndexerClient::NotFoundError
+      nil
     end
 
     # Get block by hash or height
     def block(id)
       Near::Block.new(get("/blocks/#{id}"))
+    rescue Common::IndexerClient::NotFoundError
+      nil
     end
 
     alias_method :block_by_hash,   :block

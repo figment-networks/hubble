@@ -4,19 +4,19 @@ RSpec.describe Livepeer::TranscoderSyncService, livepeer: [:graph, :factory] do
   let(:chain) { create(:livepeer_chain) }
 
   let(:data) do
-    {
+    Hashie::Mash::Rash.new(
       id: '0x0119a06b51c83d0eec79708b921a57247dc37e66',
       active: true,
       reward_cut: '20000',
       fee_Share: '50000',
       total_stake: '11949784949606643635714'
-    }
+    )
   end
 
   subject { described_class.new(chain, data) }
 
   before do
-    allow(ThreeboxClient).to receive(:new).with(data[:id]) do
+    allow(ThreeboxClient).to receive(:new).with(data.id) do
       double(fetch_space: load_json_fixture(:transcoder_profile))
     end
   end
@@ -27,7 +27,7 @@ RSpec.describe Livepeer::TranscoderSyncService, livepeer: [:graph, :factory] do
 
       transcoder = chain.transcoders.take
 
-      expect(transcoder.address).to eq(data[:id])
+      expect(transcoder.address).to eq('0x0119a06b51c83d0eec79708b921a57247dc37e66')
       expect(transcoder.active).to eq(true)
       expect(transcoder.reward_cut).to eq(2)
       expect(transcoder.fee_share).to eq(5)
@@ -38,7 +38,7 @@ RSpec.describe Livepeer::TranscoderSyncService, livepeer: [:graph, :factory] do
   end
 
   context 'with an existing transcoder' do
-    let!(:transcoder) { create_transcoder(chain, address: data[:id]) }
+    let!(:transcoder) { create_transcoder(chain, address: data.id) }
 
     it "doesn't create a new record" do
       subject.call
@@ -51,7 +51,7 @@ RSpec.describe Livepeer::TranscoderSyncService, livepeer: [:graph, :factory] do
       transcoder.reload
 
       expect(transcoder.chain).to eq(chain)
-      expect(transcoder.address).to eq(data[:id])
+      expect(transcoder.address).to eq('0x0119a06b51c83d0eec79708b921a57247dc37e66')
       expect(transcoder.active).to eq(true)
       expect(transcoder.reward_cut).to eq(2)
       expect(transcoder.fee_share).to eq(5)

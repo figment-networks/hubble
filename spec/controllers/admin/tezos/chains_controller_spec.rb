@@ -33,7 +33,7 @@ RSpec.describe Admin::Tezos::ChainsController do
     end
 
     context "with invalid params" do
-      let(:params) { { } }
+      let(:params) { { foo: :bar} }
 
       it "does not save the new chain" do
         expect{ post :create, params: { tezos_chain: params } }.to change(chain.class, :count).by(0)
@@ -65,10 +65,10 @@ RSpec.describe Admin::Tezos::ChainsController do
     end
 
     context "with errors" do 
-      let(:wrong_new_params) { { } }
+      let(:wrong_new_params) { { name: "" } }
       before(:each) { put :update, params: { id: chain.slug, tezos_chain: wrong_new_params } }
 
-      it "does not udpate the chain" do 
+      it "does not update the chain" do
         expect(response).to_not have_http_status(:found)
       end
     end

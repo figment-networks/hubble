@@ -30,14 +30,10 @@
               <%= render partial: 'delegator', locals: { delegator: '' } %>
             </fieldset>
 
-            <fieldset class='delegators mb-3'>
+            <fieldset class='delegators'>
               <label>Delegators</label>
               <%= render partial: 'delegator', collection: @delegator_list.addresses %>
               <button class='add-delegator btn btn-outline-secondary d-block' type='button'>Add delegator</button>
-            </fieldset>
-
-            <fieldset class='user-select-none'>
-              <%= f.check_box :email_alerts_enabled, label: 'Subscribe to email alerts', custom: :switch %>
             </fieldset>
           </div>
         </div>

@@ -7,17 +7,29 @@ class Oasis::Chain < ApplicationRecord
   DEFAULT_TOKEN_REMOTE = 'noasis'
   DEFAULT_TOKEN_FACTOR = 9
 
+  has_many :alertable_addresses, as: :chain, dependent: :destroy
+  has_many :alert_subscriptions, through: :alertable_addresses
+
   default_scope -> { order( 'position ASC' ) }
-  scope :alive,      -> { where.not( dead: true ) }
-  scope :primary,    -> { find_by( primary: true ) || order('created_at DESC').first }
-  scope :enabled,    -> { where( disabled: false ) }
+  scope :alive, -> { where.not( dead: true ) }
+  scope :primary, -> { find_by( primary: true ) || order('created_at DESC').first }
+  scope :enabled, -> { where( disabled: false ) }
+
+  validates :name, presence: true
+  validates :slug, format: { with: /\A[a-z0-9-]+\z/ }, uniqueness: true, presence: true
+  validates :api_url, presence: true
 
   def to_param; slug; end
   def namespace; self.class.name.deconstantize.constantize; end
   def enabled?; !disabled?; end
   def network_name; 'Oasis'; end
   def token_display; 'Oasis'; end
-  def primary_token; false; end
+  def has_dashboard?; false; end
+
+  def primary_token
+    token_map.each { |k,v| return k if v['primary'] }
+    token_map.keys.first # fallback, should not happen
+  end
 
   def client
     @client ||= Oasis::Client.new(api_url)

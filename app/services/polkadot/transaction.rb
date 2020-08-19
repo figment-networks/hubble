@@ -1,43 +1,33 @@
 module Polkadot
   class Transaction < Common::Resource
-    attr_accessor :id,
-                  :time,
+    attr_accessor :extrinsic_index,
+                  :hash,
+                  :is_signed,
                   :block,
-                  :extrinsic_index,
-                  :extrinsic_hash,
-                  :module,
-                  :call,
-                  :description,
-                  :address,
-                  :nonce,
-                  :section,
                   :signature,
-                  :signer,
-                  :parameters
+                  :account,
+                  :nonce,
+                  :method_name,
+                  :section,
+                  :args,
+                  :is_success,
+                  :time
 
     def initialize(attrs = {})
+      attrs["method_name"] = attrs.delete("method")
+      attrs["account"] = attrs.delete("signer")
       super(attrs)
-
       @time = Time.zone.parse(time)
     end
 
-    #TODO: put these in a TransactionDecorator, name properly
-    HUMANIZED_CALLS = { 'transfer' => 'Send' }
-
-    def humanized_call
-      HUMANIZED_CALLS[call] || call
+    def id
+      hash
     end
 
-    HUMANIZED_PARAMETERS = {
-      'destination' => 'To',
-      'value' => 'Amount'
-    }
-
-    def humanized_parameters
-      parameters.inject({}) do |result, (key, value)|
-        result[HUMANIZED_PARAMETERS[key] || key] = value
-        result
-      end
+    def self.from_block(block)
+      block.extrinsics.
+        select { |extrinsic| extrinsic['is_signed'] }.
+        map { |extrinsic| new(extrinsic.merge({ 'block' => block.height })) }
     end
   end
 end

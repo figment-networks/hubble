@@ -24,18 +24,18 @@
             </tr>
           </thead>
           <tbody>
-            <% @report.data.each.with_index do |data, index| %>
+            <% @report.data.each.with_index do |data, index| -%>
               <tr>
                 <td><%= index + 1 %></td>
-                <td><%= delegator_link(data[:delegator_address]) %></td>
-                <td><%= eth_amount(data[:fees]) %></td>
-                <td><%= lpt_amount(data[:reward_tokens]) %></td>
-                <td><%= lpt_amount(data[:pending_stake]) %></td>
-                <td><%= lpt_amount(data[:unclaimed_stake]) %></td>
-                <td><%= lpt_amount(data[:unbonding_tokens]) %></td>
-                <td><%= lpt_amount(data[:unbonded_tokens]) %></td>
+                <td><%= livepeer_explorer_link(data[:delegator_address], page: :staking, short: true) %></td>
+                <td><%= livepeer_eth_amount(data[:fees]) %></td>
+                <td><%= livepeer_lpt_amount(data[:reward_tokens]) %></td>
+                <td><%= livepeer_lpt_amount(data[:pending_stake]) %></td>
+                <td><%= livepeer_lpt_amount(data[:unclaimed_stake]) %></td>
+                <td><%= livepeer_lpt_amount(data[:unbonding_tokens]) %></td>
+                <td><%= livepeer_lpt_amount(data[:unbonded_tokens]) %></td>
               </tr>
-            <% end %>
+            <% end -%>
           </tbody>
         </table>
       </div>
@@ -46,22 +46,20 @@
     <div class='card'>
       <h5 class='card-header'>Delegator List</h5>
       <div class='card-body'>
-        <a href='<%= namespaced_path('delegator_list', @delegator_list, pre_path: 'edit') %>' target='_blank'>
-          <%= @delegator_list.name %>
-        </a>
+        <%= link_to @delegator_list.name, namespaced_path('delegator_list', @delegator_list, pre_path: 'edit'), target: '_blank' %>
       </div>
     </div>
-    <% if params[:range_type] == 'round' -%>
+    <% if round_range? -%>
       <div class='card'>
         <h5 class='card-header'>Round</h5>
         <div class='card-body'>
-          <a class='large-number' href='<%= namespaced_path('round', params[:round_number]) %>'>
+          <%= link_to namespaced_path('round', params[:round_number]), class: 'large-number' do %>
             <span class='technical'><%= params[:round_number] %></span>
-          </a>
+          <% end %>
         </div>
       </div>
     <% end -%>
-    <% if params[:range_type] == 'date' -%>
+    <% if date_range? -%>
       <div class='card'>
         <h5 class='card-header'>Date Range</h5>
         <div class='card-body'>

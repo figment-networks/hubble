@@ -8,6 +8,8 @@ class Livepeer::Adapters::RoundAdapter < Livepeer::Adapters::BaseAdapter
   has_many :unbonds
   has_many :rebonds
 
+  has_many :reward_cut_changes, Livepeer::Events::RewardCutChange
+
   def initialized_at
     convert_timestamp(data.timestamp)
   end

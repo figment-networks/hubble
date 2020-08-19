@@ -1,0 +1,22 @@
+{
+  "data": {
+    "rewardCutChanges": [
+      {
+        "delegate": {
+          "id": "0xfb9849b0b53f66b747bfa47396964a3fa22400a0"
+        },
+        "rewardCut": "0",
+        "timestamp": "1525187897",
+        "transactionHash": "0xef26f6072653d496bd1804d20f3f4bb23d2e55793ba9a6b618ea0d9ab03a86a0"
+      },
+      {
+        "delegate": {
+          "id": "0x4f4758f7167b18e1f5b3c1a7575e3eb584894dbc"
+        },
+        "rewardCut": "500000",
+        "timestamp": "1525198142",
+        "transactionHash": "0xa523b8d0b98f58e372a79f0d950cb05bef0a7b9ffd8ae4216155734b3a5beb7f"
+      }
+    ]
+  }
+}

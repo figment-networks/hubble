@@ -1,17 +1,17 @@
-<a class='d-block' href='<%= namespaced_path( 'validator_subscriptions', sub.alertable, chain: sub.alertable.chain ) %>'>
-  <%= sub.alertable.short_name( 30 ) -%>
-</a>
+<%= link_to namespaced_path("#{subscription.alertable.model_name.element}_subscriptions", subscription.alertable, chain: subscription.alertable.chain), class: 'd-block' do %>
+  <%= subscription.alertable.short_name(30) -%>
+<% end %>
 
 <div class='sub-info'>
   <small>
     <span class='text-muted'>Last notified:</span>
     <span class='d-block d-md-inline'>
-      <% if sub.instant_count + sub.daily_count > 0 -%>
-        <%= [sub.last_instant_at, sub.last_daily_at].compact.max.strftime("%b %-d, %Y @ %H:%M") %>
+      <% if subscription.instant_count + subscription.daily_count > 0 -%>
+        <%= [subscription.last_instant_at, subscription.last_daily_at].compact.max.strftime("%b %-d, %Y @ %H:%M") %>
       <% else -%>
         Never
       <% end -%>
     </span>
-    <span class='text-muted'>(<%= sub.instant_count + sub.daily_count %> total)</span>
+    <span class='text-muted'>(<%= subscription.instant_count + subscription.daily_count %> total)</span>
   </small>
 </div>

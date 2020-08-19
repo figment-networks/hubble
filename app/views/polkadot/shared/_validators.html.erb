@@ -1,0 +1,70 @@
+<section class='validators'>
+  <div class='validator-table-header'>
+    <h4>
+      Validators
+      <small>&nbsp;&mdash; <%= validators.count %> total&nbsp;</small>
+    </h4>
+
+    <div class='controls'>
+      <input type='text' class='form-control form-control-sm validator-search' placeholder='filter validators...'>
+      <a tabindex=0 class='btn btn-sm btn-outline-light validator-table-settings-target'><span class='fas fa-cog'></span></a>
+      <div class='validator-table-settings d-none'>
+        <div class='btn-group' role='group' aria-label='Validator table filter'>
+          <button type='button' data-target='_all_' class='btn btn-outline-primary'>All</button>
+          <button type='button' data-target='_active_' class='btn btn-outline-primary'>Active</button>
+          <button type='button' data-target='_inactive_' class='btn btn-outline-primary'>Inactive</button>
+        </div>
+      </div>
+      <script>
+        App.config.currentValidatorFilter = '_all_'
+      </script>
+    </div>
+  </div>
+
+  <div class='validator-table'>
+    <table>
+      <thead>
+      <tr>
+        <th>Address/Name</th>
+        <th>Total stake</th>
+        <th>Commission</th>
+        <th>Uptime</th>
+        <th>State</th>
+        <th class='d-none'></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% validators.each do |validator| -%>
+        <tr>
+          <td data-order='<%= validator.stash_account %>'>
+            <a href='#'>
+              <strong><%= validator.account_details.display_name.truncate(38) %></strong>
+            </a>
+          </td>
+          <td data-order='<%= validator.total_stake %>'>
+            <%= format_amount(validator.total_stake, @chain, denom: @chain.class::DEFAULT_TOKEN_REMOTE) %>
+          </td>
+          <td data-order='<%= validator.commission_percentage %>'>
+            <%= validator.commission_percentage %> %
+          </td>
+          <td data-order='<%= validator.accumulated_uptime %>' class='technical'><%= round_if_whole(validator.accumulated_uptime * 100, 2) %>
+            %
+          </td>
+          <td data-order='<%= validator.online? %>'>
+            <% if validator.online? -%>
+              <span class='badge badge-lg badge-success'>UP</span>
+            <% else -%>
+              <span class='badge badge-lg badge-danger'>DOWN</span>
+            <% end -%>
+          </td>
+          <td class='d-none'>
+            _all_ <%= validator.online? ? '_active_' : '_inactive_' %>
+            <%= validator.stash_account %>
+            <%= validator.account_details.display_name %>
+          </td>
+        </tr>
+      <% end -%>
+      </tbody>
+    </table>
+  </div>
+</section>

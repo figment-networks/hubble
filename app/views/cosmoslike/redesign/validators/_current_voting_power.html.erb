@@ -1,0 +1,25 @@
+<% latest_block = @chain.blocks.first -%>
+
+<div class='data-block'>
+  <div>
+    <div>
+      <h3 class='data-block__title'>Current Voting Power</h3>
+      <div class='d-flex flex-wrap align-items-end justify-content-between'>
+        <div class='data-block__large-number mr-4'>
+          <%= format_amount(@validator.current_voting_power, denom: @chain.token_map[@chain.primary_token]['display']) %>
+        </div>
+
+        <% if @validator.info_field('jailed') -%>
+          <span class='badge badge-danger'>JAILED</span>
+        <% elsif !@validator.in_active_set?( latest_block ) -%>
+          <span class='badge badge-danger'>NOT IN VOTING SET</span>
+        <% else -%>
+          <div>
+            <span class='data-block__value'><%= round_if_whole @validator.proposal_probability * 100, 2 %>%</span>
+            <span class='d-block text-label'>Proposal Probability</span>
+          </div>
+        <% end -%>
+      </div>
+    </div>
+  </div>
+</div>

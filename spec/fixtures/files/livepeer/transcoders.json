@@ -6,21 +6,38 @@
         "feeShare": null,
         "id": "0x0000000000000000000000000000000000000000",
         "rewardCut": null,
-        "totalStake": "0"
+        "totalStake": "0",
+        "delegators": []
       },
       {
         "active": false,
         "feeShare": "50000",
         "id": "0x00b1606fc5b771f3079b4fd3ea49e66a2d5fd665",
         "rewardCut": "100000",
-        "totalStake": "10429382433426184260"
+        "totalStake": "10429382433426184260",
+        "delegators": [
+          {
+            "id": "0x014843f776d78e32ef6bd7c6a6a2d2393865c7c4"
+          },
+          {
+            "id": "0x016f5bdeb5d994b9dedc210e6014630d1ef50f31"
+          }
+        ]
       },
       {
         "active": true,
         "feeShare": "50000",
         "id": "0x0119a06b51c83d0eec79708b921a57247dc37e66",
         "rewardCut": "20000",
-        "totalStake": "11949784949606643635714"
+        "totalStake": "11949784949606643635714",
+        "delegators": [
+          {
+            "id": "0x031f584479760bf6a0e6e3246cceadb6e4d66bc0"
+          },
+          {
+            "id": "0x03c322db3f0d92ccdf6f8b6effd4031c94bed1ab"
+          }
+        ]
       }
     ]
   }

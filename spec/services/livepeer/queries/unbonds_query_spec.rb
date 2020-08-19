@@ -9,35 +9,35 @@ RSpec.describe Livepeer::Queries::UnbondsQuery, livepeer: :factory do
   subject { described_class.new(delegator_list, params) }
 
   it 'returns unbonds grouped by delegator' do
-    result = subject.call
+    results = subject.call
 
-    expect(result.length).to eq(2)
+    expect(results.length).to eq(2)
 
-    expect(result[1].delegator_address).to eq(delegators[0])
-    expect(result[1].unbonded_tokens).to eq(200)
+    expect(results[0].delegator_address).to eq(delegators[0])
+    expect(results[0].unbonded_tokens).to eq(200)
 
-    expect(result[0].delegator_address).to eq(delegators[1])
-    expect(result[0].unbonded_tokens).to eq(1000)
+    expect(results[1].delegator_address).to eq(delegators[1])
+    expect(results[1].unbonded_tokens).to eq(1000)
   end
 
   context 'when the range type is round' do
     let(:params) do
       {
         range_type: 'round',
-        round_number: withdraw_rounds[0].number
+        round_number: withdraw_rounds[0].number.to_s
       }
     end
 
     it 'filters unbonds by round' do
-      result = subject.call
+      results = subject.call
 
-      expect(result.length).to eq(2)
+      expect(results.length).to eq(2)
 
-      expect(result[1].delegator_address).to eq(delegators[0])
-      expect(result[1].unbonded_tokens).to eq(200)
+      expect(results[0].delegator_address).to eq(delegators[0])
+      expect(results[0].unbonded_tokens).to eq(200)
 
-      expect(result[0].delegator_address).to eq(delegators[1])
-      expect(result[0].unbonded_tokens).to eq(400)
+      expect(results[1].delegator_address).to eq(delegators[1])
+      expect(results[1].unbonded_tokens).to eq(400)
     end
   end
 
@@ -45,18 +45,18 @@ RSpec.describe Livepeer::Queries::UnbondsQuery, livepeer: :factory do
     let(:params) do
       {
         range_type: 'date',
-        start_date: withdraw_rounds[1].initialized_at.beginning_of_day,
-        end_date: withdraw_rounds[2].initialized_at.end_of_day
+        start_date: withdraw_rounds[1].initialized_at.to_date.to_s,
+        end_date: withdraw_rounds[2].initialized_at.to_date.to_s
       }
     end
 
     it 'filters unbonds by date' do
-      result = subject.call
+      results = subject.call
 
-      expect(result.length).to eq(1)
+      expect(results.length).to eq(1)
 
-      expect(result[0].delegator_address).to eq(delegators[1])
-      expect(result[0].unbonded_tokens).to eq(600)
+      expect(results[0].delegator_address).to eq(delegators[1])
+      expect(results[0].unbonded_tokens).to eq(600)
     end
   end
 end

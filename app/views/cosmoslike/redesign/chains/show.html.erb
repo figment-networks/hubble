@@ -1,0 +1,217 @@
+<% content_for :body_class, 'chain-show' %>
+
+<%= render partial: '/cosmoslike/redesign/shared/chain_header', locals: { active_tab: 'Validators', faucet_link: true, events_link: true, reports_link: true } %>
+<div class='content'>
+  <div class='container'>
+
+    <div class='row info-cards'>
+      <div class='col-12 col-md-9 order-1 order-md-0'>
+        <%= render partial: '/cosmoslike/redesign/shared/sync_errors' %>
+        <div class="row">
+          <div class="col-lg-6 mb-5">
+            <div class='data-block'>
+              <h5 class='data-block__title'>Voting Power</h5>
+              <div>
+                <div class='d-flex justify-content-between align-items-baseline'>
+                  <div>
+                    <span class='data-block__value'><%= chain_voting_power_online_percentage(@chain) %></span>
+                    <span class='data-block__label'>Online</span>
+                  </div>
+
+                  <div class='validator-sparkline-switcher'>
+                    <button type='button' data-target='last48h' class='bg-transparent border-0 p-0 text-small'>Past 48h</button>
+                    <button type='button' data-target='last30d' class='bg-transparent border-0 p-0 ml-2 text-small'>Past 30d</button>
+                  </div>
+                </div>
+
+                <div class='charts data-block__chart'>
+                  <div class='small-average-voting-power-last48h-chart-container'>
+                    <canvas class='average-voting-power-last48h-chart'></canvas>
+                  </div>
+                  <div class='small-average-voting-power-last30d-chart-container'>
+                    <canvas class='average-voting-power-last30d-chart'></canvas>
+                  </div>
+                </div>
+
+                <script>
+                  App.seed.AVERAGE_VOTING_POWER = {
+                    last48h: <%= AverageSnapshotDecorator.new( @chain, 'voting-power', 'hour', 48 ).as_json.to_json.html_safe %>,
+                    last30d: <%= AverageSnapshotDecorator.new( @chain, 'voting-power', 'day', 30 ).as_json.to_json.html_safe %>
+                  }
+                </script>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 mb-5">
+            <div class='data-block'>
+              <h5 class='data-block__title'>Average Block Time</h5>
+              <div>
+                <div class='d-flex justify-content-between align-items-baseline'>
+                  <div>
+                    <span class='data-block__value'>
+                      <%= @chain.average_block_time.round(2) %>
+                    </span>
+                    <span class="data-block__label">seconds</span>
+                  </div>
+                  <span class="text-small">Past 48 Hours</span>
+                </div>
+
+                <div class='small-average-block-time-chart-container data-block__chart'>
+                  <canvas class='average-block-time-chart'></canvas>
+                </div>
+
+                <script>
+                  App.seed.AVERAGE_BLOCK_TIME = <%= AverageSnapshotDecorator.new( @chain, 'block-time', 'hour', 48 ).as_json.to_json.html_safe %>
+                </script>
+              </div>
+            </div>
+          </div>
+        </div>
+        <section class='validators'>
+          <div class='validator-table-header justify-content-between py-1 flex-wrap'>
+
+            <div class='d-flex align-items-center flex-grow-1 py-2'>
+              <h4>Validators</h4>
+              <input type='text' class='form-control validator-search' placeholder='Search to filter...'>
+            </div>
+
+            
+            <div class='d-flex align-items-center py-2'>
+              <div class="custom-control custom-radio mr-4">
+                <input class="custom-control-input" type="radio" name="validator-filter" id="filterAll" value='⭐️' checked>
+                <label class="custom-control-label" for="filterAll">All</label>
+              </div>
+              <div class="custom-control custom-radio mr-4">
+                <input class="custom-control-input" type="radio" name="validator-filter" id="filterActive" value='✔'>
+                <label class="custom-control-label" for="filterActive">
+                  Active
+                </label>
+              </div>
+              <div class="custom-control custom-radio">
+                <input class="custom-control-input" type="radio" name="validator-filter" id="filterInactive" value='𐄂'>
+                <label class="custom-control-label" for="filterInactive">
+                  Inactive
+                </label>
+              </div>
+            </div>
+            <script>
+              App.config.currentValidatorFilter = '⭐️'
+            </script>
+          </div>
+
+          <div class='validator-table'>
+            <table>
+              <thead>
+                <tr>
+                  <th>Address/Name</th>
+                  <th>Voting Power</th>
+                  <th>Uptime</th>
+                  <th class='d-none'></th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @chain.validators.each do |v| -%>
+                  <tr>
+                    <td>
+                      <a href='<%= namespaced_path( 'validator', v ) %>'>
+                        <% if v.moniker -%>
+                          <strong><%= v.moniker.truncate(40) %></strong>
+                        <% else %>
+                          <span class='technical'><%= (v.owner || v.address).truncate(40) %></span>
+                        <% end -%>
+                      </a>
+                    </td>
+                    <td data-order='<%= v.current_voting_power %>'><%= format_amount(v.current_voting_power, denom: @chain.token_map[@chain.primary_token]['display']) %></td>
+                    <td data-order='<%= v.current_uptime %>' class='technical'><%= round_if_whole((v.current_uptime * 100).round(0)) %>%</td>
+                    <td class='d-none'>
+                      ⭐️ <%= v.active? ? '✔' : '𐄂' %> <!-- for the gear toggles -->
+                      <%= v.owner %> <%= v.address %> <!-- so you can paste your address into search -->
+                    </td>
+                  </tr>
+                <% end -%>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+
+      <div class='col-12 col-md-3 order-0 order-md-1 info-cards mb-5'>
+        <div class='data-block'>
+          <h5 class='data-block__title'>Current Block</h5>
+          <div>
+            <a class='data-block__large-number' href='<%= namespaced_path( 'block', @latest_block ) %>'>
+              <span class='technical'><%= @latest_block.height %></span>
+            </a>
+            <div class=''>
+              <small class='text-muted'>
+                <%= @latest_block.timestamp %>
+                <br/>
+                <%= time_ago_in_words( @latest_block.timestamp, true ) %> ago
+              </small>
+            </div>
+          </div>
+
+          <div class="row f-wrap justify-content-between">
+            <div class="col-xl-6 col-lg-12 col-md-12 col-sm-6  mt-4" hidden>
+              <p class="text-small m-0">Rewards</p>
+              <p class="data-block__value m-0">8.21%</p>
+            </div>
+            <div class="col-xl-6 col-lg-12 col-md-12 col-sm-6  mt-4">
+              <p class="text-small m-0">Inflation</p>
+              <p class="data-block__value m-0"><%= @chain.inflation %>%</p>
+            </div>
+            <div class="col-xl-6 col-lg-12 col-md-12 col-sm-6  mt-4">
+              <p class="text-small m-0">Staked Tokens</p>
+              <p class="data-block__value m-0">
+                <%- format_args = { denom: @chain.primary_token, precision: 0, hide_units: true, in_millions: true } %>
+                <%= format_amount(@chain.staked_amount, format_args ) %>/<%= format_amount(@chain.total_supply, format_args ) %>
+              </p>
+            </div>
+            <div class="col-xl-6 col-lg-12 col-md-12 col-sm-6  mt-4">
+              <p class="text-small m-0">Validators</p>
+              <p class="data-block__value m-0">
+                <%= @chain.validators.active.count %><span class="data-block__value-muted">/<%= @chain.validators.count %></span>
+              </p>
+            </div>
+          </div>
+          
+        </div>
+
+        <% if @chain.governance_params_synced? -%>
+          <div class='card'>
+            <h5 class='card-header'>Governance</h5>
+            <div class='card-body'>
+              <div>
+                <label class='d-inline'>Total Proposals:</label>
+                <div class='stat-value d-inline'>
+                  <span class='technical'><%= @chain.governance_proposals.select(&:valid_proposal?).count %></span>
+                </div>
+              </div>
+              <div>
+                <label class='d-inline'>Pending Proposals:</label>
+                <div class='stat-value d-inline'>
+                  <span class='technical'><%= @chain.governance_proposals.voting_open.count %></span>
+                </div>
+              </div>
+
+              <div class='mt-3'>
+                <%= link_to 'View Proposals', namespaced_path( 'governance_root' ), class: 'btn btn-outline-secondary btn-sm d-block' %>
+              </div>
+            </div>
+          </div>
+        <% end -%>
+
+        <% if @chain.community_pool -%>
+          <div class='card'>
+            <h5 class='card-header'>Community Pool</h5>
+            <div class='card-body'>
+              <% @chain.community_pool.each do |balance| -%>
+                <div><%= format_amount( balance['amount'], @chain, denom: balance['denom'] ) %></div>
+              <% end -%>
+            </div>
+          </div>
+        <% end -%>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,125 +1,143 @@
-<h2 class='header'>
-  <div>Sync Logs for <%= @chain.name %></div>
-  <% url = namespaced_path -%>
-  <small><a class='btn btn-sm btn-outline-secondary' href='<%= url %>'>back</a></small>
-</h2>
+<%= render partial: '/cosmoslike/redesign/shared/chain_header', locals: { active_tab: nil, faucet_link: true, events_link: true, reports_link: true } %>
 
-<table class='table'>
-  <thead class='thead-light'>
-    <tr>
-      <th>Date</th>
-      <th># of Syncs</th>
-      <th>Total Syncing Time</th>
-      <th>Total Blocks</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% if @dailies.empty? -%>
-      <tr>
-        <td colspan='4'>No daily records yet.</td>
-      </tr>
-    <% end -%>
-    <% @dailies.each do |log| -%>
-      <tr>
-        <td>
-          <span class='technical'><%= log.date.strftime("%Y-%m-%d") %></span>
-          <% if !log.persisted? -%>
-            <div><span class='badge badge-primary'>So far today <span class='fas fa-sync fa-spin'></span></span></div>
-          <% end -%>
-        </td>
-        <td>
-          <span class='technical'><%= log.sync_count %></span>
-          <div><small class='text-muted'>
-            <%= log.fail_count %> failed
-            (<%= ((log.fail_count / log.sync_count.to_f) * 100.0).round(2) %>%)
-          </small></div>
-        </td>
-        <td>
-          <%= time_ago_in_words( log.total_sync_time.seconds.ago ) %>
-          <div><small class='text-muted'><%= time_ago_in_words((log.total_sync_time / log.sync_count).seconds.ago) %> average</small></div>
-        </td>
-        <td>
-          <span class='technical'><%= log.total_blocks || '&mdash;'.html_safe %></span>
-          <% if log.end_height && log.start_height -%>
-            <small class='text-muted technical'><%= log.start_height %> &rarr; <%= log.end_height %></small>
-            <div><small class='text-muted'><%= ((log.end_height - log.start_height) / log.sync_count.to_f).ceil %> blocks average</small>
-          <% end -%>
-        </td>
-      </tr>
-    <% end -%>
-  </tbody>
-  <tfoot>
-    <tr>
-      <td colspan='4' class='text-muted'>
-        <% if params.has_key?(:all) -%>
-          <%= @total_dailies %> daily sync logs.
-          <a href='<%= namespaced_path( 'logs' ) %>'>Show less &raquo;</a>
-        <% else -%>
-          Most recent <%= @dailies.count %> days of <%= @total_dailies %> daily logs.
-          <a href='<%= namespaced_path( 'logs' ) %>?all'>Show all &raquo;</a>
-        <% end -%>
-      </td>
-    </tr>
-  </tfoot>
-</table>
+<div class="content">
+  <div class="container">
+    <div class='d-flex flex-wrap justify-content-between align-items-center mb-3'>
+      <h2 class="data-table__title pl-3">Sync Logs for <%= @chain.name %></h2>
+      <% url = namespaced_path -%>
+      <%= link_to 'Back', url, class: "text-small text-underline text-muted" %>
+    </div>
 
-<h4 class='mt-5'>Detailed Sync Log</h4>
-
-<table class='table'>
-  <thead class='thead-light'>
-    <tr>
-      <th>Start Time</th>
-      <th>Completion Time</th>
-      <th>Blocks</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @minutelies.each do |log| -%>
-      <tr>
-        <td class='text-nowrap'>
-          <span class='technical'><%= log.started_at %></span>
-          <div><small class='text-muted'><%= time_ago_in_words( log.started_at ) %> ago</small></div>
-        </td>
-        <td class='text-nowrap'>
-          <div class='technical'><%= log.completed_at %></div>
-          <div>
-            <% if log.success? -%>
-              <small class='text-muted'><%= distance_of_time_in_words( log.started_at, log.completed_at ) %> later</small>
-            <% elsif log.failed? -%>
-              <span class='badge badge-danger technical'>failed</span>
-            <% else -%>
-              <span class='badge badge-info technical'>in progress (<%= log.current_status || 'init' %>)</span>
-            <% end -%>
-          </div>
-        </td>
-        <td>
-          <% if log.success? -%>
-            <% count = log.end_height - (log.start_height - 1) -%>
-            <span class='technical'><%= count %></span> <span class='text-muted text-sm'>new block<%= count == 1 ? '' : 's' %></span>
-            <div><small class='text-muted technical'><%= log.start_height %> &rarr; <%= log.end_height %></small></div>
-          <% elsif log.error && current_admin -%>
-            <% error_lines = log.error.split("\n") -%>
-            <strong><tt><%= error_lines.shift %></tt></strong>
-            <% error_lines = error_lines.select { |line| line.starts_with?(Rails.root.to_s) }.map { |line| line.sub(Rails.root.to_s, '...') } -%>
-            <pre><%= error_lines.take(10).join("\n") + (error_lines.count > 10 ? "\n..." : '') %></pre>
-          <% else -%>
-            <span class='text-muted'>&mdash;</span>
+    <div class='data-table mt-3 mb-5'>
+      <table class='w-100'>
+        <thead class='thead-light'>
+          <tr>
+            <th>Date</th>
+            <th># of Syncs</th>
+            <th>Total Syncing Time</th>
+            <th>Total Blocks</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if @dailies.empty? -%>
+            <tr>
+              <td colspan='4' class="data-table__empty">No daily records yet.</td>
+            </tr>
           <% end -%>
-        </td>
-      </tr>
-    <% end -%>
-  </tbody>
-  <tfoot>
-    <tr>
-      <td colspan='3' class='text-muted'>
-        <% if params.has_key?(:all) -%>
-          <%= @total_minutelies %> by-the-minute sync logs.
-          <a href='<%= namespaced_path( 'logs' ) %>'>Show less &raquo;</a>
-        <% else -%>
-          Most recent <%= @minutelies.count %> syncs shown of <%= @total_minutelies %> by-the-minute logs.
-          <a href='<%= namespaced_path( 'logs' ) %>?all'>Show all &raquo;</a>
-        <% end -%>
-      </td>
-    </tr>
-  </tfoot>
-</table>
+          <% @dailies.each do |log| -%>
+            <tr>
+              <td>
+                <span class='technical d-block'><%= log.date.strftime("%Y-%m-%d") %></span>
+                <% if !log.persisted? -%>
+                  <span class='sync-badge'>So far today <span class='fa-spin'></span></span>
+                <% end -%>
+              </td>
+              <td>
+                <span class='technical d-block'><%= log.sync_count %></span>
+                <small class='text-muted'>
+                  <%= log.fail_count %> failed
+                  (<%= ((log.fail_count / log.sync_count.to_f) * 100.0).round(2) %>%)
+                </small>
+              </td>
+              <td>
+                <span class='technical d-block'><%= time_ago_in_words( log.total_sync_time.seconds.ago ) %></span>
+                <small class='text-muted'><%= time_ago_in_words((log.total_sync_time / log.sync_count).seconds.ago) %> average</small>
+              </td>
+              <td>
+                <span class='technical'><%= log.total_blocks || '&mdash;'.html_safe %></span>
+                <% if log.end_height && log.start_height -%>
+                  <small class='text-muted technical'><%= log.start_height %> &rarr; <%= log.end_height %></small>
+                  <small class='text-muted d-block'><%= ((log.end_height - log.start_height) / log.sync_count.to_f).ceil %> blocks average</small>
+                <% end -%>
+              </td>
+            </tr>
+          <% end -%>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan='4' class="p-0">
+              <% if !@dailies.empty? -%>
+                <div class="py-2 px-3">
+                  <% if params.has_key?(:all) -%>
+                    <%= @total_dailies %> daily sync logs.
+                    <%= link_to 'Show less', namespaced_path( 'logs' ), class: "text-small text-underline" %>
+                  <% else -%>
+                    <div class="d-flex flex-wrap justify-content-between align-items-center">
+                      <%= link_to 'Load more', "#{namespaced_path( 'logs' )}?all", class: "text-small text-underline" %>
+                      <p class="text-label m-0">
+                        <%= pluralize( @dailies.count, 'day' ) %>
+                        of <%= @total_dailies %> daily logs.
+                      </p>
+                    </div>
+                  <% end -%>
+                </div>
+              <% end -%>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <h2 class='data-table__title pl-3 w-100'>Detailed Sync Log</h2>
+    <div class='data-table mt-3'>
+      <table class='w-100'>
+        <thead class='thead-light'>
+          <tr>
+            <th>Start Time</th>
+            <th>Completion Time</th>
+            <th>Blocks</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @minutelies.each do |log| -%>
+            <tr>
+              <td class='text-nowrap'>
+                <span class='technical paragraph'><%= log.started_at %></span>
+                <small class='text-label d-block'><%= time_ago_in_words( log.started_at ) %> ago</small>
+              </td>
+              <td class='text-nowrap'>
+                <div class='technical paragraph'><%= log.completed_at %></div>
+                <div>
+                  <% if log.success? -%>
+                    <small class='text-label'><%= distance_of_time_in_words( log.started_at, log.completed_at ) %> later</small>
+                  <% elsif log.failed? -%>
+                    <span class='badge badge-danger technical'>failed</span>
+                  <% else -%>
+                    <span class='badge badge-info technical'>in progress (<%= log.current_status || 'init' %>)</span>
+                  <% end -%>
+                </div>
+              </td>
+              <td>
+                <% if log.success? -%>
+                  <% count = log.end_height - (log.start_height - 1) -%>
+                  <span class='technical paragraph'><%= count %></span> <span class='technical paragraph'>new block<%= count == 1 ? '' : 's' %></span>
+                  <small class='text-label d-block'><%= log.start_height %> &rarr; <%= log.end_height %></small>
+                <% elsif log.error && current_admin -%>
+                  <% error_lines = log.error.split("\n") -%>
+                  <strong><tt><%= error_lines.shift %></tt></strong>
+                  <% error_lines = error_lines.select { |line| line.starts_with?(Rails.root.to_s) }.map { |line| line.sub(Rails.root.to_s, '...') } -%>
+                  <pre><%= error_lines.take(10).join("\n") + (error_lines.count > 10 ? "\n..." : '') %></pre>
+                <% else -%>
+                  <span class='text-label'>&mdash;</span>
+                <% end -%>
+              </td>
+            </tr>
+          <% end -%>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan='3'>
+              <% if params.has_key?(:all) -%>
+                <span class="paragraph d-block"><%= pluralize( @total_minutelies, 'by-the-minute sync log' ) %>.</span>
+                <%= link_to 'Show less', namespaced_path( 'logs' ), class: "text-small text-underline" %>
+              <% else -%>
+                
+                <%= link_to 'Load more', "#{namespaced_path( 'logs' )}?all", class: "text-small text-underline" %>
+              <% end -%>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</div>
