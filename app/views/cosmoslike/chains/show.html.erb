@@ -50,9 +50,9 @@
                 <td>
                   <a href='<%= namespaced_path( 'validator', v ) %>'>
                     <% if v.moniker -%>
-                      <strong><%= v.moniker.truncate(40, separator: '...') %></strong>
+                      <strong><%= v.moniker.truncate(40) %></strong>
                     <% else %>
-                      <span class='technical'><%= (v.owner || v.address).truncate(40, separator: '...') %></span>
+                      <span class='technical'><%= (v.owner || v.address).truncate(40) %></span>
                     <% end -%>
                   </a>
                 </td>

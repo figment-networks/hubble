@@ -49,8 +49,8 @@
                     <strong><%= v.address.truncate(30) %></strong>
                   </a>
                 </td>
-                <td data-order='<%= v.recent_total_shares %>'><%= format_amount(v.recent_total_shares, denom: 'noasis') %></td>
-                <td data-order='<%= v.recent_total_shares %>'><%= voting_power_percent(v.recent_total_shares, @voting_power) %>%</td>
+                <td data-order='<%= v.recent_active_escrow_balance %>'><%= format_amount(v.recent_active_escrow_balance, denom: 'noasis') %></td>
+                <td data-order='<%= v.recent_active_escrow_balance %>'><%= voting_power_percent(v.recent_active_escrow_balance, @voting_power) %>%</td>
                 <td data-order='<%= v.uptime %>' class='technical'><%= round_if_whole(v.uptime * 100, 2) %>%</td>
                 <td class='d-none'>
                   _all_ <%= v.active? ? '_active_' : '_inactive_' %> <!-- for the gear toggles -->

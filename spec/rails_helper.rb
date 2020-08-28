@@ -33,8 +33,9 @@ RSpec.configure do |config|
   config.include ActiveSupport::Testing::TimeHelpers
   config.include FactoryBot::Syntax::Methods
 
-  config.include FixtureHelper
-  config.include IndexerApiHelper
+  config.include FixtureHelpers
+  config.include IndexerApiHelpers
+  config.include SessionHelpers, type: :feature
 
   config.include Livepeer::GraphHelpers, livepeer: :graph
   config.include Livepeer::FactoryHelpers, livepeer: :factory

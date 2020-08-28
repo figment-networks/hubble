@@ -5,7 +5,7 @@ class Livepeer::Queries::Graph::TranscodersQuery < Livepeer::Queries::Graph::Bas
     GQLi::DSL.query {
       transcoders(
         first: batch_size,
-        offset: offset
+        skip: offset
       ) {
         id
         active

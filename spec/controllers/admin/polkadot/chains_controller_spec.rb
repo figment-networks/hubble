@@ -8,7 +8,7 @@ RSpec.describe Admin::Polkadot::ChainsController do
     session[:admin_id] = admin.id 
   end
 
-  describe "GET #show" do
+  describe "GET #show", :vcr do
     before(:each) { get :show, params: { id: chain.slug } }
 
     it "responds with 200 status" do

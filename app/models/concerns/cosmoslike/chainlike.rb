@@ -29,10 +29,10 @@ module Cosmoslike::Chainlike
 
     default_scope -> { order( 'position ASC' ) }
 
-    scope :alive,      -> { where.not( dead: true ) }
+    scope :alive, -> { where.not( dead: true ) }
     scope :has_synced, -> { where.not( last_sync_time: nil ) }
-    scope :enabled,    -> { where( disabled: false ) }
-    scope :primary,    -> { find_by( primary: true ) || order('created_at DESC').first }
+    scope :enabled, -> { where( disabled: false ) }
+    scope :primary, -> { find_by( primary: true ) || order('created_at DESC').first }
   end
 
   ASSET = 'cosmoslike'
@@ -140,6 +140,10 @@ module Cosmoslike::Chainlike
   def voting_power_online
     online = validators.where( address: blocks.first.precommitters )
     online.sum { |v| v.current_voting_power || 0 }
+  end
+
+  def staked_amount
+    @staked_amount ||= staking_pool.sum { |k,v| v.to_f }
   end
 
   def failing_sync?

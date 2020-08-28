@@ -37,5 +37,7 @@ module Hubble
     config.generators.system_tests = nil
 
     config.middleware.use Rack::Attack
+    # Needed to capture the /404's that don't get passed straight to the controller (e.g. cosmoslike chains that don't use governance)
+    config.exceptions_app = self.routes
   end
 end

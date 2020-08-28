@@ -14,7 +14,7 @@ module Near
     def initialize(attrs = {})
       super(attrs)
 
-      @last_block_time = Time.zone.parse(last_block_time)
+      @last_block_time = Time.zone.parse(last_block_time) if last_block_time
     end
 
     def stale?

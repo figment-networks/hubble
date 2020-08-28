@@ -10,11 +10,11 @@ class Livepeer::Queries::StakesQuery < Livepeer::Queries::ReportQuery
   end
 
   def filter_by_date(relation)
-    relation.where(<<~SQL)
+    relation.where(<<~SQL, end_date: end_date)
       livepeer_rounds.number = (
           SELECT number
             FROM livepeer_rounds
-           WHERE initialized_at <= '#{date_range.end}'
+           WHERE date(initialized_at) <= :end_date
                  AND chain_id = #{chain.id}
         ORDER BY number DESC
            LIMIT 1

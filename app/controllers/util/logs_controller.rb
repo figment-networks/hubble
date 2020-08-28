@@ -1,5 +1,6 @@
 class Util::LogsController < ApplicationController
-
+  layout 'redesign/application'
+  
   def index
     raise ActionController::NotFound if !params[:network].in?(%w{ cosmos terra iris kava emoney })
     @chain = params[:network].titleize.constantize::Chain.find_by( slug: params[:chain_id] )

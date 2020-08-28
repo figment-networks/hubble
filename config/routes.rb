@@ -74,21 +74,23 @@ Rails.application.routes.draw do
 
       resources :validators, only: :show, constraints: { id: /[^\/]+/ }
     end
+    root to: 'chains#show'
   end
 
   namespace :oasis, network: 'oasis' do
-    resources :chains do
+    resources :chains, only: %i{ show } do
       get '/dashboard' => 'dashboard#index', as: 'dashboard'
 
       member do
         get :search
       end
 
-      resources :blocks do
-        resources :transactions
+      resources :blocks, only: %i{ show } do
+        resources :transactions, only: %i{ show }
       end
-      resources :transactions
-      resources :validators
+      resources :validators, only: %i{ show } do
+        resources :subscriptions, only: %i{ index create }, controller: '/util/subscriptions'
+      end
     end
   end
 
@@ -97,10 +99,15 @@ Rails.application.routes.draw do
       get '/dashboard' => 'dashboard#index', as: 'dashboard'
       get :search, on: :member
 
-      resources :rounds, only: %i{ show }, param: :number
+      resources :events, only: %i{ index show }
 
-      resources :delegator_lists, except: %i{ show } do
+      resources :rounds, only: %i{ show }, param: :number
+      resources :transcoders, only: %i{ show }, param: :address
+
+      resources :delegator_lists do
         resource :report, only: %i{ new show }
+        resources :subscriptions, only: %i{ index create }
+        resources :events, controller: :delegator_list_events
       end
     end
   end

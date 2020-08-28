@@ -35,6 +35,8 @@ class Livepeer::Queries::UnbondsQuery < Livepeer::Queries::ReportQuery
   end
 
   def filter_by_date(relation)
-    relation.where(withdraw_rounds: { initialized_at: date_range })
+    relation.where(<<~SQL, start_date, end_date)
+      date(withdraw_rounds.initialized_at) BETWEEN ? AND ?
+    SQL
   end
 end

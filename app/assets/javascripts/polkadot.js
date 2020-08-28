@@ -20,6 +20,12 @@
 //= require lib/scale
 //
 //= require page/app-init
+//
+//= require page/polkadot/chain-show
+//= require page/polkadot/block-show
+//= require components/polkadot/validator-table
+//= require components/polkadot/transactions-table
+//= require components/polkadot/small-validator-total-stake-chart
 
 // TODO: move these to shared when we have feature tests for Cosmos or during redesign
 //= require page/cosmoslike/account-show

@@ -21,7 +21,7 @@ class DelegatorListsTable {
         { width: 'auto' },
         { width: '150px' },
         { width: '150px' },
-        { width: '150px', orderable: false }
+        { width: '180px', orderable: false }
       ] )
     } )
   }

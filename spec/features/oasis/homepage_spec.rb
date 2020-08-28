@@ -10,7 +10,7 @@ feature 'oasis home' do
       expect(page).to have_content("Current Block")
       expect(page).to have_content("Common Pool")
       expect(page).to have_content("Voting Power")
-      expect(page).to have_content("80 total")
+      expect(page).to have_content("total")
 
     end
   end

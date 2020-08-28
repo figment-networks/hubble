@@ -22,6 +22,7 @@
 //= require page/livepeer/delegator-list-edit
 //= require page/livepeer/report-new
 //= require page/livepeer/report-show
+//= require page/livepeer/subscription-index
 //
 //= require components/livepeer/transcoders-table
 //= require components/livepeer/pools-table

@@ -1,0 +1,139 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://localhost:1111/block?height=1234
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (linux-gnu x86_64) ruby/2.6.6p146
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - localhost:1111
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 12 Aug 2020 17:49:34 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '781'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"app_version":1703936,"block_version":11,"chain_id":"c014bda208f670539e8f03016b0dcfe16e0c2ad9a060419d1a","height":1234,"time":"2020-08-06T18:57:24Z","last_block_id_hash":"879F0EA6C43095BCA56EB9DD2C261761E2FE3351830482A6CDB4CF3D21A2FD0E","last_commit_hash":"3D36598A5B8546B7245340CBC1DD535B3AA85FEAA1C89F3748B29A7F9EA28054","data_hash":"","validators_hash":"F2B19A96A865AEE7EACE2F477630ADE0EA11A5A60FDB083BA445CC567EA67427","next_validators_hash":"F2B19A96A865AEE7EACE2F477630ADE0EA11A5A60FDB083BA445CC567EA67427","consensus_hash":"048091BC7DDC283F77BFBF91D73C44DA58C3DF8A9CBC867405D8B7F3DAADA22F","app_hash":"79C05E269516F318320479F82DE16CEBE481D02223779A58D019D47D451645FF","last_results_hash":"","evidence_hash":"","proposer_address":"77089B5207CD26022241D55D3A37FDC5017B9F91"}
+
+'
+  recorded_at: Wed, 12 Aug 2020 17:49:33 GMT
+- request:
+    method: get
+    uri: https://localhost:1111/validators?height=1234
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (linux-gnu x86_64) ruby/2.6.6p146
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - localhost:1111
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 12 Aug 2020 17:49:34 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"items":[{"height":1234,"time":"2020-08-06T18:57:24Z","entity_uid":"Nov6V4uqywbwsgZWJx81ZkPWla3fy4HRqlNwE7e4qoE=","address":"oasis1qpcemsgyvffy4nl06sfj90pg3wwj8hlmxugv6tef","voting_power":28463846854783,"total_shares":450000000000000,"active_escrow_balance":455428813650249,"as_validator_height":0,"proposed_height":0,"precommit_validated":true},{"height":1234,"time":"2020-08-06T18:57:24Z","entity_uid":"Cxu+O7OZVORipNEDnd87z1r4MfeHI5VDD1LQwLws/Fg=","address":"oasis1qp49gl3szuate3nzj9hyd8fkwc8erxx0ug6dlxfa","voting_power":948794895122,"total_shares":15000000000000,"active_escrow_balance":15180960454418,"as_validator_height":0,"proposed_height":0,"precommit_validated":true},{"height":1234,"time":"2020-08-06T18:57:24Z","entity_uid":"5beG/xbk65g/etiaYhLhuLbvJ7X4zgWzH5cb19zktlk=","address":"oasis1qp22l6gy0u2cp6krh4ruuezf09f20t0qkupkhq2g","voting_power":51551189303694,"total_shares":815000000000000,"active_escrow_balance":824832184722619,"as_validator_height":0,"proposed_height":0,"precommit_validated":true},{"height":1234,"time":"2020-08-06T18:57:24Z","entity_uid":"N2xjsaubEThYSGPBka1HFW3Rv7PtYhzEFqqlGzyKIf8=","address":"oasis1qrpcqaw8qr607nmmxtx49n62tkjylyrrpv7jvylr","voting_power":9487948951569,"total_shares":150000000000000,"active_escrow_balance":151809604549682,"as_validator_height":0,"proposed_height":0,"precommit_validated":true},{"height":1234,"time":"2020-08-06T18:57:24Z","entity_uid":"6JbJjfiQod2O2ONGJ5y4TdqjrzKbZz0xjV92L3BcotQ=","address":"oasis1qrx376dmwuckmruzn9vq64n49clw72lywctvxdf4","voting_power":98042139166570,"total_shares":1550000000000000,"active_escrow_balance":1568699247019038,"as_validator_height":0,"proposed_height":0,"precommit_validated":true},{"height":1234,"time":"2020-08-06T18:57:24Z","entity_uid":"+tbTidJPr7DLZdMuHDPpvDOaB9gV83CwODUqcRYr0ck=","address":"oasis1qr7x9lems4upqfu35ql2zcvg7z0ruex4ncfqf5p8","voting_power":5060158731287,"total_shares":80000000000000,"active_escrow_balance":80963831053108,"as_validator_height":0,"proposed_height":0,"precommit_validated":true},{"height":1234,"time":"2020-08-06T18:57:24Z","entity_uid":"TYcIa2zx+Wx0Ut3kFnIFzHgxnWpkBlWt6YyCJLtx+N4=","address":"oasis1qreevydkllruwy354gel46whhruvfn08ws97vdtg","voting_power":6951570033192,"total_shares":110000000000000,"active_escrow_balance":111226894571757,"as_validator_height":0,"proposed_height":0,"precommit_validated":true},{"height":1234,"time":"2020-08-06T18:57:24Z","entity_uid":"zhwa9Zu9p4I6/kgnFQMdLyXO6Y4M6BmdBiUbhEVmVfQ=","address":"oasis1qz0ep0u2lu6wj0mhyr3rjl78rkzljt5s2yahrszk","voting_power":1581324825230,"total_shares":25000000000000,"active_escrow_balance":25301600757775,"as_validator_height":0,"proposed_height":0,"precommit_validated":true},{"height":1234,"time":"2020-08-06T18:57:24Z","entity_uid":"i5ZqWZO0GXmpcWi2EFKei2IWNAbpDmKKHFzv8D/xkE8=","address":"oasis1qzljmrjgluqsfr7xygmpjds5a934aqmh4sz4n3pj","voting_power":4741859382797,"total_shares":75036758655447,"active_escrow_balance":75869750124756,"as_validator_height":0,"proposed_height":0,"precommit_validated":true},{"height":1234,"time":"2020-08-06T18:57:24Z","entity_uid":"zuVcJeYy3C7lBD6+GCcGjCw3TdTD6SVaEO+qOoOZe6Q=","address":"oasis1qr62uu00g3k95fvxyd2ydmgtyfglvfql7yxfsnld","voting_power":2529902267154,"total_shares":40000000000000,"active_escrow_balance":40479081905537,"as_validator_height":0,"proposed_height":0,"precommit_validated":true},{"height":1234,"time":"2020-08-06T18:57:24Z","entity_uid":"rUywd4hma3h5cmKGkeYskIRAdrxqw6OBPi6JfuCOWHs=","address":"oasis1qq774msxmtghldtwn55t25fxqppdpsdyfvhnkpyt","voting_power":6325299301034,"total_shares":100000000000000,"active_escrow_balance":101206403032926,"as_validator_height":0,"proposed_height":0,"precommit_validated":true},{"height":1234,"time":"2020-08-06T18:57:24Z","entity_uid":"wgMBa/9qR/XwnlgYXAXvqHMXT+LvkOX0JcQc0CcW4HQ=","address":"oasis1qzhwl87e7d6up3tf3wu08e9n8gqk6vkw2v8gqc2j","voting_power":80015036158515,"total_shares":1265000000000000,"active_escrow_balance":1280260998373481,"as_validator_height":0,"proposed_height":0,"precommit_validated":true},{"height":1234,"time":"2020-08-06T18:57:24Z","entity_uid":"9Qv7DEOHbb+7DojRgSOkbuzFoULmHNZCmOAgfH1LVdA=","address":"oasis1qrlsjag9gzy2a7ucx3wxp3r2hk3un6095v249kc3","voting_power":4743974475764,"total_shares":75000000000000,"active_escrow_balance":75904802274525,"as_validator_height":0,"proposed_height":0,"precommit_validated":true},{"height":1234,"time":"2020-08-06T18:57:24Z","entity_uid":"7hAEASOPAKuePwArPtGlcg3nnaipRdgqb0hESkA7Jso=","address":"oasis1qq7vavk9ag2h0cgylvppykfasqu0hzusdutepv4t","voting_power":4110967853880,"total_shares":65000000000000,"active_escrow_balance":65776534781081,"as_validator_height":0,"proposed_height":0,"precommit_validated":true},{"height":1234,"time":"2020-08-06T18:57:24Z","entity_uid":"mZkzlqBGNGHMFGTsu3HZYKlYNE5S3MU5zWB8DjBJ9mQ=","address":"oasis1qqsh36389tpezlf5uuwsuew82jmm6kxh7u3zt5nn","voting_power":3161366040001,"total_shares":50024505770120,"active_escrow_balance":50581856640016,"as_validator_height":0,"proposed_height":0,"precommit_validated":true},{"height":1234,"time":"2020-08-06T18:57:24Z","entity_uid":"jZdd4TZtU/GivfFi7L+8zBVdEwcOMg09vOlsEFEBtDw=","address":"oasis1qq37hzp83thzspcdnlzekngngugavgmfasfac7ch","voting_power":3478372123997,"total_shares":55000000000000,"active_escrow_balance":55654841664518,"as_validator_height":0,"proposed_height":0,"precommit_validated":true},{"height":1234,"time":"2020-08-06T18:57:24Z","entity_uid":"4QbQFe+IuKIn9mB4vCiy7tAPPO/7/1qSdfDkzj+VkHU=","address":"oasis1qpchjfayc5qk3vl2kw9uh3renxc2yxy3a5c2zlya","voting_power":7273875977733,"total_shares":115000000000000,"active_escrow_balance":116383871936885,"as_validator_height":0,"proposed_height":0,"precommit_validated":true},{"height":1234,"time":"2020-08-06T18:57:24Z","entity_uid":"Xq2d4D43YmBdUAOd3q6A0n1kaHUY766RE24xznk1Sgc=","address":"oasis1qrem4skslfwn3zcutpgxyd7664naqyplsy2ymrv6","voting_power":75271061682712,"total_shares":1190000000000000,"active_escrow_balance":1204356196098346,"as_validator_height":0,"proposed_height":0,"precommit_validated":true},{"height":1234,"time":"2020-08-06T18:57:24Z","entity_uid":"fO4izgR+Ok4z1QJGKToAWG6a4BC4WCA+F9dU3PlafbQ=","address":"oasis1qqey98jwp8cvwdjvdf924ss386jkhn47jyn8xc5s","voting_power":1581324825230,"total_shares":25000000000000,"active_escrow_balance":25301600757775,"as_validator_height":0,"proposed_height":0,"precommit_validated":true},{"height":1234,"time":"2020-08-06T18:57:24Z","entity_uid":"mz+wcbw6XBv9PM0KmWbOh9lNQvmMywHXfROQMfcA29E=","address":"oasis1qpqs67uz4yp3ujlgra89p028krw6ukz00uz99ag0","voting_power":6321189212964,"total_shares":100000000000000,"active_escrow_balance":101140640574914,"as_validator_height":0,"proposed_height":0,"precommit_validated":true},{"height":1234,"time":"2020-08-06T18:57:24Z","entity_uid":"qp9PN1Rr5WE5/pBtYaXv822Q+9VFXjG3rOcFQrH7t0A=","address":"oasis1qzqd0ymjv9vtns683zuv04wjt3akkh7mageytc47","voting_power":1579497958097,"total_shares":25000000000000,"active_escrow_balance":25272370417445,"as_validator_height":0,"proposed_height":0,"precommit_validated":true},{"height":1234,"time":"2020-08-06T18:57:24Z","entity_uid":"NnghTyAOg4B65+W8sgYhflHXwK79wwZ/ZVT23rjc1AQ=","address":"oasis1qp7dtzc5gfz8m79uky8xjttyhy0ufnwa4y8r79kk","voting_power":3795179580604,"total_shares":60000000000000,"active_escrow_balance":60723841819504,"as_validator_height":0,"proposed_height":0,"precommit_validated":true},{"height":1234,"time":"2020-08-06T18:57:24Z","entity_uid":"kNh+IWc1PwgOfN2tld2T+0iI8SweaGuhf6mxHRol5oQ=","address":"oasis1qqqd4wrmk8z9p3hz0vyc6zy3khx3gqnckywyg2s5","voting_power":6325299301034,"total_shares":100000000000000,"active_escrow_balance":101206403032926,"as_validator_height":0,"proposed_height":0,"precommit_validated":true},{"height":1234,"time":"2020-08-06T18:57:24Z","entity_uid":"7UFm7kLE8iAxEY7ABKWRYSgwkZ18g/U3e9xxdqBCUgM=","address":"oasis1qpn9vaeh742wypj83v83h2e4elr8p4jywullc5f8","voting_power":625194350168,"total_shares":9997050085317,"active_escrow_balance":10003269152288,"as_validator_height":0,"proposed_height":0,"precommit_validated":true},{"height":1234,"time":"2020-08-06T18:57:24Z","entity_uid":"14DzgVEvaXOtOcd0Pr3e58D9qrQgPRkGYQQ3MZOowY0=","address":"oasis1qzcuz3yphlr0vgkj4lw38rpyamyrgaw0yq03444f","voting_power":5692598591262,"total_shares":90000000000000,"active_escrow_balance":91083030211352,"as_validator_height":0,"proposed_height":0,"precommit_validated":true},{"height":1234,"time":"2020-08-06T18:57:24Z","entity_uid":"GHy8F8+OZ4QT59caArS7oK3QVH4teRdst39DfmFizgo=","address":"oasis1qr4qenu52c2g3fyjytazsjs68e7xxr4mkujttmxq","voting_power":7274094196194,"total_shares":115000000000000,"active_escrow_balance":116387363487955,"as_validator_height":0,"proposed_height":0,"precommit_validated":true},{"height":1234,"time":"2020-08-06T18:57:24Z","entity_uid":"EDmAMtsOpJBuia/1jZ+4+aG6lGeyTlWSQqHPv8FvJvQ=","address":"oasis1qqcuuc04cpv5wmpdm5939w46nqkn6k650vf0l37x","voting_power":2530079365626,"total_shares":40000000000000,"active_escrow_balance":40481269850021,"as_validator_height":0,"proposed_height":0,"precommit_validated":true},{"height":1234,"time":"2020-08-06T18:57:24Z","entity_uid":"5s7OfLEjIrePZ35UnkwrPQ7YVyzd5HAiddbWZKYLo5w=","address":"oasis1qq95xthkg20ra6ue8zyngqkkm92xqkvrms88axkj","voting_power":32575291400480,"total_shares":515000000000000,"active_escrow_balance":521212975622046,"as_validator_height":0,"proposed_height":0,"precommit_validated":true},{"height":1234,"time":"2020-08-06T18:57:24Z","entity_uid":"pyLvCPlnbGCB093xyF/WyHoMRo4czdUOSMDr+mQp3rI=","address":"oasis1qzuwdzvk9mcc7hw7kcvt8rq59aryljjcrgfyl72y","voting_power":3478859127748,"total_shares":55000000000000,"active_escrow_balance":55662633848824,"as_validator_height":0,"proposed_height":0,"precommit_validated":true},{"height":1234,"time":"2020-08-06T18:57:24Z","entity_uid":"M8h2uWGmaqt+Fg+TM+6B+njzox+XPmHNEX5KxJsrJRk=","address":"oasis1qp9273m944xuhy0skj3k5w84p69fpd03uv8f4vnv","voting_power":948728482136,"total_shares":15000000000000,"active_escrow_balance":15179897829696,"as_validator_height":0,"proposed_height":0,"precommit_validated":true},{"height":1234,"time":"2020-08-06T18:57:24Z","entity_uid":"lNC1azVkdUgvOePqPLg1XtnxtuSXWnX6xpNShM+aIT0=","address":"oasis1qqxqlpfslwuuh5342qnstymyutancj7csucxv2ec","voting_power":10436743846730,"total_shares":165000000000000,"active_escrow_balance":166990565004711,"as_validator_height":0,"proposed_height":0,"precommit_validated":true},{"height":1234,"time":"2020-08-06T18:57:24Z","entity_uid":"YQK5JA3Uyw90FAwMBgQn/AU3TB1GzNr5s3NS219uxPc=","address":"oasis1qzmsk5v69h4c4nhuwz8pgdsyfkjjku9nxgxn0xkf","voting_power":9487948951569,"total_shares":150000000000000,"active_escrow_balance":151809604549682,"as_validator_height":0,"proposed_height":0,"precommit_validated":true},{"height":1234,"time":"2020-08-06T18:57:24Z","entity_uid":"/fgHhks5RMJ/W5ymnYCriSg73D+gkWFqH9CAfd1Xqo0=","address":"oasis1qphythdxyfxl6rr37km3glraw0d9mpz94usta20x","voting_power":5692769370927,"total_shares":90000000000000,"active_escrow_balance":91085762729582,"as_validator_height":0,"proposed_height":0,"precommit_validated":true},{"height":1234,"time":"2020-08-06T18:57:24Z","entity_uid":"a/LVFfoI3aRoasZs6tP/Lvn0CbG6RkvEFYHcVR/Vo9M=","address":"oasis1qrxyndkhehffdme39urcp2v7m2t7k06xwsuyaxqq","voting_power":12500324376,"total_shares":200000000000,"active_escrow_balance":200008380113,"as_validator_height":0,"proposed_height":0,"precommit_validated":true},{"height":1234,"time":"2020-08-06T18:57:24Z","entity_uid":"WbtngueMJmxAK0Lir6JZO0WJNaJrnQ40/A3iwi8EUGU=","address":"oasis1qpa9gkys5jm6z89nmjm3cvh9g2yhh4zwduw7d3nc","voting_power":1894014421334,"total_shares":30000000000000,"active_escrow_balance":30304230741351,"as_validator_height":0,"proposed_height":0,"precommit_validated":true},{"height":1234,"time":"2020-08-06T18:57:24Z","entity_uid":"d3XwnaR6lwKxPNx8EvJafra2ggLv6cr8L7Qv6V7RvxI=","address":"oasis1qqyyd043mtldg3sdqw9uvk0vts0mum43quxlylq2","voting_power":3161321623192,"total_shares":50000000000000,"active_escrow_balance":50581952740354,"as_validator_height":0,"proposed_height":0,"precommit_validated":true},{"height":1234,"time":"2020-08-06T18:57:24Z","entity_uid":"eRxq8/7iEgnDs0OY3tjcR29xZgD9CKyROkOub1WV+vg=","address":"oasis1qqqtcv838cp942wq2uw30rt0zj4qmvje3yk2uawd","voting_power":3162649650498,"total_shares":50000000000000,"active_escrow_balance":50603201516169,"as_validator_height":0,"proposed_height":0,"precommit_validated":true},{"height":1234,"time":"2020-08-06T18:57:24Z","entity_uid":"07Ag+f60f3gT1ufmuIb81L3cWETvxCShKw+afjXLszI=","address":"oasis1qpd65y0uct4wdc086xdn5npyxcsjy9n3eurfvvur","voting_power":3791689638462,"total_shares":60000000000000,"active_escrow_balance":60668001854602,"as_validator_height":0,"proposed_height":0,"precommit_validated":true},{"height":1234,"time":"2020-08-06T18:57:24Z","entity_uid":"p6UuBtDdJQNJl513U7caGqALObw5obOgpQ6dwpgnlpI=","address":"oasis1qqla3k5vgds9fc2wyv7rxmyqy4dksmytx5fyqaz2","voting_power":12018068671998,"total_shares":190000000000000,"active_escrow_balance":192292165763102,"as_validator_height":0,"proposed_height":0,"precommit_validated":true},{"height":1234,"time":"2020-08-06T18:57:24Z","entity_uid":"aQ5WObrFTgBywyThAMtN75thWmgi1THcjjc3I2QFNL0=","address":"oasis1qz2weu3fm3vq5ywyx4yfmd5hrjr3j6vxuuwwupvd","voting_power":5376504405873,"total_shares":85000000000000,"active_escrow_balance":86025442577900,"as_validator_height":0,"proposed_height":0,"precommit_validated":true},{"height":1234,"time":"2020-08-06T18:57:24Z","entity_uid":"pb/+ikggCIQ8L6MavavQb/xpMbZWwW8pUuTOAoVdCzA=","address":"oasis1qz8ctjdmrcgl83wh7zg5p2rsdhak6llcg52ysm8f","voting_power":8539154056409,"total_shares":135000000000000,"active_escrow_balance":136628644094662,"as_validator_height":0,"proposed_height":0,"precommit_validated":true},{"height":1234,"time":"2020-08-06T18:57:24Z","entity_uid":"mNs5TS7NORpquHBmqHhNDgVBrDfRZ7YZeM70uxXG8Hg=","address":"oasis1qrs5ecnls3j56ll4h7dtflzfncc9sdu8eqsy9zhp","voting_power":1897589790282,"total_shares":30000000000000,"active_escrow_balance":30361920909438,"as_validator_height":0,"proposed_height":0,"precommit_validated":true},{"height":1234,"time":"2020-08-06T18:57:24Z","entity_uid":"mAl9vyujJdbKF+40Wjweg8QmNg92sLYSND9QpxVrm6A=","address":"oasis1qrllkgqgqheus3qvq69wzsmh7799agg8lgsyecfq","voting_power":3146542556218,"total_shares":50000000000000,"active_escrow_balance":50345483897160,"as_validator_height":0,"proposed_height":0,"precommit_validated":true},{"height":1234,"time":"2020-08-06T18:57:24Z","entity_uid":"PhDiz71pnE2XeMpfZzcvbpDRZZkM4Bw0iZFcr3LtB9Q=","address":"oasis1qr5nk5zd79edhu67lpwfhkamcgnavfuujyy690qq","voting_power":1897570814574,"total_shares":30000000000000,"active_escrow_balance":30361617293266,"as_validator_height":0,"proposed_height":0,"precommit_validated":true},{"height":1234,"time":"2020-08-06T18:57:24Z","entity_uid":"TXrg43JYUok9F6aDv7UJuwR9U9y8PyEKAhyJo/I0xVs=","address":"oasis1qzdyyu5e0f2cwlctlsl9kq7j397s5lxdhyh0rwx8","voting_power":3161366040001,"total_shares":50024505770120,"active_escrow_balance":50581856640016,"as_validator_height":0,"proposed_height":0,"precommit_validated":true},{"height":1234,"time":"2020-08-06T18:57:24Z","entity_uid":"de7lzn78W5C6DqYS4ehEY7ZAB4NBEtnB8rMQ8slNyBU=","address":"oasis1qq0uqf2qs0cdfz8ywmuaev3pl458ynfvacvthth0","voting_power":3162206912754,"total_shares":50000000000000,"active_escrow_balance":50596117599270,"as_validator_height":0,"proposed_height":0,"precommit_validated":true},{"height":1234,"time":"2020-08-06T18:57:24Z","entity_uid":"O15utZC0EtWG99qrcpTEkkfKzelTvRp/pptF5yXN0C4=","address":"oasis1qpsag66d2q9uxrust67mn39plkvesdydpv0v0ttw","voting_power":338613838526,"total_shares":5399832036116,"active_escrow_balance":5417907830671,"as_validator_height":0,"proposed_height":0,"precommit_validated":true},{"height":1234,"time":"2020-08-06T18:57:24Z","entity_uid":"8uNiDud/L0d0muEGb2t5BFnjupStWasyjdErHFnjQXk=","address":"oasis1qqfasfrrx2tae50kcy8mcclhp0kqymswsqnqytyg","voting_power":63250719120823,"total_shares":1000000000000000,"active_escrow_balance":1012027647516702,"as_validator_height":0,"proposed_height":0,"precommit_validated":true},{"height":1234,"time":"2020-08-06T18:57:24Z","entity_uid":"yqGbKUCPmKiybsNZqiee1j9eGM1IpVALD74Asv8J/lY=","address":"oasis1qqerup20p5yedpsrl0c78g82arqqwwhufyrn4scz","voting_power":6325299301034,"total_shares":100000000000000,"active_escrow_balance":101206403032926,"as_validator_height":0,"proposed_height":0,"precommit_validated":true},{"height":1234,"time":"2020-08-06T18:57:24Z","entity_uid":"OkFxfem2fYpyB/tmsujl/0KKni2fISrImuno5X0RPhs=","address":"oasis1qqgax9pha5jm4tury0asd7c9vhcge5fk4ss5ft44","voting_power":4111403431625,"total_shares":65000000000000,"active_escrow_balance":65783504136162,"as_validator_height":0,"proposed_height":0,"precommit_validated":true},{"height":1234,"time":"2020-08-06T18:57:24Z","entity_uid":"v7v9uQ5ThOnzwml22ma558yyJ1GrsT2uFalLC+HY6+Q=","address":"oasis1qzzn6hwzj8u2nk22rxhqghsjgzfth8wlhuzpc8gf","voting_power":5060239440819,"total_shares":80000000000000,"active_escrow_balance":80965122426213,"as_validator_height":0,"proposed_height":0,"precommit_validated":true},{"height":1234,"time":"2020-08-06T18:57:24Z","entity_uid":"jL81dBQ7P22NlODjx0yqSoZWwweOB9EjUVZgmsbXTrU=","address":"oasis1qq8atykwecy3p5rnspkweapzz847exaqwyv80wgx","voting_power":35729722310859,"total_shares":565000000000000,"active_escrow_balance":571684675198886,"as_validator_height":0,"proposed_height":0,"precommit_validated":true},{"height":1234,"time":"2020-08-06T18:57:24Z","entity_uid":"DPbZomOIleFrvcJBZPl7y/wEB1w9Q569vAbb6Krl9fE=","address":"oasis1qrzxu7jm72677qydejqr9kaa9u624c6xzgcd9lud","voting_power":3478879826753,"total_shares":55000000000000,"active_escrow_balance":55662965038183,"as_validator_height":0,"proposed_height":0,"precommit_validated":true},{"height":1234,"time":"2020-08-06T18:57:24Z","entity_uid":"inmsch9/EgTH/b3HLp9icW/q2W+FpWXuZh9HUgDf6zk=","address":"oasis1qrcf5mwjyu7hahwfjgwmywhy9cjyaqdd5vkj7ah3","voting_power":626286284097,"total_shares":10000000000000,"active_escrow_balance":10020740373822,"as_validator_height":0,"proposed_height":0,"precommit_validated":true},{"height":1234,"time":"2020-08-06T18:57:24Z","entity_uid":"kgzjEZt89gWINjclglRmcDWjzPJ557TLX9OpZmJvyuo=","address":"oasis1qpem0cc7ncjq2grm7sns5n9p5xjq3ej6gs2p56e7","voting_power":14231923427372,"total_shares":225000000000000,"active_escrow_balance":227714406824813,"as_validator_height":0,"proposed_height":0,"precommit_validated":true},{"height":1234,"time":"2020-08-06T18:57:24Z","entity_uid":"oDxg8/WurnWWQXwYFNUuc+k8mFeYheBGCwMH29jDN0M=","address":"oasis1qrzj7udkpgpckk9nr3jvpx669fhr52hrgq0ws0q8","voting_power":948529271070,"total_shares":15000000000000,"active_escrow_balance":15176710401790,"as_validator_height":0,"proposed_height":0,"precommit_validated":true},{"height":1234,"time":"2020-08-06T18:57:24Z","entity_uid":"QDJaZE2tOxShjEjHCFDaAJPLTPUwzoco33fV23ciJVM=","address":"oasis1qpdf54f5nc0hzat6h74ktky9vkx7pqvvacluq6uw","voting_power":3478685190010,"total_shares":55000000000000,"active_escrow_balance":55658963040165,"as_validator_height":0,"proposed_height":0,"precommit_validated":true},{"height":1234,"time":"2020-08-06T18:57:24Z","entity_uid":"HXNVuS8roC9WmotTrxbU12XS5T3IjOJB5CZTp0B2ar4=","address":"oasis1qqar3gsfv8hzxqqktkj3cmht6eprl6zp0g86fl5u","voting_power":7906624126301,"total_shares":125000000000000,"active_escrow_balance":126508003791302,"as_validator_height":0,"proposed_height":0,"precommit_validated":true},{"height":1234,"time":"2020-08-06T18:57:24Z","entity_uid":"CVzqFIADD2Ed0khGBNf4Rvh7vSNtrL1ULTkWYQszDpc=","address":"oasis1qzskk72k92y4duc47lqcsxhza6fahlqtlqyesw0p","voting_power":12017031408992,"total_shares":190149944360212,"active_escrow_balance":192275569290302,"as_validator_height":0,"proposed_height":0,"precommit_validated":true}]}
+
+'
+  recorded_at: Wed, 12 Aug 2020 17:49:34 GMT
+- request:
+    method: get
+    uri: https://localhost:1111/transactions?height=1234
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (linux-gnu x86_64) ruby/2.6.6p146
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - localhost:1111
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 12 Aug 2020 17:49:34 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '15'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"items":null}
+
+'
+  recorded_at: Wed, 12 Aug 2020 17:49:34 GMT
+- request:
+    method: get
+    uri: https://localhost:1111/status
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (linux-gnu x86_64) ruby/2.6.6p146
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - localhost:1111
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 12 Aug 2020 17:49:34 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '458'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"app_name":"oasishub-indexer","app_version":"0.5.1","go_version":"1.14","chain_app_version":1703936,"chain_block_version":11,"chain_id":"c014bda208f670539e8f03016b0dcfe16e0c2ad9a060419d1a","chain_name":"amber-2020-08-06-1596754800","genesis_height":717600,"genesis_time":"2020-08-06T16:00:00Z","last_index_version":0,"last_indexed_height":7272,"last_indexed_time":"2020-08-07T04:28:00Z","last_indexed_at":"2020-08-12T17:49:34.376486Z","indexing_lag":84114}
+
+'
+  recorded_at: Wed, 12 Aug 2020 17:49:34 GMT
+recorded_with: VCR 6.0.0

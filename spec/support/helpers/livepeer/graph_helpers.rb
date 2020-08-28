@@ -1,7 +1,8 @@
 module Livepeer::GraphHelpers
   def stub_graph_query(query_class, fixture_name)
     allow_any_instance_of(query_class).to receive(:call) do
-      load_json_fixture(fixture_name)[:data][fixture_name]
+      resource = fixture_name.to_s.camelize(:lower)
+      load_json_fixture(fixture_name)[:data][resource]
     end
   end
 

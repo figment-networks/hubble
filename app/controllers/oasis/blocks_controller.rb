@@ -6,6 +6,6 @@ class Oasis::BlocksController < Oasis::BaseController
     @block = @chain.client.block(@height)
     @validators = @chain.client.validators_by_height(@height)
     @transactions = @chain.client.transactions(@height)
-    @voting_power = @validators.sum(&:total_shares)
+    @voting_power = @validators.sum(&:active_escrow_balance)
   end
 end

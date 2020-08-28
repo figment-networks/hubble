@@ -5,7 +5,7 @@ class Cosmoslike::Governance::ProposalsController < Cosmoslike::BaseController
     @tally_result = @chain.namespace::ProposalTallyDecorator.new(@proposal)
 
     page_title @chain.network_name, @chain.name, @proposal.title
-    meta_description @proposal.description.truncate(160, separator: '...')
+    meta_description @proposal.description.truncate(160)
 
     render template: 'cosmoslike/governance/proposal'
   end

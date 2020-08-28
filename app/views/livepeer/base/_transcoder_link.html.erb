@@ -1,0 +1,7 @@
+<%= link_to namespaced_path(:transcoder, transcoder) do %>
+  <% if transcoder.name.present? -%>
+    <strong><%= transcoder.name %></strong>
+  <% else -%>
+    <span class='technical'><%= livepeer_address(transcoder.address) %></span>
+  <% end -%>
+<% end -%>

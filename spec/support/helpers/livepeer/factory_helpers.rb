@@ -8,6 +8,23 @@ module Livepeer::FactoryHelpers
     )
   end
 
+  def create_unbond_round(chain, withdraw_round:)
+    create_round_relative_to(withdraw_round, interval: -Livepeer::UNBONDING_PERIOD)
+  end
+
+  def create_withdraw_round(chain, unbond_round:)
+    create_round_relative_to(unbond_round, interval: Livepeer::UNBONDING_PERIOD)
+  end
+
+  def create_round_relative_to(round, interval:)
+    create(
+      :livepeer_round,
+      chain: round.chain,
+      number: round.number + interval,
+      initialized_at: round.initialized_at.advance(days: interval)
+    )
+  end
+
   def create_share(pool, delegator_address, fees:, reward_tokens:)
     create(
       :livepeer_share,
@@ -17,7 +34,6 @@ module Livepeer::FactoryHelpers
       reward_tokens: reward_tokens
     )
   end
-
 
   def create_stake(round, delegator_address, pending_stake:, unclaimed_stake:)
     create(
@@ -31,6 +47,10 @@ module Livepeer::FactoryHelpers
 
   def create_transcoder(chain, address:)
     create(:livepeer_transcoder, chain: chain, address: address)
+  end
+
+  def create_delegator(chain, address:)
+    create(:livepeer_delegator, chain: chain, address: address)
   end
 
   def create_unbond(round, withdraw_round, delegator_address, amount:)

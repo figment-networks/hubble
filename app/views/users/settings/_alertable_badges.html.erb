@@ -1,11 +1,11 @@
-<% if sub.wants_daily_digest? -%>
+<% if subscription.wants_daily_digest? -%>
   <div class='d-block w-auto mb-1 badge badge-primary'>Daily Digest</div>
 <% end -%>
-<% sub.event_kinds.map do |kind| -%>
+<% subscription.event_kinds.map do |kind| -%>
   <div class='d-block w-auto mb-1 badge badge-secondary'>
     <% name = event_kind_to_name(kind) %>
     <% if kind == 'voting_power_change' -%>
-      <%= name.sub('%', "(+/-#{sub.data['percent_change']}%)") %>
+      <%= name.sub('%', "(+/-#{subscription.data['percent_change']}%)") %>
     <% else -%>
       <%= name %>
     <% end -%>

@@ -5,6 +5,10 @@ class Iris::Chain < ApplicationRecord
   SYNC_INTERVAL = 1.minute
   SUPPORTS_LEDGER = false
 
+  DEFAULT_TOKEN_DISPLAY = 'IRIS'
+  DEFAULT_TOKEN_REMOTE = 'iris-atto'
+  DEFAULT_TOKEN_FACTOR = 18
+
   PREFIXES = {
     account_address: 'iaa1',
     account_public_key: 'iap1',
@@ -21,10 +25,6 @@ class Iris::Chain < ApplicationRecord
     validator_operator_address: 'fva1',
     validator_operator_public_key: 'fvp1'
   }
-
-  DEFAULT_TOKEN_DISPLAY = 'IRIS'
-  DEFAULT_TOKEN_REMOTE = 'iris-atto'
-  DEFAULT_TOKEN_FACTOR = 18
 
   def network_name; 'IRIS'; end
 

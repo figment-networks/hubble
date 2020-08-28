@@ -14,7 +14,12 @@
 @import 'common/typography';
 @import 'common/misc';
 
+//TODO: move to shared? most of transaction view css is relevant to all networks
+@import 'page/cosmoslike/transaction';
+
 // components
 @import 'components/network-chain-header';
+@import 'components/validator-table';
 @import 'components/transactions-table';
 @import 'components/delegations-table';
+

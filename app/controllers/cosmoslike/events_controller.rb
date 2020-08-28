@@ -1,10 +1,10 @@
 class Cosmoslike::EventsController < Cosmoslike::BaseController
 
   def index
-    @page = (params[:page] || 1).to_i
+    @page = [params[:page].to_i, 1].max
     @offset = @chain.class::EVENTS_PAGE_SIZE * (@page - 1)
 
-    events = @chain.events
+    events = @chain.events.includes(:validatorlike)
 
     if params[:validator] && (@validator = @chain.validators.find_by( address: params[:validator] ))
       events = events.where( validatorlike: @validator )

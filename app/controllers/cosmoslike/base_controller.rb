@@ -1,7 +1,7 @@
 class Cosmoslike::BaseController < ApplicationController
   before_action :find_chain
   before_action :set_behind_chain_alert
-
+  
   protected
 
   def set_behind_chain_alert

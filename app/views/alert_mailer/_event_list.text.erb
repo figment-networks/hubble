@@ -13,5 +13,8 @@
   <% when 'Common::ValidatorEvents::NConsecutive' %>
     Missed <%= event.n %> consecutive precommits as of block <%= event.height %>
 
+  <% when 'Livepeer::Events::RewardCutChange' %>
+    Reward cut changed to <%= number_to_percentage(event.reward_cut) %> for orchestrator <%= event.transcoder.name_or_address %>
+
   <% end -%>
 <% end -%>

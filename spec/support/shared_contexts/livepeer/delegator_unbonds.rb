@@ -1,9 +1,9 @@
 shared_context 'Livepeer delegator unbonds' do
   let(:delegators) do
-    %w{
-      0xcb31d90803f50bc5915925fe40d97cc6b71f0e04
+    %w[
       0x5583cece0ef08e93b462b4aa5d8431cfd8e61d56
-    }
+      0xcb31d90803f50bc5915925fe40d97cc6b71f0e04
+    ]
   end
 
   let!(:chains) { create_list(:livepeer_chain, 2) }

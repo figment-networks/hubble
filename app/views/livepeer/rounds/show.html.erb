@@ -25,12 +25,18 @@
           <tbody>
             <% @pools.each do |pool| %>
               <tr>
-                <% transcoder = OpenStruct.new(address: pool.transcoder_address) %>
-                <td><%= transcoder_link(transcoder) %></td>
-                <td data-order='<%= pool.total_stake %>'><%= lpt_amount(pool.total_stake) %></td>
+                <% transcoder = @transcoders.find { |t| t.address == pool.transcoder_address } %>
+                <td>
+                  <% if transcoder.present? -%>
+                    <%= render partial: 'transcoder_link', locals: { transcoder: transcoder } %>
+                  <% else -%>
+                    <%= livepeer_explorer_link(pool.transcoder_address, page: :campaign) %>
+                  <% end -%>
+                </td>
+                <td data-order='<%= pool.total_stake %>'><%= livepeer_lpt_amount(pool.total_stake) %></td>
                 <td data-order='<%= pool.reward_tokens %>'>
                   <% if pool.reward_tokens.present? -%>
-                    <%= lpt_amount(pool.reward_tokens) %>
+                    <%= livepeer_lpt_amount(pool.reward_tokens) %>
                   <% else -%>
                     <span class="text-muted">MISSED</span>
                   <% end -%>
@@ -59,13 +65,13 @@
     <div class='card'>
       <h5 class='card-header'>Timestamp</h5>
       <div class='card-body'>
-        <span class='technical'><%= @round.initialized_at.strftime('%Y-%m-%d @ %H:%M %Z') %></span>
+        <span class='technical'><%= format_timestamp(@round.initialized_at) %></span>
       </div>
     </div>
     <div class='card'>
       <h5 class='card-header'>Mintable Tokens</h5>
       <div class='card-body'>
-        <span class='technical'><%= lpt_amount(@round.mintable_tokens) %></span>
+        <span class='technical'><%= livepeer_lpt_amount(@round.mintable_tokens) %></span>
       </div>
     </div>
   </div>

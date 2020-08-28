@@ -1,0 +1,6 @@
+<div>
+  <h3 class='data-block__title'>Uptime</h3>
+  <span class='data-block__large-number'>
+    <%= round_if_whole((@validator.current_uptime * 100).round(0)) %>%
+  </span>
+</div>

@@ -7,7 +7,7 @@
         <canvas class='average-active-validators-chart'></canvas>
       </div>
       <script>
-        App.config.currentValidatorFilter = '_active_';
+        App.config.currentValidatorFilter = "<%= validators.count(&:active?) > 0 ? "_active_" : "_all_" %>";
         App.seed.AVERAGE_ACTIVE_VALIDATORS = <%= validator_intervals.to_json.html_safe %>
       </script>
     </h4>

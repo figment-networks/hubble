@@ -1,5 +1,6 @@
 class Near::ChainsController < Near::BaseController
   def show
+    @status              = client.status
     @validators          = client.validators
     @block               = client.current_block
     @block_times         = client.block_times

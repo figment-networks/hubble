@@ -7,11 +7,13 @@ RSpec.describe Livepeer::ChainSyncService, livepeer: [:graph, :factory] do
 
   before do
     stub_graph_query(Livepeer::Queries::Graph::RoundsQuery, :rounds)
-    stub_graph_query(Livepeer::Queries::Graph::StakesQuery, :delegators)
+    stub_graph_query(Livepeer::Queries::Graph::StakesQuery, :stakes)
     stub_graph_query(Livepeer::Queries::Graph::BondsQuery, :bonds)
     stub_graph_query(Livepeer::Queries::Graph::UnbondsQuery, :unbonds)
     stub_graph_query(Livepeer::Queries::Graph::RebondsQuery, :rebonds)
     stub_graph_query(Livepeer::Queries::Graph::TranscodersQuery, :transcoders)
+    stub_graph_query(Livepeer::Queries::Graph::DelegatorsQuery, :delegators)
+    stub_graph_query(Livepeer::Queries::Graph::RewardCutChangesQuery, :reward_cut_changes)
 
     allow_any_instance_of(ThreeboxClient).to receive(:fetch_space) do
       load_json_fixture(:transcoder_profile)
@@ -201,6 +203,26 @@ RSpec.describe Livepeer::ChainSyncService, livepeer: [:graph, :factory] do
     expect(rebonds[1].unbonding_lock_id).to eq(2)
   end
 
+  it 'synchronizes reward cut changes' do
+    subject.call
+
+    reward_cut_changes = chain.reward_cut_changes
+
+    expect(reward_cut_changes.count).to eq(4)
+
+    expect(reward_cut_changes[0].transaction_hash).to start_with('0xef26f6072653d496bd1804d20f3f4bb2')
+    expect(reward_cut_changes[0].round.number).to eq(1663)
+    expect(reward_cut_changes[0].transcoder_address).to eq('0xfb9849b0b53f66b747bfa47396964a3fa22400a0')
+    expect(reward_cut_changes[0].reward_cut).to eq(0)
+    expect(reward_cut_changes[0].timestamp).to eq('2018-05-01 15:18:17')
+
+    expect(reward_cut_changes[1].transaction_hash).to start_with('0xa523b8d0b98f58e372a79f0d950cb05b')
+    expect(reward_cut_changes[1].round.number).to eq(1663)
+    expect(reward_cut_changes[1].transcoder_address).to eq('0x4f4758f7167b18e1f5b3c1a7575e3eb584894dbc')
+    expect(reward_cut_changes[1].reward_cut).to eq(50)
+    expect(reward_cut_changes[1].timestamp).to eq('2018-05-01 18:09:02')
+  end
+
   it 'synchronizes transcoders' do
     subject.call
 
@@ -248,6 +270,37 @@ RSpec.describe Livepeer::ChainSyncService, livepeer: [:graph, :factory] do
     expect(transcoders[1].reload).to be_persisted
 
     expect { transcoders[2].reload }.to raise_error(ActiveRecord::RecordNotFound)
+  end
+
+  it 'synchronizes delegators' do
+    subject.call
+
+    delegators = chain.delegators
+
+    expect(delegators.count).to eq(2)
+
+    expect(delegators[0].address).to eq('0x000817415963a38c16ba6ccc98f4002684c97697')
+    expect(delegators[0].transcoder_address).to eq('0xa20416801ac2eacf2372e825b4a90ef52490c2bb')
+
+    expect(delegators[1].address).to eq('0x00260ddd1d175bf20c18f1407162db63b840b944')
+    expect(delegators[1].transcoder_address).to eq('0x481efb669b423cfaffa49890205427dea9b3d693')
+  end
+
+  it 'deletes remaining delegators' do
+    delegators = [
+      create_delegator(chain, address: '0x000817415963a38c16ba6ccc98f4002684c97697'),
+      create_delegator(chain, address: '0x00260ddd1d175bf20c18f1407162db63b840b944'),
+      create_delegator(chain, address: '0x7a174e4c95d01dcae6b2df271ba99dce803d8e37')
+    ]
+
+    subject.call
+
+    expect(chain.delegators.count).to eq(2)
+
+    expect(delegators[0].reload).to be_persisted
+    expect(delegators[1].reload).to be_persisted
+
+    expect { delegators[2].reload }.to raise_error(ActiveRecord::RecordNotFound)
   end
 
   it 'updates the local height' do

@@ -1,0 +1,34 @@
+<div class='data-block'>
+  <div class='d-flex justify-content-between align-content-center mb-2'>
+    <h3 class='data-block__title m-0'>Blocks</h3>  
+    <span class='text-label'>Last 50</span>
+  </div>
+  <div class='block-heatmap-container'>
+    <div class='block-heatmap'>
+      <% @chain.blocks.limit( 50 ).reverse_each do |block| -%>
+        <% precommitted = block.precommitters.include?(@validator.address) -%>
+        <% proposed = block.proposer_address == @validator.address -%>
+        <a class='block <%= precommitted ? 'ok' : 'missed' %> <%= proposed ? 'proposed' : '' %>'
+            href='<%= namespaced_path( 'block', block ) %>'
+            title="Block <%= block.height %> <span class='fas fa-arrow-right text-sm text-muted mx-2'></span> <span class='badge badge-<%= precommitted ? 'success' : 'danger' %>'><%= precommitted ? 'OK' : 'MISSED' %></span>"></a>
+      <% end -%>
+    </div>
+  </div>
+
+  <% if false -%>
+    <div>
+      <label class='text-muted d-inline mb-0'>Total Pre-commits</label>
+      <span class='technical large-number'><%= @validator.total_precommits %></span>
+    </div>
+
+    <div>
+      <label class='text-muted d-inline mb-0'>Total Proposals</label>
+      <span class='technical large-number'><%= @validator.total_proposals %></span>
+      <span class='text-muted'>
+        (<span class='technical'>
+          <%= round_if_whole (@validator.total_proposals / @validator.total_precommits.to_f) * 100, 2 %>%
+        </span>)
+      </span>
+    </div>
+  <% end -%>
+</div>

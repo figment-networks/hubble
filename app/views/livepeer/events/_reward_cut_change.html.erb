@@ -1,0 +1,16 @@
+<div>
+  <span class='d-inline d-md-none <%= icon_classes %> mr-1'></span>
+  <span class='font-weight-bold'>
+    <% if @transcoder.nil? -%>
+      <%= link_to  event.transcoder.name_or_address, namespaced_path('transcoder', event.transcoder) %> changed reward to
+      <span class='technical'><%= number_to_percentage(event.reward_cut) %>
+        <span class="text-muted" >in round </span><%= event.round.number %>
+      </span>
+    <% else -%>
+      Reward cut changed to
+      <span class='technical'><%= number_to_percentage(event.reward_cut) %>
+        <span class="text-muted" >in round </span><%= event.round.number %>
+      </span>
+    <% end -%>
+  </span>
+</div>

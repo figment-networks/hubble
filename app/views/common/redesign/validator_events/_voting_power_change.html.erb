@@ -1,0 +1,17 @@
+<td>
+  <div class="d-flex align-items-center">
+    <%= image_tag "#{event.positive? ? 'increased' : 'reduced'}.svg", alt: "#{event.positive? ? 'increased' : 'reduced'}", class: 'event-history__arrow mr-2' %>
+    <p class="event-history__value technical m-0">
+      <%= sprintf("%+d", event.delta) %><span>/</span><%= sprintf("%+.1f%%", event.percentage_change) %>
+    </p>
+  </div>
+  <div class="event-history__amount technical">
+    <%= format_amount(event.from, hide_units: true, denom: @chain.token_map[@chain.primary_token]['display']) %>
+    <%= format_amount(event.to, hide_units: true, denom: @chain.token_map[@chain.primary_token]['display']) %>
+  </div>
+</td>
+<td>
+  <%= link_to namespaced_path( 'block', event.height ), class: "technical event-history__block" do %>
+    <%= event.height %>
+  <% end -%>  
+</td>

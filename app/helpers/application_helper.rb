@@ -1,4 +1,6 @@
 module ApplicationHelper
+  include Pagy::Frontend
+
   def js_namespace
     obj = {
       # data
@@ -11,7 +13,8 @@ module ApplicationHelper
       Cosmoslike: {},
       Livepeer: {},
       Near: {},
-      Oasis: {}
+      Oasis: {},
+      Polkadot: {}
     }
 
     if @chain.try(:primary_token)
@@ -21,11 +24,15 @@ module ApplicationHelper
         namespace: @chain.class.to_s.split("::").first.downcase,
         denom: @chain.token_map[primary_token]['display'],
         remoteDenom: primary_token,
-        remoteScaleFactor: 10 ** @chain.token_map[primary_token]['factor'],
+        remoteScaleFactor: 10 ** @chain.token_map[primary_token]['factor']
+      )
+      if @chain.try(:ext_id)
+        obj[:config].merge!(
         chainId: @chain.ext_id,
         prefixes: @chain.prefixes,
         startedLate: !@chain.cutoff_at.nil?
       )
+      end
     end
 
     javascript_tag "window.App = #{obj.to_json.html_safe};"

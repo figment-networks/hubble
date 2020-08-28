@@ -24,7 +24,7 @@ module FormattingHelper
     denom_str = hide_units ? '' : denom
     if html
       num_str = "<span class='text-monospace'>#{num_str}</span>"
-      denom_str = "<span class='text-sm text-muted'>#{denom_str}</span>" unless denom_str.blank?
+      denom_str = "<span class='text-sm text-muted sup'>#{denom_str}</span>" unless denom_str.blank?
     end
 
     "#{num_str} #{denom_str}".strip.html_safe
@@ -60,4 +60,7 @@ module FormattingHelper
     number_with_delimiter round_if_whole(num, precision)
   end
 
+  def format_timestamp(timestamp)
+    timestamp.strftime('%Y-%m-%d @ %H:%M %Z')
+  end
 end

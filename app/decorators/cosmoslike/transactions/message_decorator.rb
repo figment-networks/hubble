@@ -102,7 +102,7 @@ class Cosmoslike::Transactions::MessageDecorator
   def handle_proposal_id( value )
     p = @chain.governance_proposals.find_by( ext_id: value )
     return "Unknown" unless p
-    link_to p.title.truncate( 30, separator: '...' ), namespaced_path( 'governance_proposal', p )
+    link_to p.title.truncate( 30 ), namespaced_path( 'governance_proposal', p )
   end
 
   def handle_send( value )

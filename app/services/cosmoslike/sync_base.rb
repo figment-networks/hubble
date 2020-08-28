@@ -59,6 +59,20 @@ class Cosmoslike::SyncBase
     lcd_get( 'staking/pool' )
   end
 
+  def get_total_supply
+    lcd_get("supply/total/#{@chain.primary_token}")
+  end
+
+  def get_reported_inflation
+    lcd_get('minting/inflation')
+  end
+
+  def get_reported_blocks_per_year
+    res = lcd_get('minting/parameters')
+    return nil if res.nil?
+    res['blocks_per_year']
+  end
+
   def get_transaction( hash )
     r = lcd_get( [ 'txs', hash ] )
     return nil if !r.is_a?(Hash)

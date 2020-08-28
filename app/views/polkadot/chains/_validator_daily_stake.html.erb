@@ -1,0 +1,14 @@
+<div class='card'>
+  <h5 class='card-header'>Total stake</h5>
+  <div class='card-body'>
+    <label>Past <%= validator_daily_stake.count %> days:</label>
+    <div class='small-validator-daily-stake-chart-container'>
+      <canvas class='validator-daily-stake-chart'></canvas>
+    </div>
+
+    <script>
+      App.seed.VALIDATOR_TOTAL_STAKE = <%= validator_daily_stake.to_json.html_safe %>
+      App.config.denom = '<%= chain.class::DEFAULT_TOKEN_DISPLAY %>'
+    </script>
+  </div>
+</div>

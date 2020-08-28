@@ -29,6 +29,7 @@ gem 'acts_as_list'
 gem 'local_time'
 gem 'pagy', '~> 3.5'
 gem 'chartkick'
+gem 'cryptocompare'
 
 gem 'postmark-rails'
 gem 'twitter', '~> 6.1.0'
@@ -75,6 +76,7 @@ group :development, :test do
   gem 'letter_opener_web', '~> 1.0'
   gem 'rspec-rails', '~> 4.0.0'
   gem 'pry'
+  gem 'bullet'
 end
 
 group :test do

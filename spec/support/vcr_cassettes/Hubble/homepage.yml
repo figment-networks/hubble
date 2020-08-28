@@ -1,0 +1,53 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://min-api.cryptocompare.com/data/pricemulti?fsyms=ATOM,LPT,KAVA,KSM,XTZ,LUNA,IRIS&tsyms=USD
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.11.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sat, 08 Aug 2020 11:55:51 GMT
+      Content-Type:
+      - application/json; charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Content-Security-Policy:
+      - frame-ancestors 'none'
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET, POST, OPTIONS
+      Access-Control-Allow-Headers:
+      - Content-Type, Cookie, Set-Cookie, Authorization
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Cache-Control:
+      - public, max-age=10
+      Cryptocompare-Cache-Hit:
+      - 'false'
+      Cryptocompare-Server-Id:
+      - ccc-api08
+    body:
+      encoding: UTF-8
+      string: '{"ATOM":{"USD":4.121},"LPT":{"USD":1.885},"KAVA":{"USD":3.905},"KSM":{"USD":11.88},"XTZ":{"USD":3.162},"LUNA":{"USD":0.3484},"IRIS":{"USD":0.06599}}'
+  recorded_at: Sat, 08 Aug 2020 11:55:51 GMT
+recorded_with: VCR 6.0.0

@@ -1,6 +1,8 @@
 class Emoney::Validator < ApplicationRecord
   include Cosmoslike::Validatorlike
 
+  scope :active, -> { where.not(current_voting_power: 0) }
+
   def current_commission
     rate = info_field( 'commission', 'commission_rates', 'rate' )
     rate ? rate.to_f : nil

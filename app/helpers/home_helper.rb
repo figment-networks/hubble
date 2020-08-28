@@ -6,11 +6,18 @@ module HomeHelper
       *Iris::Chain.alive.has_synced.primary,
       *Kava::Chain.alive.has_synced.primary,
       *Emoney::Chain.alive.has_synced.primary,
-      *Livepeer::Chain.enabled.last, #TODO: add primary
+      *Livepeer::Chain.enabled.primary,
       *Tezos::Chain.enabled.primary,
       *Oasis::Chain.enabled.primary,
-      *Near::Chain.enabled.last #TODO: add `.primary` scope `scope :primary, -> { find_by( primary: true ) || order('created_at DESC').first }`
-    ].sort_by!{ |chain| chain.network_name.downcase }
+      *Near::Chain.enabled.primary
+    ]
+  end
+  
+  def decorated_primary_chains
+    @decorated_primary_chains ||= 
+      primary_chains.map { 
+        |chain| chain.class.parent::HomeChainDecorator.new(chain)
+      }.sort_by!{ |chain| chain.network_name.downcase }
   end
 
   NETWORKS_IMAGES = {

@@ -13,9 +13,13 @@ class Cosmoslike::ChainsController < Cosmoslike::BaseController
   end
 
   def search
-    query = params[:query].strip
 
-    if query =~ /^\d+$/
+    query = (params[:query] || '').strip
+
+    if query == ""
+      render template: 'cosmoslike/chains/search_failed'
+
+    elsif query =~ /^\d+$/
       redirect_to namespaced_path( 'block', query )
 
     elsif query.downcase.starts_with?( @chain.prefixes[:account_address] )
@@ -61,6 +65,10 @@ class Cosmoslike::ChainsController < Cosmoslike::BaseController
       redirect_to namespaced_path
       return
     end
+
+    @hcs = @chain.namespace::HaltedChainService.new(@chain) rescue nil
+    @validator_states = @hcs.validator_states rescue nil
+
     render template: 'cosmoslike/chains/halted'
   end
   alias :prestart :halted

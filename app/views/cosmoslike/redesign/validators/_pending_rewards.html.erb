@@ -1,0 +1,21 @@
+<% if current_admin -%>
+  <div class='data-block'>
+    <h3 class='data-block__title'>Pending Rewards</h3>
+    <% begin -%>
+      <% validator_reward_data = @chain.syncer.get_validator_rewards( @validator.owner ) -%>
+      <% if validator_reward_data.nil? || validator_reward_data.empty? -%>
+        <span class='text-muted'>&mdash;</span>
+      <% else -%>
+        <div class="d-flex flex-wrap">
+          <% validator_reward_data.each do |vrd| -%>
+            <div class="mb-2 w-50">
+              <%= format_amount( vrd['amount'].to_f, @chain, denom: vrd['denom'] ) %>
+            </div>
+          <% end -%>
+        </div>
+      <% end -%>
+    <% rescue @chain.namespace::SyncBase::CriticalError, TypeError -%>
+      <span class='text-muted'>Could not load data.</span>
+    <% end -%>
+  </div>
+<% end -%>

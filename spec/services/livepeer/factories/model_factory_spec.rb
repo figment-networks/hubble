@@ -8,4 +8,16 @@ RSpec.describe Livepeer::Factories::ModelFactory do
   it 'returns a model class' do
     expect(subject.call).to eq(Livepeer::Round)
   end
+
+  context 'with a conflicting top-level class' do
+    let(:resource) { :delegators }
+
+    it "doesn't return the top-level class" do
+      expect(subject.call).not_to eq(Delegator)
+    end
+
+    it 'returns the model class' do
+      expect(subject.call).to eq(Livepeer::Delegator)
+    end
+  end
 end

@@ -6,7 +6,7 @@ class Livepeer::DelegatorListsController < Livepeer::BaseController
   before_action :set_default_meta_description
 
   def index
-    @delegator_lists = delegator_lists.order(:id)
+    @delegator_lists = delegator_lists.order(:id).includes(:alert_subscriptions)
   end
 
   def new
@@ -22,6 +22,10 @@ class Livepeer::DelegatorListsController < Livepeer::BaseController
     else
       render :edit
     end
+  end
+
+  def show
+    redirect_to action: :edit
   end
 
   def edit

@@ -32,7 +32,7 @@ module Cosmoslike::Validatorlike
   def short_name( max_length=16 )
     (!moniker.blank? ? moniker : nil) ||
     owner ||
-    address.truncate( max_length, separator: '...' )
+    address.truncate( max_length )
   end
 
   def long_name

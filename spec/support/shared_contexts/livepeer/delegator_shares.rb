@@ -1,16 +1,16 @@
 shared_context 'Livepeer delegator shares' do
   let(:transcoders) do
-    %w{
-      0xf70f722ef2b093b253fd237aa8e32792fe1b64a8
+    %w[
       0xbde0750c5c3bd4afdb495e26b790f7771ccd8d22
-    }
+      0xf70f722ef2b093b253fd237aa8e32792fe1b64a8
+    ]
   end
 
   let(:delegators) do
-    %w{
-      0xcb31d90803f50bc5915925fe40d97cc6b71f0e04
+    %w[
       0x5583cece0ef08e93b462b4aa5d8431cfd8e61d56
-    }
+      0xcb31d90803f50bc5915925fe40d97cc6b71f0e04
+    ]
   end
 
   let!(:chains) { create_list(:livepeer_chain, 2) }

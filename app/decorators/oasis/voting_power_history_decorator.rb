@@ -15,11 +15,11 @@ class Oasis::VotingPowerHistoryDecorator
       {
         t: DateTime.parse(vph.time_bucket),
 
-        y: vph.total_shares_avg.to_f
+        y: vph.active_escrow_balance_avg.to_f
       }
     end
 
-    data << { t: Time.now.utc.iso8601, y: @validator.recent_total_shares }
+    data << { t: Time.now.utc.iso8601, y: @validator.recent_active_escrow_balance }
 
     first = data.first
     data.unshift(

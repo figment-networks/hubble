@@ -1,0 +1,17 @@
+<td>
+  <%= image_tag "event-missed.svg", alt: "forbidden sign", class: 'event-history__forbidden-sign mr-2' %>
+  <span class='font-weight-bold'>
+    <% if @validator.nil? %>
+      <a href='<%= namespaced_path( 'validator', event.validatorlike ) %>'><%= event.validatorlike.short_name %></a> missed
+    <% else -%>
+      Missed
+    <% end -%>
+    <span class='technical'><%= event.data['n'] %></span> consecutive precommits
+  </span>
+</td>
+<td>  
+  <%= link_to namespaced_path( 'block', event.height ), class: 'technical event-history__block' do %>
+    <%= event.height %>
+  <% end -%>
+</td>
+

@@ -12,16 +12,13 @@ feature 'baker details' do
   scenario 'visit as not signed in user and try to subscribe', :vcr do
     visit_baker_page(baker_id)
     expect(page).to have_content(baker_id)
-    
+
     click_link('Subscribe')
     expect(page.current_path).to eq('/login')
   end
 
   scenario 'sign in and subscribe to baker', :vcr do
-    visit '/login'
-    fill_in 'email', with: user.email
-    fill_in 'password', with: user.password
-    click_button 'login'
+    log_in(user)
 
     visit_baker_page(baker_id)
     click_link('Subscribe')

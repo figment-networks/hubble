@@ -1,16 +1,20 @@
 <div class='card'>
   <h5 class='card-header'>Current Block</h5>
   <div class='card-body'>
+    <% if block %>
       <a class='large-number' href='#'>
         <span class='technical'><%= block.height %></span>
       </a>
-    <div class='sub-info'>
-      <small class='text-muted technical'>
-        <%= block.time.strftime('%Y-%m-%d %H:%M:%S %Z') %>
-      </small>
-      <small class='text-muted'>
-        <%= time_ago_in_words(block.time, true) %> ago
-      </small>
-    </div>
+      <div class='sub-info'>
+        <small class='text-muted technical'>
+          <%= block.time.strftime('%Y-%m-%d %H:%M:%S %Z') %>
+        </small>
+        <small class='text-muted'>
+          <%= time_ago_in_words(block.time, true) %> ago
+        </small>
+      </div>
+    <% else %>
+      <span class='text-muted'>Unavailable</span>
+    <% end %>
   </div>
 </div>

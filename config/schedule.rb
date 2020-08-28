@@ -32,3 +32,11 @@ every '5 0 * * *' do
   rake 'common:logs:clean_dailies', output: log_path('clean-logs')
   rake 'common:alerts:users:daily', output: log_path('alerts')
 end
+
+every '0 0 * * *' do
+  rake 'network_data:cosmos'
+  rake 'network_data:terra'
+  rake 'network_data:iris'
+  rake 'network_data:kava'
+  rake 'network_data:emoney'
+end

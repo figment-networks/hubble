@@ -1,0 +1,22 @@
+<a name='events'></a>
+<div class='card'>
+  <h5 class='card-header'>
+    <div class='card-header-parts'>
+      <div>Event History <small>&mdash; most recent 20</small></div>
+      <% if !current_user -%>
+        <div data-toggle='tooltip' title='Sign up to subscribe to alerts!'>
+          <%= link_to('Subscribe', new_user_path, class: 'btn btn-sm btn-outline-light') %>
+        </div>
+      <% else -%>
+        <div>
+          <%= link_to( current_user.subscribed_to?(@alertable_address) ? 'Edit Subscription' : 'Subscribe to Alerts', namespaced_path( 'validator_subscriptions', @validator.address ), class: 'btn btn-sm btn-outline-light') %>
+        </div>
+      <% end -%>
+    </div>
+  </h5>
+
+  <!-- Placeholder until events available from indexer -->
+  <div class='card-body p-1'>
+
+  </div>
+</div>

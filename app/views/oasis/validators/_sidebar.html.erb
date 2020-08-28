@@ -1,10 +1,10 @@
 <div class='card'>
   <h5 class='card-header'>Current Voting Power</h5>
   <div class='card-body'>
-    <div class='large-number'><%= format_amount(validator.recent_total_shares, denom: 'noasis') %></div>
+    <div class='large-number'><%= format_amount(validator.recent_active_escrow_balance, denom: 'noasis') %></div>
     <div>
       <label class='text-muted d-inline mb-0'>Proposal Probability</label>
-      <span class='technical'><%= round_if_whole((validator.recent_total_shares.to_f / chain.current_voting_power.to_f) * 100, 2) %>%</span>
+      <span class='technical'><%= round_if_whole((validator.recent_active_escrow_balance.to_f / chain.current_voting_power.to_f) * 100, 2) %>%</span>
     </div>
   </div>
 </div>

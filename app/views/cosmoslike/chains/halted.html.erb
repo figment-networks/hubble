@@ -6,9 +6,7 @@
   <h4>Chain has not yet started.</h4>
 <% end -%>
 
-<% hcs = @chain.namespace::HaltedChainService.new(@chain) rescue nil -%>
-
-<% if !hcs.nil? -%>
+<% if !@hcs.nil? && !@validator_states.nil? -%>
   <div class='row info-cards'>
     <div class='col-12 col-md-9 order-1 order-md-0'>
       <section class='validators'>
@@ -25,19 +23,19 @@
               </tr>
             </thead>
             <tbody>
-              <% hcs.validator_states.each do |validator_info| -%>
+              <% @validator_states.each do |validator_info| -%>
                 <% validator = validator_info[:validator] -%>
                 <tr>
                   <td>
                     <a href='<%= namespaced_path( 'validator', validator_info[:address] ) %>'>
                       <% if validator -%>
                         <% if (name = (validator.moniker || validator_info[:name])) -%>
-                          <strong><%= name.truncate(40, separator: '...') %></strong>
+                          <strong><%= name.truncate(40) %></strong>
                         <% else -%>
-                          <span class='technical'><%= (validator.owner || validator.address).truncate(40, separator: '...') %></span>
+                          <span class='technical'><%= (validator.owner || validator.address).truncate(40) %></span>
                         <% end -%>
                       <% elsif validator_info[:name] -%>
-                        <strong><%= validator_info[:name].truncate(40, separator: '...') %></strong>
+                        <strong><%= validator_info[:name].truncate(40) %></strong>
                       <% else -%>
                         <span class='technical'><%= validator_info[:address] %></span>
                       <% end -%>
@@ -68,28 +66,28 @@
             <div class='d-flex justify-content-between'>
               <div class='w-50'>
                 <label class='text-muted'>Height</label>
-                <div class='technical text-lg'><%= hcs.height %></div>
+                <div class='technical text-lg'><%= @hcs.height %></div>
               </div>
               <div class='w-50'>
                 <label class='text-muted'>Consensus</label>
-                <div class='technical text-lg'><%= hcs.percentage.round(0) %>%</div>
+                <div class='technical text-lg'><%= @hcs.percentage.round(0) %>%</div>
               </div>
             </div>
             <div class='d-flex justify-content-between'>
               <div class='w-50'>
                 <label class='text-muted mt-3'>Round</label>
-                <div class='technical text-lg'><%= hcs.round %></div>
+                <div class='technical text-lg'><%= @hcs.round %></div>
               </div>
               <div class='w-50'>
                 <label class='text-muted mt-3'>Step</label>
-                <div class='technical text-lg'><%= hcs.step %></div>
+                <div class='technical text-lg'><%= @hcs.step %></div>
               </div>
             </div>
             <div>
               <label class='text-muted mt-3'>Status</label>
-              <% if hcs.is_precommit_step? -%>
+              <% if @hcs.is_precommit_step? -%>
                 <span>Waiting for pre-commits...</span>
-              <% elsif hcs.is_waiting_step? -%>
+              <% elsif @hcs.is_waiting_step? -%>
                 <span>Waiting for proposal...</span>
               <% else -%>
                 <span>Waiting for prevotes...</span>
@@ -97,18 +95,18 @@
             </div>
             <div>
               <label class='text-muted mt-3'>Start Time</label>
-              <%= hcs.start_time.strftime("%Y-%m-%d at %H:%M %Z").html_safe %>
+              <%= @hcs.start_time.strftime("%Y-%m-%d at %H:%M %Z").html_safe %>
             </div>
             <div>
               <label class='text-muted mt-3'>Proposer</label>
-              <% if hcs.proposer.is_a?(String) -%>
-                <span class='technical'><%= hcs.proposer %></span>
+              <% if @hcs.proposer.is_a?(String) -%>
+                <span class='technical'><%= @hcs.proposer %></span>
               <% else -%>
-                <a href='<%= namespaced_path( 'validator', hcs.proposer ) %>'>
-                  <% if hcs.proposer.moniker -%>
-                    <strong><%= hcs.proposer.moniker.truncate(40, separator: '...') %></strong>
+                <a href='<%= namespaced_path( 'validator', @hcs.proposer ) %>'>
+                  <% if @hcs.proposer.moniker -%>
+                    <strong><%= @hcs.proposer.moniker.truncate(40) %></strong>
                   <% else %>
-                    <span class='technical'><%= (hcs.proposer.owner || hcs.proposer.address).truncate(40, separator: '...') %></span>
+                    <span class='technical'><%= (@hcs.proposer.owner || @hcs.proposer.address).truncate(40) %></span>
                   <% end -%>
                 </a>
               <% end -%>
