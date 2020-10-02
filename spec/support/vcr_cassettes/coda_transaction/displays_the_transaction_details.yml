@@ -1,0 +1,39 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://localhost:8081/transactions/5nBYmEdjgZx63SnXKHcmWtvp2uHUK7neLV9BBB42oEpocygkHVgiJeVyjwr1Vater5YPikdQJPhzFV7Fz9vjyvLRd1yAVPoRP7nqy1SV6c4PH4bZznG7TXDcgN9uEfmp2t2BG8UxxwJFVQJTXoXP65czFYDGahhiksBK6kTpGsKG6EvbhPtKHnA5km5P7Uyp6DscyhbUhEseCvjs8Q7WzVm4SGnqPG8SVmez2VMvpypcjgh7wd1cztxnmXdt5vDC1pfYw1BLkbVPp7D3uV2M5iXsfDtxgUtJ3ceTqDE4snEcQX7QLNJD1e559uNghEG3cEuzicyyCFK5mZ2gp4p1tyJTuUBorhfUW8XHXfbivuYEZZHf3NmmGwYQyRSuA9LcTjkQf7tSp1HFot7wsMYpSgujuV1uW6NkcGyvAgsv5qVCjipjnSJBVpVnH3fjN9E4tXEzVquH8E8AECqm3DFqPCbno1itToM7t4JTHcZYNbAWwD2J1M16Na9xr7uRbnnqxQns8EB2hV625ZxqNKQG7XkBdaPdeiU1aJrtH4KfLbXojc7ikS8xE4D4sU2ejFCsskm9sRTQV48KbePvJJjbMBrT7JiBZaCjg4JTPpoJ1j5dTQfQf5xqc1LsSjNiwzh8EoS278iLQTTmV5GNsaPnxSfKoJh1BSzNq63rat1Sp9cep3crUbdmacFHKCphxpX3TGgAK2tPjEcQvFsHJNgFM45YWLGSwDs5p88uQi5buRGReL1begRRrQk47E7FRDUCP91yJoXGNFXHaYfZvRcPd88mB6n3P5aEoczY1bBFRiqqMG8CxsWEH413f1pxPgzSkmkE2z9EB3TgSjHMe5EA2DhsQZumkLRzJX32GFBaQ8PGYSNzDpfkwr7kWpuNeFXGTrN5J7wgogef88a1RpKYqrYdR9QNmhqenhdhCscCvwFihK3zBT3aD4gYqR2r3eArysr3CZ9MMUx3YK7SHfM6E98JCodyJKAC96HXqnCjmEXui884fmbBnye5kFPXAeCyunBvcikiTUHnDqrnWTBHuYjAc4yi2FbTFtTrUeNP7wmwg9gQzGj9RzbLjxU8sctkXQ5GVopy8ioCmjqXc28v1PYSoY34cyK17EbHoev5QiuhN4zoPYs1XbSRJ1SFPJxrBn1dPk1fkFArmGff23rXKhaw54zb7xPf
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (darwin18.7.0 x86_64) ruby/2.6.6p146
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - localhost:8081
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Methods:
+      - GET, POST, OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - "*"
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Thu, 16 Jul 2020 00:41:08 GMT
+      Content-Length:
+      - '1988'
+    body:
+      encoding: UTF-8
+      string: '{"id":71447,"type":"payment","hash":"5nBYmEdjgZx63SnXKHcmWtvp2uHUK7neLV9BBB42oEpocygkHVgiJeVyjwr1Vater5YPikdQJPhzFV7Fz9vjyvLRd1yAVPoRP7nqy1SV6c4PH4bZznG7TXDcgN9uEfmp2t2BG8UxxwJFVQJTXoXP65czFYDGahhiksBK6kTpGsKG6EvbhPtKHnA5km5P7Uyp6DscyhbUhEseCvjs8Q7WzVm4SGnqPG8SVmez2VMvpypcjgh7wd1cztxnmXdt5vDC1pfYw1BLkbVPp7D3uV2M5iXsfDtxgUtJ3ceTqDE4snEcQX7QLNJD1e559uNghEG3cEuzicyyCFK5mZ2gp4p1tyJTuUBorhfUW8XHXfbivuYEZZHf3NmmGwYQyRSuA9LcTjkQf7tSp1HFot7wsMYpSgujuV1uW6NkcGyvAgsv5qVCjipjnSJBVpVnH3fjN9E4tXEzVquH8E8AECqm3DFqPCbno1itToM7t4JTHcZYNbAWwD2J1M16Na9xr7uRbnnqxQns8EB2hV625ZxqNKQG7XkBdaPdeiU1aJrtH4KfLbXojc7ikS8xE4D4sU2ejFCsskm9sRTQV48KbePvJJjbMBrT7JiBZaCjg4JTPpoJ1j5dTQfQf5xqc1LsSjNiwzh8EoS278iLQTTmV5GNsaPnxSfKoJh1BSzNq63rat1Sp9cep3crUbdmacFHKCphxpX3TGgAK2tPjEcQvFsHJNgFM45YWLGSwDs5p88uQi5buRGReL1begRRrQk47E7FRDUCP91yJoXGNFXHaYfZvRcPd88mB6n3P5aEoczY1bBFRiqqMG8CxsWEH413f1pxPgzSkmkE2z9EB3TgSjHMe5EA2DhsQZumkLRzJX32GFBaQ8PGYSNzDpfkwr7kWpuNeFXGTrN5J7wgogef88a1RpKYqrYdR9QNmhqenhdhCscCvwFihK3zBT3aD4gYqR2r3eArysr3CZ9MMUx3YK7SHfM6E98JCodyJKAC96HXqnCjmEXui884fmbBnye5kFPXAeCyunBvcikiTUHnDqrnWTBHuYjAc4yi2FbTFtTrUeNP7wmwg9gQzGj9RzbLjxU8sctkXQ5GVopy8ioCmjqXc28v1PYSoY34cyK17EbHoev5QiuhN4zoPYs1XbSRJ1SFPJxrBn1dPk1fkFArmGff23rXKhaw54zb7xPf","block_hash":"D2rcXVQa7cmyeB3xgzdJArsi9B8UoYr2bwCfxqhoBfio8yxhHuB3z2czVzER1vf9o43VKw1K64g3sPUh18JQpNetw92erwWZovvW49juUYZFenUG5gw7ULMdny6S6qaWFbVXymGMNGnqKL4wAVUBRD1idnftqa1Av1FZDn3JuD3gWWTzPVvAkMSaSyAWpC2DQhi71KTUBG5ytU65HfMwz791s85Fpoij2cK8MJ1sZbnwE6vyYGKUtE93NgQVEDPYCD7grSs4it7TF5dptHjv5c3PfZZX493L5kcaXH9k55EAM7QfFSqcgxezTuijsywbpc","height":6091,"time":"2020-07-15T19:33:00-05:00","sender":"4vsRCVnG2vWaFpEiP5NzooJryxbgGGSHEP6B86GrBdRVnsgBYF55jr6RTCJUnYWecbAUPprnCknHVgyKsewFPPfscqNLJPedXhdU1BLqZghNWCSfGpz557vxHLzxcNbNrAXCQBqHfnbKGbgZ","receiver":"4vsRCVnG2vWaFpEiP5NzooJryxbgGGSHEP6B86GrBdRVnsgBYF55jr6RTCJUnYWecbAUPprnCknHVgyKsewFPPfscqNLJPedXhdU1BLqZghNWCSfGpz557vxHLzxcNbNrAXCQBqHfnbKGbgZ","amount":1000000,"fee":1000000,"nonce":8427,"memo":"1594841711"}'
+  recorded_at: Thu, 16 Jul 2020 00:41:08 GMT
+recorded_with: VCR 6.0.0

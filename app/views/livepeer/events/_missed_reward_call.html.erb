@@ -1,0 +1,15 @@
+<div>
+  <span class='d-inline d-md-none <%= icon_classes %> mr-1'></span>
+  <span class='font-weight-bold'>
+    <% if @orchestrator.nil? -%>
+      <%= link_to event.orchestrator.name_or_address, namespaced_path('orchestrator', event.orchestrator) %>
+      missed a reward call
+    <% else -%>
+      Missed a reward call
+    <% end -%>
+  </span>
+  <span class='text-muted'>
+    in round
+    <%= link_to event.round.number, namespaced_path('round', event.round), class: 'technical' %>
+  </span>
+</div>

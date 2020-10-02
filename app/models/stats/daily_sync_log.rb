@@ -5,8 +5,6 @@ class Stats::DailySyncLog < ApplicationRecord
   def total_blocks
     if end_height && start_height
       end_height - start_height
-    else
-      nil
     end
   end
 
@@ -15,10 +13,10 @@ class Stats::DailySyncLog < ApplicationRecord
   end
 
   class << self
-
-    def build_from( logs )
+    def build_from(logs)
       total_logs = logs.count
       return nil if total_logs == 0
+
       start_time = logs.first.started_at.beginning_of_day
       succeeded = logs.select(&:completed_at)
       failed = logs.select(&:failed_at)
@@ -33,14 +31,13 @@ class Stats::DailySyncLog < ApplicationRecord
       )
     end
 
-    def create_from( logs )
+    def create_from(logs)
       total_logs = logs.count
-      daily = build_from( logs )
+      daily = build_from(logs)
       if daily.valid? && daily.save
-        Stats::SyncLog.where( id: logs.map(&:id) ).delete_all
+        Stats::SyncLog.where(id: logs.map(&:id)).delete_all
         puts "\tCreated #{daily.date} sync log bucket and deleted #{total_logs} minutelies."
       end
     end
-
   end
 end

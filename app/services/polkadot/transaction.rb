@@ -11,23 +11,31 @@ module Polkadot
                   :section,
                   :args,
                   :is_success,
-                  :time
+                  :time,
+                  :partial_fee,
+                  :tip
 
-    def initialize(attrs = {})
-      attrs["method_name"] = attrs.delete("method")
-      attrs["account"] = attrs.delete("signer")
-      super(attrs)
-      @time = Time.zone.parse(time)
+    def initialize(attributes = {})
+      attributes['method_name'] = attributes.delete('method')
+      attributes['account'] = attributes.delete('public_key')
+      attributes['partial_fee'] = attributes.delete('partialFee') # TODO: remove when indexer gets updated
+      super(attributes)
+      @partial_fee = partial_fee.to_i
+      @tip = tip.to_i
     end
 
     def id
       hash
     end
 
+    def fee
+      partial_fee + tip
+    end
+
     def self.from_block(block)
       block.extrinsics.
         select { |extrinsic| extrinsic['is_signed'] }.
-        map { |extrinsic| new(extrinsic.merge({ 'block' => block.height })) }
+        map { |extrinsic| new(extrinsic.merge({ 'block' => block.height, 'time' => block.time })) }
     end
   end
 end

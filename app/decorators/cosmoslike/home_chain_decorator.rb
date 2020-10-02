@@ -1,6 +1,6 @@
 class Cosmoslike::HomeChainDecorator < HomeChainDecorator
   def validator_count
-    validators.count unless validators.nil?
+    validators&.select(&:active?)&.count
   end
 
   def avg_block_time

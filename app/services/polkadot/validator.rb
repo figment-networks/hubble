@@ -7,13 +7,23 @@ module Polkadot
                   :online,
                   :total_stake,
                   :commission,
-                  :account_details
+                  :account_details,
+                  :own_stake,
+                  :commission,
+                  :reward_points,
+                  :started_at
 
-    alias_method :online?, :online
+    alias online? online
 
     def commission_percentage
       return 0 if commission <= 0
+
       commission / COMMISSION_PERCENTAGE_FACTOR
+    end
+
+    def initialize(attributes = {})
+      super(attributes)
+      @started_at = Time.zone.parse(started_at) if started_at
     end
   end
 end

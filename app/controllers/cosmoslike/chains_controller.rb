@@ -1,5 +1,4 @@
 class Cosmoslike::ChainsController < Cosmoslike::BaseController
-
   def show
     @validators = @chain.validators
     @governance = @chain.governance
@@ -8,48 +7,47 @@ class Cosmoslike::ChainsController < Cosmoslike::BaseController
     meta_description "#{@chain.network_name} -- #{@chain.name} list of Validators, Address/Name, Voting Power, Uptime, Current Block and Governance"
 
     if @latest_block.nil?
-      redirect_to namespaced_path( 'prestart', pre_path: true )
+      redirect_to namespaced_path('prestart', pre_path: true)
     end
   end
 
   def search
-
     query = (params[:query] || '').strip
 
-    if query == ""
+    if query == ''
       render template: 'cosmoslike/chains/search_failed'
 
     elsif query =~ /^\d+$/
-      redirect_to namespaced_path( 'block', query )
+      redirect_to namespaced_path('block', query)
 
-    elsif query.downcase.starts_with?( @chain.prefixes[:account_address] )
-      redirect_to namespaced_path( 'account', query.downcase )
+    elsif query.downcase.starts_with?(@chain.prefixes[:account_address])
+      redirect_to namespaced_path('account', query.downcase)
 
-    elsif query.downcase.starts_with?( @chain.prefixes[:validator_operator_address] )
-      validator = @chain.validators.find_by( owner: query.downcase )
+    elsif query.downcase.starts_with?(@chain.prefixes[:validator_operator_address])
+      validator = @chain.validators.find_by(owner: query.downcase)
       if validator.nil?
         render template: 'cosmoslike/chains/search_failed'
         return
       else
-        redirect_to namespaced_path( 'validator', validator )
+        redirect_to namespaced_path('validator', validator)
       end
 
     elsif query.upcase == query
-      redirect_to namespaced_path( 'transaction', query )
+      redirect_to namespaced_path('transaction', query)
 
     else
       if query.length >= 3
         # maybe try to find via validator moniker?
-        validator = @chain.validators.where( 'moniker ILIKE ?', "%#{query}%" ).order('current_voting_power DESC')
+        validator = @chain.validators.where('moniker ILIKE ?', "%#{query}%").order('current_voting_power DESC')
         if validator.any?
-          redirect_to namespaced_path( 'validator', validator.first )
+          redirect_to namespaced_path('validator', validator.first)
           return
         end
 
         # how about a transaction then?
-        tx = @chain.syncer(250).get_transaction( query )
+        tx = @chain.syncer(250).get_transaction(query)
         if tx
-          redirect_to namespaced_path( 'transaction', tx['txhash'] )
+          redirect_to namespaced_path('transaction', tx['txhash'])
           return
         end
       end
@@ -71,7 +69,7 @@ class Cosmoslike::ChainsController < Cosmoslike::BaseController
 
     render template: 'cosmoslike/chains/halted'
   end
-  alias :prestart :halted
+  alias prestart halted
 
   def broadcast
     tx = { tx: params[:payload], return: 'sync' }

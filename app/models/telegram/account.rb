@@ -8,6 +8,6 @@ class Telegram::Account < ApplicationRecord
                        uniqueness: { case_sensitive: false }
 
   def self.by_username(username)
-    find_by("LOWER(username) = ?", username.downcase)
+    find_by('LOWER(username) = ?', username.downcase)
   end
 end

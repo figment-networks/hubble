@@ -1,17 +1,17 @@
 class Livepeer::Chain < ApplicationRecord
   default_scope { order(:position) }
 
-  ASSET = 'livepeer'
+  ASSET = 'livepeer'.freeze
   SYNC_INTERVAL = 10.minutes
 
-  DEFAULT_TOKEN_DISPLAY = 'LPT'
-  DEFAULT_TOKEN_REMOTE = 'livepeer'
+  DEFAULT_TOKEN_DISPLAY = 'LPT'.freeze
+  DEFAULT_TOKEN_REMOTE = 'livepeer'.freeze
   DEFAULT_TOKEN_FACTOR = 18
 
   acts_as_list add_new_at: :top
 
   has_many :rounds, dependent: :delete_all
-  has_many :transcoders, dependent: :delete_all
+  has_many :orchestrators, dependent: :delete_all
   has_many :delegators, dependent: :delete_all
 
   has_many :pools, through: :rounds
@@ -21,7 +21,11 @@ class Livepeer::Chain < ApplicationRecord
   has_many :unbonds, through: :rounds
   has_many :rebonds, through: :rounds
   has_many :events, through: :rounds
+
   has_many :reward_cut_changes, through: :rounds
+  has_many :missed_reward_calls, through: :rounds
+  has_many :deactivations, through: :rounds
+  has_many :slashings, through: :rounds
 
   has_many :delegator_lists, dependent: :delete_all
   has_many :alert_subscriptions, through: :delegator_lists
@@ -34,20 +38,38 @@ class Livepeer::Chain < ApplicationRecord
 
   scope :enabled, -> { where(disabled: false) }
   scope :has_synced, -> { where.not(last_sync_time: nil) }
-  scope :primary, -> { find_by( primary: true ) || order('created_at DESC').first }
+  scope :primary, -> { find_by(primary: true) || order(created_at: :desc).first }
 
-  def network_name; 'Livepeer'; end
-  def to_param; slug; end
-  def enabled?; !disabled?; end
-  def has_dashboard?; true; end
-  def failing_sync?; false; end
+  def network_name
+    'Livepeer'
+  end
+
+  def to_param
+    slug
+  end
+
+  def enabled?
+    !disabled?
+  end
+
+  def has_dashboard?
+    true
+  end
+
+  def failing_sync?
+    false
+  end
+
+  def alertable_type
+    'delegator_list'
+  end
 
   private
 
   def purge_data
     logger.silence do
       associations = %i[shares pools stakes bonds unbonds rebonds
-        events alert_subscriptions]
+                        events alert_subscriptions]
 
       associations.each do |association|
         ids = send(association).pluck(:id)

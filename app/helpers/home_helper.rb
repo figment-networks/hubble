@@ -9,18 +9,21 @@ module HomeHelper
       *Livepeer::Chain.enabled.primary,
       *Tezos::Chain.enabled.primary,
       *Oasis::Chain.enabled.primary,
-      *Near::Chain.enabled.primary
+      *Near::Chain.enabled.primary,
+      *Coda::Chain.enabled.primary,
+      *Polkadot::Chain.enabled.primary
     ]
   end
-  
+
   def decorated_primary_chains
-    @decorated_primary_chains ||= 
-      primary_chains.map { 
-        |chain| chain.class.parent::HomeChainDecorator.new(chain)
-      }.sort_by!{ |chain| chain.network_name.downcase }
+    @decorated_primary_chains ||=
+      primary_chains.map do |chain|
+        chain.class.parent::HomeChainDecorator.new(chain)
+      end.sort_by! { |chain| chain.network_name.downcase }
   end
 
   NETWORKS_IMAGES = {
+    'Coda' => 'coda.png',
     'Cosmos' => 'cosmos.svg',
     'e-Money' => 'e-money.png',
     'IRIS' => 'iris.png',
@@ -28,9 +31,10 @@ module HomeHelper
     'Livepeer' => 'livepeer.svg',
     'NEAR' => 'near.svg',
     'Oasis' => 'oasis.png',
+    'Polkadot' => 'polkadot.png',
     'Terra' => 'terra.svg',
     'Tezos' => 'tezos.png'
-  }
+  }.freeze
 
   def network_has_image?(network_name)
     NETWORKS_IMAGES.include?(network_name)

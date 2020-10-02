@@ -1,5 +1,5 @@
 class ThreeboxClient
-  BASE_URL = "https://ipfs.3box.io"
+  BASE_URL = 'https://ipfs.3box.io'.freeze
 
   def initialize(address)
     @address = address

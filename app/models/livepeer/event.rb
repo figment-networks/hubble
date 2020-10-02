@@ -17,9 +17,12 @@ class Livepeer::Event < ApplicationRecord
     raise NotImplementedError
   end
 
-  def transcoder
-    round.chain.transcoders.find_by(address: transcoder_address)
+  def orchestrator
+    round.chain.orchestrators.find_by(address: orchestrator_address)
   end
 end
 
 require_dependency 'livepeer/events/reward_cut_change'
+require_dependency 'livepeer/events/missed_reward_call'
+require_dependency 'livepeer/events/deactivation'
+require_dependency 'livepeer/events/slashing'

@@ -1,0 +1,32 @@
+<table class="table table-striped">
+  <thead>
+    <tr role="row">
+      <th>Type</th>
+      <th>Block</th>
+      <th>Time</th>
+      <th>From</th>
+      <th>To</th>
+      <th>Amount</th>
+      <th>Fee</th>
+      <th>Memo</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% transactions.each_with_index do |tx, idx| %>
+      <tr data-id="<%= tx.id %>">
+        <td><%= tx.formatted_type %></td>
+        <td><%= link_to tx.height.truncate(10), coda_chain_block_path(@chain, tx.height) %></td>
+        <td><%= tx.time.strftime("%b %d, %Y %H:%m %Z") %></td>
+        <td><%= link_to tx.sender.truncate(10), coda_chain_account_path(@chain, tx.sender) if tx.sender %></td>
+        <td><%= link_to tx.receiver.truncate(10), coda_chain_account_path(@chain, tx.receiver) %></td>
+        <td><%= format_amount(tx.amount, denom: "coda") %></td>
+        <td><%= format_amount(tx.fee, denom: "coda") if tx.has_fee? %></td>
+        <td class="text-muted"><small><%= tx.memo %></small></td>
+        <td class="text-right">
+          <%= link_to "details", coda_chain_transaction_path(@chain, tx.hash), class: "btn btn-outline-primary btn-sm" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

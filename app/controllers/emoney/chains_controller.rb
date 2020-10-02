@@ -2,9 +2,9 @@ class Emoney::ChainsController < Cosmoslike::ChainsController
   layout 'redesign/application'
 
   def self.controller_path
-    "cosmoslike/redesign/chains" 
+    'cosmoslike/redesign/chains'
   end
-  
+
   def broadcast
     tx = { tx: params[:payload] }
 

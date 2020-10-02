@@ -1,8 +1,9 @@
 require 'rails_helper'
 
 describe Polkadot::AccountDetailsDecorator do
-  context '#identity_fields' do
+  describe '#identity_fields' do
     subject { described_class.new(model).identity_fields }
+
     let(:model) { double(legal_name: 'name', web_name: "\u0017some web name", riot_name: 'Johny Depp', email_name: '', twitter_name: nil) }
 
     it 'returns an array of hashes in proper format, without empty values' do

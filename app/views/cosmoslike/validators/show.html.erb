@@ -2,12 +2,13 @@
 
 <%= render partial: '/cosmoslike/shared/chain_header', locals: { summary_link: true } %>
 <%= render partial: '/cosmoslike/shared/sync_errors' %>
+<%= render_flash_messages %>
 
 <% if @validator.has_info? %>
   <h2 class='mb-3'>
     <%= @validator.moniker.truncate(40) %>
-    <% if @validator.info_field( 'description', 'website' ) && (url = Addressable::URI.heuristic_parse(@validator.info_field( 'description', 'website' )).to_s rescue nil) %>
-      <a class='btn btn-outline-primary ml-3' href='<%= url %>' target='_blank'>Visit Site&nbsp;&nbsp;<span class='fas fa-external-link-alt'></span></a>
+    <% if @validator.info_field( 'description', 'website' ) && (url = heuristic_url(@validator.info_field( 'description', 'website' ))) %>
+      <a class='btn btn-outline-primary ml-3' href='<%= url %>' target='_blank'>Visit Site <span class='fas fa-external-link-alt ml-1'></span></a>
     <% end -%>
   </h2>
 <% end -%>
@@ -55,7 +56,11 @@
       <%= render partial: 'governance' %>
     <% end -%>
     <%= render partial: 'events' %>
-    <%= render partial: 'delegations' %>
+
+    <!-- UNLESS STATEMENT TO BE REMOVED WHEN DELEGATIONS INDEXING FIXED -->
+    <% unless @chain.network_name == 'Cosmos' %>
+      <%= render partial: 'delegations' %>
+    <% end %>
   </div>
 
   <div class='col-12 col-md-4 order-0 order-md-1 info-cards'>

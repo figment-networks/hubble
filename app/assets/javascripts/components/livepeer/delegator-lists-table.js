@@ -1,12 +1,12 @@
 class DelegatorListsTable {
-  constructor( container ) {
-    this.container = container
+  constructor(container) {
+    this.container = container;
   }
 
   render() {
-    const table = this.container.find('table')
+    const table = this.container.find('table');
 
-    this.table = table.DataTable( {
+    this.table = table.DataTable({
       sDom: 'lrtip',
       paging: false,
       info: false,
@@ -16,15 +16,15 @@ class DelegatorListsTable {
       language: {
         emptyTable: 'No delegator lists'
       },
-      columns: _.compact( [
-        { width: '50px' },
-        { width: 'auto' },
-        { width: '150px' },
-        { width: '150px' },
-        { width: '180px', orderable: false }
-      ] )
-    } )
+      columns: _.compact([
+        {width: '50px'},
+        {width: 'auto'},
+        {width: '150px'},
+        {width: '150px'},
+        {width: '180px', orderable: false}
+      ])
+    });
   }
 }
 
-window.App.Livepeer.DelegatorListsTable = DelegatorListsTable
+window.App.Livepeer.DelegatorListsTable = DelegatorListsTable;

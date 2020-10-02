@@ -1,0 +1,9 @@
+{
+  "app_name": "coda-indexer",
+  "app_version": "0.1.0",
+  "git_commit": "-",
+  "go_version": "go1.14.4",
+  "last_block_height": 7388,
+  "last_block_time": "2020-07-23T22:00:00-05:00",
+  "sync_status": "stale"
+}

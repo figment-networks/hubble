@@ -1,0 +1,13 @@
+{
+  "items": [
+    {
+      "public_key": "tMq04eAJOE9tlfnyWuQCoWZhhZl0alSRu/jcpMcMSiM=",
+      "hash": "a5bf64eae012f58d8753f5ade5867840ca9e56488cab3bf9731cc72afc897c83",
+      "nonce": 17855,
+      "fee": 0,
+      "gas_limit": 1172,
+      "gas_price": 0,
+      "method": "registry.RegisterNode"
+    }
+  ]
+}

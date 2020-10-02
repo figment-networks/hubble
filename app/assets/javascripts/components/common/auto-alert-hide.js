@@ -1,8 +1,8 @@
-$(document).ready( function() {
+$(document).ready(function() {
   setTimeout(
-    function() {
-      $('.auto-alert-hide').slideUp('fast')
-    },
-    4000
-  )
-} )
+      function() {
+        $('.auto-alert-hide').slideUp('fast');
+      },
+      4000
+  );
+});

@@ -1,1 +1,1 @@
-json.(@account, :username, :chat_id)
+json.call(@account, :username, :chat_id)

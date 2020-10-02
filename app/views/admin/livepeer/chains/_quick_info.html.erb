@@ -18,9 +18,9 @@
     <% chains.each do |chain| -%>
       <tr>
         <td class='align-middle pl-3'>
-          <a href='<%= namespaced_path( chain: chain, admin: true ) %>'>
+          <%= link_to namespaced_path(chain: chain, admin: true) do %>
             <span class='text-lg'><%= chain.name %></span>
-          </a>
+          <% end -%>
 
           <% if chain.primary? -%>
             <span class='fas fa-star text-primary' data-toggle='tooltip' data-tooltip-side='top'title='Primary Chain'></span>
@@ -56,8 +56,12 @@
           <%= button_to namespaced_path('move_down', chain: chain, pre_path: true, admin: true), method: 'post', class: 'btn btn-sm btn-outline-secondary', form: { class: 'd-inline' } do %>
             <span class='fas fa-arrow-down'></span>
           <% end -%>
-          <a class='btn btn-sm btn-outline-secondary' href='<%= namespaced_path(chain: chain, admin: true) %>'><span class='fas fa-edit'></span></a>
-          <a class='btn btn-sm btn-outline-secondary' href='<%= namespaced_path(chain: chain) %>'><span class='fas fa-eye'></span></a>
+          <%= link_to namespaced_path(chain: chain, admin: true), class: 'btn btn-sm btn-outline-secondary' do %>
+            <span class='fas fa-edit'></span>
+          <% end -%>
+          <%= link_to namespaced_path(chain: chain), class: 'btn btn-sm btn-outline-secondary' do %>
+            <span class='fas fa-eye'></span>
+          <% end -%>
         </td>
       </tr>
     <% end -%>

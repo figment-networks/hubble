@@ -5,12 +5,11 @@ class Polkadot::Transaction::StakingNominateDecorator < Polkadot::Transaction::D
 
   def humanized_attributes
     targets.map { |target| { value: target, type: :account, class: 'border-bottom' } }.concat(
-      super([:account, :signature])
+      super(%i[account signature])
     )
   end
 
-  def parameters
-  end
+  def parameters; end
 
   def self.can_decorate?(transaction)
     transaction.section == 'staking' && transaction.method_name == 'nominate'

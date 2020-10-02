@@ -1,21 +1,15 @@
 module Near
   class Status < Common::Resource
-    STATUS_CURRENT = "current"
-    STATUS_STALE   = "stale"
+    STATUS_CURRENT = 'current'.freeze
+    STATUS_STALE   = 'stale'.freeze
 
-    attr_accessor :app_name,
-                  :app_version,
-                  :git_commit,
-                  :go_version,
-                  :last_block_height,
-                  :last_block_time,
-                  :sync_status
-
-    def initialize(attrs = {})
-      super(attrs)
-
-      @last_block_time = Time.zone.parse(last_block_time) if last_block_time
-    end
+    field :app_name
+    field :app_version
+    field :git_commit
+    field :go_version
+    field :last_block_height
+    field :last_block_time, type: :timestamp
+    field :sync_status
 
     def stale?
       sync_status != STATUS_CURRENT

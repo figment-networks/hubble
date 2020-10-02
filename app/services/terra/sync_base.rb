@@ -1,8 +1,8 @@
 class Terra::SyncBase < Cosmoslike::SyncBase
-  def get_transactions( params=nil )
+  def get_transactions(params = nil)
     params ||= {}
     params['limit'] = 1000
-    r = lcd_get( 'txs', params )
+    r = lcd_get('txs', params)
     if r.is_a?(Hash)
       r['txs']
     else

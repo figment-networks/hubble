@@ -1,6 +1,6 @@
 require 'features_helper'
 
-feature 'polkadot blocks' do
+describe 'polkadot blocks' do
   let!(:chain) { create(:polkadot_chain) }
   let(:block_id) { '3189176' }
 

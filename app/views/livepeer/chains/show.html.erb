@@ -5,17 +5,17 @@
 
 <div class='row info-cards'>
   <div class='col-12 col-md-9 order-1 order-md-0'>
-    <section class='transcoders'>
-      <div class='transcoders-table-header'>
+    <section class='orchestrators'>
+      <div class='orchestrators-table-header'>
         <h4>
           Orchestrators
-          <small>&nbsp;&mdash; <%= @transcoders.count %> total&nbsp;</small>
+          <small>&nbsp;&mdash; <%= @orchestrators.count %> total&nbsp;</small>
         </h4>
 
         <div class='controls'>
-          <input type='text' class='form-control form-control-sm transcoders-search' placeholder='filter orchestrators...'>
-          <a tabindex=0 class='btn btn-sm btn-outline-light transcoders-table-settings-target'><span class='fas fa-cog'></span></a>
-          <div class='transcoders-table-settings d-none'>
+          <input type='text' class='form-control form-control-sm orchestrators-search' placeholder='filter orchestrators...'>
+          <a tabindex=0 class='btn btn-sm btn-outline-light orchestrators-table-settings-target'><span class='fas fa-cog'></span></a>
+          <div class='orchestrators-table-settings d-none'>
             <div class='btn-group' role='group' aria-label='Orchestrators table filter'>
               <button type='button' data-target='⭐️' class='btn btn-outline-primary'>All</button>
               <button type='button' data-target='✔' class='btn btn-outline-primary'>Active</button>
@@ -23,12 +23,12 @@
             </div>
           </div>
           <script>
-            App.config.currentTranscodersFilter = '⭐️'
+            App.config.currentOrchestratorsFilter = '⭐️'
           </script>
         </div>
       </div>
 
-      <div class='transcoders-table'>
+      <div class='orchestrators-table'>
         <table>
           <thead>
             <tr>
@@ -39,12 +39,12 @@
             </tr>
           </thead>
           <tbody>
-            <% @transcoders.each do |transcoder| -%>
+            <% @orchestrators.each do |orchestrator| -%>
               <tr>
-                <td><%= render partial: 'transcoder_link', locals: { transcoder: transcoder } %></td>
-                <td class='technical' data-order='<%= transcoder.reward_cut %>'><%= number_to_percentage(transcoder.reward_cut) %></td>
-                <td class='technical' data-order='<%= transcoder.fee_share %>'><%= number_to_percentage(transcoder.fee_share) %></td>
-                <td class='d-none'>⭐️ <%= transcoder.active ? '✔' : '𐄂' %></td>
+                <td><%= render partial: 'orchestrator_link', locals: { orchestrator: orchestrator } %></td>
+                <td class='technical' data-order='<%= orchestrator.reward_cut %>'><%= number_to_percentage(orchestrator.reward_cut) %></td>
+                <td class='technical' data-order='<%= orchestrator.fee_share %>'><%= number_to_percentage(orchestrator.fee_share) %></td>
+                <td class='d-none'>⭐️ <%= orchestrator.active ? '✔' : '𐄂' %></td>
               </tr>
             <% end -%>
           </tbody>
@@ -68,9 +68,9 @@
       <h5 class='card-header'>Latest Round</h5>
       <div class='card-body'>
         <% if @latest_round.present? -%>
-          <a class='large-number' href='<%= namespaced_path('round', @latest_round) %>'>
+          <%= link_to namespaced_path('round', @latest_round), class: 'large-number' do %>
             <span class='technical'><%= @latest_round.number %></span>
-          </a>
+          <% end -%>
           <div class='sub-info'>
             <small class='text-muted technical'><%= @latest_round.initialized_at&.strftime('%Y-%m-%d %H:%M %Z') %></small>
             <small class='text-muted'><%= time_ago_in_words(@latest_round.initialized_at, true) %> ago</small>

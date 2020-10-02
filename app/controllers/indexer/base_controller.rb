@@ -1,7 +1,7 @@
 class Indexer::BaseController < ApplicationController
   before_action :find_chain
 
-  private
+  protected
 
   def find_chain
     @chain ||= namespace::Chain.find_by!(slug: chain_slug)

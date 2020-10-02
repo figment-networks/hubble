@@ -3,7 +3,7 @@ module Common
     'common_'
   end
 
-  def self.remotely_indexed?( chain )
+  def self.remotely_indexed?(chain)
     if chain.try(:api_url) || chain.try(:indexer_api_base_url)
       true
     else

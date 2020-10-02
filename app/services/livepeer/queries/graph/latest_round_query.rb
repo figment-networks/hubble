@@ -19,7 +19,7 @@ class Livepeer::Queries::Graph::LatestRoundQuery < Livepeer::Queries::Graph::Bas
         where: { initialized: true },
         orderBy: 'timestamp',
         orderDirection: 'desc',
-        first: 1,
+        first: 1
       ) {
         id
       }

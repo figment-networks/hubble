@@ -9,10 +9,10 @@ class User < ApplicationRecord
 
   validates :email, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
 
-  default_scope -> { where.not( deleted: true ) }
+  default_scope -> { where.not(deleted: true) }
 
   # BAKERHUB - will eventually migrate to existing subscription framework
-  has_one :telegram_account, class_name: "Telegram::Account"
+  has_one :telegram_account, class_name: 'Telegram::Account'
   has_many :subscriptions
 
   scope :with_telegram_account, -> { left_joins(:telegram_account).where.not(telegram_accounts: { id: nil, chat_id: nil }) }
@@ -36,37 +36,38 @@ class User < ApplicationRecord
     verification_token.nil?
   end
 
-  def subscribed_to?( alertable )
-    alert_subscriptions.where( alertable: alertable ).exists?
+  def subscribed_to?(alertable)
+    alert_subscriptions.where(alertable: alertable).exists?
   end
 
-  def update_for_request( ua:, ip: )
+  def update_for_request(ua:, ip:)
     self.last_seen_at = Time.now
     update_details ua: ua, ip: ip
     save
   end
 
-  def update_for_login( ua:, ip: )
+  def update_for_login(ua:, ip:)
     self.last_login_at = Time.now
     self.last_seen_at = Time.now
     update_details ua: ua, ip: ip
     save
   end
 
-  def update_for_signup( ua:, ip: )
+  def update_for_signup(ua:, ip:)
     update_details ua: ua, ip: ip
     save
   end
 
   private
-  def update_details( ua:, ip: )
+
+  def update_details(ua:, ip:)
     if ua
-      json_ua = JsonUserAgent.new( ua ).as_json.to_json
-      self.user_agents = [ json_ua, *(user_agents||[]) ].uniq.slice(0, 5)
+      json_ua = JsonUserAgent.new(ua).as_json.to_json
+      self.user_agents = [json_ua, *(user_agents || [])].uniq.slice(0, 5)
     end
 
     if ip
-      self.ip_addresses = [ ip, *(ip_addresses||[]) ].uniq.slice(0, 5)
+      self.ip_addresses = [ip, *(ip_addresses || [])].uniq.slice(0, 5)
     end
   end
 end

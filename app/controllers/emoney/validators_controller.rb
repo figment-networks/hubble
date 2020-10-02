@@ -2,6 +2,6 @@ class Emoney::ValidatorsController < Cosmoslike::ValidatorsController
   layout 'redesign/application'
 
   def self.controller_path
-    "cosmoslike/redesign/validators" 
+    'cosmoslike/redesign/validators'
   end
 end

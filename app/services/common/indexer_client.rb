@@ -9,12 +9,10 @@ class Common::IndexerClient
     @timeout  = options[:timeout] || DEFAULT_TIMEOUT
   end
 
-  private
-
   def get(path, params = {})
     resp = RestClient::Request.execute(
-      method:  :get,
-      url:     "#{@endpoint}#{path}",
+      method: :get,
+      url: "#{@endpoint}#{path}",
       headers: { params: params },
       timeout: @timeout
     )
@@ -24,8 +22,20 @@ class Common::IndexerClient
     # so let's have an eye on it
     Rails.logger.error(err)
     raise Common::IndexerClient::NotFoundError, err
+  rescue RestClient::ExceptionWithResponse => err
+    handle_error(err)
   rescue StandardError => err
-    Rails.logger.error(err)
-    raise Common::IndexerClient::Error, err
+    handle_error(err)
+  end
+
+  private
+
+  def handle_error(err)
+    message = err
+    if data = JSON.load(err.response.body) rescue nil
+      message = data['error'] if data.is_a?(Hash) && data['error']
+    end
+
+    raise Common::IndexerClient::Error, message
   end
 end

@@ -1,9 +1,9 @@
-moment.tz.setDefault('EST')
+moment.tz.setDefault('EST');
 
-$(document).ready( function() {
-  $('[data-toggle="tooltip"]').each( function() {
-    const el = $(this)
-    el.tooltipster( {
+$(document).ready(function() {
+  $('[data-toggle="tooltip"]').each(function() {
+    const el = $(this);
+    el.tooltipster({
       contentAsHTML: true,
       interactive: true,
       trigger: 'hover',
@@ -12,6 +12,6 @@ $(document).ready( function() {
       side: el.data('tooltip-side') || 'right',
       viewportAware: true,
       delay: 25
-    } )
-  } )
-} )
+    });
+  });
+});

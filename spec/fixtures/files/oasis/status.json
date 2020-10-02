@@ -1,0 +1,16 @@
+{
+  "app_name": "oasishub-indexer",
+  "app_version": "0.5.2",
+  "go_version": "1.14",
+  "chain_app_version": 1703936,
+  "chain_block_version": 11,
+  "chain_id": "c014bda208f670539e8f03016b0dcfe16e0c2ad9a060419d1a",
+  "chain_name": "amber-2020-08-06-1596754800",
+  "genesis_height": 717600,
+  "genesis_time": "2020-08-06T16:00:00Z",
+  "last_index_version": 3,
+  "last_indexed_height": 406392,
+  "last_indexed_time": "2020-09-02T14:52:53Z",
+  "last_indexed_at": "2020-09-02T14:53:07.661015Z",
+  "indexing_lag": 2
+}

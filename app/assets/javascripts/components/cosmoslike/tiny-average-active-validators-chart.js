@@ -1,18 +1,18 @@
 class TinyAverageActiveValidatorsChart {
-  constructor( target ) {
-    this.target = target
+  constructor(target) {
+    this.target = target;
   }
 
   render() {
-    if( !App.seed.AVERAGE_ACTIVE_VALIDATORS || _.isEmpty(App.seed.AVERAGE_ACTIVE_VALIDATORS) ) {
-      this.target.parent().hide()
-      return
+    if (!App.seed.AVERAGE_ACTIVE_VALIDATORS || _.isEmpty(App.seed.AVERAGE_ACTIVE_VALIDATORS)) {
+      this.target.parent().hide();
+      return;
     }
 
-    new Chart( this.target.get(0), {
+    new Chart(this.target.get(0), {
       type: 'line',
       data: {
-        labels: _.map( App.seed.AVERAGE_ACTIVE_VALIDATORS, dp => dp.t ),
+        labels: _.map(App.seed.AVERAGE_ACTIVE_VALIDATORS, (dp) => dp.t),
         datasets: [
           {
             cubicInterpolationMode: 'monotone',
@@ -24,14 +24,14 @@ class TinyAverageActiveValidatorsChart {
       },
       options: {
         elements: {
-          point: { radius: 0, backgroundColor: 'white', hitRadius: 10, hoverRadius: 3 }
+          point: {radius: 0, backgroundColor: 'white', hitRadius: 10, hoverRadius: 3}
         },
         layout: {
-          padding: { top: 5, bottom: 5, left: 10, right: 5 }
+          padding: {top: 5, bottom: 5, left: 10, right: 5}
         },
         maintainAspectRatio: false,
-        legend: { display: false },
-        title: { display: false },
+        legend: {display: false},
+        title: {display: false},
         hover: {
           mode: 'nearest',
           intersect: false
@@ -40,13 +40,13 @@ class TinyAverageActiveValidatorsChart {
           enabled: false,
           mode: 'nearest',
           intersect: false,
-          custom: window.customTooltip( { top: -40, name: 't-av', static: true } ),
+          custom: window.customTooltip({top: -40, name: 't-av', static: true}),
           callbacks: {
-            label: ( item, data ) => {
-              const date = data.datasets[item.datasetIndex].data[item.index].t
-              const duration = moment.duration(moment().diff(date))
-              const hours = Math.ceil( duration.asHours() )
-              return `${item.yLabel.toFixed(0)} active at ${hours.toFixed(0)} hour${hours == 1 ? '' : 's'} ago`
+            label: (item, data) => {
+              const date = data.datasets[item.datasetIndex].data[item.index].t;
+              const duration = moment.duration(moment().diff(date));
+              const hours = Math.ceil(duration.asHours());
+              return `${item.yLabel.toFixed(0)} active at ${hours.toFixed(0)} hour${hours == 1 ? '' : 's'} ago`;
             }
           }
         },
@@ -54,7 +54,7 @@ class TinyAverageActiveValidatorsChart {
           yAxes: [
             {
               display: false,
-              ticks: { display: false, stepSize: 1 }
+              ticks: {display: false, stepSize: 1}
             }
           ],
           xAxes: [
@@ -62,14 +62,14 @@ class TinyAverageActiveValidatorsChart {
               display: false,
               ticks: {
                 display: false,
-                callback: ( date ) => moment(date).format('MMM-D hh:mm')
+                callback: (date) => moment(date).format('MMM-D hh:mm')
               }
             }
           ]
         }
       }
-    } )
+    });
   }
 }
 
-window.App.Cosmoslike.TinyAverageActiveValidatorsChart = TinyAverageActiveValidatorsChart
+window.App.Cosmoslike.TinyAverageActiveValidatorsChart = TinyAverageActiveValidatorsChart;

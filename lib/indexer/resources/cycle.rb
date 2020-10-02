@@ -1,5 +1,5 @@
-require_relative "baking_stats"
-require_relative "endorsing_stats"
+require_relative 'baking_stats'
+require_relative 'endorsing_stats'
 
 module Indexer
   class Cycle
@@ -11,8 +11,8 @@ module Indexer
                   :blocks_left, :url, :rewards_unfrozen_cycle_number,
                   :cached_baking_stats, :cached_endorsing_stats
 
-    def self.retrieve(id = "current")
-      id ||= "current"
+    def self.retrieve(id = 'current')
+      id ||= 'current'
       resp = RestClient.get("#{Tezos::Chain.primary.indexer_api_base_url}/cycles/#{id}")
       data = JSON.parse(resp.body)
       new(data)

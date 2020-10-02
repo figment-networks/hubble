@@ -37,7 +37,7 @@ http_interactions:
           "misc_frozen": "159408040804203",
           "fee_frozen": "159408040804203"
         }
-  recorded_at: Mon, 10 Aug 2020 13:03:06 GMT
+  recorded_at: Wed, 02 Sep 2020 15:01:04 GMT
 - request:
     method: get
     uri: http://localhost:9292/polkadot/account/details/DSpbbk6HKKyS78c4KDLSxCetqbwnsemv2iocVXwNe2FAvWC
@@ -76,5 +76,5 @@ http_interactions:
         \ ],\n  \"bonded\": [\n    {\n      \"amount\": \"9000000\"\n    }\n  ],\n
         \ \"unbonded\": [\n    {\n      \"amount\": \"120000000\"\n    }\n  ],\n  \"withdrawn\":
         [\n    {\n      \"amount\": \"999000000\"\n    }\n  ]\n}\n"
-  recorded_at: Mon, 10 Aug 2020 13:03:06 GMT
+  recorded_at: Wed, 02 Sep 2020 15:01:04 GMT
 recorded_with: VCR 6.0.0

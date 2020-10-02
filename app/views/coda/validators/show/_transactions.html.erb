@@ -1,0 +1,35 @@
+<div class="card recent-transactions">
+  <div class="card-header d-flex align-items-center justify-content-between">
+    <h4>Recent Transactions</h4>
+    <%= link_to "Search Transactions", coda_chain_transactions_path(chain, account: validator.account), class: "btn btn-outline-light btn-sm" %>
+  </div>
+  <div class="card-body no-padding">
+    <table class="table table-striped transactions">
+      <thead>
+        <tr role="row">
+          <th>Type</th>
+          <th>Date</th>
+          <th>From</th>
+          <th>To</th>
+          <th>Amount</th>
+          <th width="10%"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% transactions.each_with_index do |tx, idx| %>
+          <tr>
+            <td>
+              <%= coda_tx_icon(tx, validator.account) %>
+              <%= tx.formatted_type %>
+            </td>
+            <td><%= link_to tx.time.strftime("%b %d, %Y"), coda_chain_block_path(chain, tx.block_hash) %></td>
+            <td><%= link_to tx.sender.truncate(10), coda_chain_account_path(chain, tx.sender) if tx.sender %></td>
+            <td><%= link_to tx.receiver.truncate(10), coda_chain_account_path(chain, tx.receiver) %></td>
+            <td><%= format_amount tx.amount, denom: "coda" %></td>
+            <td class="text-right"><%= link_to "details", coda_chain_transaction_path(chain, tx.hash), class: "btn btn-outline-primary btn-sm" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

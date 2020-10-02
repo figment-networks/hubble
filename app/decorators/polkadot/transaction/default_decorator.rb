@@ -8,15 +8,14 @@ class Polkadot::Transaction::DefaultDecorator < SimpleDelegator
   end
 
   def default_attributes
-    [:section, :method_name, :signature, :account]
+    %i[section method_name signature account]
   end
 
   def signature
     model.signature.truncate(50)
   end
 
-  def humanized_method
-  end
+  def humanized_method; end
 
   def parameters
     args.split(',')
@@ -30,12 +29,12 @@ class Polkadot::Transaction::DefaultDecorator < SimpleDelegator
 
   def display_name(attribute)
     case attribute
-      when :section then
-        'Module'
-      when :method_name then
-        'Call'
-      else
-        attribute.to_s.humanize
+    when :section
+      'Module'
+    when :method_name
+      'Call'
+    else
+      attribute.to_s.humanize
     end
   end
 

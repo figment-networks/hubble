@@ -1,5 +1,5 @@
 module Near
   def self.table_name_prefix
-    "near_"
+    'near_'
   end
 end

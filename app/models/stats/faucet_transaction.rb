@@ -6,9 +6,9 @@ class Stats::FaucetTransaction < ApplicationRecord
 
   default_scope { order('created_at DESC') }
 
-  scope :incomplete, -> { where( completed_at: nil, result_data: nil ) }
-  scope :errored, -> { where( completed_at: nil, error: true ) }
-  scope :successful, -> { where.not( completed_at: nil ).where.not( error: true ) }
+  scope :incomplete, -> { where(completed_at: nil, result_data: nil) }
+  scope :errored, -> { where(completed_at: nil, error: true) }
+  scope :successful, -> { where.not(completed_at: nil).where.not(error: true) }
 
   def completed?
     !completed_at.nil?

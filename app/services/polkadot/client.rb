@@ -1,10 +1,11 @@
 module Polkadot
   class Client < Common::IndexerClient
     DEFAULT_LATEST_HEIGHT = 0
-    DEFAULT_HISTORY_LIMIT = 90
+    DEFAULT_DAYS_LIMIT = 90
+    DEFAULT_HOURS_LIMIT = 48
 
     def status
-      Polkadot::Status.new(get("/status"))
+      Polkadot::Status.new(get('/status'))
     rescue Common::IndexerClient::Error
       Polkadot::Status.failed
     end
@@ -14,6 +15,10 @@ module Polkadot
     end
 
     def account_details(address)
+      # TODO: remove hardcoded address when we use a real indexer. Without this line we get a lot of 404s
+      # for validators list and it's very slow on staging
+      return AccountDetails.failed(address) if address != 'DSpbbk6HKKyS78c4KDLSxCetqbwnsemv2iocVXwNe2FAvWC'
+
       Rails.cache.fetch([self.class.name, 'account_details', address].join('-'), expires_in: 1.hour) do
         Polkadot::AccountDetails.new(get("/account/details/#{address}"))
       end
@@ -35,11 +40,24 @@ module Polkadot
       @validators ||= Polkadot::ValidatorsFetcher.new(self).perform(height)
     end
 
-    def validator_daily_stake(days_limit = DEFAULT_HISTORY_LIMIT)
-      get('/validator/summary_for_all', params: { interval: 'daily' })[0..(days_limit - 1)].map do |summary|
-        Polkadot::ValidatorSummary.new(
+    def validators_daily_stake(days_limit = DEFAULT_DAYS_LIMIT)
+      get('/validator/summary_for_all', params: { interval: 'day' })[0..(days_limit - 1)].map do |summary|
+        Polkadot::ValidatorsSummary.new(
           summary.slice('total_stake_avg', 'time_bucket').merge(validators_count: validators_count)
         )
+      end
+    end
+
+    def validator_daily_stake(address, days_limit = DEFAULT_HOURS_LIMIT)
+      get('/validator/summary_for_one', params: { stash_account: address, interval: 'day' })[0..(days_limit - 1)].map do |summary|
+        Polkadot::ValidatorSummary.new(summary.slice('total_stake_avg', 'time_bucket'))
+      end
+    end
+
+    # TODO: might need to refactor with `validator_daily_stake` when we start using a real indexer
+    def validator_hourly_uptime(address, hours_limit = DEFAULT_DAYS_LIMIT)
+      get('/validator/summary_for_one_hourly', params: { stash_account: address, interval: 'hour' })[0..(hours_limit - 1)].map do |summary|
+        Polkadot::ValidatorSummary.new(summary.slice('uptime_avg', 'time_bucket'))
       end
     end
 
@@ -49,6 +67,17 @@ module Polkadot
 
     def validators_by_height(height = DEFAULT_LATEST_HEIGHT)
       get('/validator/by_height', params: { height: height })
+    end
+
+    def validator(height = DEFAULT_LATEST_HEIGHT)
+      Polkadot::ValidatorFetcher.new(self).perform(height)
+    end
+
+    def validator_details(_height)
+      # TODO: use height and change endpoint when switching to real indexer
+      # sessions_limit (optional) - number of last sessions
+      # include eras_limit (optional)
+      get('/validator/details')
     end
 
     private

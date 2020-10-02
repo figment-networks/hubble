@@ -1,20 +1,33 @@
 <% @events.each do |event| -%>
   - <%= event.timestamp.strftime("%Y-%m-%d %H:%M %Z") %>
-  <% case event.type -%>
-  <% when 'Common::ValidatorEvents::VotingPowerChange' %>
+  <% case event.kind_string -%>
+  <% when 'voting_power_change' %>
     Voting power changed from <%= event.from %> -> <%= event.to %> (<%= sprintf("%+d", event.delta) %> / <%= sprintf("%+.1f%%", event.percentage_change) %>) at block <%= event.height %>
 
-  <% when 'Common::ValidatorEvents::ActiveSetInclusion' %>
+  <% when 'active_set_inclusion' %>
     <%= event.added? ? 'Added to' : 'Removed from' %> active set at block <%= event.height %>
 
-  <% when 'Common::ValidatorEvents::NOfM' %>
+  <% when 'n_of_m' %>
     Missed <%= event.n %> of <%= event.m %> precommits as of block <%= event.height %>
 
-  <% when 'Common::ValidatorEvents::NConsecutive' %>
+  <% when 'n_consecutive' %>
     Missed <%= event.n %> consecutive precommits as of block <%= event.height %>
 
-  <% when 'Livepeer::Events::RewardCutChange' %>
-    Reward cut changed to <%= number_to_percentage(event.reward_cut) %> for orchestrator <%= event.transcoder.name_or_address %>
+  <% when 'reward_cut_change' %>
+    <% if event.alertable.chain.alertable_type == 'delegator_list' %>
+      Reward cut changed to <%= number_to_percentage(event.reward_cut) %> for orchestrator <%= event.orchestrator.name_or_address %>
+    <% elsif event.alertable.chain.alertable_type == 'validator' %>
+      Commission changed to <%= number_to_percentage(event.to) %> for validator <%= event.actor %>
+    <% end %>
+
+  <% when 'missed_reward_call' %>
+    Missed reward call by orchestrator <%= event.orchestrator.name_or_address %>
+
+  <% when 'deactivation' %>
+    Deactivation of orchestrator <%= event.orchestrator.name_or_address %>
+
+  <% when 'slashing' %>
+    Slashing with penalty <%= number_to_human(event.penalty) %> LPT of orchestrator <%= event.orchestrator.name_or_address %>
 
   <% end -%>
 <% end -%>

@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :livepeer_delegator_list, class: Livepeer::DelegatorList do
+  factory :livepeer_delegator_list, class: 'Livepeer::DelegatorList' do
     user { create(:user) }
     chain { create(:livepeer_chain) }
 

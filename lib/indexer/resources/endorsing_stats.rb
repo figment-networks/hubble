@@ -13,6 +13,7 @@ module Indexer
 
     def percent_endorsed
       return 1.0 if total_slots == 0
+
       endorsed_slots / total_slots.to_f
     end
 

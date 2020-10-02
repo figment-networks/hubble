@@ -1,5 +1,5 @@
 shared_context 'Livepeer delegator shares' do
-  let(:transcoders) do
+  let(:orchestrators) do
     %w[
       0xbde0750c5c3bd4afdb495e26b790f7771ccd8d22
       0xf70f722ef2b093b253fd237aa8e32792fe1b64a8
@@ -25,9 +25,9 @@ shared_context 'Livepeer delegator shares' do
 
   let!(:pools) do
     [
-      create(:livepeer_pool, round: rounds[0], transcoder_address: transcoders[0]),
-      create(:livepeer_pool, round: rounds[1], transcoder_address: transcoders[1]),
-      create(:livepeer_pool, round: rounds[2], transcoder_address: transcoders[1])
+      create(:livepeer_pool, round: rounds[0], orchestrator_address: orchestrators[0]),
+      create(:livepeer_pool, round: rounds[1], orchestrator_address: orchestrators[1]),
+      create(:livepeer_pool, round: rounds[2], orchestrator_address: orchestrators[1])
     ]
   end
 

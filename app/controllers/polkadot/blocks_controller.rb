@@ -1,6 +1,6 @@
 class Polkadot::BlocksController < Polkadot::BaseController
   def show
-    @block = Polkadot::BlockDecorator.new(client.block(params[:id]), client.status)
+    @block = Common::BlockDecorator.new(client.block(params[:id]), client.status)
     @transactions = @block.transactions
     @validators = fetch_validators(@block.height)
 

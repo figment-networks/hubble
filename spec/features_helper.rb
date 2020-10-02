@@ -16,6 +16,7 @@ end
 Capybara.configure do |config|
   config.default_driver = :headless_chrome
   config.javascript_driver = :headless_chrome
+  config.server = :puma, { Silent: true }
 
   config.automatic_label_click = true
 end

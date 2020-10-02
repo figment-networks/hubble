@@ -2,7 +2,7 @@
   <span class='d-inline d-md-none <%= icon_classes %> mr-1'></span>
   <span class='font-weight-bold'>
     <% if @validator.nil? %>
-      <a href='<%= namespaced_path( 'validator', event.validatorlike ) %>'><%= event.validatorlike.short_name %></a> missed
+      <%= link_to event.validatorlike.short_name, namespaced_path( 'validator', event.validatorlike ) %> missed
     <% else -%>
       Missed
     <% end -%>
@@ -11,6 +11,6 @@
   </span>
   <span class='text-muted'>
     as of block
-    <a class='technical' href='<%= namespaced_path( 'block', event.height ) %>'><%= event.height %></a>
+    <%= link_to event.height, namespaced_path( 'block', event.height ), class: 'technical' %>
   </span>
 </div>

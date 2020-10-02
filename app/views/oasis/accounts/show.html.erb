@@ -1,0 +1,47 @@
+<% content_for :body_class, 'account-show' %>
+
+<%= render partial: '/oasis/shared/chain_header', locals: { summary_link: true } %>
+<%= render_flash_messages %>
+
+<h2 class='mb-0'>
+  <label class='text-muted'>Account</label>
+  <span class='technical text-lg'><%= params[:id] %></span>
+</h2>
+<% if false -%>
+  <h5 class='mb-4'>
+    <label class='text-muted'>Owner</label>
+    <a href='<%= namespaced_path( 'validator', @found_account.validator ) %>'>
+      <span class='technical'><%= @found_account.validator.long_name %></span>
+    </a>
+  </h5>
+<% end -%>
+
+<% if @error %>
+  <%= render partial: 'shared/display_error' %>
+<% else %>
+  <div class='row'>
+    <div class='col-12 col-md-3 order-0 order-md-1 info-cards'>
+      <div class='card'>
+        <h5 class='card-header'>Balance</h5>
+        <div class='card-body'>
+            <div><%= format_amount( @account.escrow_active_balance, @chain, denom: 'noasis' ) %></div>
+        </div>
+      </div>
+
+      <div class='card'>
+        <h5 class='card-header'>Delegation</h5>
+        <div class='card-body'>
+          <label class='text-muted mb-0 mt-0'>Bonded</label>
+          <%= format_amount( @account.escrow_active_balance, @chain, denom: 'noasis' ) %>
+
+          <label class='text-muted mb-0 mt-3'>Unbonding</label>
+          <%= format_amount( @account.escrow_debonding_balance, @chain, denom: 'noasis' ) %>
+        </div>
+      </div>
+    </div>
+
+    <div class='col-12 col-md-9 order-1 order-md-0'>
+      <%= render partial: 'delegations', locals: {account: @account} %>
+    </div>
+  </div>
+<% end -%>

@@ -15,7 +15,7 @@ ActiveRecord::Migration.maintain_test_schema!
 WebMock.disable_net_connect!(allow_localhost: true)
 
 VCR.configure do |config|
-  config.cassette_library_dir = "spec/support/vcr_cassettes"
+  config.cassette_library_dir = 'spec/support/vcr_cassettes'
   config.hook_into(:webmock)
   config.allow_http_connections_when_no_cassette = false
   config.configure_rspec_metadata!
@@ -36,7 +36,21 @@ RSpec.configure do |config|
   config.include FixtureHelpers
   config.include IndexerApiHelpers
   config.include SessionHelpers, type: :feature
+  config.include CapybaraHelpers
 
   config.include Livepeer::GraphHelpers, livepeer: :graph
   config.include Livepeer::FactoryHelpers, livepeer: :factory
+
+  config.before(:suite) do
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.before do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.start
+  end
+
+  config.append_after do
+    DatabaseCleaner.clean
+  end
 end

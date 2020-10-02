@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_03_122847) do
+ActiveRecord::Schema.define(version: 2020_09_04_134531) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
@@ -50,6 +50,23 @@ ActiveRecord::Schema.define(version: 2020_08_03_122847) do
     t.bigint "chain_id"
     t.string "address"
     t.index ["chain_type", "chain_id"], name: "index_alertable_addresses_on_chain_type_and_chain_id"
+  end
+
+  create_table "coda_chains", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "slug", null: false
+    t.string "api_url", null: false
+    t.boolean "testnet", null: false
+    t.boolean "primary", default: false, null: false
+    t.boolean "disabled", default: true
+    t.boolean "dead", default: false
+    t.text "token_denom"
+    t.bigint "token_factor", default: 0
+    t.jsonb "token_map", default: {}
+    t.integer "position"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["slug"], name: "index_coda_chains_on_slug"
   end
 
   create_table "common_validator_event_latches", force: :cascade do |t|
@@ -140,13 +157,14 @@ ActiveRecord::Schema.define(version: 2020_08_03_122847) do
     t.jsonb "validator_event_defs", default: [{"kind"=>"voting_power_change", "height"=>0}, {"kind"=>"active_set_inclusion", "height"=>0}]
     t.integer "failed_sync_count", default: 0
     t.jsonb "governance", default: {}, null: false
+    t.string "ext_id"
     t.datetime "halted_at"
     t.string "last_round_state", default: ""
-    t.string "ext_id"
     t.string "token_denom", default: "atom"
     t.bigint "token_factor", default: 0
     t.string "sdk_version"
     t.text "notes"
+    t.string "network"
     t.boolean "use_ssl_for_lcd", default: false
     t.jsonb "staking_pool", default: {}
     t.string "remote_denom"
@@ -161,7 +179,6 @@ ActiveRecord::Schema.define(version: 2020_08_03_122847) do
     t.string "rpc_path"
     t.string "lcd_path"
     t.boolean "use_ssl_for_rpc", default: false
-    t.string "network"
     t.float "staking_participation"
     t.float "rewards_rate"
     t.float "daily_rewards"
@@ -719,8 +736,8 @@ ActiveRecord::Schema.define(version: 2020_08_03_122847) do
   create_table "livepeer_bonds", force: :cascade do |t|
     t.string "transaction_hash"
     t.string "delegator_address"
-    t.string "transcoder_address"
-    t.string "old_transcoder_address"
+    t.string "orchestrator_address"
+    t.string "old_orchestrator_address"
     t.decimal "amount"
     t.datetime "initialized_at"
     t.datetime "created_at", null: false
@@ -764,25 +781,42 @@ ActiveRecord::Schema.define(version: 2020_08_03_122847) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "chain_id"
-    t.string "transcoder_address"
+    t.string "orchestrator_address"
+    t.decimal "pending_stake"
     t.index ["address"], name: "index_livepeer_delegators_on_address"
     t.index ["chain_id"], name: "index_livepeer_delegators_on_chain_id"
-    t.index ["transcoder_address"], name: "index_livepeer_delegators_on_transcoder_address"
+    t.index ["orchestrator_address"], name: "index_livepeer_delegators_on_orchestrator_address"
   end
 
   create_table "livepeer_events", force: :cascade do |t|
     t.bigint "round_id"
     t.string "type"
     t.datetime "timestamp"
-    t.string "transcoder_address"
+    t.string "orchestrator_address"
     t.jsonb "data", default: {}
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "transaction_hash"
+    t.index ["orchestrator_address"], name: "index_livepeer_events_on_orchestrator_address"
     t.index ["round_id"], name: "index_livepeer_events_on_round_id"
     t.index ["transaction_hash"], name: "index_livepeer_events_on_transaction_hash"
-    t.index ["transcoder_address"], name: "index_livepeer_events_on_transcoder_address"
     t.index ["type"], name: "index_livepeer_events_on_type"
+  end
+
+  create_table "livepeer_orchestrators", force: :cascade do |t|
+    t.string "address"
+    t.boolean "active"
+    t.decimal "reward_cut"
+    t.decimal "fee_share"
+    t.decimal "total_stake"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "chain_id"
+    t.string "name"
+    t.string "description"
+    t.string "website_url"
+    t.index ["address"], name: "index_livepeer_orchestrators_on_address"
+    t.index ["chain_id"], name: "index_livepeer_orchestrators_on_chain_id"
   end
 
   create_table "livepeer_pools", force: :cascade do |t|
@@ -792,15 +826,15 @@ ActiveRecord::Schema.define(version: 2020_08_03_122847) do
     t.decimal "reward_tokens"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "transcoder_address"
+    t.string "orchestrator_address"
+    t.index ["orchestrator_address"], name: "index_livepeer_pools_on_orchestrator_address"
     t.index ["round_id"], name: "index_livepeer_pools_on_round_id"
-    t.index ["transcoder_address"], name: "index_livepeer_pools_on_transcoder_address"
   end
 
   create_table "livepeer_rebonds", force: :cascade do |t|
     t.string "transaction_hash"
     t.string "delegator_address"
-    t.string "transcoder_address"
+    t.string "orchestrator_address"
     t.decimal "amount"
     t.datetime "initialized_at"
     t.integer "unbonding_lock_id"
@@ -845,25 +879,10 @@ ActiveRecord::Schema.define(version: 2020_08_03_122847) do
     t.index ["round_id"], name: "index_livepeer_stakes_on_round_id"
   end
 
-  create_table "livepeer_transcoders", force: :cascade do |t|
-    t.string "address"
-    t.boolean "active"
-    t.decimal "reward_cut"
-    t.decimal "fee_share"
-    t.decimal "total_stake"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "chain_id"
-    t.string "name"
-    t.string "description"
-    t.index ["address"], name: "index_livepeer_transcoders_on_address"
-    t.index ["chain_id"], name: "index_livepeer_transcoders_on_chain_id"
-  end
-
   create_table "livepeer_unbonds", force: :cascade do |t|
     t.string "transaction_hash"
     t.string "delegator_address"
-    t.string "transcoder_address"
+    t.string "orchestrator_address"
     t.decimal "amount"
     t.datetime "initialized_at"
     t.integer "withdraw_round_number"
@@ -908,7 +927,7 @@ ActiveRecord::Schema.define(version: 2020_08_03_122847) do
     t.boolean "dead", default: false
     t.integer "position"
     t.jsonb "token_map", default: {}
-    t.jsonb "validator_event_defs", default: [{"kind"=>"voting_power_change", "height"=>0}, {"kind"=>"n_of_m", "height"=>0}]
+    t.jsonb "validator_event_defs", default: [{"kind"=>"voting_power_change", "height"=>0}, {"m"=>1000, "n"=>50, "kind"=>"n_of_m", "height"=>0}]
     t.index ["name"], name: "index_oasis_chains_on_name"
   end
 
@@ -1197,12 +1216,12 @@ ActiveRecord::Schema.define(version: 2020_08_03_122847) do
   add_foreign_key "livepeer_delegator_lists", "users"
   add_foreign_key "livepeer_delegators", "livepeer_chains", column: "chain_id"
   add_foreign_key "livepeer_events", "livepeer_rounds", column: "round_id"
+  add_foreign_key "livepeer_orchestrators", "livepeer_chains", column: "chain_id"
   add_foreign_key "livepeer_pools", "livepeer_rounds", column: "round_id"
   add_foreign_key "livepeer_rebonds", "livepeer_rounds", column: "round_id"
   add_foreign_key "livepeer_rounds", "livepeer_chains", column: "chain_id"
   add_foreign_key "livepeer_shares", "livepeer_pools", column: "pool_id"
   add_foreign_key "livepeer_stakes", "livepeer_rounds", column: "round_id"
-  add_foreign_key "livepeer_transcoders", "livepeer_chains", column: "chain_id"
   add_foreign_key "livepeer_unbonds", "livepeer_rounds", column: "round_id"
   add_foreign_key "subscriptions", "users", on_delete: :cascade
   add_foreign_key "telegram_accounts", "users"

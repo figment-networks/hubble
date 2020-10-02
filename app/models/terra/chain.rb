@@ -5,8 +5,8 @@ class Terra::Chain < ApplicationRecord
   SYNC_INTERVAL = 1.minute
   SUPPORTS_LEDGER = false
 
-  DEFAULT_TOKEN_DISPLAY = 'LUNA'
-  DEFAULT_TOKEN_REMOTE = 'uluna'
+  DEFAULT_TOKEN_DISPLAY = 'LUNA'.freeze
+  DEFAULT_TOKEN_REMOTE = 'uluna'.freeze
   DEFAULT_TOKEN_FACTOR = 6
 
   PREFIXES = {
@@ -16,10 +16,15 @@ class Terra::Chain < ApplicationRecord
     validator_consensus_public_key: 'terravalconspub1',
     validator_operator_address: 'terravaloper1',
     validator_operator_public_key: 'terravaloperpub1'
-  }
+  }.freeze
 
-  scope :primary, -> { find_by( primary: true ) || order('created_at DESC').first }
+  scope :primary, -> { find_by(primary: true) || order('created_at DESC').first }
 
-  def network_name; 'Terra'; end
-  def has_csir?; true; end
+  def network_name
+    'Terra'
+  end
+
+  def has_csir?
+    true
+  end
 end

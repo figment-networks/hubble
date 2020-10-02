@@ -1,19 +1,19 @@
 class Cosmoslike::SyncBase
   class CriticalError < StandardError; end
 
-  def initialize( chain, timeout_ms=10_000 )
+  def initialize(chain, timeout_ms = 10_000)
     @chain = chain
     @timeout = timeout_ms
 
     begin
       ext_id = get_node_chain
-    rescue
-      puts "#{$!.message}"
+    rescue StandardError
+      puts $!.message.to_s
     end
 
     if !ext_id
       chain.sync_failed!
-      raise CriticalError.new("Unable to communicate with node!")
+      raise CriticalError, 'Unable to communicate with node!'
     end
 
     if @chain.ext_id.blank?
@@ -22,41 +22,41 @@ class Cosmoslike::SyncBase
 
     if ext_id != @chain.ext_id
       chain.sync_failed!
-      raise CriticalError.new("Node is running on chain #{ext_id} and cannot sync #{@chain.ext_id}.")
+      raise CriticalError, "Node is running on chain #{ext_id} and cannot sync #{@chain.ext_id}."
     end
   end
 
   def get_status
-    rpc_get( 'status' )
+    rpc_get('status')
   end
 
   def get_head_height
     get_status['result']['sync_info']['latest_block_height'].to_i
   end
 
-  def get_block( height )
-    rpc_get( 'block', height: height )
+  def get_block(height)
+    rpc_get('block', height: height)
   end
 
-  def get_blocks( first, last )
-    rpc_get( 'blockchain', minHeight: first, maxHeight: last )
+  def get_blocks(first, last)
+    rpc_get('blockchain', minHeight: first, maxHeight: last)
   end
 
-  def get_commit( height )
-    rpc_get( 'commit', height: height )
+  def get_commit(height)
+    rpc_get('commit', height: height)
   end
 
-  def get_validator_set( height )
-    r = rpc_get( 'validators', height: height )
+  def get_validator_set(height)
+    r = rpc_get('validators', height: height)
     begin
       r['result']['validators']
-    rescue
-      raise RuntimeError.new("Could not retrieve validator set at height #{height}. #{r}")
+    rescue StandardError
+      raise "Could not retrieve validator set at height #{height}. #{r}"
     end
   end
 
   def get_staking_pool
-    lcd_get( 'staking/pool' )
+    lcd_get('staking/pool')
   end
 
   def get_total_supply
@@ -70,59 +70,62 @@ class Cosmoslike::SyncBase
   def get_reported_blocks_per_year
     res = lcd_get('minting/parameters')
     return nil if res.nil?
+
     res['blocks_per_year']
   end
 
-  def get_transaction( hash )
-    r = lcd_get( [ 'txs', hash ] )
+  def get_transaction(hash)
+    r = lcd_get(['txs', hash])
     return nil if !r.is_a?(Hash)
     return nil if r.has_key?('error')
+
     r
   end
 
-  def get_transactions( params=nil )
+  def get_transactions(params = nil)
     params ||= {}
     params['limit'] = 1000
-    lcd_get( 'txs', params )
+    lcd_get('txs', params)
   end
 
-  def get_account_info( addr )
-    lcd_get( [ 'auth/accounts', addr ] )
+  def get_account_info(addr)
+    lcd_get(['auth/accounts', addr])
   end
 
   def get_key(name)
-    lcd_get( [ 'keys', name ] )
+    lcd_get(['keys', name])
   end
 
   def get_keys
-    r = lcd_get( 'keys' )
+    r = lcd_get('keys')
     return r if r.is_a? Array
+
     return []
   end
 
   def get_new_seed
-    lcd_get( 'keys/seed' )
+    lcd_get('keys/seed')
   end
 
-  def create_key( name, password )
+  def create_key(name, password)
     seed = get_new_seed.strip
-    lcd_post( 'keys', name: name, password: password, seed: seed )
-    get_key( name )
+    lcd_post('keys', name: name, password: password, seed: seed)
+    get_key(name)
     seed
   end
 
   def get_stake_info
     path = 'staking/validators'
-    r = lcd_get( path )
-    r.is_a?( Array ) ? r : nil
+    r = lcd_get(path)
+    r.is_a?(Array) ? r : nil
   end
 
   def get_genesis
-    rpc_get( 'genesis' )
+    rpc_get('genesis')
   end
 
   def get_consensus_state
-    rpc_get( 'dump_consensus_state' )
+    rpc_get('dump_consensus_state')
   end
 
   def get_node_chain
@@ -147,57 +150,58 @@ class Cosmoslike::SyncBase
       'tally_params' => tally_params.is_a?(Hash) ? tally_params : nil,
       'voting_params' => voting_params.is_a?(Hash) ? voting_params : nil,
       'deposit_params' => deposit_params.is_a?(Hash) ? deposit_params : nil
-    }.delete_if { |k, v| v.nil? }
+    }.delete_if { |_k, v| v.nil? }
   end
 
   def get_proposals
-    lcd_get( 'gov/proposals' )
+    lcd_get('gov/proposals')
   end
 
-  def get_proposal_deposits( proposal_id )
-    lcd_get( [ 'gov/proposals', proposal_id, 'deposits' ] )
+  def get_proposal_deposits(proposal_id)
+    lcd_get(['gov/proposals', proposal_id, 'deposits'])
   end
 
-  def get_proposal_votes( proposal_id )
-    lcd_get( [ 'gov/proposals', proposal_id, 'votes' ] )
+  def get_proposal_votes(proposal_id)
+    lcd_get(['gov/proposals', proposal_id, 'votes'])
   end
 
-  def get_proposal_tally( proposal_id )
-    lcd_get( [ 'gov/proposals', proposal_id, 'tally' ] )
+  def get_proposal_tally(proposal_id)
+    lcd_get(['gov/proposals', proposal_id, 'tally'])
   end
 
-  def get_validator_delegations( validator_operator_id )
-    lcd_get( [ 'staking/validators', validator_operator_id, 'delegations' ] ) || []
+  def get_validator_delegations(validator_operator_id)
+    lcd_get(['staking/validators', validator_operator_id, 'delegations']) || []
   end
 
-  def get_validator_unbonding_delegations( validator_operator_id )
-    lcd_get( [ 'staking/validators', validator_operator_id, 'unbonding_delegations' ] ) || []
+  def get_validator_unbonding_delegations(validator_operator_id)
+    lcd_get(['staking/validators', validator_operator_id, 'unbonding_delegations']) || []
   end
 
-  def get_validator_rewards( validator_operator_id )
-    lcd_get( [ 'distribution/validators', validator_operator_id, 'rewards' ] )
+  def get_validator_rewards(validator_operator_id)
+    lcd_get(['distribution/validators', validator_operator_id, 'rewards'])
   end
 
-  def get_validator_commission( validator_operator_id )
-    r = lcd_get( [ 'distribution/validators', validator_operator_id ] )
+  def get_validator_commission(validator_operator_id)
+    r = lcd_get(['distribution/validators', validator_operator_id])
     return [] if !r['val_commission']
+
     r['val_commission']
   end
 
-  def get_account_delegations( account )
-    lcd_get( [ 'staking/delegators', account, 'delegations' ] )
+  def get_account_delegations(account)
+    lcd_get(['staking/delegators', account, 'delegations'])
   end
 
-  def get_account_unbonding_delegations( account )
-    lcd_get( [ 'staking/delegators', account, 'unbonding_delegations' ] )
+  def get_account_unbonding_delegations(account)
+    lcd_get(['staking/delegators', account, 'unbonding_delegations'])
   end
 
-  def get_account_balances( account )
-    lcd_get( [ 'bank/balances', account ] )
+  def get_account_balances(account)
+    lcd_get(['bank/balances', account])
   end
 
-  def get_account_rewards( account, validator=nil )
-    r = lcd_get( [ 'distribution/delegators', account, 'rewards', validator ].compact )
+  def get_account_rewards(account, validator = nil)
+    r = lcd_get(['distribution/delegators', account, 'rewards', validator].compact)
     if r.is_a?(Array)
       return r
     elsif r.is_a?(Hash) && r.has_key?('total')
@@ -205,8 +209,8 @@ class Cosmoslike::SyncBase
     end
   end
 
-  def get_account_delegation_transactions( account )
-    r = lcd_get( [ 'staking/delegators', account, 'txs' ] )
+  def get_account_delegation_transactions(account)
+    r = lcd_get(['staking/delegators', account, 'txs'])
     if r.is_a?(Array) && r[0].is_a?(Hash) && r[0].has_key?('txs')
       return r.map { |thing| thing['txs'] }.flatten
     else
@@ -214,10 +218,10 @@ class Cosmoslike::SyncBase
     end
   end
 
-  def broadcast_tx( signed_tx )
+  def broadcast_tx(signed_tx)
     final_json = signed_tx.to_json
     # Rails.logger.debug "FINAL TX PAYLOAD: #{final_json}"
-    r = lcd_post( 'txs', final_json )
+    r = lcd_post('txs', final_json)
 
     # add human readable error to payload
     if !r['code'].blank?
@@ -239,7 +243,6 @@ class Cosmoslike::SyncBase
                 when 15 then 'Too many signatures'
                 when 16 then 'Gas overflow'
                 when 17 then 'No signatures'
-                else nil
                 end
       r['error_message'] = message if message
     end
@@ -251,7 +254,7 @@ class Cosmoslike::SyncBase
 
   CACHE_VERSION = 1
 
-  def rpc_get( path, params=nil )
+  def rpc_get(path, params = nil)
     path = path.join('/') if path.is_a?(Array)
 
     url = URI::Generic.build(
@@ -262,19 +265,19 @@ class Cosmoslike::SyncBase
       query: params ? params.to_query : nil
     ).to_s
 
-    body = Rails.cache.fetch( ['rpc_get', @chain.network_name.downcase, @chain.ext_id.to_s, url].join('-'), force: Rails.env.development?, expires_in: 30.seconds, version: CACHE_VERSION ) do
+    body = Rails.cache.fetch(['rpc_get', @chain.network_name.downcase, @chain.ext_id.to_s, url].join('-'), force: Rails.env.development?, expires_in: 30.seconds, version: CACHE_VERSION) do
       start_time = Time.now.utc.to_f
       Rails.logger.debug "#{@chain.network_name} RPC GET: #{url}"
-      r = Typhoeus.get( url, timeout_ms: @timeout * 2, connecttimeout_ms: @timeout )
+      r = Typhoeus.get(url, timeout_ms: @timeout * 2, connecttimeout_ms: @timeout)
       end_time = Time.now.utc.to_f
       Rails.logger.debug "#{@chain.network_name} RPC #{path} took #{end_time - start_time} seconds" unless Rails.env.production?
       r.body
     end
 
-    JSON.load( body ) rescue body
+    JSON.load(body) rescue body
   end
 
-  def lcd_get( path, params=nil )
+  def lcd_get(path, params = nil)
     path = path.join('/') if path.is_a?(Array)
 
     url = URI::Generic.build(
@@ -285,26 +288,26 @@ class Cosmoslike::SyncBase
       query: params ? params.to_query : nil
     ).to_s
 
-    body = Rails.cache.fetch( ['lcd_get', @chain.network_name.downcase, @chain.ext_id.to_s, url].join('-'), force: Rails.env.development?, expires_in: 30.seconds, version: CACHE_VERSION ) do
+    body = Rails.cache.fetch(['lcd_get', @chain.network_name.downcase, @chain.ext_id.to_s, url].join('-'), force: Rails.env.development?, expires_in: 30.seconds, version: CACHE_VERSION) do
       start_time = Time.now.utc.to_f
       Rails.logger.debug "#{@chain.network_name} LCD GET: #{url}"
       opts = { timeout_ms: @timeout * 2, connecttimeout_ms: @timeout }
-      opts.merge!( ssl_verifypeer: false, ssl_verifyhost: 0 ) if @chain.use_ssl_for_lcd?
-      r = Typhoeus.get( url, opts )
+      opts.merge!(ssl_verifypeer: false, ssl_verifyhost: 0) if @chain.use_ssl_for_lcd?
+      r = Typhoeus.get(url, opts)
       end_time = Time.now.utc.to_f
       Rails.logger.debug "#{@chain.network_name} LCD #{path} took #{end_time - start_time} seconds" unless Rails.env.production?
       r.body
     end
 
-    r = JSON.load( body ) rescue body
-    if r.is_a?(Hash) && r.has_key?('result')
+    r = JSON.load(body) rescue body
+    if r.is_a?(Hash) && r.has_key?('result') && !r.has_key?('hash')
       r['result']
     else
       r
     end
   end
 
-  def lcd_post( path, body )
+  def lcd_post(path, body)
     path = path.join('/') if path.is_a?(Array)
 
     url = URI::Generic.build(
@@ -317,12 +320,12 @@ class Cosmoslike::SyncBase
     start_time = Time.now.utc.to_f
     Rails.logger.debug "#{@chain.network_name} LCD POST: #{url}"
     opts = { timeout_ms: @timeout * 2, connecttimeout_ms: @timeout, body: body }
-    opts.merge!( ssl_verifypeer: false, ssl_verifyhost: 0 ) if @chain.use_ssl_for_lcd?
-    r = Typhoeus.post( url, opts )
+    opts.merge!(ssl_verifypeer: false, ssl_verifyhost: 0) if @chain.use_ssl_for_lcd?
+    r = Typhoeus.post(url, opts)
     end_time = Time.now.utc.to_f
     Rails.logger.debug "#{@chain.network_name} LCD #{path} took #{end_time - start_time} seconds" unless Rails.env.production?
     body = r.body
 
-    JSON.load( body ) rescue body
+    JSON.load(body) rescue body
   end
 end

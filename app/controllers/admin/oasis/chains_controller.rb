@@ -1,10 +1,9 @@
 class Admin::Oasis::ChainsController < Admin::BaseChainsController
-
   def create
     @chain = chain_class.create(chain_params)
     @chain.update_attributes(
       token_map: {
-        :"#{@chain.class::DEFAULT_TOKEN_REMOTE}" => {
+        "#{@chain.class::DEFAULT_TOKEN_REMOTE}": {
           display: @chain.class::DEFAULT_TOKEN_DISPLAY,
           factor: @chain.class::DEFAULT_TOKEN_FACTOR,
           primary: true
@@ -16,11 +15,15 @@ class Admin::Oasis::ChainsController < Admin::BaseChainsController
       if @chain.primary?
         ensure_single_primary_chain
       end
-      redirect_to admin_root_path, notice: "Chain created successfully"
+      redirect_to admin_root_path, notice: 'Chain created successfully'
     else
       flash[:error] = @chain.errors.full_messages.join(', ')
       render :new
     end
+  end
+
+  def show
+    @status = @chain.client.status
   end
 
   def update
@@ -29,9 +32,9 @@ class Admin::Oasis::ChainsController < Admin::BaseChainsController
 
     if params.has_key?(:oasis_chain)
       updates = params.require(:oasis_chain).permit(
-        %i{
+        %i[
           primary disabled dead api_url
-        }
+        ]
       )
     else
       updates = {}
@@ -39,13 +42,13 @@ class Admin::Oasis::ChainsController < Admin::BaseChainsController
 
     if params.has_key?(:new_token)
       updates[:token_map] = @chain.token_map.merge(
-        :"#{params[:new_token][:remote]}" => {
+        "#{params[:new_token][:remote]}": {
           display: params[:new_token][:display],
           factor: params[:new_token][:factor].to_i
         }
       )
       if params[:new_token][:primary]
-        updates[:token_map] = updates[:token_map].map { |k,v| v['primary'] = false; [k,v] }.to_h
+        updates[:token_map] = updates[:token_map].map { |k, v| v['primary'] = false; [k, v] }.to_h
         updates[:token_map][:"#{params[:new_token][:remote]}"]['primary'] = true
       end
     end
@@ -62,13 +65,13 @@ class Admin::Oasis::ChainsController < Admin::BaseChainsController
     else
       # make sure only 1 chain is primary
       if @chain.primary?
-        ensure_single_primary_chain 
+        ensure_single_primary_chain
       end
-      redirect_to admin_root_path, notice: "Chain info has been updated!"
+      redirect_to admin_root_path, notice: 'Chain info has been updated!'
     end
   end
 
-  private 
+  private
 
   def chain_class
     ::Oasis::Chain

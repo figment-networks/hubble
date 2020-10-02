@@ -1,9 +1,8 @@
 module Oasis
   class Staking < Common::Resource
-    attr_accessor :total_supply,
-                  :common_pool,
-                  :debonding_interval,
-                  :min_delegation_amount
-
+    field :total_supply
+    field :common_pool
+    field :debonding_interval
+    field :min_delegation_amount
   end
 end

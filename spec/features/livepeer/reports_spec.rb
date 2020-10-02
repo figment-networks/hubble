@@ -1,6 +1,6 @@
 require 'features_helper'
 
-feature 'Livepeer Reports', livepeer: :factory do
+describe 'Livepeer Reports', livepeer: :factory do
   include_context 'Livepeer delegator data'
 
   let!(:user) { create(:user) }
@@ -17,7 +17,10 @@ feature 'Livepeer Reports', livepeer: :factory do
   context 'as a signed in user', :vcr do
     before { log_in(user) }
 
-    scenario 'generating a round report' do
+    let(:end_date) { rounds[1].initialized_at.to_date }
+    let(:start_date) { rounds[0].initialized_at.to_date }
+
+    it 'generating a round report' do
       visit "/livepeer/chains/#{chain.slug}/delegator_lists"
 
       find('a .fa-file').click
@@ -43,10 +46,7 @@ feature 'Livepeer Reports', livepeer: :factory do
       expect(page).to have_content("Round\n1000")
     end
 
-    let(:start_date) { rounds[0].initialized_at.to_date }
-    let(:end_date) { rounds[1].initialized_at.to_date }
-
-    scenario 'generating a date range report' do
+    it 'generating a date range report' do
       visit "/livepeer/chains/#{chain.slug}/delegator_lists"
 
       find('a .fa-file').click

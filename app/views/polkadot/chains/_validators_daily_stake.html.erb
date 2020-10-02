@@ -1,0 +1,14 @@
+<div class='card'>
+  <h5 class='card-header'>Total stake</h5>
+  <div class='card-body'>
+    <label>Past <%= validators_daily_stake.count %> days:</label>
+    <div class='small-validators-daily-stake-chart-container'>
+      <canvas
+        class='validators-daily-stake-chart'
+        data-chart="<%= validators_daily_stake.to_json %>"
+        data-token="<%= chain.class::DEFAULT_TOKEN_DISPLAY %>"
+      >
+      </canvas>
+    </div>
+  </div>
+</div>

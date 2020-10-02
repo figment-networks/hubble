@@ -1,5 +1,5 @@
 Daily digest for <%= @alertable.short_name %> on <%= @alertable.chain.name %>
-<%= namespaced_path( @alertable.model_name.element, @alertable, chain: @alertable.chain, full: true ) %>
+<%= namespaced_path( @alertable.chain.alertable_type, @alertable.address, chain: @alertable.chain, full: true ) %>
 
 <%= pluralize( @events.count, 'new event' ) %> on <%= @date.strftime("%B %d, %Y") %>
 

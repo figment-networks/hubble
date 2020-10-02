@@ -1,5 +1,5 @@
 class Cosmoslike::ActiveSetHistoryDecorator
-  def initialize( validator )
+  def initialize(validator)
     @validator = validator
   end
 
@@ -11,7 +11,7 @@ class Cosmoslike::ActiveSetHistoryDecorator
     data << { t: Time.now.utc.iso8601, inout: @validator.in_active_set? ? 'in' : 'out' }
 
     first = data.first
-    data.unshift( t: Time.parse( first[:t] ).utc.beginning_of_day.iso8601, inout: 'in' )
+    data.unshift(t: Time.parse(first[:t]).utc.beginning_of_day.iso8601, inout: 'in')
 
     data
   end

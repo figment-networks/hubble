@@ -1,16 +1,15 @@
 class Polkadot::ValidatorSummary < Common::Resource
   attr_accessor :total_stake_avg,
-                :time_bucket,
-                :validators_count
+                :uptime_avg,
+                :time_bucket
 
-  def initialize(attrs = {})
-    super(attrs)
+  def initialize(attributes = {})
+    super(attributes)
     @time_bucket = Time.zone.parse(time_bucket)
     @total_stake_avg = total_stake_avg.to_i
-    @validators_count = validators_count.to_i
   end
 
   def total_stake
-    total_stake_avg * validators_count
+    total_stake_avg
   end
 end

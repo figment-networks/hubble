@@ -13,15 +13,19 @@ class AlertableAddress < ApplicationRecord
   end
 
   def destroy_if_orphaned
-    self.destroy unless self.alert_subscriptions.any?
+    destroy unless alert_subscriptions.any?
+  end
+
+  def long_name
+    chain.get_alertable_name(address)
   end
 
   def short_name(max_length = 16)
-    address.truncate(max_length)
+    long_name.truncate(max_length)
   end
 
-  #temp placeholder, to be updated when events available in indexer
-  def recent_events(klass, time_ago)
+  # temp placeholder, to be updated when events available in indexer
+  def recent_events(_klass, _time_ago)
     [1, 2, 3, 4, 5]
   end
 end

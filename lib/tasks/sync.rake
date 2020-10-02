@@ -1,25 +1,26 @@
 namespace :sync do
   task :all do
-    %w{ cosmos terra iris kava emoney livepeer }.each do |network|
+    %w[cosmos terra iris kava emoney livepeer].each do |network|
       Rake::Task["sync:#{network}"].invoke
     end
   end
 
-  %w{ cosmos terra iris kava emoney }.each do |network|
-    task :"#{network.to_sym}" => :environment do
+  %w[cosmos terra iris kava emoney].each do |network|
+    task "#{network.to_sym}": :environment do
       $stdout.sync = true
       puts "\nStarting sync:#{network} task at #{Time.now.utc.strftime(TASK_DATETIME_FORMAT)}"
       network.titleize.constantize::Chain.enabled.find_each do |chain|
         TaskLock.with_lock!(:sync, "#{network}-#{chain.ext_id}") do
-          log = Stats::SyncLog.start( chain )
+          log = Stats::SyncLog.start(chain)
 
           begin
             bss = chain.namespace::BlockSyncService.new(chain)
             log.set_status 'blocks'
             bss.sync!
-          rescue
+          rescue StandardError
             log.report_error $!
             log.end && next if $!.is_a?(chain.namespace::SyncBase::CriticalError)
+
             puts "Failed to complete block sync!\n#{$!.message}"
             puts $!.backtrace.join("\n") && puts if ENV['DEBUG']
           end
@@ -31,9 +32,10 @@ namespace :sync do
             gss.sync_pool!
             gss.sync_proposals!
             gss.sync_token_stats!
-          rescue
+          rescue StandardError
             log.report_error $!
             log.end && next if $!.is_a?(chain.namespace::SyncBase::CriticalError)
+
             puts "Failed to complete governance sync!\n#{$!.message}"
             puts $!.backtrace.join("\n") && puts if ENV['DEBUG']
           end
@@ -42,9 +44,10 @@ namespace :sync do
             log.set_status 'halt-check'
             hcs = chain.namespace::HaltedChainService.new(chain)
             hcs.check_for_halted_chain!
-          rescue
+          rescue StandardError
             log.report_error $!
             log.end && next if $!.is_a?(chain.namespace::SyncBase::CriticalError)
+
             puts "Failed to complete halt check!\n#{$!.message}"
             puts $!.backtrace.join("\n") && puts if ENV['DEBUG']
           end
@@ -56,9 +59,10 @@ namespace :sync do
               vss.sync_validator_timestamps!
               vss.sync_validator_metadata!
               vss.update_history_height!
-            rescue
+            rescue StandardError
               log.report_error $!
               log.end && next if $!.is_a?(chain.namespace::SyncBase::CriticalError)
+
               puts "Failed to complete validator sync!\n#{$!.message}"
               puts $!.backtrace.join("\n") && puts if ENV['DEBUG']
             end
@@ -68,21 +72,22 @@ namespace :sync do
             log.set_status 'validator-events'
             ves = chain.namespace::ValidatorEventsService.new(chain)
             ves.run!
-          rescue
+          rescue StandardError
             log.report_error $!
             log.end && next if $!.is_a?(chain.namespace::SyncBase::CriticalError)
+
             puts "Failed to complete events sync!\n#{$!.message}"
             puts $!.backtrace.join("\n") && puts if ENV['DEBUG']
           end
 
           begin
             log.set_status 'stats'
-            stats = chain.namespace::AverageSnapshotsGeneratorService.new( chain )
+            stats = chain.namespace::AverageSnapshotsGeneratorService.new(chain)
             stats.generate_block_time_snapshots!
             stats.generate_voting_power_snapshots!
             stats.generate_validator_uptime_snapshots!
             stats.generate_active_validators_snapshots!
-          rescue
+          rescue StandardError
             log.report_error $!
             log.end
             puts "Failed to collect stats!\n#{$!.message}"
@@ -92,7 +97,7 @@ namespace :sync do
           begin
             log.set_status 'cleanup'
             bss.cleanup!
-          rescue
+          rescue StandardError
             log.report_error $!
             log.end
             puts "Failed to complete block cleanup!\n#{$!.message}"

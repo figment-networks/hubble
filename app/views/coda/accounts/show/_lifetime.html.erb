@@ -1,0 +1,11 @@
+<%= render_card "Lifetime", class: "account-lifetime" do %>
+  <label>First Seen</label>
+  <div class="stat-value">
+    <%= account.start_time.try(:strftime, "%B %d, %Y at %H:%M %Z") || "N/A" %>
+  </div>
+
+  <label>Last Seen</label>
+  <div class="stat-value">
+    <%= account.last_time.try(:strftime, "%B %d, %Y at %H:%M %Z") || "N/A" %>
+  </div>
+<% end %>

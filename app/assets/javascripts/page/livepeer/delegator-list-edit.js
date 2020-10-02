@@ -1,5 +1,7 @@
-$(document).ready( function() {
-  if( !_.includes(App.mode, 'delegator-list-edit') ) { return }
+$(document).ready(function() {
+  if (!_.includes(App.mode, 'delegator-list-edit')) {
+    return;
+  }
 
-  new App.Livepeer.DelegatorListForm( $('.delegator-list-form') ).render()
-} )
+  new App.Livepeer.DelegatorListForm($('.delegator-list-form')).render();
+});

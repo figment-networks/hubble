@@ -1,6 +1,6 @@
-require "indexer/resources/proposal"
-require "indexer/resources/voting_period"
-require "indexer/resources/ballot"
+require 'indexer/resources/proposal'
+require 'indexer/resources/voting_period'
+require 'indexer/resources/ballot'
 
 class Tezos::Governance::ProposalsController < Tezos::BaseController
   def show

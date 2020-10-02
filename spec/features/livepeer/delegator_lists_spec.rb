@@ -81,17 +81,5 @@ feature 'Livepeer Delegator Lists' do
       expect(page).to have_no_content(delegator_list.id)
       expect(page).to have_no_content(delegator_list.name)
     end
-
-    scenario 'viewing events for a delegator list' do
-      visit "/livepeer/chains/#{chain.slug}/delegator_lists"
-
-      find('a .fa-clock').click
-
-      expect(page.current_path).to eq("/livepeer/chains/#{chain.slug}/delegator_lists/#{delegator_list.id}/events")
-
-      expect(page).to have_link('Events')
-      expect(page).to have_link('Delegator Lists')
-      expect(page).to have_content("Events for #{delegator_list.name}")
-    end
   end
 end

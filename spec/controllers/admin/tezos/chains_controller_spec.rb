@@ -5,94 +5,95 @@ RSpec.describe Admin::Tezos::ChainsController do
   let!(:admin) { create(:admin) }
 
   before do
-    session[:admin_id] = admin.id 
+    session[:admin_id] = admin.id
   end
-  
-  describe "POST #create" do
-    context "with valid params" do
+
+  describe 'POST #create' do
+    context 'with valid params' do
       let(:params) { attributes_for(:tezos_chain) }
 
-      it "saves the new chain" do
-        expect{ post :create, params: { tezos_chain: params } }.to change(chain.class, :count).by(1)
+      it 'saves the new chain' do
+        expect { post :create, params: { tezos_chain: params } }.to change(chain.class, :count).by(1)
       end
 
-      it "responds with 302 status" do
+      it 'responds with 302 status' do
         post :create, params: { tezos_chain: params }
         expect(response).to have_http_status(:found)
       end
 
-      it "redirects to admin_root_path" do
+      it 'redirects to admin_root_path' do
         post :create, params: { tezos_chain: params }
         expect(response).to redirect_to(admin_root_path)
       end
 
-      it "flashes success notice" do
+      it 'flashes success notice' do
         post :create, params: { tezos_chain: params }
-        expect(flash[:notice]).to match("Chain created successfully")
+        expect(flash[:notice]).to match('Chain created successfully')
       end
     end
 
-    context "with invalid params" do
-      let(:params) { { foo: :bar} }
+    context 'with invalid params' do
+      let(:params) { { foo: :bar } }
 
-      it "does not save the new chain" do
-        expect{ post :create, params: { tezos_chain: params } }.to change(chain.class, :count).by(0)
+      it 'does not save the new chain' do
+        expect { post :create, params: { tezos_chain: params } }.to change(chain.class, :count).by(0)
       end
 
-      it "does not respond with 302 status" do
+      it 'does not respond with 302 status' do
         post :create, params: { tezos_chain: params }
-        expect(response).to_not have_http_status(:found)
+        expect(response).not_to have_http_status(:found)
       end
     end
   end
 
-  describe "PUT #update" do 
-    context "with no errors" do
-      let(:new_params) { { name: "new name" } }
-      before(:each) { put :update, params: { id: chain.slug, tezos_chain: new_params } }
+  describe 'PUT #update' do
+    context 'with no errors' do
+      let(:new_params) { { name: 'new name' } }
 
-      it "updates the chain" do 
+      before { put :update, params: { id: chain.slug, tezos_chain: new_params } }
+
+      it 'updates the chain' do
         expect(response).to have_http_status(:found)
       end
 
-      it "redirects to admin_root_path" do
+      it 'redirects to admin_root_path' do
         expect(response).to redirect_to(admin_root_path)
       end
 
-      it "flashes success notice" do
-        expect(flash[:notice]).to match("Chain info has been updated!")
+      it 'flashes success notice' do
+        expect(flash[:notice]).to match('Chain info has been updated!')
       end
     end
 
-    context "with errors" do 
-      let(:wrong_new_params) { { name: "" } }
-      before(:each) { put :update, params: { id: chain.slug, tezos_chain: wrong_new_params } }
+    context 'with errors' do
+      let(:wrong_new_params) { { name: '' } }
 
-      it "does not update the chain" do
-        expect(response).to_not have_http_status(:found)
+      before { put :update, params: { id: chain.slug, tezos_chain: wrong_new_params } }
+
+      it 'does not update the chain' do
+        expect(response).not_to have_http_status(:found)
       end
     end
   end
 
-  describe "DELETE #destroy" do
-
-    it "deletes the chain" do
-      expect{ delete :destroy, params: { id: chain.slug } }.to change(chain.class, :count).by(-1)
+  describe 'DELETE #destroy' do
+    it 'deletes the chain' do
+      expect { delete :destroy, params: { id: chain.slug } }.to change(chain.class, :count).by(-1)
     end
-    
-    it "responds with 302 status" do
+
+    it 'responds with 302 status' do
       delete :destroy, params: { id: chain.slug }
       expect(response).to have_http_status(:found)
-    end 
+    end
 
-    it "redirects to admin_root_path" do
+    it 'redirects to admin_root_path' do
       delete :destroy, params: { id: chain.slug }
       expect(response).to redirect_to(admin_root_path)
     end
 
-    it "flashes success notice" do
+    it 'flashes success notice' do
       delete :destroy, params: { id: chain.slug }
-      expect(flash[:notice]).to match("Chain has been deleted!")
+      expect(flash[:notice]).to match('Chain has been deleted!')
     end
   end
 end

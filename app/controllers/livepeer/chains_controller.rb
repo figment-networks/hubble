@@ -2,7 +2,7 @@ class Livepeer::ChainsController < Livepeer::BaseController
   def show
     @chain = Livepeer::Chain.find_by!(slug: params[:id])
 
-    @transcoders = @chain.transcoders
+    @orchestrators = @chain.orchestrators
     @latest_round = @chain.rounds.order(number: :desc).take
 
     page_title 'Overview'

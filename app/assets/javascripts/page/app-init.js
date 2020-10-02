@@ -1,9 +1,9 @@
-moment.tz.setDefault('UTC')
+moment.tz.setDefault('UTC');
 
-$(document).ready( function() {
-  $('[data-toggle="tooltip"]').each( function() {
-    const el = $(this)
-    el.tooltipster( {
+$(document).ready(function() {
+  $('[data-toggle="tooltip"]').each(function() {
+    const el = $(this);
+    el.tooltipster({
       contentAsHTML: true,
       interactive: true,
       trigger: 'hover',
@@ -13,11 +13,11 @@ $(document).ready( function() {
       viewportAware: true,
       animationDuration: 100,
       delay: [0, 600],
-      functionBefore: function( instance, helper ) {
-        $.each( $.tooltipster.instances(), function( i, instance ) {
-          instance.close()
-        } )
+      functionBefore: function(instance, helper) {
+        $.each($.tooltipster.instances(), function(i, instance) {
+          instance.close();
+        });
       }
-    } )
-  } )
-} )
+    });
+  });
+});

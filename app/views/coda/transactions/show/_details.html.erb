@@ -1,0 +1,59 @@
+<div class="card">
+  <header class="card-header d-flex align-items-center justify-content-between">
+    <h4 class="m-0">Transaction Details</h4>
+      <span class="d-none d-md-flex badge badge-pill badge-light text-uppercase">Type: <%= transaction.formatted_type %></span>
+    </h4>
+  </header>
+  <div class="card-body no-padding">
+    <div class="table-responsive">
+      <table class="table table-sm">
+        <thead>
+          <tr class="text-uppercase text-secondary">
+            <th width="30%">Parameter</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="text-nowrap">Type</td>
+            <td><%= transaction.formatted_type %></td>
+          </tr>
+          <% if transaction.sender %>
+            <tr>
+              <td class="text-nowrap">Sender</td>
+              <td><%= link_to transaction.sender.truncate(50), coda_chain_account_path(chain, transaction.sender) %></td>
+            </tr>
+          <% end %>
+          <tr>
+            <td class="text-nowrap">Receiver</td>
+            <td><%= link_to transaction.receiver.truncate(50), coda_chain_account_path(chain, transaction.receiver) %></td>
+          </tr>
+          <tr>
+            <td class="text-nowrap">Amount</td>
+            <td>
+              <span data-toggle="tooltip" data-tooltip-side="right" title="<%= format_amount transaction.amount, denom: "coda" %>">
+                <%= transaction.amount %>
+              </span>
+            </td>
+          </tr>
+          <% if transaction.has_fee? %>
+            <tr>
+              <td class="text-nowrap">Fee</td>
+              <td>
+                <span data-toggle="tooltip" data-tooltip-side="right" title="<%= format_amount transaction.fee, denom: "coda" %>">
+                  <%= transaction.fee %>
+                </span>
+              </td>
+            </tr>
+          <% end %>
+          <% if transaction.memo %>
+            <tr>
+              <td class="text-nowrap">Memo</td>
+              <td><span class="text-monospace memo"><%= transaction.memo %></span></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

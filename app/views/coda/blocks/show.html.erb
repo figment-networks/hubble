@@ -1,0 +1,25 @@
+<% content_for :body_class, "block-show" %>
+
+<%= render "chain_header" %>
+<%= render_flash_messages %>
+
+<h2 class="mb-4">
+  <label class="text-muted">Block</label>
+  <span class="technical text-lg"><%= @block.hash.truncate(50) %></span>
+</h2>
+
+<div class="row info-cards">
+  <div class="col-12 col-md-9 order-1 order-md-0">
+    <%= render "coda/blocks/show/details", chain: @chain, block: @block %>
+    <%= render "coda/blocks/show/transactions", transactions: @transactions %>
+    <%= render "coda/blocks/show/snarkers", snark_jobs: @snark_jobs %>
+  </div>
+  <div class="col-12 col-md-3 order-0 order-md-1 info-cards">
+    <%= render "coda/blocks/show/height",
+      block:      @block,
+      last_block: @last_block,
+      chain:      @chain
+    %>
+    <%= render "coda/blocks/show/timestamp", block: @block %>
+  </div>
+</div>

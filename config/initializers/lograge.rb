@@ -7,11 +7,11 @@ if !Rails.env.development?
       config.log_formatter = Logger::Formatter.new
       config.lograge.enabled = true
       config.lograge.custom_options = lambda do |event|
-        ua = UserAgent.parse( event.payload[:user_agent] ).as_json.first rescue nil
+        ua = UserAgent.parse(event.payload[:user_agent]).as_json.first rescue nil
         ua_str = "#{ua['product']}(#{ua['version']['str']})" rescue 'unknown'
 
         {
-          time: Time.now.strftime("%Y-%m-%d%H:%M:%S%Z"),
+          time: Time.now.strftime('%Y-%m-%d%H:%M:%S%Z'),
           ua: ua_str,
           user_id: event.payload[:uid],
           admin_id: event.payload[:aid]

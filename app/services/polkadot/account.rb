@@ -7,8 +7,8 @@ module Polkadot
                   :misc_frozen,
                   :fee_frozen
 
-    def initialize(attrs = {})
-      super(attrs)
+    def initialize(attributes = {})
+      super(attributes)
 
       # shall we use `dry-struct` gem instead?
       @free = free.to_i

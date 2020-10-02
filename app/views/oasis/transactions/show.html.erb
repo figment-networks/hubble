@@ -12,6 +12,8 @@
     <h1 class='display'>No Transaction Found</h1>
     <p>Sorry! We are unable to find a transaction with the provided public key and/or height.</p>
   </div>
+<% elsif @error %>
+  <%= render partial: 'shared/display_error' %>
 <% else %>
 
   <div class='row'>

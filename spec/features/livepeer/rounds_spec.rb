@@ -1,6 +1,6 @@
 require 'features_helper'
 
-feature 'Livepeer Rounds' do
+describe 'Livepeer Rounds' do
   let!(:chain) { create(:livepeer_chain) }
 
   let!(:round) do
@@ -17,16 +17,16 @@ feature 'Livepeer Rounds' do
     create(
       :livepeer_pool,
       round: round,
-      transcoder_address: '0x9180f738130252a423a65c73191b71321b533ad3',
+      orchestrator_address: '0x9180f738130252a423a65c73191b71321b533ad3',
       total_stake: 2_000_000,
       reward_tokens: nil
     )
   end
 
-  scenario 'visiting the round page' do
+  it 'visiting the round page' do
     visit "/livepeer/chains/#{chain.slug}"
 
-    click_link "#{round.number}"
+    click_link round.number.to_s
 
     expect(page).to have_content("Livepeer — #{chain.name}")
     expect(page).to have_content("Round #{round.number}")

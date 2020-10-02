@@ -1,11 +1,11 @@
 namespace :network_data do
   task :all do
-    %w{ cosmos kava terra emoney iris }.each do |network|
+    %w[cosmos kava terra emoney iris].each do |network|
       Rake::Task["network_data:#{network}"].invoke
     end
   end
 
-  %w{ cosmos kava terra emoney iris }.each do |network|
+  %w[cosmos kava terra emoney iris].each do |network|
     task "#{network.to_sym}": :environment do
       $stdout.sync = true
       network.titleize.constantize::Chain.enabled.alive.has_synced.find_each do |chain|
@@ -25,7 +25,7 @@ namespace :network_data do
         begin
           print "\t Rewards Rate...\t"
           rewards_rate = fetcher.rewards_rate
-          puts "#{rewards_rate}"
+          puts rewards_rate.to_s
           chain.update_attributes rewards_rate: rewards_rate
         rescue Cosmoslike::NetworkDataFetcher::FetchError
           Rails.logger.error $!.message
@@ -35,7 +35,7 @@ namespace :network_data do
         begin
           print "\t Daily Rewards...\t"
           daily_rewards = fetcher.daily_rewards
-          puts "#{daily_rewards}"
+          puts daily_rewards.to_s
           chain.update_attributes daily_rewards: daily_rewards
         rescue Cosmoslike::NetworkDataFetcher::FetchError
           Rails.logger.error $!.message
@@ -45,7 +45,7 @@ namespace :network_data do
         begin
           print "\t Staking Participation...\t"
           staking_participation = fetcher.staking_participation
-          puts "#{staking_participation}"
+          puts staking_participation.to_s
           chain.update_attributes staking_participation: staking_participation
         rescue Cosmoslike::NetworkDataFetcher::FetchError
           Rails.logger.error $!.message

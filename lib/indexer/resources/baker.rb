@@ -1,5 +1,5 @@
-require "indexer/resources/baking_stats"
-require "indexer/resources/endorsing_stats"
+require 'indexer/resources/baking_stats'
+require 'indexer/resources/endorsing_stats'
 
 module Indexer
   class Baker
@@ -19,7 +19,7 @@ module Indexer
     def self.count
       resp = RestClient.get("#{Tezos::Chain.primary.indexer_api_base_url}/bakers/count")
       data = JSON.parse(resp.body)
-      data["bakers_count"]
+      data['bakers_count']
     end
 
     def self.list(query: nil)

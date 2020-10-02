@@ -1,5 +1,4 @@
 class Cosmoslike::FaucetsController < Cosmoslike::BaseController
-
   def show
     @faucet = @chain.faucet
     page_title @chain.network_name, @chain.name, 'Community Faucet'

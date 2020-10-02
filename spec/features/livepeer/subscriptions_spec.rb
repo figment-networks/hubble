@@ -1,6 +1,6 @@
 require 'features_helper'
 
-feature 'Livepeer Subscriptions' do
+describe 'Livepeer Subscriptions' do
   let!(:user) { create(:user) }
   let!(:chain) { create(:livepeer_chain) }
 
@@ -9,7 +9,7 @@ feature 'Livepeer Subscriptions' do
   context 'as a signed in user', :vcr do
     before { log_in(user) }
 
-    scenario 'subscribing to a delegator list' do
+    it 'subscribing to a delegator list' do
       visit "/livepeer/chains/#{chain.slug}/delegator_lists"
 
       expect(page).to have_content(delegator_list.name)
@@ -20,7 +20,14 @@ feature 'Livepeer Subscriptions' do
       expect(page).to have_content('Subscribe to Events')
       expect(page).to have_content("Delegator List #{delegator_list.name}")
 
+      expect(page).to have_content('Reward Cut Change')
+      expect(page).to have_content('Missed Reward Call')
+      expect(page).to have_content('Deactivation')
+      expect(page).to have_content('Slashing')
+
       choose 'alert_subscription[event_kinds][reward_cut_change]', option: 'on'
+      choose 'alert_subscription[event_kinds][slashing]', option: 'on'
+
       choose 'alert_subscription[wants_daily_digest]', option: 'on'
 
       click_button 'save subscription'
@@ -38,7 +45,7 @@ feature 'Livepeer Subscriptions' do
         create(:livepeer_alert_subscription, user: user, alertable: delegator_list)
       end
 
-      scenario 'unsubscribing from a delegator list' do
+      it 'unsubscribing from a delegator list' do
         visit "/livepeer/chains/#{chain.slug}/delegator_lists"
 
         find('a .fa-bell').click

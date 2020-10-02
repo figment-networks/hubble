@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   post '/password/reset' => 'sessions#reset_password', as: 'reset_password'
   get '/password/recover' => 'sessions#recover_password', as: 'recover_password'
 
-  resources :users, only: %i{ new create update } do
+  resources :users, only: %i[new create update] do
     collection do
       get :welcome
       get :confirm
@@ -19,11 +19,11 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   concern :cosmoslike do
-    resources :chains, format: false, constraints: { id: /[^\/]+/ }, only: %i{ show } do
+    resources :chains, format: false, constraints: { id: /[^\/]+/ }, only: %i[show] do
       get '/dashboard' => 'dashboard#index', as: 'dashboard'
 
-      resource :faucet, only: %i{ show } do
-        resources :faucet_transactions, as: 'transactions', path: 'transactions', only: %i{ create }
+      resource :faucet, only: %i[show] do
+        resources :faucet_transactions, as: 'transactions', path: 'transactions', only: %i[create]
       end
 
       member do
@@ -33,27 +33,27 @@ Rails.application.routes.draw do
         post :broadcast
       end
 
-      resources :events, only: %i{ index show }
+      resources :events, only: %i[index show]
 
-      resources :validators, only: %i{ show } do
-        resources :subscriptions, only: %i{ index create }, controller: '/util/subscriptions'
+      resources :validators, only: %i[show] do
+        resources :subscriptions, only: %i[index create], controller: '/util/subscriptions'
       end
 
-      resources :accounts, only: %i{ show }
+      resources :accounts, only: %i[show]
 
-      resources :blocks, only: %i{ show } do
-        resources :transactions, only: %i{ show }
+      resources :blocks, only: %i[show] do
+        resources :transactions, only: %i[show]
       end
-      resources :transactions, only: %i{ show }
+      resources :transactions, only: %i[show]
 
-      resources :logs, only: %i{ index }, controller: '/util/logs'
+      resources :logs, only: %i[index], controller: '/util/logs'
 
       namespace :governance do
         root to: 'main#index'
-        resources :proposals, only: %i{ show }
+        resources :proposals, only: %i[show]
       end
 
-      resources :watches, as: 'watches', only: %i{ create }
+      resources :watches, as: 'watches', only: %i[create]
     end
   end
 
@@ -77,36 +77,53 @@ Rails.application.routes.draw do
     root to: 'chains#show'
   end
 
+  namespace :coda, network: 'coda' do
+    resources :chains do
+      member do
+        get :show
+        get :search
+      end
+
+      resources :blocks,       only: :show
+      resources :accounts,     only: :show
+      resources :validators,   only: :show
+      resources :transactions, only: %i[index show]
+    end
+  end
+
   namespace :oasis, network: 'oasis' do
-    resources :chains, only: %i{ show } do
+    resources :chains, only: %i[show] do
       get '/dashboard' => 'dashboard#index', as: 'dashboard'
 
       member do
         get :search
       end
 
-      resources :blocks, only: %i{ show } do
-        resources :transactions, only: %i{ show }
+      resources :blocks, only: %i[show] do
+        resources :transactions, only: %i[show]
       end
-      resources :validators, only: %i{ show } do
-        resources :subscriptions, only: %i{ index create }, controller: '/util/subscriptions'
+      resources :validators, only: %i[show] do
+        resources :subscriptions, only: %i[index create], controller: '/util/subscriptions'
       end
+
+      resources :accounts, only: %i[show]
+      resources :events, only: %i[index]
     end
   end
 
   namespace :livepeer, network: 'livepeer' do
-    resources :chains, format: false, constraints: { id: /[^\/]+/ }, only: %i{ show } do
+    resources :chains, format: false, constraints: { id: /[^\/]+/ }, only: %i[show] do
       get '/dashboard' => 'dashboard#index', as: 'dashboard'
       get :search, on: :member
 
-      resources :events, only: %i{ index show }
+      resources :events, only: %i[index show]
 
-      resources :rounds, only: %i{ show }, param: :number
-      resources :transcoders, only: %i{ show }, param: :address
+      resources :rounds, only: %i[show], param: :number
+      resources :orchestrators, only: %i[show], param: :address
 
       resources :delegator_lists do
-        resource :report, only: %i{ new show }
-        resources :subscriptions, only: %i{ index create }
+        resource :report, only: %i[new show]
+        resources :subscriptions, only: %i[index create]
         resources :events, controller: :delegator_list_events
       end
     end
@@ -115,7 +132,7 @@ Rails.application.routes.draw do
   namespace :tezos do
     resources :searches, only: :create
     resources :bakers, only: :show do
-      resources :subscriptions, only: [:create, :destroy], shallow: true
+      resources :subscriptions, only: %i[create destroy], shallow: true
     end
     resources :cycles, only: :show do
       resources :baker_events, only: :index
@@ -129,19 +146,20 @@ Rails.application.routes.draw do
   end
 
   namespace :polkadot, network: 'polkadot' do
-    resources :chains do
-      get :search, on: :member # Not implemented yet but used by view to generate a path
+    resources :chains, format: false, constraints: { id: /[^\/]+/ }, only: :show do
+      get :search, on: :member
       get '/dashboard' => 'dashboard#index', as: 'dashboard'
 
-      resources :blocks, only: :show  do
+      resources :blocks, only: :show do
         resources :transactions
       end
       resources :accounts, only: :show
+      resources :validators, only: :show
     end
   end
 
   namespace :telegram do
-    resource :account, only: %i{ show create destroy }
+    resource :account, only: %i[show create destroy]
     post '/webhooks/:token', to: 'webhooks#create'
   end
 
@@ -149,7 +167,7 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'main#index'
 
-    resources :sessions, only: %i{ new create }
+    resources :sessions, only: %i[new create]
     get '/logout' => 'sessions#destroy', as: 'logout'
 
     resources :administrators do
@@ -163,15 +181,15 @@ Rails.application.routes.draw do
       member do
         get :masq
       end
-      resources :alert_subscriptions, only: %i{ destroy }
+      resources :alert_subscriptions, only: %i[destroy]
     end
 
     concern :cosmoslike do
       resources :chains, format: false, constraints: { id: /[^\/]+/ } do
-        resource :faucet, only: %i{ show update destroy }
-        resources :faucets, only: %i{ create }
+        resource :faucet, only: %i[show update destroy]
+        resources :faucets, only: %i[create]
 
-        resources :validator_events, only: %i{ index }
+        resources :validator_events, only: %i[index]
 
         member do
           post :move_up
@@ -196,7 +214,7 @@ Rails.application.routes.draw do
     end
 
     namespace :livepeer do
-      resources :chains, format: false, constraints: { id: /[^\/]+/ }, except: %i{ index edit } do
+      resources :chains, format: false, constraints: { id: /[^\/]+/ }, except: %i[index edit] do
         member do
           post :move_up
           post :move_down
@@ -221,8 +239,12 @@ Rails.application.routes.draw do
       resources :chains, except: [:index]
     end
 
+    namespace :coda do
+      resources :chains, except: [:index]
+    end
+
     namespace :common do
-      resources :validator_events, only: %i{ destroy }
+      resources :validator_events, only: %i[destroy]
     end
   end
 

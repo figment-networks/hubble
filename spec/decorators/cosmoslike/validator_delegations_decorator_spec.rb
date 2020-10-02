@@ -8,7 +8,7 @@ describe Cosmoslike::ValidatorDelegationsDecorator do
   let(:delegation) { { 'delegator_address' => 'cosmos2121', 'shares' => 5000 } }
   let(:unbonding) { { 'delegator_address' => 'cosmos2121', 'entries' => [{ 'balance': 1 }] } }
 
-  context '#delegations' do
+  describe '#delegations' do
     subject { instance.delegations }
 
     before do
@@ -20,8 +20,8 @@ describe Cosmoslike::ValidatorDelegationsDecorator do
 
     it 'returns decorated delegations' do
       expect(subject).to eq [
-        { account: "cosmos2121", amount: 0.005, share: 0.5, status: "bonded", validator: nil },
-        { account: "cosmos2121", amount: 0, status: "unbonding", validator: nil }
+        { account: 'cosmos2121', amount: 0.005, share: 0.5, status: 'bonded', validator: nil },
+        { account: 'cosmos2121', amount: 0, status: 'unbonding', validator: nil }
       ]
     end
   end

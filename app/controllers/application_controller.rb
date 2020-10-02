@@ -11,19 +11,20 @@ class ApplicationController < ActionController::Base
 
   if !Rails.env.development? && !Rails.env.test?
     rescue_from StandardError,
-                  with: :render_500
+                with: :render_500
   end
   if !Rails.env.development?
     rescue_from ActionController::Denied,
                 ActionController::InvalidAuthenticityToken,
-                  with: :render_403
+                with: :render_403
     rescue_from ActionController::RoutingError,
                 AbstractController::ActionNotFound,
                 ActionView::MissingTemplate,
                 ActionController::NotFound,
+                ActionController::UnknownFormat,
                 ActiveRecord::RecordNotFound,
                 Common::IndexerClient::NotFoundError,
-                  with: :render_404
+                with: :render_404
   end
 
   def append_info_to_payload(payload)
@@ -51,44 +52,44 @@ class ApplicationController < ActionController::Base
 
   def render_404
     respond_to do |format|
-      format.html {
+      format.html do
         render template: '/errors/404', status: 404, layout: 'errors'
-      }
-      format.json {
+      end
+      format.json do
         render json: { error: 404, message: 'not found' }, status: 404
-      }
-      format.any {
+      end
+      format.any do
         render body: '', status: 404, content_type: 'text/plain'
-      }
+      end
     end
   end
 
   def render_403
     respond_to do |format|
-      format.html {
+      format.html do
         render template: '/errors/403', status: 403, layout: 'errors'
-      }
-      format.json {
+      end
+      format.json do
         render json: { error: 403, message: 'forbidden' }, status: 403
-      }
-      format.any {
+      end
+      format.any do
         render body: '', status: 403, content_type: 'text/plain'
-      }
+      end
     end
   end
 
   def render_500(e = nil)
     logger.error("\nRENDER_500!\n\n" + e.message + "\n" + e.backtrace.join("\n") + "\n")
     respond_to do |format|
-      format.html {
+      format.html do
         render template: '/errors/500', status: 500, layout: 'errors'
-      }
-      format.json {
+      end
+      format.json do
         render json: { error: 500, message: 'server error' }, status: 500
-      }
-      format.any {
+      end
+      format.any do
         render body: '', status: 500, content_type: 'text/plain'
-      }
+      end
     end
   end
 end

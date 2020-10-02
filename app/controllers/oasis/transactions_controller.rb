@@ -4,5 +4,7 @@ class Oasis::TransactionsController < Oasis::BaseController
 
     @block = @chain.client.block(params[:block_id])
     @transaction = @chain.client.transaction(params[:block_id], params[:id])
+  rescue Common::IndexerClient::Error => error
+    @error = error
   end
 end

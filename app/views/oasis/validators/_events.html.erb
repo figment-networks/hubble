@@ -1,4 +1,3 @@
-<a name='events'></a>
 <div class='card'>
   <h5 class='card-header'>
     <div class='card-header-parts'>
@@ -15,8 +14,37 @@
     </div>
   </h5>
 
-  <!-- Placeholder until events available from indexer -->
   <div class='card-body p-1'>
 
+    <% if events.empty? -%>
+      <p class='text-muted py-4 mb-0 text-center'>No events yet.</p>
+    <% else -%>
+      <ul class='list-group list-group-flush'>
+        <% events.each do |event| -%>
+          <li class='list-group-item'>
+            <div class='inner-event d-flex align-items-start flex-column flex-md-row align-items-md-center'>
+              <% icon_classes = "fa fa-#{event.icon_name} text-#{event.positive? ? 'success' : 'danger'}" %>
+              <div class='d-none d-md-block <%= icon_classes %> mr-3'></div>
+              <div class='event-content'>
+                <%= render partial: to_partial_path(event), locals: { event: event, icon_classes: icon_classes } %>
+              </div>
+              <div class='timestamp ml-md-auto text-sm text-muted ml-md-3 mt-2 mt-md-0 text-nowrap text-md-right'>
+                <% date_string = event.time.strftime("%B %d, %Y") -%>
+                <% time_string = event.time.strftime("at %H:%M %Z") -%>
+                <div class='d-inline d-md-block'><%= date_string %></div>
+                <div class='d-inline d-md-block'><%= time_string %></div>
+              </div>
+            </div>
+          </li>
+
+        <% end -%>
+
+        <% if events.count > @chain.class::EVENTS_PAGE_SIZE -%>
+          <li class='list-group-item text-center text-muted text-sm'>
+            <%= link_to 'all events...', namespaced_path('events', validator: @validator.address), class: 'text-muted' %>
+          </li>
+        <% end -%>
+      </ul>
+    <% end -%>
   </div>
 </div>

@@ -1,5 +1,4 @@
 class Admin::Livepeer::ChainsController < Admin::BaseChainsController
-
   def create
     @chain = chain_class.new(new_chain_params)
 
@@ -7,7 +6,7 @@ class Admin::Livepeer::ChainsController < Admin::BaseChainsController
       set_local_height
       ensure_single_primary_chain if @chain.primary?
 
-      redirect_to admin_root_path, notice: "Chain created successfully"
+      redirect_to admin_root_path, notice: 'Chain created successfully'
     else
       flash[:error] = @chain.errors.full_messages.join(', ')
       render :new
@@ -17,7 +16,7 @@ class Admin::Livepeer::ChainsController < Admin::BaseChainsController
   def update
     if @chain.update(chain_params)
       ensure_single_primary_chain if @chain.primary?
-      redirect_to admin_root_path, notice: "Chain info has been updated!"
+      redirect_to admin_root_path, notice: 'Chain info has been updated!'
     else
       flash[:error] = @chain.errors.full_messages.join(', ')
       render :edit

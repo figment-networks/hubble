@@ -1,12 +1,12 @@
 class Livepeer::Adapters::PoolAdapter < Livepeer::Adapters::BaseAdapter
-  attribute :transcoder_address
+  attribute :orchestrator_address
   attribute :total_stake
   attribute :fees
   attribute :reward_tokens
 
   has_many :shares
 
-  def transcoder_address
+  def orchestrator_address
     data.delegate.id
   end
 

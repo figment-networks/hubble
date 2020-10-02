@@ -1,6 +1,6 @@
 require 'features_helper'
 
-feature 'polkadot transaction details', :vcr do
+describe 'polkadot transaction details', :vcr do
   let(:chain) { create(:polkadot_chain) }
   let(:block_id) { 3189176 }
 
@@ -11,7 +11,7 @@ feature 'polkadot transaction details', :vcr do
   context 'nomination' do
     let(:transaction_id) { '0x02500ac3e55c573ee8e4dbc29cba6919fb8be4917ef7ffca678264fd28973704' }
 
-    scenario 'visiting transaction page' do
+    it 'visiting transaction page' do
       expect(page).to have_content('Nominate')
       expect(page).to have_content('H2C39kN9b88eTrvhUyVn4i8MiKLVSSpoTX8SS1uiYFeKbZM')
       expect(page).to have_content('DxDFNGjNrTHWhes35E2ht7cJSNWpedoQzre6rVXBtMV3jjB')
@@ -24,7 +24,7 @@ feature 'polkadot transaction details', :vcr do
   context 'transfer' do
     let(:transaction_id) { '0x02500ac3e55c573ee8e4dbc29cba6919fb8be4917ef7ffca678264fd28973705' }
 
-    scenario 'visiting transaction page' do
+    it 'visiting transaction page' do
       expect(page).to have_content('Send')
       expect(page).to have_content('From')
       expect(page).to have_content('To')
@@ -39,7 +39,7 @@ feature 'polkadot transaction details', :vcr do
   context 'Payout stakers' do
     let(:transaction_id) { '0x02500ac3e55c573ee8e4dbc29cba6919fb8be4917ef7ffca678264fd28973709' }
 
-    scenario 'visiting transaction page' do
+    it 'visiting transaction page' do
       expect(page).to have_content('Payout stakers')
       expect(page).to have_content('Stash account')
       expect(page).to have_content('Era')
@@ -52,7 +52,7 @@ feature 'polkadot transaction details', :vcr do
   context 'Unknown type' do
     let(:transaction_id) { '0x02500ac3e55c573ee8e4dbc29cba6919fb8be4917ef7ffca678264fd28973707' }
 
-    scenario 'visiting transaction page' do
+    it 'visiting transaction page' do
       expect(page).to have_content('Module')
       expect(page).to have_content('Call')
       expect(page).to have_content('PARAMETERS')

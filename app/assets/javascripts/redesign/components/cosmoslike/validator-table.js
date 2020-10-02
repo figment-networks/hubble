@@ -1,30 +1,30 @@
 class ValidatorTable {
-  constructor( container, skipColumns ) {
-    this.container = container
-    this.skipColumns = skipColumns || []
-    this.searchBox = $('.validator-table-header .validator-search')
-    this.radioButtons = document.querySelectorAll('.validator-table-header .custom-radio input')
+  constructor(container, skipColumns) {
+    this.container = container;
+    this.skipColumns = skipColumns || [];
+    this.searchBox = $('.validator-table-header .validator-search');
+    this.radioButtons = document.querySelectorAll('.validator-table-header .custom-radio input');
   }
 
   search() {
-    const term = `${this.searchBox.val()} ${App.config.currentValidatorFilter}`
-    this.table.search(term).draw()
+    const term = `${this.searchBox.val()} ${App.config.currentValidatorFilter}`;
+    this.table.search(term).draw();
   }
 
   filter(radio) {
-    const filter = radio.value
-    App.config.currentValidatorFilter = filter
-    this.search()
+    const filter = radio.value;
+    App.config.currentValidatorFilter = filter;
+    this.search();
   }
 
   render() {
-    this.table = this.container.find('table').DataTable( {
-      sDom: 'lrtip',
-      paging: false,
-      autoWidth: false,
-      className: 'validator-table',
-      order: [ [1, 'desc'], [2, 'desc'] ],
-      'columns': _.compact( [
+    this.table = this.container.find('table').DataTable({
+      'sDom': 'lrtip',
+      'paging': false,
+      'autoWidth': false,
+      'className': 'validator-table',
+      'order': [[1, 'desc'], [2, 'desc']],
+      'columns': _.compact([
         _.includes(this.skipColumns, 'address') ? null : {
           width: 'auto',
           className: 'col-address'
@@ -37,17 +37,17 @@ class ValidatorTable {
           width: '150px',
           className: 'col-uptime'
         },
-        { visible: false }
-      ] )
-    } )
+        {visible: false}
+      ])
+    });
 
-    this.searchBox.keyup( () => this.search( this.table ) )
-  
-    
+    this.searchBox.keyup(() => this.search(this.table));
+
+
     this.radioButtons.forEach((radio) => {
-      radio.addEventListener('change', () => this.filter(radio))
-    })
+      radio.addEventListener('change', () => this.filter(radio));
+    });
   }
 }
 
-window.App.Cosmoslike.ValidatorTable = ValidatorTable
+window.App.Cosmoslike.ValidatorTable = ValidatorTable;

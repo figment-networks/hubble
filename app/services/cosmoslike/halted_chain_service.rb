@@ -1,5 +1,5 @@
 class Cosmoslike::HaltedChainService
-  def initialize( chain )
+  def initialize(chain)
     @chain = chain
   end
 
@@ -50,15 +50,15 @@ class Cosmoslike::HaltedChainService
 
   def proposer
     address = get_state_data['result']['round_state']['validators']['proposer']['address']
-    @chain.validators.find_by( address: address ) || address
+    @chain.validators.find_by(address: address) || address
   end
 
-  def validator_name_from_genesis( address )
+  def validator_name_from_genesis(address)
     begin
       found = get_genesis_data['result']['genesis']['validators'].find do |val_info|
         val_info['address'] == address
       end
-    rescue
+    rescue StandardError
       found = nil
     end
 
@@ -69,12 +69,13 @@ class Cosmoslike::HaltedChainService
     round_state = get_state_data['result']['round_state']
     round_validators = round_state['validators']['validators'] || round_state['last_validators']['validators']
     return [] if round_validators.nil?
+
     round_validators.map.each_with_index do |val_info, i|
       {
         index: i,
         address: val_info['address'],
-        name: validator_name_from_genesis( val_info['address'] ),
-        validator: @chain.validators.find_by( address: val_info['address'] ),
+        name: validator_name_from_genesis(val_info['address']),
+        validator: @chain.validators.find_by(address: val_info['address']),
         voting_power: val_info['voting_power'].to_i
       }
     end

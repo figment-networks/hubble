@@ -1,0 +1,27 @@
+{
+  "data": {
+    "orchestrators": [
+      {
+        "active": null,
+        "feeShare": null,
+        "id": "0x0000000000000000000000000000000000000000",
+        "rewardCut": null,
+        "totalStake": "0"
+      },
+      {
+        "active": false,
+        "feeShare": "50000",
+        "id": "0x00b1606fc5b771f3079b4fd3ea49e66a2d5fd665",
+        "rewardCut": "100000",
+        "totalStake": "10429382433426184260"
+      },
+      {
+        "active": true,
+        "feeShare": "50000",
+        "id": "0x0119a06b51c83d0eec79708b921a57247dc37e66",
+        "rewardCut": "20000",
+        "totalStake": "11949784949606643635714"
+      }
+    ]
+  }
+}

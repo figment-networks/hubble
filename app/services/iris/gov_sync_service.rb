@@ -1,8 +1,9 @@
 class Iris::GovSyncService < Cosmoslike::GovSyncService
   private
 
-  def build_proposal( proposal )
+  def build_proposal(proposal)
     return nil if proposal['proposal_id'] == '0' || proposal['proposal_content'].nil?
+
     {
       ext_id: proposal['proposal_id'].to_i,
       proposal_type: proposal['proposal_type'],
@@ -16,5 +17,4 @@ class Iris::GovSyncService < Cosmoslike::GovSyncService
       total_deposit: proposal['total_deposit']
     }.stringify_keys
   end
-
 end

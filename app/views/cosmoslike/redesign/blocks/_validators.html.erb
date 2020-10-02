@@ -1,0 +1,56 @@
+<div class='validators'>
+  <div class='validator-table-header'>
+    <h4>Validators</h4>
+    <input type='text' class='validator-search ml-auto' placeholder='search...'>
+  </div>
+  <div class='validator-table'>
+    <table>
+      <thead>
+        <tr>
+          <th>Address</th>
+          <th>Voting Power</th>
+          <th>State</th>
+        </tr>
+        <tbody>
+          <% @chain.active_validators_at_height(@block.height).each do |validator| -%>
+            <% up = @block.precommitters.include?(validator.address) -%>
+            <% proposer = @block.proposer_address == validator.address -%>
+
+            <tr>
+              <td>
+                <%= link_to namespaced_path('validator', validator) do %>
+                  <span><%= validator.short_name(40) %></span>
+                <% end -%>
+              </td>
+
+              <td data-order='<%= validator.current_voting_power %>'>
+                <%= format_amount(validator.voting_power_at_height(@block.height), denom: @chain.token_map[@chain.primary_token]['display']) %>
+              </td>
+
+              <td data-order='<%= proposer ? -1 : (up ? 0 : 1) %>'>
+                <div class='text-nowrap'>
+                  <% if up -%>
+                    <span class='badge badge-lg badge-success'>UP</span>
+                  <% else -%>
+                    <span class='badge badge-lg badge-danger'>DOWN</span>
+                  <% end -%>
+                  <% if proposer -%>
+                    <span class='badge badge-lg badge-primary'>PROPOSER</span>
+                  <% end -%>
+                </div>
+              </td>
+
+              <td class='d-none'>
+                _all_ <%= validator.active? ? "_active_" : "_inactive_" %>
+                <%= validator.owner %> <%= validator.address %> <!-- so you can paste your address into search -->
+              </td>
+            </tr>
+          <% end -%>
+        </tbody>
+      </thead>
+    </table>
+    <script>
+      App.config.currentValidatorFilter = '_all_'
+    </script>
+  </div>
+</div>

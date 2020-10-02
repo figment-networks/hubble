@@ -1,50 +1,61 @@
 module Oasis
   class Validator < Common::Resource
-
     PERIOD_ACTIVE = 1.hour
 
-    attr_accessor :id,
-                  :created_at,
-                  :updated_at,
-                  :started_at_height,
-                  :started_at,
-                  :recent_at_height,
-                  :recent_at,
-                  :entity_uid,
-                  :recent_address,
-                  :recent_voting_power,
-                  :recent_total_shares,
-                  :recent_active_escrow_balance,
-                  :recent_commission,
-                  :recent_as_validator_height,
-                  :recent_proposed_height,
-                  :accumulated_proposed_count,
-                  :accumulated_uptime,
-                  :accumulated_uptime_count,
-                  :active_escrow_balance,
-                  :logo_url,
-                  :entity_name,
-                  :uptime,
-                  :last_sequences,
-                  :height,
-                  :time,
-                  :address,
-                  :proposed,
-                  :voting_power,
-                  :total_shares,
-                  :precommit_validated,
-                  :recent_tendermint_address,
-                  :as_validator_height,
-                  :proposed_height
+    field :id
+    field :created_at, type: :timestamp
+    field :updated_at, type: :timestamp
+    field :started_at_height
+    field :started_at, type: :timestamp
+    field :recent_at_height
+    field :recent_at, type: :timestamp
+    field :entity_uid
+    field :recent_address
+    field :recent_voting_power
+    field :recent_total_shares
+    field :recent_active_escrow_balance
+    field :recent_commission
+    field :recent_rewards
+    field :recent_as_validator_height
+    field :recent_proposed_height
+    field :accumulated_proposed_count
+    field :accumulated_uptime, type: :float
+    field :accumulated_uptime_count, type: :float
+    field :active_escrow_balance
+    field :logo_url
+    field :entity_name
+    field :uptime, type: :float
+    field :last_sequences
+    field :height
+    field :time, type: :timestamp
+    field :address
+    field :proposed
+    field :voting_power
+    field :total_shares
+    field :precommit_validated
+    field :recent_tendermint_address
+    field :as_validator_height
+    field :proposed_height
+    field :delegations
 
-    def initialize(attrs = {})
-      super(attrs)
-      @started_at = started_at ? Time.zone.parse(started_at) : nil
-      @recent_at = recent_at ? Time.zone.parse(recent_at) : nil
-      @uptime ||= accumulated_uptime.to_f / accumulated_uptime_count.to_f
+    def self.failed(id)
+      new('address' => id)
     end
 
-    # What time do we define as active?
+    def initialize(attr)
+      super(attr)
+      @delegations = []
+      @uptime ||= accumulated_uptime / accumulated_uptime_count if accumulated_uptime
+    end
+
+    def long_name
+      entity_name.blank? ? address : entity_name
+    end
+
+    def short_name(len = 30)
+      long_name.truncate(len)
+    end
+
     def active?
       Time.current - recent_at <= PERIOD_ACTIVE
     end
@@ -57,12 +68,12 @@ module Oasis
       (uptime * 100).round(0)
     end
 
-    #active set history placeholders - I have to figure out how this works
+    # active set history placeholders - I have to figure out how this works
     def active_set_history
       ash = []
     end
 
-    def in_active_set?( block=nil )
+    def in_active_set?(_block = nil)
       true
     end
   end

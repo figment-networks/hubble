@@ -4,7 +4,11 @@ class Livepeer::Adapters::BaseAdapter
   end
 
   def to_h
-    Hash[self.class.attributes.map { |a| [a, send(a)] }]
+    Hash[self.class.inherited_attributes.map { |a| [a, send(a)] }]
+  end
+
+  def self.inherited_attributes
+    ancestors.select { |a| a.name =~ /Adapter/ }.reverse.flat_map(&:attributes)
   end
 
   def self.attributes
@@ -22,7 +26,7 @@ class Livepeer::Adapters::BaseAdapter
     attribute(resource)
 
     define_method(resource) do
-      data[resource].map do |resource_data|
+      Array(data[resource]).map do |resource_data|
         adapter_class = Livepeer::Factories::AdapterFactory.new(resource).call
         model_class ||= Livepeer::Factories::ModelFactory.new(resource).call
 
@@ -57,5 +61,9 @@ class Livepeer::Adapters::BaseAdapter
 
   def convert_timestamp(value)
     DateTime.strptime(value, '%s') if value
+  end
+
+  def sanitize(value)
+    value&.strip&.presence
   end
 end

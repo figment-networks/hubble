@@ -1,10 +1,11 @@
 require 'features_helper'
 
-feature 'tezos homepage' do
+describe 'tezos homepage' do
   let!(:chain) { create(:tezos_chain) }
-  before(:each) { visit "/tezos" }
 
-  scenario 'visiting as not signed in user', :vcr do
+  before { visit '/tezos' }
+
+  it 'visiting as not signed in user', :vcr do
     expect(page).to have_content('Tezos')
     expect(page).to have_content(chain.name)
     expect(page).to have_content('START')
@@ -17,14 +18,14 @@ feature 'tezos homepage' do
     expect(page).to have_content('Baker Performance')
   end
 
-  scenario 'can access governance page', :vcr do
+  it 'can access governance page', :vcr do
     click_link 'Governance'
     expect(page).to have_content('Governance Proposals')
     expect(page).to have_content('Current Period')
   end
 
-  scenario 'can see baker performance', :vcr do
-    baker_address = "tz2Q7Km98GPzV1JLNpkrQrSo5YUhPfDp6LmA"
+  it 'can see baker performance', :vcr do
+    baker_address = 'tz2Q7Km98GPzV1JLNpkrQrSo5YUhPfDp6LmA'
     click_link baker_address
     expect(page).to have_content(baker_address)
     expect(page).to have_content('All Time Baking %')

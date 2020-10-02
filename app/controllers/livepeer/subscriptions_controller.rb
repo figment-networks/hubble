@@ -1,4 +1,11 @@
 class Livepeer::SubscriptionsController < Livepeer::BaseController
+  EVENT_KINDS = %w[
+    reward_cut_change
+    missed_reward_call
+    deactivation
+    slashing
+  ].freeze
+
   before_action :require_user
   before_action :require_chain
   before_action :require_delegator_list
@@ -7,7 +14,9 @@ class Livepeer::SubscriptionsController < Livepeer::BaseController
   before_action :transform_event_kinds, only: :create
 
   def index
-    page_title %{Event Subscription for Delegator List "#{@delegator_list.name}"}
+    @event_kinds = EVENT_KINDS
+
+    page_title %(Event Subscription for Delegator List "#{@delegator_list.name}")
   end
 
   def create

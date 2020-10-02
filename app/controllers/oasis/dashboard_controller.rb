@@ -1,9 +1,8 @@
-class Oasis::DashboardController < Oasis::BaseController
-  before_action :require_user
+class Oasis::DashboardController < Common::DashboardController
+  prepend_before_action -> { @namespace = self.class.name.split('::').first.constantize }
 
   def index
+    super
     @subscriptions = @chain.alert_subscriptions.where(user: current_user)
-    page_title @chain.network_name, @chain.name, 'Dashboard'
   end
-
 end

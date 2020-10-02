@@ -1,12 +1,12 @@
 <% content_for :body_class, 'events-index' %>
 
-<%= render partial: '/livepeer/base/chain_header', locals: { delegator_lists_link: true, events_link: true } %>
+<%= render partial: '/livepeer/base/chain_header', locals: { summary_link: true } %>
 <%= render partial: '/livepeer/base/sync_errors' %>
 
 <h3>
   Events
-  <% if @transcoder -%>
-    for <%= link_to @transcoder.name_or_address, namespaced_path('transcoder', @transcoder) %>
+  <% if @orchestrator -%>
+    for <%= link_to @orchestrator.name_or_address, namespaced_path('orchestrator', @orchestrator) %>
   <% end -%>
   <small class='text-sm text-muted'>
     showing <%= @pagy.from %>-<%= @pagy.to %>
@@ -28,10 +28,8 @@
           </div>
           <div class='timestamp ml-md-auto text-sm text-muted ml-md-3 mt-2 mt-md-0 text-nowrap text-md-right'>
             <%= link_to namespaced_path('event', event) do %>
-              <% date_string = event.timestamp.strftime("%B %d, %Y") -%>
-              <% time_string = event.timestamp.strftime("at %H:%M %Z") -%>
-              <div class='d-inline d-md-block'><%= date_string %></div>
-              <div class='d-inline d-md-block'><%= time_string %></div>
+              <div class='d-inline d-md-block'><%= event.timestamp.strftime("%B %d, %Y") %></div>
+              <div class='d-inline d-md-block'><%= event.timestamp.strftime("at %H:%M %Z") %></div>
             <% end %>
           </div>
         </div>
@@ -39,6 +37,7 @@
     </div>
   <% end -%>
 <% end -%>
-<div class='mt-5'>
-  <%== pagy_bootstrap_nav(@pagy).html_safe %>
+
+<div class='mt-5 d-flex justify-content-center'>
+  <%== pagy_bootstrap_nav(@pagy) %>
 </div>

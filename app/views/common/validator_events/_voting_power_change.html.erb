@@ -2,14 +2,14 @@
   <span class='d-inline d-md-none <%= icon_classes %> mr-1'></span>
   <span class='font-weight-bold'>
     <% if @validator.nil? %>
-      <a href='<%= namespaced_path( 'validator', event.validatorlike ) %>'><%= event.validatorlike.short_name %></a> voting
+      <%= link_to event.validatorlike.short_name, namespaced_path( 'validator', event.validatorlike ) %> voting
     <% else -%>
       Voting
     <% end -%>
     power <%= event.positive? ? 'increased' : 'reduced' %></span>
   <span class='text-muted'>
     at block
-    <a class='technical' href='<%= namespaced_path( 'block', event.height ) %>'><%= event.height %></a>
+    <%= link_to event.height, namespaced_path( 'block', event.height ), class: 'technical' %>
   </span>
 </div>
 <div class='from-to d-flex align-items-center'>

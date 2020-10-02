@@ -2,7 +2,7 @@
 
 <h2 class='header'>
   Creating <%= @chain.network_name %> Chain
-  <a class='btn btn-sm btn-outline-secondary' href='<%= admin_root_path %>'>back</a>
+  <%= link_to 'back', admin_root_path, class: 'btn btn-sm btn-outline-secondary' %>
 </h2>
 
 <%= form_for [:admin, @chain] do |f| %>

@@ -1,0 +1,22 @@
+{
+  "data": {
+    "slashings": [
+      {
+        "delegate": {
+          "id": "0xdab934474b870e7bdbf2173204d9e0bd2e745295"
+        },
+        "penalty": "4841013947413665910",
+        "timestamp": "1589319420",
+        "transactionHash": "0x2ec83b1b94367f07fdc2c520a4605801b1bdcd68e90373f26ebf219488cfdefa"
+      },
+      {
+        "delegate": {
+          "id": "0x550f67cf2ff8b18f2c8a5c1d74d561bf4cf5cda5"
+        },
+        "penalty": "55293050543057421686",
+        "timestamp": "1595340960",
+        "transactionHash": "0xb9c81676be401e39817a05b9cfcd76bf512fdac38f6caae87fd6bb0df337187a"
+      }
+    ]
+  }
+}

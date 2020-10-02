@@ -1,10 +1,11 @@
-class Common::DashboardController < Common::BaseController
+class Common::DashboardController < ApplicationController
   before_action :require_user
-  before_action :ensure_chain
 
   def index
-    page_title @chain.network_name, @chain.name, 'Dashboard'
-    # raise ActionController::NotFound unless current_admin
-  end
+    @chain = @namespace::Chain.find_by slug: params[:chain_id]
+    raise ActionController::NotFound unless @chain
 
+    page_title @chain.network_name, @chain.name, 'Dashboard'
+    meta_description "#{@chain.network_name} -- #{@chain.name} -- Dashboard"
+  end
 end

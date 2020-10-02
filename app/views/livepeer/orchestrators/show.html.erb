@@ -1,0 +1,132 @@
+<% content_for :body_class, 'orchestrator-show' %>
+
+<%= render partial: 'chain_header', locals: { summary_link: false } %>
+<%= render partial: 'sync_errors' %>
+
+<% if @orchestrator.name? -%>
+  <h2 class='mb-3'>
+    <%= content_tag :span, @orchestrator.name, title: @orchestrator.description %>
+    <% if @orchestrator.website_url? -%>
+      <%= link_to heuristic_url(@orchestrator.website_url), target: '_blank', class: 'btn btn-outline-primary ml-3' do %>
+        Visit Site
+        <span class='fas fa-external-link-alt pl-1'></span>
+      <% end -%>
+    <% end -%>
+  </h2>
+<% end -%>
+
+<div class='row mb-4'>
+  <div class='col-12 col-md-8'>
+    <div class='info'>
+      <h5 class='mb-0'>
+        <label class='text-muted'>Address</label>
+        <span class='technical'><%= livepeer_address(@orchestrator.address) %></span>
+      </h5>
+    </div>
+  </div>
+</div>
+
+<div class='row'>
+  <div class='col-12 col-md-8 order-1 order-md-0'>
+    <a name='events'></a>
+    <div class='card'>
+      <h5 class='card-header'>
+        <div class='card-header-parts'>
+          <div>Event History <small>&mdash; most recent 20</small></div>
+        </div>
+      </h5>
+
+      <div class='card-body p-1'>
+        <% if @events.empty? -%>
+          <p class='text-muted py-4 mb-0 text-center'>No events yet.</p>
+        <% else -%>
+          <ul class='list-group list-group-flush'>
+            <% @events.limit(20).each do |event| -%>
+              <li class='list-group-item'>
+                <div class='inner-event d-flex align-items-start flex-column flex-md-row align-items-md-center'>
+                  <% icon_classes = "fa fa-#{event.icon_name} text-#{event.positive? ? 'success' : 'danger'}" %>
+                  <div class='d-none d-md-block <%= icon_classes %> mr-3'></div>
+                  <div class='event-content'>
+                    <%= render partial: event.to_partial_path, locals: { event: event, icon_classes: icon_classes } %>
+                  </div>
+                  <div class='timestamp ml-md-auto text-sm text-muted ml-md-3 mt-2 mt-md-0 text-nowrap text-md-right'>
+                    <%= link_to namespaced_path('event', event) do %>
+                      <div class='d-inline d-md-block'><%= event.timestamp.strftime("%B %d, %Y") %></div>
+                      <div class='d-inline d-md-block'><%= event.timestamp.strftime("at %H:%M %Z") %></div>
+                    <% end -%>
+                  </div>
+                </div>
+              </li>
+            <% end -%>
+
+            <% if @events.count > 20 -%>
+              <li class='list-group-item text-center text-muted text-sm'>
+                <%= link_to 'all events...', namespaced_path('events', orchestrator_address: @orchestrator.address), class: 'text-muted' %>
+              </li>
+            <% end -%>
+          </ul>
+        <% end -%>
+      </div>
+    </div>
+
+    <a name='delegators'></a>
+    <div class='card'>
+      <h5 class='card-header'>
+        <div class='card-header-parts'>Delegators</div>
+      </h5>
+      <div class='card-body p-0'>
+        <div class='delegators-table'>
+          <table data-empty='<%= @delegators.empty? %>'>
+            <thead>
+              <tr>
+                <th>Address</th>
+                <th>Stake</th>
+                <th>Share</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if @delegators.empty? -%>
+                <tr>
+                  <td class='p-3 text-center' colspan='3'>No delegators.</td>
+                </tr>
+              <% else -%>
+                <% @delegators.each do |delegator| -%>
+                  <tr>
+                    <td><%= livepeer_explorer_link(delegator.address, page: :staking) %></td>
+                    <td data-order='<%= delegator.pending_stake %>%'>
+                      <%= livepeer_lpt_amount(delegator.pending_stake) %>
+                    </td>
+                    <td class='technical'><%= number_to_percentage(delegator.stake_share) %></td>
+                  </tr>
+                <% end -%>
+              <% end -%>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class='col-12 col-md-4 order-0 order-md-1 info-cards'>
+    <div class='card'>
+      <h5 class='card-header'>Reward Cut</h5>
+      <div class='card-body'>
+        <span class='large-number technical'><%= number_to_percentage(@orchestrator.reward_cut) %></span>
+      </div>
+    </div>
+
+    <div class='card'>
+      <h5 class='card-header'>Fee Share</h5>
+      <div class='card-body'>
+        <span class='large-number technical'><%= number_to_percentage(@orchestrator.fee_share) %></span>
+      </div>
+    </div>
+
+    <div class='card'>
+      <h5 class='card-header'>Total Stake</h5>
+      <div class='card-body'>
+        <span class='large-number technical'><%= livepeer_lpt_amount(@orchestrator.total_stake) %></span>
+      </div>
+    </div>
+  </div>
+</div>

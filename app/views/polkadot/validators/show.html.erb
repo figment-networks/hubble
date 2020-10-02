@@ -1,0 +1,85 @@
+<% content_for :body_class, 'validator-show' %>
+
+<%= render partial: '/polkadot/shared/chain_header', locals: { summary_link: true } %>
+
+<h2 class='mb-3'>
+  <%= @validator.account_details.display_name %>
+  <% if @validator.account_details.web_name %>
+    <%= link_to @validator.account_details.web_name, class: 'btn btn-outline-primary ml-3', target: :blank do %>
+      Visit Site <span class='fas fa-external-link-alt ml-1'></span>
+    <% end %>
+  <% end -%>
+</h2>
+
+<div class='row mb-4'>
+  <div class='col-12 col-md-8'>
+    <div class='info'>
+      <h5 class='mb-0'>
+        <label class='text-muted'>Account</label>
+        <span class='technical'>
+          <%= link_to @validator.stash_account, namespaced_path('account', @validator.stash_account) %>
+        </span>
+      </h5>
+    </div>
+  </div>
+</div>
+
+<div class='row'>
+  <div class='col-12 col-md-8 order-1 order-md-0'>
+    <div class='card'>
+      <h5 class='card-header'>Total Stake History <small>&mdash; Last <%= @validator_daily_stake.count %> Days</small>
+      </h5>
+      <div class='card-body'>
+        <div class='validator-daily-stake-chart-container'>
+          <canvas
+            class='validator-daily-stake-chart'
+            data-chart="<%= @validator_daily_stake.to_json %>"
+            data-name="daily-stake-chart"
+            data-token="<%= @chain.class::DEFAULT_TOKEN_DISPLAY %>"
+          ></canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class='card'>
+      <h5 class='card-header'>Uptime History <small>&mdash; Last <%= @validator_hourly_uptime.count %> Hours</small>
+      </h5>
+      <div class='card-body'>
+        <div class='validator-hourly-uptime-chart-container'>
+          <canvas
+            class='validator-hourly-uptime-chart'
+            data-chart="<%= @validator_hourly_uptime.to_json %>"
+            data-name="hourly-uptime-chart"
+          ></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class='col-12 col-md-4 order-0 order-md-1 info-cards'>
+    <%= render layout: 'shared/sidebar_card', locals: { header: 'Total stake' } do %>
+      <div class='large-number'>
+        <%= format_amount(@validator.total_stake, @chain, denom: @chain.class::DEFAULT_TOKEN_REMOTE) %>
+      </div>
+    <% end %>
+
+    <%= render layout: 'shared/sidebar_card', locals: { header: 'Own stake' } do %>
+      <%= format_amount(@validator.own_stake, @chain, denom: @chain.class::DEFAULT_TOKEN_REMOTE) %>
+    <% end %>
+
+    <%= render layout: 'shared/sidebar_card', locals: { header: 'Commission' } do %>
+      <%= format_amount(@validator.commission, @chain, denom: @chain.class::DEFAULT_TOKEN_REMOTE) %>
+    <% end %>
+
+    <%= render layout: 'shared/sidebar_card', locals: { header: 'Reward points' } do %>
+      <%= @validator.reward_points %>
+    <% end %>
+
+    <%= render layout: 'shared/sidebar_card', locals: { header: 'Lifetime' } do %>
+      <label>First Seen:</label>
+      <div class='stat-value'>
+        <%= @validator.started_at.try(:strftime, '%B %d, %Y at %H:%M %Z') || 'Never' %>
+      </div>
+    <% end %>
+  </div>
+</div>

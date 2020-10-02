@@ -1,5 +1,5 @@
 module Polkadot
   def self.table_name_prefix
-    "polkadot_"
+    'polkadot_'
   end
 end

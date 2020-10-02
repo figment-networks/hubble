@@ -1,14 +1,13 @@
 FactoryBot.define do
-    factory :cosmos_validator_prestart, class: Cosmos::Validator do
-      address { 'AC2D56057CD84765E6FBE318979093E8E44AA18F' }
-      current_voting_power { '2668620' }
-      latest_block_height { nil }
-    end
+  factory :cosmos_validator_prestart, class: 'Cosmos::Validator' do
+    address { 'AC2D56057CD84765E6FBE318979093E8E44AA18F' }
+    current_voting_power { '2668620' }
+    latest_block_height { nil }
   end
-
+end
 
 FactoryBot.define do
-  factory :cosmos_validator_synced, class: Cosmos::Validator do
+  factory :cosmos_validator_synced, class: 'Cosmos::Validator' do
     address { 'AC2D56057CD84765E6FBE318979093E8E44AA18F' }
     current_voting_power { 2636453 }
     created_at { Time.now.utc }

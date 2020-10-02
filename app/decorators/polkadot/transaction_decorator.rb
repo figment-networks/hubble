@@ -4,7 +4,7 @@ class Polkadot::TransactionDecorator
     Polkadot::Transaction::StakingNominateDecorator,
     Polkadot::Transaction::StakingPayoutDecorator,
     Polkadot::Transaction::DefaultDecorator
-  ]
+  ].freeze
 
   def self.decorate(transaction)
     TRANSACTION_DECORATORS.each do |decorator|

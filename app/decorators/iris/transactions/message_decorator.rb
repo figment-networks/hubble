@@ -2,7 +2,7 @@ class Iris::Transactions::MessageDecorator < Cosmoslike::Transactions::MessageDe
   private
 
   def humanized_type
-    sanitized = @object['type'].sub( /^irishub\//, '' )
+    sanitized = @object['type'].sub(/^irishub\//, '')
     case sanitized
     when 'bank/Send' then 'Send'
     else sanitized

@@ -1,8 +1,8 @@
-require "indexer/resources/cycle"
+require 'indexer/resources/cycle'
 
 class TezosMailer < ApplicationMailer
   def cycle_report
-    @user  = params[:user]
+    @user = params[:user]
     @cycle_number = params[:cycle_number]
     @cycle = Indexer::Cycle.retrieve(@cycle_number)
 

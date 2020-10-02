@@ -1,20 +1,22 @@
 class SmallAverageVotingPowerChart {
   constructor(target, interval) {
-    this.target = target
-    this.interval = interval
+    this.target = target;
+    this.interval = interval;
   }
 
   render() {
-    const format = this.interval == 'last48h' ? 'k:mm' : 'MMM D'
-    const data = App.seed.AVERAGE_VOTING_POWER[this.interval]
+    const format = this.interval == 'last48h' ? 'k:mm' : 'MMM D';
+    const data = App.seed.AVERAGE_VOTING_POWER[this.interval];
 
     // transform data.y's according to scale
-    const [scale, prefix] = getScale(data)
-    _.each(data, (dp) => dp.y = dp.y / scale)
+    const [scale, prefix] = getScale(data);
+    App.seed.PREFIXES = App.seed.PREFIXES || {};
+    App.seed.PREFIXES[this.interval] = App.seed.PREFIXES[this.interval] || prefix;
+    _.each(data, (dp) => dp.y = dp.y / scale);
 
     if (!data || _.isEmpty(data)) {
-      this.target.parent().hide()
-      return
+      this.target.parent().hide();
+      return;
     }
 
     new Chart(this.target.get(0), {
@@ -32,14 +34,14 @@ class SmallAverageVotingPowerChart {
       },
       options: {
         elements: {
-          point: { radius: 0, backgroundColor: '#70707a', hitRadius: 6, hoverRadius: 3 }
+          point: {radius: 0, backgroundColor: '#70707a', hitRadius: 6, hoverRadius: 3}
         },
         layout: {
-          padding: { top: 5, bottom: 5, left: 5, right: 5 }
+          padding: {top: 5, bottom: 5, left: 5, right: 5}
         },
         maintainAspectRatio: false,
-        legend: { display: false },
-        title: { display: false },
+        legend: {display: false},
+        title: {display: false},
         hover: {
           mode: 'nearest',
           intersect: false
@@ -48,13 +50,13 @@ class SmallAverageVotingPowerChart {
           enabled: false,
           mode: 'nearest',
           intersect: false,
-          custom: window.customTooltip({ name: `sm-va-${this.interval}`, static: true }),
+          custom: window.customTooltip({name: `sm-va-${this.interval}`, static: true}),
           callbacks: {
             label: (item, data) => {
-              const date = data.datasets[item.datasetIndex].data[item.index].t
-              return `${+item.yLabel.toFixed(3)} ${prefix}${App.config.denom} voting power ` +
+              const date = data.datasets[item.datasetIndex].data[item.index].t;
+              return `${+item.yLabel.toFixed(3)} ${App.seed.PREFIXES[this.interval]}${App.config.denom} voting power ` +
                 `${this.interval == 'last30d' ? 'on' : 'at'} ` +
-                `${moment.utc(date).format(format)}`
+                `${moment.utc(date).format(format)}`;
             }
           }
         },
@@ -62,7 +64,7 @@ class SmallAverageVotingPowerChart {
           yAxes: [
             {
               display: false,
-              ticks: { display: false }
+              ticks: {display: false}
             }
           ],
           xAxes: [
@@ -76,8 +78,8 @@ class SmallAverageVotingPowerChart {
           ]
         }
       }
-    })
+    });
   }
 }
 
-window.App.Cosmoslike.SmallAverageVotingPowerChart = SmallAverageVotingPowerChart
+window.App.Cosmoslike.SmallAverageVotingPowerChart = SmallAverageVotingPowerChart;

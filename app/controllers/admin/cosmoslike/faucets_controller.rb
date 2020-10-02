@@ -5,11 +5,11 @@ class Admin::Cosmoslike::FaucetsController < Admin::BaseController
 
   def create
     words = params[:words].blank? ? BipMnemonic.to_mnemonic(bits: 256) : params[:words]
-    seed = BipMnemonic.to_seed( mnemonic: words )
-    master = MoneyTree::Master.new( seed_hex: seed )
+    seed = BipMnemonic.to_seed(mnemonic: words)
+    master = MoneyTree::Master.new(seed_hex: seed)
     priv = master.private_key.to_hex
 
-    faucet = @chain.create_faucet( private_key: priv )
+    faucet = @chain.create_faucet(private_key: priv)
 
     flash[:notice] = "Faucet created. You may fund #{faucet.address}"
     if params[:words].blank?
@@ -20,7 +20,7 @@ class Admin::Cosmoslike::FaucetsController < Admin::BaseController
   end
 
   def update
-    @chain.faucet.assign_attributes params.require(:cosmos_faucet).permit(%i{ disbursement_amount fee_amount denom })
+    @chain.faucet.assign_attributes params.require(:cosmos_faucet).permit(%i[disbursement_amount fee_amount denom])
     if params.has_key?(:disable)
       @chain.faucet.assign_attributes disabled: true
     end
@@ -49,6 +49,6 @@ class Admin::Cosmoslike::FaucetsController < Admin::BaseController
   protected
 
   def ensure_chain
-    raise ArgumentError.new( "Implement #ensure_chain for #{self.class.name}" )
+    raise ArgumentError, "Implement #ensure_chain for #{self.class.name}"
   end
 end

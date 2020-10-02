@@ -91,7 +91,7 @@
             <td><%= link_to event.baker_long_name, tezos_baker_path(event.baker_address) %></td>
             <td><%= link_to event.offender_long_name, tezos_baker_path(event.baker_address) if event.offender_address.present? %></td>
             <td>
-              <%= link_to "#{number_with_precision(event.reward / 1000000.0, precision: 6)} XTZ", tezos_baker_path(event.baker_address) if event.reward.present? %>
+              <%= link_to "#{number_with_precision(event.reward / 1000000.0, precision: 6)} #{Tezos::Chain::DEFAULT_TOKEN_DISPLAY}", tezos_baker_path(event.baker_address) if event.reward.present? %>
             </td>
             <td><%= link_to number_with_delimiter(event.block_id, delimiter: ","), tezos_baker_path(event.baker_address) %></td>
             <td>

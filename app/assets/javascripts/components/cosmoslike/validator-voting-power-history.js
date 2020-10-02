@@ -1,46 +1,46 @@
 class ValidatorVotingPowerHistory {
-  constructor( target ) {
-    this.target = target
+  constructor(target) {
+    this.target = target;
   }
 
   render() {
-    if( !App.seed.VOTING_POWER_HISTORY || _.isEmpty(App.seed.VOTING_POWER_HISTORY) ) {
-      this.target.parents('.card').hide()
-      return
+    if (!App.seed.VOTING_POWER_HISTORY || _.isEmpty(App.seed.VOTING_POWER_HISTORY)) {
+      this.target.parents('.card').hide();
+      return;
     }
 
-    const rawData = App.seed.VOTING_POWER_HISTORY
+    const rawData = App.seed.VOTING_POWER_HISTORY;
 
     // transform data.y's according to scale
-    const [scale, prefix] = getScale( rawData )
-    const scaledData = _.each( _.cloneDeep(rawData), ( dp ) => dp.y = dp.y / scale )
+    const [scale, prefix] = getScale(rawData);
+    const scaledData = _.each(_.cloneDeep(rawData), (dp) => dp.y = dp.y / scale);
 
-    const max = Math.ceil( _.maxBy( scaledData, dp => dp.y ).y * 1.5 )
+    const max = Math.ceil(_.maxBy(scaledData, (dp) => dp.y).y * 1.5);
     // const min = Math.floor( _.minBy( data, dp => dp.y ).y * 0.5 )
 
-    const annotations = []
+    const annotations = [];
 
-    let i = 0
-    const total = App.seed.ACTIVE_SET_HISTORY.length
-    while( i < total ) {
-      const ash = App.seed.ACTIVE_SET_HISTORY[i]
-      if( ash.inout == 'out' ) {
+    let i = 0;
+    const total = App.seed.ACTIVE_SET_HISTORY.length;
+    while (i < total) {
+      const ash = App.seed.ACTIVE_SET_HISTORY[i];
+      if (ash.inout == 'out') {
         // draw until next in
-        let drawToIndex = _.findIndex(
-          App.seed.ACTIVE_SET_HISTORY,
-          (ash => ash.inout == 'in'),
-          i+1
-        )
-        let drawTo = App.seed.ACTIVE_SET_HISTORY[drawToIndex]
-        i = drawToIndex
+        const drawToIndex = _.findIndex(
+            App.seed.ACTIVE_SET_HISTORY,
+            ((ash) => ash.inout == 'in'),
+            i+1
+        );
+        let drawTo = App.seed.ACTIVE_SET_HISTORY[drawToIndex];
+        i = drawToIndex;
 
-        if( !drawTo ) {
+        if (!drawTo) {
           // draw to end of graph
-          drawTo = _.last( scaledData )
-          i = total
+          drawTo = _.last(scaledData);
+          i = total;
         }
 
-        annotations.push( {
+        annotations.push({
           type: 'box',
           xScaleID: 'x-axis-0',
           yScaleID: 'y-axis-0',
@@ -48,16 +48,16 @@ class ValidatorVotingPowerHistory {
           xMax: drawTo.t,
           backgroundColor: 'rgba(180,0,0,0.3)',
           borderWidth: 0
-        } )
+        });
       }
-      i++
+      i++;
     }
 
-    const ctx = this.target.get(0).getContext('2d')
-    new Chart( ctx, {
+    const ctx = this.target.get(0).getContext('2d');
+    new Chart(ctx, {
       type: 'line',
       data: {
-        labels: _.pick( scaledData, 't' ),
+        labels: _.pick(scaledData, 't'),
         datasets: [
           {
             data: scaledData,
@@ -71,10 +71,10 @@ class ValidatorVotingPowerHistory {
       },
       options: {
         elements: {
-          point: { radius: 1, backgroundColor: '#70707a', hitRadius: 6, hoverRadius: 3 }
+          point: {radius: 1, backgroundColor: '#70707a', hitRadius: 6, hoverRadius: 3}
         },
         layout: {
-          padding: { top: 5, bottom: 5, left: 5, right: 5 }
+          padding: {top: 5, bottom: 5, left: 5, right: 5}
         },
 
         annotation: {
@@ -83,8 +83,8 @@ class ValidatorVotingPowerHistory {
         },
 
         maintainAspectRatio: false,
-        legend: { display: false },
-        title: { display: false },
+        legend: {display: false},
+        title: {display: false},
         hover: {
           mode: 'nearest',
           intersect: true
@@ -93,17 +93,17 @@ class ValidatorVotingPowerHistory {
           enabled: false,
           mode: 'nearest',
           intersect: true,
-          custom: window.customTooltip( { top: 3, minWidth: 250 } ),
+          custom: window.customTooltip({top: 3, minWidth: 250}),
           callbacks: {
-            label: ( item, data ) => {
-              const height = data.datasets[item.datasetIndex].data[item.index].h
-              const date = data.datasets[item.datasetIndex].data[item.index].t
-              const parts = _.compact( [
+            label: (item, data) => {
+              const height = data.datasets[item.datasetIndex].data[item.index].h;
+              const date = data.datasets[item.datasetIndex].data[item.index].t;
+              const parts = _.compact([
                 `<label>Voting Power:</label> ${+item.yLabel.toFixed(3)} ${prefix}${App.config.denom}<br/>`,
                 height ? `<label>Block Height:</label> ${height}<br/>` : null,
                 `<label>Timestamp:</label> ${moment.utc(date).format('MMM-D k:mm')}`
-              ] )
-              return parts.join('')
+              ]);
+              return parts.join('');
             }
           }
         },
@@ -121,14 +121,14 @@ class ValidatorVotingPowerHistory {
             {
               type: 'time',
               distribution: 'linear',
-              time: { unit: 'day' },
-              ticks: { maxRotation: 0, autoSkip: true }
+              time: {unit: 'day'},
+              ticks: {maxRotation: 0, autoSkip: true}
             }
           ]
         }
       }
-    } )
+    });
   }
 }
 
-window.App.Cosmoslike.ValidatorVotingPowerHistory = ValidatorVotingPowerHistory
+window.App.Cosmoslike.ValidatorVotingPowerHistory = ValidatorVotingPowerHistory;

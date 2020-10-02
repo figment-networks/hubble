@@ -1,33 +1,58 @@
 class Oasis::Chain < ApplicationRecord
-  ASSET = 'oasis'
+  ASSET = 'oasis'.freeze
   SUPPORTS_LEDGER = false
   EVENTS_PAGE_SIZE = 20
 
-  DEFAULT_TOKEN_DISPLAY = 'OASIS'
-  DEFAULT_TOKEN_REMOTE = 'noasis'
+  DEFAULT_TOKEN_DISPLAY = 'OASIS'.freeze
+  DEFAULT_TOKEN_REMOTE = 'noasis'.freeze
   DEFAULT_TOKEN_FACTOR = 9
 
   has_many :alertable_addresses, as: :chain, dependent: :destroy
   has_many :alert_subscriptions, through: :alertable_addresses
 
-  default_scope -> { order( 'position ASC' ) }
-  scope :alive, -> { where.not( dead: true ) }
-  scope :primary, -> { find_by( primary: true ) || order('created_at DESC').first }
-  scope :enabled, -> { where( disabled: false ) }
+  default_scope -> { order('position ASC') }
+  scope :alive, -> { where.not(dead: true) }
+  scope :primary, -> { find_by(primary: true) || order('created_at DESC').first }
+  scope :enabled, -> { where(disabled: false) }
 
   validates :name, presence: true
   validates :slug, format: { with: /\A[a-z0-9-]+\z/ }, uniqueness: true, presence: true
   validates :api_url, presence: true
 
-  def to_param; slug; end
-  def namespace; self.class.name.deconstantize.constantize; end
-  def enabled?; !disabled?; end
-  def network_name; 'Oasis'; end
-  def token_display; 'Oasis'; end
-  def has_dashboard?; false; end
+  def to_param
+    slug
+  end
+
+  def namespace
+    self.class.name.deconstantize.constantize
+  end
+
+  def enabled?
+    !disabled?
+  end
+
+  def network_name
+    'Oasis'
+  end
+
+  def token_display
+    'Oasis'
+  end
+
+  def failing_sync?
+    false
+  end
+
+  def has_dashboard?
+    true
+  end
+
+  def alertable_type
+    'validator'
+  end
 
   def primary_token
-    token_map.each { |k,v| return k if v['primary'] }
+    token_map.each { |k, v| return k if v['primary'] }
     token_map.keys.first # fallback, should not happen
   end
 
@@ -36,17 +61,38 @@ class Oasis::Chain < ApplicationRecord
   end
 
   def current_voting_power
-    self.client.validators.sum(&:recent_total_shares)
+    client.validators.sum(&:recent_total_shares)
   end
 
-  def oasis_average_snapshots(kind, interval = "hour", period = "48 hours", scope = nil)
+  def oasis_average_snapshots(kind, interval = 'hour', period = '48 hours', scope = nil)
     case kind
-      when 'block-time'
-        self.client.blocks_summary(interval, period)
-      when 'voting-power'
-        self.client.validators_summary(interval, period)
-      when 'validator-uptime'
-        self.client.validators_summary(interval, period, scope)
+    when 'block-time'
+      client.blocks_summary(interval, period)
+    when 'voting-power'
+      client.validators_summary(interval, period)
+    when 'validator-uptime'
+      client.validators_summary(interval, period, scope)
+    end
+  end
+
+  def get_alertable_name(address)
+    # to be updated to pull entity_name once that PR is merged
+    validator = client.validator(address, 0)
+    validator.entity_name.blank? ? validator.address : validator.entity_name
+  end
+
+  def get_events_for_alert(subscription, seconds_ago, date = nil)
+    # get events from twice the supplied timeframe to ensure all unsent events are picked up
+    blocks_back = (seconds_ago * 2) / client.block_times(1000).avg
+    start_block = (client.current_block.height - blocks_back).round.to_i
+
+    all_events = client.validator_events(subscription.alertable.address, start_block)
+
+    # filter out events prior to last alert time
+    if !date
+      filtered_events = all_events.select { |e| e.time > subscription.last_instant_at }
+    else
+      filtered_events = all_events.select { |e| e.time >= date.beginning_of_day && e.time <= date.end_of_day }
     end
   end
 end

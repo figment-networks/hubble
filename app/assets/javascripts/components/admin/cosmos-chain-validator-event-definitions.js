@@ -1,14 +1,14 @@
 const CAN_DELETE = [
   'n_of_m',
   'n_consecutive'
-]
+];
 
 const BADGE_NAMES = {
   voting_power_change: 'VOTING POWER CHANGES',
   active_set_inclusion: 'ACTIVE SET ADDED/REMOVED',
   n_of_m: 'MISSED N of M PRECOMMITS',
   n_consecutive: 'MISSED N CONSECUTIVE PRECOMMITS'
-}
+};
 
 const EDIT_TEMPLATES = {
   voting_power_change: _.template(`X`),
@@ -23,7 +23,7 @@ const EDIT_TEMPLATES = {
     <span class='fa fa-arrow-right mr-3 text-muted'></span>
     <input type='text' autocomplete='off' class='form-control form-control-sm w-50' name='<%= namespace %>_chain[validator_event_defs][<%= index %>][n]' value='<%= data.n %>' placeholder='N' />
   `)
-}
+};
 
 const INFO_TEMPLATES = {
   voting_power_change: _.template(``),
@@ -38,7 +38,7 @@ const INFO_TEMPLATES = {
     <span class='fa fa-arrow-right mr-2 text-muted'></span>
     <span class='text-lg'><%= data.n %></span>
   `)
-}
+};
 
 const DEFINITION_TEMPLATE = _.template(`
   <div class='definition-item p-0 pt-1 pb-1 d-flex align-items-center'>
@@ -80,7 +80,7 @@ const DEFINITION_TEMPLATE = _.template(`
       <% } %>
     </div>
   </div>
-`)
+`);
 
 const HEIGHT_INFO_TEMPLATE = _.template(`
   <small class='mr-1 text-muted'>Height:</small>
@@ -92,24 +92,28 @@ const HEIGHT_INFO_TEMPLATE = _.template(`
     <% } %>
     <button class='btn btn-sm btn-warning ml-1 action-edit-height' <%= canChangeHeight ? '' : 'disabled' %>>override</button>
   </div>
-`)
+`);
 
-$(document).ready( function() {
-  const container = $('.validator-event-defs-list')
-  if( container.length == 0 ) { return }
+$(document).ready(function() {
+  const container = $('.validator-event-defs-list');
+  if (container.length == 0) {
+    return;
+  }
 
-  function renderItem( bindings ) {
-    bindings.isNew = bindings.isNew || false
-    bindings.canChangeHeight = !App.config.chainIsSyncing || bindings.isNew
-    bindings.namespace = App.config.namespace.toLowerCase()
+  function renderItem(bindings) {
+    bindings.isNew = bindings.isNew || false;
+    bindings.canChangeHeight = !App.config.chainIsSyncing || bindings.isNew;
+    bindings.namespace = App.config.namespace.toLowerCase();
 
     // generate unique id if we don't have one
-    if( !bindings.data.unique_id ) { bindings.data.unique_id = uuid() }
+    if (!bindings.data.unique_id) {
+      bindings.data.unique_id = uuid();
+    }
 
-    const html = DEFINITION_TEMPLATE( bindings )
-    const el = $(html)
+    const html = DEFINITION_TEMPLATE(bindings);
+    const el = $(html);
 
-    el.find('.height-tooltip-target').click( (e) => e.preventDefault() ).tooltipster( {
+    el.find('.height-tooltip-target').click((e) => e.preventDefault()).tooltipster({
       contentAsHTML: true,
       interactive: true,
       arrow: false,
@@ -120,84 +124,84 @@ $(document).ready( function() {
       maxWidth: 275,
       onlyOne: true,
       trigger: 'custom',
-      triggerOpen: { click: true },
-      triggerClose: { click: true },
-      functionReady: function( instance, helper ) {
-        const tooltip = $(helper.tooltip)
-        tooltip.on( 'click', '.action-edit-height', function( e ) {
-          const newHeight = tooltip.find('input').val()
-          el.find('[name*=height]').val( newHeight ).removeAttr('disabled')
-          el.find('.height-display').text( newHeight )
-          instance.close()
-        } )
+      triggerOpen: {click: true},
+      triggerClose: {click: true},
+      functionReady: function(instance, helper) {
+        const tooltip = $(helper.tooltip);
+        tooltip.on('click', '.action-edit-height', function(e) {
+          const newHeight = tooltip.find('input').val();
+          el.find('[name*=height]').val(newHeight).removeAttr('disabled');
+          el.find('.height-display').text(newHeight);
+          instance.close();
+        });
       }
-    } )
-    return el
+    });
+    return el;
   }
 
   //
   // INITIAL DATA LOAD
   //
-  _.each( container.data('defs') || [], (data, index) => {
-    const bindings = { data, index }
-    container.append( renderItem( bindings ) )
-  } )
+  _.each(container.data('defs') || [], (data, index) => {
+    const bindings = {data, index};
+    container.append(renderItem(bindings));
+  });
 
 
   //
   // SAVE BUTTON
   //
-  const saveButton = $('.action-event-definitions-save')
-  saveButton.click( function( e ) {
-    e.preventDefault()
-    saveButton.attr( { disabled: 'disabled' } )
-    $('#chain-validator-event-defs-form').get(0).submit()
-  } )
+  const saveButton = $('.action-event-definitions-save');
+  saveButton.click(function(e) {
+    e.preventDefault();
+    saveButton.attr({disabled: 'disabled'});
+    $('#chain-validator-event-defs-form').get(0).submit();
+  });
 
 
   //
   // ADD NEW DEF BUTTON
   //
-  $('.action-add-new-validator-event-definition').click( function( e ) {
-    const button = $(e.currentTarget)
-    const newItem = renderItem( {
+  $('.action-add-new-validator-event-definition').click(function(e) {
+    const button = $(e.currentTarget);
+    const newItem = renderItem({
       index: container.children().length,
-      data: { kind: 'n_of_m', height: 0 },
+      data: {kind: 'n_of_m', height: 0},
       isNew: true
-    } )
-    container.append( newItem )
-    saveButton.removeClass('d-none')
-  } )
+    });
+    container.append(newItem);
+    saveButton.removeClass('d-none');
+  });
 
 
   //
   // REMOVE DEF BUTTON
   //
-  container.on( 'click', '.action-remove-event-definition', function( e ) {
-    $(e.currentTarget).parents('.definition-item').remove()
-    saveButton.removeClass('d-none')
-  } )
+  container.on('click', '.action-remove-event-definition', function(e) {
+    $(e.currentTarget).parents('.definition-item').remove();
+    saveButton.removeClass('d-none');
+  });
 
 
   //
   // SWITCH THRESHOLD KIND BUTTONS
   //
-  container.on( 'click', '.event-kind-buttons button', function( e ) {
-    e.preventDefault()
-    const button = $(e.currentTarget)
-    const row = button.parents('.definition-item')
-    const kind = button.data('threshold-kind')
-    row.find('[name*=kind]').val( kind )
-    row.find('.inputs').html( EDIT_TEMPLATES[kind]( { index: row.index(), data: {}, namespace: App.config.namespace.toLowerCase() } ) )
-    button.siblings().removeClass('active').end().addClass('active')
-    saveButton.removeClass('d-none')
-  } )
+  container.on('click', '.event-kind-buttons button', function(e) {
+    e.preventDefault();
+    const button = $(e.currentTarget);
+    const row = button.parents('.definition-item');
+    const kind = button.data('threshold-kind');
+    row.find('[name*=kind]').val(kind);
+    row.find('.inputs').html(EDIT_TEMPLATES[kind]({index: row.index(), data: {}, namespace: App.config.namespace.toLowerCase()}));
+    button.siblings().removeClass('active').end().addClass('active');
+    saveButton.removeClass('d-none');
+  });
 
 
   //
   // EDITING PARAMETERS
   //
-  container.on( 'keyup', '.inputs input', function( e ) {
-    saveButton.removeClass('d-none')
-  } )
-} )
+  container.on('keyup', '.inputs input', function(e) {
+    saveButton.removeClass('d-none');
+  });
+});

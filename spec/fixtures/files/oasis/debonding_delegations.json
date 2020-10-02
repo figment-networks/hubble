@@ -1,0 +1,24 @@
+{
+  "items": [
+    {
+      "validator_uid": "oasis1qzqd0ymjv9vtns683zuv04wjt3akkh7mageytc47",
+      "delegator_uid": "oasis1qzqd0ymjv9vtns683zuv04wjt3akkh7mageytc47",
+      "shares": 25000000000000
+    },
+    {
+      "validator_uid": "oasis1qpvkl7xfuzlx9xzvk8khmp2d3g0m973v059dtwfu",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qzskk72k92y4duc47lqcsxhza6fahlqtlqyesw0p",
+      "delegator_uid": "oasis1qzskk72k92y4duc47lqcsxhza6fahlqtlqyesw0p",
+      "shares": 190418877454656
+    },
+    {
+      "validator_uid": "oasis1qrgdj4xj22jume3fg4cg4m07s5euhzftgyqenaxr",
+      "delegator_uid": "oasis1qrgdj4xj22jume3fg4cg4m07s5euhzftgyqenaxr",
+      "shares": 15000000000000
+    }
+  ]
+}

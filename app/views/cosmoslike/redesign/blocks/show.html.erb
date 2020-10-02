@@ -1,0 +1,48 @@
+<% content_for :body_class, 'block-show' %>
+
+<%= render partial: '/cosmoslike/redesign/shared/chain_header', locals: { active_tab: '' } %>
+
+<div class="content">
+  <div class="container">
+    <h2 class='data-block'>
+      <label class='data-block__title'>Block</label>
+      <span class='data-block__value d-block word-break'><%= @block.id_hash %></span>
+    </h2>
+    <div class='data-block d-flex flex-wrap'>
+      <div class='mr-5 mb-4'>
+        <h3 class='data-block__title'>Height</h3>
+        <% if (prev_block = @block.previous_block) -%>
+          <%= link_to namespaced_path('block', prev_block), class: 'data-block__value' do %>
+            <span class='fas fa-chevron-left'></span>
+          <% end -%>
+        <% end -%>
+        <span class='data-block__value'><%= @block.height %></span>
+        <% if (next_block = @block.next_block) -%>
+          <%= link_to namespaced_path('block', next_block), class: 'data-block__value' do %>
+            <span class='fas fa-chevron-right'></span>
+          <% end -%>
+        <% end -%>
+      </div>
+      <div class='mb-4'>
+        <h3 class='data-block__title'>Timestamp</h3>
+        <span class='data-block__value'><%= format_timestamp(@block.timestamp) %></span>
+      </div>
+    </div>
+    <div>
+      <h3 class='data-block__title'>Raw JSON</h3>
+      <% if @chain.enabled? -%>
+        <div class='d-flex flex-wrap'>
+          <%= link_to 'Block', namespaced_path('block', @block, kind: 'block', format: 'json'), class: 'button-secondary mr-2 mb-2', target: '_blank' %>
+          <%= link_to 'Commit', namespaced_path('block', @block, kind: 'commit', format: 'json'), class: 'button-secondary mr-2 mb-2', target: '_blank' %>
+          <%= link_to 'Val. Set', namespaced_path('block', @block, kind: 'set', format: 'json'), class: 'button-secondary', target: '_blank' %>
+        </div>
+      <% else -%>
+        <span class='text-muted'>&mdash;</span>
+      <% end -%>
+    </div>
+    <div>
+      <%= render partial: 'transactions' %>
+      <%= render partial: 'validators' %>
+    </div>
+  </div>
+</div>

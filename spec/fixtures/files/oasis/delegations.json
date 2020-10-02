@@ -1,0 +1,819 @@
+{
+  "items": [
+    {
+      "validator_uid": "oasis1qzqd0ymjv9vtns683zuv04wjt3akkh7mageytc47",
+      "delegator_uid": "oasis1qzqd0ymjv9vtns683zuv04wjt3akkh7mageytc47",
+      "shares": 25000000000000
+    },
+    {
+      "validator_uid": "oasis1qpvkl7xfuzlx9xzvk8khmp2d3g0m973v059dtwfu",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qzskk72k92y4duc47lqcsxhza6fahlqtlqyesw0p",
+      "delegator_uid": "oasis1qzskk72k92y4duc47lqcsxhza6fahlqtlqyesw0p",
+      "shares": 190418877454656
+    },
+    {
+      "validator_uid": "oasis1qrgdj4xj22jume3fg4cg4m07s5euhzftgyqenaxr",
+      "delegator_uid": "oasis1qrgdj4xj22jume3fg4cg4m07s5euhzftgyqenaxr",
+      "shares": 15000000000000
+    },
+    {
+      "validator_uid": "oasis1qrgdj4xj22jume3fg4cg4m07s5euhzftgyqenaxr",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 49865681411527
+    },
+    {
+      "validator_uid": "oasis1qzhn6enzq76ul994q457m8ehcjg36vzsaqn9ru32",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qpmdsjvyy5vs47mqzav6xqy7fmfplgtu3cd473dv",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qzlwwyy6hzuhmme4duq8nkwnfy6s6t8gvup7p6qp",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qqhu3ly69dzaj98e5fe2wfncv43tyz5yvyf9e9r0",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qrya4dd95gwzwusy6y06mec7m378haccngmlj8rn",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qz2weu3fm3vq5ywyx4yfmd5hrjr3j6vxuuwwupvd",
+      "delegator_uid": "oasis1qz2weu3fm3vq5ywyx4yfmd5hrjr3j6vxuuwwupvd",
+      "shares": 85000000000000
+    },
+    {
+      "validator_uid": "oasis1qp7dtzc5gfz8m79uky8xjttyhy0ufnwa4y8r79kk",
+      "delegator_uid": "oasis1qp7dtzc5gfz8m79uky8xjttyhy0ufnwa4y8r79kk",
+      "shares": 60000000000000
+    },
+    {
+      "validator_uid": "oasis1qrv4xge235sfhrsu29wrymk8wg63f6dypvjgs0su",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 50000000000000
+    },
+    {
+      "validator_uid": "oasis1qqnnn6uc7a0vryv4ssc7ylqcytksnyd6uyamt3m3",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qze2vcaka7fazekvyjxqsqt78lgp75c785at7qd9",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 50000000000000
+    },
+    {
+      "validator_uid": "oasis1qzcuz3yphlr0vgkj4lw38rpyamyrgaw0yq03444f",
+      "delegator_uid": "oasis1qzcuz3yphlr0vgkj4lw38rpyamyrgaw0yq03444f",
+      "shares": 90000000000000
+    },
+    {
+      "validator_uid": "oasis1qrpltxmvykhfurkwjy8ujs70at8rknhxgcar5px4",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qpem0cc7ncjq2grm7sns5n9p5xjq3ej6gs2p56e7",
+      "delegator_uid": "oasis1qpem0cc7ncjq2grm7sns5n9p5xjq3ej6gs2p56e7",
+      "shares": 225000000000000
+    },
+    {
+      "validator_uid": "oasis1qrtfwd4fa2umacaref0qgtcswpwqp9gkv5r8hdsw",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 50000000000000
+    },
+    {
+      "validator_uid": "oasis1qrp3xlz9w8ykv440g9za34lnq2p53ktg9vt9gqmc",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 50000000000000
+    },
+    {
+      "validator_uid": "oasis1qqdkjh366rjl5djteuxrh4a5fpmu9wrjfccfm52x",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qz0ep0u2lu6wj0mhyr3rjl78rkzljt5s2yahrszk",
+      "delegator_uid": "oasis1qz0ep0u2lu6wj0mhyr3rjl78rkzljt5s2yahrszk",
+      "shares": 25000000000000
+    },
+    {
+      "validator_uid": "oasis1qp086sjd2rkkdpl6ux9q0p0n9kxe4cnhtghq9t7t",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qzvl07j7tm85sjfawjtarc769vddzkeursaqwcr8",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qq7vavk9ag2h0cgylvppykfasqu0hzusdutepv4t",
+      "delegator_uid": "oasis1qq7vavk9ag2h0cgylvppykfasqu0hzusdutepv4t",
+      "shares": 65000000000000
+    },
+    {
+      "validator_uid": "oasis1qzemv8pq40esjykzufyzrzhywhhtsv34kunxqss5",
+      "delegator_uid": "oasis1qzemv8pq40esjykzufyzrzhywhhtsv34kunxqss5",
+      "shares": 15000000000000
+    },
+    {
+      "validator_uid": "oasis1qrnvtqv6qelj67asxlwsx0kmyhqpw629x5x6sjk5",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qzuwdzvk9mcc7hw7kcvt8rq59aryljjcrgfyl72y",
+      "delegator_uid": "oasis1qzuwdzvk9mcc7hw7kcvt8rq59aryljjcrgfyl72y",
+      "shares": 55000000000000
+    },
+    {
+      "validator_uid": "oasis1qqgax9pha5jm4tury0asd7c9vhcge5fk4ss5ft44",
+      "delegator_uid": "oasis1qqgax9pha5jm4tury0asd7c9vhcge5fk4ss5ft44",
+      "shares": 65000000000000
+    },
+    {
+      "validator_uid": "oasis1qqdd4nmtcmarf4u9gdg24swxhec52du43cxzf302",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 50000000000000
+    },
+    {
+      "validator_uid": "oasis1qqdd4nmtcmarf4u9gdg24swxhec52du43cxzf302",
+      "delegator_uid": "oasis1qqdd4nmtcmarf4u9gdg24swxhec52du43cxzf302",
+      "shares": 10000000000000
+    },
+    {
+      "validator_uid": "oasis1qrykqg66uak2ydqj8g90907h2epdgd9jesxz8zre",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qp2cxgwzagz6rvas7xhf95krvv06sq9qtykyw5aj",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qp22l6gy0u2cp6krh4ruuezf09f20t0qkupkhq2g",
+      "delegator_uid": "oasis1qp22l6gy0u2cp6krh4ruuezf09f20t0qkupkhq2g",
+      "shares": 815000000000000
+    },
+    {
+      "validator_uid": "oasis1qr9thumk7spm5z77zs5459jadh2h7ux9pua2zd9k",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qpywyqnvh3ajdcny7pejxuwz07sgry5c8v5yx9wf",
+      "delegator_uid": "oasis1qpywyqnvh3ajdcny7pejxuwz07sgry5c8v5yx9wf",
+      "shares": 55000000000000
+    },
+    {
+      "validator_uid": "oasis1qqqtcv838cp942wq2uw30rt0zj4qmvje3yk2uawd",
+      "delegator_uid": "oasis1qqqtcv838cp942wq2uw30rt0zj4qmvje3yk2uawd",
+      "shares": 50000000000000
+    },
+    {
+      "validator_uid": "oasis1qzhwl87e7d6up3tf3wu08e9n8gqk6vkw2v8gqc2j",
+      "delegator_uid": "oasis1qzhwl87e7d6up3tf3wu08e9n8gqk6vkw2v8gqc2j",
+      "shares": 1265000000000000
+    },
+    {
+      "validator_uid": "oasis1qzqrd2fq37exygk2f32xpjla4rczggyk3cl0gqym",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qqt70xn2rnr42rfvk2ey4apg7asftu2cmc6rsswu",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qrxyndkhehffdme39urcp2v7m2t7k06xwsuyaxqq",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qzsp62l07fqsxgdeqszwz8hm34hhwem9ny73qnpr",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 399789572488
+    },
+    {
+      "validator_uid": "oasis1qzfu7ugmqqg4elhuld8axgvneu386qxs3qw5tsrl",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qrzxu7jm72677qydejqr9kaa9u624c6xzgcd9lud",
+      "delegator_uid": "oasis1qrzxu7jm72677qydejqr9kaa9u624c6xzgcd9lud",
+      "shares": 55000000000000
+    },
+    {
+      "validator_uid": "oasis1qr3j5ydj4nd7z47fy2gkamzknpal0vw6fg2e3agz",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 400000000000
+    },
+    {
+      "validator_uid": "oasis1qrupcpz6lx2s8r7sseq4susxk57uy99ahcdd08pz",
+      "delegator_uid": "oasis1qrupcpz6lx2s8r7sseq4susxk57uy99ahcdd08pz",
+      "shares": 15000000000000
+    },
+    {
+      "validator_uid": "oasis1qrgujwunqhgr6n3xmpmxatdul6eu377s3gc0604f",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qrxa9fnhcmwzwkyjc6wnm77nper03vkda5p8rz5q",
+      "delegator_uid": "oasis1qrxa9fnhcmwzwkyjc6wnm77nper03vkda5p8rz5q",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qz9jtnj7da25lwkqp6et0fnypaaxq45nsumurcd7",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qzljmrjgluqsfr7xygmpjds5a934aqmh4sz4n3pj",
+      "delegator_uid": "oasis1qzljmrjgluqsfr7xygmpjds5a934aqmh4sz4n3pj",
+      "shares": 75144070223354
+    },
+    {
+      "validator_uid": "oasis1qzzn6hwzj8u2nk22rxhqghsjgzfth8wlhuzpc8gf",
+      "delegator_uid": "oasis1qzzn6hwzj8u2nk22rxhqghsjgzfth8wlhuzpc8gf",
+      "shares": 80000000000000
+    },
+    {
+      "validator_uid": "oasis1qqzrqytg3g66mnhuz4m834erduxmc9tgxg5urfna",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qzdyyu5e0f2cwlctlsl9kq7j397s5lxdhyh0rwx8",
+      "delegator_uid": "oasis1qzdyyu5e0f2cwlctlsl9kq7j397s5lxdhyh0rwx8",
+      "shares": 96046815090
+    },
+    {
+      "validator_uid": "oasis1qzdyyu5e0f2cwlctlsl9kq7j397s5lxdhyh0rwx8",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 50000000000000
+    },
+    {
+      "validator_uid": "oasis1qqxqlpfslwuuh5342qnstymyutancj7csucxv2ec",
+      "delegator_uid": "oasis1qqxqlpfslwuuh5342qnstymyutancj7csucxv2ec",
+      "shares": 165000000000000
+    },
+    {
+      "validator_uid": "oasis1qzanf5q0ex5ga462a4yu2sm64qhs842hturv0yxw",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qrj50p7szh4fcxraee2yzuselcswpwqg7yql7czj",
+      "delegator_uid": "oasis1qrj50p7szh4fcxraee2yzuselcswpwqg7yql7czj",
+      "shares": 30000000000000
+    },
+    {
+      "validator_uid": "oasis1qq0uqf2qs0cdfz8ywmuaev3pl458ynfvacvthth0",
+      "delegator_uid": "oasis1qq0uqf2qs0cdfz8ywmuaev3pl458ynfvacvthth0",
+      "shares": 50000000000000
+    },
+    {
+      "validator_uid": "oasis1qpchjfayc5qk3vl2kw9uh3renxc2yxy3a5c2zlya",
+      "delegator_uid": "oasis1qpchjfayc5qk3vl2kw9uh3renxc2yxy3a5c2zlya",
+      "shares": 115000000000000
+    },
+    {
+      "validator_uid": "oasis1qrlad0n3uxt4ev5evh88e94qhum8jfsjxy750v4w",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 11000000000000
+    },
+    {
+      "validator_uid": "oasis1qza7tdqcc4rz5u73gkv00yv73nt3qhpslu3vvvac",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qpe07xt7649s38pt02rtr4eyap0wzg4yhvlfjtee",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 50000000000000
+    },
+    {
+      "validator_uid": "oasis1qpqesru4s8sqzfsms35xvx3pph8upkejduama35g",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qpalmd8rdhr34wmwjxd4xz65rgedtk9hqu87ncee",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 15500000000000
+    },
+    {
+      "validator_uid": "oasis1qrssmptkwjde2yt4e6rh5ust83qcnk0qzy4ekych",
+      "delegator_uid": "oasis1qrssmptkwjde2yt4e6rh5ust83qcnk0qzy4ekych",
+      "shares": 30900000000000
+    },
+    {
+      "validator_uid": "oasis1qrpcqaw8qr607nmmxtx49n62tkjylyrrpv7jvylr",
+      "delegator_uid": "oasis1qrpcqaw8qr607nmmxtx49n62tkjylyrrpv7jvylr",
+      "shares": 150000000000000
+    },
+    {
+      "validator_uid": "oasis1qzl8zhdluw9eynrhc2watmgac6gt7xwvpcq7kjfc",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qr62uu00g3k95fvxyd2ydmgtyfglvfql7yxfsnld",
+      "delegator_uid": "oasis1qr62uu00g3k95fvxyd2ydmgtyfglvfql7yxfsnld",
+      "shares": 40000000000000
+    },
+    {
+      "validator_uid": "oasis1qpdf54f5nc0hzat6h74ktky9vkx7pqvvacluq6uw",
+      "delegator_uid": "oasis1qpdf54f5nc0hzat6h74ktky9vkx7pqvvacluq6uw",
+      "shares": 55000000000000
+    },
+    {
+      "validator_uid": "oasis1qqwfv5njr0ux239tndut3arevvl90ru84uuyfxru",
+      "delegator_uid": "oasis1qqwfv5njr0ux239tndut3arevvl90ru84uuyfxru",
+      "shares": 10000000000000
+    },
+    {
+      "validator_uid": "oasis1qqwfv5njr0ux239tndut3arevvl90ru84uuyfxru",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 10991863051763
+    },
+    {
+      "validator_uid": "oasis1qqerup20p5yedpsrl0c78g82arqqwwhufyrn4scz",
+      "delegator_uid": "oasis1qqerup20p5yedpsrl0c78g82arqqwwhufyrn4scz",
+      "shares": 100000000000000
+    },
+    {
+      "validator_uid": "oasis1qzgy5kpz3xmmag7aacg9y8ypyvf026qz7ql6ewe5",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qrlvgrcx70jgfardhcgzm3953jt472kga5xswm48",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qrllkgqgqheus3qvq69wzsmh7799agg8lgsyecfq",
+      "delegator_uid": "oasis1qrllkgqgqheus3qvq69wzsmh7799agg8lgsyecfq",
+      "shares": 50000000000000
+    },
+    {
+      "validator_uid": "oasis1qqar3gsfv8hzxqqktkj3cmht6eprl6zp0g86fl5u",
+      "delegator_uid": "oasis1qqar3gsfv8hzxqqktkj3cmht6eprl6zp0g86fl5u",
+      "shares": 125000000000000
+    },
+    {
+      "validator_uid": "oasis1qpe05p7ay0m6v0zpwkd627v7zjxn0v2fzsds8xqx",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qp76mdtcjyf4wwyk3l2xsdyhnw562mw4dsna0vql",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qpqs67uz4yp3ujlgra89p028krw6ukz00uz99ag0",
+      "delegator_uid": "oasis1qpqs67uz4yp3ujlgra89p028krw6ukz00uz99ag0",
+      "shares": 100000000000000
+    },
+    {
+      "validator_uid": "oasis1qq4uevsqyt2e32ea2hg4tn2ge6rscfthvqys3954",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qrx376dmwuckmruzn9vq64n49clw72lywctvxdf4",
+      "delegator_uid": "oasis1qrx376dmwuckmruzn9vq64n49clw72lywctvxdf4",
+      "shares": 1549950000000000
+    },
+    {
+      "validator_uid": "oasis1qphythdxyfxl6rr37km3glraw0d9mpz94usta20x",
+      "delegator_uid": "oasis1qphythdxyfxl6rr37km3glraw0d9mpz94usta20x",
+      "shares": 90000000000000
+    },
+    {
+      "validator_uid": "oasis1qq95xthkg20ra6ue8zyngqkkm92xqkvrms88axkj",
+      "delegator_uid": "oasis1qq95xthkg20ra6ue8zyngqkkm92xqkvrms88axkj",
+      "shares": 515000000000000
+    },
+    {
+      "validator_uid": "oasis1qrdanvk7lwf9tzlzrn9sa2vdgtetxll08g7h2wcl",
+      "delegator_uid": "oasis1qrdanvk7lwf9tzlzrn9sa2vdgtetxll08g7h2wcl",
+      "shares": 10000000000000
+    },
+    {
+      "validator_uid": "oasis1qqnw7h2rm9lukvrmfr9kjw724dueyt3j9yfdtllh",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qpn9vaeh742wypj83v83h2e4elr8p4jywullc5f8",
+      "delegator_uid": "oasis1qpn9vaeh742wypj83v83h2e4elr8p4jywullc5f8",
+      "shares": 9997050085317
+    },
+    {
+      "validator_uid": "oasis1qqqd4wrmk8z9p3hz0vyc6zy3khx3gqnckywyg2s5",
+      "delegator_uid": "oasis1qqqd4wrmk8z9p3hz0vyc6zy3khx3gqnckywyg2s5",
+      "shares": 100000000000000
+    },
+    {
+      "validator_uid": "oasis1qp9273m944xuhy0skj3k5w84p69fpd03uv8f4vnv",
+      "delegator_uid": "oasis1qp9273m944xuhy0skj3k5w84p69fpd03uv8f4vnv",
+      "shares": 15000000000000
+    },
+    {
+      "validator_uid": "oasis1qr5nk5zd79edhu67lpwfhkamcgnavfuujyy690qq",
+      "delegator_uid": "oasis1qr5nk5zd79edhu67lpwfhkamcgnavfuujyy690qq",
+      "shares": 30000000000000
+    },
+    {
+      "validator_uid": "oasis1qpl6f0wfhrjqnqlmy7egmkdnpgm9v3v6kgwq0k74",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qpjwvlfd4nwmxpskrctqlg69g50v7ry9fyprc0m7",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qp8jamd0r8872507g0eafvvxhms5fa8efqjzz4sz",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qreevydkllruwy354gel46whhruvfn08ws97vdtg",
+      "delegator_uid": "oasis1qreevydkllruwy354gel46whhruvfn08ws97vdtg",
+      "shares": 110000000000000
+    },
+    {
+      "validator_uid": "oasis1qr4qenu52c2g3fyjytazsjs68e7xxr4mkujttmxq",
+      "delegator_uid": "oasis1qr4qenu52c2g3fyjytazsjs68e7xxr4mkujttmxq",
+      "shares": 115000000000000
+    },
+    {
+      "validator_uid": "oasis1qzq3x6lgu5h3s0kn5x326h8997vpgxhykgngrz7q",
+      "delegator_uid": "oasis1qzq3x6lgu5h3s0kn5x326h8997vpgxhykgngrz7q",
+      "shares": 90000000000000
+    },
+    {
+      "validator_uid": "oasis1qr97y0c5ptteek3kysmym66cu2x0rnmcwu2yjasr",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qq8xlnjlsn23kvxvywhw54ln76j3sdyacqc94w0j",
+      "delegator_uid": "oasis1qq8xlnjlsn23kvxvywhw54ln76j3sdyacqc94w0j",
+      "shares": 5000000000000
+    },
+    {
+      "validator_uid": "oasis1qq8rfxlfte4gtlczufe6s674z02q0k3nnvjugsw3",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qrv8f0h2l9cmshekkxwrdp4cgmn685ndaum5u3cm",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qqd8dn79rfhvezkkc3akhjr6grgksn53w5fllglh",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qzfar60xtzu95sxkczkq7ke69vwur70jdqrn7rpd",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qqaz80ylc4hspw6rl2vv6pxzmv7umwv3350fcsqp",
+      "delegator_uid": "oasis1qqaz80ylc4hspw6rl2vv6pxzmv7umwv3350fcsqp",
+      "shares": 5000000000000
+    },
+    {
+      "validator_uid": "oasis1qpsag66d2q9uxrust67mn39plkvesdydpv0v0ttw",
+      "delegator_uid": "oasis1qpsag66d2q9uxrust67mn39plkvesdydpv0v0ttw",
+      "shares": 5000000000000
+    },
+    {
+      "validator_uid": "oasis1qpsag66d2q9uxrust67mn39plkvesdydpv0v0ttw",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 399832036116
+    },
+    {
+      "validator_uid": "oasis1qqzrssst39efhh08u5x25mq3a83kmex9rg3tek8j",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qpqcp28rl5gaql90n2quvgly70rs09uf3c39qr3e",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qzmsk5v69h4c4nhuwz8pgdsyfkjjku9nxgxn0xkf",
+      "delegator_uid": "oasis1qzmsk5v69h4c4nhuwz8pgdsyfkjjku9nxgxn0xkf",
+      "shares": 150000000000000
+    },
+    {
+      "validator_uid": "oasis1qz8ctjdmrcgl83wh7zg5p2rsdhak6llcg52ysm8f",
+      "delegator_uid": "oasis1qz8ctjdmrcgl83wh7zg5p2rsdhak6llcg52ysm8f",
+      "shares": 135000000000000
+    },
+    {
+      "validator_uid": "oasis1qr6lecc7zslvkjf4cal80heln4ph50tvyc8wxs3l",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qq774msxmtghldtwn55t25fxqppdpsdyfvhnkpyt",
+      "delegator_uid": "oasis1qq774msxmtghldtwn55t25fxqppdpsdyfvhnkpyt",
+      "shares": 100000000000000
+    },
+    {
+      "validator_uid": "oasis1qqj4xupv4sger9456j35m0wgmeeg3y856qwhn6dm",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qq80f9sxqh62yl3n7h24s965zqmclylr4c06fymk",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qq8atykwecy3p5rnspkweapzz847exaqwyv80wgx",
+      "delegator_uid": "oasis1qq8atykwecy3p5rnspkweapzz847exaqwyv80wgx",
+      "shares": 565000000000000
+    },
+    {
+      "validator_uid": "oasis1qq83v7j6dvkcvfqyh5ka0swem5l5e73dc5nvcc4n",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qr7x9lems4upqfu35ql2zcvg7z0ruex4ncfqf5p8",
+      "delegator_uid": "oasis1qr7x9lems4upqfu35ql2zcvg7z0ruex4ncfqf5p8",
+      "shares": 80000000000000
+    },
+    {
+      "validator_uid": "oasis1qrhlsqyvky98frkdcqf6mngpqhc64u0kxvrsasgy",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qz4w57pry4vtkemxskr583zpthqmr2lzyy2f3ynj",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qz9zykf3vseh06827vrxysappxgaym7av5q2jt5y",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 400000000000
+    },
+    {
+      "validator_uid": "oasis1qqfasfrrx2tae50kcy8mcclhp0kqymswsqnqytyg",
+      "delegator_uid": "oasis1qqfasfrrx2tae50kcy8mcclhp0kqymswsqnqytyg",
+      "shares": 1000000000000000
+    },
+    {
+      "validator_uid": "oasis1qrrza047xkx3dagxff6mmua93qnhycdqzsf8yczk",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qrefupfc0mys5jlfg88zvx0x84uwt50qrycul09m",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qr98r85lgmm6hqfltr0w3xz7mz6y64mjw50aeypa",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qrzj7udkpgpckk9nr3jvpx669fhr52hrgq0ws0q8",
+      "delegator_uid": "oasis1qrzj7udkpgpckk9nr3jvpx669fhr52hrgq0ws0q8",
+      "shares": 15000000000000
+    },
+    {
+      "validator_uid": "oasis1qqla3k5vgds9fc2wyv7rxmyqy4dksmytx5fyqaz2",
+      "delegator_uid": "oasis1qqla3k5vgds9fc2wyv7rxmyqy4dksmytx5fyqaz2",
+      "shares": 190000000000000
+    },
+    {
+      "validator_uid": "oasis1qp0f5mm45cevgn0uzpv0a9aehfa8c377xumj3ws7",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qrs5ecnls3j56ll4h7dtflzfncc9sdu8eqsy9zhp",
+      "delegator_uid": "oasis1qrs5ecnls3j56ll4h7dtflzfncc9sdu8eqsy9zhp",
+      "shares": 30000000000000
+    },
+    {
+      "validator_uid": "oasis1qqvmpnuvgwzy6vrl90490gjxqmzsdtszuun6czpx",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qzj2qd9d3fdln8vzge59w5z55yr4tq6hcurgn9jq",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 50000000000000
+    },
+    {
+      "validator_uid": "oasis1qpgl52u29wy4hjla89f46ntkn2qsa6zpdvhv6s6n",
+      "delegator_uid": "oasis1qpgl52u29wy4hjla89f46ntkn2qsa6zpdvhv6s6n",
+      "shares": 50000000000000
+    },
+    {
+      "validator_uid": "oasis1qznca3x5v7gnl7seezr64lv6ca6kg5qpk5q8haya",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qrlsjag9gzy2a7ucx3wxp3r2hk3un6095v249kc3",
+      "delegator_uid": "oasis1qrlsjag9gzy2a7ucx3wxp3r2hk3un6095v249kc3",
+      "shares": 75000000000000
+    },
+    {
+      "validator_uid": "oasis1qqkw8at6cpxd3yy26yzwc7l7qwza70w3d5atq97a",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qzp823gtsgkeg5w9cv8nmdcprg4zsnch9ugc5lq0",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qpnfpxzygsx6kzwqpam66wk9f3f6pxl0lux2upnq",
+      "delegator_uid": "oasis1qpnfpxzygsx6kzwqpam66wk9f3f6pxl0lux2upnq",
+      "shares": 15000000000000
+    },
+    {
+      "validator_uid": "oasis1qr5k7885wtyvnnt3qass6qlqa3pjl5wftc25sa8c",
+      "delegator_uid": "oasis1qr5k7885wtyvnnt3qass6qlqa3pjl5wftc25sa8c",
+      "shares": 55000000000000
+    },
+    {
+      "validator_uid": "oasis1qq37hzp83thzspcdnlzekngngugavgmfasfac7ch",
+      "delegator_uid": "oasis1qq37hzp83thzspcdnlzekngngugavgmfasfac7ch",
+      "shares": 55000000000000
+    },
+    {
+      "validator_uid": "oasis1qrem4skslfwn3zcutpgxyd7664naqyplsy2ymrv6",
+      "delegator_uid": "oasis1qrem4skslfwn3zcutpgxyd7664naqyplsy2ymrv6",
+      "shares": 1190000000000000
+    },
+    {
+      "validator_uid": "oasis1qqey98jwp8cvwdjvdf924ss386jkhn47jyn8xc5s",
+      "delegator_uid": "oasis1qqey98jwp8cvwdjvdf924ss386jkhn47jyn8xc5s",
+      "shares": 25000000000000
+    },
+    {
+      "validator_uid": "oasis1qpyn0qaz5kkalmmt59370a6fsfe5xfj8vglej5ea",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 600000000000
+    },
+    {
+      "validator_uid": "oasis1qz67gd6davxgrsrdtaud9d0rg3shrg234vzdhr3q",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qpd65y0uct4wdc086xdn5npyxcsjy9n3eurfvvur",
+      "delegator_uid": "oasis1qpd65y0uct4wdc086xdn5npyxcsjy9n3eurfvvur",
+      "shares": 60000000000000
+    },
+    {
+      "validator_uid": "oasis1qpmahg0mmp0rqz9z2qucu6cmy8y2tkvekqtqqnst",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qqsh36389tpezlf5uuwsuew82jmm6kxh7u3zt5nn",
+      "delegator_uid": "oasis1qqsh36389tpezlf5uuwsuew82jmm6kxh7u3zt5nn",
+      "shares": 96046815090
+    },
+    {
+      "validator_uid": "oasis1qqsh36389tpezlf5uuwsuew82jmm6kxh7u3zt5nn",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 50000000000000
+    },
+    {
+      "validator_uid": "oasis1qp63p06nfu44uvjw68mpejuesztqfeaymvhnr0fz",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qzj4yajvwzxnmu0wr6cqvgnwxnt2cspgx5pelmpz",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qzg52vqfqsxhes5k6n5huxkhf5l8kx7k6czcys2y",
+      "delegator_uid": "oasis1qzg52vqfqsxhes5k6n5huxkhf5l8kx7k6czcys2y",
+      "shares": 10000000000000
+    },
+    {
+      "validator_uid": "oasis1qqyyd043mtldg3sdqw9uvk0vts0mum43quxlylq2",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 50000000000000
+    },
+    {
+      "validator_uid": "oasis1qp49gl3szuate3nzj9hyd8fkwc8erxx0ug6dlxfa",
+      "delegator_uid": "oasis1qp49gl3szuate3nzj9hyd8fkwc8erxx0ug6dlxfa",
+      "shares": 15000000000000
+    },
+    {
+      "validator_uid": "oasis1qpa9gkys5jm6z89nmjm3cvh9g2yhh4zwduw7d3nc",
+      "delegator_uid": "oasis1qpa9gkys5jm6z89nmjm3cvh9g2yhh4zwduw7d3nc",
+      "shares": 30000000000000
+    },
+    {
+      "validator_uid": "oasis1qrcf5mwjyu7hahwfjgwmywhy9cjyaqdd5vkj7ah3",
+      "delegator_uid": "oasis1qrcf5mwjyu7hahwfjgwmywhy9cjyaqdd5vkj7ah3",
+      "shares": 10000000000000
+    },
+    {
+      "validator_uid": "oasis1qqrn3uxnwh4stvc44kmnytna5xajr7y7tgcfrdc7",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qrmeqm709yht440e2ypf672p3h2r3gteyqyn6wcp",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 11000000000000
+    },
+    {
+      "validator_uid": "oasis1qrmeqm709yht440e2ypf672p3h2r3gteyqyn6wcp",
+      "delegator_uid": "oasis1qrssmptkwjde2yt4e6rh5ust83qcnk0qzy4ekych",
+      "shares": 39892960329748
+    },
+    {
+      "validator_uid": "oasis1qqakdkstyz4zv8cuvynu7acktet73y0pju25r4xj",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qql4qwst7a8nhgmj8kdy7c3gzgyjseyphy87f9hc",
+      "delegator_uid": "oasis1qql4qwst7a8nhgmj8kdy7c3gzgyjseyphy87f9hc",
+      "shares": 90000000000000
+    },
+    {
+      "validator_uid": "oasis1qqg0h3mt7klha4w2kxjvsktv5ke6suuwpg8rvpdh",
+      "delegator_uid": "oasis1qqg0h3mt7klha4w2kxjvsktv5ke6suuwpg8rvpdh",
+      "shares": 45000000000000
+    },
+    {
+      "validator_uid": "oasis1qpcemsgyvffy4nl06sfj90pg3wwj8hlmxugv6tef",
+      "delegator_uid": "oasis1qpcemsgyvffy4nl06sfj90pg3wwj8hlmxugv6tef",
+      "shares": 489772248706796
+    },
+    {
+      "validator_uid": "oasis1qr25reya9uzgwyse7kqcxgc0e3wy9gwhvcmtqxje",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qr557dfa9j3qpz9qtmcl4tc7ncstk70ryge4ufx3",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qr02k7jhaequ93tr09yvz3km4wgqsv3epy538ltl",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    },
+    {
+      "validator_uid": "oasis1qr8f322auqtlxa8en25dm3tywr0smz6ntqcks8rp",
+      "delegator_uid": "oasis1qr8f322auqtlxa8en25dm3tywr0smz6ntqcks8rp",
+      "shares": 10000000000000
+    },
+    {
+      "validator_uid": "oasis1qqqn2d63def85zpunzzdfng7wer74r0zrq98uttk",
+      "delegator_uid": "oasis1qzs9gq9qsuju5v78th5v05tnwdxfljy3vsfc3cjy",
+      "shares": 200000000000
+    }
+  ]
+}

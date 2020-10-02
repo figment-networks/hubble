@@ -9,6 +9,9 @@ class Livepeer::Adapters::RoundAdapter < Livepeer::Adapters::BaseAdapter
   has_many :rebonds
 
   has_many :reward_cut_changes, Livepeer::Events::RewardCutChange
+  has_many :missed_reward_calls, Livepeer::Events::MissedRewardCall
+  has_many :deactivations, Livepeer::Events::Deactivation
+  has_many :slashings, Livepeer::Events::Slashing
 
   def initialized_at
     convert_timestamp(data.timestamp)

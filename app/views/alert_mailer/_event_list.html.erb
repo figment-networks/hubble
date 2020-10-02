@@ -14,41 +14,69 @@
         <tr>
           <td width='20%' class='sub events_time'><%= event.timestamp.strftime('%Y-%m-%d<br/>at %H:%M %Z').html_safe %></td>
           <td width='80%' class='events_description'>
-            <% case event.type -%>
-            <% when 'Common::ValidatorEvents::VotingPowerChange' %>
+            <% case event.kind_string -%>
+            <% when 'voting_power_change' %>
               Voting power changed from
               <%= event.from %> &rarr; <%= event.to %>
               (<%= sprintf("%+d", event.delta) %> / <%= sprintf('%+.1f%%', event.percentage_change) %>)
               <p class='sub'>
                 at block
-                <a href='<%= namespaced_path( 'block', event.height, chain: @alertable.chain, full: true ) %>'><%= event.height %></a>
+                <%= link_to event.height, namespaced_path('block', event.height, chain: @alertable.chain, full: true) %>
               </p>
-            <% when 'Common::ValidatorEvents::ActiveSetInclusion' %>
+            <% when 'active_set_inclusion' %>
               <%= event.added? ? 'Added to' : 'Removed from' %>
               active set
               <p class='sub'>
                 at block
-                <a href='<%= namespaced_path( 'block', event.height, chain: @alertable.chain, full: true ) %>'><%= event.height %></a>
+                <%= link_to event.height, namespaced_path('block', event.height, chain: @alertable.chain, full: true) %>
               </p>
-            <% when 'Common::ValidatorEvents::NOfM' %>
+            <% when 'n_of_m' %>
               Missed <%= event.n %> of <%= event.m %> precommits
               <p class='sub'>
                 as of block
-                <a href='<%= namespaced_path( 'block', event.height, chain: @alertable.chain, full: true ) %>'><%= event.height %></a>
+                <%= link_to event.height, namespaced_path('block', event.height, chain: @alertable.chain, full: true) %>
               </p>
-            <% when 'Common::ValidatorEvents::NConsecutive' %>
+            <% when 'n_consecutive' %>
               Missed <%= event.n %> consecutive precommits
               <p class='sub'>
                 as of block
-                <a href='<%= namespaced_path( 'block', event.height, chain: @alertable.chain, full: true ) %>'><%= event.height %></a>
+                <%= link_to event.height, namespaced_path('block', event.height, chain: @alertable.chain, full: true) %>
               </p>
-            <% when 'Livepeer::Events::RewardCutChange' %>
-              Reward cut changed to <%= number_to_percentage(event.reward_cut) %>
+            <% when 'reward_cut_change' %>
+              <% if event.alertable.chain.alertable_type == 'delegator_list' %>
+                Reward cut changed to <%= number_to_percentage(event.reward_cut) %>
+                <p class='sub'>
+                  for orchestrator
+                  <%= link_to namespaced_path('orchestrator', event.orchestrator, chain: @alertable.chain, full: true) do %>
+                    <%= event.orchestrator.name_or_address %>
+                  <% end -%>
+                </p>
+              <% elsif event.alertable.chain.alertable_type == 'validator' %>
+                Commission changed to <%= number_to_percentage(event.to) %>
+                <p class='sub'>
+                  for validator
+                  <%= link_to namespaced_path('validator', event.actor, chain: @alertable.chain, full: true) do %>
+                    <%= event.actor %>
+                  <% end -%>
+                </p>
+              <% end %>
+            <% when 'missed_reward_call' %>
+              Missed reward call
               <p class='sub'>
-                for orchestrator
-                <%= link_to namespaced_path('transcoder', event.transcoder, chain: @alertable.chain, full: true) do %>
-                  <%= event.transcoder.name_or_address %>
-                <% end -%>
+                by orchestrator
+                <%= render partial: 'orchestrator', locals: { event: event } %>
+              </p>
+            <% when 'deactivation' %>
+              Deactivation
+              <p class='sub'>
+                of orchestrator
+                <%= render partial: 'orchestrator', locals: { event: event } %>
+              </p>
+            <% when 'slashing' %>
+              Slashing with penalty <%= number_to_human(event.penalty) %> LPT
+              <p class='sub'>
+                of orchestrator
+                <%= render partial: 'orchestrator', locals: { event: event } %>
               </p>
             <% end -%>
           </td>

@@ -14,11 +14,13 @@ module Indexer
 
     def percent_baked
       return 1.0 if total_rights == 0
+
       blocks_baked / total_rights.to_f
     end
 
     def percent_missed
       return 0.0 if total_rights == 0
+
       blocks_missed / total_rights.to_f
     end
   end

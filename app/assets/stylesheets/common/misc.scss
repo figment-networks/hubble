@@ -123,3 +123,10 @@ $box-shadow: 0px 5px 15px 3px #F2F2F2;
 .fa.fa-huge {
   font-size: 3rem;
 }
+
+.text-empty {
+  @extend .text-muted;
+  @extend .text-center;
+
+  padding: 20px;
+}

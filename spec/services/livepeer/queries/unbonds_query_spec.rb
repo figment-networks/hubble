@@ -1,12 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Livepeer::Queries::UnbondsQuery, livepeer: :factory do
+  subject { described_class.new(delegator_list, params) }
+
   include_context 'Livepeer delegator unbonds'
 
   let(:delegator_list) { create_delegator_list(chains[0], delegators) }
   let(:params) { {} }
-
-  subject { described_class.new(delegator_list, params) }
 
   it 'returns unbonds grouped by delegator' do
     results = subject.call
