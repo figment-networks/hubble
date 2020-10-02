@@ -1,0 +1,37 @@
+<% content_for :body_class, 'chain-show' %>
+
+<% content_for :chain_header do %>
+  <%= link_to "Transaction Search", coda_chain_transactions_path(@chain), class: "ml1 btn btn-primary" %>
+<% end %>
+
+<%= render "chain_status", status: @status %>
+<%= render "chain_header" %>
+<%= render_flash_messages %>
+
+<div class='row info-cards'>
+  <div class='col-12 col-md-9 order-1 order-md-0'>
+    <%= render "coda/chains/show/validators",
+      validators:          @validators,
+      validator_intervals: @block_stats.validators_chart_data,
+      validator_pool:      @pool
+    %>
+  </div>
+  <div class='col-12 col-md-3 order-0 order-md-1 info-cards'>
+    <%= render "coda/chains/show/block",
+      chain: @chain,
+      block: @block
+    %>
+
+    <%= render "coda/chains/show/block_times",
+      block_times:     @block_times,
+      block_intervals: @block_stats.blocks_chart_data
+    %>
+
+    <%= render "coda/chains/show/pool",
+      block:          @block,
+      validator_pool: @pool
+    %>
+
+    <%= render "coda/chains/show/transactions", stats: @tx_stats %>
+  </div>
+</div>

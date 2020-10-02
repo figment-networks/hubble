@@ -1,7 +1,7 @@
 class Cosmoslike::GovernanceParamsDecorator
   ONE_DAY_IN_NANOSECONDS = (1.day.to_i * 1000 * 1000 * 1000).to_f
 
-  def initialize( json )
+  def initialize(json)
     @payload = json
   end
 

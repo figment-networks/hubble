@@ -37,7 +37,7 @@ module Indexer
     end
 
     def quorum_percent
-      self.quorum.to_f / 100
+      quorum.to_f / 100
     end
   end
 end

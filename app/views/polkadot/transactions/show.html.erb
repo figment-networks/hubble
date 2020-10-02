@@ -37,6 +37,10 @@
         <% end -%>
       <% end %>
 
+      <%= render layout: 'shared/sidebar_card', locals: { header: 'Fees' } do %>
+        <%= format_amount(@transaction.fee, @chain, denom: @chain.class::DEFAULT_TOKEN_REMOTE) %>
+      <% end %>
+
       <%= render layout: 'shared/sidebar_card', locals: { header: 'Raw JSON' } do %>
         <%= link_to 'View', namespaced_path('block_transaction', params[:block_id], @transaction.hash, format: 'json'),
             target: '_blank', class: 'btn btn-outline-secondary btn-sm' %>

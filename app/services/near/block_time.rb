@@ -1,11 +1,11 @@
 module Near
   class BlockTime < Common::Resource
-    attr_accessor :start_height,
-                  :end_height,
-                  :start_time,
-                  :end_time,
-                  :count,
-                  :diff,
-                  :avg
+    field :start_height
+    field :end_height
+    field :start_time
+    field :end_time
+    field :count
+    field :diff
+    field :avg
   end
 end

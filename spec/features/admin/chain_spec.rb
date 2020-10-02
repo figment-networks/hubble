@@ -1,12 +1,12 @@
 require 'features_helper'
 
-feature 'Admin page' do
+describe 'Admin page' do
   let!(:admin) { create(:admin) }
 
-  scenario 'signing in an adding a Polkadot chain', :vcr do
-    visit "/admin"
+  it 'signing in an adding a Polkadot chain', :vcr do
+    visit '/admin'
 
-    expect(page).to have_content("Login")
+    expect(page).to have_content('Login')
 
     fill_in 'email', with: admin.email
     fill_in 'password', with: admin.password
@@ -22,7 +22,7 @@ feature 'Admin page' do
 
     fill_in 'polkadot_chain_name', with: 'Polkadot test name'
     fill_in 'polkadot_chain_slug', with: 'test-slug'
-    fill_in 'polkadot_chain_api_url', with: 'https://localhost:1111/polkadot'
+    fill_in 'polkadot_chain_api_url', with: 'https://127.0.0.1/polkadot'
 
     click_button 'Create Chain'
 

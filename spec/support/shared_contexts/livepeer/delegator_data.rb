@@ -32,7 +32,7 @@ shared_context 'Livepeer delegator data' do
   let!(:rebond_rounds) do
     [
       create_round_relative_to(unbond_rounds[1], interval: 5),
-      create_round_relative_to(rounds[1], interval: 3),
+      create_round_relative_to(rounds[1], interval: 3)
     ]
   end
 

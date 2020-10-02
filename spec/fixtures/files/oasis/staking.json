@@ -1,0 +1,6 @@
+{
+  "total_supply": 10000000000000000000,
+  "common_pool": 8488268129209746000,
+  "debonding_interval": 336,
+  "min_delegation_amount": 100000000000
+}

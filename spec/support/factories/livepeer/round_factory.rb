@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :livepeer_round, class: Livepeer::Round do
+  factory :livepeer_round, class: 'Livepeer::Round' do
     chain { create(:livepeer_chain) }
 
     sequence(:number, 1000)

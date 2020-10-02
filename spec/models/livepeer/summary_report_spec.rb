@@ -1,12 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Livepeer::SummaryReport, livepeer: :factory do
+  subject { described_class.new(delegator_list, params) }
+
   include_context 'Livepeer delegator data'
 
   let(:delegator_list) { create_delegator_list(chain, delegators) }
   let(:params) { {} }
-
-  subject { described_class.new(delegator_list, params) }
 
   it 'returns the report data' do
     results = subject.data

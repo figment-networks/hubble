@@ -1,6 +1,6 @@
 require 'features_helper'
 
-feature 'oasis blocks' do
+describe 'oasis blocks' do
   let!(:chain) { create(:oasis_chain, api_url: 'https://localhost:1111') }
   let(:block_id) { 1234 }
 

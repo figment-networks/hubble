@@ -6,36 +6,40 @@ class Tezos::VotingPeriodTallyDecorator
     @votes = votes
   end
 
-  %i{ yay nay pass }.each do |opt|
+  %i[yay nay pass].each do |opt|
     define_method :"progress_#{opt}" do
       return 0 if no_votes?
+
       progress = send(:"raw_#{opt}").to_f / total_rolls.to_f
       round_if_whole(progress * 100, 2)
     end
 
     define_method :"raw_#{opt}" do
       return 0 if no_votes?
+
       filtered_votes = @votes.select { |v| v.vote.to_s == opt.to_s }
       filtered_votes.sum { |v| v.rolls }
     end
 
     define_method :"#{opt}_voters" do
       return 0 if no_votes?
+
       filtered_votes = @votes.select { |v| v.vote.to_s == opt.to_s }
       filtered_votes.count
     end
 
     define_method :"percent_#{opt}" do
       return 0 if no_votes?
+
       round_if_whole((send(:"raw_#{opt}").to_f / cumulative_voting_power.to_f) * 100, 2)
     end
   end
 
-
   def percent_didntvote
     round_if_whole(((total_rolls.to_f - cumulative_voting_power.to_f) / total_rolls) * 100, 2)
   end
-  def percent_voted( precision=2 )
+
+  def percent_voted(precision = 2)
     round_if_whole((cumulative_voting_power.to_f / total_rolls.to_f) * 100, precision)
   end
 

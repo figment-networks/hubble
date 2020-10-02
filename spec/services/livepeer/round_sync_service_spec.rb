@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Livepeer::RoundSyncService, livepeer: :graph do
+  subject { described_class.new(chain, data) }
+
   let(:chain) { create(:livepeer_chain) }
 
   let(:data) do
@@ -31,14 +33,15 @@ RSpec.describe Livepeer::RoundSyncService, livepeer: :graph do
     )
   end
 
-  subject { described_class.new(chain, data) }
-
   before do
-    stub_graph_query(Livepeer::Queries::Graph::StakesQuery, :stakes)
-    stub_graph_query(Livepeer::Queries::Graph::BondsQuery, :bonds)
-    stub_graph_query(Livepeer::Queries::Graph::UnbondsQuery, :unbonds)
-    stub_graph_query(Livepeer::Queries::Graph::RebondsQuery, :rebonds)
-    stub_graph_query(Livepeer::Queries::Graph::RewardCutChangesQuery, :reward_cut_changes)
+    stub_graph_query(Livepeer::Queries::Graph::StakesQuery)
+    stub_graph_query(Livepeer::Queries::Graph::BondsQuery)
+    stub_graph_query(Livepeer::Queries::Graph::UnbondsQuery)
+    stub_graph_query(Livepeer::Queries::Graph::RebondsQuery)
+    stub_graph_query(Livepeer::Queries::Graph::RewardCutChangesQuery)
+    stub_graph_query(Livepeer::Queries::Graph::MissedRewardCallsQuery)
+    stub_graph_query(Livepeer::Queries::Graph::DeactivationsQuery)
+    stub_graph_query(Livepeer::Queries::Graph::SlashingsQuery)
   end
 
   context 'without an existing round' do
@@ -53,7 +56,7 @@ RSpec.describe Livepeer::RoundSyncService, livepeer: :graph do
 
       expect(round.pools.count).to eq(1)
 
-      expect(round.pools[0].transcoder_address).to eq(data.pools[0].delegate.id)
+      expect(round.pools[0].orchestrator_address).to eq(data.pools[0].delegate.id)
       expect(round.pools[0].total_stake).to eq(BigDecimal('11933.023249176231660924'))
       expect(round.pools[0].fees).to eq(nil)
       expect(round.pools[0].reward_tokens).to eq(BigDecimal('16.761700430411974790'))
@@ -70,6 +73,9 @@ RSpec.describe Livepeer::RoundSyncService, livepeer: :graph do
       expect(round.rebonds.count).to eq(2)
 
       expect(round.reward_cut_changes.count).to eq(2)
+      expect(round.missed_reward_calls.count).to eq(2)
+      expect(round.deactivations.count).to eq(2)
+      expect(round.slashings.count).to eq(2)
     end
   end
 
@@ -99,6 +105,9 @@ RSpec.describe Livepeer::RoundSyncService, livepeer: :graph do
       expect(round.rebonds).to be_empty
 
       expect(round.reward_cut_changes).to be_empty
+      expect(round.missed_reward_calls).to be_empty
+      expect(round.deactivations).to be_empty
+      expect(round.slashings).to be_empty
     end
   end
 end

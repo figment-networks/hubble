@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :livepeer_chain, class: Livepeer::Chain do
+  factory :livepeer_chain, class: 'Livepeer::Chain' do
     name { 'Mainnet' }
     sequence(:slug) { |n| "livepeer-#{n}" }
     subgraph_url { 'http://subgraph_url' }

@@ -1,9 +1,9 @@
 class Polkadot::Chain < ApplicationRecord
-  ASSET = "polkadot"
+  ASSET = 'polkadot'.freeze
 
   # TODO: Replace KSM with DOTs when we switch from Kusama to Polkadot
-  DEFAULT_TOKEN_DISPLAY = 'KSM'
-  DEFAULT_TOKEN_REMOTE = 'ksm'
+  DEFAULT_TOKEN_DISPLAY = 'KSM'.freeze
+  DEFAULT_TOKEN_REMOTE = 'ksm'.freeze
   DEFAULT_TOKEN_FACTOR = 12
 
   validates :name, presence: true
@@ -11,12 +11,13 @@ class Polkadot::Chain < ApplicationRecord
   validates :api_url, presence: true
 
   delegate :status, to: :client
-  scope :primary, -> { find_by( primary: true ) || order('created_at DESC').first }
+  scope :primary, -> { find_by(primary: true) || order('created_at DESC').first }
+  scope :enabled, -> { where(disabled: false) }
 
   # TODO: validate - ensure there's only single primary chain, or fix in admin create controller
 
   def network_name
-    "Polkadot"
+    'Polkadot'
   end
 
   def to_param
@@ -44,5 +45,9 @@ class Polkadot::Chain < ApplicationRecord
 
   def status
     @client_status ||= client.status
+  end
+
+  def last_sync_time
+    @last_sync_time ||= status.last_indexed_time
   end
 end

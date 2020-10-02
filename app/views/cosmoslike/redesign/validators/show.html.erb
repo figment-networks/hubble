@@ -7,10 +7,10 @@
         <div class='d-flex align-items-center flex-wrap'>
           <% if @validator.has_info? %>
             <h2 class='validator-header__title'><%= @validator.moniker.truncate(40, separator: '...') %></h2>
-            <% if @validator.info_field( 'description', 'website' ) && (url = Addressable::URI.heuristic_parse(@validator.info_field( 'description', 'website' )).to_s rescue nil) %>
+            <% if @validator.info_field( 'description', 'website' ) && (url = heuristic_url(@validator.info_field( 'description', 'website' ))) %>
               <%= link_to url, class: "external-link" do %>
                 <%= url %>&nbsp;&nbsp;<span class='fas fa-external-link-alt'></span>
-              <% end -%>  
+              <% end -%>
             <% end -%>
           <% end -%>
         </div>
@@ -41,7 +41,7 @@
         </ul>
       </div>
     </div>
-    
+
   </div>
 </div>
 

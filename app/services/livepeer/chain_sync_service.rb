@@ -6,7 +6,7 @@ class Livepeer::ChainSyncService
   def call
     Livepeer::Chain.transaction do
       synchronize(:rounds)
-      synchronize(:transcoders, delete: true)
+      synchronize(:orchestrators, delete: true)
       synchronize(:delegators, delete: true)
 
       update_local_height

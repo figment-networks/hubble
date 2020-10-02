@@ -24,7 +24,7 @@ class Tezos::PropPeriodTallyDecorator
     @period.total_rolls
   end
 
-  def percent_voted( precision=2 )
+  def percent_voted(precision = 2)
     round_if_whole((@votes.count.to_f / @period.total_voters.to_f) * 100, precision)
   end
 end

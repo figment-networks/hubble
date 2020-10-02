@@ -2,28 +2,28 @@ module TezosHelper
   include Pagy::Frontend
 
   def event_icon(type)
-     case type
-     when "missed_bake" then "fa-bread-slice"
-     when "steal" then "fa-mask"
-     when "missed_endorsement" then "fa-check-double"
-     when "double_bake" then "fa-exclamation"
-     when "double_endorsement" then "fa-exclamation"
-     end
+    case type
+    when 'missed_bake' then 'fa-bread-slice'
+    when 'steal' then 'fa-mask'
+    when 'missed_endorsement' then 'fa-check-double'
+    when 'double_bake' then 'fa-exclamation'
+    when 'double_endorsement' then 'fa-exclamation'
+    end
   end
 
-  def tezos_chain_path(*args)
+  def tezos_chain_path(*_args)
     tezos_root_path
   end
 
-  def search_tezos_chain_path(*args)
+  def search_tezos_chain_path(*_args)
     tezos_root_path
   end
 
-  def tezos_chain_dashboard_path(*args)
+  def tezos_chain_dashboard_path(*_args)
     tezos_root_path
   end
 
-  def tezos_proposal_status_string( proposal, period, votes )
+  def tezos_proposal_status_string(proposal, period, votes)
     if proposal.status == 'promoted'
       return 'Proposal successfully promoted.'
     elsif proposal.status == 'rejected'
@@ -46,13 +46,14 @@ module TezosHelper
       end
       return string
     else
-      # see if prop is leading proposal period voting?
       return 'In proposal period voting.'
     end
   end
 
   def tezos_proposal_period_progress_percentage(period)
-    percent = [1] << ((DateTime.now.to_f - period.period_start_time.to_f) / (period.end_time_approximation.to_f - period.period_start_time.to_f))
+    start = DateTime.parse(period.period_start_time).to_f
+    end_time = DateTime.parse(period.end_time_approximation).to_f
+    percent = [1] << ((DateTime.now.to_f - start) / (end_time - start))
     return percent.min
   end
 end

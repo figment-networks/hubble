@@ -1,5 +1,5 @@
 class Kava::SyncBase < Cosmoslike::SyncBase
-  def get_validator_set( height )
+  def get_validator_set(height)
     # tendermint 0.33+ paginates /validators
     # but doesn't say how many pages or anything. so fine, we just
     # go ahead and keep asking for pages until there's no more results.
@@ -9,8 +9,8 @@ class Kava::SyncBase < Cosmoslike::SyncBase
     validators = []
     page = 1
 
-    while true
-      r = rpc_get( 'validators', height: height, page: page, per_page: 100 )
+    loop do
+      r = rpc_get('validators', height: height, page: page, per_page: 100)
 
       if r.has_key?('result')
         new_validators = r['result']['validators']
@@ -27,7 +27,7 @@ class Kava::SyncBase < Cosmoslike::SyncBase
         break
 
       else
-        raise RuntimeError.new("Could not retrieve validator set at height #{height}. #{r}")
+        raise "Could not retrieve validator set at height #{height}. #{r}"
 
       end
     end

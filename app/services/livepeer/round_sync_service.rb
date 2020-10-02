@@ -10,7 +10,10 @@ class Livepeer::RoundSyncService < Livepeer::BaseSyncService
       bonds: fetch_objects(:bonds),
       unbonds: fetch_objects(:unbonds),
       rebonds: fetch_objects(:rebonds),
-      reward_cut_changes: fetch_objects(:reward_cut_changes)
+      reward_cut_changes: fetch_objects(:reward_cut_changes),
+      missed_reward_calls: fetch_objects(:missed_reward_calls),
+      deactivations: fetch_objects(:deactivations),
+      slashings: fetch_objects(:slashings)
     )
   end
 

@@ -1,4 +1,4 @@
-require "indexer/resources/baker"
+require 'indexer/resources/baker'
 
 module Tezos
   class Search

@@ -13,7 +13,7 @@ module LivepeerHelper
   end
 
   def livepeer_lpt_amount(value)
-    livepeer_amount(value, 'LPT')
+    livepeer_amount(value, Livepeer::Chain::DEFAULT_TOKEN_DISPLAY)
   end
 
   def livepeer_eth_amount(value)

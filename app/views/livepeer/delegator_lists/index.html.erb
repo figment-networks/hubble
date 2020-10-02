@@ -9,8 +9,8 @@
       <div class='delegator-lists-table-header'>
         <h4>Delegator Lists</h4>
         <%= link_to namespaced_path('delegator_list', pre_path: 'new'), class: 'btn btn-sm btn-outline-light' do %>
-          <span class='fas fa-plus'/>
-        <% end %>
+          <span class='fas fa-plus'></span>
+        <% end -%>
       </div>
       <div class='delegator-lists-table'>
         <table>
@@ -38,20 +38,20 @@
                 </td>
                 <td class='text-right'>
                   <%= link_to namespaced_path('delegator_list_report', delegator_list, pre_path: 'new'), class: 'btn btn-outline-primary btn-sm' do %>
-                    <span class='fas fa-file'/>
-                  <% end %>
+                    <span class='fas fa-file'></span>
+                  <% end -%>
                   <%= link_to namespaced_path('delegator_list_events', delegator_list), class: 'btn btn-outline-primary btn-sm' do %>
-                    <span class='fas fa-clock'/>
-                  <% end %>
+                    <span class='fas fa-clock'></span>
+                  <% end -%>
                   <%= link_to namespaced_path('delegator_list_subscriptions', delegator_list), class: 'btn btn-outline-primary btn-sm' do %>
-                    <span class='fas fa-bell'/>
-                  <% end %>
-                  <%= link_to namespaced_path('delegator_list', delegator_list, pre_path: 'edit') ,class: 'btn btn-outline-primary btn-sm' do %>
-                    <span class='fas fa-pen'/>
-                  <% end %>
-                  <%= link_to namespaced_path('delegator_list', delegator_list), class: 'btn btn-outline-primary btn-sm', data: { method:'delete', confirm:'Are you sure?' } do %>
-                    <span class='fas fa-trash'/>
-                  <% end %>
+                    <span class='fas fa-bell'></span>
+                  <% end -%>
+                  <%= link_to namespaced_path('delegator_list', delegator_list, pre_path: 'edit'), class: 'btn btn-outline-primary btn-sm' do %>
+                    <span class='fas fa-pen'></span>
+                  <% end -%>
+                  <%= link_to namespaced_path('delegator_list', delegator_list), data: { method: :delete, confirm: 'Are you sure?' }, class: 'btn btn-outline-primary btn-sm' do %>
+                    <span class='fas fa-trash'></span>
+                  <% end -%>
                 </td>
               </tr>
             <% end %>

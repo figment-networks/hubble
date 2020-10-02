@@ -1,17 +1,17 @@
-BASE_PATH = '/hubble/app'
+BASE_PATH = '/home/hubble/app'.freeze
 CURRENT = File.join(BASE_PATH, 'current')
 
-run_task = "NO_PROGRESS=1 LIMIT_NEW_BLOCKS=250 /usr/bin/nice -n 10 bin/rake :task --silent :output"
+run_task = 'NO_PROGRESS=1 LIMIT_NEW_BLOCKS=250 /usr/bin/nice -n 10 bin/rake :task --silent :output'
 abort_task = 'echo "Not running, release is old."'
 
-def log_path( name )
-  File.join( BASE_PATH, 'shared/log', name+'.log' )
+def log_path(name)
+  File.join(BASE_PATH, 'shared/log', name + '.log')
 end
 
 job_type :rake, [
   'cd :path', 'source ~/.env',
   %{ [ $(pwd) = $(readlink "#{CURRENT}") ] && #{run_task} || #{abort_task} }
-].join( ' && ' )
+].join(' && ')
 
 every '* * * * *' do
   rake 'sync:cosmos', output: log_path('cosmos-sync')
@@ -39,4 +39,8 @@ every '0 0 * * *' do
   rake 'network_data:iris'
   rake 'network_data:kava'
   rake 'network_data:emoney'
+end
+
+every '0 * * * *' do
+  rake 'health:check_chains'
 end

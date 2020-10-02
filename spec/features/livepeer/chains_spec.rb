@@ -1,12 +1,12 @@
 require 'features_helper'
 
-feature 'Livepeer Chains' do
+describe 'Livepeer Chains' do
   let!(:chain) { create(:livepeer_chain) }
   let!(:round) { create(:livepeer_round, chain: chain) }
 
-  let!(:transcoder) do
+  let!(:orchestrator) do
     create(
-      :livepeer_transcoder,
+      :livepeer_orchestrator,
       chain: chain,
       address: '0xfbddd6add2fde17677875a751695dcb00915f57c',
       reward_cut: 20,
@@ -14,7 +14,7 @@ feature 'Livepeer Chains' do
     )
   end
 
-  scenario 'visiting the chain overview page', :vcr do
+  it 'visiting the chain overview page', :vcr do
     visit '/'
 
     find("a[href='/livepeer/chains/#{chain.slug}']").click
@@ -27,10 +27,10 @@ feature 'Livepeer Chains' do
     expect(page).to have_content('20%')
     expect(page).to have_content('80%')
 
-    expect(page).to have_content("Current Round")
+    expect(page).to have_content('Current Round')
     expect(page).to have_content(round.number + 1)
 
-    expect(page).to have_content("Latest Round")
+    expect(page).to have_content('Latest Round')
     expect(page).to have_content(round.number)
   end
 end

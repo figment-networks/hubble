@@ -1,6 +1,7 @@
 <% content_for :body_class, 'chain-show' %>
 
 <%= render partial: '/polkadot/shared/chain_header', locals: { summary_link: true } %>
+<%= render_flash_messages %>
 
 <div class='row info-cards'>
   <div class='col-12 col-md-9 order-1 order-md-0'>
@@ -11,9 +12,9 @@
     <div class='card'>
       <h5 class='card-header'>Current Block</h5>
       <div class='card-body'>
-        <a class='large-number' href='<%= polkadot_chain_block_path(@chain.slug, @height) %>'>
+        <%= link_to polkadot_chain_block_path(@chain.slug, @height), class: 'large-number' do %>
           <span class='technical'><%= @height %></span>
-        </a>
+        <% end %>
         <div class='sub-info'>
           <small class='text-muted technical'><%= @latest_block_time.strftime('%Y-%m-%d %H:%M %Z') %></small>
           <small class='text-muted'><%= time_ago_in_words(@latest_block_time, true) %> ago</small>
@@ -21,6 +22,6 @@
       </div>
     </div>
 
-    <%= render partial: 'validator_daily_stake', locals: { validator_daily_stake: @validator_daily_stake, chain: @chain } %>
+    <%= render partial: 'validators_daily_stake', locals: { validators_daily_stake: @validators_daily_stake, chain: @chain } %>
   </div>
 </div>

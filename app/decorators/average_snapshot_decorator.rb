@@ -1,7 +1,7 @@
 class AverageSnapshotDecorator
   include FormattingHelper
 
-  def initialize( chain, kind, interval, datapoints=nil, scope=nil )
+  def initialize(chain, kind, interval, datapoints = nil, scope = nil)
     @chain = chain
     @interval = interval
     @kind = kind
@@ -9,17 +9,17 @@ class AverageSnapshotDecorator
     @datapoints = datapoints
   end
 
-  def as_json( with_todays_average: false, with_days_as_hours: 0, override_current_time_value: nil )
+  def as_json(with_todays_average: false, with_days_as_hours: 0, override_current_time_value: nil)
     # Rails.logger.debug "Retreiving #{@datapoints||'all'} datapoints for #{@kind}/#{@interval} for #{@scope.inspect}"
-    q = @chain.average_snapshots
-      .where( { kind: @kind, interval: @interval, scopeable: @scope }.compact )
+    q = @chain.average_snapshots.
+      where({ kind: @kind, interval: @interval, scopeable: @scope }.compact)
 
     if with_days_as_hours > 0
-      q = q.where( 'timestamp < ?', with_days_as_hours.days.ago )
+      q = q.where('timestamp < ?', with_days_as_hours.days.ago)
     end
 
     if @datapoints
-      q = q.limit( @datapoints )
+      q = q.limit(@datapoints)
     end
 
     data = q.reverse_each.map do |snapshot|
@@ -28,10 +28,10 @@ class AverageSnapshotDecorator
 
     if with_todays_average
       today = Time.now.utc
-      q = @chain.average_snapshots
-        .where( { kind: @kind, interval: 'hour', scopeable: @scope }.compact )
-        .where( 'timestamp >= ? AND timestamp <= ?', today.beginning_of_day, today.end_of_day )
-        .to_a
+      q = @chain.average_snapshots.
+        where({ kind: @kind, interval: 'hour', scopeable: @scope }.compact).
+        where('timestamp >= ? AND timestamp <= ?', today.beginning_of_day, today.end_of_day).
+        to_a
 
       if q.any?
         total = 0
@@ -45,10 +45,10 @@ class AverageSnapshotDecorator
     end
 
     if with_days_as_hours > 0
-      q = @chain.average_snapshots
-        .where( { kind: @kind, interval: 'hour', scopeable: @scope }.compact )
-        .where( 'timestamp >= ?', with_days_as_hours.days.ago )
-        .to_a
+      q = @chain.average_snapshots.
+        where({ kind: @kind, interval: 'hour', scopeable: @scope }.compact).
+        where('timestamp >= ?', with_days_as_hours.days.ago).
+        to_a
       q.reverse_each do |snapshot|
         data << { t: snapshot.timestamp.iso8601, y: snapshot.average.to_f }
       end
@@ -65,5 +65,4 @@ class AverageSnapshotDecorator
 
     data
   end
-
 end

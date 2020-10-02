@@ -226,7 +226,7 @@
         <% end -%>
         <% if !@chain.notes.blank? -%>
           <label class='mt-3 mb-0 text-sm text-muted d-block'>Current:</label>
-          <%= Redcarpet::Markdown.new(Redcarpet::Render::HTML).render(@chain.notes).html_safe %>
+          <%= render_markdown(@chain.notes) %>
         <% end -%>
       </td>
     </tr>

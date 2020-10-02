@@ -1,6 +1,6 @@
 <header class='network-chain-header'>
   <h1>
-    <a class='secret-link' href='<%= namespaced_path %>'>
+    <%= link_to namespaced_path, class: 'secret-link' do %>
       <%= @chain.network_name %>
       <% if @chain -%>
         <small class='chain-info text-muted'>
@@ -12,27 +12,27 @@
           <% end -%>
         </small>
       <% end -%>
-    </a>
+    <% end -%>
   </h1>
 
   <div class='buttons ml-auto'>
     <% if current_admin -%>
-      <a class='ml-1 btn btn-info' href='<%= namespaced_path(admin: true) %>'>
+      <%= link_to namespaced_path(admin: true), class: 'ml-1 btn btn-info' do %>
         <span class='d-none d-md-inline'>Admin</span>
         <span class='d-inline d-md-none fa fa-crown'></span>
-      </a>
+      <% end -%>
     <% end -%>
     <% if defined?(events_link) -%>
       <%= link_to 'Events', namespaced_path('events'), class: 'ml-1 btn btn-outline-primary' %>
     <% end -%>
     <% if defined?(delegator_lists_link) -%>
-       <%= link_to 'Delegator Lists', namespaced_path('delegator_lists'), class: 'ml-1 btn btn-outline-primary' %>
+      <%= link_to 'Delegator Lists', namespaced_path('delegator_lists'), class: 'ml-1 btn btn-outline-primary' %>
     <% end -%>
     <% if defined?(summary_link) -%>
       <%= link_to namespaced_path, class: 'ml-1 btn btn-outline-secondary' do %>
         <span class='d-none d-md-inline'>Summary</span>
         <span class='d-inline d-md-none fa fa-arrow-circle-up'></span>
-      <% end %>
+      <% end -%>
     <% end -%>
     <div class='ml-1 tooltip-target info-tooltip-target' data-toggle='tooltip' title='<%= chain_header_tooltip_info %>'>
       <span class='fas fa-info'></span>
@@ -43,6 +43,6 @@
 <% if @chain.notes.present? -%>
   <div class='alert alert-info chain-notes d-flex align-items-center'>
     <span class='fas fa-fw fa-info-circle mr-2'></span>
-    <%= Redcarpet::Markdown.new(Redcarpet::Render::HTML).render(@chain.notes).html_safe %>
+    <%= render_markdown(@chain.notes) %>
   </div>
 <% end -%>

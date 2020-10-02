@@ -4,138 +4,141 @@
 <%= render partial: '/oasis/shared/chain_header' %>
 <%= render partial: '/oasis/shared/sync_errors' %>
 
+<% if @error %>
+  <%= render partial: 'shared/display_error' %>
+<% else %>
+  <div class='row info-cards'>
+    <div class='col-12 col-md-9 order-1 order-md-0'>
+      <section class='validators'>
+        <div class='validator-table-header'>
+          <h4>
+            Validators
+            <small>&nbsp;&mdash; <%= @validators.count %> total&nbsp;</small>
+          </h4>
 
-<div class='row info-cards'>
-  <div class='col-12 col-md-9 order-1 order-md-0'>
-    <section class='validators'>
-      <div class='validator-table-header'>
-        <h4>
-          Validators
-          <small>&nbsp;&mdash; <%= @validators.count %> total&nbsp;</small>
-        </h4>
+          <div class='controls'>
+            <input type='text' class='form-control form-control-sm validator-search' placeholder='filter validators...'>
+            <a tabindex=0 class='btn btn-sm btn-outline-light validator-table-settings-target'><span class='fas fa-cog'></span></a>
+            <div class='validator-table-settings d-none'>
+              <div class='btn-group' role='group' aria-label='Validator table filter'>
+                <button type='button' data-target='_all_' class='btn btn-outline-primary'>All</button>
+                <button type='button' data-target='_active_' class='btn btn-outline-primary'>Active</button>
+                <button type='button' data-target='_inactive_' class='btn btn-outline-primary'>Inactive</button>
+              </div>
+            </div>
+            <script>
+              App.config.currentValidatorFilter = '_all_'
+            </script>
+          </div>
+        </div>
 
-        <div class='controls'>
-          <input type='text' class='form-control form-control-sm validator-search' placeholder='filter validators...'>
-          <a tabindex=0 class='btn btn-sm btn-outline-light validator-table-settings-target'><span class='fas fa-cog'></span></a>
-          <div class='validator-table-settings d-none'>
-            <div class='btn-group' role='group' aria-label='Validator table filter'>
-              <button type='button' data-target='_all_' class='btn btn-outline-primary'>All</button>
-              <button type='button' data-target='_active_' class='btn btn-outline-primary'>Active</button>
-              <button type='button' data-target='_inactive_' class='btn btn-outline-primary'>Inactive</button>
+        <div class='validator-table'>
+          <table>
+            <thead>
+              <tr>
+                <th>Address/Name</th>
+                <th>Voting Power</th>
+                <th>Voting Power %</th>
+                <th>Uptime</th>
+                <th class='d-none'></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @validators.each do |v| -%>
+                <tr>
+                  <td data-order='<%= v.address %>'>
+                    <a href='<%= oasis_chain_validator_path( @chain.slug, v.address ) %>'>
+                      <strong><%= v.short_name %></strong>
+                    </a>
+                  </td>
+                  <td data-order='<%= v.recent_active_escrow_balance %>'><%= format_amount(v.recent_active_escrow_balance, denom: 'noasis') %></td>
+                  <td data-order='<%= v.recent_active_escrow_balance %>'><%= voting_power_percent(v.recent_active_escrow_balance, @voting_power) %>%</td>
+                  <td data-order='<%= v.uptime %>' class='technical'><%= round_if_whole(v.uptime * 100, 2) %>%</td>
+                  <td class='d-none'>
+                    _all_ <%= v.active? ? '_active_' : '_inactive_' %> <!-- for the gear toggles -->
+                    <%= v.entity_uid %> <!-- so you can paste your address into search -->
+                  </td>
+                </tr>
+              <% end -%>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+    <div class='col-12 col-md-3 order-0 order-md-1 info-cards'>
+      <div class='card'>
+        <h5 class='card-header'>Current Block</h5>
+        <div class='card-body'>
+            <a class='large-number' href='<%= oasis_chain_block_path( @chain.slug, @height ) %>'>
+              <span class='technical'><%= @height %></span>
+            </a>
+          <div class='sub-info'>
+            <small class='text-muted technical'><%= @latest_block.time.strftime('%Y-%m-%d %H:%M %Z') %></small>
+            <small class='text-muted'><%= time_ago_in_words( @latest_block.time, true ) %> ago</small>
+          </div>
+        </div>
+      </div>
+
+      <% if @common_pool -%>
+        <div class='card'>
+          <h5 class='card-header'>Common Pool</h5>
+          <div class='card-body'>
+            <div><%= format_amount(@common_pool, denom: 'noasis') %></div>
+          </div>
+        </div>
+      <% end -%>
+
+      <div class='card'>
+        <h5 class='card-header'>Voting Power</h5>
+        <div class='card-body'>
+          <div class='mb-3'>
+            <label class='d-inline'>Currently Online:</label>
+            <div class='stat-value d-inline'>
+              <span class='technical'><%= oasis_chain_voting_power_online_percentage(@latest_block.height) %>%</span>
             </div>
           </div>
+
+          <div class='validator-sparkline-switcher btn-group btn-group-sm'>
+            <button type='button' data-target='last48h' class='btn btn-outline-secondary'>Past 48h</button>
+            <button type='button' data-target='last30d' class='btn btn-outline-secondary'>Past 30d</button>
+          </div>
+
+          <div class='charts'>
+            <div class='small-average-voting-power-last48h-chart-container'>
+              <canvas class='average-voting-power-last48h-chart'></canvas>
+            </div>
+            <div class='small-average-voting-power-last30d-chart-container'>
+              <canvas class='average-voting-power-last30d-chart'></canvas>
+            </div>
+          </div>
+
           <script>
-            App.config.currentValidatorFilter = '_all_'
+            App.seed.AVERAGE_VOTING_POWER = {
+              last48h: <%= Oasis::AverageSnapshotDecorator.new(@chain, 'voting-power', 'hour', '48 hours').as_json.to_json.html_safe %>,
+              last30d: <%= Oasis::AverageSnapshotDecorator.new(@chain, 'voting-power', 'day', '30 days').as_json.to_json.html_safe %>
+            }
           </script>
         </div>
       </div>
-
-      <div class='validator-table'>
-        <table>
-          <thead>
-            <tr>
-              <th>Address/Name</th>
-              <th>Voting Power</th>
-              <th>Voting Power %</th>
-              <th>Uptime</th>
-              <th class='d-none'></th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @validators.each do |v| -%>
-              <tr>
-                <td data-order='<%= v.address %>'>
-                  <a href='<%= oasis_chain_validator_path( @chain.slug, v.address ) %>'>
-                    <strong><%= v.address.truncate(30) %></strong>
-                  </a>
-                </td>
-                <td data-order='<%= v.recent_active_escrow_balance %>'><%= format_amount(v.recent_active_escrow_balance, denom: 'noasis') %></td>
-                <td data-order='<%= v.recent_active_escrow_balance %>'><%= voting_power_percent(v.recent_active_escrow_balance, @voting_power) %>%</td>
-                <td data-order='<%= v.uptime %>' class='technical'><%= round_if_whole(v.uptime * 100, 2) %>%</td>
-                <td class='d-none'>
-                  _all_ <%= v.active? ? '_active_' : '_inactive_' %> <!-- for the gear toggles -->
-                  <%= v.entity_uid %> <!-- so you can paste your address into search -->
-                </td>
-              </tr>
-            <% end -%>
-          </tbody>
-        </table>
-      </div>
-    </section>
-  </div>
-
-  <div class='col-12 col-md-3 order-0 order-md-1 info-cards'>
-    <div class='card'>
-      <h5 class='card-header'>Current Block</h5>
-      <div class='card-body'>
-          <a class='large-number' href='<%= oasis_chain_block_path( @chain.slug, @height ) %>'>
-            <span class='technical'><%= @height %></span>
-          </a>
-        <div class='sub-info'>
-          <small class='text-muted technical'><%= @latest_block.time.strftime('%Y-%m-%d %H:%M %Z') %></small>
-          <small class='text-muted'><%= time_ago_in_words( @latest_block.time, true ) %> ago</small>
-        </div>
-      </div>
-    </div>
-
-    <% if @common_pool -%>
       <div class='card'>
-        <h5 class='card-header'>Common Pool</h5>
+        <h5 class='card-header'>Average Block Time</h5>
         <div class='card-body'>
-          <div><%= format_amount(@common_pool, denom: 'noasis') %></div>
-        </div>
-      </div>
-    <% end -%>
-
-    <div class='card'>
-      <h5 class='card-header'>Voting Power</h5>
-      <div class='card-body'>
-        <div class='mb-3'>
-          <label class='d-inline'>Currently Online:</label>
-          <div class='stat-value d-inline'>
-            <span class='technical'><%= oasis_chain_voting_power_online_percentage(@latest_block.height) %>%</span>
+          <label>Last 100 blocks:</label>
+          <div class='stat-value technical'>
+            <%= @chain.client.block_times(100).avg.round(2) %> seconds
           </div>
-        </div>
 
-        <div class='validator-sparkline-switcher btn-group btn-group-sm'>
-          <button type='button' data-target='last48h' class='btn btn-outline-secondary'>Past 48h</button>
-          <button type='button' data-target='last30d' class='btn btn-outline-secondary'>Past 30d</button>
-        </div>
-
-        <div class='charts'>
-          <div class='small-average-voting-power-last48h-chart-container'>
-            <canvas class='average-voting-power-last48h-chart'></canvas>
+          <label>Past 48 hours:</label>
+          <div class='small-average-block-time-chart-container'>
+            <canvas class='average-block-time-chart'></canvas>
           </div>
-          <div class='small-average-voting-power-last30d-chart-container'>
-            <canvas class='average-voting-power-last30d-chart'></canvas>
-          </div>
-        </div>
 
-        <script>
-          App.seed.AVERAGE_VOTING_POWER = {
-            last48h: <%= Oasis::AverageSnapshotDecorator.new( @chain, 'voting-power', 'hour', '48 hours' ).as_json.to_json.html_safe %>,
-            last30d: <%= Oasis::AverageSnapshotDecorator.new( @chain, 'voting-power', 'day', '30 days' ).as_json.to_json.html_safe %>
-          }
-        </script>
-      </div>
-    </div>
-    <div class='card'>
-      <h5 class='card-header'>Average Block Time</h5>
-      <div class='card-body'>
-        <label>Last 100 blocks:</label>
-        <div class='stat-value technical'>
-          <%= @chain.client.block_times(100).avg.round(2) %> seconds
+          <script>
+            App.seed.AVERAGE_BLOCK_TIME = <%= Oasis::AverageSnapshotDecorator.new(@chain, 'block-time', 'hour', '48 hours').as_json.to_json.html_safe %>
+          </script>
         </div>
-
-        <label>Past 48 hours:</label>
-        <div class='small-average-block-time-chart-container'>
-          <canvas class='average-block-time-chart'></canvas>
-        </div>
-
-        <script>
-          App.seed.AVERAGE_BLOCK_TIME = <%= Oasis::AverageSnapshotDecorator.new( @chain, 'block-time', 'hour', '48 hours').as_json.to_json.html_safe %>
-        </script>
       </div>
     </div>
   </div>
-</div>
+<% end %>

@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   layout 'account'
 
-  before_action :require_user, only: %i{ edit update post_signup }
+  before_action :require_user, only: %i[edit update post_signup]
 
   def new
     page_title 'Hubble', 'Signup'
@@ -12,9 +12,9 @@ class UsersController < ApplicationController
 
   def create
     @no_chain_select = true
-    @user = User.create( params.require(:new_signup).permit(%i{ name email password }) )
+    @user = User.create(params.require(:new_signup).permit(%i[name email password]))
     if @user.valid? && @user.persisted?
-      @user.update_for_signup( ua: request.env['HTTP_USER_AGENT'], ip: current_ip )
+      @user.update_for_signup(ua: request.env['HTTP_USER_AGENT'], ip: current_ip)
       @user.update_attributes verification_token: SecureRandom.hex
       UserMailer.with(user: @user).confirm.deliver_now
       redirect_to welcome_users_path
@@ -45,7 +45,7 @@ class UsersController < ApplicationController
     if @user
       session[:uid] = @user.id
       session[:masq] = nil
-      @user.update_for_login( ua: request.env['HTTP_USER_AGENT'], ip: current_ip )
+      @user.update_for_login(ua: request.env['HTTP_USER_AGENT'], ip: current_ip)
       @user.update_attributes verification_token: nil
       redirect_to confirmed_users_path
     else
@@ -57,5 +57,4 @@ class UsersController < ApplicationController
     page_title 'Hubble', 'Account Confirmed'
     @no_chain_select = true
   end
-
 end

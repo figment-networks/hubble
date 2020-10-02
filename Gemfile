@@ -1,38 +1,42 @@
 source 'https://rubygems.org'
 
 git_source(:github) do |repo_name|
-  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
+  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'rails', '~> 5.2'
-gem 'pg', '>= 0.18', '< 2.0'
-gem 'sass-rails', '~> 5.0'
-gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', require: false
+gem 'jbuilder', '~> 2.5'
+gem 'pg', '>= 0.18', '< 2.0'
+gem 'rails', '~> 5.2'
+gem 'sass-rails', '~> 5.0'
 
-gem 'babel-transpiler'
 gem 'actionmailer_inline_css'
+gem 'babel-transpiler'
 
-gem 'curb'
-gem 'typhoeus'
-gem 'rest-client'
-gem 'dotiw'
-gem 'useragent'
-gem 'bcrypt'
-gem 'attr_encrypted', '~> 3.0.0'
-gem 'addressable'
-gem 'dalli'
-gem 'redcarpet'
-gem 'rinku'
 gem 'acts_as_list'
-gem 'local_time'
-gem 'pagy', '~> 3.5'
+gem 'addressable'
+gem 'attr_encrypted', '~> 3.0.0'
+gem 'bcrypt'
 gem 'chartkick'
 gem 'cryptocompare'
+gem 'curb'
+gem 'dalli'
+gem 'dotiw'
+gem 'local_time'
+gem 'pagy', '~> 3.5'
+gem 'puma'
+gem 'redcarpet'
+gem 'rest-client'
+gem 'rinku'
+gem 'typhoeus'
+gem 'useragent'
 
 gem 'postmark-rails'
 gem 'twitter', '~> 6.1.0'
+
+# used for notifing when Chains are out of sync
+gem 'slack-notifier'
 
 # temp, used for uploading reports to s3
 gem 'aws-sdk-s3', '~> 1'
@@ -42,51 +46,56 @@ gem 'sqlite3'
 gem 'active_model_otp', '~> 1.2.0'
 gem 'rqrcode', '~> 0.10.1'
 
+gem 'bip_mnemonic' # bip39
 gem 'bitcoin-ruby', require: 'bitcoin' # bech32
 gem 'bitcoin-secp256k1', require: 'secp256k1'
-gem 'bip_mnemonic' # bip39
 gem 'money-tree', require: false # bip32
 
-gem 'whenever', require: false
-gem 'rollbar'
 gem 'lograge'
 gem 'rack-attack'
 gem 'rack-revision'
+gem 'rollbar'
+gem 'whenever', require: false
 
+gem 'bootstrap_form', '~> 4.3.0'
 gem 'gqli', '~> 1.0.0'
 gem 'rash_alt', '~> 0.4.8', require: 'rash'
-gem 'bootstrap_form', '~> 4.3.0'
 gem 'validate_url', '~> 1.0.8'
 
 group :development do
-  gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'web-console', '>= 3.3.0'
 
   # Deployment
   gem 'capistrano', '~> 3.11', require: false
-  gem 'capistrano-rails', '~> 1.4', require: false
   gem 'capistrano-linked-files', require: false
   gem 'capistrano-npm', require: false
+  gem 'capistrano-rails', '~> 1.4', require: false
   gem 'capistrano-slackify', '~> 2.10.3', require: false
 end
 
 group :development, :test do
-  gem 'puma'
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'letter_opener_web', '~> 1.0'
-  gem 'rspec-rails', '~> 4.0.0'
-  gem 'pry'
   gem 'bullet'
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'guard-rspec'
+  gem 'letter_opener_web', '~> 1.0'
+  gem 'pry'
+  gem 'rspec-rails', '~> 4.0.0'
+  gem 'rubocop'
+  gem 'rubocop-rspec'
+  gem 'spring'
+  gem 'spring-commands-rspec'
 end
 
 group :test do
+  gem 'capybara', '~> 3.33'
+  gem 'database_cleaner'
   gem 'factory_bot_rails', '~> 5.1.1'
-  gem 'webmock', '~> 3.8.2'
   gem 'rails-controller-testing'
-  gem 'capybara', "~> 3.33"
-  gem 'vcr', "~> 6.0"
-  gem 'selenium-webdriver', "~> 3.142"
-  gem 'webdrivers', "~> 4.3"
+  gem 'selenium-webdriver', '~> 3.142'
+  gem 'vcr', '~> 6.0'
+  gem 'webdrivers', '~> 4.3'
+  gem 'webmock', '~> 3.8.2'
 end
 
 group :production do

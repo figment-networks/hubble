@@ -3,7 +3,7 @@
 <% if !decorated_primary_chains.any? -%>
   <p>No chains configured.</p>
 <% end -%>
-    
+
 <ul class='chains-list row p-0 list-unstyled'>
   <% decorated_primary_chains.each do |chain| -%>
     <li class='col-xl-4 col-lg-6 col-md-6 px-3'>
@@ -11,7 +11,9 @@
         <%= link_to '', namespaced_path( chain: chain ), class: 'chains-list__card-link'%>
         <div class='card-body p-0 d-flex flex-column'>
           <% if network_has_image?(chain.network_name) -%>
-            <%= image_tag network_image(chain.network_name), class: "chains-list__img #{chain.network_name.downcase}-img" %>
+            <div class='chains-list__img-wrapper'>
+              <%= image_tag network_image(chain.network_name), class: "#{chain.network_name.downcase}-img" %>
+            </div>
           <% else -%>
             <p class='logo-fallback'><%= chain.network_name %></p>
           <% end -%>
@@ -22,10 +24,10 @@
                 <p class='chains-list__label m-0'>Validator Set Size</p>
                 <p class='chains-list__data m-0'><%= chain.validator_count %></p>
               </li>
-            <% elsif chain.transcoder_count # Livepeer -%>
+            <% elsif chain.orchestrator_count # Livepeer -%>
               <li class='col-6 p-0 mt-3'>
                 <p class='chains-list__label m-0'>Orchestrator Set Size</p>
-                <p class='chains-list__data m-0'><%= chain.transcoder_count %></p>
+                <p class='chains-list__data m-0'><%= chain.orchestrator_count %></p>
               </li>
             <% elsif chain.baker_count # Tezos -%>
               <li class='col-6 p-0 mt-3'>

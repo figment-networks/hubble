@@ -6,12 +6,12 @@ class Polkadot::AccountDecorator < SimpleDelegator
     super(account)
   end
 
-  #TODO: implement when we have mockup or indexer data for this endpoint
+  # TODO: implement when we have mockup or indexer data for this endpoint
   def delegations
     []
   end
 
-  #TODO: implement when we have mockup or indexer data for this endpoint
+  # TODO: implement when we have mockup or indexer data for this endpoint
   def delegation_transactions
     []
   end

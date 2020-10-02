@@ -7,11 +7,10 @@ class Polkadot::Transaction::StakingPayoutDecorator < Polkadot::Transaction::Def
     [
       { name: 'Stash account', value: stash_account, type: :account },
       { name: 'Era', value: era }
-    ].concat(super([:account, :signature]))
+    ].concat(super(%i[account signature]))
   end
 
-  def parameters
-  end
+  def parameters; end
 
   def stash_account
     arguments_array[0]

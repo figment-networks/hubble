@@ -1,7 +1,7 @@
 class Iris::AccountDecorator < Cosmoslike::AccountDecorator
   protected
 
-  def decorate_unbonding( unbonding, entry )
+  def decorate_unbonding(unbonding, entry)
     {
       validator: find_validator(unbonding['validator_addr']),
       raw_operator: unbonding['validator_addr'],
@@ -12,7 +12,7 @@ class Iris::AccountDecorator < Cosmoslike::AccountDecorator
     }
   end
 
-  def decorate_delegation( delegation )
+  def decorate_delegation(delegation)
     {
       validator: find_validator(delegation['validator_addr']),
       raw_operator: delegation['validator_addr'],

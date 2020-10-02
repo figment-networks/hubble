@@ -1,14 +1,13 @@
 class Oasis::VotingPowerHistoryDecorator
   include FormattingHelper
 
-  def initialize( chain, validator )
+  def initialize(chain, validator)
     @validator = validator
     @chain = chain
   end
 
   def as_json
-
-    q = @chain.client.validators_summary("day", "90 days", @validator.entity_uid)
+    q = @chain.client.validators_summary('day', '90 days', @validator.address)
     q = q.sort_by(&:time_bucket)
 
     data = q.map do |vph|
@@ -23,7 +22,7 @@ class Oasis::VotingPowerHistoryDecorator
 
     first = data.first
     data.unshift(
-      t: (first[:t].utc.beginning_of_day).iso8601,
+      t: first[:t].utc.beginning_of_day.iso8601,
       y: first[:y]
     )
 

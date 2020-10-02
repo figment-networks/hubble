@@ -27,25 +27,43 @@ module Cosmoslike::Chainlike
     validates :slug, presence: true, uniqueness: true, format: { with: /[a-z0-9-]+/ }, allow_blank: false
     validate :validator_event_defs_format
 
-    default_scope -> { order( 'position ASC' ) }
+    default_scope -> { order('position ASC') }
 
-    scope :alive, -> { where.not( dead: true ) }
-    scope :has_synced, -> { where.not( last_sync_time: nil ) }
-    scope :enabled, -> { where( disabled: false ) }
-    scope :primary, -> { find_by( primary: true ) || order('created_at DESC').first }
+    scope :alive, -> { where.not(dead: true) }
+    scope :has_synced, -> { where.not(last_sync_time: nil) }
+    scope :enabled, -> { where(disabled: false) }
+    scope :primary, -> { find_by(primary: true) || order('created_at DESC').first }
   end
 
-  ASSET = 'cosmoslike'
+  ASSET = 'cosmoslike'.freeze
   EVENTS_PAGE_SIZE = 20
 
-  def to_param; slug; end
-  def namespace; self.class.name.deconstantize.constantize; end
-  def enabled?; !disabled?; end
-  def has_csir?; false; end
-  def has_dashboard?; true; end
+  def to_param
+    slug
+  end
+
+  def namespace
+    self.class.name.deconstantize.constantize
+  end
+
+  def enabled?
+    !disabled?
+  end
+
+  def has_csir?
+    false
+  end
+
+  def has_dashboard?
+    true
+  end
+
+  def alertable_type
+    'validator'
+  end
 
   def primary_token
-    token_map.each { |k,v| return k if v['primary'] }
+    token_map.each { |k, v| return k if v['primary'] }
     token_map.keys.first # fallback, should not happen
   end
 
@@ -53,70 +71,72 @@ module Cosmoslike::Chainlike
     self.class::PREFIXES
   end
 
-  def sdk_gte?( version_number )
-    Gem::Version.new( self.sdk_version ) >= Gem::Version.new( version_number )
+  def sdk_gte?(version_number)
+    Gem::Version.new(sdk_version) >= Gem::Version.new(version_number)
   end
-  def sdk_lt?( version_number )
-    Gem::Version.new( self.sdk_version ) < Gem::Version.new( version_number )
+
+  def sdk_lt?(version_number)
+    Gem::Version.new(sdk_version) < Gem::Version.new(version_number)
   end
 
   def skip_to_now!
     height = syncer.get_head_height - 100
     self.latest_local_height = height
     self.history_height = height
-    self.validator_event_defs = self.validator_event_defs.map { |defn| defn['height'] = height; defn }
-    self.save!
+    self.validator_event_defs = validator_event_defs.map { |defn| defn['height'] = height; defn }
+    save!
   end
 
-  TWITTER_CONFIG_FIELDS = %w{ consumer_key consumer_secret access_token access_secret }
+  TWITTER_CONFIG_FIELDS = %w[consumer_key consumer_secret access_token access_secret].freeze
   def has_twitter_config?
     TWITTER_CONFIG_FIELDS.all? do |field|
-      !self.twitter_events_config[field].nil?
+      !twitter_events_config[field].nil?
     end
   end
 
-  def get_event_height( defn_id )
-    defn = self.validator_event_defs.find { |defn| defn['unique_id'] == defn_id }
+  def get_event_height(defn_id)
+    defn = validator_event_defs.find { |defn| defn['unique_id'] == defn_id }
     defn ? (defn['height'] || 0) : 0
   end
 
-  def set_event_height!( defn_id, height )
-    self.validator_event_defs_will_change!
-    self.validator_event_defs = self.validator_event_defs.map do |defn|
+  def set_event_height!(defn_id, height)
+    validator_event_defs_will_change!
+    self.validator_event_defs = validator_event_defs.map do |defn|
       if defn['unique_id'] == defn_id
         defn['height'] = height
       end
       defn
     end
-    self.save!
+    save!
   end
 
-  def syncer( timeout=1500 )
-    @_syncer ||= namespace::SyncBase.new( self, timeout )
+  def syncer(timeout = 1500)
+    @_syncer ||= namespace::SyncBase.new(self, timeout)
   end
 
   def can_communicate_with_node?
-    return false if self.ext_id.blank?
+    return false if ext_id.blank?
+
     begin
       # ensure lcd and rpc are available
       syncer.get_stake_info
-      syncer.get_node_chain == self.ext_id
-    rescue
+      syncer.get_node_chain == ext_id
+    rescue StandardError
       Rails.logger.error $!.message
       nil
     end
   end
 
-  def active_validators_at_height( height )
+  def active_validators_at_height(height)
     block = blocks.find_by(height: height) || namespace::Block.stub(self, height)
     validators.where(address: block.validator_set.keys)
-  rescue
+  rescue StandardError
     []
   end
 
-  def average_block_time( last_n_blocks: 100 )
+  def average_block_time(last_n_blocks: 100)
     times = []
-    lastest_blocks = blocks.limit( last_n_blocks ).to_a
+    lastest_blocks = blocks.limit(last_n_blocks).to_a
 
     latest_time = lastest_blocks.shift.timestamp
 
@@ -130,20 +150,21 @@ module Cosmoslike::Chainlike
     end
 
     return 0 if times.count.zero?
+
     times.reduce(:+) / times.count
   end
 
   def total_current_voting_power
-    validators.total_voting_power( self )
+    validators.total_voting_power(self)
   end
 
   def voting_power_online
-    online = validators.where( address: blocks.first.precommitters )
+    online = validators.where(address: blocks.first.precommitters)
     online.sum { |v| v.current_voting_power || 0 }
   end
 
   def staked_amount
-    @staked_amount ||= staking_pool.sum { |k,v| v.to_f }
+    @staked_amount ||= staking_pool.sum { |_k, v| v.to_f }
   end
 
   def failing_sync?
@@ -151,7 +172,7 @@ module Cosmoslike::Chainlike
   end
 
   def sync_failed!
-    Rails.logger.error "Chain failing sync! #{self.inspect}"
+    Rails.logger.error "Chain failing sync! #{inspect}"
     increment! :failed_sync_count
   end
 

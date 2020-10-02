@@ -1,5 +1,5 @@
-require "indexer/resources/proposal"
-require "indexer/resources/voting_period"
+require 'indexer/resources/proposal'
+require 'indexer/resources/voting_period'
 
 class Tezos::Governance::MainController < Tezos::BaseController
   def index

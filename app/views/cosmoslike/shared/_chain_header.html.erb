@@ -31,7 +31,7 @@
       <% end -%>
       <% if defined?(reports_link) -%>
         <% if @chain.has_csir? -%>
-          <a class='ml-1 btn btn-outline-primary' href="https://app.figment.network/csir" target="_blank">Reports</a>
+          <a class='ml-1 btn btn-outline-primary' href="https://app.figment.io/csir" target="_blank">Reports</a>
         <% end -%>
       <% end -%>
       <% if defined? governance_link -%>
@@ -56,6 +56,6 @@
 <% if !@chain.notes.blank? -%>
   <div class='alert alert-info chain-notes d-flex align-items-center'>
     <span class='fas fa-fw fa-info-circle mr-2'></span>
-    <%= Redcarpet::Markdown.new(Redcarpet::Render::HTML).render(@chain.notes).html_safe %>
+    <%= render_markdown(@chain.notes) %>
   </div>
 <% end -%>

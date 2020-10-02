@@ -7,7 +7,7 @@ class Cosmos::Faucet < ApplicationRecord
     Rails.logger.info("\n\nBROADCAST RESULT: #{result.inspect}\n\n")
     ok = !result.has_key?('code') && !result.has_key?('error')
 
-    next_sequence = (self.current_sequence.to_i + 1).to_s
+    next_sequence = (current_sequence.to_i + 1).to_s
     update_attributes(current_sequence: next_sequence) if ok
 
     [ok, result]

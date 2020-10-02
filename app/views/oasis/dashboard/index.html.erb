@@ -3,7 +3,7 @@
 <h1 class='d-flex align-items-center justify-content-between'>
   <span>Dashboard for <%= @chain.name %></span>
 
-  <%= link_to(namespaced_path, class: 'btn btn-sm btn-outline-secondary') do %>
+  <%= link_to namespaced_path, class: 'btn btn-sm btn-outline-secondary' do %>
     <span class='d-none d-md-inline'><span class='fas fa-chevron-left'></span> back to chain</span>
     <span class='d-inline d-md-none fa fa-arrow-circle-up'></span>
   <% end %>

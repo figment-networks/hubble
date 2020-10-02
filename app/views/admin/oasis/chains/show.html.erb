@@ -58,19 +58,21 @@
       </td>
     </tr>
 
-    <tr>
-      <th class='align-middle'>Blocks:</th>
-      <td>
-        <%= @chain.client.status.last_indexed_height %>
-      </td>
-    </tr>
+    <% if @status.success? %>
+      <tr>
+        <th class='align-middle'>Blocks:</th>
+        <td>
+          <%= @chain.client.status.last_indexed_height %>
+        </td>
+      </tr>
 
-    <tr>
-      <th class='align-middle'>Validators:</th>
-      <td>
-        <%= @chain.client.validators.count %> total
-      </td>
-    </tr>
+      <tr>
+        <th class='align-middle'>Validators:</th>
+        <td>
+          <%= @chain.client.validators.count %> total
+        </td>
+      </tr>
+    <% end %>
 
     <tr>
       <th class='align-middle'>API URL:</th>

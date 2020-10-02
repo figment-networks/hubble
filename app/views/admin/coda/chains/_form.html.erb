@@ -1,0 +1,17 @@
+<%= bootstrap_form_for [:admin, chain] do |f| %>
+  <div class="row">
+    <div class="col-12 col-md-4">
+      <%= f.text_field :name %>
+      <%= f.text_field :slug %>
+      <%= f.text_field :api_url %>
+
+      <div class="form-group">
+        <%= f.check_box :primary, label: "Primary?" %>
+        <%= f.check_box :testnet, label: "Testnet?" %>
+        <%= f.check_box :disabled, label: "Disabled?" %>
+      </div>
+
+      <%= f.submit class: "btn btn-lg btn-primary" %>
+    </div>
+  </div>
+<% end %>

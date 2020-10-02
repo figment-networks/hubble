@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Livepeer::Strategies::UpdateExistingStrategy do
+  subject { described_class.new(relation, attributes) }
+
   let!(:chain) { create(:livepeer_chain) }
 
   let(:relation) { chain.rounds.where(number: attributes[:number]) }
@@ -12,8 +14,6 @@ RSpec.describe Livepeer::Strategies::UpdateExistingStrategy do
       initialized_at: 5.days.ago
     }
   end
-
-  subject { described_class.new(relation, attributes) }
 
   context 'without an existing record' do
     it 'creates a new record' do

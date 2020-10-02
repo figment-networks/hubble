@@ -1,7 +1,7 @@
 module Telegram
   class AccountsController < ApplicationController
     before_action :require_user
-    layout "account"
+    layout 'account'
 
     def show
       @account = current_user.telegram_account || Telegram::Account.new
@@ -25,14 +25,14 @@ module Telegram
 
     def destroy
       @account = current_user.telegram_account
-      @account.destroy if @account
+      @account&.destroy
       redirect_to telegram_account_path
     end
 
     private
 
-      def account_params
-        params.fetch(:telegram_account, {}).permit(:username)
-      end
+    def account_params
+      params.fetch(:telegram_account, {}).permit(:username)
+    end
   end
 end

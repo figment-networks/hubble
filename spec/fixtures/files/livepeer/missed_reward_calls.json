@@ -1,0 +1,22 @@
+{
+  "data": {
+    "missedRewardCalls": [
+      {
+        "delegate": {
+          "id": "0x0119a06b51c83d0eec79708b921a57247dc37e66"
+        },
+        "round": {
+          "timestamp": "1595997169"
+        }
+      },
+      {
+        "delegate": {
+          "id": "0x25c8c5a74ba071c171996047f9613108c7c7767d"
+        },
+        "round": {
+          "timestamp": "1595997169"
+        }
+      }
+    ]
+  }
+}

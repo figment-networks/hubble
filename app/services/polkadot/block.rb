@@ -2,8 +2,6 @@ module Polkadot
   class Block < Common::Resource
     attr_accessor :chain,
                   :spec_version,
-                  :session,
-                  :era,
                   :height,
                   :time,
                   :hash,
@@ -12,8 +10,8 @@ module Polkadot
                   :state_root,
                   :extrinsics
 
-    def initialize(attrs = {})
-      super(attrs)
+    def initialize(attributes = {})
+      super(attributes)
       @time = Time.zone.parse(time)
     end
 

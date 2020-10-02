@@ -1,5 +1,4 @@
 class AlertMailer < ApplicationMailer
-
   def instant
     @sub = params[:sub]
     @events = params[:events]
@@ -26,5 +25,4 @@ class AlertMailer < ApplicationMailer
       subject: "HUBBLE DAILY DIGEST - #{@alertable.long_name} on #{@alertable.chain.network_name}/#{@alertable.chain.name} (#{pluralize(@events.count, 'new event')})"
     )
   end
-
 end

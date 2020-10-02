@@ -17,22 +17,24 @@ module Cosmoslike::Validatorlike
     before_save :promote_moniker
   end
 
-  def to_param; address; end
+  def to_param
+    address
+  end
 
   module ClassMethods
-    def total_voting_power( chain )
+    def total_voting_power(_chain)
       sum(:current_voting_power)
     end
   end
 
   def has_info?
-    (info||{}).any?
+    (info || {}).any?
   end
 
-  def short_name( max_length=16 )
+  def short_name(max_length = 16)
     (!moniker.blank? ? moniker : nil) ||
-    owner ||
-    address.truncate( max_length )
+      owner ||
+      address.truncate(max_length)
   end
 
   def long_name
@@ -44,7 +46,7 @@ module Cosmoslike::Validatorlike
   end
 
   def retrieve_owner
-    info_field( 'owner' ) || info_field( 'operator_address' )
+    info_field('owner') || info_field('operator_address')
   end
 
   def owner
@@ -52,7 +54,7 @@ module Cosmoslike::Validatorlike
   end
 
   def retrieve_moniker
-    info_field( 'description', 'moniker' ) || nil
+    info_field('description', 'moniker') || nil
   end
 
   def moniker
@@ -60,62 +62,62 @@ module Cosmoslike::Validatorlike
   end
 
   def current_commission
-    rate = info_field( 'commission', 'rate' )
+    rate = info_field('commission', 'rate')
     rate ? rate.to_f : nil
   end
 
   def max_commission
-    max = info_field( 'commission', 'max_rate' )
+    max = info_field('commission', 'max_rate')
     max ? max.to_f : nil
   end
 
   def commission_change_rate
-    rate = info_field( 'commission', 'max_change_rate' )
+    rate = info_field('commission', 'max_change_rate')
     rate ? rate.to_f : nil
   end
 
   def proposals
     return [] unless account
+
     ids = [
       *account.governance_deposits.select('DISTINCT proposal_id'),
       *account.governance_votes.select('DISTINCT proposal_id')
     ].map(&:proposal_id).uniq
-    chain.governance_proposals.where( id: ids )
+    chain.governance_proposals.where(id: ids)
   end
 
-  def recent_events( type, since )
-    events.where( type: type.to_s ).where( 'timestamp >= ?', since )
+  def recent_events(type, since)
+    events.where(type: type.to_s).where('timestamp >= ?', since)
   end
 
-  def in_active_set?( block=nil )
+  def in_active_set?(block = nil)
     if block.nil?
       block = chain.blocks.first
     end
-    block.validator_set.keys.include?( address )
+    block.validator_set.keys.include?(address)
   end
 
   def voting_power_history
-    events.where( type: 'Common::ValidatorEvents::VotingPowerChange' )
+    events.where(type: 'Common::ValidatorEvents::VotingPowerChange')
   end
+
   def active_set_history
-    events.where( type: 'Common::ValidatorEvents::ActiveSetInclusion' )
+    events.where(type: 'Common::ValidatorEvents::ActiveSetInclusion')
   end
 
-  def info_field( *fields )
-    begin
-      current = info
-      fields.each do |f|
-        current = current[f.to_s]
-      end
-      current.blank? ? nil : current
-    rescue
-      nil
+  def info_field(*fields)
+    current = info
+    fields.each do |f|
+      current = current[f.to_s]
     end
+    current.blank? ? nil : current
+  rescue StandardError
+    nil
   end
 
-  def voting_power_at_height( height )
-    block = chain.blocks.find_by( height: height ) || Cosmos::Block.stub_from_cache( chain, height )
-    block.validator_set[self.address]
+  def voting_power_at_height(height)
+    block = chain.blocks.find_by(height: height) || Cosmos::Block.stub_from_cache(chain, height)
+    block.validator_set[address]
   end
 
   def last_precommitted_block
@@ -123,28 +125,30 @@ module Cosmoslike::Validatorlike
     # chain.blocks.where( 'precommitters @> ARRAY[?]::varchar[]', address ).first
 
     return nil if latest_block_height.nil? || latest_block_height.zero?
-    chain.blocks.find_by( height: latest_block_height ) ||
-    Cosmos::Block.stub( chain, latest_block_height )
+
+    chain.blocks.find_by(height: latest_block_height) ||
+      Cosmos::Block.stub(chain, latest_block_height)
   end
 
   def proposal_probability
     total = chain.validators.sum(:current_voting_power)
     return 0 if total.zero?
+
     current_voting_power / total.to_f
   end
 
   def active?
-    (current_voting_power||0) > 0
+    (current_voting_power || 0) > 0
   end
 
-  def calculate_current_uptime( blocks_num: 100 )
-    blocks = chain.blocks.limit( blocks_num )
+  def calculate_current_uptime(blocks_num: 100)
+    blocks = chain.blocks.limit(blocks_num)
     num_blocks = blocks.count
     return 0.0 if num_blocks.zero?
 
-    precommits = blocks
-      .select { |b| b.precommitters.include?(address) }
-      .count
+    precommits = blocks.
+      select { |b| b.precommitters.include?(address) }.
+      count
 
     (precommits / blocks.count.to_f).round(2)
   end

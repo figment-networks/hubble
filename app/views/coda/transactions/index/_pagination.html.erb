@@ -1,0 +1,5 @@
+<% if transactions.size == search_form.limit %>
+  <div class="inline-pagination">
+    <%= link_to "Load More", "#", class: "btn btn-outline-primary load-more", data: { path: request.path, limit: search_form.limit } %>
+  </div>
+<% end %>

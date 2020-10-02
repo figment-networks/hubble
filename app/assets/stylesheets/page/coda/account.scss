@@ -1,0 +1,17 @@
+.account-show {
+  .card-body {
+    &.no-padding {
+      padding: 0;
+    }
+
+    table {
+      margin-bottom: 0;
+    }
+  }
+
+  .recent-transactions {
+    h4 {
+      margin-bottom: 0;
+    }
+  }
+}

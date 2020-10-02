@@ -7,30 +7,15 @@
   <span class='technical text-lg'><%= @block.last_block_id_hash %></span>
 </h2>
 
-<div class='row'>
-  <div class='col-12 col-md-3 order-0 order-md-1 info-cards'>
-    <div class='card'>
-      <h5 class='card-header'>Height</h5>
-      <div class='card-body'>
-        <% if (@height > 1) -%>
-          <a href='<%= @height - 1 %>' class='text-muted'><span class='fas fa-chevron-left'></span></a>
-        <% end -%>
-        <span class='large-number technical'><%= @block.height %></span>
-        <% if (@height < @chain.client.status.last_indexed_height) -%>
-          <a href='<%= @height + 1 %>' class='text-muted'><span class='fas fa-chevron-right'></span></a>
-        <% end -%>
-      </div>
-    </div>
-    <div class='card'>
-      <h5 class='card-header'>Timestamp</h5>
-      <div class='card-body'>
-        <span class='technical'><%= format_timestamp(@block.time) %></span>
-      </div>
-    </div>
-  </div>
+<% if @error %>
+  <%= render partial: 'shared/display_error' %>
+<% else %>
+  <div class='row'>
+    <%= render partial: 'shared/block_sidebar', locals: {block: @block} %>
 
-  <div class='col-12 col-md-9 order-1 order-md-0'>
-    <%= render partial: 'transactions', locals: {transactions: @transactions} %>
-    <%= render partial: 'validators', locals: {validators: @validators} %>
+    <div class='col-12 col-md-9 order-1 order-md-0'>
+      <%= render partial: 'transactions', locals: {transactions: @transactions} %>
+      <%= render partial: 'validators', locals: {validators: @validators} %>
+    </div>
   </div>
-</div>
+<% end %>

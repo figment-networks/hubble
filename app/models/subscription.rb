@@ -1,4 +1,4 @@
-require "indexer/resources/baker"
+require 'indexer/resources/baker'
 
 class Subscription < ApplicationRecord
   belongs_to :user, counter_cache: true

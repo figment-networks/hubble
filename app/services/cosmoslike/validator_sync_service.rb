@@ -1,5 +1,5 @@
 class Cosmoslike::ValidatorSyncService
-  def initialize( chain )
+  def initialize(chain)
     @chain = chain
   end
 
@@ -8,11 +8,11 @@ class Cosmoslike::ValidatorSyncService
   end
 
   def sync_validator_timestamps!
-    from = [@chain.history_height+1, @chain.blocks.last.height].max
+    from = [@chain.history_height + 1, @chain.blocks.last.height].max
     to = @chain.latest_local_height
 
     if to < from
-      puts "No unprocessed local blocks. Therefore no validator updates needed."
+      puts 'No unprocessed local blocks. Therefore no validator updates needed.'
     else
       existing_validators = @chain.validators.index_by(&:address)
 
@@ -30,10 +30,10 @@ class Cosmoslike::ValidatorSyncService
       new_validators = 0
       (from..to).to_a.in_groups_of(500, false).each do |heights|
         chunk_start_time = Time.now.utc.to_f
-        blocks = @chain.blocks.where( height: heights ).reorder('height ASC').index_by(&:height)
+        blocks = @chain.blocks.where(height: heights).reorder('height ASC').index_by(&:height)
 
         heights.each do |height|
-          block = blocks[height] || @chain.namespace::Block.stub( @chain, height )
+          block = blocks[height] || @chain.namespace::Block.stub(@chain, height)
 
           # create any new validators we haven't seen before
           all_addresses = block.precommitters + block.validator_set.keys
@@ -54,7 +54,7 @@ class Cosmoslike::ValidatorSyncService
           end
 
           existing_validators.values.each do |validator|
-            relevant = block.precommitters.include?( validator.address ) &&
+            relevant = block.precommitters.include?(validator.address) &&
                        (latest_block_heights[validator.address] || 0) < block.height
             latest_block_heights[validator.address] = block.height if relevant
             latest_voting_powers[validator.address] = block.validator_set[validator.address] || 0
@@ -65,7 +65,7 @@ class Cosmoslike::ValidatorSyncService
         ProgressReport.instance.benchmark (Time.now.utc.to_f - chunk_start_time) / heights.count
       end
 
-      print "Saving updated validator info... "
+      print 'Saving updated validator info... '
       existing_validators.values.each do |validator|
         # puts "\t#{validator.address}\tVP: #{latest_voting_powers[validator.address]} LSB: #{latest_block_heights[validator.address]}"
         validator.assign_attributes(
@@ -76,7 +76,7 @@ class Cosmoslike::ValidatorSyncService
         )
         validator.save! if validator.changed?
       end
-      puts "DONE"
+      puts 'DONE'
 
       ProgressReport.instance.report "Detected #{new_validators} new validators!"
     end
@@ -87,7 +87,7 @@ class Cosmoslike::ValidatorSyncService
     stake_info = syncer.get_stake_info
 
     if stake_info.nil? || !stake_info.is_a?(Array)
-      puts "No stake info, cannot sync metadata."
+      puts 'No stake info, cannot sync metadata.'
       return
     end
 
@@ -108,21 +108,21 @@ class Cosmoslike::ValidatorSyncService
 
       begin
         height = validator.latest_block_height.zero? ? @chain.latest_local_height : validator.latest_block_height
-        validator_set_result = syncer.get_validator_set( height )
+        validator_set_result = syncer.get_validator_set(height)
         validator_in_set = validator_set_result.find { |v| v['address'] == validator.address }
 
         if validator_in_set.nil?
           extra_info = ENV['DEBUG'] ? " -- (set: #{validator_set_result.map { |vi| vi['address'] }.inspect})" : ''
-          raise RuntimeError.new("Validator #{validator.address} (id: #{validator.id}) not found in set for height #{height}#{extra_info}")
+          raise "Validator #{validator.address} (id: #{validator.id}) not found in set for height #{height}#{extra_info}"
         end
 
         amino_pub_key = validator_in_set['pub_key']['value']
-        bech32_key = @chain.namespace::KeyConverter.pubkey_to_bech32( amino_pub_key, @chain.prefixes[:validator_consensus_public_key] )
+        bech32_key = @chain.namespace::KeyConverter.pubkey_to_bech32(amino_pub_key, @chain.prefixes[:validator_consensus_public_key])
 
         if indexed_stake_info[bech32_key]
           validator.update_attributes info: indexed_stake_info[bech32_key]
         end
-      rescue
+      rescue StandardError
         puts "Could not get validator info for #{validator.address} -- #{$!.message}\n\n"
       end
 
@@ -130,19 +130,19 @@ class Cosmoslike::ValidatorSyncService
       begin
         account_address = Bitcoin::Bech32.encode(
           @chain.prefixes[:account_address].sub(/1$/, ''),
-          Bitcoin::Bech32.decode( validator.info['operator_address'] )[1]
+          Bitcoin::Bech32.decode(validator.info['operator_address'])[1]
         )
-      rescue
+      rescue StandardError
         puts "No account/validator link found for: #{validator.address}" if ENV['DEBUG']
         account_address = nil
       end
 
       if account_address
-        account = @chain.accounts.find_or_create_by!( address: account_address )
-        account.update_attributes( validator: validator ) if account
+        account = @chain.accounts.find_or_create_by!(address: account_address)
+        account&.update_attributes(validator: validator)
       end
 
-      ProgressReport.instance.progress 0, i+1, total
+      ProgressReport.instance.progress 0, i + 1, total
       ProgressReport.instance.benchmark Time.now.utc.to_f - validator_start_time
     end
 

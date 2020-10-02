@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Common::CsvExporter do
+  subject { described_class.new(records, attributes) }
+
   let(:records) do
     [
       create(:livepeer_round, number: 1, mintable_tokens: '17817.375673954043909133'),
@@ -9,8 +11,6 @@ RSpec.describe Common::CsvExporter do
   end
 
   let(:attributes) { %i[number mintable_tokens] }
-
-  subject { described_class.new(records, attributes) }
 
   it 'generates CSV data' do
     result = CSV.parse(subject.call)

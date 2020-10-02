@@ -10,7 +10,7 @@ class Livepeer::DelegatorList < ApplicationRecord
 
   before_validation :normalize_addresses
 
-  validates :name, presence: true, uniqueness: { scope: [:user, :chain] }
+  validates :name, presence: true, uniqueness: { scope: %i[user chain] }
   validates :addresses, length: { in: 1..50 }
 
   validate :addresses_format
@@ -24,7 +24,7 @@ class Livepeer::DelegatorList < ApplicationRecord
   end
 
   def events
-    chain.events.where(transcoder_address: transcoder_addresses)
+    chain.events.where(orchestrator_address: orchestrator_addresses)
   end
 
   def recent_events(type, since)
@@ -60,7 +60,7 @@ class Livepeer::DelegatorList < ApplicationRecord
     end
   end
 
-  def transcoder_addresses
-    chain.delegators.where(address: addresses).pluck(:transcoder_address)
+  def orchestrator_addresses
+    chain.delegators.where(address: addresses).pluck(:orchestrator_address)
   end
 end

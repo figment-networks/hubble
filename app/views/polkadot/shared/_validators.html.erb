@@ -37,9 +37,9 @@
       <% validators.each do |validator| -%>
         <tr>
           <td data-order='<%= validator.stash_account %>'>
-            <a href='#'>
+            <%= link_to namespaced_path('validator', validator.stash_account) do %>
               <strong><%= validator.account_details.display_name.truncate(38) %></strong>
-            </a>
+            <% end -%>
           </td>
           <td data-order='<%= validator.total_stake %>'>
             <%= format_amount(validator.total_stake, @chain, denom: @chain.class::DEFAULT_TOKEN_REMOTE) %>

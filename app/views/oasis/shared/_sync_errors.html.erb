@@ -1,4 +1,4 @@
-<% if !@is_synced -%>
+<% if !@is_synced && !@error -%>
   <div class='alert alert-warning sync-error-alert d-flex justify-content-between align-items-center'>
     <div>
       <span class='fas fa-fw mr-2 fa-exclamation-triangle'></span>

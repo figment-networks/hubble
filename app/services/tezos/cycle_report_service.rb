@@ -5,7 +5,7 @@ module Tezos
     # TODO: once the indexer supports multiple chains, update this to get the latest cycle
     # for the provided chain
     def self.execute(_chain)
-      cycle  = Indexer::Cycle.retrieve("latest_completed")
+      cycle  = Indexer::Cycle.retrieve('latest_completed')
       report = Tezos::CycleReport.find_by(cycle_number: cycle.number)
 
       if report.nil?

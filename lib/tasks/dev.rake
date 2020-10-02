@@ -1,7 +1,7 @@
 namespace :dev do
-  task :skip_to_now => :environment do
+  task skip_to_now: :environment do
     exit(1) if !Rails.env.development?
-    [ Cosmos, Kava, Iris, Terra, Emoney ].each do |network|
+    [Cosmos, Kava, Iris, Terra, Emoney].each do |network|
       network::Chain.enabled.each do |chain|
         chain.skip_to_now!
       end
@@ -11,7 +11,6 @@ end
 
 namespace :test do
   namespace :mail do
-
     namespace :alert do
       task daily: :environment do
         # grab a random sub, random events
@@ -37,15 +36,14 @@ namespace :test do
       task confirm: :environment do
         user = User.order('RANDOM()').first
         user.verification_token = SecureRandom.hex
-        UserMailer.with( user: user ).confirm.deliver_now
+        UserMailer.with(user: user).confirm.deliver_now
       end
 
       task forgot_password: :environment do
         user = User.order('RANDOM()').first
         user.password_reset_token = SecureRandom.hex
-        UserMailer.with( user: user ).forgot_password.deliver_now
+        UserMailer.with(user: user).forgot_password.deliver_now
       end
     end
-
   end
 end

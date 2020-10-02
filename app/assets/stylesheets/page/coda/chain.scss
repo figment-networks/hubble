@@ -1,0 +1,74 @@
+.chain-index {
+  .chain-list {
+    .card:hover {
+      background: #FEFEFE;
+      border-color: $primary;
+    }
+    .card-subtitle {
+      label { color: $text-muted; margin-bottom: 0; }
+    }
+  }
+}
+
+.chain-notes {
+  p:last-child {
+    margin-bottom: 0 !important;
+  }
+}
+
+.chain-show {
+  .transactions-volume-switcher {
+    margin-bottom: 12px;
+
+    button {
+      box-shadow: none !important;
+    }
+  }
+
+  .sparkline-chart {
+    height: 50px;
+    display: block;
+  }
+
+  .fees-chart-container,
+  .work-fees-chart-container {
+    display: none;
+  }
+
+  .validators-chart-container {
+    height: 30px;
+
+    .chartjs-tooltip {
+      color: $body-color;
+      font-size: 14px;
+      font-family: $font-family-monospace;
+    }
+  }
+
+  .validator-sparkline-switcher {
+    margin-top: 4px;
+    margin-bottom: 12px;
+  }
+
+  .card-body {
+    .sub-info {
+      margin-bottom: 12px;
+
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+i.tx-dir {
+  font-size: 14px;
+  margin-right: 4px;
+
+  &.up {
+    color: $warning;
+  }
+  &.down {
+    color: $success;
+  }
+}

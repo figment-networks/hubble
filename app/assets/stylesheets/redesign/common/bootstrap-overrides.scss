@@ -121,19 +121,19 @@ dl {
 }
 
 .custom-control-input:checked ~ .custom-control-label::before {
-  background-color: $figment-yellow;
+  background-color: #FFF29B;
   box-shadow: none;
 }
 
 .custom-radio .custom-control-input:checked ~ .custom-control-label::after {
   height: 12px;
   width: 12px;
-  background: $primary;
+  background: #111111;
   border-radius: 50%;
 }
 
 .custom-control-label {
-  color: $primary;
+  color: #111111;
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0;
@@ -142,6 +142,12 @@ dl {
 .text-muted {
   color: $primary !important;
   opacity: 0.55;
+}
+
+.navbar-toggler {
+  display: flex;
+  justify-content: flex-end;
+  width: 56px;
 }
 
 .navbar .navbar-toggler-icon {

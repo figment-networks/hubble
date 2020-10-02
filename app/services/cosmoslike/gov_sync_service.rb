@@ -1,12 +1,12 @@
 class Cosmoslike::GovSyncService
-  def initialize( chain )
+  def initialize(chain)
     @chain = chain
-    @syncer = @chain.syncer( 10_000 )
+    @syncer = @chain.syncer(10_000)
   end
 
   def sync_params!
     ProgressReport.instance.start "Syncing Governance Params for #{@chain.network_name}/#{@chain.name}..."
-    @chain.update_attributes governance: (@syncer.get_governance||{})
+    @chain.update_attributes governance: (@syncer.get_governance || {})
     ProgressReport.instance.report
   end
 
@@ -14,11 +14,9 @@ class Cosmoslike::GovSyncService
     ProgressReport.instance.start "Syncing Community Pool for #{@chain.network_name}/#{@chain.name}..."
 
     pool = @syncer.get_community_pool
-    if pool
-      pool.map! do |balance|
-        balance['amount'] = balance['amount'].to_f
-        balance
-      end
+    pool&.map! do |balance|
+      balance['amount'] = balance['amount'].to_f
+      balance
     end
     @chain.update_attributes community_pool: pool
 
@@ -72,13 +70,13 @@ class Cosmoslike::GovSyncService
 
         if working_proposal.ended?
           proposal_finalized(working_proposal)
-          working_proposal.update_attributes( finalized: true )
+          working_proposal.update_attributes(finalized: true)
           puts "Finalized past proposal: #{working_proposal.ext_id} - #{working_proposal.title}"
         end
       end
     end
 
-    to_purge = @chain.governance_proposals.where.not( ext_id: tracked_proposal_ids )
+    to_purge = @chain.governance_proposals.where.not(ext_id: tracked_proposal_ids)
     if !ext_proposals.nil? && to_purge.any?
       puts "Purging old dead proposals: #{to_purge.map(&:ext_id)}"
       to_purge.map(&:destroy)
@@ -102,14 +100,14 @@ class Cosmoslike::GovSyncService
   end
 
   def sync_governance_proposal_deposits(hubble_proposal)
-    deposits = @syncer.get_proposal_deposits( hubble_proposal.ext_id )
+    deposits = @syncer.get_proposal_deposits(hubble_proposal.ext_id)
     return if deposits.nil?
 
     by_depositor = deposits.group_by { |dep| dep['depositer'] || dep['depositor'] }
 
     by_depositor.entries.each do |address, deposits|
       deposit = deposits.last
-      account = @chain.accounts.find_or_create_by!( address: address )
+      account = @chain.accounts.find_or_create_by!(address: address)
 
       deposit['amount'].try(:each) do |deposit_amount|
         amount_denom = deposit_amount['denom']
@@ -122,15 +120,15 @@ class Cosmoslike::GovSyncService
 
         if deposit
           # ensure only 1 deposit for this account/proposal pair
-          extras = @chain.namespace::Governance::Deposit
-            .where( account: account, proposal: hubble_proposal )
-            .where( 'id != ?', deposit.id )
+          extras = @chain.namespace::Governance::Deposit.
+            where(account: account, proposal: hubble_proposal).
+            where('id != ?', deposit.id)
           if extras.any?
             puts "Purging #{extras.count} extra deposits for #{account.address} (#{account.address}/#{hubble_proposal.id})..."
             extras.map(&:destroy)
           end
 
-          deposit.assign_attributes( amount_denom: amount_denom, amount: amount )
+          deposit.assign_attributes(amount_denom: amount_denom, amount: amount)
           if deposit.changed?
             puts "Deposit by #{account.address} on #{hubble_proposal.title} updated (#{deposit.changes})"
             deposit.save
@@ -161,21 +159,21 @@ class Cosmoslike::GovSyncService
     by_voter.entries.each do |address, votes|
       vote_data = votes.last
       option = vote_data['option']
-      account = @chain.accounts.find_or_create_by!( address: address )
+      account = @chain.accounts.find_or_create_by!(address: address)
 
-      vote = @chain.namespace::Governance::Vote.find_by( account: account, proposal: hubble_proposal )
+      vote = @chain.namespace::Governance::Vote.find_by(account: account, proposal: hubble_proposal)
 
       if vote
         # ensure only 1 vote for this account/proposal pair
-        extras = @chain.namespace::Governance::Vote
-          .where( account: account, proposal: hubble_proposal )
-          .where( 'id != ?', vote.id )
+        extras = @chain.namespace::Governance::Vote.
+          where(account: account, proposal: hubble_proposal).
+          where('id != ?', vote.id)
         if extras.any?
           puts "Purging #{extras.count} extra votes for #{account.address} (#{account.address}/#{hubble_proposal.id})..."
           extras.map(&:destroy)
         end
 
-        vote.assign_attributes( option: option )
+        vote.assign_attributes(option: option)
         if vote.changed?
           puts "Vote by #{account.address} on #{hubble_proposal.title} updated (#{vote.changes})"
           vote.save
@@ -199,14 +197,12 @@ class Cosmoslike::GovSyncService
     if hubble_proposal.voting_end_time.blank? || hubble_proposal.in_voting_period? || hubble_proposal.in_deposit_period?
       ext_proposals = @syncer.get_proposals
       suspect_proposal = ext_proposals.detect { |p| p['id'].to_s == hubble_proposal.ext_id.to_s }
-      Rollbar.error("Governance - illogical combination of voting_end_time and/or proposal_status.", proposal: suspect_proposal)
-      puts "Proposal reported for review - illogical combination of voting_end_time and/or proposal_status."
+      Rollbar.error('Governance - illogical combination of voting_end_time and/or proposal_status.', proposal: suspect_proposal)
+      puts 'Proposal reported for review - illogical combination of voting_end_time and/or proposal_status.'
     end
   end
 
-  private
-
-  def build_proposal( proposal )
-    raise NotImplementedError.new("Implement #build_proposal for #{self.class.name}")
+  def build_proposal(_proposal)
+    raise NotImplementedError, "Implement #build_proposal for #{self.class.name}"
   end
 end

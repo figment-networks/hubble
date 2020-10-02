@@ -5,8 +5,8 @@
     <td class='attributes_content'>
       <table width='100%' cellpadding='0' cellspacing='0'>
         <tr>
-          <td class='attributes_item'><strong><%= @alertable.model_name.human %>:</strong>
-            <%= link_to @alertable.short_name, namespaced_path(@alertable.model_name.element, @alertable, chain: @alertable.chain, full: true) %>
+          <td class='attributes_item'><strong><%= @alertable.chain.alertable_type.humanize %>:</strong>
+            <%= link_to @alertable.short_name, namespaced_path(@alertable.chain.alertable_type, @alertable.address, chain: @alertable.chain, full: true) %>
           </td>
         </tr>
         <tr>
@@ -22,14 +22,14 @@
 <p>There <%= @events.count == 1 ? 'is' : 'are' %> <%= pluralize(@events.count, 'new event') %>.</p>
 <%= render partial: 'event_list' %>
 
-<p>If you have any questions, please <%= mail_to 'contact@figment.network', 'email us' %>.</p>
+<p>If you have any questions, please <%= mail_to 'contact@figment.io', 'email us' %>.</p>
 <p>Thanks,
-  <br>The Figment Networks Team</p>
+  <br>The Figment Team</p>
 <!-- Sub copy -->
 <table class='body-sub'>
   <tr>
     <td>
-      <p class='sub'>You can manage this subscription <%= link_to 'here', namespaced_path("#{@alertable.model_name.element}_subscriptions", @alertable, chain: @alertable.chain, full: true) %>.</p>
+      <p class='sub'>You can manage this subscription <%= link_to 'here', namespaced_path("#{@alertable.chain.alertable_type}_subscriptions", @alertable.address, chain: @alertable.chain, full: true) %>.</p>
     </td>
   </tr>
 </table>

@@ -1,0 +1,184 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://localhost:443/status
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Typhoeus - https://github.com/typhoeus/typhoeus
+      Expect:
+      - ''
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      X-Server-Time:
+      - '1599227669'
+      Date:
+      - Fri, 04 Sep 2020 13:54:29 GMT
+      Content-Length:
+      - '1097'
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+          "jsonrpc": "2.0",
+          "id": "",
+          "result": {
+            "node_info": {
+              "protocol_version": {
+                "p2p": "5",
+                "block": "9",
+                "app": "2"
+              },
+              "id": "404f27c94f7c7e6c8705aba6e9e9c496ac6edf80",
+              "listen_addr": "tcp://0.0.0.0:26656",
+              "network": "irishub",
+              "version": "0.32.1",
+              "channels": "4020212223303800",
+              "moniker": "figmentarchival",
+              "other": {
+                "tx_index": "on",
+                "rpc_address": "tcp://0.0.0.0:26657"
+              }
+            },
+            "sync_info": {
+              "latest_block_hash": "630ADADCAEEA5BACCA287EA14847C454EB0DC2C6EB85176FAD48B1305CB7DBB2",
+              "latest_app_hash": "2A2018F6427D04B78EB7E6DEE09D63CBD4D52497E0EE7FE0A274631FD57D4771",
+              "latest_block_height": "6993741",
+              "latest_block_time": "2020-09-04T13:54:20.901804698Z",
+              "catching_up": false
+            },
+            "validator_info": {
+              "address": "76A4FF2B308EA3D4BD163CA828F9481BC4D13D27",
+              "pub_key": {
+                "type": "tendermint/PubKeyEd25519",
+                "value": "Zm3VlYhr0V9PuNJSNgkhCh1Ff8jdJkFVTYQvAuX95vc="
+              },
+              "voting_power": "0"
+            }
+          }
+        }
+  recorded_at: Fri, 04 Sep 2020 13:54:29 GMT
+- request:
+    method: get
+    uri: http://localhost:443/txs/2f6218e0102c13781f23b83291d353ac3c3b3a5c3668ca95a82d405a13cb93b9
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Typhoeus - https://github.com/typhoeus/typhoeus
+      Expect:
+      - ''
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      X-Server-Time:
+      - '1599227669'
+      Date:
+      - Fri, 04 Sep 2020 13:54:29 GMT
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+          "hash": "2F6218E0102C13781F23B83291D353AC3C3B3A5C3668CA95A82D405A13CB93B9",
+          "height": "6702225",
+          "tx": {
+            "type": "irishub/bank/StdTx",
+            "value": {
+              "msg": [
+                {
+                  "type": "irishub/bank/Send",
+                  "value": {
+                    "inputs": [
+                      {
+                        "address": "iaa1v8jnm52a4c204898v7nd2uq09cgl2hky0s00lk",
+                        "coins": [
+                          {
+                            "denom": "iris-atto",
+                            "amount": "1151672177720000000000"
+                          }
+                        ]
+                      }
+                    ],
+                    "outputs": [
+                      {
+                        "address": "iaa15m0yr8r5rqm5hwmd5hsyjrpwy02gsm95wuu0pz",
+                        "coins": [
+                          {
+                            "denom": "iris-atto",
+                            "amount": "1151672177720000000000"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ],
+              "fee": {
+                "amount": [
+                  {
+                    "denom": "iris-atto",
+                    "amount": "43782000000000000"
+                  }
+                ],
+                "gas": "7296"
+              },
+              "signatures": [
+                {
+                  "pub_key": {
+                    "type": "tendermint/PubKeySecp256k1",
+                    "value": "A/gXeSX8ngf2hF7C1BcUvuluiEydlKjX+rxcqgN4Uz6S"
+                  },
+                  "signature": "CUAkrbKEiTqxBOB8Ig5dHpJqpfVbDFDoFuUuI/BlqM1flY6l7KQWL6LZjZriwRmZsF90YwK4NoRQnjOA9J8BOg==",
+                  "account_number": "13091",
+                  "sequence": "782"
+                }
+              ],
+              "memo": ""
+            }
+          },
+          "result": {
+            "Code": 0,
+            "Data": null,
+            "Log": "Msg 0: ",
+            "Info": "",
+            "GasWanted": "7296",
+            "GasUsed": "5017",
+            "Tags": [
+              {
+                "key": "action",
+                "value": "send"
+              },
+              {
+                "key": "sender",
+                "value": "iaa1v8jnm52a4c204898v7nd2uq09cgl2hky0s00lk"
+              },
+              {
+                "key": "recipient",
+                "value": "iaa15m0yr8r5rqm5hwmd5hsyjrpwy02gsm95wuu0pz"
+              }
+            ],
+            "Codespace": "",
+            "XXX_NoUnkeyedLiteral": {},
+            "XXX_unrecognized": null,
+            "XXX_sizecache": 0
+          },
+          "timestamp": "2020-08-11T18:41:53Z",
+          "coin_flow": null
+        }
+  recorded_at: Fri, 04 Sep 2020 13:54:29 GMT
+recorded_with: VCR 6.0.0

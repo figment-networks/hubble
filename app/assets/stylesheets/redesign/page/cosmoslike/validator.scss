@@ -29,12 +29,7 @@
           border: 1px solid lighten($success, 10%);
         }
       }
-      &.missed { 
-	background: $danger; 
-	&:hover { 
-	  background: lighten($danger, 10%); 
-	} 
-      }
+      &.missed { background: $danger; &:hover { background: lighten($danger, 10%); } }
       &.proposed {
         border: 3px solid $primary;
         &:hover {

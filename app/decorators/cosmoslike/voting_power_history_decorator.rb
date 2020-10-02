@@ -1,7 +1,7 @@
 class Cosmoslike::VotingPowerHistoryDecorator
   include FormattingHelper
 
-  def initialize( validator )
+  def initialize(validator)
     @validator = validator
   end
 
@@ -20,7 +20,7 @@ class Cosmoslike::VotingPowerHistoryDecorator
 
     first = data.first
     data.unshift(
-      t: (@validator.chain.cutoff_at || Time.parse( first[:t] ).utc.beginning_of_day).iso8601,
+      t: (@validator.chain.cutoff_at || Time.parse(first[:t]).utc.beginning_of_day).iso8601,
       y: @validator.chain.cutoff_at ? first[:y] : 0
     )
 

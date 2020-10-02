@@ -1,5 +1,7 @@
-$(document).ready( function() {
-  if( !_.includes(App.mode, 'chain-halted') ) { return }
+$(document).ready(function() {
+  if (!_.includes(App.mode, 'chain-halted')) {
+    return;
+  }
 
-  new App.Cosmoslike.ValidatorTable( $('.validator-table') ).render()
-} )
+  new App.Cosmoslike.ValidatorTable($('.validator-table')).render();
+});

@@ -1,12 +1,11 @@
 module Oasis
   class Transaction < Common::Resource
-    attr_accessor :public_key,
-                  :hash,
-                  :nonce,
-                  :fee,
-                  :gas_limit,
-                  :gas_price,
-                  :method
-
+    field :public_key
+    field :hash
+    field :nonce
+    field :fee
+    field :gas_limit
+    field :gas_price
+    field :method
   end
 end

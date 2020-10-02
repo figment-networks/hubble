@@ -18,7 +18,7 @@
     <% end -%>
 
     <% chains.each do |chain| -%>
-      <% latest_block = chain.client.status %>
+      <% status = chain.client.status %>
       <tr>
         <td class='align-middle pl-3'>
           <a href='<%= namespaced_path( chain: chain, admin: true ) %>'>
@@ -41,18 +41,24 @@
             <span class='fas fa-exclamation-triangle text-warning' data-toggle='tooltip' data-tooltip-side='top'title='Disabled'></span>
           <% end -%>
         </td>
-        <td class='align-middle pl-3'>
-          <b><%= latest_block.app_version %></b>
-        </td>
-        <td class='align-middle pl-3'>
-          <b><%= latest_block.status %></b>
-        </td>
-        <td class='align-middle pl-3'>
-          <b><%= latest_block.last_indexed_height %></b> blocks
-        </td>
-        <td class='align-middle pl-3'>
-            <div class='text-danger'><%= time_ago_in_words latest_block.last_indexed_time, highest_measure_only: true %></div>
-        </td>
+        <% if !status.success? %>
+          <td colspan='4' class='pl-3'>
+            Error connecting to indexer.
+          </td>
+        <% else %>
+          <td class='align-middle pl-3'>
+            <b><%= status.app_version %></b>
+          </td>
+          <td class='align-middle pl-3'>
+            <b><%= status.status %></b>
+          </td>
+          <td class='align-middle pl-3'>
+            <b><%= status.last_indexed_height %></b> blocks
+          </td>
+          <td class='align-middle pl-3'>
+              <div class='text-danger'><%= time_ago_in_words status.last_indexed_time, highest_measure_only: true %></div>
+          </td>
+        <% end %>
 
         <td class='text-right'>
           <%= button_to namespaced_path( 'move_up', pre_path: true, admin: true, chain: chain ), method: 'post', class: 'btn btn-sm btn-outline-secondary', form: { class: 'd-inline' } do %>
@@ -64,6 +70,7 @@
           <a class='btn btn-sm btn-outline-secondary' href='<%= namespaced_path( chain: chain, admin: true ) %>'><span class='fas fa-edit'></span></a>
           <a class='btn btn-sm btn-outline-secondary' href='<%= namespaced_path( chain: chain ) %>'><span class='fas fa-eye'></span></a>
         </td>
+
       </tr>
     <% end -%>
   </tbody>

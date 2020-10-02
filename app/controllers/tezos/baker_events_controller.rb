@@ -1,5 +1,5 @@
-require "indexer/resources/cycle"
-require "indexer/resources/event"
+require 'indexer/resources/cycle'
+require 'indexer/resources/event'
 
 module Tezos
   class BakerEventsController < BaseController

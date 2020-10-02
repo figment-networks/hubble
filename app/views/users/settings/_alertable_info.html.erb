@@ -1,4 +1,4 @@
-<%= link_to namespaced_path("#{subscription.alertable.model_name.element}_subscriptions", subscription.alertable, chain: subscription.alertable.chain), class: 'd-block' do %>
+<%= link_to namespaced_path("#{subscription.alertable.chain.alertable_type}_subscriptions", subscription.alertable, chain: subscription.alertable.chain), class: 'd-block' do %>
   <%= subscription.alertable.short_name(30) -%>
 <% end %>
 

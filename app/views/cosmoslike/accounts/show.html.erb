@@ -1,6 +1,7 @@
 <% content_for :body_class, 'account-show' %>
 
 <%= render partial: '/cosmoslike/shared/chain_header', locals: { summary_link: true } %>
+<%= render_flash_messages %>
 
 <h2 class='mb-0'>
   <label class='text-muted'>Account</label>
@@ -42,21 +43,28 @@
           <% end -%>
         </div>
       </div>
-      <div class='card'>
-        <h5 class='card-header'>Delegation</h5>
-        <div class='card-body'>
-          <label class='text-muted mb-0 mt-0'>Bonded</label>
-          <%= format_amount( @account.total_delegations( filter: :bonded ), @chain, denom: @chain.token_map[@chain.primary_token]['display'] ) %>
 
-          <label class='text-muted mb-0 mt-3'>Unbonding</label>
-          <%= format_amount( @account.total_delegations( filter: :unbonding ), @chain, denom: @chain.token_map[@chain.primary_token]['display'] ) %>
+      <!-- UNLESS STATEMENT TO BE REMOVED WHEN DELEGATIONS INDEXING FIXED -->
+      <% unless @chain.network_name == 'Cosmos' %>
+        <div class='card'>
+          <h5 class='card-header'>Delegation</h5>
+          <div class='card-body'>
+            <label class='text-muted mb-0 mt-0'>Bonded</label>
+            <%= format_amount( @account.total_delegations( filter: :bonded ), @chain, denom: @chain.token_map[@chain.primary_token]['display'] ) %>
+
+            <label class='text-muted mb-0 mt-3'>Unbonding</label>
+            <%= format_amount( @account.total_delegations( filter: :unbonding ), @chain, denom: @chain.token_map[@chain.primary_token]['display'] ) %>
+          </div>
         </div>
-      </div>
+      <% end %>
     </div>
 
-    <div class='col-12 col-md-9 order-1 order-md-0'>
-      <%= render partial: 'delegations' %>
-      <%= render partial: 'transactions' %>
-    </div>
+    <!-- UNLESS STATEMENT TO BE REMOVED WHEN DELEGATIONS INDEXING FIXED -->
+    <% unless @chain.network_name == 'Cosmos' %>
+      <div class='col-12 col-md-9 order-1 order-md-0'>
+        <%= render partial: 'delegations' %>
+        <%= render partial: 'transactions' %>
+      </div>
+    <% end %>
   </div>
 <% end -%>

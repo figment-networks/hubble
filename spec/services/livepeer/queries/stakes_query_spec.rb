@@ -1,12 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Livepeer::Queries::StakesQuery, livepeer: :factory do
+  subject { described_class.new(delegator_list, params) }
+
   include_context 'Livepeer delegator stakes'
 
   let(:delegator_list) { create_delegator_list(chains[0], delegators) }
   let(:params) { {} }
-
-  subject { described_class.new(delegator_list, params) }
 
   it 'returns stakes grouped by delegator' do
     results = subject.call

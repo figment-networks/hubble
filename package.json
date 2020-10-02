@@ -14,6 +14,15 @@
     "lodash": "^4.17.19",
     "moment": "^2.22.2",
     "moment-timezone": "^0.5.20",
-    "tooltipster": "^4.2.6"
+    "tooltipster": "^4.2.6",
+    "flatpickr": "^4.6.3"
+  },
+  "devDependencies": {
+    "eslint": "^7.9.0",
+    "eslint-config-google": "^0.14.0"
+  },
+  "scripts": {
+    "format": "npx eslint app --fix",
+    "lint": "npx eslint app"
   }
 }

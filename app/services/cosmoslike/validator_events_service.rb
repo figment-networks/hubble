@@ -1,12 +1,12 @@
 class Cosmoslike::ValidatorEventsService
-  EVENT_ORDER = %w{
+  EVENT_ORDER = %w[
     active_set_inclusion
     voting_power_change
     n_of_m
     n_consecutive
-  }
+  ].freeze
 
-  def initialize( chain )
+  def initialize(chain)
     @chain = chain
   end
 
@@ -15,21 +15,22 @@ class Cosmoslike::ValidatorEventsService
 
     EVENT_ORDER.each do |kind|
       next unless definitions[kind] # chain has no definitions of this kind
+
       definitions[kind].each do |defn|
         if defn_is_valid? defn
           puts "Running event (chain: #{@chain.name}) definition: #{defn['kind']} #{defn['unique_id']}..."
-          self.public_send(:"run_#{defn['kind']}!", *defn_params(defn))
+          public_send(:"run_#{defn['kind']}!", *defn_params(defn))
         end
       end
     end
   end
 
-  def run_n_consecutive!( defn_id, n )
-    from = @chain.get_event_height( defn_id )+1
+  def run_n_consecutive!(defn_id, n)
+    from = @chain.get_event_height(defn_id) + 1
     to = @chain.latest_local_height
 
     if to < from
-      puts "No new local blocks to generate n-consecutive threshold events."
+      puts 'No new local blocks to generate n-consecutive threshold events.'
     else
       existing_validators = @chain.validators.index_by(&:address)
       latches = existing_validators.values.each_with_object({}) do |v, h|
@@ -42,7 +43,7 @@ class Cosmoslike::ValidatorEventsService
 
       ProgressReport.instance.start "Updating n-consecutive (#{n} consecutive) threshold events (block #{from} -> #{to})..."
 
-      insert_events( from, to ) do |block|
+      insert_events(from, to) do |block|
         existing_validators.values.each do |validator|
           address = validator.address
           latch = latches[address]
@@ -56,7 +57,7 @@ class Cosmoslike::ValidatorEventsService
             tripped = false
           else
             # update the latch according to the event definition
-            voted = block.precommitters.include?( address )
+            voted = block.precommitters.include?(address)
             new_state = voted ? 0 : (latch.state.to_i + 1)
             tripped = new_state >= n
           end
@@ -72,8 +73,8 @@ class Cosmoslike::ValidatorEventsService
                   event_definition_id: defn_id,
                   data: { n: n }
                 )
-              rescue
-                raise @chain.namespace::SyncBase::CriticalError.new("Could not create n-consecutive validator event. #{validator.address} #{n} at height #{block.height}")
+              rescue StandardError
+                raise @chain.namespace::SyncBase::CriticalError, "Could not create n-consecutive validator event. #{validator.address} #{n} at height #{block.height}"
               end
 
               # make sure to hold the latch
@@ -95,12 +96,12 @@ class Cosmoslike::ValidatorEventsService
     end
   end
 
-  def run_n_of_m!( defn_id, n, m )
-    from = @chain.get_event_height( defn_id )+1
+  def run_n_of_m!(defn_id, n, m)
+    from = @chain.get_event_height(defn_id) + 1
     to = @chain.latest_local_height
 
     if to < from
-      puts "No new local blocks to generate n-of-m threshold events."
+      puts 'No new local blocks to generate n-of-m threshold events.'
     else
       existing_validators = @chain.validators.index_by(&:address)
       latches = existing_validators.values.each_with_object({}) do |v, h|
@@ -113,7 +114,7 @@ class Cosmoslike::ValidatorEventsService
 
       ProgressReport.instance.start "Updating n-of-m (#{n}-of-#{m}) threshold events (block #{from} -> #{to})..."
 
-      insert_events( from, to ) do |block|
+      insert_events(from, to) do |block|
         existing_validators.values.each do |validator|
           address = validator.address
           latch = latches[address]
@@ -127,7 +128,7 @@ class Cosmoslike::ValidatorEventsService
             tripped = false
           else
             # update the latch according to the event definition
-            voted = block.precommitters.include?( address )
+            voted = block.precommitters.include?(address)
             new_state = latch.state[1..-1] << (voted ? '0' : '1')
             tripped = new_state.count('1') >= n
           end
@@ -143,8 +144,8 @@ class Cosmoslike::ValidatorEventsService
                   event_definition_id: defn_id,
                   data: { n: n, m: m }
                 )
-              rescue
-                raise @chain.namespace::SyncBase::CriticalError.new("Could not create n-of-m validator event. #{validator.address} #{n} of #{m} at height #{block.height}")
+              rescue StandardError
+                raise @chain.namespace::SyncBase::CriticalError, "Could not create n-of-m validator event. #{validator.address} #{n} of #{m} at height #{block.height}"
               end
 
               # make sure to hold the latch
@@ -166,12 +167,12 @@ class Cosmoslike::ValidatorEventsService
     end
   end
 
-  def run_voting_power_change!( defn_id )
-    from = @chain.get_event_height( defn_id )+1
+  def run_voting_power_change!(defn_id)
+    from = @chain.get_event_height(defn_id) + 1
     to = @chain.latest_local_height
 
     if to < from
-      puts "No new local blocks to generate voting power change events."
+      puts 'No new local blocks to generate voting power change events.'
     else
       existing_validators = @chain.validators.index_by(&:address)
 
@@ -181,24 +182,24 @@ class Cosmoslike::ValidatorEventsService
 
       ProgressReport.instance.start "Updating voting power change history (block #{from} -> #{to})..."
 
-      get_active_set_changes = ->( blocks ) do
-        Common::ValidatorEvents::ActiveSetInclusion
-          .where( chainlike: @chain, height: blocks.map(&:height) )
-          .group_by( &:height )
+      get_active_set_changes = lambda do |blocks|
+        Common::ValidatorEvents::ActiveSetInclusion.
+          where(chainlike: @chain, height: blocks.map(&:height)).
+          group_by(&:height)
       end
 
-      insert_events( from, to, get_active_set_changes ) do |block, active_set_changes|
-        active_set_changes = (active_set_changes||[]).index_by( &:validatorlike_id )
+      insert_events(from, to, get_active_set_changes) do |block, active_set_changes|
+        active_set_changes = (active_set_changes || []).index_by(&:validatorlike_id)
 
         block.validator_set.each do |address, voting_power|
           # sanity check to make sure we have this validator
-          if !existing_validators.keys.include?( address )
-            raise @chain.namespace::SyncBase::CriticalError.new("Unknown validator #{address} in validator set for block #{block.height}.")
+          if !existing_validators.keys.include?(address)
+            raise @chain.namespace::SyncBase::CriticalError, "Unknown validator #{address} in validator set for block #{block.height}."
           end
 
           # sanity check to make sure there is a valid voting power number
           if voting_power.nil?
-            raise @chain.namespace::SyncBase::CriticalError.new("Invalid voting power for #{address}: #{voting_power.inspect}")
+            raise @chain.namespace::SyncBase::CriticalError, "Invalid voting power for #{address}: #{voting_power.inspect}"
           end
 
           validator = existing_validators[address]
@@ -210,39 +211,39 @@ class Cosmoslike::ValidatorEventsService
           # record an update. but *skip this* if this change was
           # part of being removed from the active set
           # puts "\n\n#{address} / #{height}\tis active set change #{!active_set_change.nil?}\n#{existing_validators[address].first_seen_at}/#{block.timestamp} -> #{existing_validators[address].first_seen_at == block.timestamp}\npositive? #{active_set_change.try(:positive?) || false}\nvoting power changed? #{latest_voting_powers[address] != voting_power}\nSHOULD RECORD? #{should_record}"
-          if latest_voting_power_changes[address] != voting_power
-            if !active_set_change || active_set_change.added?
-              # only actually create an event if the change is over a threshold
-              # or takes the validator up from zero
-              significant = Common::ValidatorEvents::VotingPowerChange.significant_change?(
-                latest_voting_power_changes[address],
-                voting_power
+          next unless latest_voting_power_changes[address] != voting_power
+
+          next unless !active_set_change || active_set_change.added?
+
+          # only actually create an event if the change is over a threshold
+          # or takes the validator up from zero
+          significant = Common::ValidatorEvents::VotingPowerChange.significant_change?(
+            latest_voting_power_changes[address],
+            voting_power
+          )
+
+          if latest_voting_power_changes[address].zero? || significant
+            begin
+              Common::ValidatorEvents::VotingPowerChange.create!(
+                chainlike: @chain,
+                validatorlike: validator,
+                height: block.height,
+                timestamp: block.timestamp,
+                event_definition_id: defn_id,
+                data: {
+                  from: latest_voting_power_changes[address],
+                  to: voting_power
+                }
               )
-
-              if latest_voting_power_changes[address].zero? || significant
-                begin
-                  Common::ValidatorEvents::VotingPowerChange.create!(
-                    chainlike: @chain,
-                    validatorlike: validator,
-                    height: block.height,
-                    timestamp: block.timestamp,
-                    event_definition_id: defn_id,
-                    data: {
-                      from: latest_voting_power_changes[address],
-                      to: voting_power
-                    }
-                  )
-                  # puts "\t\tADDED VOTING POWER CHANGE: #{validator.moniker} #{latest_voting_power_changes[address]} -> #{voting_power}"
-                  # puts "######################################################################################################################################################################################################################################################################################################################"
-                  # sleep 5
-                rescue
-                  raise @chain.namespace::SyncBase::CriticalError.new("Could not create voting-power-change validator event. #{validator.address} #{voting_power} at height #{block.height}")
-                end
-              end
-
-              latest_voting_power_changes[address] = voting_power || 0
+              # puts "\t\tADDED VOTING POWER CHANGE: #{validator.moniker} #{latest_voting_power_changes[address]} -> #{voting_power}"
+              # puts "######################################################################################################################################################################################################################################################################################################################"
+              # sleep 5
+            rescue StandardError
+              raise @chain.namespace::SyncBase::CriticalError, "Could not create voting-power-change validator event. #{validator.address} #{voting_power} at height #{block.height}"
             end
           end
+
+          latest_voting_power_changes[address] = voting_power || 0
         end
 
         @chain.set_event_height! defn_id, block.height
@@ -252,19 +253,19 @@ class Cosmoslike::ValidatorEventsService
     end
   end
 
-  def run_active_set_inclusion!( defn_id )
-    from = @chain.get_event_height( defn_id )+1
+  def run_active_set_inclusion!(defn_id)
+    from = @chain.get_event_height(defn_id) + 1
     to = @chain.latest_local_height
 
     if to < from
-      puts "No new local blocks to generate active set inclusion events."
+      puts 'No new local blocks to generate active set inclusion events.'
     else
       ProgressReport.instance.start "Generating validator in/out of active set events (block #{from} -> #{to})..."
 
       validators = @chain.validators.index_by(&:address)
 
-      prev_block = @chain.blocks.find_by( height: from - 1 )
-      insert_events( from, to ) do |block|
+      prev_block = @chain.blocks.find_by(height: from - 1)
+      insert_events(from, to) do |block|
         first_block = true if prev_block.nil?
 
         validators.keys.each do |address|
@@ -297,13 +298,15 @@ class Cosmoslike::ValidatorEventsService
                 event_definition_id: defn_id,
                 data: { status: 'added' }
               )
-            else
-              # no change
             end
-          rescue
+          rescue StandardError
             puts $!.message
             puts $!.backtrace.join("\n")
-            raise @chain.namespace::SyncBase::CriticalError.new("Could not create active-set-inclusion validator event. #{address} #{added ? 'added' : removed ? 'removed' : 'no change...?'} at height #{block.height}")
+            raise @chain.namespace::SyncBase::CriticalError, "Could not create active-set-inclusion validator event. #{address} #{if added
+                                                                                                                                    'added'
+                                                                                                                                  else
+                                                                                                                                    removed ? 'removed' : 'no change...?'
+                                                                                                                                  end} at height #{block.height}"
           end
         end
 
@@ -317,23 +320,23 @@ class Cosmoslike::ValidatorEventsService
 
   private
 
-  def insert_events( from, to, extra_arg_proc=nil, debug: false, &process )
+  def insert_events(from, to, extra_arg_proc = nil, debug: false, &process)
     (from..to).to_a.in_groups_of(500, false).each do |heights|
       puts "HEIGHTS TO GET: #{heights.inspect}" if debug
-      found_blocks = @chain.blocks.where( height: heights ).reorder('height ASC').index_by { |b| b.height.to_i }
+      found_blocks = @chain.blocks.where(height: heights).reorder('height ASC').index_by { |b| b.height.to_i }
 
       blocks = heights.map(&:to_i).sort.map do |height|
-        found_blocks[height] || @chain.namespace::Block.stub( @chain, height )
+        found_blocks[height] || @chain.namespace::Block.stub(@chain, height)
       end
 
-      extra_arg = extra_arg_proc ? extra_arg_proc.call( blocks ) : nil
+      extra_arg = extra_arg_proc ? extra_arg_proc.call(blocks) : nil
 
       blocks.each do |block|
         puts "\tBLOCK #{block.height}" if debug
         block_start_time = Time.now.utc.to_f
 
-        args = [ block, extra_arg ? extra_arg[block.height] : nil ].compact
-        process.call( *args )
+        args = [block, extra_arg ? extra_arg[block.height] : nil].compact
+        process.call(*args)
 
         ProgressReport.instance.progress from, block.height, to
         ProgressReport.instance.benchmark Time.now.utc.to_f - block_start_time
@@ -341,28 +344,27 @@ class Cosmoslike::ValidatorEventsService
     end
   end
 
-  def defn_params( defn )
+  def defn_params(defn)
     case defn['kind']
-    when 'voting_power_change' then [ defn['unique_id'] ]
-    when 'active_set_inclusion' then [ defn['unique_id'] ]
-    when 'n_of_m' then [ defn['unique_id'], defn['n'], defn['m'] ]
-    when 'n_consecutive' then [ defn['unique_id'], defn['n'] ]
+    when 'voting_power_change' then [defn['unique_id']]
+    when 'active_set_inclusion' then [defn['unique_id']]
+    when 'n_of_m' then [defn['unique_id'], defn['n'], defn['m']]
+    when 'n_consecutive' then [defn['unique_id'], defn['n']]
     end
   end
 
-  def defn_is_valid?( defn )
+  def defn_is_valid?(defn)
     case defn['kind']
     when 'voting_power_change' then true
     when 'active_set_inclusion' then true
     when 'n_of_m'
       defn['n'].is_a?(Numeric) &&
-      defn['m'].is_a?(Numeric) &&
-      defn['n'] < defn['m']
+        defn['m'].is_a?(Numeric) &&
+        defn['n'] < defn['m']
     when 'n_consecutive'
       defn['n'].is_a?(Numeric)
     else
       false
     end
   end
-
 end

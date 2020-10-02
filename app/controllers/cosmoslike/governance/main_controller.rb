@@ -1,5 +1,4 @@
 class Cosmoslike::Governance::MainController < Cosmoslike::BaseController
-
   def index
     @proposals = @chain.governance_proposals.ordered_by_submit_time
 

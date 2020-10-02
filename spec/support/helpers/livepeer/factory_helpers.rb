@@ -8,11 +8,11 @@ module Livepeer::FactoryHelpers
     )
   end
 
-  def create_unbond_round(chain, withdraw_round:)
+  def create_unbond_round(_chain, withdraw_round:)
     create_round_relative_to(withdraw_round, interval: -Livepeer::UNBONDING_PERIOD)
   end
 
-  def create_withdraw_round(chain, unbond_round:)
+  def create_withdraw_round(_chain, unbond_round:)
     create_round_relative_to(unbond_round, interval: Livepeer::UNBONDING_PERIOD)
   end
 
@@ -45,8 +45,8 @@ module Livepeer::FactoryHelpers
     )
   end
 
-  def create_transcoder(chain, address:)
-    create(:livepeer_transcoder, chain: chain, address: address)
+  def create_orchestrator(chain, address:)
+    create(:livepeer_orchestrator, chain: chain, address: address)
   end
 
   def create_delegator(chain, address:)

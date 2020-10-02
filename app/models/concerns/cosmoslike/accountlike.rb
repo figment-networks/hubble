@@ -13,5 +13,7 @@ module Cosmoslike::Accountlike
     validates :address, allow_blank: false, presence: true, uniqueness: { scope: :chain }
   end
 
-  def to_param; address; end
+  def to_param
+    address
+  end
 end

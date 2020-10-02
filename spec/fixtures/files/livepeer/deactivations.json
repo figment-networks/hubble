@@ -1,0 +1,20 @@
+{
+  "data": {
+    "deactivations": [
+      {
+        "delegate": {
+          "id": "0xe3a5793d7c1d2a04a903fa1695b3e3555d6084ca"
+        },
+        "timestamp": "1579265689",
+        "transactionHash": "0x85e868394d4d8267801587be56a80092524ee6c6720eff09f1939c50beb9135d"
+      },
+      {
+        "delegate": {
+          "id": "0xda43d85b8d419a9c51bbf0089c9bd5169c23f2f9"
+        },
+        "timestamp": "1579624073",
+        "transactionHash": "0xfc461f18379d14dd1d000af05f5d112066c86e874b6b3239ba55cb6eafc4cd34"
+      }
+    ]
+  }
+}

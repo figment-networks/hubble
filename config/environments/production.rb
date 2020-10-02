@@ -32,13 +32,16 @@ Rails.application.configure do
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  config.action_controller.asset_host = "#{Rails.application.secrets.application_protocol}://#{Rails.application.secrets.application_host}"
+  if ENV['APPLICATION_HOST'] && ENV['APPLICATION_PROTOCOL']
+    config.action_controller.asset_host = "#{ENV['APPLICATION_PROTOCOL']}://#{ENV['APPLICATION_HOST']}"
+  else
+    config.action_controller.asset_host = "#{Rails.application.secrets.application_protocol}://#{Rails.application.secrets.application_host}"
+  end
   config.action_mailer.asset_host = config.action_controller.asset_host
 
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = 'X-Sendfile' # for Apache
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for NGINX
-
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   config.force_ssl = true
@@ -59,8 +62,13 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
   config.action_mailer.delivery_method = :postmark
   config.action_mailer.postmark_settings = { api_key: Rails.application.secrets.postmark[:api_key] }
-  config.action_mailer.default_url_options = { host: Rails.application.secrets.application_host,
-                                               protocol: Rails.application.secrets.application_protocol }
+  if ENV['APPLICATION_HOST'] && ENV['APPLICATION_PROTOCOL']
+    config.action_mailer.default_url_options = { host: ENV['APPLICATION_PROTOCOL'],
+                                                 protocol: ENV['APPLICATION_HOST'] }
+  else
+    config.action_mailer.default_url_options = { host: Rails.application.secrets.application_host,
+                                                 protocol: Rails.application.secrets.application_protocol }
+  end
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
@@ -80,7 +88,7 @@ Rails.application.configure do
   # require 'syslog/logger'
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
 
-  if ENV["RAILS_LOG_TO_STDOUT"].present?
+  if ENV['RAILS_LOG_TO_STDOUT'].present?
     logger           = ActiveSupport::Logger.new(STDOUT)
     logger.formatter = config.log_formatter
     config.logger    = ActiveSupport::TaggedLogging.new(logger)

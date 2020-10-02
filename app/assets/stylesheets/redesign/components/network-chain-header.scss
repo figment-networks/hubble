@@ -2,6 +2,7 @@
   background: #F5F5F5;
   border: 1px solid $border-color;
 }
+
 .network-chain-header-arrow {
   height: 32px;
   width: 16px;
@@ -10,7 +11,9 @@
   letter-spacing: 0;
   line-height: 32px;
 }
+
 .chain-select {
+
   .dropdown-toggle {
     position: relative;
     padding: 0 31px 0 0;
@@ -22,6 +25,7 @@
     letter-spacing: 0;
     line-height: 32px;
   }
+  
   .dropdown-toggle::before {
     content: '';
     position: absolute;
@@ -34,6 +38,7 @@
     border-radius: 4px;
     vertical-align: initial;
   }
+  
   .dropdown-toggle::after {
     position: absolute;
     top: 50%;
@@ -46,44 +51,60 @@
     border-bottom: 0;
     border-left: 0.35em solid transparent;
   }
+  
   .dropdown-menu {
     padding-top: 0px;
   }
+  
   .dropdown-divider {
     margin-bottom: 0;
   }
+  
   .dropdown-divider:last-child { display: none; }
+  
   .dropdown-label {
     padding: 0.25rem 1rem;
     background: #F4F4F4;
     color: $primary;
     padding-top: 0.4rem;
+
     &:first-child {
       border-top-left-radius: $border-radius;
       border-top-right-radius: $border-radius;
     }
+
   }
+  
   a.dropdown-item {
     padding: 0.25rem 1rem;
+
     &.current-chain {
       color: $secondary;
     }
+
   }
 }
+
 .sync {
   justify-content: flex-start;
   padding: 30px 0 16px;
+
   @include media-breakpoint-up(md) {
     justify-content: flex-end;
     padding: 0;
   }
+  
 }
+
 .sync > div {
   margin-bottom: 16px;
+
   @include media-breakpoint-up(md) {
     margin-bottom: 0;
   }
+  
 }
+
 .sync__link {
   opacity: 0.55;
   color: $primary;
@@ -92,9 +113,13 @@
   line-height: 15px;
   text-decoration: underline;
 }
+
 .tabs {
   display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
+
 .tabs__link {
   padding: 10px 20px;
   color: $primary;
@@ -102,6 +127,7 @@
   letter-spacing: 0;
   line-height: 17px;
 }
+
 .tabs__link.active {
   position: relative;
   border: 1px solid $border-color;
@@ -110,6 +136,7 @@
   background-color: #FFFFFF;
   font-weight: 700;
 }
+
 .tabs__link.active::after {
   content: '';
   position: absolute;

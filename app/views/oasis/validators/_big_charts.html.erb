@@ -24,7 +24,7 @@
     <% current_uptime = validator.current_uptime_percent -%>
     <script>
       App.seed.UPTIME_HISTORY = {
-        last48h: <%= Oasis::AverageSnapshotDecorator.new(chain, 'validator-uptime', 'hour', '48 hours', validator.entity_uid).as_json( override_current_time_value: current_uptime ).to_json.html_safe %>
+        last48h: <%= Oasis::AverageSnapshotDecorator.new(chain, 'validator-uptime', 'hour', '48 hours', validator.address).as_json( override_current_time_value: current_uptime ).to_json.html_safe %>
       }
 
     </script>

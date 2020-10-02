@@ -1,0 +1,30 @@
+<%= render_card "Block Details", class: "block-details", body_class: "no-padding" do %>
+  <div class="table-responsive">
+    <table class="table table-sm">
+      <thead>
+        <tr class="text-uppercase text-secondary">
+          <th>Parameter</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="text-nowrap">Producer</td>
+          <td><%= link_to block.creator.truncate(50), coda_chain_validator_path(chain, block.creator) %></td>
+        </tr>
+        <tr>
+          <td class="text-nowrap">Total Currency</td>
+          <td><%= format_amount block.total_currency, denom: "coda" %></td>
+        </tr>
+        <tr>
+          <td class="text-nowrap">Epoch</td>
+          <td><span class="text-monospace"><%= block.epoch %></span></td>
+        </tr>
+        <tr>
+          <td class="text-nowrap">Slot</td>
+          <td><span class="text-monospace"><%= block.slot %></span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+<% end %>

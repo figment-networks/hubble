@@ -5,13 +5,15 @@
         "delegate": {
           "id": "0xa20416801ac2eacf2372e825b4a90ef52490c2bb"
         },
-        "id": "0x000817415963a38c16ba6ccc98f4002684c97697"
+        "id": "0x000817415963a38c16ba6ccc98f4002684c97697",
+        "pendingStake": "648245506425693688747163"
       },
       {
         "delegate": {
           "id": "0x481efb669b423cfaffa49890205427dea9b3d693"
         },
-        "id": "0x00260ddd1d175bf20c18f1407162db63b840b944"
+        "id": "0x00260ddd1d175bf20c18f1407162db63b840b944",
+        "pendingStake": "574149448538091386387362"
       }
     ]
   }

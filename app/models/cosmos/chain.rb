@@ -5,8 +5,8 @@ class Cosmos::Chain < ApplicationRecord
   SYNC_INTERVAL = 1.minute
   SUPPORTS_LEDGER = true
 
-  DEFAULT_TOKEN_DISPLAY = 'ATOM'
-  DEFAULT_TOKEN_REMOTE = 'uatom'
+  DEFAULT_TOKEN_DISPLAY = 'ATOM'.freeze
+  DEFAULT_TOKEN_REMOTE = 'uatom'.freeze
   DEFAULT_TOKEN_FACTOR = 6
 
   PREFIXES = {
@@ -16,8 +16,13 @@ class Cosmos::Chain < ApplicationRecord
     validator_consensus_public_key: 'cosmosvalconspub1',
     validator_operator_address: 'cosmosvaloper1',
     validator_operator_public_key: 'cosmosvaloperpub1'
-  }
+  }.freeze
 
-  def network_name; 'Cosmos'; end
-  def has_csir?; true; end
+  def network_name
+    'Cosmos'
+  end
+
+  def has_csir?
+    true
+  end
 end

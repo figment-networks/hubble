@@ -1,0 +1,30 @@
+[
+  {
+    "id": 71308,
+    "type": "fee",
+    "hash": "f358628f4a8c39b1e95090f78cffcd536ff07857",
+    "block_hash": "3j7Fqw9cpQodEveJfFSQx5WXK16Z8oZYC8gwun5pED5WvxG2fNy4GZ2ovzcsAPGAsPcQf9o6tqLwDYFKPJYHKfbiGrXSjwjR5e5AXkHh4QuCDCsCiFSFZm8roinpZaQZWzzeQaB5ycVBqTXeatXQQsmGS2PxVmg5pQ8hNcpj2rG5dgEkRUTrbWt6WzdpS4ueGnqCSBtJ2sxtQE9RWDfQj1Ay6YHv9qYtevdvs4E4oC8iDGeBkX3TX9CqtBEvzQ4wiwBm8RuAFxb1WwmMvfHNw3e1eL7EiD9CoueuMoLdwVeXcDapouZ1xiH8Y7EobLU7X",
+    "height": 6073,
+    "time": "2020-07-15T16:51:00-05:00",
+    "sender": null,
+    "receiver": "4vsRCVaJmjRqg6SvTcMLwNfpTLP2XwdUNN943vK7gGSeXtjvzhzSA2RhpK9uSQHxYhAorPu9bxHSUJB8mrwobJtpnfo8W8g86EfDMTz9wz634E6ZaGajQUBDPvKsujPTjYyACMNik6EsMPYz",
+    "amount": 999980,
+    "fee": 0,
+    "nonce": null,
+    "memo": null
+  },
+  {
+    "id": 71302,
+    "type": "block_reward",
+    "hash": "5eaa856414b5216be5455a0f64276c700adde8c4",
+    "block_hash": "3j7Fqw9cpQodEveJfFSQx5WXK16Z8oZYC8gwun5pED5WvxG2fNy4GZ2ovzcsAPGAsPcQf9o6tqLwDYFKPJYHKfbiGrXSjwjR5e5AXkHh4QuCDCsCiFSFZm8roinpZaQZWzzeQaB5ycVBqTXeatXQQsmGS2PxVmg5pQ8hNcpj2rG5dgEkRUTrbWt6WzdpS4ueGnqCSBtJ2sxtQE9RWDfQj1Ay6YHv9qYtevdvs4E4oC8iDGeBkX3TX9CqtBEvzQ4wiwBm8RuAFxb1WwmMvfHNw3e1eL7EiD9CoueuMoLdwVeXcDapouZ1xiH8Y7EobLU7X",
+    "height": 6073,
+    "time": "2020-07-15T16:51:00-05:00",
+    "sender": null,
+    "receiver": "4vsRCVaJmjRqg6SvTcMLwNfpTLP2XwdUNN943vK7gGSeXtjvzhzSA2RhpK9uSQHxYhAorPu9bxHSUJB8mrwobJtpnfo8W8g86EfDMTz9wz634E6ZaGajQUBDPvKsujPTjYyACMNik6EsMPYz",
+    "amount": 200000000000,
+    "fee": 0,
+    "nonce": null,
+    "memo": null
+  }
+]

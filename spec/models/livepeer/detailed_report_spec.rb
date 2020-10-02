@@ -1,12 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Livepeer::DetailedReport, livepeer: :factory do
+  subject { described_class.new(delegator_list, params) }
+
   include_context 'Livepeer delegator data'
 
   let(:delegator_list) { create_delegator_list(chain, delegators) }
   let(:params) { {} }
-
-  subject { described_class.new(delegator_list, params) }
 
   it 'returns the report data' do
     results = subject.data
@@ -31,13 +31,13 @@ RSpec.describe Livepeer::DetailedReport, livepeer: :factory do
     empty_rows = empty_rows_indices.map { |i| results[i] }
 
     expect(empty_rows).to all(include(
-      fees: 0,
-      reward_tokens: 0,
-      pending_stake: 0,
-      unclaimed_stake: 0,
-      unbonding_tokens: 0,
-      unbonded_tokens: 0
-    ))
+                                fees: 0,
+                                reward_tokens: 0,
+                                pending_stake: 0,
+                                unclaimed_stake: 0,
+                                unbonding_tokens: 0,
+                                unbonded_tokens: 0
+                              ))
 
     expect(results[0]).to include(
       round_number: 'Summary',

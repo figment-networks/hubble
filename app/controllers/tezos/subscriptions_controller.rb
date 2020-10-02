@@ -8,7 +8,7 @@ module Tezos
       if current_user.has_telegram_account?
         redirect_to tezos_baker_path(params[:baker_id])
       else
-        redirect_to telegram_account_path, flash: { success: "Please connect your Telegram account so we can send you notifications." }
+        redirect_to telegram_account_path, flash: { success: 'Please connect your Telegram account so we can send you notifications.' }
       end
     end
 

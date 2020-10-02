@@ -1,45 +1,41 @@
 module Near
   class Validator < Common::Resource
-    STATUS_ONLINE  = "online"
-    STATUS_OFFLINE = "offline"
+    STATUS_ONLINE  = 'online'.freeze
+    STATUS_OFFLINE = 'offline'.freeze
 
     PERIOD_ACTIVE = 1.hour
 
-    attr_accessor :id,
-                  :account_id,
-                  :start_height,
-                  :start_time,
-                  :last_height,
-                  :last_time,
-                  :height,
-                  :time,
-                  :expected_blocks,
-                  :produced_blocks,
-                  :slashed,
-                  :stake,
-                  :efficiency,
-                  :epoch,
-                  :created_at,
-                  :updated_at
+    field :id
+    field :account_id
+    field :start_height
+    field :start_time, type: :timestamp
+    field :last_height
+    field :last_time, type: :timestamp
+    field :height
+    field :time
+    field :expected_blocks
+    field :produced_blocks
+    field :slashed
+    field :stake
+    field :efficiency
+    field :epoch
+    field :created_at
+    field :updated_at
 
     # Associated resources
-    attr_accessor :epochs,
-                  :account,
-                  :blocks
+    field :epochs
+    field :account
+    field :blocks
 
     def initialize(attrs = {})
       super(attrs)
-
-      @start_time = Time.zone.parse(start_time)
-      @last_time  = Time.zone.parse(last_time)
-
-      @account = Account.new(account)                    if account
-      @epochs = epochs.map { |r| ValidatorEpoch.new(r) } if epochs
-      @blocks = blocks.map { |r| Block.new(r) }          if blocks
+      @account = Account.new(attrs[:account])                    if attrs[:account]
+      @epochs = attrs[:epochs].map { |r| ValidatorEpoch.new(r) } if attrs[:epochs]
+      @blocks = attrs[:blocks].map { |r| Block.new(r) }          if attrs[:blocks]
     end
 
     def active?
-      @actoive ||= (Time.current - last_time < PERIOD_ACTIVE)
+      @active ||= (Time.current - last_time < PERIOD_ACTIVE)
     end
 
     def status

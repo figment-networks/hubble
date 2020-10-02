@@ -3,21 +3,31 @@ class Livepeer::EventsController < Livepeer::BaseController
 
   before_action :require_chain
 
+  before_action :set_default_page_title
+  before_action :set_default_meta_description
+
   def index
-    @pagy, @events = pagy(@chain.events.includes(:round))
+    if orchestrator.present?
+      @pagy, @events = pagy(orchestrator.events.order(timestamp: :desc).includes(:round))
 
-    if params[:transcoder_address] && (@transcoder = @chain.transcoders.find_by(address: params[:transcoder_address]))
-      @pagy, @events = pagy(@events.where(transcoder_address: @transcoder.address).includes(:round))
-      page_title(@transcoder.name_or_address)
-      meta_description(@transcoder.name_or_address)
+      page_title orchestrator.name_or_address
+      meta_description orchestrator.name_or_address
+    else
+      @pagy, @events = pagy(@chain.events.order(timestamp: :desc).includes(round: :chain))
     end
-
   end
 
   def show
     @event = @chain.events.find(params[:id])
-    @transcoder = @event.transcoder
-    page_title @event.page_title
-    meta_description @event.page_title
+    @orchestrator = @event.orchestrator
+
+    page_title @event.kind_string.humanize
+    meta_description @event.kind_string.humanize
+  end
+
+  private
+
+  def orchestrator
+    @orchestrator ||= @chain.orchestrators.find_by(address: params[:orchestrator_address])
   end
 end

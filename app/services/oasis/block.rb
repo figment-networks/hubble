@@ -1,31 +1,29 @@
 module Oasis
   class Block < Common::Resource
-
     FRESH_TIME_LIMIT = 15.minutes
 
-    attr_accessor :app_version,
-                  :block_version,
-                  :chain_id,
-                  :height,
-                  :time,
-                  :last_block_id_hash,
-                  :last_commit_hash,
-                  :data_hash,
-                  :validators_hash,
-                  :next_validators_hash,
-                  :consensus_hash,
-                  :app_hash,
-                  :last_results_hash,
-                  :evidence_hash,
-                  :proposer_address
+    field :app_version
+    field :block_version
+    field :chain_id
+    field :height, type: :integer
+    field :time, type: :timestamp
+    field :last_block_id_hash
+    field :last_commit_hash
+    field :data_hash
+    field :validators_hash
+    field :next_validators_hash
+    field :consensus_hash
+    field :app_hash
+    field :last_results_hash
+    field :evidence_hash
+    field :proposer_address
 
-    def initialize(attrs = {})
-      super(attrs)
-      @time = Time.zone.parse(time)
+    def self.failed(height)
+      new(last_block_id_hash: height)
     end
 
     def status
-      (Time.current - time) <= FRESH_TIME_LIMIT ? "OK" : "STALE"
+      (Time.current - time) <= FRESH_TIME_LIMIT ? 'OK' : 'STALE'
     end
   end
 end

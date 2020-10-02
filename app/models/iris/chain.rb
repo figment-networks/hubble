@@ -5,8 +5,8 @@ class Iris::Chain < ApplicationRecord
   SYNC_INTERVAL = 1.minute
   SUPPORTS_LEDGER = false
 
-  DEFAULT_TOKEN_DISPLAY = 'IRIS'
-  DEFAULT_TOKEN_REMOTE = 'iris-atto'
+  DEFAULT_TOKEN_DISPLAY = 'IRIS'.freeze
+  DEFAULT_TOKEN_REMOTE = 'iris-atto'.freeze
   DEFAULT_TOKEN_FACTOR = 18
 
   PREFIXES = {
@@ -16,7 +16,7 @@ class Iris::Chain < ApplicationRecord
     validator_consensus_public_key: 'icp1',
     validator_operator_address: 'iva1',
     validator_operator_public_key: 'ivp1'
-  }
+  }.freeze
   TESTNET_PREFIXES = {
     account_address: 'faa1',
     account_public_key: 'fap1',
@@ -24,9 +24,11 @@ class Iris::Chain < ApplicationRecord
     validator_consensus_public_key: 'fcp1',
     validator_operator_address: 'fva1',
     validator_operator_public_key: 'fvp1'
-  }
+  }.freeze
 
-  def network_name; 'IRIS'; end
+  def network_name
+    'IRIS'
+  end
 
   def prefixes
     testnet? ? TESTNET_PREFIXES : PREFIXES

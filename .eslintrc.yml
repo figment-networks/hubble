@@ -1,0 +1,18 @@
+env:
+  browser: true
+  commonjs: true
+  es2021: true
+extends:
+  - google
+parserOptions:
+  ecmaVersion: 12
+ignorePatterns: ["app/assets/javascripts/lib"]
+rules: {
+  require-jsdoc: ["off"],
+  comma-dangle: ["error", "never"],
+  max-len: ["warn"],
+  new-cap: ["warn"],
+  no-unused-vars: ["warn"],
+  no-invalid-this: ["warn"],
+  space-in-parens: ["error", "never"]
+}

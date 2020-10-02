@@ -8,29 +8,32 @@ module Cosmoslike::Governance::Proposallike
     has_many :deposits, class_name: "#{namespace}::Governance::Deposit", dependent: :delete_all
     has_many :votes, class_name: "#{namespace}::Governance::Vote", dependent: :delete_all
 
-    scope :ordered_by_submit_time, -> { order( submit_time: :desc ) }
-    scope :voting_open, -> { where( 'voting_end_time > ?', Time.now ) }
+    scope :ordered_by_submit_time, -> { order(submit_time: :desc) }
+    scope :voting_open, -> { where('voting_end_time > ?', Time.now) }
   end
 
-  def to_param; ext_id.to_s; end
+  def to_param
+    ext_id.to_s
+  end
 
   def valid_proposal?
     !in_deposit_period? ||
-    total_deposits_for_denom(chain.primary_token) >= chain.governance_params.min_deposit_amount
+      total_deposits_for_denom(chain.primary_token) >= chain.governance_params.min_deposit_amount
   end
 
   def total_deposits
     denoms.map do |denom|
-      total_amount_for_denom = total_deposit
-        .select { |d| d['denom'] == denom }
-        .inject(0) { |acc, td| acc + td['amount'].to_i }
+      total_amount_for_denom = total_deposit.
+        select { |d| d['denom'] == denom }.
+        inject(0) { |acc, td| acc + td['amount'].to_i }
       { denom: denom, total_amount: total_amount_for_denom }
     end
   end
 
-  def total_deposits_for_denom( denom )
+  def total_deposits_for_denom(denom)
     found = total_deposits.find { |dep| dep[:denom] == denom }
     return 0 if !found
+
     found[:total_amount]
   end
 
@@ -39,6 +42,7 @@ module Cosmoslike::Governance::Proposallike
   def denoms
     total_deposit.map { |td| td['denom'] }.uniq
   end
+
   def denom
     denoms.first
   end
@@ -72,8 +76,8 @@ module Cosmoslike::Governance::Proposallike
   end
 
   def cumulative_voting_power
-    (tally_result_yes||0) + (tally_result_abstain||0) +
-    (tally_result_no||0) + (tally_result_nowithveto||0)
+    (tally_result_yes || 0) + (tally_result_abstain || 0) +
+      (tally_result_no || 0) + (tally_result_nowithveto || 0)
   end
 
   def missing_vote_data?

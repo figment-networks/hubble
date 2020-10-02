@@ -1,5 +1,5 @@
 class Admin::AdministratorsController < Admin::BaseController
-  skip_before_action :require_2fa, only: %i{ setup }
+  skip_before_action :require_2fa, only: %i[setup]
 
   def index
     @administrators = Administrator.all
@@ -10,9 +10,9 @@ class Admin::AdministratorsController < Admin::BaseController
   end
 
   def create
-    opts = params.require(:administrator).permit(%i{ name email })
+    opts = params.require(:administrator).permit(%i[name email])
     opts[:one_time_setup_token] = SecureRandom.hex
-    @administrator = Administrator.create( opts )
+    @administrator = Administrator.create(opts)
     if @administrator.valid? && @administrator.persisted?
       flash[:notice] = "#{@administrator.name} added as an admin. Send them their invite link to complete setup."
     end
@@ -34,7 +34,7 @@ class Admin::AdministratorsController < Admin::BaseController
         params[:administrator][:password] = params.delete(:change_password)
       end
 
-      @administrator.update_attributes params.require(:administrator).permit(%i{ name email password })
+      @administrator.update_attributes params.require(:administrator).permit(%i[name email password])
 
       if params[:reset_otp] == 'on'
         @administrator.update_attributes otp_secret_key: ROTP::Base32.random_base32
@@ -76,11 +76,10 @@ class Admin::AdministratorsController < Admin::BaseController
       @administrator = current_admin
       @secret = @administrator.otp_secret_key || ROTP::Base32.random_base32
       @qr = RQRCode::QRCode.new(
-        [ 'otpauth://totp/', @administrator.email,
-          '?secret=', @secret,
-          '&issuer=', URI.escape("Hubble #{"(#{Rails.env}) " unless Rails.env.production?}Admin") ].join('')
+        ['otpauth://totp/', @administrator.email,
+         '?secret=', @secret,
+         '&issuer=', URI.escape("Hubble #{"(#{Rails.env}) " unless Rails.env.production?}Admin")].join('')
       )
     end
   end
-
 end

@@ -1,6 +1,6 @@
 class ValidatorEpochsTable {
   constructor(container) {
-    this.container = container
+    this.container = container;
   }
 
   render() {
@@ -15,9 +15,9 @@ class ValidatorEpochsTable {
       },
       order: [
         [0, 'asc']
-      ],
-    })
+      ]
+    });
   }
 }
 
-window.App.Near.ValidatorEpochsTable = ValidatorEpochsTable
+window.App.Near.ValidatorEpochsTable = ValidatorEpochsTable;

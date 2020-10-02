@@ -12,7 +12,7 @@ class Near::ChainsController < Near::BaseController
   end
 
   def search
-    flash[:warning] = "Sorry, search on this network is currently unavailable!"
+    flash[:warning] = 'Sorry, search on this network is currently unavailable!'
     redirect_to near_chain_path(@chain)
   end
 

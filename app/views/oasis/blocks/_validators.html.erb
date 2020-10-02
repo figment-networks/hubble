@@ -31,7 +31,7 @@
           <tr>
             <td data-order='<%= validator.address %>'>
               <a href='<%= oasis_chain_validator_path( @chain.slug, url_encode(validator.address) ) %>'>
-                <strong><%= validator.address.truncate(30) %></strong>
+                <strong><%= validator.short_name %></strong>
               </a>
             </td>
             <td data-order='<%= validator.active_escrow_balance %>'><%= format_amount(validator.active_escrow_balance, denom: 'noasis') %></td>

@@ -1,6 +1,7 @@
 <% content_for :body_class, 'transaction-show' -%>
 
 <%= render partial: '/cosmoslike/shared/chain_header', locals: { summary_link: true } %>
+<%= render_flash_messages %>
 
 <h2 class='mb-4'>
   <label class='text-muted'>Tx</label>

@@ -1,12 +1,11 @@
 module Oasis
   class BlockTime < Common::Resource
-    attr_accessor :start_height,
-                  :end_height,
-                  :start_time,
-                  :end_time,
-                  :count,
-                  :diff,
-                  :avg
-
+    field :start_height, type: :integer
+    field :end_height, type: :integer
+    field :start_time, type: :timestamp
+    field :end_time, type: :timestamp
+    field :count, type: :integer
+    field :diff, type: :integer
+    field :avg, type: :float
   end
 end

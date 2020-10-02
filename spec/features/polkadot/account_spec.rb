@@ -1,10 +1,10 @@
 require 'features_helper'
 
-feature 'polkadot account details' do
+describe 'polkadot account details' do
   let(:chain) { create(:polkadot_chain) }
   let(:address) { 'DSpbbk6HKKyS78c4KDLSxCetqbwnsemv2iocVXwNe2FAvWC' }
 
-  scenario 'visiting as not signed in user', :vcr do
+  it 'visiting as not signed in user', :vcr do
     visit "/polkadot/chains/#{chain.slug}/accounts/#{address}"
 
     expect(page).to have_content('DSpbbk6HKKyS78c4KDLSxCetqbwnsemv2iocVXwNe2FAvWC')

@@ -10,6 +10,7 @@ class Livepeer::Queries::Graph::DelegatorsQuery < Livepeer::Queries::Graph::Base
       ) {
         id
         delegate { id }
+        pendingStake
       }
     }
   end

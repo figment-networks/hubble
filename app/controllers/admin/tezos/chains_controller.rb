@@ -1,7 +1,5 @@
 class Admin::Tezos::ChainsController < Admin::BaseChainsController
-
-  def edit
-  end
+  def edit; end
 
   private
 

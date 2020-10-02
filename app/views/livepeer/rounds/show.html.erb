@@ -25,12 +25,12 @@
           <tbody>
             <% @pools.each do |pool| %>
               <tr>
-                <% transcoder = @transcoders.find { |t| t.address == pool.transcoder_address } %>
+                <% orchestrator = @orchestrators.find { |t| t.address == pool.orchestrator_address } %>
                 <td>
-                  <% if transcoder.present? -%>
-                    <%= render partial: 'transcoder_link', locals: { transcoder: transcoder } %>
+                  <% if orchestrator.present? -%>
+                    <%= render partial: 'orchestrator_link', locals: { orchestrator: orchestrator } %>
                   <% else -%>
-                    <%= livepeer_explorer_link(pool.transcoder_address, page: :campaign) %>
+                    <%= livepeer_explorer_link(pool.orchestrator_address, page: :campaign) %>
                   <% end -%>
                 </td>
                 <td data-order='<%= pool.total_stake %>'><%= livepeer_lpt_amount(pool.total_stake) %></td>
@@ -54,11 +54,17 @@
       <h5 class='card-header'>Round</h5>
       <div class='card-body'>
         <% if (previous_round = @round.previous_round) -%>
-          <a href='<%= namespaced_path('round', previous_round) %>' class='text-muted'><span class='fas fa-chevron-left'></span></a>
+          <%= link_to namespaced_path('round', previous_round), class: 'text-muted' do %>
+            <span class='fas fa-chevron-left'></span>
+          <% end -%>
         <% end -%>
+
         <span class='large-number technical'><%= @round.number %></span>
+
         <% if (next_round = @round.next_round) -%>
-          <a href='<%= namespaced_path('round', next_round) %>' class='text-muted'><span class='fas fa-chevron-right'></span></a>
+          <%= link_to namespaced_path('round', next_round), class: 'text-muted' do %>
+            <span class='fas fa-chevron-right'></span>
+          <% end -%>
         <% end -%>
       </div>
     </div>

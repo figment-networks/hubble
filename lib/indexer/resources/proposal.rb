@@ -28,17 +28,19 @@ module Indexer
     end
 
     def eval_period_id
-      self.start_period + 1
+      start_period + 1
     end
+
     def testing_period_id
-      self.start_period + 2
+      start_period + 2
     end
+
     def promotion_period_id
-      self.start_period + 3
+      start_period + 3
     end
 
     def is_active?
-      (self.status != 'rejected') && (self.status != 'promoted')
+      (status != 'rejected') && (status != 'promoted')
     end
   end
 end
