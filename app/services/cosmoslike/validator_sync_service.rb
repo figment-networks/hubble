@@ -4,7 +4,7 @@ class Cosmoslike::ValidatorSyncService
   end
 
   def update_history_height!
-    @chain.update_attributes history_height: @chain.latest_local_height
+    @chain.update history_height: @chain.latest_local_height
   end
 
   def sync_validator_timestamps!
@@ -112,15 +112,18 @@ class Cosmoslike::ValidatorSyncService
         validator_in_set = validator_set_result.find { |v| v['address'] == validator.address }
 
         if validator_in_set.nil?
-          extra_info = ENV['DEBUG'] ? " -- (set: #{validator_set_result.map { |vi| vi['address'] }.inspect})" : ''
+          extra_info = ENV['DEBUG'] ? " -- (set: #{validator_set_result.map do |vi|
+                                                     vi['address']
+                                                   end .inspect})" : ''
           raise "Validator #{validator.address} (id: #{validator.id}) not found in set for height #{height}#{extra_info}"
         end
 
         amino_pub_key = validator_in_set['pub_key']['value']
-        bech32_key = @chain.namespace::KeyConverter.pubkey_to_bech32(amino_pub_key, @chain.prefixes[:validator_consensus_public_key])
+        bech32_key = @chain.namespace::KeyConverter.pubkey_to_bech32(amino_pub_key,
+                                                                     @chain.prefixes[:validator_consensus_public_key])
 
         if indexed_stake_info[bech32_key]
-          validator.update_attributes info: indexed_stake_info[bech32_key]
+          validator.update info: indexed_stake_info[bech32_key]
         end
       rescue StandardError
         puts "Could not get validator info for #{validator.address} -- #{$!.message}\n\n"
@@ -139,7 +142,7 @@ class Cosmoslike::ValidatorSyncService
 
       if account_address
         account = @chain.accounts.find_or_create_by!(address: account_address)
-        account&.update_attributes(validator: validator)
+        account&.update(validator: validator)
       end
 
       ProgressReport.instance.progress 0, i + 1, total

@@ -24,7 +24,7 @@ module FormattingHelper
     denom_str = hide_units ? '' : denom
     if html
       num_str = "<span class='text-monospace'>#{num_str}</span>"
-      denom_str = "<span class='text-sm text-muted sup'>#{denom_str}</span>" unless denom_str.blank?
+      denom_str = "<span class='text-sm text-muted sup'>#{denom_str}</span>" if denom_str.present?
     end
 
     "#{num_str} #{denom_str}".strip.html_safe

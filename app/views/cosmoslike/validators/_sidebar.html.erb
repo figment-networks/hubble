@@ -58,9 +58,10 @@
         <% @chain.blocks.limit( 50 ).reverse_each do |block| -%>
           <% precommitted = block.precommitters.include?(@validator.address) -%>
           <% proposed = block.proposer_address == @validator.address -%>
+
           <a class='block <%= precommitted ? 'ok' : 'missed' %> <%= proposed ? 'proposed' : '' %>'
              href='<%= namespaced_path( 'block', block ) %>'
-             title="Block <%= block.height %> <span class='fas fa-arrow-right text-sm text-muted mx-2'></span> <span class='badge badge-<%= precommitted ? 'success' : 'danger' %>'><%= precommitted ? 'OK' : 'MISSED' %></span>"></a>
+             title="Block <%= block.height %> <span class='fas fa-arrow-right text-sm text-muted mx-2'></span> <span class='badge badge-<%= precommitted ? 'success' : 'danger' %>'><%= precommitted ? (proposed ? 'PROPOSER' : 'OK') : 'MISSED' %></span>"></a>
         <% end -%>
       </div>
     </div>

@@ -6,8 +6,8 @@ module FlashHelper
 
     flash.each do |key, value|
       key = 'danger' if key == 'error'
-      items << content_tag(:div, class: "alert alert-#{key} auto-alert-hide") do
-        content_tag(:div, class: 'container text-center') { value }
+      items << tag.div(class: "alert alert-#{key} auto-alert-hide") do
+        tag.div(class: 'container text-center') { value }
       end
     end
 

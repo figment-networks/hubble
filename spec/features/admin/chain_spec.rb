@@ -22,7 +22,7 @@ describe 'Admin page' do
 
     fill_in 'polkadot_chain_name', with: 'Polkadot test name'
     fill_in 'polkadot_chain_slug', with: 'test-slug'
-    fill_in 'polkadot_chain_api_url', with: 'https://127.0.0.1/polkadot'
+    fill_in 'polkadot_chain_api_url', with: 'http://localhost:9292/polkadot'
 
     click_button 'Create Chain'
 

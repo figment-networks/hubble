@@ -2,13 +2,6 @@ module Oasis
   class Client < Common::IndexerClient
     DEFAULT_TIMEOUT = 5
 
-    class Error < StandardError; end
-
-    def initialize(endpoint, options = {})
-      @endpoint = endpoint
-      @timeout = options[:timeout] || DEFAULT_TIMEOUT
-    end
-
     def status
       Oasis::Status.new(get('/status'))
     rescue Common::IndexerClient::Error
@@ -45,7 +38,9 @@ module Oasis
 
     def validator(address, limit = 0)
       validator = Oasis::Validator.new(get("/validator/#{address}", sequences_limit: limit))
-      delegations = get('/delegations')['items'].select { |d| d['validator_uid'] == validator.address }
+      delegations = get('/delegations')['items'].select do |d|
+        d['validator_uid'] == validator.address
+      end
 
       validator.delegations = delegations.map do |delegation|
         Oasis::Delegation.new(delegation)
@@ -56,8 +51,8 @@ module Oasis
       return validator if debonding_delegations.nil?
 
       debonding_delegations = debonding_delegations.select { |d| d['validator_uid'] == validator.address }
-      validator.delegations << debonding_delegations.map do |delegation|
-        Oasis::Delegation.new(delegation, 'debonding')
+      debonding_delegations.map do |delegation|
+        validator.delegations << Oasis::Delegation.new(delegation, 'debonding')
       end
       return validator
     end
@@ -69,7 +64,8 @@ module Oasis
     end
 
     def validators_summary(interval = 'hour', period = '48 hours', address = nil)
-      get('/validators_summary', period: period, interval: interval, address: address).map do |point|
+      get('/validators_summary', period: period, interval: interval,
+                                 address: address).map do |point|
         Oasis::IntervalStat.new(point)
       end
     end
@@ -86,8 +82,8 @@ module Oasis
       return account if debonding_delegations.nil?
 
       debonding_delegations = debonding_delegations.select { |d| d['delegator_uid'] == address }
-      account.delegations << debonding_delegations.map do |delegation|
-        Oasis::Delegation.new(delegation, 'debonding')
+      debonding_delegations.map do |delegation|
+        account.delegations << Oasis::Delegation.new(delegation, 'debonding')
       end
 
       return account
@@ -112,9 +108,14 @@ module Oasis
     end
 
     def validator_events(address, after = nil)
+      chain = Oasis::Chain.find_by(api_url: @endpoint)
       list = get("/system_events/#{address}", after: after)['items'] || []
 
-      list.map { |event| Oasis::ValidatorEvent.new(event) }
+      list.map { |event| Oasis::ValidatorEvent.new(event, chain.slug) }
+    end
+
+    def rewards(address)
+      get("/balance/#{address}").map { |rewards| Oasis::RewardsReport.new(rewards) }
     end
   end
 end

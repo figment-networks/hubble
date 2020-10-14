@@ -5,7 +5,5 @@ class Cosmoslike::Governance::ProposalsController < Cosmoslike::BaseController
 
     page_title @chain.network_name, @chain.name, @proposal.title
     meta_description @proposal.description.truncate(160)
-
-    render template: 'cosmoslike/governance/proposal'
   end
 end

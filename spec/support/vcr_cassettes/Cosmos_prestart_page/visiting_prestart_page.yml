@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://localhost/apikey/XXXX/status
+    uri: http://localhost:443/status
     body:
       encoding: US-ASCII
       string: ''
@@ -38,14 +38,14 @@ http_interactions:
                 "app": "0"
               },
               "id": "d00c64e49ad8494f15aae65957655303375c2632",
-              "listen_addr": "tcp://0.0.0.0:26656",
+              "listen_addr": "tcp://127.0.0.1:26656",
               "network": "cosmoshub-3",
               "version": "0.32.10",
               "channels": "4020212223303800",
               "moniker": "8wYmpIXztY",
               "other": {
                 "tx_index": "on",
-                "rpc_address": "tcp://0.0.0.0:26657"
+                "rpc_address": "tcp://127.0.0.1:26657"
               }
             },
             "sync_info": {
@@ -68,7 +68,7 @@ http_interactions:
   recorded_at: Tue, 21 Jul 2020 19:46:57 GMT
 - request:
     method: get
-    uri: https://localhost/apikey/XXXX/dump_consensus_state
+    uri: http://localhost:443/dump_consensus_state
     body:
       encoding: US-ASCII
       string: ''
@@ -2783,7 +2783,7 @@ http_interactions:
             },
             "peers": [
               {
-                "node_address": "3e4e6e093734224d172c986643c1814da75370d3@35.238.40.59:39298",
+                "node_address": "3e4e6e093734224d172c986643c1814da75370d3@127.0.0.1:39298",
                 "peer_state": {
                   "round_state": {
                     "height": "2610109",
@@ -2812,7 +2812,7 @@ http_interactions:
                 }
               },
               {
-                "node_address": "12a1ed7af500f2e1ade04ede7a9a85b06c8f7170@5.189.139.80:33222",
+                "node_address": "12a1ed7af500f2e1ade04ede7a9a85b06c8f7170@127.0.0.1:33222",
                 "peer_state": {
                   "round_state": {
                     "height": "2701922",
@@ -2841,7 +2841,7 @@ http_interactions:
                 }
               },
               {
-                "node_address": "9ccf490dc1827ca3dabce4de300b82a8edc66f55@35.196.104.59:43082",
+                "node_address": "9ccf490dc1827ca3dabce4de300b82a8edc66f55@127.0.0.1:43082",
                 "peer_state": {
                   "round_state": {
                     "height": "2605514",
@@ -2870,7 +2870,7 @@ http_interactions:
                 }
               },
               {
-                "node_address": "9adc03a27f1e909b65e83bc63080ae60c888e691@178.62.213.132:34458",
+                "node_address": "9adc03a27f1e909b65e83bc63080ae60c888e691@127.0.0.1:34458",
                 "peer_state": {
                   "round_state": {
                     "height": "2701922",
@@ -2899,7 +2899,7 @@ http_interactions:
                 }
               },
               {
-                "node_address": "74fdaf0c3c9b02ddb72d99ed6f35835ca2d5c188@34.247.64.31:42086",
+                "node_address": "74fdaf0c3c9b02ddb72d99ed6f35835ca2d5c188@127.0.0.1:42086",
                 "peer_state": {
                   "round_state": {
                     "height": "2701922",
@@ -2928,7 +2928,7 @@ http_interactions:
                 }
               },
               {
-                "node_address": "279df4ef09ee92e628c9e7d2a0ce9ee09b19db11@54.175.255.217:24596",
+                "node_address": "279df4ef09ee92e628c9e7d2a0ce9ee09b19db11@127.0.0.1:24596",
                 "peer_state": {
                   "round_state": {
                     "height": "2701922",
@@ -2957,7 +2957,7 @@ http_interactions:
                 }
               },
               {
-                "node_address": "e2a8158edd0fc6d343df744da1285ace71801644@167.86.69.72:42068",
+                "node_address": "e2a8158edd0fc6d343df744da1285ace71801644@127.0.0.1:42068",
                 "peer_state": {
                   "round_state": {
                     "height": "2701922",
@@ -2986,7 +2986,7 @@ http_interactions:
                 }
               },
               {
-                "node_address": "3c95e208cfa07eccd410f8e405e158e443fda12c@34.241.105.141:46650",
+                "node_address": "3c95e208cfa07eccd410f8e405e158e443fda12c@127.0.0.1:46650",
                 "peer_state": {
                   "round_state": {
                     "height": "2701922",
@@ -3015,7 +3015,7 @@ http_interactions:
                 }
               },
               {
-                "node_address": "91796124eb28025cba8ee68d417337e8f560a7ff@3.250.78.93:56736",
+                "node_address": "91796124eb28025cba8ee68d417337e8f560a7ff@127.0.0.1:56736",
                 "peer_state": {
                   "round_state": {
                     "height": "2701922",
@@ -3044,7 +3044,7 @@ http_interactions:
                 }
               },
               {
-                "node_address": "506a9eb648af5ffc26725b0320ce21fba785c0ba@140.82.33.61:53580",
+                "node_address": "506a9eb648af5ffc26725b0320ce21fba785c0ba@127.0.0.1:53580",
                 "peer_state": {
                   "round_state": {
                     "height": "2701922",
@@ -3073,7 +3073,7 @@ http_interactions:
                 }
               },
               {
-                "node_address": "8668ddcac1cc74a2b976c4a0723dd8308a3cbee7@116.62.217.224:26656",
+                "node_address": "8668ddcac1cc74a2b976c4a0723dd8308a3cbee7@127.0.0.1:26656",
                 "peer_state": {
                   "round_state": {
                     "height": "2701922",
@@ -3102,7 +3102,7 @@ http_interactions:
                 }
               },
               {
-                "node_address": "1fd8f2a58e6a869d79e1ceb3d810f136e4e626a7@51.75.145.130:33748",
+                "node_address": "1fd8f2a58e6a869d79e1ceb3d810f136e4e626a7@127.0.0.1:33748",
                 "peer_state": {
                   "round_state": {
                     "height": "2701922",
@@ -3131,7 +3131,7 @@ http_interactions:
                 }
               },
               {
-                "node_address": "658dfd35b02bed17127e272b8d73f5edae52258f@183.129.226.76:58282",
+                "node_address": "658dfd35b02bed17127e272b8d73f5edae52258f@127.0.0.1:58282",
                 "peer_state": {
                   "round_state": {
                     "height": "2701921",
@@ -3160,7 +3160,7 @@ http_interactions:
                 }
               },
               {
-                "node_address": "3113a64f46482f094fe68c3762cac8e9473f60c7@3.236.189.83:45596",
+                "node_address": "3113a64f46482f094fe68c3762cac8e9473f60c7@127.0.0.1:45596",
                 "peer_state": {
                   "round_state": {
                     "height": "2701922",
@@ -3189,7 +3189,7 @@ http_interactions:
                 }
               },
               {
-                "node_address": "44192893d534f7dfa053cd615c735459c07f1ecc@3.235.29.34:40368",
+                "node_address": "44192893d534f7dfa053cd615c735459c07f1ecc@127.0.0.1:40368",
                 "peer_state": {
                   "round_state": {
                     "height": "2701922",
@@ -3218,7 +3218,7 @@ http_interactions:
                 }
               },
               {
-                "node_address": "136983f51ee52479db163a5af2d13973c62247e6@47.52.140.89:45504",
+                "node_address": "136983f51ee52479db163a5af2d13973c62247e6@127.0.0.1:45504",
                 "peer_state": {
                   "round_state": {
                     "height": "2701922",
@@ -3247,7 +3247,7 @@ http_interactions:
                 }
               },
               {
-                "node_address": "59ae1af23c6adbdf3ed60daa4629cbb718daea16@47.157.157.224:50008",
+                "node_address": "59ae1af23c6adbdf3ed60daa4629cbb718daea16@127.0.0.1:50008",
                 "peer_state": {
                   "round_state": {
                     "height": "2701922",
@@ -3276,7 +3276,7 @@ http_interactions:
                 }
               },
               {
-                "node_address": "38ff62125ab770599c60c93f6020fc7ee12fba4a@34.250.26.72:57184",
+                "node_address": "38ff62125ab770599c60c93f6020fc7ee12fba4a@127.0.0.1:57184",
                 "peer_state": {
                   "round_state": {
                     "height": "2701922",
@@ -3305,7 +3305,7 @@ http_interactions:
                 }
               },
               {
-                "node_address": "20a11a8278863778b0add5aa905e15217d363867@5.9.1.137:42792",
+                "node_address": "20a11a8278863778b0add5aa905e15217d363867@127.0.0.1:42792",
                 "peer_state": {
                   "round_state": {
                     "height": "2701922",
@@ -3334,7 +3334,7 @@ http_interactions:
                 }
               },
               {
-                "node_address": "e8c8b341925b4adc9f14ca662af2ff581163544f@172.65.201.106:26656",
+                "node_address": "e8c8b341925b4adc9f14ca662af2ff581163544f@127.0.0.1:26656",
                 "peer_state": {
                   "round_state": {
                     "height": "2701922",
@@ -3363,7 +3363,7 @@ http_interactions:
                 }
               },
               {
-                "node_address": "3c16f026cba4fcb60b4f55e2571bdacaaf1f0207@144.91.91.4:33604",
+                "node_address": "3c16f026cba4fcb60b4f55e2571bdacaaf1f0207@127.0.0.1:33604",
                 "peer_state": {
                   "round_state": {
                     "height": "2701922",
@@ -3392,7 +3392,7 @@ http_interactions:
                 }
               },
               {
-                "node_address": "36d6ac007c3e6c9af95904e672553670dd0af23b@149.28.204.248:40204",
+                "node_address": "36d6ac007c3e6c9af95904e672553670dd0af23b@127.0.0.1:40204",
                 "peer_state": {
                   "round_state": {
                     "height": "2701922",
@@ -3421,7 +3421,7 @@ http_interactions:
                 }
               },
               {
-                "node_address": "054fe0190b365594e711a58c6230ee700d233c61@63.34.54.228:49842",
+                "node_address": "054fe0190b365594e711a58c6230ee700d233c61@127.0.0.1:49842",
                 "peer_state": {
                   "round_state": {
                     "height": "2701922",
@@ -3450,7 +3450,7 @@ http_interactions:
                 }
               },
               {
-                "node_address": "626caa2a2eba32db9218a6930a93c2b1ea294eae@157.230.31.160:48654",
+                "node_address": "626caa2a2eba32db9218a6930a93c2b1ea294eae@127.0.0.1:48654",
                 "peer_state": {
                   "round_state": {
                     "height": "2701922",
@@ -3479,7 +3479,7 @@ http_interactions:
                 }
               },
               {
-                "node_address": "084fe6ea221d5c7be386da593d0571b3500036d5@52.210.139.105:53122",
+                "node_address": "084fe6ea221d5c7be386da593d0571b3500036d5@127.0.0.1:53122",
                 "peer_state": {
                   "round_state": {
                     "height": "2701921",
@@ -3508,7 +3508,7 @@ http_interactions:
                 }
               },
               {
-                "node_address": "4fbd8ef62a8b30e1924a24bd4655ce76ec2fe07f@157.230.85.118:54508",
+                "node_address": "4fbd8ef62a8b30e1924a24bd4655ce76ec2fe07f@127.0.0.1:54508",
                 "peer_state": {
                   "round_state": {
                     "height": "2701922",
@@ -3537,7 +3537,7 @@ http_interactions:
                 }
               },
               {
-                "node_address": "916492c903c8bf96a427bfe074117fcf250abc91@52.79.110.54:32122",
+                "node_address": "916492c903c8bf96a427bfe074117fcf250abc91@127.0.0.1:32122",
                 "peer_state": {
                   "round_state": {
                     "height": "2701922",
@@ -3566,7 +3566,7 @@ http_interactions:
                 }
               },
               {
-                "node_address": "241b17dba97a2ed3c3747d12781fb86c9706e2d4@95.179.136.131:42914",
+                "node_address": "241b17dba97a2ed3c3747d12781fb86c9706e2d4@127.0.0.1:42914",
                 "peer_state": {
                   "round_state": {
                     "height": "2701922",
@@ -3595,7 +3595,7 @@ http_interactions:
                 }
               },
               {
-                "node_address": "1db2370fda879294555963666ea49bd8b205f036@51.79.21.48:26656",
+                "node_address": "1db2370fda879294555963666ea49bd8b205f036@127.0.0.1:26656",
                 "peer_state": {
                   "round_state": {
                     "height": "2701922",
@@ -3624,7 +3624,7 @@ http_interactions:
                 }
               },
               {
-                "node_address": "ad615d3ec8361b5f494ba81ac22deafa5a227270@34.74.85.1:37890",
+                "node_address": "ad615d3ec8361b5f494ba81ac22deafa5a227270@127.0.0.1:37890",
                 "peer_state": {
                   "round_state": {
                     "height": "2701922",
@@ -3653,7 +3653,7 @@ http_interactions:
                 }
               },
               {
-                "node_address": "def89090a232c9e848349488efea695eada42eab@34.89.110.251:63801",
+                "node_address": "def89090a232c9e848349488efea695eada42eab@127.0.0.1:63801",
                 "peer_state": {
                   "round_state": {
                     "height": "2701922",
@@ -3682,7 +3682,7 @@ http_interactions:
                 }
               },
               {
-                "node_address": "d5c1b52922d75cc3660dd958c76784b1a33e43fe@188.68.36.39:26656",
+                "node_address": "d5c1b52922d75cc3660dd958c76784b1a33e43fe@127.0.0.1:26656",
                 "peer_state": {
                   "round_state": {
                     "height": "2673787",
@@ -3711,7 +3711,7 @@ http_interactions:
                 }
               },
               {
-                "node_address": "ade5ff93caca58b00b5fce66d04cb81b68165a92@3.8.188.26:38396",
+                "node_address": "ade5ff93caca58b00b5fce66d04cb81b68165a92@127.0.0.1:38396",
                 "peer_state": {
                   "round_state": {
                     "height": "2701922",
@@ -3740,7 +3740,7 @@ http_interactions:
                 }
               },
               {
-                "node_address": "72f22eae9c394edc9fce2a83e4168ab55ecc506b@35.231.27.172:49736",
+                "node_address": "72f22eae9c394edc9fce2a83e4168ab55ecc506b@127.0.0.1:49736",
                 "peer_state": {
                   "round_state": {
                     "height": "2701922",
@@ -3769,7 +3769,7 @@ http_interactions:
                 }
               },
               {
-                "node_address": "2de24612cce2fee96b58f38b8504bd70f4836ef5@34.73.194.163:43560",
+                "node_address": "2de24612cce2fee96b58f38b8504bd70f4836ef5@127.0.0.1:43560",
                 "peer_state": {
                   "round_state": {
                     "height": "2636029",
@@ -3798,7 +3798,7 @@ http_interactions:
                 }
               },
               {
-                "node_address": "09670cb7e3e761d21f27f9e1e9410033c1006fc9@77.37.202.136:26656",
+                "node_address": "09670cb7e3e761d21f27f9e1e9410033c1006fc9@127.0.0.1:26656",
                 "peer_state": {
                   "round_state": {
                     "height": "2701921",
@@ -3827,7 +3827,7 @@ http_interactions:
                 }
               },
               {
-                "node_address": "bb55f51fa5ac073c7c43fd45b76439ee477c5b65@172.65.198.67:26656",
+                "node_address": "bb55f51fa5ac073c7c43fd45b76439ee477c5b65@127.0.0.1:26656",
                 "peer_state": {
                   "round_state": {
                     "height": "2701922",
@@ -3856,7 +3856,7 @@ http_interactions:
                 }
               },
               {
-                "node_address": "956332a8680bbba7cb2067565c8736d8a5d73261@120.79.133.210:42682",
+                "node_address": "956332a8680bbba7cb2067565c8736d8a5d73261@127.0.0.1:42682",
                 "peer_state": {
                   "round_state": {
                     "height": "2701817",
@@ -3885,7 +3885,7 @@ http_interactions:
                 }
               },
               {
-                "node_address": "b7a64f822df91c3375db29fbee3017d7ca02eff1@51.161.115.31:26656",
+                "node_address": "b7a64f822df91c3375db29fbee3017d7ca02eff1@127.0.0.1:26656",
                 "peer_state": {
                   "round_state": {
                     "height": "2701922",
@@ -3914,7 +3914,7 @@ http_interactions:
                 }
               },
               {
-                "node_address": "5487c7d48ff8969fb47d12b445e1073ee15f5cf5@3.248.254.90:56970",
+                "node_address": "5487c7d48ff8969fb47d12b445e1073ee15f5cf5@127.0.0.1:56970",
                 "peer_state": {
                   "round_state": {
                     "height": "2701922",
@@ -3943,7 +3943,7 @@ http_interactions:
                 }
               },
               {
-                "node_address": "e121e8bed6710d05e45f5a2ddf88107b360281c5@18.162.146.11:48842",
+                "node_address": "e121e8bed6710d05e45f5a2ddf88107b360281c5@127.0.0.1:48842",
                 "peer_state": {
                   "round_state": {
                     "height": "2701922",
@@ -3972,7 +3972,7 @@ http_interactions:
                 }
               },
               {
-                "node_address": "a0aca8fb801c69653a290bd44872e8457f8b0982@47.99.180.54:35534",
+                "node_address": "a0aca8fb801c69653a290bd44872e8457f8b0982@127.0.0.1:35534",
                 "peer_state": {
                   "round_state": {
                     "height": "2701922",
@@ -4001,7 +4001,7 @@ http_interactions:
                 }
               },
               {
-                "node_address": "fa05946e325bd51e4471c7dece7054fa377ef03e@167.86.106.41:39268",
+                "node_address": "fa05946e325bd51e4471c7dece7054fa377ef03e@127.0.0.1:39268",
                 "peer_state": {
                   "round_state": {
                     "height": "2701922",
@@ -4030,7 +4030,7 @@ http_interactions:
                 }
               },
               {
-                "node_address": "16dcb3d73aa129925ce41fbce2c44e2d34254bfa@157.230.127.252:58416",
+                "node_address": "16dcb3d73aa129925ce41fbce2c44e2d34254bfa@127.0.0.1:58416",
                 "peer_state": {
                   "round_state": {
                     "height": "2701922",
@@ -4059,7 +4059,7 @@ http_interactions:
                 }
               },
               {
-                "node_address": "ea314160031ac74307ea7bc5ac85c8c368657f0a@142.4.219.226:26656",
+                "node_address": "ea314160031ac74307ea7bc5ac85c8c368657f0a@127.0.0.1:26656",
                 "peer_state": {
                   "round_state": {
                     "height": "2701922",
@@ -4088,7 +4088,7 @@ http_interactions:
                 }
               },
               {
-                "node_address": "76591372aed256da1aff0b8d9f94a1f7837fb199@167.86.113.9:55480",
+                "node_address": "76591372aed256da1aff0b8d9f94a1f7837fb199@127.0.0.1:55480",
                 "peer_state": {
                   "round_state": {
                     "height": "2701921",
@@ -4117,7 +4117,7 @@ http_interactions:
                 }
               },
               {
-                "node_address": "a497767f9acb81e7fa7dafb363cd53b2d1f0ab7a@167.172.57.167:49056",
+                "node_address": "a497767f9acb81e7fa7dafb363cd53b2d1f0ab7a@127.0.0.1:49056",
                 "peer_state": {
                   "round_state": {
                     "height": "2701922",
@@ -4146,7 +4146,7 @@ http_interactions:
                 }
               },
               {
-                "node_address": "dd36969b56c740bb40bb8badd4d4c6facc35dc24@206.189.115.41:26656",
+                "node_address": "dd36969b56c740bb40bb8badd4d4c6facc35dc24@127.0.0.1:26656",
                 "peer_state": {
                   "round_state": {
                     "height": "2701922",
@@ -4175,7 +4175,7 @@ http_interactions:
                 }
               },
               {
-                "node_address": "0f5330726f848e91bfc0a785ed5273d367b12985@47.93.48.197:26656",
+                "node_address": "0f5330726f848e91bfc0a785ed5273d367b12985@127.0.0.1:26656",
                 "peer_state": {
                   "round_state": {
                     "height": "2701921",
@@ -4204,7 +4204,7 @@ http_interactions:
                 }
               },
               {
-                "node_address": "09412cfbcd2bd5c64f6d8db92f76afc3e59894c0@66.70.178.154:44252",
+                "node_address": "09412cfbcd2bd5c64f6d8db92f76afc3e59894c0@127.0.0.1:44252",
                 "peer_state": {
                   "round_state": {
                     "height": "2701921",
@@ -4238,7 +4238,7 @@ http_interactions:
   recorded_at: Tue, 21 Jul 2020 19:46:57 GMT
 - request:
     method: get
-    uri: https://localhost/apikey/XXXX/genesis
+    uri: http://localhost:443/genesis
     body:
       encoding: US-ASCII
       string: ''

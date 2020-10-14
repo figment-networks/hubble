@@ -24,7 +24,8 @@ module ChainHelper
   def chain_header_tooltip_info
     logs_path = namespaced_path('logs') if @chain.respond_to?('sync_logs')
 
-    sync_time = @chain.last_sync_time ? "#{distance_of_time_in_words(Time.now, @chain.last_sync_time, true, highest_measures: 2)} ago" : 'Never'
+    sync_time = @chain.last_sync_time ? "#{distance_of_time_in_words(Time.now,
+                                                                     @chain.last_sync_time, true, highest_measures: 2)} ago" : 'Never'
     sync_interval = distance_of_time_in_words(@chain.class::SYNC_INTERVAL)
 
     [

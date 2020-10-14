@@ -13,7 +13,8 @@ module Telegram
 
         if account && account.chat_id != params[:message][:chat][:id].to_s
           account.update(chat_id: params[:message][:chat][:id])
-          Telegram::Message.send(account: account, message: 'Welcome to Hubble Alerts on Telegram! We’ll send you messages here for events you subscribe to in Hubble.')
+          Telegram::Message.send(account: account,
+                                 message: 'Welcome to Hubble Alerts on Telegram! We’ll send you messages here for events you subscribe to in Hubble.')
         end
       end
 

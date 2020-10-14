@@ -8,7 +8,7 @@ class Kava::Faucet < ApplicationRecord
     ok = !result.has_key?('code') && !result.has_key?('error')
 
     next_sequence = (current_sequence.to_i + 1).to_s
-    update_attributes(current_sequence: next_sequence) if ok
+    update(current_sequence: next_sequence) if ok
 
     [ok, result]
   end

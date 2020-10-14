@@ -24,15 +24,12 @@
 // = require page/polkadot/chain-show
 // = require page/polkadot/block-show
 // = require page/polkadot/validator-show
+// = require page/polkadot/account-show
 // = require components/common/timeline-chart
 // = require components/common/sparkline-chart
-// = require components/common/validator-balance-chart
 // = require components/common/hourly-uptime-chart
+// = require components/common/validator-balance-chart
 // = require components/common/transactions-volume-chart
 // = require components/polkadot/validator-table
 // = require components/polkadot/transactions-table
-
-// TODO: move these to shared when we have feature tests for Cosmos or during redesign
-// = require page/cosmoslike/account-show
-// = require components/cosmoslike/delegations-table
-// = require components/cosmoslike/delegation-modal
+// = require components/polkadot/delegations-table

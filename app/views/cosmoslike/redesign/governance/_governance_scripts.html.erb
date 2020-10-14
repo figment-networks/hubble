@@ -1,0 +1,6 @@
+<script>
+  App.config.depositMinimum = <%= @chain.governance_params.min_deposit_amount.to_json %>;
+  App.config.addressInfoPathTemplate = '<%= namespaced_path( 'account', 'ADDRESS' ) %>';
+  App.config.broadcastTxPath = '<%= namespaced_path( 'broadcast', pre_path: true ) %>';
+  App.config.viewTxPath = '<%= namespaced_path( 'transaction', 'TRANSACTION_HASH' ) %>';
+</script>

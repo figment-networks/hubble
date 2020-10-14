@@ -1,0 +1,53 @@
+<div class='data-table'>
+  <div class='data-table__header'>
+    <h4 class="data-table__title">Recent Delegation Transactions</h4>
+  </div>
+  <div class='transactions-table'>
+    <table class='border-0' data-empty='<%= transactions.blank? %>'>
+      <thead>
+        <tr>
+          <th>Hash</th>
+          <th>Height</th>
+          <th>Type</th>
+          <th>&nbsp;</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if transactions.nil? %>
+          <tr>
+            <td class='p-3 text-center' colspan='5'>Unable to retrieve transactions data.</td>
+          </tr>
+        <% elsif transactions.empty? %>
+          <tr>
+            <td class='data-table__empty' colspan='5'>No transactions.</td>
+          </tr>
+        <% else %>
+          <% transactions.reverse_each do |transaction| %>
+            <tr>
+              <td data-order='<%= transaction.hash %>'>
+                <div class='text-nowrap'>
+                  <span class='technical'>
+                    <%= transaction.hash.truncate(30) %>
+                  </span>
+                  <button class='btn btn-link btn-tiny copy-button' data-hash='<%= transaction.hash %>'><span class='fas fa-copy'></span></button>
+                </div>
+              </td>
+              <td>
+                <%= link_to namespaced_path('block', transaction.height) do %>
+                  <span class='technical'><%= transaction.height %></span>
+                <% end %>
+              <td>
+                <% transaction.messages.map { |m| m.type(tooltip: false) }.uniq.each do |type| %>
+                  <span class='badge badge-pill badge-secondary'><%= type %></span>
+                <% end %>
+              </td>
+              <td class='text-right'>
+                <%= link_to 'Details...', namespaced_path('block_transaction', transaction.height, transaction), class: "btn btn-outline-primary btn-sm" %>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

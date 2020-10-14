@@ -5,7 +5,7 @@
 
 <div class='row info-cards'>
   <div class='col-12 col-md-9 order-1 order-md-0'>
-    <%= render partial: 'polkadot/shared/validators', locals: { validators: @validators } %>
+    <%= render partial: 'polkadot/shared/validators', locals: { validators: @validators, stale_data: false } %>
   </div>
 
   <div class='col-12 col-md-3 order-0 order-md-1 info-cards'>

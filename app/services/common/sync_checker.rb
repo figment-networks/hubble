@@ -7,7 +7,7 @@ class Common::SyncChecker
   end
 
   def out_of_sync?(chain)
-    Time.parse(chain.last_sync_time.to_s).between?(2.hour.ago, 1.hour.ago)
+    Time.parse(chain.last_sync_time.to_s).between?(2.hours.ago, 1.hour.ago)
   end
 
   def run

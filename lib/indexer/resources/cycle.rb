@@ -35,11 +35,15 @@ module Indexer
     end
 
     def cached_baking_stats
-      @bakings_stats ||= @cached_baking_stats.transform_values! { |v| v.is_a?(Integer) ? v : Indexer::BakingStats.new(v.symbolize_keys) }
+      @bakings_stats ||= @cached_baking_stats.transform_values! do |v|
+        v.is_a?(Integer) ? v : Indexer::BakingStats.new(v.symbolize_keys)
+      end
     end
 
     def cached_endorsing_stats
-      @endorsing_stats ||= @cached_endorsing_stats.transform_values! { |v| Indexer::EndorsingStats.new(v.symbolize_keys) }
+      @endorsing_stats ||= @cached_endorsing_stats.transform_values! do |v|
+        Indexer::EndorsingStats.new(v.symbolize_keys)
+      end
     end
   end
 end

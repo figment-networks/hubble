@@ -3,7 +3,7 @@ class DelegationModal {
     this.DELEGATION_GAS_WANTED = 150000;
     this.REDELEGATION_GAS_WANTED = 200000;
     this.GAS_PRICE = 0.025;
-    this.MEMO = 'Delegate to your favourite validator with Hubble - https://hubble.figment.network';
+    this.MEMO = 'Delegate to your favourite validator with Hubble - https://hubble.figment.io';
 
     this.modal = el;
     this.reset();

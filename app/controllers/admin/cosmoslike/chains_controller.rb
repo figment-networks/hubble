@@ -13,7 +13,7 @@ class Admin::Cosmoslike::ChainsController < Admin::BaseController
       ])
     )
 
-    @chain.update_attributes(
+    @chain.update(
       token_map: {
         "#{@chain.class::DEFAULT_TOKEN_REMOTE}": {
           display: @chain.class::DEFAULT_TOKEN_DISPLAY,
@@ -23,12 +23,14 @@ class Admin::Cosmoslike::ChainsController < Admin::BaseController
       }
     )
 
-    if !params[:start_height].blank?
+    if params[:start_height].present?
       target_height = params[:start_height].to_i - 1
-      @chain.update_attributes(
+      @chain.update(
         latest_local_height: target_height,
         history_height: target_height,
-        validator_event_defs: @chain.validator_event_defs.map { |defn| defn['height'] = target_height; defn },
+        validator_event_defs: @chain.validator_event_defs.map do |defn|
+                                defn['height'] = target_height; defn
+                              end,
         cutoff_at: Time.now
       )
     end
@@ -110,7 +112,7 @@ class Admin::Cosmoslike::ChainsController < Admin::BaseController
     end
 
     Rails.logger.info("UPDATES: #{updates}")
-    @chain.update_attributes updates
+    @chain.update updates
 
     if !@chain.valid?
       flash[:error] = @chain.full_messages.join(', ')

@@ -96,7 +96,7 @@ class Cosmoslike::BlockSyncService
           end
 
           latest_local = height
-          @chain.update_attributes latest_local_height: latest_local
+          @chain.update latest_local_height: latest_local
 
           ProgressReport.instance.progress sync_start_height, height, target_height
         end
@@ -107,7 +107,7 @@ class Cosmoslike::BlockSyncService
       ProgressReport.instance.report
     end
 
-    @chain.update_attributes last_sync_time: Time.now.utc
+    @chain.update last_sync_time: Time.now.utc
   end
 
   def cleanup!

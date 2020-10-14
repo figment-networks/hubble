@@ -1,3 +1,9 @@
+<% if stale_data %>
+  <div class='alert alert-warning'>
+    Validators for this block are stale and will be updated when current Era ends
+  </div>
+<% end %>
+
 <section class='validators'>
   <div class='validator-table-header'>
     <h4>
@@ -38,7 +44,7 @@
         <tr>
           <td data-order='<%= validator.stash_account %>'>
             <%= link_to namespaced_path('validator', validator.stash_account) do %>
-              <strong><%= validator.account_details.display_name.truncate(38) %></strong>
+              <strong><%= validator.display_name.truncate(38) %></strong>
             <% end -%>
           </td>
           <td data-order='<%= validator.total_stake %>'>
@@ -47,7 +53,7 @@
           <td data-order='<%= validator.commission_percentage %>'>
             <%= validator.commission_percentage %> %
           </td>
-          <td data-order='<%= validator.accumulated_uptime %>' class='technical'><%= round_if_whole(validator.accumulated_uptime * 100, 2) %>
+          <td data-order='<%= validator.uptime %>' class='technical'><%= round_if_whole(validator.uptime * 100, 2) %>
             %
           </td>
           <td data-order='<%= validator.online? %>'>
@@ -60,7 +66,7 @@
           <td class='d-none'>
             _all_ <%= validator.online? ? '_active_' : '_inactive_' %>
             <%= validator.stash_account %>
-            <%= validator.account_details.display_name %>
+            <%= validator.display_name %>
           </td>
         </tr>
       <% end -%>

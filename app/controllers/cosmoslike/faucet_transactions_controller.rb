@@ -13,7 +13,8 @@ class Cosmoslike::FaucetTransactionsController < Cosmoslike::BaseController
 
     address = params[:fund_this_address].strip
 
-    if (Rails.env.development? && current_admin) || @faucet.can_fund?(user: current_user, address: address, ip: current_ip)
+    if (Rails.env.development? && current_admin) || @faucet.can_fund?(user: current_user,
+                                                                      address: address, ip: current_ip)
       tx = @faucet.generate_signed_tx(address)
       Rails.logger.debug "FINAL FAUCET TX: #{tx}"
       ok, r = @faucet.broadcast_tx(tx)
@@ -28,7 +29,7 @@ class Cosmoslike::FaucetTransactionsController < Cosmoslike::BaseController
       )
 
       if tr.valid? && tr.txhash && ok
-        tr.update_attributes completed_at: Time.now
+        tr.update completed_at: Time.now
         render json: {
           check: namespaced_path('transaction', tr.txhash, format: 'json'),
           redirect: namespaced_path('transaction', tr.txhash)
@@ -48,7 +49,8 @@ class Cosmoslike::FaucetTransactionsController < Cosmoslike::BaseController
       recent = @faucet.latest_funding(user: current_user, address: address, ip: current_ip)
       if recent
         # puts "\n\n#{Time.now.utc}\n#{recent.created_at}\n#{recent.created_at + @faucet.delay.seconds}\n\n"
-        how_long = distance_of_time_in_words(recent.created_at + @faucet.class::THROTTLE.seconds, Time.now.utc, true, highest_measures: 2)
+        how_long = distance_of_time_in_words(recent.created_at + @faucet.class::THROTTLE.seconds,
+                                             Time.now.utc, true, highest_measures: 2)
         flash[:error] = "Please wait #{how_long} before requesting more funding."
       else
         flash[:error] = 'An unknown error occurred trying to create that transaction. Sorry!'

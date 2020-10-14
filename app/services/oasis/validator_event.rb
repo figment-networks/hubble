@@ -10,6 +10,7 @@ module Oasis
     field :n
     field :m
     field :icon_name
+    field :chain_slug
 
     alias kind_string kind
     alias timestamp time
@@ -40,21 +41,28 @@ module Oasis
       'commission_change_3' => 'reward_cut_change'
     }.freeze
 
-    ESCROW_BALANCE_CHANGES = %w[active_escrow_balance_change_1 active_escrow_balance_change_2 active_escrow_balance_change_3].freeze
+    ESCROW_BALANCE_CHANGES = %w[active_escrow_balance_change_1 active_escrow_balance_change_2
+                                active_escrow_balance_change_3].freeze
     COMMISSION_CHANGES = %w[commission_change_1 commission_change_2 commission_change_3].freeze
 
-    def initialize(attrs = {})
+    def initialize(attrs, chain_slug)
       super(attrs)
       @icon_name = ICON_CLASSES[kind]
+      @chain_slug = chain_slug
 
-      if active_escrow_balance_change? || commission_change?
-        @from = data['before']
-        @to = data['after']
+      if active_escrow_balance_change?
+        # Cosmoslike events are pre-formatted
+        @from = data['before'].to_f / Oasis::Chain.find_by(slug: chain_slug).primary_token_divisor
+        @to = data['after'].to_f / Oasis::Chain.find_by(slug: chain_slug).primary_token_divisor
+      elsif commission_change?
+        # Indexer returns 5000 for 5% change
+        @from = data['before'].to_f / 1000
+        @to = data['after'].to_f / 1000
       elsif n_of_m?
-        @n = data['threshold']
-        @m = data['max_validator_sequences']
+        @data['n'] = data['threshold']
+        @data['m'] = data['max_validator_sequences']
       elsif n_consecutive?
-        @n = data['threshold']
+        @data['n'] = data['threshold']
       elsif kind == 'joined_active_set'
         @data = { 'status' => 'added' }
       elsif kind == 'left_active_set'
@@ -87,7 +95,7 @@ module Oasis
     end
 
     def delta
-      (to - from).abs
+      (to - from).to_f
     end
 
     def added?

@@ -29,6 +29,16 @@
           <span class='d-inline d-md-none fa fa-arrow-circle-up'></span>
         </a>
       <% end -%>
+      <% if defined? new_reports_link -%>
+        <%= link_to new_oasis_chain_report_path(@chain), class: 'ml-1 btn btn-outline-secondary' do %>
+          <span class='d-inline'>Rewards</span>
+        <% end %>
+      <% end -%>
+      <% if defined? show_report_link -%>
+        <%= link_to oasis_chain_report_path(@chain, params[:id]), class: 'ml-1 btn btn-outline-secondary' do %>
+          <span class='d-inline'>Rewards</span>
+        <% end %>
+      <% end -%>
     <% end -%>
   </div>
 </header>

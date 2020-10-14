@@ -1,6 +1,6 @@
 class Polkadot::SummaryChartDecorator < SimpleDelegator
   def point(chain)
-    { t: time_bucket.to_date, y: factor_amount(total_stake, chain).round(2) }
+    { t: time_bucket.to_date, y: factor_amount(total_stake, chain) }
   end
 
   private

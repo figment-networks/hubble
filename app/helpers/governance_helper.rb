@@ -22,7 +22,9 @@ module GovernanceHelper
     end
 
     if !tally.quorum_reached?
-      return "Waiting to reach quorum <span class='text-muted text-sm'>(<span class='technical'>#{round_if_whole(tally.quorum_percentage * 100, 2)}%</span>)</span>..."
+      return "Waiting to reach quorum <span class='text-muted text-sm'>(<span class='technical'>#{round_if_whole(
+        tally.quorum_percentage * 100, 2
+      )}%</span>)</span>..."
     end
 
     if tally.percent_nowithveto_to_win >= 100
@@ -76,6 +78,17 @@ module GovernanceHelper
            when 'nowithveto' then 'veto'
            end
       tag.span(class: "color-#{bg}") { vote.short_option.upcase }
+    end
+  end
+
+  def proposal_additional_data(proposal)
+    case proposal
+    when 'cosmos-sdk/ParameterChangeProposal', 'params/ParameterChangeProposal'
+      render partial: 'proposed_parameter_changes'
+    when 'treasury/TaxRateUpdateProposal'
+      render partial: 'proposed_tax_rate_change'
+    when 'cosmos-sdk/CommunityPoolSpendProposal'
+      render partial: 'community_spend'
     end
   end
 end

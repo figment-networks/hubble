@@ -24,7 +24,8 @@ class Livepeer::SubscriptionsController < Livepeer::BaseController
 
     existed = @subscription.persisted?
     if !existed
-      @subscription.assign_attributes(last_daily_at: 1.day.ago.end_of_day, last_instant_at: Time.now.utc)
+      @subscription.assign_attributes(last_daily_at: 1.day.ago.end_of_day,
+                                      last_instant_at: Time.now.utc)
     end
 
     if @subscription.save

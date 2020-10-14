@@ -16,7 +16,8 @@ describe Near::Client do
     stub_endpoint('/validators', {}, 'validators')
     stub_endpoint('/validators/id', {}, 'validator')
     stub_endpoint('/validators/height', {}, 'validator')
-    stub_endpoint('/validator_times_interval', { period: '48', interval: 'h' }, 'validator_times_interval')
+    stub_endpoint('/validator_times_interval', { period: '48', interval: 'h' },
+                  'validator_times_interval')
     stub_endpoint('/accounts/id', {}, 'account')
   end
 

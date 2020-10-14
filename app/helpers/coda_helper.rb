@@ -11,7 +11,7 @@ module CodaHelper
 
   def coda_tx_icon(tx, public_key)
     dir = tx.receiver == public_key ? 'down' : 'up'
-    content_tag(:i, class: "fa fa-caret-#{dir} tx-dir #{dir}") { '' }
+    tag.i(class: "fa fa-caret-#{dir} tx-dir #{dir}") { '' }
   end
 
   def coda_tx_include_opts
@@ -23,9 +23,9 @@ module CodaHelper
   end
 
   def coda_block_heatmap_title(block, account)
-    span_arrow = content_tag(:span, '', class: 'fas fa-arrow-right text-sm text-muted mx-2')
+    span_arrow = tag.span('', class: 'fas fa-arrow-right text-sm text-muted mx-2')
 
-    span_badge = content_tag(:span, class: 'badge badge-success') do
+    span_badge = tag.span(class: 'badge badge-success') do
       block.producer?(account) ? 'PRODUCER' : 'OK'
     end
 

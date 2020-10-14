@@ -7,7 +7,7 @@ module LivepeerHelper
   def livepeer_explorer_link(address, page: nil, short: false)
     url = "https://explorer.livepeer.org/accounts/#{address}/#{page}"
 
-    link_to(url, class: 'text-monospace', target: '_blank') do
+    link_to(url, class: 'text-monospace', target: '_blank', rel: 'noopener') do
       livepeer_address(address, short: short)
     end
   end

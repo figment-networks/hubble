@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://localhost:9292/polkadot/status
+    uri: http://localhost:9292/status
     body:
       encoding: US-ASCII
       string: ''
@@ -21,44 +21,15 @@ http_interactions:
       message: OK
     headers:
       Content-Type:
-      - application/json
-      X-Content-Type-Options:
-      - nosniff
+      - application/json; charset=utf-8
+      Date:
+      - Mon, 12 Oct 2020 13:35:12 GMT
       Content-Length:
-      - '984'
+      - '392'
     body:
       encoding: UTF-8
-      string: |
-        {
-          "app_name": "polkadothub-indexer",
-          "app_version": "0.1.1",
-          "go_version": "1.14",
-          "client_info": "@polkadot/api v1.21.1",
-          "chain_name": "Kusama",
-          "chain_type": "Live",
-          "node_name": "Parity Polkadot",
-          "node_version": "0.8.12-03067290-x86_64-linux-gnu",
-          "node_local_peer_uid": "12D3KooWS9kZyq9RYZDsqaiGzJUQswqeJgJVHvDoh7Mwtj8R4pvN",
-          "node_health": "{\"peers\":48,\"isSyncing\":false,\"shouldHavePeers\":true}",
-          "node_roles": [
-            "Full"
-          ],
-          "node_properties": {
-            "registry": "[object Object]",
-            "ss58Format": "2",
-            "tokenDecimals": "12",
-            "tokenSymbol": "KSM"
-          },
-          "genesis_hash": "0xb0a8d493285c2df73290dfb7e61f870f17b41801197a149ca93654499ea3dafe",
-          "indexing_started": true,
-          "last_index_version": 1,
-          "last_indexed_height": 396,
-          "last_indexed_session": 0,
-          "last_indexed_era": 0,
-          "chain_spec_version": "",
-          "last_indexed_time": "2019-11-28T18:07:54Z",
-          "last_indexed_at": "2020-06-30T09:00:48.706696Z",
-          "indexing_lag": 2999628
-        }
-  recorded_at: Thu, 23 Jul 2020 11:19:27 GMT
+      string: '{"app_name":"polkadothub-indexer","app_version":"0.4.1","go_version":"1.14","indexing_started":true,"last_index_version":2,"last_indexed_height":1304591,"last_indexed_session":545,"last_indexed_session_height":1302705,"last_indexed_era":85,"last_indexed_era_height":1302705,"chain_spec_version":"18","last_indexed_time":"2020-08-25T14:45:24Z","last_indexed_at":"2020-10-12T13:35:11.302294Z"}
+
+        '
+  recorded_at: Mon, 12 Oct 2020 13:35:12 GMT
 recorded_with: VCR 6.0.0

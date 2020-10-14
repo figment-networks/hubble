@@ -38,14 +38,14 @@ http_interactions:
                 "app": "2"
               },
               "id": "404f27c94f7c7e6c8705aba6e9e9c496ac6edf80",
-              "listen_addr": "tcp://0.0.0.0:26656",
+              "listen_addr": "tcp://127.0.0.1:26656",
               "network": "irishub",
               "version": "0.32.1",
               "channels": "4020212223303800",
               "moniker": "figmentarchival",
               "other": {
                 "tx_index": "on",
-                "rpc_address": "tcp://0.0.0.0:26657"
+                "rpc_address": "tcp://127.0.0.1:26657"
               }
             },
             "sync_info": {

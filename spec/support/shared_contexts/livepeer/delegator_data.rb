@@ -11,7 +11,7 @@ shared_context 'Livepeer delegator data' do
   let!(:rounds) do
     [
       create_round(chain, number: 1000, initialized_at: 2.days.ago),
-      create_round(chain, number: 1001, initialized_at: 1.days.ago)
+      create_round(chain, number: 1001, initialized_at: 1.day.ago)
     ]
   end
 

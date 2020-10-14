@@ -4,12 +4,10 @@ class AlertableAddress < ApplicationRecord
 
   alias_attribute :name_and_owner, :address
 
+  delegate :validator_event_defs, to: :chain
+
   def to_param
     address
-  end
-
-  def validator_event_defs
-    chain.validator_event_defs
   end
 
   def destroy_if_orphaned
@@ -24,8 +22,7 @@ class AlertableAddress < ApplicationRecord
     long_name.truncate(max_length)
   end
 
-  # temp placeholder, to be updated when events available in indexer
-  def recent_events(_klass, _time_ago)
-    [1, 2, 3, 4, 5]
+  def recent_events(klass, time_ago)
+    chain.get_recent_events(address, klass, time_ago)
   end
 end

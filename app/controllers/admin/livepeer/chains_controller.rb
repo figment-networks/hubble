@@ -30,7 +30,8 @@ class Admin::Livepeer::ChainsController < Admin::BaseChainsController
   end
 
   def new_chain_params
-    params.require(:livepeer_chain).permit(:name, :slug, :subgraph_url, :primary, :testnet, :disabled)
+    params.require(:livepeer_chain).permit(:name, :slug, :subgraph_url, :primary, :testnet,
+                                           :disabled)
   end
 
   def chain_params

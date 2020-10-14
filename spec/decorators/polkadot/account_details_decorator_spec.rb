@@ -4,7 +4,10 @@ describe Polkadot::AccountDetailsDecorator do
   describe '#identity_fields' do
     subject { described_class.new(model).identity_fields }
 
-    let(:model) { double(legal_name: 'name', web_name: "\u0017some web name", riot_name: 'Johny Depp', email_name: '', twitter_name: nil) }
+    let(:model) do
+      double(legal_name: 'name', web_name: "\u0017some web name", riot_name: 'Johny Depp',
+             email_name: '', twitter_name: nil)
+    end
 
     it 'returns an array of hashes in proper format, without empty values' do
       expect(subject).to eq [

@@ -177,7 +177,7 @@ module Cosmoslike::Chainlike
   end
 
   def sync_completed!
-    update_attributes failed_sync_count: 0
+    update failed_sync_count: 0
   end
 
   def governance_params_synced?
@@ -189,11 +189,11 @@ module Cosmoslike::Chainlike
   end
 
   def progressing!
-    update_attributes halted_at: nil
+    update halted_at: nil
   end
 
   def has_halted!
-    update_attributes halted_at: DateTime.now
+    update halted_at: DateTime.now
   end
 
   def halted?
@@ -204,7 +204,8 @@ module Cosmoslike::Chainlike
 
   def validator_event_defs_format
     if validator_event_defs.any? { |defn| defn.keys.blank? }
-      errors.add(:validator_event_defs, "does not have correct format (#{validator_event_defs.inspect})")
+      errors.add(:validator_event_defs,
+                 "does not have correct format (#{validator_event_defs.inspect})")
     end
   end
 end

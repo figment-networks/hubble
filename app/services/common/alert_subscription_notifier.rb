@@ -56,7 +56,7 @@ class Common::AlertSubscriptionNotifier
 
     # we don't filter, just send everything that happened that day
     AlertMailer.with(sub: sub, events: events, date: @date).daily.deliver_now
-    sub.update_attributes last_daily_at: Time.now.utc, daily_count: sub.daily_count + 1
+    sub.update last_daily_at: Time.now.utc, daily_count: sub.daily_count + 1
     puts 'DONE'
   end
 
@@ -81,7 +81,7 @@ class Common::AlertSubscriptionNotifier
     if events.count > 0
       print "notifying about #{events.count} events... "
       AlertMailer.with(sub: sub, events: events).instant.deliver_now
-      sub.update_attributes last_instant_at: Time.now.utc, instant_count: sub.instant_count + 1
+      sub.update last_instant_at: Time.now.utc, instant_count: sub.instant_count + 1
       puts 'DONE'
     else
       puts 'DONE (no events)'

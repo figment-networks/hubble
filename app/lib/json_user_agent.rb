@@ -1,6 +1,6 @@
 class JsonUserAgent
   def initialize(string = nil)
-    unless string.blank?
+    if string.present?
       @ua = UserAgent.parse(string)
     end
   end

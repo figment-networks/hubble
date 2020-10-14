@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     @user = User.create(params.require(:new_signup).permit(%i[name email password]))
     if @user.valid? && @user.persisted?
       @user.update_for_signup(ua: request.env['HTTP_USER_AGENT'], ip: current_ip)
-      @user.update_attributes verification_token: SecureRandom.hex
+      @user.update verification_token: SecureRandom.hex
       UserMailer.with(user: @user).confirm.deliver_now
       redirect_to welcome_users_path
       return
@@ -46,7 +46,7 @@ class UsersController < ApplicationController
       session[:uid] = @user.id
       session[:masq] = nil
       @user.update_for_login(ua: request.env['HTTP_USER_AGENT'], ip: current_ip)
-      @user.update_attributes verification_token: nil
+      @user.update verification_token: nil
       redirect_to confirmed_users_path
     else
       raise ActiveRecord::RecordNotFound

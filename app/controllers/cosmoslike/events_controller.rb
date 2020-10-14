@@ -27,6 +27,7 @@ class Cosmoslike::EventsController < Cosmoslike::BaseController
     @validator = @event.validatorlike
     page_title @chain.network_name, @chain.name, @event.page_title
     meta_description @event.page_title
-    @more_events_count = @chain.events.where(validatorlike: @validator).where('timestamp > ?', @event.timestamp).count
+    @more_events_count = @chain.events.where(validatorlike: @validator).where('timestamp > ?',
+                                                                              @event.timestamp).count
   end
 end

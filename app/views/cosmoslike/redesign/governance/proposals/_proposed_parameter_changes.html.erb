@@ -1,0 +1,25 @@
+<div class='data-table'>
+  <div class='data-table__header'>
+    <h3 class='data-table__title mb-1'>PROPOSED PARAMETER CHANGES</h3>
+  </div>
+  <div class='proposal-param-changes'>
+    <table class='table table-sm param-changes-table'>
+      <thead>
+        <tr>
+          <th>Subspace/Key</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @proposal.additional_data['changes'].each do |ch| -%>
+          <tr>
+            <td width='30%'><%= ch['subspace'] %> / <%= ch['key'] %></td>
+            <td>
+              <pre><%= JSON.pretty_generate(JSON.parse(ch['value'])) rescue ch['value'] %></pre>
+            </td>
+          </tr>
+        <% end -%>
+      </tbody>
+    </table>
+  </div>
+</div>

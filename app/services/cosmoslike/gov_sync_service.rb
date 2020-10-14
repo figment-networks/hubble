@@ -6,7 +6,7 @@ class Cosmoslike::GovSyncService
 
   def sync_params!
     ProgressReport.instance.start "Syncing Governance Params for #{@chain.network_name}/#{@chain.name}..."
-    @chain.update_attributes governance: (@syncer.get_governance || {})
+    @chain.update governance: (@syncer.get_governance || {})
     ProgressReport.instance.report
   end
 
@@ -18,7 +18,7 @@ class Cosmoslike::GovSyncService
       balance['amount'] = balance['amount'].to_f
       balance
     end
-    @chain.update_attributes community_pool: pool
+    @chain.update community_pool: pool
 
     ProgressReport.instance.report
   end
@@ -27,7 +27,7 @@ class Cosmoslike::GovSyncService
     ProgressReport.instance.start "Syncing Token Stats for #{@chain.network_name}/#{@chain.name}..."
 
     staking_pool = @syncer.get_staking_pool
-    @chain.update_attributes staking_pool: staking_pool
+    @chain.update staking_pool: staking_pool
 
     ProgressReport.instance.report
   end
@@ -57,7 +57,7 @@ class Cosmoslike::GovSyncService
             next
           else
             puts "Updating existing proposal: #{working_proposal.ext_id} - #{working_proposal.title}"
-            working_proposal.update_attributes(proposal_details)
+            working_proposal.update(proposal_details)
           end
         else
           working_proposal = @chain.governance_proposals.create(proposal_details)
@@ -70,7 +70,7 @@ class Cosmoslike::GovSyncService
 
         if working_proposal.ended?
           proposal_finalized(working_proposal)
-          working_proposal.update_attributes(finalized: true)
+          working_proposal.update(finalized: true)
           puts "Finalized past proposal: #{working_proposal.ext_id} - #{working_proposal.title}"
         end
       end
@@ -91,7 +91,7 @@ class Cosmoslike::GovSyncService
     tally = @syncer.get_proposal_tally(hubble_proposal.ext_id)
     return if tally.nil?
 
-    hubble_proposal.update_attributes(
+    hubble_proposal.update(
       tally_result_yes: tally['yes'],
       tally_result_no: tally['no'],
       tally_result_abstain: tally['abstain'],
@@ -197,7 +197,9 @@ class Cosmoslike::GovSyncService
     if hubble_proposal.voting_end_time.blank? || hubble_proposal.in_voting_period? || hubble_proposal.in_deposit_period?
       ext_proposals = @syncer.get_proposals
       suspect_proposal = ext_proposals.detect { |p| p['id'].to_s == hubble_proposal.ext_id.to_s }
-      Rollbar.error('Governance - illogical combination of voting_end_time and/or proposal_status.', proposal: suspect_proposal)
+      Rollbar.error(
+        'Governance - illogical combination of voting_end_time and/or proposal_status.', proposal: suspect_proposal
+      )
       puts 'Proposal reported for review - illogical combination of voting_end_time and/or proposal_status.'
     end
   end

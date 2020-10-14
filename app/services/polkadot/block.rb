@@ -1,22 +1,12 @@
 module Polkadot
   class Block < Common::Resource
-    attr_accessor :chain,
-                  :spec_version,
-                  :height,
-                  :time,
-                  :hash,
-                  :parent_hash,
-                  :extrinsics_root,
-                  :state_root,
-                  :extrinsics
-
-    def initialize(attributes = {})
-      super(attributes)
-      @time = Time.zone.parse(time)
-    end
+    field :height
+    field :time, type: :timestamp
+    field :hash
+    field :extrinsics
 
     def transactions
-      Polkadot::Transaction.from_block(self)
+      @transactions ||= Polkadot::Transaction.from_block(self)
     end
   end
 end

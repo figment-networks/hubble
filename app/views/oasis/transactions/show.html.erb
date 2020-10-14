@@ -39,7 +39,7 @@
         <h5 class='card-header'>Fees</h5>
         <div class='card-body'>
           <ul class='list-unstyled mb-0'>
-              <li><%= format_amount(@transaction.fee, denom: 'noasis') %></li>
+              <li><%= oasis_format_amount(@transaction.fee) %></li>
           </ul>
         </div>
       </div>
@@ -65,15 +65,15 @@
                 <tbody>
                   <tr>
                     <td class='text-nowrap'>Nonce</td>
-                    <td><%= format_amount(@transaction.nonce, denom: 'noasis') %></td>
+                    <td><%= oasis_format_amount(@transaction.nonce) %></td>
                   </tr>
                   <tr>
                     <td class='text-nowrap'>Gas Limit</td>
-                    <td><%= format_amount(@transaction.gas_limit, denom: 'GAS') %></td>
+                    <td><%= oasis_format_amount(@transaction.gas_limit, denom: 'GAS') %></td>
                   </tr>
                   <tr>
                     <td class='text-nowrap'>Gas Price</td>
-                    <td><%= format_amount(@transaction.gas_price, denom: 'GAS') %></td>
+                    <td><%= oasis_format_amount(@transaction.gas_price, denom: 'GAS') %></td>
                   </tr>
                 </tbody>
               </table>

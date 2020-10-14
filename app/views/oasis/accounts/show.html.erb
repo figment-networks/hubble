@@ -1,6 +1,6 @@
 <% content_for :body_class, 'account-show' %>
 
-<%= render partial: '/oasis/shared/chain_header', locals: { summary_link: true } %>
+<%= render partial: '/oasis/shared/chain_header', locals: { summary_link: true, show_report_link: true } %>
 <%= render_flash_messages %>
 
 <h2 class='mb-0'>
@@ -24,7 +24,7 @@
       <div class='card'>
         <h5 class='card-header'>Balance</h5>
         <div class='card-body'>
-            <div><%= format_amount( @account.escrow_active_balance, @chain, denom: 'noasis' ) %></div>
+            <div><%= oasis_format_amount( @account.escrow_active_balance) %></div>
         </div>
       </div>
 
@@ -32,10 +32,10 @@
         <h5 class='card-header'>Delegation</h5>
         <div class='card-body'>
           <label class='text-muted mb-0 mt-0'>Bonded</label>
-          <%= format_amount( @account.escrow_active_balance, @chain, denom: 'noasis' ) %>
+          <%= oasis_format_amount( @account.escrow_active_balance) %>
 
           <label class='text-muted mb-0 mt-3'>Unbonding</label>
-          <%= format_amount( @account.escrow_debonding_balance, @chain, denom: 'noasis' ) %>
+          <%= oasis_format_amount( @account.escrow_debonding_balance) %>
         </div>
       </div>
     </div>

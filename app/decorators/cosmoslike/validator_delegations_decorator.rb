@@ -1,6 +1,8 @@
 class Cosmoslike::ValidatorDelegationsDecorator
   include FormattingHelper
 
+  delegate :empty?, to: :delegations
+
   def initialize(chain, validator)
     @chain = chain
     @namespace = chain.class.name.deconstantize.constantize
@@ -9,10 +11,6 @@ class Cosmoslike::ValidatorDelegationsDecorator
 
   def error?
     delegations.nil?
-  end
-
-  def empty?
-    delegations.empty?
   end
 
   def delegations
@@ -27,7 +25,9 @@ class Cosmoslike::ValidatorDelegationsDecorator
       return nil
     end
 
-    decorated_delegations.concat(validator_delegations.map { |delegation| decorate_delegation(delegation) })
+    decorated_delegations.concat(validator_delegations.map do |delegation|
+                                   decorate_delegation(delegation)
+                                 end)
     decorated_delegations.concat(unbondings.map { |delegation| decorate_unbonding(delegation) })
     return decorated_delegations
   rescue @chain.namespace::SyncBase::CriticalError
@@ -50,7 +50,9 @@ class Cosmoslike::ValidatorDelegationsDecorator
     tokens = (delegation['shares'].to_f / @validator.info_field('delegator_shares').to_f) * @validator.info_field('tokens').to_f
     {
       account: delegation['delegator_address'],
-      validator: @chain.accounts.select { |account| account.address == delegation['delegator_address'] }.try(:validator),
+      validator: @chain.accounts.select do |account|
+                   account.address == delegation['delegator_address']
+                 end                 .try(:validator),
       amount: tokens * (10 ** -@chain.token_map[@chain.primary_token]['factor']),
       share: (delegation['shares'].to_f / @validator.info_field('delegator_shares').to_f) * 100,
       status: 'bonded'
@@ -60,7 +62,9 @@ class Cosmoslike::ValidatorDelegationsDecorator
   def decorate_unbonding(unbonding)
     {
       account: unbonding['delegator_address'],
-      validator: @chain.accounts.select { |account| account.address == unbonding['delegator_address'] }.try(:validator),
+      validator: @chain.accounts.select do |account|
+                   account.address == unbonding['delegator_address']
+                 end                 .try(:validator),
       amount: unbonding['entries'].inject(0) { |acc, e| acc + e['balance'].to_f },
       status: 'unbonding'
     }

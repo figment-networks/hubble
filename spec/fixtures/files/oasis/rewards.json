@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "created_at": "2020-09-18T16:42:48.370528Z",
+    "updated_at": "2020-09-19T00:13:54.865495Z",
+    "index_version": 4,
+    "time_interval": "day",
+    "time_bucket": "2020-09-18T00:00:00Z",
+    "start_height": 635886,
+    "address": "oasis1qp22l6gy0u2cp6krh4ruuezf09f20t0qkupkhq2g",
+    "escrow_address": "oasis1qp22l6gy0u2cp6krh4ruuezf09f20t0qkupkhq2g",
+    "total_rewards": 107073020223,
+    "total_commission": 0,
+    "total_slashed": 0
+  },
+  {
+    "id": 72,
+    "created_at": "2020-09-19T00:13:55.379719Z",
+    "updated_at": "2020-09-20T00:16:10.607081Z",
+    "index_version": 4,
+    "time_interval": "day",
+    "time_bucket": "2020-09-19T00:00:00Z",
+    "start_height": 650880,
+    "address": "oasis1qp22l6gy0u2cp6krh4ruuezf09f20t0qkupkhq2g",
+    "escrow_address": "oasis1qp22l6gy0u2cp6krh4ruuezf09f20t0qkupkhq2g",
+    "total_rewards": 321306172068,
+    "total_commission": 0,
+    "total_slashed": 0
+  },
+  {
+    "id": 145,
+    "created_at": "2020-09-20T00:16:11.239793Z",
+    "updated_at": "2020-09-21T00:17:17.336488Z",
+    "index_version": 4,
+    "time_interval": "day",
+    "time_bucket": "2020-09-20T00:00:00Z",
+    "start_height": 665849,
+    "address": "oasis1qp22l6gy0u2cp6krh4ruuezf09f20t0qkupkhq2g",
+    "escrow_address": "oasis1qp22l6gy0u2cp6krh4ruuezf09f20t0qkupkhq2g",
+    "total_rewards": 321434317433,
+    "total_commission": 0,
+    "total_slashed": 0
+  },
+  {
+    "id": 216,
+    "created_at": "2020-09-21T00:17:17.911491Z",
+    "updated_at": "2020-09-22T00:17:16.369189Z",
+    "index_version": 4,
+    "time_interval": "day",
+    "time_bucket": "2020-09-21T00:00:00Z",
+    "start_height": 680838,
+    "address": "oasis1qp22l6gy0u2cp6krh4ruuezf09f20t0qkupkhq2g",
+    "escrow_address": "oasis1qp22l6gy0u2cp6krh4ruuezf09f20t0qkupkhq2g",
+    "total_rewards": 321562513903,
+    "total_commission": 0,
+    "total_slashed": 0
+  },
+  {
+    "id": 285,
+    "created_at": "2020-09-22T00:17:16.98027Z",
+    "updated_at": "2020-09-22T18:34:40.822176Z",
+    "index_version": 4,
+    "time_interval": "day",
+    "time_bucket": "2020-09-22T00:00:00Z",
+    "start_height": 695835,
+    "address": "oasis1qp22l6gy0u2cp6krh4ruuezf09f20t0qkupkhq2g",
+    "escrow_address": "oasis1qp22l6gy0u2cp6krh4ruuezf09f20t0qkupkhq2g",
+    "total_rewards": 107214861575,
+    "total_commission": 0,
+    "total_slashed": 0
+  }
+]

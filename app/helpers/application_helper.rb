@@ -87,7 +87,7 @@ module ApplicationHelper
       end
     end
     if session.has_key?(:uid) && @current_user.nil?
-      @current_user = User.find_by_id(session[:uid])
+      @current_user = User.find_by(id: session[:uid])
       @current_user = nil if @current_user.try(:deleted?)
       if @current_user && !session[:masq]
         # dont bother parsing ua here, just on login

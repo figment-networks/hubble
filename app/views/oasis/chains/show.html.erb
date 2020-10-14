@@ -1,7 +1,7 @@
 <% content_for :body_class, 'chain-show' %>
 
 
-<%= render partial: '/oasis/shared/chain_header' %>
+<%= render partial: '/oasis/shared/chain_header', locals: { new_reports_link: true } %>
 <%= render partial: '/oasis/shared/sync_errors' %>
 
 <% if @error %>
@@ -51,7 +51,7 @@
                       <strong><%= v.short_name %></strong>
                     </a>
                   </td>
-                  <td data-order='<%= v.recent_active_escrow_balance %>'><%= format_amount(v.recent_active_escrow_balance, denom: 'noasis') %></td>
+                  <td data-order='<%= v.recent_active_escrow_balance %>'><%= oasis_format_amount(v.recent_active_escrow_balance) %></td>
                   <td data-order='<%= v.recent_active_escrow_balance %>'><%= voting_power_percent(v.recent_active_escrow_balance, @voting_power) %>%</td>
                   <td data-order='<%= v.uptime %>' class='technical'><%= round_if_whole(v.uptime * 100, 2) %>%</td>
                   <td class='d-none'>
@@ -84,7 +84,7 @@
         <div class='card'>
           <h5 class='card-header'>Common Pool</h5>
           <div class='card-body'>
-            <div><%= format_amount(@common_pool, denom: 'noasis') %></div>
+            <div><%= oasis_format_amount(@common_pool) %></div>
           </div>
         </div>
       <% end -%>

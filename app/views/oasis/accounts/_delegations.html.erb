@@ -23,7 +23,7 @@
                 <%= link_to delegation.validator_uid.truncate(30), oasis_chain_validator_path(@chain.slug, delegation.validator_uid) %>
               </td>
               <td data-order='<%= delegation.shares %>'>
-                <%= format_amount( delegation.shares, @chain, denom: 'noasis' ) %>
+                <%= oasis_format_amount( delegation.shares) %>
               </td>
               <td data-order='<%= delegation.status %>'>
                 <span class='badge badge-pill badge-primary'><%= delegation.status.upcase %></span>

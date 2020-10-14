@@ -1,0 +1,41 @@
+<% content_for :body_class, 'reports-show' %>
+
+<%= render partial: '/oasis/shared/chain_header', locals: { summary_link: true } %>
+
+<div class='header pb-3'>
+  <h5><small class='text-muted technical'><%= params[:id] %></small></h5>
+  <div class='buttons ml-auto'>
+    <% unless @error %>
+      <%= link_to oasis_chain_report_path(@chain, params[:id], :params => { format: 'csv'} ), class: 'ml-1 btn btn-outline-info btn-sm' do %>
+        <span class='d-none d-md-inline'>Export</span>
+        <span class='d-inline d-md-none fa fa-download'></span>
+      <% end %>
+    <% end %>
+    <%= link_to new_oasis_chain_report_path(@chain), class: 'ml-1 btn btn-outline-secondary btn-sm' do %>
+      <span class='d-none d-md-inline'>New Report</span>
+      <span class='d-inline d-md-none fa fa-undo'></span>
+    <% end %>
+  </div>
+</div>
+
+<% if @error %>
+  <%= render partial: 'shared/display_error' %>
+<% else %>
+  <table class='table table-sm table-responsive-md'>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Validator</th>
+        <th>Rewards <small class='text-muted technical'>(<%= @chain.primary_display %>)</small></th>
+        <th>Commission <small class='text-muted technical'>(<%= @chain.primary_display %>)</small></th>
+        <th>Slashes</th>
+      </tr>
+    </thead>
+
+    <tbody>
+        <% @rewards.each do |reward| %>
+          <%= render partial: 'daily_rewards', locals: { reward: reward } %>
+        <% end %>
+    </tbody>
+  </table>
+<% end %>

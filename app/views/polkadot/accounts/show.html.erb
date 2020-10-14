@@ -20,9 +20,7 @@
     <div class='col-12 col-md-3 order-0 order-md-1 info-cards'>
       <% @account_details.balances.each do |balance| %>
         <%= render layout: 'shared/sidebar_card', locals: { header: balance[:header] } do %>
-          <% balance[:values].each do |value| %>
-            <%= format_amount(value["amount"].to_i, @chain, denom: @chain.class::DEFAULT_TOKEN_REMOTE) %>
-          <% end %>
+          <%= format_amount(balance[:value], @chain, denom: @chain.class::DEFAULT_TOKEN_REMOTE) %>
         <% end %>
       <% end %>
     </div>
@@ -37,6 +35,12 @@
             <div class='table-responsive'>
               <table class='table table-sm'>
                 <tbody>
+                <% if @account_details.identity_fields.empty? %>
+                  <tr>
+                    <td class='p-3 text-center' colspan='2'>No account details.</td>
+                  </tr>
+                <% end %>
+
                 <% @account_details.identity_fields.each do |field| %>
                   <tr>
                     <td><%= field[:label] %></td>
@@ -50,9 +54,7 @@
         </main>
       </section>
 
-      <%# TODO: move these to shared when we have feature tests for Cosmos or during redesign %>
-      <%= render partial: 'cosmoslike/accounts/delegations' %>
-      <%= render partial: 'cosmoslike/accounts/transactions' %>
+      <%= render partial: 'delegations' %>
     </div>
   </div>
 <% end %>

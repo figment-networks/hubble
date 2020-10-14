@@ -15,11 +15,11 @@ class Livepeer::Round < ApplicationRecord
   has_many :slashings, class_name: 'Livepeer::Events::Slashing'
 
   def previous_round
-    chain.rounds.order(number: :desc).where('number < ?', number).take
+    chain.rounds.order(number: :desc).find_by('number < ?', number)
   end
 
   def next_round
-    chain.rounds.order(number: :asc).where('number > ?', number).take
+    chain.rounds.order(number: :asc).find_by('number > ?', number)
   end
 
   def to_param

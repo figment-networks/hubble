@@ -31,7 +31,7 @@ class HomeChainDecorator < SimpleDelegator
 
   def token_prices
     Rails.cache.fetch('token_prices', expires_in: 4.hours) do
-      Cryptocompare::Price.find(%i[ATOM LPT KAVA KSM XTZ LUNA IRIS], :USD)
+      Cryptocompare::Price.find(%i[ATOM LPT KAVA DOT XTZ LUNA IRIS], :USD)
     end
   rescue StandardError
     nil

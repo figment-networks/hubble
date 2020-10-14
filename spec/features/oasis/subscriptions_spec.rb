@@ -5,7 +5,7 @@ def visit_validator_subscription_page(chain_slug, validator_id)
 end
 
 describe 'oasis subscriptions' do
-  let!(:chain) { create(:oasis_chain, api_url: 'https://localhost:1111') }
+  let!(:chain) { create(:oasis_chain, api_url: 'http://localhost:1111') }
   let!(:alertable) { create(:alertable_address, chain: chain) }
   let!(:user) { create(:user) }
   let!(:alert_subscription) do
@@ -29,6 +29,10 @@ describe 'oasis subscriptions' do
 
       expect(page).to have_content('Voting Power Change %')
       expect(page).to have_content('Misses N of Last M Precommits')
+      expect(page).to have_content('Joined/Left the Active Set')
+      expect(page).to have_content('Misses N Consecutive Precommits')
+      expect(page).to have_content('Reward Cut Change')
+      expect(page).to have_content('Slash')
       expect(page).to have_content('Receive Daily Digest?')
     end
   end

@@ -40,10 +40,14 @@ describe 'tezos governance' do
   it 'active proposal details', :vcr do
     visit '/tezos/governance/proposals/PsDELPH1Kxsxt8f9eWbxQeRxkjfbxoqM52jvs5Y5fBxWWh4ifpo'
 
-    expect(page).to have_content('In proposal period voting.')
+    expect(page).to have_content('In proposal testing period.')
+    expect(page).not_to have_content('Promotion Period')
 
     click_button('Evaluation Period')
-    expect(page).to have_content('50%')
-    expect(page).to have_content('42136 of 84105 rolls have voted.')
+    expect(page).to have_content('57.37%')
+    expect(page).to have_content('30,220 rolls')
+
+    click_button('Testing Period')
+    expect(page).to have_content('Testing period - no voting')
   end
 end

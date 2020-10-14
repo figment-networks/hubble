@@ -6,15 +6,15 @@ class Common::IndexerClient
 
   def initialize(endpoint, options = {})
     @endpoint = endpoint
-    @timeout  = options[:timeout] || DEFAULT_TIMEOUT
+    @timeout  = options[:timeout] || self.class::DEFAULT_TIMEOUT
   end
 
   def get(path, params = {})
     resp = RestClient::Request.execute(
       method: :get,
-      url: "#{@endpoint}#{path}",
+      url: "#{endpoint}#{path}",
       headers: { params: params },
-      timeout: @timeout
+      timeout: timeout
     )
     JSON.load(resp.body)
   rescue RestClient::NotFound => err
@@ -29,6 +29,8 @@ class Common::IndexerClient
   end
 
   private
+
+  attr_reader :endpoint, :timeout
 
   def handle_error(err)
     message = err

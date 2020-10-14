@@ -9,7 +9,7 @@ module Cosmoslike::Faucetlike
 
     attribute :private_key
     attr_encrypted :private_key, key: proc { Rails.application.secrets.faucet_key_base }
-    validates :encrypted_private_key, presence: true, allow_nil: false, allow_blank: false
+    validates :encrypted_private_key, presence: true, allow_blank: false
 
     scope :enabled, -> { where(disabled: false) }
 
@@ -48,7 +48,9 @@ module Cosmoslike::Faucetlike
   end
 
   def balance
-    chain.syncer(1000).get_account_info(address)['value']['coins'].find { |c| c['denom'] == denom }['amount']
+    chain.syncer(1000).get_account_info(address)['value']['coins'].find do |c|
+      c['denom'] == denom
+    end ['amount']
   rescue StandardError
     nil
   end
@@ -75,7 +77,7 @@ module Cosmoslike::Faucetlike
       account_number: account_info['value']['account_number'],
       sequence: current_sequence,
       chain_id: chain.ext_id,
-      memo: "Community Faucet for #{chain.ext_id}#{' (testnet)' if chain.testnet?} via https://hubble.figment.network/#{chain.network_name.downcase}/chains/#{chain.slug}/faucet"
+      memo: "Community Faucet for #{chain.ext_id}#{' (testnet)' if chain.testnet?} via https://hubble.figment.io/#{chain.network_name.downcase}/chains/#{chain.slug}/faucet"
     }.sort_by_key(true)
 
     sig = secp256k1_private_key.ecdsa_sign(tx.to_json)
@@ -107,7 +109,7 @@ module Cosmoslike::Faucetlike
     ok = !result.has_key?('code') && !result.has_key?('error')
 
     next_sequence = (current_sequence.to_i + 1).to_s
-    update_attributes(current_sequence: next_sequence) if ok
+    update(current_sequence: next_sequence) if ok
 
     [ok, result]
   end

@@ -78,7 +78,9 @@ class Cosmoslike::Transactions::MessageDecorator
 
   def handle_validator(value)
     bytes = Bitcoin::Bech32.decode(value)[1]
-    account_address = Bitcoin::Bech32.encode(@chain.class::PREFIXES[:account_address].sub(/1$/, ''), bytes)
+    account_address = Bitcoin::Bech32.encode(
+      @chain.class::PREFIXES[:account_address].sub(/1$/, ''), bytes
+    )
     handle_account(account_address)
   end
   alias handle_validator_address handle_validator

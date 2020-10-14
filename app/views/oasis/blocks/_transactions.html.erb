@@ -24,22 +24,22 @@
           </tr>
         <% end -%>
 
-        <% (transactions||[]).each do |tr| -%>
+        <% (transactions||[]).each do |transaction| -%>
           <tr>
-            <td data-order='<%= tr.hash %>'>
-              <span class='technical'><%= tr.public_key.truncate(30) %></span>
+            <td data-order='<%= transaction.hash %>'>
+              <span class='technical'><%= transaction.public_key.truncate(30) %></span>
             </td>
-            <td data-order='<%= tr.fee %>'>
-                <%= tr.fee %>
+            <td data-order='<%= transaction.fee %>'>
+                <%= oasis_format_amount(transaction.fee) %>
             </td>
-            <td data-order='<%= tr.gas_limit %>'>
-              <%= tr.gas_limit %>
+            <td data-order='<%= transaction.gas_limit %>'>
+              <%= oasis_format_amount(transaction.gas_limit, denom: 'GAS') %>
             </td>
-            <td data-order='<%= tr.gas_price %>'>
-              <%= tr.gas_price %>
+            <td data-order='<%= transaction.gas_price %>'>
+              <%= oasis_format_amount(transaction.gas_price, denom: 'GAS') %>
             </td>
             <td class='text-right'>
-              <a class='btn btn-outline-primary btn-sm' href='<%= oasis_chain_block_transaction_path(@chain.slug, @block.height, tr.public_key) %>'>Details...</a>
+              <a class='btn btn-outline-primary btn-sm' href='<%= oasis_chain_block_transaction_path(@chain.slug, @block.height, transaction.public_key) %>'>Details...</a>
             </td>
           </tr>
         <% end -%>

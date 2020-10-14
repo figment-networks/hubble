@@ -1,7 +1,7 @@
 class Admin::Oasis::ChainsController < Admin::BaseChainsController
   def create
     @chain = chain_class.create(chain_params)
-    @chain.update_attributes(
+    @chain.update(
       token_map: {
         "#{@chain.class::DEFAULT_TOKEN_REMOTE}": {
           display: @chain.class::DEFAULT_TOKEN_DISPLAY,
@@ -34,10 +34,36 @@ class Admin::Oasis::ChainsController < Admin::BaseChainsController
       updates = params.require(:oasis_chain).permit(
         %i[
           primary disabled dead api_url
-        ]
+        ],
+        validator_event_defs: %i[unique_id kind n m height]
       )
     else
       updates = {}
+    end
+
+    if updates.has_key?(:validator_event_defs)
+      # sanitize event defs to an array
+      updates[:validator_event_defs] = updates[:validator_event_defs].values
+
+      # sanitize n, m, and height fields to integers
+      params_defns = updates[:validator_event_defs].index_by { |defn| defn['unique_id'] }
+      existing_defns = @chain.validator_event_defs.index_by { |defn| defn['unique_id'] }
+      new_defns = []
+
+      params_defns.keys.each do |defn_id|
+        new_defn = if existing_defns.keys.include?(defn_id)
+                     existing_defns[defn_id].merge params_defns[defn_id]
+                   else
+                     params_defns[defn_id]
+                   end
+        new_defn['n'] = new_defn['n'].to_i if new_defn.has_key?('n')
+        new_defn['m'] = new_defn['m'].to_i if new_defn.has_key?('m')
+        new_defn['height'] = new_defn.has_key?('height') || 1
+
+        new_defns << new_defn
+      end
+
+      updates[:validator_event_defs] = new_defns
     end
 
     if params.has_key?(:new_token)
@@ -57,7 +83,7 @@ class Admin::Oasis::ChainsController < Admin::BaseChainsController
     end
 
     Rails.logger.info("UPDATES: #{updates}")
-    @chain.update_attributes updates
+    @chain.update updates
 
     if !@chain.valid?
       flash[:error] = @chain.full_messages.join(', ')

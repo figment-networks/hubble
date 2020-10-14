@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_04_134531) do
+ActiveRecord::Schema.define(version: 2020_10_01_123419) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
@@ -157,14 +157,13 @@ ActiveRecord::Schema.define(version: 2020_09_04_134531) do
     t.jsonb "validator_event_defs", default: [{"kind"=>"voting_power_change", "height"=>0}, {"kind"=>"active_set_inclusion", "height"=>0}]
     t.integer "failed_sync_count", default: 0
     t.jsonb "governance", default: {}, null: false
-    t.string "ext_id"
     t.datetime "halted_at"
     t.string "last_round_state", default: ""
+    t.string "ext_id"
     t.string "token_denom", default: "atom"
     t.bigint "token_factor", default: 0
     t.string "sdk_version"
     t.text "notes"
-    t.string "network"
     t.boolean "use_ssl_for_lcd", default: false
     t.jsonb "staking_pool", default: {}
     t.string "remote_denom"
@@ -179,6 +178,7 @@ ActiveRecord::Schema.define(version: 2020_09_04_134531) do
     t.string "rpc_path"
     t.string "lcd_path"
     t.boolean "use_ssl_for_rpc", default: false
+    t.string "network"
     t.float "staking_participation"
     t.float "rewards_rate"
     t.float "daily_rewards"
@@ -927,7 +927,7 @@ ActiveRecord::Schema.define(version: 2020_09_04_134531) do
     t.boolean "dead", default: false
     t.integer "position"
     t.jsonb "token_map", default: {}
-    t.jsonb "validator_event_defs", default: [{"kind"=>"voting_power_change", "height"=>0}, {"m"=>1000, "n"=>50, "kind"=>"n_of_m", "height"=>0}]
+    t.jsonb "validator_event_defs", default: [{"kind"=>"voting_power_change", "height"=>0}, {"kind"=>"active_set_inclusion", "height"=>0}, {"kind"=>"reward_cut_change", "height"=>0}, {"kind"=>"slash", "height"=>0}]
     t.index ["name"], name: "index_oasis_chains_on_name"
   end
 

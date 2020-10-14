@@ -11,10 +11,13 @@ class Cosmoslike::ValidatorsController < Cosmoslike::BaseController
       format.json do
         recent_blocks = @chain.blocks.limit(100)
 
-        uptime = (recent_blocks.select { |b| b.precommitters.include?(@validator.address) }.count / 100.0).to_f
+        uptime = (recent_blocks.select do |b|
+                    b.precommitters.include?(@validator.address)
+                  end .count / 100.0).to_f
         proposals = recent_blocks.select { |b| b.proposer_address == @validator.address }.count
 
-        delegations = @chain.namespace::ValidatorDelegationsDecorator.new(@chain, @validator).delegations.count
+        delegations = @chain.namespace::ValidatorDelegationsDecorator.new(@chain,
+                                                                          @validator).delegations.count
 
         render json: {
           moniker: @validator.moniker,

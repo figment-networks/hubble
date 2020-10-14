@@ -1,6 +1,6 @@
 class Stats::FaucetTransaction < ApplicationRecord
   belongs_to :faucetlike, polymorphic: true
-  belongs_to :user, required: false
+  belongs_to :user, optional: true
 
   validate :valid_destination_address
 

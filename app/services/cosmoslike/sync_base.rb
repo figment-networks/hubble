@@ -1,6 +1,9 @@
 class Cosmoslike::SyncBase
   class CriticalError < StandardError; end
 
+  VALIDATORS_PER_PAGE = 100
+  # This limit needs to be in place to ensure newer versions of this chain work. A greater number causes it to break
+
   def initialize(chain, timeout_ms = 10_000)
     @chain = chain
     @timeout = timeout_ms
@@ -17,7 +20,7 @@ class Cosmoslike::SyncBase
     end
 
     if @chain.ext_id.blank?
-      @chain.update_attributes ext_id: ext_id
+      @chain.update ext_id: ext_id
     end
 
     if ext_id != @chain.ext_id
@@ -47,7 +50,7 @@ class Cosmoslike::SyncBase
   end
 
   def get_validator_set(height)
-    r = rpc_get('validators', height: height)
+    r = rpc_get('validators', height: height, per_page: VALIDATORS_PER_PAGE)
     begin
       r['result']['validators']
     rescue StandardError
@@ -224,7 +227,7 @@ class Cosmoslike::SyncBase
     r = lcd_post('txs', final_json)
 
     # add human readable error to payload
-    if !r['code'].blank?
+    if r['code'].present?
       message = case r['code']
                 when 1 then 'Internal Error'
                 when 2 then 'Error decoding transaction'
@@ -259,13 +262,16 @@ class Cosmoslike::SyncBase
 
     url = URI::Generic.build(
       scheme: @chain.use_ssl_for_rpc? ? 'https' : 'http',
-      host: @chain.rpc_host.blank? ? 'localhost' : @chain.rpc_host,
-      port: @chain.rpc_port.blank? ? API_DEFAULTS[:rpc_host] : @chain.rpc_port,
+      host: @chain.rpc_host.presence || 'localhost',
+      port: @chain.rpc_port.presence || API_DEFAULTS[:rpc_host],
       path: [@chain.rpc_path.sub(/\/$/, ''), path].join('/'),
       query: params ? params.to_query : nil
     ).to_s
 
-    body = Rails.cache.fetch(['rpc_get', @chain.network_name.downcase, @chain.ext_id.to_s, url].join('-'), force: Rails.env.development?, expires_in: 30.seconds, version: CACHE_VERSION) do
+    body = Rails.cache.fetch(
+      ['rpc_get', @chain.network_name.downcase, @chain.ext_id.to_s,
+       url].join('-'), force: Rails.env.development?, expires_in: 30.seconds, version: CACHE_VERSION
+    ) do
       start_time = Time.now.utc.to_f
       Rails.logger.debug "#{@chain.network_name} RPC GET: #{url}"
       r = Typhoeus.get(url, timeout_ms: @timeout * 2, connecttimeout_ms: @timeout)
@@ -282,13 +288,16 @@ class Cosmoslike::SyncBase
 
     url = URI::Generic.build(
       scheme: @chain.use_ssl_for_lcd? ? 'https' : 'http',
-      host: @chain.lcd_host.blank? ? 'localhost' : @chain.lcd_host,
-      port: @chain.lcd_port.blank? ? API_DEFAULTS[:lcd_host] : @chain.lcd_port,
+      host: @chain.lcd_host.presence || 'localhost',
+      port: @chain.lcd_port.presence || API_DEFAULTS[:lcd_host],
       path: [@chain.lcd_path.to_s.sub(/\/$/, ''), path].join('/'),
       query: params ? params.to_query : nil
     ).to_s
 
-    body = Rails.cache.fetch(['lcd_get', @chain.network_name.downcase, @chain.ext_id.to_s, url].join('-'), force: Rails.env.development?, expires_in: 30.seconds, version: CACHE_VERSION) do
+    body = Rails.cache.fetch(
+      ['lcd_get', @chain.network_name.downcase, @chain.ext_id.to_s,
+       url].join('-'), force: Rails.env.development?, expires_in: 30.seconds, version: CACHE_VERSION
+    ) do
       start_time = Time.now.utc.to_f
       Rails.logger.debug "#{@chain.network_name} LCD GET: #{url}"
       opts = { timeout_ms: @timeout * 2, connecttimeout_ms: @timeout }
@@ -312,8 +321,8 @@ class Cosmoslike::SyncBase
 
     url = URI::Generic.build(
       scheme: @chain.use_ssl_for_lcd? ? 'https' : 'http',
-      host: @chain.lcd_host.blank? ? 'localhost' : @chain.lcd_host,
-      port: @chain.lcd_port.blank? ? API_DEFAULTS[:lcd_host] : @chain.lcd_port,
+      host: @chain.lcd_host.presence || 'localhost',
+      port: @chain.lcd_port.presence || API_DEFAULTS[:lcd_host],
       path: [@chain.lcd_path.sub(/\/$/, ''), path].join('/')
     ).to_s
 

@@ -49,7 +49,7 @@ module Oasis
     end
 
     def long_name
-      entity_name.blank? ? address : entity_name
+      entity_name.presence || address
     end
 
     def short_name(len = 30)

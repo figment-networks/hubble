@@ -6,6 +6,6 @@ class Admin::Common::ValidatorEventsController < Admin::BaseController
 
   def destroy
     Common::ValidatorEvent.find(params[:id]).destroy
-    redirect_to request.referrer
+    redirect_to request.referer
   end
 end

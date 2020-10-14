@@ -37,7 +37,7 @@ class ApplicationController < ActionController::Base
   private
 
   def params_return_path
-    params[:return_path].blank? ? nil : params[:return_path]
+    params[:return_path].presence
   end
 
   def http_basic_auth

@@ -1,0 +1,4 @@
+<div class='title mb-1'>PROPOSED TAX RATE CHANGE</div>
+<div class='proposal-param-changes'>
+  <span>New Tax Rate: <strong><%= round_if_whole(@proposal.additional_data['tax_rate'].to_f * 100, 2) %>%</strong></span>
+</div>

@@ -50,7 +50,7 @@ Rails.application.configure do
   config.log_tags = [:remote_ip]
 
   # Use a different cache store in production.
-  config.cache_store = :mem_cache_store, ['localhost'], {
+  config.cache_store = :mem_cache_store, [ENV['MEM_CACHE_ADDRESS'] || 'localhost'], {
     namespace: "hubble-#{Rails.env}",
     expires_in: 2.weeks,
     compress: true
@@ -63,8 +63,8 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :postmark
   config.action_mailer.postmark_settings = { api_key: Rails.application.secrets.postmark[:api_key] }
   if ENV['APPLICATION_HOST'] && ENV['APPLICATION_PROTOCOL']
-    config.action_mailer.default_url_options = { host: ENV['APPLICATION_PROTOCOL'],
-                                                 protocol: ENV['APPLICATION_HOST'] }
+    config.action_mailer.default_url_options = { host: ENV['APPLICATION_HOST'],
+                                                 protocol: ENV['APPLICATION_PROTOCOL'] }
   else
     config.action_mailer.default_url_options = { host: Rails.application.secrets.application_host,
                                                  protocol: Rails.application.secrets.application_protocol }

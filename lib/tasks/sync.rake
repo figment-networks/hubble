@@ -1,5 +1,5 @@
 namespace :sync do
-  task :all do
+  task all: :environment do
     %w[cosmos terra iris kava emoney livepeer].each do |network|
       Rake::Task["sync:#{network}"].invoke
     end

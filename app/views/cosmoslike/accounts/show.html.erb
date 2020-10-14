@@ -59,12 +59,9 @@
       <% end %>
     </div>
 
-    <!-- UNLESS STATEMENT TO BE REMOVED WHEN DELEGATIONS INDEXING FIXED -->
-    <% unless @chain.network_name == 'Cosmos' %>
-      <div class='col-12 col-md-9 order-1 order-md-0'>
-        <%= render partial: 'delegations' %>
-        <%= render partial: 'transactions' %>
-      </div>
-    <% end %>
+    <div class='col-12 col-md-9 order-1 order-md-0'>
+      <%= render partial: 'delegations' %>
+      <%= render partial: 'transactions' %>
+    </div>
   </div>
 <% end -%>
