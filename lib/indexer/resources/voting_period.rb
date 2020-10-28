@@ -39,5 +39,21 @@ module Indexer
     def quorum_percent
       quorum.to_f / 100
     end
+
+    def proposal?
+      period_type == 'proposal'
+    end
+
+    def testing_vote?
+      period_type == 'testing_vote'
+    end
+
+    def testing?
+      period_type == 'testing'
+    end
+
+    def promotion_vote?
+      period_type == 'promotion_vote'
+    end
   end
 end

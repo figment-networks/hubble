@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
 
   def new
     page_title 'Hubble', 'Login'
-    referrer = URI(request.referrer) rescue nil
+    referrer = URI(request.referer) rescue nil
     if referrer && Rails.application.secrets.application_host
       referrer.host, referrer.port = Rails.application.secrets.application_host.split(':')
       referrer.port = nil if referrer.port == 80
@@ -41,7 +41,7 @@ class SessionsController < ApplicationController
   def reset_password
     user = User.find_by email: params[:email].downcase
     if user&.verified?
-      user.update_attributes password_reset_token: SecureRandom.hex
+      user.update password_reset_token: SecureRandom.hex
       UserMailer.with(user: user).forgot_password.deliver_now
     else
       redirect_to forgot_password_path
@@ -54,7 +54,7 @@ class SessionsController < ApplicationController
 
     session[:uid] = @user.id
     session[:masq] = nil
-    @user.update_attributes password_reset_token: nil
+    @user.update password_reset_token: nil
     flash[:notice] = 'Logged in. You may reset your password now.'
     redirect_to settings_users_path
   end
@@ -64,7 +64,7 @@ class SessionsController < ApplicationController
     session[:masq] = nil
     session[:uid] = nil
     reset_session
-    session[:admin_id] = admin_id if !admin_id.blank?
+    session[:admin_id] = admin_id if admin_id.present?
     redirect_to root_path
   end
 end

@@ -1,0 +1,173 @@
+<% content_for :body_class, 'governance-index' %>
+
+<%= render partial: '/cosmoslike/redesign/shared/chain_header', locals: { active_tab: '', faucet_link: true } %>
+
+<div class="content">
+  <div class="container">
+    <%= render partial: '/cosmoslike/shared/sync_errors' %>
+    
+    <div class='row'>
+      <div class='col-12 col-md-9'>
+        <section class='data-table'>
+          <div class='data-table__header'>
+            <h3 class='data-table__title'>Governance Proposals</h3>
+
+            <% if @chain.class::SUPPORTS_LEDGER -%>
+              <div class='controls'>
+                <button class='btn btn-sm btn-outline-light' data-toggle='modal' data-target='#proposal-modal'>New Proposal</button>
+              </div>
+            <% end -%>
+          </div>
+
+          <%= render 'proposals_table', proposals: @proposals %>
+        </section>
+      </div>
+
+      <div class='col-12 col-md-3'>
+        <div class='data-block'>
+          <h2 class='data-block__title'>Parameters</h2>
+          <div class="d-flex flex-wrap">
+            <div class="mb-3 mr-5">
+              <label class='text-label m-0'>Voting Period</label>
+              <div class='text-monospace'>
+                <%= round_if_whole(@chain.governance_params.voting_period, 2) %> days
+              </div>
+            </div>
+            <div class="mb-3 mr-5">
+              <label class='text-label m-0'>Minimum Deposit</label>
+              <div class='text-monospace'>
+                <%= format_amount(@chain.governance_params.min_deposit_amount, @chain, denom: @chain.governance_params.min_deposit_denom) %>
+              </div>
+            </div>
+            <div class="mb-3 mr-5">
+              <label class='text-label m-0'>Maximum Deposit Period</label>
+              <div class='text-monospace'>
+                <%= round_if_whole(@chain.governance_params.max_deposit_period, 2) %> days
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <% content_for :modals do -%>
+      <div class='modal fade' id='proposal-modal' tabindex='-1' role='dialog' data-chain-id='<%= @chain.ext_id %>'>
+        <div class='modal-dialog modal-dialog-centered' role='document'>
+          <div class='modal-content'>
+            <div class='modal-body'>
+              <button type='button' class='close float-right' data-dismiss='modal' aria-label='Close'>
+                <span aria-hidden='true'>&times;</span>
+              </button>
+
+              <div class='proposal-step step-error text-center p-5'>
+                <h3>An Error Occurred</h3>
+                <p>
+                  Sorry, something went wrong. Please disconnect
+                  your Ledger, refresh the page, and try again.
+                </p>
+                <div class='alert alert-danger mt-4 mb-0'>
+                  <p class='proposal-error mb-0'></p>
+                </div>
+              </div>
+
+              <div class='proposal-step step-setup text-center p-5'>
+                <h3>Connecting...</h3>
+                <p>Connect, unlock, and open the Cosmos app on your ledger.</p>
+                <div class='p-4'>
+                  <span class='fas fa-spin fa-slash text-muted'></span>
+                </div>
+              </div>
+
+              <div class='proposal-step step-new-proposal text-center py-5 px-3'>
+                <h3>New Proposal</h3>
+
+                <form class='proposal-form mt-3'>
+                  <div class='d-flex align-items-center'>
+                    <div class='w-50'>
+                      <div class='d-flex flex-column mt-3'>
+                        <label class='text-muted mb-0'>Account Address:</label>
+                        <span class='account-address text-monospace'></span>
+                      </div>
+                      <div class='d-flex flex-column mt-3'>
+                        <label class='text-muted mb-0'>Account Balance:</label>
+                        <span class='account-balance text-monospace'></span>
+                      </div>
+                    </div>
+
+                    <div class='w-50'>
+                      <div class='d-flex flex-column mt-3'>
+                        <label class='text-muted mb-0'>Title:</label>
+                        <input type='text' class='form-control proposal-title' value='' />
+                      </div>
+
+                      <div class='d-flex flex-column mt-3'>
+                        <label class='text-muted mb-0'>Description:</label>
+                        <textarea class='form-control proposal-description' cols='20'></textarea>
+                      </div>
+
+                      <div>
+                        <label class='text-muted mb-0 d-inline'>Initial Deposit:</label>
+
+                        <div class='d-flex align-items-center justify-content-center'>
+                          <input class='form-control proposal-deposit-amount w-third text-monospace' />
+                          <span class='ml-2 text-monospace'><%= @chain.token_map[@chain.primary_token]['display'] %></span>
+                          <button type='button' class='btn btn-outline-secondary btn-tiny set-all ml-2'><span class='fas fa-arrow-up'></span> all</button>
+                        </div>
+                      </div>
+
+                      <div class='d-flex flex-column mt-3'>
+                        <label class='text-muted mb-0'>Transaction Fee:</label>
+                        <span class='transaction-fee text-monospace'></span>
+                      </div>
+                      <div class='d-flex flex-column mt-3'>
+                        <label class='text-muted mb-0'>Total:</label>
+                        <span class='transaction-total text-monospace'>&mdash;</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class='d-flex justify-content-center'>
+                    <div class='amount-error alert alert-danger mb-0 mt-5 text-sm'></div>
+                    <div class='title-error alert alert-danger mb-0 mt-5 text-sm'>You must specify a title.</div>
+                    <div class='description-error alert alert-danger mb-0 mt-5 text-sm'>You must enter a description.</div>
+                    <div class='amount-warning alert alert-warning mb-0 mt-5 text-sm'></div>
+                  </div>
+
+                  <div class='text-center'>
+                    <button type='submit' class='mt-5 btn btn-primary submit-proposal' disabled>Sign with Ledger</button>
+                  </div>
+                </form>
+              </div>
+
+              <div class='proposal-step step-confirm text-center'>
+                <div class='p-5'>
+                  <h3>Confirm Transaction</h3>
+                  <p>Review the details on your Ledger and sign the transaction.</p>
+                  <div class='p-4'>
+                    <span class='fas fa-spin fa-slash text-muted'></span>
+                  </div>
+                  <button class='mt-4 btn btn-sm btn-outline-secondary show-transaction-json'>View Raw Transaction</button>
+                </div>
+                <div class='transaction-json-container'>
+                  <pre class='transaction-json text-left'></pre>
+                </div>
+              </div>
+
+              <div class='proposal-step step-complete text-center p-5'>
+                <h3>Success</h3>
+                <p>Proposal successfully submitted!</p>
+                <div class='p-4 text-center'>
+                  <a class='btn btn-primary view-transaction' href='' target='_blank'>View Transaction</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end -%>
+
+  </div>
+</div>
+
+
+<%= render partial: 'cosmoslike/redesign/governance/governance_scripts' %>

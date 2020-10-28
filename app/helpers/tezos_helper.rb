@@ -42,9 +42,13 @@ module TezosHelper
       if voted >= period.quorum
         string += 'Quorum reached, waiting on voting results.'
       else
-        string += "Waiting to reach quorum <span class='text-muted text-sm'>(<span class='technical'>#{round_if_whole((voted.to_f / period.quorum.to_f) * 100, 2)}%</span>)</span>."
+        string += "Waiting to reach quorum <span class='text-muted text-sm'>(<span class='technical'>#{round_if_whole(
+          (voted.to_f / period.quorum.to_f) * 100, 2
+        )}%</span>)</span>."
       end
       return string
+    elsif period.period_type == 'testing'
+      return 'In proposal testing period.'
     else
       return 'In proposal period voting.'
     end

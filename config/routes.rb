@@ -108,6 +108,7 @@ Rails.application.routes.draw do
 
       resources :accounts, only: %i[show]
       resources :events, only: %i[index]
+      resources :reports, only: %i[new create show]
     end
   end
 

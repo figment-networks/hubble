@@ -9,15 +9,15 @@ describe 'polkadot validators' do
     expect(page).to have_content('Polkadot')
     expect(page).to have_content('Total stake')
     expect(page).to have_content('Current Block')
-    expect(page).to have_content('DragonStake')
-    expect(page).to have_content('D8BfryaM5xN62UuKUpLK5zbZEUSBtA76yP9...')
+    # TODO: fix when full_name becomes available in indexer
+    # expect(page).to have_content('DragonStake')
+    expect(page).to have_content('153RWxqZyAWBM2brLkBEkYmyVyf5aMqGHew...')
 
-    click_on('DragonStake')
+    click_on('153RWxqZyAWBM2brLkBEkYmyVyf5aMqGHew...')
 
-    expect(page).to have_content('DSpbbk6HKKyS78c4KDLSxCetqbwnsemv2iocVXwNe2FAvWC')
+    expect(page).to have_content('153RWxqZyAWBM2brLkBEkYmyVyf5aMqGHewbvG3jqENyCKyC')
     expect(page).to have_content('Total Stake History')
     expect(page).to have_content('Uptime History')
-    expect(page).to have_content('23,000.766')
-    expect(page).to have_content('320')
+    expect(page).to have_content('5,380,001')
   end
 end

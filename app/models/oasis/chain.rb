@@ -53,7 +53,23 @@ class Oasis::Chain < ApplicationRecord
 
   def primary_token
     token_map.each { |k, v| return k if v['primary'] }
-    token_map.keys.first # fallback, should not happen
+    token_map.keys.first # fallback, should only happen on chain#create
+  end
+
+  def primary_display
+    token_map.each { |k, v| return token_map[k]['display'] if v['primary'] }
+  end
+
+  def primary_token_divisor
+    token_map.each { |k, v| return 10 ** token_map[k]['factor'] if v['primary'] }
+  end
+
+  def primary_display
+    token_map.each { |k, v| return token_map[k]['display'] if v['primary'] }
+  end
+
+  def primary_token_divisor
+    token_map.each { |k, v| return 10 ** token_map[k]['factor'] if v['primary'] }
   end
 
   def client
@@ -78,21 +94,34 @@ class Oasis::Chain < ApplicationRecord
   def get_alertable_name(address)
     # to be updated to pull entity_name once that PR is merged
     validator = client.validator(address, 0)
-    validator.entity_name.blank? ? validator.address : validator.entity_name
+    validator.entity_name.presence || validator.address
   end
 
   def get_events_for_alert(subscription, seconds_ago, date = nil)
-    # get events from twice the supplied timeframe to ensure all unsent events are picked up
-    blocks_back = (seconds_ago * 2) / client.block_times(1000).avg
-    start_block = (client.current_block.height - blocks_back).round.to_i
-
-    all_events = client.validator_events(subscription.alertable.address, start_block)
+    all_events = retrieve_events(subscription.alertable.address, seconds_ago)
 
     # filter out events prior to last alert time
     if !date
       filtered_events = all_events.select { |e| e.time > subscription.last_instant_at }
     else
-      filtered_events = all_events.select { |e| e.time >= date.beginning_of_day && e.time <= date.end_of_day }
+      filtered_events = all_events.select do |e|
+        e.time >= date.beginning_of_day && e.time <= date.end_of_day
+      end
     end
+  end
+
+  def get_recent_events(address, klass, time_ago)
+    all_events = retrieve_events(address, Time.now - time_ago)
+    all_events.select { |e| e.time >= time_ago && klass == "Common::ValidatorEvents::#{e.kind.classify}".constantize }
+  end
+
+  private
+
+  def retrieve_events(address, seconds_ago)
+    # get events from twice the supplied timeframe to ensure all unsent events are picked up
+    blocks_back = (seconds_ago * 2) / client.block_times(1000).avg
+    start_block = (client.current_block.height - blocks_back).round.to_i
+
+    client.validator_events(address, start_block)
   end
 end

@@ -1,6 +1,5 @@
 class Livepeer::Queries::Graph::RoundsQuery < Livepeer::Queries::Graph::BaseQuery
-  LIMIT = 10
-  ROUND_LENGTH = 5760
+  LIMIT = ENV.fetch('LIVEPEER_ROUNDS_PER_SYNC', 10).to_i
 
   def call
     fetch_latest_round
@@ -16,8 +15,8 @@ class Livepeer::Queries::Graph::RoundsQuery < Livepeer::Queries::Graph::BaseQuer
   end
 
   def build_query(batch_size, offset)
-    min_start_block = chain.latest_local_height * ROUND_LENGTH
-    max_start_block = latest_round.id.to_i * ROUND_LENGTH
+    min_start_block = chain.latest_local_height * Livepeer::ROUND_LENGTH
+    max_start_block = latest_round.id.to_i * Livepeer::ROUND_LENGTH
 
     GQLi::DSL.query {
       rounds(

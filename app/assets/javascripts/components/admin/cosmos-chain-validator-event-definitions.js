@@ -7,7 +7,9 @@ const BADGE_NAMES = {
   voting_power_change: 'VOTING POWER CHANGES',
   active_set_inclusion: 'ACTIVE SET ADDED/REMOVED',
   n_of_m: 'MISSED N of M PRECOMMITS',
-  n_consecutive: 'MISSED N CONSECUTIVE PRECOMMITS'
+  n_consecutive: 'MISSED N CONSECUTIVE PRECOMMITS',
+  reward_cut_change: 'COMMISSION CHANGE',
+  slash: 'SLASH'
 };
 
 const EDIT_TEMPLATES = {
@@ -22,7 +24,9 @@ const EDIT_TEMPLATES = {
   n_consecutive: _.template(`
     <span class='fa fa-arrow-right mr-3 text-muted'></span>
     <input type='text' autocomplete='off' class='form-control form-control-sm w-50' name='<%= namespace %>_chain[validator_event_defs][<%= index %>][n]' value='<%= data.n %>' placeholder='N' />
-  `)
+  `),
+  reward_cut_change: _.template(`X`),
+  slash: _.template(`X`)
 };
 
 const INFO_TEMPLATES = {
@@ -37,7 +41,9 @@ const INFO_TEMPLATES = {
   n_consecutive: _.template(`
     <span class='fa fa-arrow-right mr-2 text-muted'></span>
     <span class='text-lg'><%= data.n %></span>
-  `)
+  `),
+  reward_cut_change: _.template(``),
+  slash: _.template(``)
 };
 
 const DEFINITION_TEMPLATE = _.template(`

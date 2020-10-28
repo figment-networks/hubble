@@ -46,11 +46,15 @@ module Indexer
     end
 
     def baking_stats_history
-      @baking_stats ||= @baking_stats_history.transform_values! { |v| BakingStats.new(v.symbolize_keys) }
+      @baking_stats ||= @baking_stats_history.transform_values! do |v|
+        BakingStats.new(v.symbolize_keys)
+      end
     end
 
     def endorsing_stats_history
-      @endorsing_stats ||= @endorsing_stats_history.transform_values! { |v| EndorsingStats.new(v.symbolize_keys) }
+      @endorsing_stats ||= @endorsing_stats_history.transform_values! do |v|
+        EndorsingStats.new(v.symbolize_keys)
+      end
     end
   end
 end

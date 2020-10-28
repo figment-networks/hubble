@@ -47,7 +47,8 @@ module Cosmoslike::Blocklike
 
   module ClassMethods
     def assemble_from_cache(chain, height)
-      Rails.cache.fetch(['block', chain.network_name.downcase, chain.ext_id.to_s, height.to_s].join('-')) do
+      Rails.cache.fetch(['block', chain.network_name.downcase, chain.ext_id.to_s,
+                         height.to_s].join('-')) do
         assemble(chain, height)
       end
     end
@@ -83,7 +84,9 @@ module Cosmoslike::Blocklike
         # tendermint 0.33+ changed the key to 'signatures'
         precommitters = raw_commit['result']['signed_header']['commit']['precommits'] ||
                         raw_commit['result']['signed_header']['commit']['signatures']
-        addresses = precommitters.map { |pc| pc['validator_address'] rescue nil }.compact.reject(&:blank?)
+        addresses = precommitters.map do |pc|
+          pc['validator_address'] rescue nil
+        end .compact.reject(&:blank?)
       rescue StandardError
         raise chain.namespace::SyncBase::CriticalError, "Invalid validator/precommitter list for block #{height}."
       end
@@ -102,7 +105,9 @@ module Cosmoslike::Blocklike
       end
 
       begin
-        transactions = block_txs.try(:map) { |data| Digest::SHA256.hexdigest(Base64.decode64(data)) }
+        transactions = block_txs.try(:map) do |data|
+          Digest::SHA256.hexdigest(Base64.decode64(data))
+        end
       rescue StandardError
         raise chain.namespace::SyncBase::CriticalError, "Unable to decode or invalid transaction data for block #{height}."
       end

@@ -1,10 +1,9 @@
 class Polkadot::Chain < ApplicationRecord
   ASSET = 'polkadot'.freeze
 
-  # TODO: Replace KSM with DOTs when we switch from Kusama to Polkadot
-  DEFAULT_TOKEN_DISPLAY = 'KSM'.freeze
-  DEFAULT_TOKEN_REMOTE = 'ksm'.freeze
-  DEFAULT_TOKEN_FACTOR = 12
+  DEFAULT_TOKEN_DISPLAY = 'DOT'.freeze
+  DEFAULT_TOKEN_REMOTE = 'dot'.freeze
+  DEFAULT_TOKEN_FACTOR = 10
 
   validates :name, presence: true
   validates :slug, format: { with: /\A[a-z0-9-]+\z/ }, uniqueness: true, presence: true
@@ -28,12 +27,11 @@ class Polkadot::Chain < ApplicationRecord
     !disabled
   end
 
-  # TODO: Replace KSM with DOTs when we switch from Kusama to Polkadot
   def token_map
     {
       DEFAULT_TOKEN_REMOTE => {
         display: DEFAULT_TOKEN_DISPLAY,
-        factor: 12,
+        factor: 10,
         primary: true
       }
     }.with_indifferent_access

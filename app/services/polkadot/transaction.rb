@@ -1,27 +1,24 @@
 module Polkadot
   class Transaction < Common::Resource
-    attr_accessor :extrinsic_index,
-                  :hash,
-                  :is_signed,
-                  :block,
-                  :signature,
-                  :account,
-                  :nonce,
-                  :method_name,
-                  :section,
-                  :args,
-                  :is_success,
-                  :time,
-                  :partial_fee,
-                  :tip
+    field :hash
+    field :is_signed
+    field :block
+    field :signature
+    field :account
+    field :nonce, type: :integer
+    field :method_name
+    field :section
+    field :args
+    field :is_success
+    field :time
+    field :partial_fee, type: :integer
+    field :tip, type: :integer
 
     def initialize(attributes = {})
       attributes['method_name'] = attributes.delete('method')
       attributes['account'] = attributes.delete('public_key')
-      attributes['partial_fee'] = attributes.delete('partialFee') # TODO: remove when indexer gets updated
+      attributes['partial_fee'] ||= attributes.delete('partialFee') # TODO: remove when indexer gets updated
       super(attributes)
-      @partial_fee = partial_fee.to_i
-      @tip = tip.to_i
     end
 
     def id

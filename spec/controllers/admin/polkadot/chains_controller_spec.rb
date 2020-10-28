@@ -29,7 +29,9 @@ RSpec.describe Admin::Polkadot::ChainsController do
       let(:params) { attributes_for(:polkadot_chain, slug: 'polkadotslug2') }
 
       it 'saves the new chain' do
-        expect { post :create, params: { polkadot_chain: params } }.to change(chain.class, :count).by(1)
+        expect do
+          post :create, params: { polkadot_chain: params }
+        end .to change(chain.class, :count).by(1)
       end
 
       it 'responds with 302 status' do
@@ -52,7 +54,9 @@ RSpec.describe Admin::Polkadot::ChainsController do
       let(:params) { attributes_for(:polkadot_chain, slug: chain.slug) }
 
       it 'does not save the new chain' do
-        expect { post :create, params: { polkadot_chain: params } }.to change(chain.class, :count).by(0)
+        expect do
+          post :create, params: { polkadot_chain: params }
+        end .to change(chain.class, :count).by(0)
       end
 
       it 'responds with 200 status' do

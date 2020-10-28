@@ -128,7 +128,9 @@ class Cosmoslike::TransactionDecorator
   end
 
   def messages
-    (@object['tx']['value']['msg'] || []).map { |msg| @namespace::Transactions::MessageDecorator.new(msg, @chain) }
+    (@object['tx']['value']['msg'] || []).map do |msg|
+      @namespace::Transactions::MessageDecorator.new(msg, @chain)
+    end
   end
 
   def gas_wanted

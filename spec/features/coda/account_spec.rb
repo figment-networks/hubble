@@ -2,7 +2,9 @@ require 'features_helper'
 
 describe 'coda account', :vcr do
   let(:chain)      { create :coda_chain }
-  let(:public_key) { '4vsRCVaJmjRqg6SvTcMLwNfpTLP2XwdUNN943vK7gGSeXtjvzhzSA2RhpK9uSQHxYhAorPu9bxHSUJB8mrwobJtpnfo8W8g86EfDMTz9wz634E6ZaGajQUBDPvKsujPTjYyACMNik6EsMPYz' }
+  let(:public_key) do
+    '4vsRCVaJmjRqg6SvTcMLwNfpTLP2XwdUNN943vK7gGSeXtjvzhzSA2RhpK9uSQHxYhAorPu9bxHSUJB8mrwobJtpnfo8W8g86EfDMTz9wz634E6ZaGajQUBDPvKsujPTjYyACMNik6EsMPYz'
+  end
 
   before do
     visit coda_chain_account_path(chain, public_key)
@@ -15,7 +17,8 @@ describe 'coda account', :vcr do
     expect(page).to have_text 'Lifetime'
 
     within '.recent-transactions' do
-      expect(page).to have_link 'Search Transactions', href: coda_chain_transactions_path(chain, account: public_key)
+      expect(page).to have_link 'Search Transactions', href: coda_chain_transactions_path(chain,
+                                                                                          account: public_key)
 
       within 'table.transactions' do
         expect(page.all('tbody tr').size).to eq 25

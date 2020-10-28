@@ -9,7 +9,9 @@ class AlertSubscription < ApplicationRecord
 
   scope :eligible_for_instant_alert, -> { where('last_instant_at <= ?', ALERT_MINIMUM_TIMEOUT.ago) }
   scope :wants_daily_digest, -> { where(wants_daily_digest: true) }
-  scope :daily_digest_due, -> { wants_daily_digest.where('last_daily_at <= ?', 1.day.ago.end_of_day) }
+  scope :daily_digest_due, lambda {
+                             wants_daily_digest.where('last_daily_at <= ?', 1.day.ago.end_of_day)
+                           }
 
   def events
     alertable.validator_event_defs.find do |defn|

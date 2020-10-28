@@ -2,18 +2,23 @@ module Polkadot
   class Validator < Common::Resource
     COMMISSION_PERCENTAGE_FACTOR = 10 ** 8
 
-    attr_accessor :stash_account,
-                  :accumulated_uptime,
-                  :online,
-                  :total_stake,
-                  :commission,
-                  :account_details,
-                  :own_stake,
-                  :commission,
-                  :reward_points,
-                  :started_at
+    field :stash_account
+    field :accumulated_uptime, default: 0
+    field :accumulated_uptime_count, default: 1
+    field :online
+    field :total_stake, type: :integer, default: 0
+    field :commission, type: :integer, default: 0
+    field :own_stake, type: :integer, default: 0
+    field :reward_points, type: :integer, default: 0
+    field :started_at, type: :timestamp
+    field :display_name
+    field :account_details
 
     alias online? online
+
+    def display_name
+      @display_name.presence || account_details&.display_name || stash_account
+    end
 
     def commission_percentage
       return 0 if commission <= 0
@@ -21,9 +26,8 @@ module Polkadot
       commission / COMMISSION_PERCENTAGE_FACTOR
     end
 
-    def initialize(attributes = {})
-      super(attributes)
-      @started_at = Time.zone.parse(started_at) if started_at
+    def uptime
+      accumulated_uptime.to_f / accumulated_uptime_count.to_f
     end
   end
 end

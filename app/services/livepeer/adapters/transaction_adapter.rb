@@ -10,7 +10,7 @@ class Livepeer::Adapters::TransactionAdapter < Livepeer::Adapters::BaseAdapter
   end
 
   def orchestrator_address
-    data.delegate.id
+    data.delegate&.id
   end
 
   def amount

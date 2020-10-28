@@ -4,5 +4,5 @@ $(document).ready(function() {
   }
 
   new App.Polkadot.ValidatorTable($('.validator-table'), ['state']).render();
-  new App.Common.TransactionsVolumeChart($('.validators-daily-stake-chart')).render();
+  new App.Common.TransactionsVolumeChart($('.validators-daily-stake-chart'), {scale: true}).render();
 });

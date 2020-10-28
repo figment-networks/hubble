@@ -2,7 +2,9 @@
   <div class="container">
     <div class="d-flex align-items-center flex-wrap">
       <% if network_has_image?(@chain.network_name) -%>
-        <%= image_tag network_image(@chain.network_name), class: "#{@chain.network_name.downcase}-img" %>
+        <%= link_to namespaced_path(chain: @chain), class: 'chains-list__card-link' do %>
+          <%= image_tag network_image(@chain.network_name), class: "#{@chain.network_name.downcase}-img" %>
+        <% end -%>
       <% else -%>
         <p class='logo-fallback'><%= @chain.network_name %></p>
       <% end -%>

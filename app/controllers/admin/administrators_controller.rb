@@ -30,14 +30,14 @@ class Admin::AdministratorsController < Admin::BaseController
     @administrator = current_admin
 
     if Rails.env.development? || @administrator.authenticate_otp(params[:otp_code])
-      if !params[:change_password].blank?
+      if params[:change_password].present?
         params[:administrator][:password] = params.delete(:change_password)
       end
 
-      @administrator.update_attributes params.require(:administrator).permit(%i[name email password])
+      @administrator.update params.require(:administrator).permit(%i[name email password])
 
       if params[:reset_otp] == 'on'
-        @administrator.update_attributes otp_secret_key: ROTP::Base32.random_base32
+        @administrator.update otp_secret_key: ROTP::Base32.random_base32
         redirect_to setup_admin_administrators_path
         return
       end

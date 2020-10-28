@@ -15,7 +15,9 @@ class User < ApplicationRecord
   has_one :telegram_account, class_name: 'Telegram::Account'
   has_many :subscriptions
 
-  scope :with_telegram_account, -> { left_joins(:telegram_account).where.not(telegram_accounts: { id: nil, chat_id: nil }) }
+  scope :with_telegram_account, lambda {
+                                  left_joins(:telegram_account).where.not(telegram_accounts: { id: nil, chat_id: nil })
+                                }
   scope :with_subscriptions, -> { where.not(subscriptions_count: 0) }
 
   def self.subscribed_to_baker(baker_address)

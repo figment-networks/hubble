@@ -1,6 +1,6 @@
 class Stats::AverageSnapshot < ApplicationRecord
   belongs_to :chainlike, polymorphic: true
-  belongs_to :scopeable, polymorphic: true, required: false
+  belongs_to :scopeable, polymorphic: true, optional: true
 
   default_scope { order('timestamp DESC') }
 

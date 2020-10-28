@@ -14,10 +14,10 @@
   </span>
 </div>
 <div class='from-to d-flex align-items-center'>
-  <div class='font-weight-bold'><%= event.from %></div>
+  <div class='font-weight-bold'><%= event.from %>%</div>
   <div class='text-muted text-sm ml-3 mr-3'><span class='fas fa-arrow-right'></span></div>
-  <div class='font-weight-bold'><%= event.to %></div>
+  <div class='font-weight-bold'><%= event.to %>%</div>
   <div class='ml-3'>
-    <small class='text-muted font-size-sm technical text-nowrap'>( <%= sprintf("%+d", event.delta) %> / <%= sprintf("%+.1f%%", event.percentage_change) %> )</small>
+    <small class='text-muted font-size-sm technical text-nowrap'>( <%= sprintf("%+d", event.delta) %>% / <%= sprintf("%+.1f%%", event.percentage_change) %> )</small>
   </div>
 </div>

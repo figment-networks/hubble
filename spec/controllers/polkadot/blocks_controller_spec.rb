@@ -4,10 +4,13 @@ describe Polkadot::BlocksController do
   describe 'GET #show' do
     subject { get :show, params: params }
 
-    let(:params) { { network: chain.network_name.downcase, chain_id: chain.slug, id: '123', format: :json } }
+    let(:params) do
+      { network: chain.network_name.downcase, chain_id: chain.slug, id: '123', format: :json }
+    end
     let(:chain) { create(:polkadot_chain) }
-    let(:client) { double(block: block, status: {}, validators: [{ validator: 'validator data' }]) }
+    let(:client) { double(block: block, status: status, validators: [{ validator: 'validator data' }]) }
     let(:block) { double(height: 10, transactions: [{ transaction: 'transaction data' }]) }
+    let(:status) { double(last_indexed_height: 200, last_indexed_session_height: 200, last_indexed_era_height: 200) }
 
     context 'json format' do
       it 'returns a json response' do

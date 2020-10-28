@@ -1,6 +1,6 @@
 class Polkadot::HomeChainDecorator < HomeChainDecorator
   def validator_count
-    client.validators.select(&:online).count
+    client.validators_count
   rescue StandardError
   end
 

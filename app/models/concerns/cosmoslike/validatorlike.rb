@@ -32,7 +32,7 @@ module Cosmoslike::Validatorlike
   end
 
   def short_name(max_length = 16)
-    (!moniker.blank? ? moniker : nil) ||
+    moniker.presence ||
       owner ||
       address.truncate(max_length)
   end
@@ -110,7 +110,7 @@ module Cosmoslike::Validatorlike
     fields.each do |f|
       current = current[f.to_s]
     end
-    current.blank? ? nil : current
+    current.presence
   rescue StandardError
     nil
   end

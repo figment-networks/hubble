@@ -3,7 +3,7 @@
 <%= render partial: '/polkadot/shared/chain_header', locals: { summary_link: true } %>
 
 <h2 class='mb-3'>
-  <%= @validator.account_details.display_name %>
+  <%= @validator.display_name %>
   <% if @validator.account_details.web_name %>
     <%= link_to @validator.account_details.web_name, class: 'btn btn-outline-primary ml-3', target: :blank do %>
       Visit Site <span class='fas fa-external-link-alt ml-1'></span>
@@ -42,7 +42,7 @@
     </div>
 
     <div class='card'>
-      <h5 class='card-header'>Uptime History <small>&mdash; Last <%= @validator_hourly_uptime.count %> Hours</small>
+      <h5 class='card-header'>Uptime History <small>&mdash; Last <%= Polkadot::Client::DEFAULT_HOURS_LIMIT %> Hours</small>
       </h5>
       <div class='card-body'>
         <div class='validator-hourly-uptime-chart-container'>

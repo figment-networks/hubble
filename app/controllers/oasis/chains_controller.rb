@@ -2,8 +2,8 @@ class Oasis::ChainsController < Oasis::BaseController
   before_action :set_behind_chain_alert
 
   def show
-    page_title 'Overview'
-    meta_description 'Validators'
+    page_title @chain.network_name, @chain.name, 'Overview', 'Validators and Community Pool'
+    meta_description "#{@chain.network_name} -- #{@chain.name} list of Validators, Address/Name, Voting Power, Uptime, and Current Block"
 
     @height = @chain.client.status.last_indexed_height
     @validators = @chain.client.validators

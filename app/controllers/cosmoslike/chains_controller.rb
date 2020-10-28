@@ -38,7 +38,8 @@ class Cosmoslike::ChainsController < Cosmoslike::BaseController
     else
       if query.length >= 3
         # maybe try to find via validator moniker?
-        validator = @chain.validators.where('moniker ILIKE ?', "%#{query}%").order('current_voting_power DESC')
+        validator = @chain.validators.where('moniker ILIKE ?',
+                                            "%#{query}%").order('current_voting_power DESC')
         if validator.any?
           redirect_to namespaced_path('validator', validator.first)
           return

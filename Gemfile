@@ -82,6 +82,7 @@ group :development, :test do
   gem 'pry'
   gem 'rspec-rails', '~> 4.0.0'
   gem 'rubocop'
+  gem 'rubocop-rails'
   gem 'rubocop-rspec'
   gem 'spring'
   gem 'spring-commands-rspec'

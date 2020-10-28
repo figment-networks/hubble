@@ -6,11 +6,10 @@ class Polkadot::AccountDetailsDecorator < SimpleDelegator
     end.compact
   end
 
-  # TODO: these need to be revisited for Validators. Most probably we'll need two presenters - one for
-  # a regular account, and one for a Validator.
   def balances
     %i[deposits bonded unbonded withdrawn].map do |field|
-      { header: field.to_s.humanize, values: send(field) }
+      value_sum = send(field)&.sum { |deposit| deposit['amount'].to_i } || 0
+      { header: field.to_s.humanize, value: value_sum }
     end
   end
 

@@ -38,14 +38,14 @@ http_interactions:
                 "app": "0"
               },
               "id": "d00c64e49ad8494f15aae65957655303375c2632",
-              "listen_addr": "tcp://0.0.0.0:26656",
+              "listen_addr": "tcp://127.0.0.1:26656",
               "network": "cosmoshub-3",
               "version": "0.32.10",
               "channels": "4020212223303800",
               "moniker": "8wYmpIXztY",
               "other": {
                 "tx_index": "on",
-                "rpc_address": "tcp://0.0.0.0:26657"
+                "rpc_address": "tcp://127.0.0.1:26657"
               }
             },
             "sync_info": {

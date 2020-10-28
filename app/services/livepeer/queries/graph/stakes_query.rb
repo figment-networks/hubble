@@ -2,7 +2,7 @@ class Livepeer::Queries::Graph::StakesQuery < Livepeer::Queries::Graph::BaseQuer
   private
 
   def build_query(batch_size, offset)
-    block_number = round_data.start_block.to_i
+    block_number = round_data.start_block.to_i + Livepeer::ROUND_LENGTH
 
     GQLi::DSL.query {
       __node(

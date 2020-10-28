@@ -1,6 +1,8 @@
 class Kava::Validator < ApplicationRecord
   include Cosmoslike::Validatorlike
 
+  scope :active, -> { where.not(current_voting_power: 0) }
+
   def current_commission
     return super if chain.sdk_lt?('0.36.0-rc1')
 

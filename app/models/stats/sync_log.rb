@@ -44,15 +44,22 @@ class Stats::SyncLog < ApplicationRecord
   def end
     chainlike.sync_completed!
 
-    begin
-      socket = UDPSocket.new
-      socket.send("hubble.sync.#{chainlike.ext_id}:1|c", 0, 'localhost', 8125)
-      socket.close
-    rescue StandardError
-      puts "Could not report Hubble sync to Datadog StatsD. #{e.message}"
+    if Rails.application.secrets.interchange_api_key
+      begin
+        RestClient.post(
+          Rails.application.secrets.interchange_endpoint,
+          { msg: "hubble.sync.#{Rails.env}.#{chainlike.ext_id}:1|c" }.to_json,
+          {
+            'X-Interchange-Api-Key' => Rails.application.secrets.interchange_api_key,
+            'Content-Type' => 'application/json'
+          }
+        )
+      rescue StandardError
+        puts "Could not report Hubble sync to Interchanger. #{e.message}"
+      end
     end
 
-    update_attributes(
+    update(
       completed_at: Time.now.utc,
       start_height: start_height,
       end_height: chainlike.reload.latest_local_height
@@ -60,7 +67,7 @@ class Stats::SyncLog < ApplicationRecord
   end
 
   def set_status(status)
-    update_attributes(current_status: status)
+    update(current_status: status)
   end
 
   def report_error(exception)
@@ -76,10 +83,11 @@ class Stats::SyncLog < ApplicationRecord
     bc.add_silencer { |line| line.include? 'bin/bundle' }
     puts "#{bc.clean(exception.backtrace).join("\n")}\n\n"
 
-    update_attributes(
+    update(
       end_height: chainlike.reload.latest_local_height,
       failed_at: Time.now.utc,
-      error: [error, "Failed during #{current_status}: #{exception.message}"].reject(&:blank?).join("\n")
+      error: [error,
+              "Failed during #{current_status}: #{exception.message}"].reject(&:blank?).join("\n")
     )
   end
 end

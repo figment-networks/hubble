@@ -29,7 +29,9 @@ RSpec.describe Admin::Oasis::ChainsController do
       let(:params) { attributes_for(:oasis_chain) }
 
       it 'saves the new chain' do
-        expect { post :create, params: { oasis_chain: params } }.to change(chain.class, :count).by(1)
+        expect do
+          post :create, params: { oasis_chain: params }
+        end .to change(chain.class, :count).by(1)
       end
 
       it 'responds with 302 status' do
@@ -47,7 +49,9 @@ RSpec.describe Admin::Oasis::ChainsController do
       let(:params) { { foo: 'bar' } }
 
       it 'does not save the new chain' do
-        expect { post :create, params: { oasis_chain: params } }.to change(chain.class, :count).by(0)
+        expect do
+          post :create, params: { oasis_chain: params }
+        end .to change(chain.class, :count).by(0)
       end
 
       it 'does not respond with 302 status' do

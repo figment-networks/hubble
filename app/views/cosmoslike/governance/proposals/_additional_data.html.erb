@@ -1,0 +1,45 @@
+<% case @proposal.proposal_type -%>
+<% when 'cosmos-sdk/ParameterChangeProposal', 'params/ParameterChangeProposal' -%>
+  <div class='title mb-1'>PROPOSED PARAMETER CHANGES</div>
+  <div class='proposal-param-changes'>
+    <table class='table table-sm param-changes-table'>
+      <thead class='thead-light'>
+        <tr>
+          <th>Subspace/Key</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @proposal.additional_data['changes'].each do |ch| -%>
+          <tr>
+            <td width='30%'><%= ch['subspace'] %> / <%= ch['key'] %></td>
+            <td>
+              <pre><%= JSON.pretty_generate(JSON.parse(ch['value'])) rescue ch['value'] %></pre>
+            </td>
+          </tr>
+        <% end -%>
+      </tbody>
+    </table>
+  </div>
+
+<% when 'treasury/TaxRateUpdateProposal' -%>
+  <div class='title mb-1'>PROPOSED TAX RATE CHANGE</div>
+  <div class='proposal-param-changes'>
+    <span>New Tax Rate: <strong><%= round_if_whole(@proposal.additional_data['tax_rate'].to_f * 100, 2) %>%</strong></span>
+  </div>
+
+<% when 'cosmos-sdk/CommunityPoolSpendProposal' -%>
+  <div class='title mb-1'>COMMUNITY SPEND</div>
+  <div class='proposal-param-changes'>
+    <% @proposal.additional_data['amount'].each do |amount| -%>
+      <div>
+        <%= format_amount( amount['amount'].to_i, @chain, denom: amount['denom'] ) %>
+        <span class='fas fa-long-arrow-alt-right mx-2 text-muted'></span>
+        <a href='<%= namespaced_path( 'account', @proposal.additional_data['recipient'] ) %>' class='text-monospace'>
+          <%= @proposal.additional_data['recipient'] %>
+        </a>
+      </div>
+    <% end -%>
+  </div>
+
+<% end -%>

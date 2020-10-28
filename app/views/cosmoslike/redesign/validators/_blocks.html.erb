@@ -1,6 +1,6 @@
 <div class='data-block'>
   <div class='d-flex justify-content-between align-content-center mb-2'>
-    <h3 class='data-block__title m-0'>Blocks</h3>  
+    <h3 class='data-block__title m-0'>Blocks</h3>
     <span class='text-label'>Last 50</span>
   </div>
   <div class='block-heatmap-container'>
@@ -10,7 +10,7 @@
         <% proposed = block.proposer_address == @validator.address -%>
         <a class='block <%= precommitted ? 'ok' : 'missed' %> <%= proposed ? 'proposed' : '' %>'
             href='<%= namespaced_path( 'block', block ) %>'
-            title="Block <%= block.height %> <span class='fas fa-arrow-right text-sm text-muted mx-2'></span> <span class='badge badge-<%= precommitted ? 'success' : 'danger' %>'><%= precommitted ? 'OK' : 'MISSED' %></span>"></a>
+            title="Block <%= block.height %> <span class='fas fa-arrow-right text-sm text-muted mx-2'></span> <span class='badge badge-<%= precommitted ? 'success' : 'danger' %>'><%= precommitted ? (proposed ? 'PROPOSER' : 'OK') : 'MISSED' %></span>"></a>
       <% end -%>
     </div>
   </div>

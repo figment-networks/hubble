@@ -1,19 +1,16 @@
 module Polkadot
   class Status < Common::Resource
-    # Indexer returns ~25 attributes that are not necessary yet
-    ATTRIBUTES = %i[
-      last_indexed_height
-      app_version
-      last_indexed_time
-      go_version
-      success
-    ].freeze
-    attr_accessor(*ATTRIBUTES)
+    field :last_indexed_height, type: :integer
+    field :last_indexed_time, type: :timestamp
+    field :last_indexed_era_height, type: :integer
+    field :last_indexed_session_height, type: :integer
+    field :app_version
+    field :go_version
+    field :success
 
     def initialize(attributes = {})
-      attributes['success'] = true if attributes['success'].nil?
-      super(attributes.slice(*ATTRIBUTES.map(&:to_s)))
-      @last_indexed_time = Time.zone.parse(last_indexed_time) if last_indexed_time
+      super(attributes)
+      @success = true if @success.nil?
     end
 
     alias last_block_height last_indexed_height

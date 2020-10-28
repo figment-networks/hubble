@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Polkadot::Validator do
   let(:validator) { described_class.new(attributes) }
-  let(:attributes) { { commission: commission } }
+  let(:attributes) { { 'commission' => commission } }
   let(:commission) { 1200000000 }
 
   describe '#commission_percentage' do

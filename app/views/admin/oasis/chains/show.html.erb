@@ -136,6 +136,23 @@
         </div>
       </td>
     </tr>
+
+    <tr>
+      <th class='align-middle w-20'>
+        Event Defs:
+
+        <% if !@chain.enabled? && !@chain.dead? -%>
+          <button class='btn btn-tiny btn-outline-primary action-add-new-validator-event-definition'>+ add</button>
+          <button class='btn btn-tiny btn-primary action-event-definitions-save d-none'>save</button>
+        <% end -%>
+      </th>
+      <td class='py-3'>
+        <%= form_for namespaced_path( admin: true ), html: { id: 'chain-validator-event-defs-form', method: 'PATCH' } do |f| %>
+          <div class='validator-event-defs-list' data-defs='<%= @chain.validator_event_defs.to_json %>'></div>
+        <% end -%>
+      </td>
+    </tr>
+
   </tbody>
 </table>
 

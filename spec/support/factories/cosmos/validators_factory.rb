@@ -12,7 +12,10 @@ FactoryBot.define do
     current_voting_power { 2636453 }
     created_at { Time.now.utc }
     latest_block_height { 2723613 }
-    info { { 'jailed': false, 'status': 2, 'tokens': '13039122440841', 'commission': { 'update_time': '2019-03-13T23:00:00Z', 'commission_rates': { 'rate': '0.040000000000000000', 'max_rate': '1.000000000000000000', 'max_change_rate': '0.020000000000000000' } }, 'description': { 'details': 'We are the leading staking service provider for blockchain projects. Join our community to help secure networks and earn rewards. We know staking.', 'moniker': '🐠stake.fish', 'website': 'stake.fish', 'identity': '90B597A673FC950E' }, 'unbonding_time': '1970-01-01T00:00:00Z', 'consensus_pubkey': 'cosmosvalconspub1zcjduepq6fpkt3qn9xd7u44478ypkhrvtx45uhfj3uhdny420hzgsssrvh3qnzwdpe', 'delegator_shares': '13039122440841.000000000000000000', 'operator_address': 'cosmosvaloper1sjllsnramtg3ewxqwwrwjxfgc4n4ef9u2lcnj0', 'unbonding_height': '0', 'min_self_delegation': '1' } }
+    info do
+      { 'jailed': false, 'status': 2, 'tokens': '13039122440841',
+        'commission': { 'update_time': '2019-03-13T23:00:00Z', 'commission_rates': { 'rate': '0.040000000000000000', 'max_rate': '1.000000000000000000', 'max_change_rate': '0.020000000000000000' } }, 'description': { 'details': 'We are the leading staking service provider for blockchain projects. Join our community to help secure networks and earn rewards. We know staking.', 'moniker': '🐠stake.fish', 'website': 'stake.fish', 'identity': '90B597A673FC950E' }, 'unbonding_time': '1970-01-01T00:00:00Z', 'consensus_pubkey': 'cosmosvalconspub1zcjduepq6fpkt3qn9xd7u44478ypkhrvtx45uhfj3uhdny420hzgsssrvh3qnzwdpe', 'delegator_shares': '13039122440841.000000000000000000', 'operator_address': 'cosmosvaloper1sjllsnramtg3ewxqwwrwjxfgc4n4ef9u2lcnj0', 'unbonding_height': '0', 'min_self_delegation': '1' }
+    end
     first_seen_at { Time.now.utc }
     total_precommits { 0 }
     current_uptime { 1 }

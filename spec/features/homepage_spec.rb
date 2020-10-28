@@ -2,7 +2,10 @@ require 'features_helper'
 
 describe 'hubble homepage networks data' do
   let!(:polkadot_chain) { create(:polkadot_chain) }
-  let!(:cosmos_chain) { create(:cosmos_chain, primary: true, dead: false, disabled: false, last_sync_time: '2020-07-29 18:30:12') }
+  let!(:cosmos_chain) do
+    create(:cosmos_chain, primary: true, dead: false, disabled: false,
+                          last_sync_time: '2020-07-29 18:30:12')
+  end
   let!(:validators) { create_list(:cosmos_validator, 3, chain: cosmos_chain) }
   let!(:blocks) do
     [
@@ -26,7 +29,7 @@ describe 'hubble homepage networks data' do
   end
 
   it 'when node is unavailable', :vcr do
-    cosmos_chain.update_attributes(rewards_rate: nil, daily_rewards: nil, staking_participation: nil)
+    cosmos_chain.update(rewards_rate: nil, daily_rewards: nil, staking_participation: nil)
 
     visit '/'
 
@@ -44,7 +47,7 @@ describe 'hubble homepage networks data' do
   end
 
   it 'when node is available', :vcr do
-    cosmos_chain.update_attributes(rewards_rate: 3.7, daily_rewards: 45000, staking_participation: 73)
+    cosmos_chain.update(rewards_rate: 3.7, daily_rewards: 45000, staking_participation: 73)
 
     visit '/'
 

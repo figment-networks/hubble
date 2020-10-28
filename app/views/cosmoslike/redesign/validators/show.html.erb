@@ -12,6 +12,11 @@
                 <%= url %>&nbsp;&nbsp;<span class='fas fa-external-link-alt'></span>
               <% end -%>
             <% end -%>
+          <% else -%>
+          <div>
+            <h2 class="validator-header__title">Validator</h2>
+            <p class="data-block__value d-block word-break mt-2"><%= @validator.address %></p>
+          </div>
           <% end -%>
         </div>
         <% if @chain.class::SUPPORTS_LEDGER -%>
@@ -26,10 +31,13 @@
               <p class="validator-info__value technical"><%= @validator.owner %></p>
             </li>
           <% end -%>
+          
+          <% if @validator.has_info? -%>
           <li class="validator-info__item">
-            <p class="text-label validator-info__label"><%= @validator.has_info? ? 'Address' : 'Validator' %></p>
+            <p class="text-label validator-info__label">Address</p>
             <p class="validator-info__value technical"><%= @validator.address %></p>
           </li>
+          <% end -%>
           <% if @validator.account -%>
             <li class="validator-info__item">
               <p class="text-label validator-info__label">Account</p>

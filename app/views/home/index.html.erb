@@ -6,75 +6,78 @@
 
 <ul class='chains-list row p-0 list-unstyled'>
   <% decorated_primary_chains.each do |chain| -%>
-    <li class='col-xl-4 col-lg-6 col-md-6 px-3'>
-      <div class='chains-list__card card px-5 pt-5 pb-1 shadow-none'>
-        <%= link_to '', namespaced_path( chain: chain ), class: 'chains-list__card-link'%>
-        <div class='card-body p-0 d-flex flex-column'>
-          <% if network_has_image?(chain.network_name) -%>
-            <div class='chains-list__img-wrapper'>
-              <%= image_tag network_image(chain.network_name), class: "#{chain.network_name.downcase}-img" %>
-            </div>
-          <% else -%>
-            <p class='logo-fallback'><%= chain.network_name %></p>
-          <% end -%>
-          <p class='chains-list__launch'>Launched in <%= chain.created_at.strftime("%B %Y") %></p>
-          <ul class='d-flex list-unstyled justify-content-between flex-wrap mt-4'>
-            <% if chain.validator_count -%>
-              <li class='col-6 p-0 mt-3'>
-                <p class='chains-list__label m-0'>Validator Set Size</p>
-                <p class='chains-list__data m-0'><%= chain.validator_count %></p>
-              </li>
-            <% elsif chain.orchestrator_count # Livepeer -%>
-              <li class='col-6 p-0 mt-3'>
-                <p class='chains-list__label m-0'>Orchestrator Set Size</p>
-                <p class='chains-list__data m-0'><%= chain.orchestrator_count %></p>
-              </li>
-            <% elsif chain.baker_count # Tezos -%>
-              <li class='col-6 p-0 mt-3'>
-                <p class='chains-list__label m-0'>Baker Set Size</p>
-                <p class='chains-list__data m-0'><%= chain.baker_count %></p>
-              </li>
+    <% cache(chain, expires_in: 10.minutes) do %>
+      <li class='col-xl-4 col-lg-6 col-md-6 px-3'>
+        <div class='chains-list__card card px-5 pt-5 pb-1 shadow-none'>
+          <%= link_to '', namespaced_path(chain: chain), class: 'chains-list__card-link' %>
+          <div class='card-body p-0 d-flex flex-column'>
+            <% if network_has_image?(chain.network_name) -%>
+              <div class='chains-list__img-wrapper'>
+                <%= image_tag network_image(chain.network_name), class: "#{chain.network_name.downcase}-img" %>
+              </div>
+            <% else -%>
+              <p class='logo-fallback'><%= chain.network_name %></p>
             <% end -%>
-
-            <% if chain.avg_block_time -%>
-              <li class='col-6 p-0 mt-3'>
-                <p class='chains-list__label m-0'>Block Time</p>
-                <p class='chains-list__data m-0'><%= chain.avg_block_time.round(2) %><sup class='sup'>SEC</sup></p>
-              </li>
-            <% end -%>
-
-            <% if chain.rewards_rate && chain.daily_rewards -%>
-              <% cache("#{chain.cache_key}-#{Date.today.cweek}-rewards") do %>
+            <p class='chains-list__launch'>Launched in <%= chain.created_at.strftime("%B %Y") %></p>
+            <ul class='d-flex list-unstyled justify-content-between flex-wrap mt-4'>
+              <% if chain.validator_count -%>
                 <li class='col-6 p-0 mt-3'>
-                  <p class='chains-list__label m-0'>Rewards</p>
-                  <p class='chains-list__data m-0'><%= chain.rewards_rate.round(2) %>%</p>
+                  <p class='chains-list__label m-0'>Validator Set Size</p>
+                  <p class='chains-list__data m-0'><%= chain.validator_count %></p>
                 </li>
-
+              <% elsif chain.orchestrator_count # Livepeer  -%>
                 <li class='col-6 p-0 mt-3'>
-                  <p class='chains-list__label m-0'>Daily Rewards</p>
-                  <p class='chains-list__data m-0'><%= chain.daily_rewards.round(2) %><sup class='sup'><%= chain.token_display %></sup></p>
+                  <p class='chains-list__label m-0'>Orchestrator Set Size</p>
+                  <p class='chains-list__data m-0'><%= chain.orchestrator_count %></p>
+                </li>
+              <% elsif chain.baker_count # Tezos  -%>
+                <li class='col-6 p-0 mt-3'>
+                  <p class='chains-list__label m-0'>Baker Set Size</p>
+                  <p class='chains-list__data m-0'><%= chain.baker_count %></p>
                 </li>
               <% end -%>
-            <% end %>
 
-            <% if chain.staking_participation %>
-              <% cache("#{chain.cache_key}-#{Date.today.cweek}-staking_participation") do %>
+              <% if chain.avg_block_time -%>
                 <li class='col-6 p-0 mt-3'>
-                  <p class='chains-list__label m-0'>Staking Participation</p>
-                  <p class='chains-list__data m-0'><%= chain.staking_participation.truncate %>%</p>
+                  <p class='chains-list__label m-0'>Block Time</p>
+                  <p class='chains-list__data m-0'><%= chain.avg_block_time.round(2) %><sup class='sup'>SEC</sup></p>
                 </li>
-              <% end %>
-            <% end %>
+              <% end -%>
 
-            <% if chain.token_price? -%>
-              <li class='col-6 p-0 mt-3'>
-                <p class='chains-list__label m-0'>Token Price</p>
-                <p class='chains-list__data m-0'>$<%= chain.token_price.round(2) %></p>
-              </li>
-            <% end -%>
-          </ul>
+              <% if chain.rewards_rate && chain.daily_rewards -%>
+                <% cache("#{chain.cache_key}-#{Date.today.cweek}-rewards") do %>
+                  <li class='col-6 p-0 mt-3'>
+                    <p class='chains-list__label m-0'>Rewards</p>
+                    <p class='chains-list__data m-0'><%= chain.rewards_rate.round(2) %>%</p>
+                  </li>
+
+                  <li class='col-6 p-0 mt-3'>
+                    <p class='chains-list__label m-0'>Daily Rewards</p>
+                    <p class='chains-list__data m-0'><%= chain.daily_rewards.round(2) %>
+                      <sup class='sup'><%= chain.token_display %></sup></p>
+                  </li>
+                <% end -%>
+              <% end %>
+
+              <% if chain.staking_participation %>
+                <% cache("#{chain.cache_key}-#{Date.today.cweek}-staking_participation") do %>
+                  <li class='col-6 p-0 mt-3'>
+                    <p class='chains-list__label m-0'>Staking Participation</p>
+                    <p class='chains-list__data m-0'><%= chain.staking_participation.truncate %>%</p>
+                  </li>
+                <% end %>
+              <% end %>
+
+              <% if chain.token_price? -%>
+                <li class='col-6 p-0 mt-3'>
+                  <p class='chains-list__label m-0'>Token Price</p>
+                  <p class='chains-list__data m-0'>$<%= chain.token_price.round(2) %></p>
+                </li>
+              <% end -%>
+            </ul>
+          </div>
         </div>
-      </div>
-    </li>
+      </li>
+    <% end -%>
   <% end -%>
 </ul>

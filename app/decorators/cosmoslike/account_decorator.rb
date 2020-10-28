@@ -18,7 +18,10 @@ class Cosmoslike::AccountDecorator
       return nil
     end
 
-    return [{ denom: @chain.token_map[@chain.primary_token]['display'], amount: 0 }] if @_balances.nil?
+    if @_balances.nil?
+      return [{ denom: @chain.token_map[@chain.primary_token]['display'],
+                amount: 0 }]
+    end
 
     @_balances.map do |balance|
       { denom: balance['denom'], amount: balance['amount'].to_f }

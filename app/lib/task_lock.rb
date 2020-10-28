@@ -4,7 +4,7 @@ class TaskLock
   RETRIES = 3
   WAIT_TIME = 5.seconds
 
-  LOCKFILE_BASE = Rails.root.join('tmp', 'pids')
+  LOCKFILE_BASE = Rails.root.join('tmp/pids')
   LOCKFILES = {
     sync: File.join('task-lock--sync--{{ID}}.lock'),
     stats: File.join('task-lock--stats--{{ID}}.lock'),

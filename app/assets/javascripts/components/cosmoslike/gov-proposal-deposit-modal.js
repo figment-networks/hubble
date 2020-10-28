@@ -2,7 +2,7 @@ class GovProposalDepositModal {
   constructor(el) {
     this.GAS_WANTED = 150000;
     this.GAS_PRICE = 0.025;
-    this.MEMO = 'Submit, deposit and vote on proposals with Hubble - https://hubble.figment.network';
+    this.MEMO = 'Submit, deposit and vote on proposals with Hubble - https://hubble.figment.io';
 
     this.modal = el;
     this.reset();

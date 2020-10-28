@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :alertable_address do
     chain { create(:oasis_chain) }
-    address { 'oasis1qzhwl87e7d6up3tf3wu08e9n8gqk6vkw2v8gqc2j' }
+    address { 'oasis1qz72lvk2jchk0fjrz7u2swpazj3t5p0edsdv7sf8' }
   end
 end

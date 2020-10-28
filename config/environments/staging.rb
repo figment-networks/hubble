@@ -27,7 +27,11 @@ Rails.application.configure do
   config.assets.compile = false
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  config.action_controller.asset_host = "#{Rails.application.secrets.application_protocol}://#{Rails.application.secrets.application_host}"
+  if ENV['APPLICATION_HOST'] && ENV['APPLICATION_PROTOCOL']
+    config.action_controller.asset_host = "#{ENV['APPLICATION_PROTOCOL']}://#{ENV['APPLICATION_HOST']}"
+  else
+    config.action_controller.asset_host = "#{Rails.application.secrets.application_protocol}://#{Rails.application.secrets.application_host}"
+  end
   config.action_mailer.asset_host = config.action_controller.asset_host
 
   # Specifies the header that your server uses for sending files.
@@ -41,7 +45,7 @@ Rails.application.configure do
   config.log_tags = [:remote_ip]
 
   # Use a different cache store in staging.
-  config.cache_store = :mem_cache_store, ['localhost'], {
+  config.cache_store = :mem_cache_store, [ENV['MEM_CACHE_ADDRESS'] || 'localhost'], {
     namespace: "hubble-#{Rails.env}",
     expires_in: 2.weeks,
     compress: true
@@ -53,9 +57,13 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
   config.action_mailer.delivery_method = :postmark
   config.action_mailer.postmark_settings = { api_key: Rails.application.secrets.postmark[:api_key] }
-  config.action_mailer.default_url_options = { host: Rails.application.secrets.application_host,
-                                               protocol: Rails.application.secrets.application_protocol }
-
+  if ENV['APPLICATION_HOST'] && ENV['APPLICATION_PROTOCOL']
+    config.action_mailer.default_url_options = { host: ENV['APPLICATION_HOST'],
+                                                 protocol: ENV['APPLICATION_PROTOCOL'] }
+  else
+    config.action_mailer.default_url_options = { host: Rails.application.secrets.application_host,
+                                                 protocol: Rails.application.secrets.application_protocol }
+  end
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false

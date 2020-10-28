@@ -1,0 +1,8 @@
+<% shade = reward.time_bucket.day.odd? ? '#ffffff' : '#f5f5f5' %>
+<tr class='text-monospace' style='background-color: <%= shade %>'>
+  <td class='text-nowrap'><%= reward.time_bucket.strftime("%F") %></td>
+  <td class='text-nowrap'><small><%= link_to reward.escrow_address, oasis_chain_validator_path(@chain, reward.escrow_address) %></small></td>
+  <td class='text-nowrap'><%= oasis_format_amount(reward.total_rewards, @chain, hide_units: true, precision: 9) %></td>
+  <td class='text-nowrap'><%= oasis_format_amount(reward.total_commission, @chain, hide_units: true, precision: 9) %></td>
+  <td class='text-nowrap'><%= reward.total_slashed %></td>
+</tr>

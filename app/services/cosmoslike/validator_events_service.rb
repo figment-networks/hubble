@@ -323,7 +323,9 @@ class Cosmoslike::ValidatorEventsService
   def insert_events(from, to, extra_arg_proc = nil, debug: false, &process)
     (from..to).to_a.in_groups_of(500, false).each do |heights|
       puts "HEIGHTS TO GET: #{heights.inspect}" if debug
-      found_blocks = @chain.blocks.where(height: heights).reorder('height ASC').index_by { |b| b.height.to_i }
+      found_blocks = @chain.blocks.where(height: heights).reorder('height ASC').index_by do |b|
+        b.height.to_i
+      end
 
       blocks = heights.map(&:to_i).sort.map do |height|
         found_blocks[height] || @chain.namespace::Block.stub(@chain, height)

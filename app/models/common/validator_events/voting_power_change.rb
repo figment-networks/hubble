@@ -43,7 +43,9 @@ class Common::ValidatorEvents::VotingPowerChange < Common::ValidatorEvent
   end
 
   def twitter_msg
-    "#{validatorlike.short_name} voting power on #{chainlike.network_name}/#{chainlike.ext_id} changed: #{from} -> #{to} (#{format('%+d', delta)} / #{format('%+.1f%%', percentage_change)}) at block #{height}"
+    "#{validatorlike.short_name} voting power on #{chainlike.network_name}/#{chainlike.ext_id} changed: #{from} -> #{to} (#{format(
+      '%+d', delta
+    )} / #{format('%+.1f%%', percentage_change)}) at block #{height}"
   end
 
   def page_title

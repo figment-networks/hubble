@@ -8,10 +8,11 @@
 </h2>
 
 <div class='row'>
-  <%= render partial: 'shared/block_sidebar', locals: {block: @block} %>
+  <%= render partial: 'shared/block_sidebar', locals: { block: @block } %>
 
   <div class='col-12 col-md-9 order-1 order-md-0'>
     <%= render partial: 'transactions', locals: { transactions: @transactions } %>
-    <%= render partial: 'polkadot/shared/validators', locals: { validators: @validators } %>
+    <%= render partial: 'polkadot/shared/validators', locals:
+        { validators: @validators, stale_data: @validators_height < @block.height } %>
   </div>
 </div>

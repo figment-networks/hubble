@@ -25,7 +25,7 @@
                   <%= link_to del.delegator_uid.truncate(30), oasis_chain_account_path(@chain, del.delegator_uid) %>
               </td>
               <td data-order='<%= del.shares %>'>
-                <%= format_amount( del.shares, @chain, denom: 'noasis' ) %>
+                <%= oasis_format_amount( del.shares) %>
               </td>
               <td>
                 <span class='technical'><%= round_if_whole(delegation_share(delegations, del.shares) * 100, 2) %>%</span>

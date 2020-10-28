@@ -71,7 +71,8 @@ class Cosmoslike::AverageSnapshotsGeneratorService
 
   def hourly_average_snapshots!(kind, object_scope = nil, &value_generator)
     # first find the latest snapshot
-    latest = @chain.average_snapshots.where({ kind: kind, scopeable: object_scope, interval: 'hour' }.compact).first.try(:timestamp)
+    latest = @chain.average_snapshots.where({ kind: kind, scopeable: object_scope,
+                                              interval: 'hour' }.compact).first.try(:timestamp)
 
     if !latest
       # no snapshots yet, we can use the start of the chain
@@ -148,11 +149,13 @@ class Cosmoslike::AverageSnapshotsGeneratorService
     # generate the next level up
 
     # first find the latest snapshot
-    latest = @chain.average_snapshots.where({ kind: kind, scopeable: object_scope, interval: 'day' }.compact).first.try(:timestamp)
+    latest = @chain.average_snapshots.where({ kind: kind, scopeable: object_scope,
+                                              interval: 'day' }.compact).first.try(:timestamp)
 
     if !latest
       # no snapshots yet, we can use the first hourly snapshot
-      latest = adjust_for_interval('day', @chain.average_snapshots.where({ kind: kind, scopeable: object_scope, interval: 'hour' }.compact).last.try(:timestamp), :beginning)
+      latest = adjust_for_interval('day',
+                                   @chain.average_snapshots.where({ kind: kind, scopeable: object_scope, interval: 'hour' }.compact).last.try(:timestamp), :beginning)
     else
       # we push 1 more {interval} since we already have the snapshot for 'latest'
       latest = adjust_for_interval('day', latest + 1.day, :beginning)

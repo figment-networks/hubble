@@ -1,13 +1,7 @@
 class Polkadot::ValidatorSummary < Common::Resource
-  attr_accessor :total_stake_avg,
-                :uptime_avg,
-                :time_bucket
-
-  def initialize(attributes = {})
-    super(attributes)
-    @time_bucket = Time.zone.parse(time_bucket)
-    @total_stake_avg = total_stake_avg.to_i
-  end
+  field :total_stake_avg, type: :integer
+  field :uptime_avg, type: :float
+  field :time_bucket, type: :timestamp
 
   def total_stake
     total_stake_avg

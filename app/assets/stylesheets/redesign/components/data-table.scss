@@ -25,6 +25,7 @@
   line-height: 15px;
   white-space: nowrap;
   text-transform: uppercase;
+  border-top: 1px solid $table-border !important;
   border-bottom: 1px solid $table-border !important;
 }
 .data-table td {

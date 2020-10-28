@@ -1,4 +1,10 @@
 class Cosmoslike::TransactionsController < Cosmoslike::BaseController
+  layout 'redesign/application'
+
+  def self.controller_path
+    'cosmoslike/redesign/transactions'
+  end
+
   def show
     begin
       @transaction = @chain.namespace::TransactionDecorator.new(@chain, params[:id])

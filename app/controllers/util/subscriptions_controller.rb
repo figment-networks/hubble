@@ -79,7 +79,8 @@ class Util::SubscriptionsController < ApplicationController
     @chain = @namespace::Chain.find_by!(slug: params[:chain_id])
 
     if Common.remotely_indexed?(@chain)
-      @alertable = AlertableAddress.find_or_initialize_by(chain: @chain, address: params[:validator_id])
+      @alertable = AlertableAddress.find_or_initialize_by(chain: @chain,
+                                                          address: params[:validator_id])
       @validator = @chain.client.validator(params[:validator_id])
       raise ActiveRecord::RecordNotFound unless @validator
     else

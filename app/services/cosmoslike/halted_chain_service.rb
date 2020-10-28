@@ -10,7 +10,7 @@ class Cosmoslike::HaltedChainService
       @chain.has_halted! unless @chain.halted?
       ProgressReport.instance.report 'CHAIN IS HALTED'
     else
-      @chain.update_attributes last_round_state: round_state_string
+      @chain.update last_round_state: round_state_string
       @chain.progressing! if @chain.halted?
       ProgressReport.instance.report 'CHAIN APPEARS OK'
     end
@@ -168,6 +168,6 @@ class Cosmoslike::HaltedChainService
   end
 
   def round_overdue?
-    round_duration > 1.minutes.to_i
+    round_duration > 1.minute.to_i
   end
 end
