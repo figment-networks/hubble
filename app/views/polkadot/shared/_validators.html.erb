@@ -50,8 +50,8 @@
           <td data-order='<%= validator.total_stake %>'>
             <%= format_amount(validator.total_stake, @chain, denom: @chain.class::DEFAULT_TOKEN_REMOTE) %>
           </td>
-          <td data-order='<%= validator.commission_percentage %>'>
-            <%= validator.commission_percentage %> %
+          <td class="text-right technical" data-order='<%= rounded_percentage(validator.factored_commission) %>'>
+            <%= rounded_percentage(validator.factored_commission) %> %
           </td>
           <td data-order='<%= validator.uptime %>' class='technical'><%= round_if_whole(validator.uptime * 100, 2) %>
             %

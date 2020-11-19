@@ -15,8 +15,8 @@ module FormattingHelper
     end
 
     # 'amount' here can be huge, so let's decide on a denomination to display
-    val, scale = if amount >= GIGA then [(amount / KILO), 'k']
-                 elsif amount >= MEGA && in_millions then [(amount / MEGA), 'M']
+    val, scale = if amount >= MEGA && in_millions then [(amount / MEGA), 'M']
+                 elsif amount >= GIGA then [(amount / KILO), 'k']
                  else [amount, '']
                  end
 
@@ -64,5 +64,11 @@ module FormattingHelper
 
   def format_timestamp(timestamp)
     timestamp.strftime('%Y-%m-%d @ %H:%M %Z')
+  end
+
+  def rounded_percentage(amount)
+    return format('%.2f', 0) if amount <= 0
+
+    format('%.2f', amount)
   end
 end

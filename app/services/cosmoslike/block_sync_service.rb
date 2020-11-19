@@ -73,30 +73,17 @@ class Cosmoslike::BlockSyncService
             raise @chain.namespace::SyncBase::CriticalError, "Empty or invalid commit object found for block #{height}."
           end
 
-          obj = @chain.namespace::Block.assemble(
-            @chain, height,
-            block, commit, syncer.get_validator_set(height)
-          )
+          @chain.namespace::Block.transaction do
+            unless @chain.blocks.find_by(height: height)
+              new_block_attributes = @chain.namespace::Block.assemble(@chain, height, block, commit,
+                                                                      syncer.get_validator_set(height))
 
-          # if obj[:transactions].try(:any?)
-          #   begin
-          #     txs = obj[:transactions].map { |hash| syncer.get_transaction(hash) }
-          #     raise RuntimeError.new("Could not get all transactions.") if txs.any?(&:nil?)
-          #     @chain.namespace::AccountFinder.new( @chain, txs, :transactions ).run
-          #   rescue
-          #     puts "Failed to run account finder for block #{height}: #{$!.message}"
-          #     puts $!.backtrace.join("\n") if Rails.env.development?
-          #   end
-          # end
+              @chain.blocks.create!(new_block_attributes)
+            end
 
-          created = @chain.blocks.create(obj)
-
-          if !created.valid? || !created.valid?
-            raise @chain.namespace::SyncBase::CriticalError, "Failed to create block at height #{height}."
+            latest_local = height
+            @chain.update(latest_local_height: latest_local)
           end
-
-          latest_local = height
-          @chain.update latest_local_height: latest_local
 
           ProgressReport.instance.progress sync_start_height, height, target_height
         end

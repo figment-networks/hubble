@@ -33,4 +33,8 @@ class Iris::Chain < ApplicationRecord
   def prefixes
     testnet? ? TESTNET_PREFIXES : PREFIXES
   end
+
+  def staked_amount
+    validators.sum(&:current_voting_power)
+  end
 end

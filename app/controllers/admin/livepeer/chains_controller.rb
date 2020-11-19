@@ -23,6 +23,8 @@ class Admin::Livepeer::ChainsController < Admin::BaseChainsController
     end
   end
 
+  def show; end
+
   private
 
   def chain_class

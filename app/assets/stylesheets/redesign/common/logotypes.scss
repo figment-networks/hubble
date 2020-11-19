@@ -9,6 +9,7 @@
 .oasis-img {
   height: 32px;
   width: 140px;
+  transform: translateX(-20px);
 }
 .livepeer-img {
   height: 40px;
@@ -39,6 +40,10 @@
 }
 .polkadot-img {
   max-width: 171px;
+}
+.celo-img {
+  width: 140px;
+  height: 40px;
 }
 .logo-fallback {
   min-height: 40px;

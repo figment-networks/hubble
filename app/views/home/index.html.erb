@@ -63,7 +63,7 @@
                 <% cache("#{chain.cache_key}-#{Date.today.cweek}-staking_participation") do %>
                   <li class='col-6 p-0 mt-3'>
                     <p class='chains-list__label m-0'>Staking Participation</p>
-                    <p class='chains-list__data m-0'><%= chain.staking_participation.truncate %>%</p>
+                    <p class='chains-list__data m-0'><%= chain.staking_participation.truncate(2) %>%</p>
                   </li>
                 <% end %>
               <% end %>

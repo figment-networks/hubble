@@ -2,7 +2,7 @@
   Cycle Report for Tezos Cycle <%= @cycle.number %>
 </h1>
 
-<% @user.subscriptions.each do |subscription| %>
+<% @user.alert_subscriptions.by_network('Tezos').map { |sub| Tezos::AlertSubscriptionDecorator.new(sub) }.each do |subscription| %>
   <% next if @cycle.cached_baking_stats[subscription.baker_id].nil? || @cycle.cached_endorsing_stats[subscription.baker_id].nil? %>
 
   <h2 style="text-align: center;">

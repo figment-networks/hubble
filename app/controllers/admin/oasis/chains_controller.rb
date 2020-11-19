@@ -102,8 +102,4 @@ class Admin::Oasis::ChainsController < Admin::BaseChainsController
   def chain_class
     ::Oasis::Chain
   end
-
-  def chain_params
-    params.require(:oasis_chain).permit(:name, :slug, :api_url, :primary, :testnet, :disabled)
-  end
 end

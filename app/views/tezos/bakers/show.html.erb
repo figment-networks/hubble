@@ -6,10 +6,10 @@
     <p class="small text-muted"><%= @baker.address %></p>
   </div>
   <div class="col-md-6 text-right">
-    <% if current_user && subscription = current_user.subscriptions.find_by(baker_id: @baker.id) %>
-      <%= link_to "Subscribed", "#unsubscribeModal", data: { toggle: "modal" }, class: "btn btn-secondary" %>
+    <% if @subscription %>
+      <%= link_to "Subscribed", tezos_baker_subscriptions_path(@baker.id), class: "btn btn-secondary" %>
     <% else %>
-      <%= link_to "Subscribe", tezos_baker_subscriptions_path(@baker.id), method: :post, class: "btn btn-success" %>
+      <%= link_to "Subscribe", tezos_baker_subscriptions_path(@baker.id), class: "btn btn-success" %>
     <% end %>
   </div>
 </div>
@@ -115,19 +115,3 @@
 </div>
 
 <%== pagy_bootstrap_nav(@pagy) %>
-
-<% if subscription %>
-  <div class="modal fade" id="unsubscribeModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-body py-5 text-center">
-          Unsubscribe from updates for <%= @baker.long_name %>?
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-          <%= link_to "Unsubscribe", [:tezos, subscription], method: :delete, class: "btn btn-danger" %>
-        </div>
-      </div>
-    </div>
-  </div>
-<% end %>

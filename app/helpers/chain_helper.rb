@@ -1,16 +1,20 @@
 module ChainHelper
-  def alive_with_synced_chains
-    @alive_with_synced_chains ||= [
-      *Cosmos::Chain.alive.has_synced.to_a,
-      *Terra::Chain.alive.has_synced.to_a,
-      *Iris::Chain.alive.has_synced.to_a,
-      *Kava::Chain.alive.has_synced.to_a,
-      *Emoney::Chain.alive.has_synced.to_a,
-      *Livepeer::Chain.has_synced.to_a,
-      *Oasis::Chain.enabled.to_a,
-      *Tezos::Chain.enabled.to_a,
-      *Near::Chain.enabled.to_a
-    ].sort_by! { |chain| chain.network_name.downcase }
+  def grouped_visible_chains
+    @grouped_visible_chains ||=
+      visible_chains.sort_by! { |chain| chain.network_name.downcase }.group_by(&:network_name)
+  end
+
+  def visible_chains
+    Rails.application.eager_load! unless Rails.configuration.cache_classes
+    ApplicationRecord.descendants.select { |ar_class| ar_class.name.ends_with?('::Chain') }.map do |chain_class|
+      chains = chain_class.all
+      chains = chain_class.has_synced if chain_class.respond_to?(:has_synced)
+      chains = chains.alive if chain_class.respond_to?(:alive)
+      if chain_class.respond_to?(:enabled) && !chain_class.included_modules.include?(Cosmoslike::Chainlike)
+        chains = chains.enabled
+      end
+      chains.to_a
+    end.flatten
   end
 
   def sort_chains(chains)
@@ -41,5 +45,9 @@ module ChainHelper
     return 'Cannot calculate %' if total.zero?
 
     ((current.to_f / total.to_f) * 100).round(0).to_s + '%'
+  end
+
+  def show_datahub_promotion?(chain)
+    [Terra::Chain].include?(chain.class)
   end
 end

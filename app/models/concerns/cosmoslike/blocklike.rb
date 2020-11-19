@@ -60,7 +60,7 @@ module Cosmoslike::Blocklike
           syncer = chain.namespace::SyncBase.new(chain, 250)
           raw_block = syncer.get_block(height)['result']
           block_txs = raw_block['block']['data']['txs']
-          block_meta = raw_block['block_meta']
+          block_meta = raw_block['block_meta'] || raw_block['block']
         rescue StandardError
           raise chain.namespace::SyncBase::CriticalError, "Unable to retrieve or invalid object for block #{height}."
         end
@@ -71,7 +71,7 @@ module Cosmoslike::Blocklike
         # we don't need to look up the whole block unless
         # there are transactions in the block
         begin
-          if block_meta['header']['num_txs'].to_i > 0
+          if block_meta['num_txs'].to_i > 0 || block_meta['header']['num_txs'].to_i > 0
             syncer = chain.namespace::SyncBase.new(chain, 250)
             block_txs = syncer.get_block(height)['result']['block']['data']['txs']
           end
@@ -112,10 +112,13 @@ module Cosmoslike::Blocklike
         raise chain.namespace::SyncBase::CriticalError, "Unable to decode or invalid transaction data for block #{height}."
       end
 
+      # Another patch, for Kava 4
+      id_hash = block_meta.try(:[], 'block_id').try(:[], 'hash') || raw_block.try(:[], 'block_id').try(:[], 'hash')
+
       obj = {
         chain_id: chain.id,
         height: height,
-        id_hash: block_meta['block_id']['hash'],
+        id_hash: id_hash,
         timestamp: block_meta['header']['time'].to_datetime,
         proposer_address: block_meta['header']['proposer_address'],
         precommitters: addresses,

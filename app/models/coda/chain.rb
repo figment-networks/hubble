@@ -30,7 +30,7 @@ class Coda::Chain < ApplicationRecord
   end
 
   def supports_ledger?
-    true
+    false
   end
 
   def out_of_sync?

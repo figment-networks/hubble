@@ -110,7 +110,7 @@ module Cosmoslike::Chainlike
     save!
   end
 
-  def syncer(timeout = 1500)
+  def syncer(timeout = 3000)
     @_syncer ||= namespace::SyncBase.new(self, timeout)
   end
 
@@ -164,7 +164,10 @@ module Cosmoslike::Chainlike
   end
 
   def staked_amount
-    @staked_amount ||= staking_pool.sum { |_k, v| v.to_f }
+    # This fixes an issue around the staking_participation being incorrectly
+    # calculated as the below included unbonded tokens
+    # @staked_amount ||= staking_pool.sum { |_k, v| v.to_f }
+    @staked_amount ||= staking_pool.try(:[], 'bonded_tokens').to_f
   end
 
   def failing_sync?
@@ -172,7 +175,6 @@ module Cosmoslike::Chainlike
   end
 
   def sync_failed!
-    Rails.logger.error "Chain failing sync! #{inspect}"
     increment! :failed_sync_count
   end
 

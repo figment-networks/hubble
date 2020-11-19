@@ -1,0 +1,11 @@
+<div class='brands d-flex flex-column align-items-center'>
+  <%= link_to root_path do %>
+    <%= image_tag 'hubble-logo-dark.svg', class: "navbar__logo", alt: 'Hubble logo' %>
+  <% end %>
+  <div class='figment-logo mt-3'>
+    <span class='figment-logo__text mr-1'>Web 3 Explorer by</span>
+    <%= link_to 'https://figment.io', target: '_blank', class: 'text-decoration-none' do %>
+      <%= image_tag 'figment-inline.svg', class: "navbar__figment-logo", alt: 'figment.io logo' %>
+    <% end %>
+  </div>
+</div>

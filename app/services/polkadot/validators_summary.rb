@@ -3,7 +3,11 @@ class Polkadot::ValidatorsSummary < Common::Resource
   field :validators_count, type: :integer
   field :time_bucket, type: :timestamp
 
-  def total_stake
+  def total
     total_stake_avg * validators_count
+  end
+
+  def indexing_completed?(last_indexed_timestamp)
+    @time_bucket < last_indexed_timestamp
   end
 end

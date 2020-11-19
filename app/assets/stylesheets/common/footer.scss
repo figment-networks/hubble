@@ -4,4 +4,8 @@ footer {
   padding: 10px;
   font-size: $font-size-sm;
   letter-spacing: -1px;
+
+  a {
+    color: $gray-400;
+  }
 }

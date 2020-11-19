@@ -28,6 +28,7 @@
 // = require page/cosmoslike/account-show
 //
 // = require components/common/auto-alert-hide
+// = require components/common/small-average-block-time-chart
 //
 // = require components/oasis/validator-table
 // = require components/oasis/validator-voting-power-history
@@ -35,7 +36,6 @@
 //
 // = require components/cosmoslike/transactions-table
 // = require components/cosmoslike/validator-uptime-history
-// = require components/cosmoslike/small-average-block-time-chart
 // = require components/cosmoslike/tiny-average-active-validators-chart
 //
 //  THESE SHOULDN'T BE REQUIRED BUT THINGS BREAK WITHOUT THEM?

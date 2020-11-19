@@ -23,7 +23,8 @@ class Polkadot::Transaction::BalanceTransferDecorator < Polkadot::Transaction::D
   def parameters; end
 
   def self.can_decorate?(transaction)
-    transaction.section == 'balances' && transaction.method_name == 'transfer'
+    transaction.section == 'balances' &&
+      (transaction.method_name == 'transfer' || transaction.method_name == 'transferKeepAlive')
   end
 
   private

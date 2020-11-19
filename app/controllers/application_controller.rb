@@ -79,7 +79,7 @@ class ApplicationController < ActionController::Base
   end
 
   def render_500(e = nil)
-    logger.error("\nRENDER_500!\n\n" + e.message + "\n" + e.backtrace.join("\n") + "\n")
+    logger.error(e)
     respond_to do |format|
       format.html do
         render template: '/errors/500', status: 500, layout: 'errors'

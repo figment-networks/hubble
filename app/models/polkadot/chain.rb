@@ -31,7 +31,7 @@ class Polkadot::Chain < ApplicationRecord
     {
       DEFAULT_TOKEN_REMOTE => {
         display: DEFAULT_TOKEN_DISPLAY,
-        factor: 10,
+        factor: DEFAULT_TOKEN_FACTOR,
         primary: true
       }
     }.with_indifferent_access

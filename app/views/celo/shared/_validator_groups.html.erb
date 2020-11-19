@@ -1,0 +1,51 @@
+<section class='validator-groups'>
+  <div class='validator-groups-table-header'>
+    <h4>
+      Validator groups
+      <small>&nbsp;&mdash; <%= validator_groups.count %> total&nbsp;</small>
+    </h4>
+
+    <div class='controls'>
+      <input type='text' class='form-control form-control-sm validator-groups-search' placeholder='filter validator groups...'>
+    </div>
+  </div>
+
+  <div class='validator-groups-table'>
+    <table>
+      <thead>
+      <tr>
+        <th>Address/Name</th>
+        <th>Votes</th>
+        <th>Commission</th>
+        <th>Uptime</th>
+        <th class='d-none'></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% validator_groups.each do |validator_group| -%>
+        <tr>
+          <td data-order='<%= validator_group.address %>'>
+            <%= link_to '#' do %>
+              <strong><%= validator_group.display_name.truncate(38) %></strong>
+            <% end -%>
+          </td>
+          <td data-order='<%= validator_group.votes %>'>
+            <%= format_amount(validator_group.votes, @chain, denom: @chain.class::DEFAULT_TOKEN_REMOTE) %>
+          </td>
+          <td class="text-right technical" data-order='<%= rounded_percentage(validator_group.factored_commission) %>'>
+            <%= rounded_percentage(validator_group.factored_commission) %> %
+          </td>
+          <td class="text-right technical" data-order='<%= validator_group.uptime %>'>
+            <%= round_if_whole(validator_group.uptime * 100, 2) %> %
+          </td>
+          <td class='d-none'>
+            <%= validator_group.address %>
+            <%= validator_group.display_name %>
+            <%= validator_group.uptime %>
+          </td>
+        </tr>
+      <% end -%>
+      </tbody>
+    </table>
+  </div>
+</section>

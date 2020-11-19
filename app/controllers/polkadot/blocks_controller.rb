@@ -5,7 +5,7 @@ class Polkadot::BlocksController < Polkadot::BaseController
 
     @block = Common::BlockDecorator.new(client.block(params[:id]), status)
     @transactions = @block.transactions
-    @validators_height = [@block.height, status.last_indexed_era_height].min
+    @validators_height = [@block.height, status.indexed_validators_height].min
     validators_sessions_height = [@block.height, status.last_indexed_session_height].min
     @validators = fetch_validators(@validators_height, validators_sessions_height)
 

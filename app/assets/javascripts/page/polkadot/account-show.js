@@ -4,4 +4,5 @@ $(document).ready(function() {
   }
 
   new App.Polkadot.DelegationsTable($('.delegations-table')).render();
+  new App.Polkadot.TransactionsTable($('.transactions-table')).render();
 });

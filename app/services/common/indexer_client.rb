@@ -1,5 +1,8 @@
 class Common::IndexerClient
   DEFAULT_TIMEOUT = 3
+  MEDIUM_EXPIRY_TIME = 1.hour
+  SHORT_EXPIRY_TIME = 15.minutes
+  DEFAULT_LATEST_HEIGHT = 0
 
   class Error         < StandardError; end
   class NotFoundError < Error; end
@@ -10,6 +13,7 @@ class Common::IndexerClient
   end
 
   def get(path, params = {})
+    Rails.logger.info("#{endpoint}#{path} #{params} timeout: #{timeout}")
     resp = RestClient::Request.execute(
       method: :get,
       url: "#{endpoint}#{path}",

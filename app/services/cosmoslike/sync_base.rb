@@ -255,6 +255,10 @@ class Cosmoslike::SyncBase
 
   private
 
+  def timeout_seconds
+    @timeout.to_f / 1000
+  end
+
   CACHE_VERSION = 1
 
   def rpc_get(path, params = nil)
@@ -274,7 +278,9 @@ class Cosmoslike::SyncBase
     ) do
       start_time = Time.now.utc.to_f
       Rails.logger.debug "#{@chain.network_name} RPC GET: #{url}"
-      r = Typhoeus.get(url, timeout_ms: @timeout * 2, connecttimeout_ms: @timeout)
+      r = RestClient::Request.execute(method: :get, url: url,
+                                      read_timeout: timeout_seconds * 2, open_timeout: timeout_seconds)
+
       end_time = Time.now.utc.to_f
       Rails.logger.debug "#{@chain.network_name} RPC #{path} took #{end_time - start_time} seconds" unless Rails.env.production?
       r.body

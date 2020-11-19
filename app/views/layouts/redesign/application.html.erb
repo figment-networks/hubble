@@ -22,6 +22,7 @@
 
     <%= js_namespace %>
     <%= javascript_include_tag "redesign/#{@chain.class::ASSET}", media: 'all' %>
+    <%= yield :promo_wc_script %>
   </head>
 
   <body class='<%= yield :body_class %> <%= monitor_body_classes %>'>

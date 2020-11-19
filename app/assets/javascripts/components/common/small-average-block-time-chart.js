@@ -1,18 +1,21 @@
 class SmallAverageBlockTimeChart {
-  constructor( target ) {
-    this.target = target
+  constructor(target) {
+    this.target = target;
+    if (!App.seed.AVERAGE_BLOCK_TIME) {
+      App.seed.AVERAGE_BLOCK_TIME = target.data('chart');
+    }
   }
 
   render() {
-    if( !App.seed.AVERAGE_BLOCK_TIME || _.isEmpty(App.seed.AVERAGE_BLOCK_TIME) ) {
-      this.target.parent().hide()
-      return
+    if (!App.seed.AVERAGE_BLOCK_TIME || _.isEmpty(App.seed.AVERAGE_BLOCK_TIME)) {
+      this.target.parent().hide();
+      return;
     }
 
-    new Chart( this.target.get(0), {
+    new Chart(this.target.get(0), {
       type: 'line',
       data: {
-        labels: _.map( App.seed.AVERAGE_BLOCK_TIME, dp => dp.t ),
+        labels: _.map(App.seed.AVERAGE_BLOCK_TIME, (dp) => dp.t),
         datasets: [
           {
             cubicInterpolationMode: 'monotone',
@@ -24,14 +27,14 @@ class SmallAverageBlockTimeChart {
       },
       options: {
         elements: {
-          point: { radius: 0, backgroundColor: '#70707a', hitRadius: 6, hoverRadius: 3 }
+          point: {radius: 0, backgroundColor: '#70707a', hitRadius: 6, hoverRadius: 3}
         },
         layout: {
-          padding: { top: 5, bottom: 5, left: 5, right: 5 }
+          padding: {top: 5, bottom: 5, left: 5, right: 5}
         },
         maintainAspectRatio: false,
-        legend: { display: false },
-        title: { display: false },
+        legend: {display: false},
+        title: {display: false},
         hover: {
           mode: 'nearest',
           intersect: false
@@ -40,13 +43,13 @@ class SmallAverageBlockTimeChart {
           enabled: false,
           mode: 'nearest',
           intersect: false,
-          custom: window.customTooltip( { top: -55, name: 'sm-bta', static: true } ),
+          custom: window.customTooltip({top: -55, name: 'sm-bta', static: true}),
           callbacks: {
-            label: ( item, data ) => {
-              const date = data.datasets[item.datasetIndex].data[item.index].t
+            label: (item, data) => {
+              const date = data.datasets[item.datasetIndex].data[item.index].t;
               return `${item.yLabel.toFixed(2)}s ` +
                      `${this.interval == 'day' ? 'on' : 'at'} ` +
-                     `${moment.utc(date).format('k:mm')}`
+                     `${moment.utc(date).format('k:mm')}`;
             }
           }
         },
@@ -54,7 +57,7 @@ class SmallAverageBlockTimeChart {
           yAxes: [
             {
               display: false,
-              ticks: { display: false, stepSize: 1 }
+              ticks: {display: false, stepSize: 1}
             }
           ],
           xAxes: [
@@ -62,14 +65,14 @@ class SmallAverageBlockTimeChart {
               display: false,
               ticks: {
                 display: false,
-                callback: ( date ) => moment(date).format('MMM-D hh:mm')
+                callback: (date) => moment(date).format('MMM-D hh:mm')
               }
             }
           ]
         }
       }
-    } )
+    });
   }
 }
 
-window.App.Common.SmallAverageBlockTimeChart = SmallAverageBlockTimeChart
+window.App.Common.SmallAverageBlockTimeChart = SmallAverageBlockTimeChart;

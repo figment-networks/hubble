@@ -20,7 +20,11 @@ module TezosHelper
   end
 
   def tezos_chain_dashboard_path(*_args)
-    tezos_root_path
+    tezos_dashboard_path
+  end
+
+  def tezos_chain_baker_subscriptions_path(*args)
+    tezos_baker_subscriptions_path(args[1].address)
   end
 
   def tezos_proposal_status_string(proposal, period, votes)

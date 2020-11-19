@@ -1,0 +1,459 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://localhost:9292/celo/status
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (darwin18.0.0 x86_64) ruby/2.6.6p146
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - localhost:9292
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      X-Content-Type-Options:
+      - nosniff
+      Content-Length:
+      - '318'
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "app_name": "celo-indexer",
+          "app_version": "0.0.2",
+          "go_version": "1.14",
+          "chain_id": 44787,
+          "indexing_started": true,
+          "last_index_version": 1,
+          "last_indexed_height": 1614750,
+          "last_indexed_time": "2020-10-21T18:01:15Z",
+          "last_indexed_at": "2020-11-02T07:58:44.031439Z",
+          "indexing_lag": 199900
+        }
+  recorded_at: Fri, 13 Nov 2020 14:43:41 GMT
+- request:
+    method: get
+    uri: http://localhost:9292/celo/validator_groups/by_height?height=1614750
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (darwin18.0.0 x86_64) ruby/2.6.6p146
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - localhost:9292
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      X-Content-Type-Options:
+      - nosniff
+      Content-Length:
+      - '782'
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "items": [
+            {
+              "height": 1614972,
+              "time": "2020-10-21T18:19:45Z",
+              "address": "0x87614eD7AF361a563C6a3624CcadD52e165f67C2",
+              "commission": "100000000000000000000000",
+              "active_votes": "4221409232884096309",
+              "active_vote_units": "414001021153639342594282769831151178116",
+              "pending_votes": "50004600000000000000000",
+              "members_count": 5
+            },
+            {
+              "height": 1614972,
+              "time": "2020-10-21T18:19:45Z",
+              "address": "0x5edfCe0bad47e24E30625c275457F5b4Bb619241",
+              "commission": "100000000000000000000000",
+              "active_votes": "10221917122277860650303",
+              "active_vote_units": "1001727345817411982091515383645927774055330",
+              "pending_votes": "50037917177172000000030",
+              "members_count": 5
+            }
+          ]
+        }
+  recorded_at: Fri, 13 Nov 2020 14:43:41 GMT
+- request:
+    method: get
+    uri: http://localhost:9292/celo/validator_groups/by_height?height=0
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (darwin18.0.0 x86_64) ruby/2.6.6p146
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - localhost:9292
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      X-Content-Type-Options:
+      - nosniff
+      Content-Length:
+      - '782'
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "items": [
+            {
+              "height": 1614972,
+              "time": "2020-10-21T18:19:45Z",
+              "address": "0x87614eD7AF361a563C6a3624CcadD52e165f67C2",
+              "commission": "100000000000000000000000",
+              "active_votes": "4221409232884096309",
+              "active_vote_units": "414001021153639342594282769831151178116",
+              "pending_votes": "50004600000000000000000",
+              "members_count": 5
+            },
+            {
+              "height": 1614972,
+              "time": "2020-10-21T18:19:45Z",
+              "address": "0x5edfCe0bad47e24E30625c275457F5b4Bb619241",
+              "commission": "100000000000000000000000",
+              "active_votes": "10221917122277860650303",
+              "active_vote_units": "1001727345817411982091515383645927774055330",
+              "pending_votes": "50037917177172000000030",
+              "members_count": 5
+            }
+          ]
+        }
+  recorded_at: Fri, 13 Nov 2020 14:43:41 GMT
+- request:
+    method: get
+    uri: http://localhost:9292/celo/validator_groups/summary_hourly
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (darwin18.0.0 x86_64) ruby/2.6.6p146
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - localhost:9292
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      X-Content-Type-Options:
+      - nosniff
+      Content-Length:
+      - '9087'
+    body:
+      encoding: UTF-8
+      string: |
+        [
+          {
+            "time_bucket": "2020-10-21T10:00:00Z",
+            "time_interval": "hour",
+            "commission_avg": "100000000000000000000000",
+            "commission_min": "100000000000000000000000",
+            "commission_max": "100000000000000000000000",
+            "active_votes_avg": "5113014307815055996771",
+            "active_votes_min": "4218166616875009418",
+            "active_votes_max": "10221917122277860650303",
+            "active_vote_units_avg": "501070673419282810717054833207879462616723",
+            "active_vote_units_min": "414001021153639342594282769831151178116",
+            "active_vote_units_max": "1001727345817411982091515383645927774055330",
+            "pending_votes_avg": "50021258588586000000015",
+            "pending_votes_min": "50004600000000000000000",
+            "pending_votes_max": "50037917177172000000030"
+          },
+          {
+            "time_bucket": "2020-10-21T11:00:00Z",
+            "time_interval": "hour",
+            "commission_avg": "100000000000000000000000",
+            "commission_min": "100000000000000000000000",
+            "commission_max": "100000000000000000000000",
+            "active_votes_avg": "5113014307815055996771",
+            "active_votes_min": "4218166616875009418",
+            "active_votes_max": "10221917122277860650303",
+            "active_vote_units_avg": "501070673419282810717054833207879462616723",
+            "active_vote_units_min": "414001021153639342594282769831151178116",
+            "active_vote_units_max": "1001727345817411982091515383645927774055330",
+            "pending_votes_avg": "50021258588586000000015",
+            "pending_votes_min": "50004600000000000000000",
+            "pending_votes_max": "50037917177172000000030"
+          },
+          {
+            "time_bucket": "2020-10-21T12:00:00Z",
+            "time_interval": "hour",
+            "commission_avg": "100000000000000000000000",
+            "commission_min": "100000000000000000000000",
+            "commission_max": "100000000000000000000000",
+            "active_votes_avg": "5113014307815055996771",
+            "active_votes_min": "4218166616875009418",
+            "active_votes_max": "10221917122277860650303",
+            "active_vote_units_avg": "501070673419282810717054833207879462616723",
+            "active_vote_units_min": "414001021153639342594282769831151178116",
+            "active_vote_units_max": "1001727345817411982091515383645927774055330",
+            "pending_votes_avg": "50021258588586000000015",
+            "pending_votes_min": "50004600000000000000000",
+            "pending_votes_max": "50037917177172000000030"
+          },
+          {
+            "time_bucket": "2020-10-21T13:00:00Z",
+            "time_interval": "hour",
+            "commission_avg": "100000000000000000000000",
+            "commission_min": "100000000000000000000000",
+            "commission_max": "100000000000000000000000",
+            "active_votes_avg": "5113014307815055996771",
+            "active_votes_min": "4218166616875009418",
+            "active_votes_max": "10221917122277860650303",
+            "active_vote_units_avg": "501070673419282810717054833207879462616723",
+            "active_vote_units_min": "414001021153639342594282769831151178116",
+            "active_vote_units_max": "1001727345817411982091515383645927774055330",
+            "pending_votes_avg": "50021258588586000000015",
+            "pending_votes_min": "50004600000000000000000",
+            "pending_votes_max": "50037917177172000000030"
+          },
+          {
+            "time_bucket": "2020-10-21T14:00:00Z",
+            "time_interval": "hour",
+            "commission_avg": "100000000000000000000000",
+            "commission_min": "100000000000000000000000",
+            "commission_max": "100000000000000000000000",
+            "active_votes_avg": "5113014307815055996771",
+            "active_votes_min": "4218166616875009418",
+            "active_votes_max": "10221917122277860650303",
+            "active_vote_units_avg": "501070673419282810717054833207879462616723",
+            "active_vote_units_min": "414001021153639342594282769831151178116",
+            "active_vote_units_max": "1001727345817411982091515383645927774055330",
+            "pending_votes_avg": "50021258588586000000015",
+            "pending_votes_min": "50004600000000000000000",
+            "pending_votes_max": "50037917177172000000030"
+          },
+          {
+            "time_bucket": "2020-10-21T15:00:00Z",
+            "time_interval": "hour",
+            "commission_avg": "100000000000000000000000",
+            "commission_min": "100000000000000000000000",
+            "commission_max": "100000000000000000000000",
+            "active_votes_avg": "5113014307815055996771",
+            "active_votes_min": "4218166616875009418",
+            "active_votes_max": "10221917122277860650303",
+            "active_vote_units_avg": "501070673419282810717054833207879462616723",
+            "active_vote_units_min": "414001021153639342594282769831151178116",
+            "active_vote_units_max": "1001727345817411982091515383645927774055330",
+            "pending_votes_avg": "50021258588586000000015",
+            "pending_votes_min": "50004600000000000000000",
+            "pending_votes_max": "50037917177172000000030"
+          },
+          {
+            "time_bucket": "2020-10-21T16:00:00Z",
+            "time_interval": "hour",
+            "commission_avg": "100000000000000000000000",
+            "commission_min": "100000000000000000000000",
+            "commission_max": "100000000000000000000000",
+            "active_votes_avg": "5113014307815055996771",
+            "active_votes_min": "4218166616875009418",
+            "active_votes_max": "10221917122277860650303",
+            "active_vote_units_avg": "501070673419282810717054833207879462616723",
+            "active_vote_units_min": "414001021153639342594282769831151178116",
+            "active_vote_units_max": "1001727345817411982091515383645927774055330",
+            "pending_votes_avg": "50021258588586000000015",
+            "pending_votes_min": "50004600000000000000000",
+            "pending_votes_max": "50037917177172000000030"
+          },
+          {
+            "time_bucket": "2020-10-21T17:00:00Z",
+            "time_interval": "hour",
+            "commission_avg": "100000000000000000000000",
+            "commission_min": "100000000000000000000000",
+            "commission_max": "100000000000000000000000",
+            "active_votes_avg": "5113014307815055996771",
+            "active_votes_min": "4218166616875009418",
+            "active_votes_max": "10221917122277860650303",
+            "active_vote_units_avg": "501070673419282810717054833207879462616723",
+            "active_vote_units_min": "414001021153639342594282769831151178116",
+            "active_vote_units_max": "1001727345817411982091515383645927774055330",
+            "pending_votes_avg": "50021258588586000000015",
+            "pending_votes_min": "50004600000000000000000",
+            "pending_votes_max": "50037917177172000000030"
+          },
+          {
+            "time_bucket": "2020-10-21T18:00:00Z",
+            "time_interval": "hour",
+            "commission_avg": "100000000000000000000000",
+            "commission_min": "100000000000000000000000",
+            "commission_max": "100000000000000000000000",
+            "active_votes_avg": "5113014307815055996771",
+            "active_votes_min": "4218166616875009418",
+            "active_votes_max": "10221917122277860650303",
+            "active_vote_units_avg": "501070673419282810717054833207879462616723",
+            "active_vote_units_min": "414001021153639342594282769831151178116",
+            "active_vote_units_max": "1001727345817411982091515383645927774055330",
+            "pending_votes_avg": "50021258588586000000015",
+            "pending_votes_min": "50004600000000000000000",
+            "pending_votes_max": "50037917177172000000030"
+          },
+          {
+            "time_bucket": "2020-10-21T19:00:00Z",
+            "time_interval": "hour",
+            "commission_avg": "100000000000000000000000",
+            "commission_min": "100000000000000000000000",
+            "commission_max": "100000000000000000000000",
+            "active_votes_avg": "5113014307815055996771",
+            "active_votes_min": "4218166616875009418",
+            "active_votes_max": "10221917122277860650303",
+            "active_vote_units_avg": "501070673419282810717054833207879462616723",
+            "active_vote_units_min": "414001021153639342594282769831151178116",
+            "active_vote_units_max": "1001727345817411982091515383645927774055330",
+            "pending_votes_avg": "50021258588586000000015",
+            "pending_votes_min": "50004600000000000000000",
+            "pending_votes_max": "50037917177172000000030"
+          },
+          {
+            "time_bucket": "2020-10-21T20:00:00Z",
+            "time_interval": "hour",
+            "commission_avg": "100000000000000000000000",
+            "commission_min": "100000000000000000000000",
+            "commission_max": "100000000000000000000000",
+            "active_votes_avg": "5113014307815055996771",
+            "active_votes_min": "4218166616875009418",
+            "active_votes_max": "10221917122277860650303",
+            "active_vote_units_avg": "501070673419282810717054833207879462616723",
+            "active_vote_units_min": "414001021153639342594282769831151178116",
+            "active_vote_units_max": "1001727345817411982091515383645927774055330",
+            "pending_votes_avg": "50021258588586000000015",
+            "pending_votes_min": "50004600000000000000000",
+            "pending_votes_max": "50037917177172000000030"
+          },
+          {
+            "time_bucket": "2020-10-21T21:00:00Z",
+            "time_interval": "hour",
+            "commission_avg": "100000000000000000000000",
+            "commission_min": "100000000000000000000000",
+            "commission_max": "100000000000000000000000",
+            "active_votes_avg": "5113014307815055996771",
+            "active_votes_min": "4218166616875009418",
+            "active_votes_max": "10221917122277860650303",
+            "active_vote_units_avg": "501070673419282810717054833207879462616723",
+            "active_vote_units_min": "414001021153639342594282769831151178116",
+            "active_vote_units_max": "1001727345817411982091515383645927774055330",
+            "pending_votes_avg": "50021258588586000000015",
+            "pending_votes_min": "50004600000000000000000",
+            "pending_votes_max": "50037917177172000000030"
+          }
+        ]
+  recorded_at: Fri, 13 Nov 2020 14:43:41 GMT
+- request:
+    method: get
+    uri: http://localhost:9292/celo/block/summary_hourly?params%5Binterval%5D=hour&params%5Bperiod%5D=48%20hours
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (darwin18.0.0 x86_64) ruby/2.6.6p146
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - localhost:9292
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      X-Content-Type-Options:
+      - nosniff
+      Content-Length:
+      - '1312'
+    body:
+      encoding: UTF-8
+      string: |
+        [
+          {
+            "id": 1,
+            "created_at": "2020-11-02T07:57:54.104175Z",
+            "updated_at": "2020-11-02T08:22:54.018642Z",
+            "index_version": 1,
+            "time_interval": "hour",
+            "time_bucket": "2020-10-21T18:00:00Z",
+            "count": 170,
+            "block_time_avg": 4.970588
+          },
+          {
+            "id": 2,
+            "created_at": "2020-11-02T07:57:54.104175Z",
+            "updated_at": "2020-11-02T08:22:54.018642Z",
+            "index_version": 1,
+            "time_interval": "hour",
+            "time_bucket": "2020-10-21T19:00:00Z",
+            "count": 170,
+            "block_time_avg": 4.96
+          },
+          {
+            "id": 3,
+            "created_at": "2020-11-02T07:57:54.104175Z",
+            "updated_at": "2020-11-02T08:22:54.018642Z",
+            "index_version": 1,
+            "time_interval": "hour",
+            "time_bucket": "2020-10-21T20:00:00Z",
+            "count": 170,
+            "block_time_avg": 4.93
+          },
+          {
+            "id": 4,
+            "created_at": "2020-11-02T07:57:54.104175Z",
+            "updated_at": "2020-11-02T08:22:54.018642Z",
+            "index_version": 1,
+            "time_interval": "hour",
+            "time_bucket": "2020-10-21T21:00:00Z",
+            "count": 170,
+            "block_time_avg": 4.81
+          },
+          {
+            "id": 5,
+            "created_at": "2020-11-02T07:57:54.104175Z",
+            "updated_at": "2020-11-02T08:22:54.018642Z",
+            "index_version": 1,
+            "time_interval": "hour",
+            "time_bucket": "2020-10-21T22:00:00Z",
+            "count": 170,
+            "block_time_avg": 4.85
+          }
+        ]
+  recorded_at: Fri, 13 Nov 2020 14:43:41 GMT
+recorded_with: VCR 6.0.0

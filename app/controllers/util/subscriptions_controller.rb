@@ -20,21 +20,21 @@ class Util::SubscriptionsController < ApplicationController
     if !existed
       # mark the user as having received a digest yesterday
       # and an alert just this moment so they don't get old events on next sync
-      @subscription.assign_attributes last_daily_at: 1.day.ago.end_of_day, last_instant_at: Time.now.utc
+      @subscription.assign_attributes last_daily_at: 1.day.ago.end_of_day, last_instant_at: Time.now.utc, network: @namespace.to_s
     end
 
     if @subscription.save
       if existed
         flash[:notice] = 'Subscription updated!'
       else
-        flash[:notice] = 'Subscribed to events for this validator!'
+        flash[:notice] = "Subscribed to events for this #{alertable_type_name}!"
       end
-      redirect_to namespaced_path('validator_subscriptions', @validator.address)
+      redirect_to after_create_path
     else
       if !@subscription.subscribes_to_something?
         @subscription.destroy
         flash[:notice] = 'No alerts selected. Subscription removed.'
-        redirect_to namespaced_path('validator_subscriptions', @validator.address)
+        redirect_to after_create_path
       else
         render :index
       end
@@ -48,6 +48,7 @@ class Util::SubscriptionsController < ApplicationController
     kinds_hash = params[:alert_subscription][:event_kinds] || {}
     kinds = kinds_hash.keys.select { |k| kinds_hash[k] == 'on' }
     params[:alert_subscription][:event_kinds] = kinds
+    params[:alert_subscription][:wants_daily_digest] = false if digest_disabled
 
     if params[:alert_subscription][:data]
       if pc = params[:alert_subscription][:data][:percent_change]
@@ -87,5 +88,17 @@ class Util::SubscriptionsController < ApplicationController
       @validator = @chain.validators.find_by(address: params[:validator_id])
       @alertable = @validator
     end
+  end
+
+  def alertable_type_name
+    'validator'
+  end
+
+  def after_create_path
+    namespaced_path('validator_subscriptions', @validator.address)
+  end
+
+  def digest_disabled
+    false
   end
 end

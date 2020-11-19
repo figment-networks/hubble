@@ -19,7 +19,6 @@ every '* * * * *' do
   rake 'sync:iris', output: log_path('iris-sync')
   rake 'sync:kava', output: log_path('kava-sync')
   rake 'sync:emoney', output: log_path('emoney-sync')
-  rake 'tezos:detect_events', output: log_path('tezos')
   rake 'common:alerts:users:instant', output: log_path('alerts')
 end
 

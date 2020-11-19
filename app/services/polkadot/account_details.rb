@@ -9,19 +9,38 @@ module Polkadot
     field :email_name
     field :twitter_name
     field :image
-    field :transfers
     field :deposits
     field :bonded
     field :unbonded
     field :withdrawn
     field :delegations
+    collection :transfers, type: Polkadot::Transfer
 
-    def display_name
-      @display_name.presence || address
+    def initialize(attributes = {})
+      super(attributes)
+      cache_display_name!(@display_name) if @display_name.present?
     end
 
-    def self.failed(address)
-      new('display_name' => address)
+    def display_name
+      @display_name.presence || read_cached_display_name || address
+    end
+
+    def read_cached_display_name
+      Rails.cache.read(display_name_cache_key(address))
+    end
+
+    def cache_display_name!(name)
+      Rails.cache.write(display_name_cache_key(address), name, expires_in: 30.days)
+    end
+
+    def self.failed(address, display_name = nil)
+      new('address' => address, 'display_name' => display_name)
+    end
+
+    private
+
+    def display_name_cache_key(address)
+      [self.class.name, 'display_name', address].join('-')
     end
   end
 end

@@ -11,15 +11,16 @@ class Polkadot::ValidatorFetcher
     attributes = {}
     attributes.merge!(era_sequence) if era_sequence
     attributes.merge!(validator_details)
-    attributes.merge!('account_details' => account_details(attributes['stash_account']))
+    attributes.merge!('account_details' => account_details(attributes['stash_account'], attributes['display_name']))
     Polkadot::Validator.new(attributes)
   end
 
   private
 
-  def account_details(account)
-    client.account_details(account)
-  rescue Common::IndexerClient::Error
-    Polkadot::AccountDetails.failed(account)
+  # TODO: enable fetching account details when that endpoint response time gets fixed
+  def account_details(account, display_name)
+    # client.account_details(account)
+    # rescue Common::IndexerClient::Error
+    Polkadot::AccountDetails.failed(account, display_name)
   end
 end

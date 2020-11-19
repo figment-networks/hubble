@@ -3,7 +3,7 @@ class Emoney::Chain < ApplicationRecord
 
   SYNC_OFFSET = 1
   SYNC_INTERVAL = 1.minute
-  SUPPORTS_LEDGER = true
+  SUPPORTS_LEDGER = false
 
   DEFAULT_TOKEN_DISPLAY = 'NGM'.freeze
   DEFAULT_TOKEN_REMOTE = 'ungm'.freeze

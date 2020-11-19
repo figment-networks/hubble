@@ -3,9 +3,9 @@ class Polkadot::ChainsController < Polkadot::BaseController
     status = client.status
     @height = status.last_block_height
     @latest_block_time = status.last_block_time
-    @validators = client.validators(status.last_indexed_era_height)
+    @validators = client.validators(status.indexed_validators_height)
     @validators_daily_stake = client.validators_daily_stake.map do |validator_summary|
-      Polkadot::SummaryChartDecorator.new(validator_summary).point(@chain)
+      Common::SummaryChartDecorator.new(validator_summary).point(@chain)
     end
 
     page_title 'Overview'

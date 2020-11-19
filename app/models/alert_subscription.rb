@@ -7,11 +7,16 @@ class AlertSubscription < ApplicationRecord
 
   after_destroy :check_orphaned_alertable_address
 
+  scope :by_network, ->(network) { where(network: network) }
   scope :eligible_for_instant_alert, -> { where('last_instant_at <= ?', ALERT_MINIMUM_TIMEOUT.ago) }
   scope :wants_daily_digest, -> { where(wants_daily_digest: true) }
   scope :daily_digest_due, lambda {
                              wants_daily_digest.where('last_daily_at <= ?', 1.day.ago.end_of_day)
                            }
+
+  counter_culture :user,
+                  column_name: proc { |model| model.network == 'Tezos' ? 'tezos_subscriptions_count' : nil },
+                  column_names: { AlertSubscription.by_network('Tezos') => 'tezos_subscriptions_count' }
 
   def events
     alertable.validator_event_defs.find do |defn|

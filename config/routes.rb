@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
   # HUBBLE
   root to: 'home#index'
+  get '/disclaimer', to: 'home#disclaimer', as: :disclaimer
 
   concern :cosmoslike do
     resources :chains, format: false, constraints: { id: /[^\/]+/ }, only: %i[show] do
@@ -130,10 +131,11 @@ Rails.application.routes.draw do
     end
   end
 
-  namespace :tezos do
+  namespace :tezos, network: 'tezos', chain_id: 'mainnet' do
+    get '/dashboard' => 'dashboard#index', as: 'dashboard'
     resources :searches, only: :create
     resources :bakers, only: :show do
-      resources :subscriptions, only: %i[create destroy], shallow: true
+      resources :subscriptions, only: %i[index create]
     end
     resources :cycles, only: :show do
       resources :baker_events, only: :index
@@ -156,6 +158,12 @@ Rails.application.routes.draw do
       end
       resources :accounts, only: :show
       resources :validators, only: :show
+    end
+  end
+
+  namespace :celo, network: 'celo' do
+    resources :chains, format: false, constraints: { id: /[^\/]+/ }, only: :show do
+      get :search, on: :member
     end
   end
 
@@ -241,6 +249,10 @@ Rails.application.routes.draw do
     end
 
     namespace :coda do
+      resources :chains, except: [:index]
+    end
+
+    namespace :celo do
       resources :chains, except: [:index]
     end
 

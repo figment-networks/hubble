@@ -17,6 +17,10 @@ module Polkadot
     alias last_block_time last_indexed_time
     alias success? success
 
+    def indexed_validators_height
+      last_indexed_era_height - 1
+    end
+
     def self.failed
       new({ 'success' => false })
     end

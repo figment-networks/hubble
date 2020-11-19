@@ -19,14 +19,14 @@ class ValidatorEpochsPerformanceChart {
           {
             cubicInterpolationMode: 'monotone',
             data: data,
-            borderColor: 'white',
+            borderColor: '#4D74FF',
             fill: false
           }
         ]
       },
       options: {
         elements: {
-          point: {radius: 0, backgroundColor: 'white', hitRadius: 10, hoverRadius: 3}
+          point: {radius: 0, backgroundColor: '#4D74FF', hitRadius: 10, hoverRadius: 3}
         },
         layout: {
           padding: {top: 5, bottom: 5, left: 10, right: 5}

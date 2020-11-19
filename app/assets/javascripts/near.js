@@ -27,5 +27,5 @@
 // = require components/near/validator-epochs-performance-chart
 // = require components/near/validator-blocks-heatmap
 //
-// = require components/cosmoslike/small-average-block-time-chart
+// = require components/common/small-average-block-time-chart
 // = require components/cosmoslike/tiny-average-active-validators-chart.js

@@ -1,4 +1,6 @@
 class Cosmos::ChainsController < Cosmoslike::ChainsController
+  layout 'redesign/application'
+
   def broadcast
     tx = { tx: params[:payload] }
 
@@ -12,5 +14,9 @@ class Cosmos::ChainsController < Cosmoslike::ChainsController
     ok = !r.has_key?('code') && !r.has_key?('error')
     Rails.logger.info("\n\nBROADCAST RESULT: #{r.inspect}\n\n")
     render json: { ok: ok }.merge(r)
+  end
+
+  def self.local_prefixes
+    ['cosmoslike/redesign/chains']
   end
 end
