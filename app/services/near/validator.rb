@@ -3,8 +3,6 @@ module Near
     STATUS_ONLINE  = 'online'.freeze
     STATUS_OFFLINE = 'offline'.freeze
 
-    PERIOD_ACTIVE = 1.hour
-
     field :id
     field :account_id
     field :start_height
@@ -16,7 +14,8 @@ module Near
     field :expected_blocks
     field :produced_blocks
     field :slashed
-    field :stake
+    field :active
+    field :stake, type: :integer
     field :efficiency
     field :epoch
     field :created_at
@@ -29,13 +28,14 @@ module Near
 
     def initialize(attrs = {})
       super(attrs)
+
       @account = Account.new(attrs[:account])                    if attrs[:account]
       @epochs = attrs[:epochs].map { |r| ValidatorEpoch.new(r) } if attrs[:epochs]
       @blocks = attrs[:blocks].map { |r| Block.new(r) }          if attrs[:blocks]
     end
 
     def active?
-      @active ||= (Time.current - last_time < PERIOD_ACTIVE)
+      !!@active
     end
 
     def status

@@ -1,13 +1,10 @@
 module Polkadot
   class Client < Common::IndexerClient
-    DEFAULT_TIMEOUT = 5
-    DEFAULT_LATEST_HEIGHT = 0
+    DEFAULT_TIMEOUT = 10
     DEFAULT_DAYS_LIMIT = 89
     DEFAULT_HOURS_LIMIT = 24
     DEFAULT_SESSIONS_LIMIT = 1
     DEFAULT_ERAS_LIMIT = 1
-    SHORT_EXPIRY_TIME = 15.minutes
-    MEDIUM_EXPIRY_TIME = 1.hour
 
     def status
       @status ||= Polkadot::Status.new(get('/status'))
@@ -45,24 +42,16 @@ module Polkadot
 
     def validators_daily_stake(days_limit = DEFAULT_DAYS_LIMIT)
       Rails.cache.fetch([self.class.name, 'validators_daily_stake', days_limit].join('-'), expires_in: SHORT_EXPIRY_TIME) do
-        get('/validators_summary', interval: 'day', period: "#{days_limit} days").map do |summary|
-          Polkadot::ValidatorsSummary.new(
-            summary.merge('validators_count' => validators_count)
-          )
-        end
+        validators_summary(params: { interval: 'day', period: "#{days_limit} days" }, resource_class: Polkadot::ValidatorsSummary)
       end
     end
 
     def validator_daily_stake(address, days_limit = DEFAULT_DAYS_LIMIT)
-      get('/validators_summary', stash_account: address, interval: 'day', period: "#{days_limit} days").map do |summary|
-        Polkadot::ValidatorSummary.new(summary)
-      end
+      validators_summary(params: { stash_account: address, interval: 'day', period: "#{days_limit} days" }, resource_class: Polkadot::ValidatorSummary)
     end
 
     def validator_hourly_uptime(address, hours_limit = DEFAULT_HOURS_LIMIT)
-      get('/validators_summary', stash_account: address, interval: 'hour', period: "#{hours_limit} hours").map do |summary|
-        Polkadot::ValidatorSummary.new(summary)
-      end
+      validators_summary(params: { stash_account: address, interval: 'hour', period: "#{hours_limit} hours" }, resource_class: Polkadot::ValidatorSummary)
     end
 
     def validators_uptime(height = DEFAULT_LATEST_HEIGHT)
@@ -87,8 +76,19 @@ module Polkadot
 
     def validators_count
       Rails.cache.fetch([self.class.name, 'validators_count'].join('-'), expires_in: MEDIUM_EXPIRY_TIME) do
-        validators_uptime(status.last_indexed_era_height).count
+        validators_uptime(status.indexed_validators_height).count
       end
+    end
+
+    private
+
+    def validators_summary(params:, resource_class: Polkadot::ValidatorSummary)
+      validators_summary = get('/validators_summary', params)
+      all_summaries = validators_summary['items'].map do |summary|
+        resource_class.new(summary.merge('validators_count' => validators_count))
+      end
+      last_indexed_era_time = Time.zone.parse(validators_summary['last_indexed_era']['time'])
+      all_summaries.select { |summary| summary.indexing_completed?(last_indexed_era_time) }
     end
   end
 end

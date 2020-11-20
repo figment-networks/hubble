@@ -16,7 +16,8 @@ module ApplicationHelper
       Near: {},
       Oasis: {},
       Polkadot: {},
-      Coda: {}
+      Coda: {},
+      Celo: {}
     }
 
     if @chain.try(:primary_token)

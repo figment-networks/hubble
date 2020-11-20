@@ -25,26 +25,13 @@
           </form>
           <li class='sep'>|</li>
 
-          <% grouped_chains = [
-            *Cosmos::Chain.alive.has_synced.to_a,
-            *Terra::Chain.alive.has_synced.to_a,
-            *Iris::Chain.alive.has_synced.to_a,
-            *Kava::Chain.alive.has_synced.to_a,
-            *Emoney::Chain.alive.has_synced.to_a,
-            *Livepeer::Chain.has_synced.to_a,
-            *Oasis::Chain.enabled.to_a,
-            *Tezos::Chain.enabled.to_a,
-            *Polkadot::Chain.enabled.to_a,
-            *Coda::Chain.enabled.to_a
-          ].group_by(&:network_name) -%>
-
-          <% if !@no_chain_select && grouped_chains.any? -%>
+          <% if !@no_chain_select && grouped_visible_chains.any? -%>
             <li class='nav-item dropdown top-nav-chain-select'>
               <a class='nav-link dropdown-toggle' href='#' id='chain-menu-link' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
                 <%= @chain.name %>
               </a>
               <div class='dropdown-menu' aria-labelledby='chain-menu-link'>
-                <% grouped_chains.each do |network, chains| -%>
+                <% grouped_visible_chains.each do |network, chains| -%>
                   <div class='dropdown-label'><%= network %></div>
                   <% chains.each do |chain| -%>
                     <% path = controller_name == 'dashboard' ? namespaced_path( 'dashboard', chain: chain ) : namespaced_path( chain: chain ) -%>

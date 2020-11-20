@@ -18,6 +18,7 @@ describe 'polkadot validators' do
     expect(page).to have_content('153RWxqZyAWBM2brLkBEkYmyVyf5aMqGHewbvG3jqENyCKyC')
     expect(page).to have_content('Total Stake History')
     expect(page).to have_content('Uptime History')
-    expect(page).to have_content('5,380,001')
+    expect(page).to have_content('1080')
+    expect(page).to have_content('August 22, 2020 at 15:36 UTC')
   end
 end

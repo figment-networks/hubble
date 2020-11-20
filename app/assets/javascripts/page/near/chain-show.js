@@ -4,6 +4,6 @@ $(document).ready(function() {
   }
 
   new App.Near.ValidatorTable($('.validator-table')).render();
-  new App.Cosmoslike.SmallAverageBlockTimeChart($('.average-block-time-chart')).render();
+  new App.Common.SmallAverageBlockTimeChart($('.average-block-time-chart')).render();
   new App.Cosmoslike.TinyAverageActiveValidatorsChart($('.average-active-validators-chart')).render();
 });

@@ -1,0 +1,16 @@
+<div class="data-block">
+  <h3 class='data-block__title'>Active validators</h3>
+  <div class='data-block__value'>
+    <%= @validators.select(&:active).count %>
+    <span class="data-block__label">active /</span>
+    <%= @validators.size %>
+    <span class="data-block__label"> total</span>
+  </div>
+  <div class='tiny-average-active-validators-chart-container'>
+    <canvas class='average-active-validators-chart'></canvas>
+  </div>
+  <script>
+    App.config.currentValidatorFilter = "<%= validators.count(&:active?) > 0 ? "_active_" : "_all_" %>";
+    App.seed.AVERAGE_ACTIVE_VALIDATORS = <%= validator_intervals.to_json.html_safe %>
+  </script>
+</div>

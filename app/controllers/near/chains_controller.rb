@@ -2,6 +2,7 @@ class Near::ChainsController < Near::BaseController
   def show
     @status              = client.status
     @validators          = client.validators
+    @staked_amount       = @validators.sum(&:stake)
     @block               = client.current_block
     @block_times         = client.block_times
     @block_intervals     = serialized_block_intervals

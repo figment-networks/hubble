@@ -11,7 +11,8 @@ module HomeHelper
       *Oasis::Chain.enabled.primary,
       *Near::Chain.enabled.primary,
       *Coda::Chain.enabled.primary,
-      *Polkadot::Chain.enabled.primary
+      *Polkadot::Chain.enabled.primary,
+      *Celo::Chain.enabled.primary
     ]
   end
 
@@ -26,14 +27,15 @@ module HomeHelper
     'Coda' => 'coda.png',
     'Cosmos' => 'cosmos.svg',
     'e-Money' => 'e-money.png',
-    'IRIS' => 'iris.png',
+    'IRIS' => 'iris.svg',
     'Kava' => 'kava.svg',
     'Livepeer' => 'livepeer.svg',
     'NEAR' => 'near.svg',
-    'Oasis' => 'oasis.png',
+    'Oasis' => 'oasis.svg',
     'Polkadot' => 'polkadot.png',
     'Terra' => 'terra.svg',
-    'Tezos' => 'tezos.png'
+    'Tezos' => 'tezos.png',
+    'Celo' => 'celo.svg'
   }.freeze
 
   def network_has_image?(network_name)

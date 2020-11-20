@@ -1,4 +1,6 @@
 class Near::BaseController < Indexer::BaseController
+  layout 'redesign/application'
+
   private
 
   def page_title(value)

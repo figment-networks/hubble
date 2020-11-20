@@ -31,7 +31,7 @@
               <p class="validator-info__value technical"><%= @validator.owner %></p>
             </li>
           <% end -%>
-          
+
           <% if @validator.has_info? -%>
           <li class="validator-info__item">
             <p class="text-label validator-info__label">Address</p>
@@ -77,7 +77,10 @@
         <% if true || @chain.governance_params_synced? -%>
           <%= render partial: 'governance' %>
         <% end -%>
-        <%= render partial: 'delegations' %>
+        <!-- UNLESS STATEMENT TO BE REMOVED WHEN DELEGATIONS INDEXING FIXED -->
+        <% unless @chain.network_name == 'Cosmos' %>
+          <%= render partial: 'delegations' %>
+        <% end %>
       </div>
 
       <div class='col-md-12 col-lg-6'>

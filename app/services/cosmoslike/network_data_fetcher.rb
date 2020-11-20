@@ -41,7 +41,7 @@ class Cosmoslike::NetworkDataFetcher
   end
 
   def lcd_data(data, response)
-    if response =~ /[A-Za-z]+/ || response.nil?
+    if response =~ /[A-Za-z]+/ || response.nil? || response.is_a?(Hash)
       raise FetchError, "#{data} not found for #{chain.ext_id}"
     else
       response.to_f

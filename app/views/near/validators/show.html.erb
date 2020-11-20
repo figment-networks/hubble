@@ -1,20 +1,43 @@
 <% content_for :body_class, "validator-show" %>
 
-<%= render "chain_header", summary_link: true %>
+<div class='validator-header'>
+  <div class='container'>
+    <h2 class='mb-4 validator-header__title mr-0'>
+      <%= @validator.account_id %>
+    </h2>
+  </div>
+</div>
+
 <%= render_flash_messages %>
 
-<h2 class='mb-3'>
-  <label class='text-muted'>Validator</label>
-  <%= @validator.account_id %>
-</h2>
-
-<div class='row info-cards'>
-  <div class='col-12 col-md-8 order-1 order-md-0'>
-    <%= render "epochs", epochs: @validator.epochs, performance_chart: @performance_chart %>
-  </div>
-  <div class='col-12 col-md-4 order-0 order-md-1 info-cards'>
-    <%= render "staking", account: @validator.account %>
-    <%= render "lifetime", validator: @validator %>
-    <%= render "blocks", blocks: @validator.blocks, account_id: @validator.account_id %>
+<div class='content'>
+  <div class='container'>
+    <div>
+      <div class="row">
+        <div class="col-md-12 col-lg-6 mb-5 mb-lg-0">
+          <%= render "staking", account: @validator.account %>
+        </div>
+        <div class="col-md-12 col-lg-6">
+          <%= render "epoch_perfomance_chart", performance_chart: @performance_chart %>
+        </div>
+      </div>
+        <div class="row">
+          <div class="col-md-12 col-lg-6">
+            <div class="data-block"></div>
+            <div class="data-block">
+              <%= render "lifetime", validator: @validator %>
+            </div>
+          </div>
+          <div class="col-md-12 col-lg-6">
+            <div class="data-block"></div>
+            <div class="data-block">
+              <%= render "blocks", blocks: @validator.blocks, account_id: @validator.account_id %>
+            </div>
+          </div>
+        </div>
+      <div class='mt-2'>
+        <%= render "epochs", epochs: @validator.epochs %>
+      </div>
+    </div>
   </div>
 </div>

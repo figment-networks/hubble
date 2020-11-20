@@ -26,10 +26,6 @@ class Admin::Near::ChainsController < Admin::BaseChainsController
     @chain = namespace.new(request.get? ? {} : chain_params)
   end
 
-  def chain_params
-    params.require(:near_chain).permit(:name, :slug, :api_url, :testnet, :disabled)
-  end
-
   # TODO: Should be refactored (and replaced in other chain controllers)
   def chain_updates
     updates = params.key?(:near_chain) ? chain_params : {}

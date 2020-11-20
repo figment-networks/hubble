@@ -17,8 +17,7 @@ module Cosmoslike::Governance::Proposallike
   end
 
   def valid_proposal?
-    !in_deposit_period? ||
-      total_deposits_for_denom(chain.primary_token) >= chain.governance_params.min_deposit_amount
+    total_deposits_for_denom(chain.primary_token).to_f >= (chain.governance_params.min_deposit_amount.to_f * 0.10)
   end
 
   def total_deposits

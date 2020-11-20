@@ -6,6 +6,6 @@ class TezosMailer < ApplicationMailer
     @cycle_number = params[:cycle_number]
     @cycle = Indexer::Cycle.retrieve(@cycle_number)
 
-    mail(to: @user.email, subject: "BakerHub: Cycle Report for Tezos Cycle #{@cycle_number}")
+    mail(to: @user.email, subject: "Tezos Hubble: Cycle Report for Tezos Cycle #{@cycle_number}")
   end
 end

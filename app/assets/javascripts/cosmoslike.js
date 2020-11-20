@@ -32,6 +32,7 @@
 // = require page/cosmoslike/governance-proposal
 //
 // = require components/common/auto-alert-hide
+// = require components/common/small-average-block-time-chart
 //
 // = require components/cosmoslike/transactions-table
 // = require components/cosmoslike/gov-proposals-table
@@ -39,7 +40,6 @@
 // = require components/cosmoslike/validator-table
 // = require components/cosmoslike/validator-voting-power-history
 // = require components/cosmoslike/validator-uptime-history
-// = require components/cosmoslike/small-average-block-time-chart
 // = require components/cosmoslike/small-average-voting-power-chart
 // = require components/cosmoslike/tiny-average-active-validators-chart
 // = require components/cosmoslike/ledger

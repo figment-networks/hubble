@@ -24,7 +24,7 @@
       <div class='card'>
         <h5 class='card-header'>Balance</h5>
         <div class='card-body'>
-            <div><%= oasis_format_amount( @account.escrow_active_balance) %></div>
+            <div><%= oasis_format_amount( @account.total_balance) %></div>
         </div>
       </div>
 
@@ -32,10 +32,13 @@
         <h5 class='card-header'>Delegation</h5>
         <div class='card-body'>
           <label class='text-muted mb-0 mt-0'>Bonded</label>
-          <%= oasis_format_amount( @account.escrow_active_balance) %>
+          <%= oasis_format_amount( @account.bonded_balance) %>
 
           <label class='text-muted mb-0 mt-3'>Unbonding</label>
-          <%= oasis_format_amount( @account.escrow_debonding_balance) %>
+          <%= oasis_format_amount( @account.debonding_balance) %>
+
+          <label class='text-muted mb-0 mt-3'>Unbonded</label>
+          <%= oasis_format_amount( @account.liquid_balance) %>
         </div>
       </div>
     </div>

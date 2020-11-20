@@ -1,21 +1,30 @@
-<div class="card">
-  <h5 class="card-header">Lifetime</h5>
-  <div class="card-body">
-    <label>First Seen</label>
-    <div class="stat-value">
-      <%= validator.start_time.try(:strftime, "%B %d, %Y at %H:%M %Z") || "N/A" %>
+<div class="data-block">
+  <h3 class="data-block__title">Lifetime</h3>
+  <div class="row">  
+    <div class="col-md-12 col-lg-6 mb-3">
+      <label class="text-label m-0">First Seen</label>
+      <div class="stat-value paragraph">
+        <%= validator.start_time.try(:strftime, "%B %d, %Y at %H:%M %Z") || "N/A" %>
+      </div>
     </div>
-    <label>Last Seen</label>
-    <div class="stat-value">
-      <%= validator.last_time.try(:strftime, "%B %d, %Y at %H:%M %Z") || "N/A" %>
+    <div class="col-md-12 col-lg-6 mb-3">
+      <label class="text-label m-0">Last Seen</label>
+      <div class="stat-value paragraph">
+        <%= validator.last_time.try(:strftime, "%B %d, %Y at %H:%M %Z") || "N/A" %>
+      </div>
     </div>
-    <label>Total Produced Blocks</label>
-    <div class="stat-value">
-      <%= validator.produced_blocks %>
+    <div class="col-md-12 col-lg-6">
+      <label class="text-label m-0">Total Produced Blocks</label>
+      <div class="stat-value paragraph">
+        <%= validator.produced_blocks %>
+      </div>
     </div>
-    <label>Overall Efficiency</label>
-    <div class="stat-value">
-      <%= validator.efficiency.round(2) %>%
+    <div class="col-md-12 col-lg-6">
+      <label class="text-label m-0">Overall Efficiency</label>
+      <div class="stat-value paragraph">
+        <%= validator.efficiency.round(2) %>%
+      </div>
     </div>
   </div>
+
 </div>

@@ -15,7 +15,7 @@ describe 'oasis reports' do
     visit oasis_chain_report_path(chain, account_id)
 
     expect(page).to have_content('Oasis')
-    expect(page).to have_content('Figment Networks')
+    expect(page).to have_content('Figment Inc')
     expect(page).to have_content('Export')
     expect(page).to have_content('New Report')
     expect(page).to have_content('Reward')

@@ -14,16 +14,6 @@ feature 'baker details' do
     expect(page).to have_content(baker_id)
 
     click_link('Subscribe')
-    expect(page.current_path).to eq('/login')
-  end
-
-  scenario 'sign in and subscribe to baker', :vcr do
-    log_in(user)
-
-    visit_baker_page(baker_id)
-    click_link('Subscribe')
-    fill_in 'telegram_account[username]', with: 'username'
-    click_button 'Save'
-    expect(user.subscriptions[0].baker_id).to eq(baker_id)
+    expect(page.current_path).to eq('/users/new')
   end
 end

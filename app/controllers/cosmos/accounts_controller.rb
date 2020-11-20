@@ -2,6 +2,12 @@ class Cosmos::AccountsController < Cosmoslike::AccountsController
   # Cosmoslike::AccountsController temporarily overrideen due to
   # delegations indexing issue - this method should just be
   # deleted once that problem is corrected.
+  layout 'redesign/application'
+
+  def self.controller_path
+    'cosmoslike/redesign/accounts'
+  end
+
   def show
     respond_to do |format|
       format.html do

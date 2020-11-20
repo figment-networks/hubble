@@ -10,7 +10,7 @@ describe Polkadot::BlocksController do
     let(:chain) { create(:polkadot_chain) }
     let(:client) { double(block: block, status: status, validators: [{ validator: 'validator data' }]) }
     let(:block) { double(height: 10, transactions: [{ transaction: 'transaction data' }]) }
-    let(:status) { double(last_indexed_height: 200, last_indexed_session_height: 200, last_indexed_era_height: 200) }
+    let(:status) { double(last_indexed_height: 200, last_indexed_session_height: 200, indexed_validators_height: 200) }
 
     context 'json format' do
       it 'returns a json response' do

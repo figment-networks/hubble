@@ -128,6 +128,9 @@ GEM
     chunky_png (1.3.10)
     coderay (1.1.2)
     concurrent-ruby (1.1.7)
+    counter_culture (2.6.2)
+      activerecord (>= 4.2)
+      activesupport (>= 4.2)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     crass (1.0.6)
@@ -240,7 +243,7 @@ GEM
     money-tree (0.10.0)
       ffi
     msgpack (1.2.4)
-    multi_json (1.13.1)
+    multi_json (1.15.0)
     multipart-post (2.1.1)
     naught (1.1.0)
     nenv (0.3.0)
@@ -318,6 +321,7 @@ GEM
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
     redcarpet (3.4.0)
+    redis (4.2.3)
     regexp_parser (1.7.1)
     request_store (1.4.1)
       rack (>= 1.4)
@@ -328,8 +332,7 @@ GEM
       netrc (~> 0.8)
     rexml (3.2.4)
     rinku (2.0.5)
-    rollbar (2.18.0)
-      multi_json
+    rollbar (3.0.1)
     rotp (3.3.1)
     rqrcode (0.10.1)
       chunky_png (~> 1.0)
@@ -406,6 +409,10 @@ GEM
     sshkit (1.16.1)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
+    suo (0.3.4)
+      dalli
+      msgpack
+      redis
     thor (1.0.1)
     thread_safe (0.3.6)
     tilt (2.0.8)
@@ -483,6 +490,7 @@ DEPENDENCIES
   capistrano-slackify (~> 2.10.3)
   capybara (~> 3.33)
   chartkick
+  counter_culture (~> 2.0)
   cryptocompare
   curb
   dalli
@@ -522,6 +530,7 @@ DEPENDENCIES
   spring
   spring-commands-rspec
   sqlite3
+  suo
   twitter (~> 6.1.0)
   typhoeus
   unicorn

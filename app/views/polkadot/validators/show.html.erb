@@ -68,7 +68,7 @@
     <% end %>
 
     <%= render layout: 'shared/sidebar_card', locals: { header: 'Commission' } do %>
-      <%= format_amount(@validator.commission, @chain, denom: @chain.class::DEFAULT_TOKEN_REMOTE) %>
+      <%= rounded_percentage(@validator.factored_commission) %> %
     <% end %>
 
     <%= render layout: 'shared/sidebar_card', locals: { header: 'Reward points' } do %>

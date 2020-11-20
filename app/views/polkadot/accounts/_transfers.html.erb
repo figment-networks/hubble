@@ -1,0 +1,50 @@
+<div class='transactions mb-5'>
+  <div class='transactions-table-header'>
+    <h4>Transfers</h4>
+  </div>
+  <div class='transactions-table'>
+    <table data-empty='<%= @account_details.transfers.blank? %>'>
+      <thead>
+      <tr>
+        <th>Hash</th>
+        <th>Participant</th>
+        <th>Amount</th>
+        <th>Kind</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% transfers = @account_details.transfers %>
+      <% if transfers.nil? %>
+        <tr>
+          <td class='p-3 text-center' colspan='5'>Unable to retrieve transfer data.</td>
+        </tr>
+      <% elsif transfers.empty? %>
+        <tr>
+          <td class='p-3 text-center' colspan='5'>No transfers.</td>
+        </tr>
+      <% else %>
+        <% transfers.each do |transfer| %>
+          <tr>
+            <td>
+              <%= link_to transfer.transaction_hash.truncate(20), namespaced_path('block_transaction', transfer.height, transfer.transaction_hash) %>
+            </td>
+            <td>
+              <%= link_to transfer.participant.truncate(20), namespaced_path('account', transfer.participant) %>
+            </td>
+            <td data-order='<%= transfer.amount %>'>
+              <%= format_amount(transfer.amount, @chain, denom: @chain.class::DEFAULT_TOKEN_REMOTE) %>
+            </td>
+            <td>
+              <% if transfer.kind == 'out' -%>
+                <span class='badge badge-lg badge-primary'>OUT</span>
+              <% else -%>
+                <span class='badge badge-lg badge-success'><%= transfer.kind.upcase %></span>
+              <% end -%>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

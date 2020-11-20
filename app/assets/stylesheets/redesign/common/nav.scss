@@ -7,6 +7,7 @@
   }
   .figment-logo__text {
     color: $primary;
+    white-space: nowrap;
     font-size: 16px;
     letter-spacing: 0;
     line-height: 20px;
@@ -15,10 +16,14 @@
   .figment-logo {
     display: none;
     @include media-breakpoint-up(md) {
-      display: inline-block;
+      display: flex;
     }
   }
   .navbar-nav {
+    @include media-breakpoint-up(md) {
+      flex-direction: row;
+    }
+
     li.sep {
       display: none;
       @include media-breakpoint-up(md) {
@@ -31,11 +36,35 @@
     }
   }
 }
+.navbar__logo {
+  width: 146px;
+  height: 33px;
+}
+.navbar__figment-logo {
+  height: 21px;
+}
+.navbar__container {
+  @include media-breakpoint-up(md) {
+    align-items: flex-end !important;
+  }
+}
+.navbar-light .navbar-nav .nav-link {
+  color: $primary;
+}
+.homepage .navbar, .static .navbar {
+  padding: 77px 1rem 50px;
+}
+.homepage .navbar-collapse, .static .navbar-collapse {
+  flex-grow: initial;
+}
 .navbar__left,
 .navbar__right {
   display: flex;
   flex-grow: 1;
-  min-width: 20px;
+  width: 50%;
+}
+.navbar__right {
+  justify-content: flex-end;
 }
 .navbar-light .navbar-toggler {
   padding: 0;
@@ -53,5 +82,59 @@
   @include media-breakpoint-up(lg) {
     max-width: 98px;
     width: 100%;
+  }
+}
+.collapsing {
+  transition: none !important;
+}
+.collapse.show {
+  @include media-breakpoint-down(sm) {
+    display: flex;
+  }
+}
+.navbar-collapse {
+  @include media-breakpoint-down(sm) {
+    .navbar__overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 7;
+    }
+    .navbar__body {
+      position: fixed;
+      top: 0;
+      left: 0;
+      align-items: flex-start;
+      justify-content: center;
+      width: 190px;
+      height: 100%;
+      padding: 30px;
+      background: #fff;
+      z-index: 10;
+      box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+    }
+
+    .navbar-nav {
+      margin: 0 !important;
+      align-items: center;
+    }
+
+    .nav-item {
+      margin-bottom: 24px;
+    }
+
+    .navbar-toggler {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      width: auto;
+    }
+
+    .navbar-toggler-icon {
+      background: image-url('icons/close.svg') center no-repeat;
+      background-size: contain;
+    }
   }
 }

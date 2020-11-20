@@ -1,5 +1,12 @@
 <header class='network-chain-header pt-5'>
   <div class="container">
+
+    <% if show_datahub_promotion?(@chain) %>
+      <div class="mb-5">
+        <figment-promo text="Connect to <%= @chain.network_name %> with Datahub" to="https://figment.io/datahub/<%= @chain.network_name.downcase %>"/>
+      </div>
+    <% end %>
+
     <div class="d-flex align-items-center flex-wrap">
       <% if network_has_image?(@chain.network_name) -%>
         <%= link_to namespaced_path(chain: @chain), class: 'chains-list__card-link' do %>
@@ -10,13 +17,13 @@
       <% end -%>
       <div class="network-chain-header-arrow mx-3">→</div>
 
-      <% if !@no_chain_select && alive_with_synced_chains.any? %>
+      <% if !@no_chain_select && grouped_visible_chains.any? %>
         <div class='dropdown chain-select'>
           <button class='dropdown-toggle' id='chain-menu-link' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
             <%= @chain.name %>
           </button>
           <div class='dropdown-menu' aria-labelledby='chain-menu-link'>
-            <% alive_with_synced_chains.group_by(&:network_name).each do |network, chains| -%>
+            <% grouped_visible_chains.each do |network, chains| -%>
               <div class='dropdown-label'><%= network %></div>
               <% chains.each do |chain| -%>
                 <% path = controller_name == 'dashboard' ? namespaced_path( 'dashboard', chain: chain ) : namespaced_path( chain: chain ) -%>

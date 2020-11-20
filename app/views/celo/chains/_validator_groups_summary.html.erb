@@ -1,0 +1,14 @@
+<div class='card'>
+  <h5 class='card-header'>Total Shares</h5>
+  <div class='card-body'>
+    <label>Past <%= validator_groups_summary.count %> days:</label>
+    <div class='small-validator-groups-summary-chart-container'>
+      <canvas
+        class='validator-groups-summary-chart'
+        data-chart="<%= validator_groups_summary.to_json %>"
+        data-token="<%= chain.class::DEFAULT_TOKEN_DISPLAY %>"
+      >
+      </canvas>
+    </div>
+  </div>
+</div>

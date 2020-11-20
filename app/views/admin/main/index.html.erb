@@ -102,7 +102,7 @@
           <a class='btn btn-sm btn-light' href='<%= new_admin_polkadot_chain_path %>'>+ new</a>
         </div>
       </h5>
-      <div class='card-body p-0'><%= render '/admin/polkadot/chains/quick_info', chains: Polkadot::Chain.all %></div>
+      <div class='card-body p-0'><%= render '/admin/indexer/chains/quick_info', chains: Polkadot::Chain.all %></div>
     </div>
 
     <div class='card'>
@@ -123,6 +123,16 @@
         </div>
       </h5>
       <div class='card-body p-0'><%= render '/admin/coda/chains/quick_info', chains: Coda::Chain.all %></div>
+    </div>
+
+    <div class='card'>
+      <h5 class='card-header header mb-0'>
+        Celo
+        <div class='buttons text-right'>
+          <a class='btn btn-sm btn-light' href='<%= new_admin_celo_chain_path %>'>+ new</a>
+        </div>
+      </h5>
+      <div class='card-body p-0'><%= render '/admin/indexer/chains/quick_info', chains: Celo::Chain.all %></div>
     </div>
 
   </div>

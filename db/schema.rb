@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_01_123419) do
+ActiveRecord::Schema.define(version: 2020_11_02_130921) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 2020_10_01_123419) do
     t.datetime "updated_at", null: false
     t.integer "instant_count", default: 0
     t.integer "daily_count", default: 0
+    t.string "network"
     t.index ["alertable_type", "alertable_id"], name: "index_alert_subscriptions_on_alertable_type_and_alertable_id"
     t.index ["user_id", "alertable_type", "alertable_id"], name: "index_alerts_u_a"
     t.index ["user_id"], name: "index_alert_subscriptions_on_user_id"
@@ -50,6 +51,20 @@ ActiveRecord::Schema.define(version: 2020_10_01_123419) do
     t.bigint "chain_id"
     t.string "address"
     t.index ["chain_type", "chain_id"], name: "index_alertable_addresses_on_chain_type_and_chain_id"
+  end
+
+  create_table "celo_chains", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "slug", null: false
+    t.string "api_url", null: false
+    t.boolean "testnet", null: false
+    t.boolean "primary", default: false, null: false
+    t.boolean "disabled", default: true
+    t.boolean "dead", default: false
+    t.integer "position"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["slug"], name: "index_celo_chains_on_slug"
   end
 
   create_table "coda_chains", force: :cascade do |t|
@@ -1204,7 +1219,7 @@ ActiveRecord::Schema.define(version: 2020_10_01_123419) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "verification_token"
-    t.integer "subscriptions_count", default: 0
+    t.integer "tezos_subscriptions_count", default: 0, null: false
   end
 
   add_foreign_key "cosmos_blocks", "cosmos_chains", column: "chain_id"

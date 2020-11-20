@@ -2,6 +2,13 @@ class Cosmos::ValidatorsController < Cosmoslike::ValidatorsController
   # Cosmoslike::ValidatorssController temporarily overrideen due to
   # delegations indexing issue - this method should just be
   # deleted once that problem is corrected.
+
+  layout 'redesign/application'
+
+  def self.controller_path
+    'cosmoslike/redesign/validators'
+  end
+
   def show
     @validator = @chain.validators.find_by(address: params[:id])
     raise ActiveRecord::RecordNotFound unless @validator

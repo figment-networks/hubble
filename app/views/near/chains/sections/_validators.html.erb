@@ -1,45 +1,50 @@
-<section class="validators">
-  <div class='validator-table-header'>
-    <h4>
-      Validators
-      <small>&nbsp;&mdash; <%= @validators.size %> total&nbsp;</small>
-      <div class='tiny-average-active-validators-chart-container'>
-        <canvas class='average-active-validators-chart'></canvas>
-      </div>
-      <script>
-        App.config.currentValidatorFilter = "<%= validators.count(&:active?) > 0 ? "_active_" : "_all_" %>";
-        App.seed.AVERAGE_ACTIVE_VALIDATORS = <%= validator_intervals.to_json.html_safe %>
-      </script>
-    </h4>
+<section class="data-table validators">
+  <div class='validator-table-header justify-content-between py-1 flex-wrap'>
+    <div class="d-flex align-items-center flex-grow-1 py-2">
+      <h4>
+        Validators
+      </h4>
+      <input type='text' class='form-control form-control-sm validator-search' placeholder='filter validators...'>
+    </div>
 
     <div class='controls'>
-      <input type='text' class='form-control form-control-sm validator-search' placeholder='filter validators...'>
-      <a tabindex=0 class='btn btn-sm btn-outline-light validator-table-settings-target'><span class='fas fa-cog'></span></a>
-      <div class='validator-table-settings d-none'>
-        <div class='btn-group' role='group' aria-label='Validator table filter'>
-          <button type='button' data-target='_all_' class='btn btn-outline-primary'>All</button>
-          <button type='button' data-target='_active_' class='btn btn-outline-primary'>Active</button>
-          <button type='button' data-target='_inactive_' class='btn btn-outline-primary'>Inactive</button>
+      <div class='d-flex align-items-center py-2'>
+        <div class="custom-control custom-radio mr-4">
+          <input class="custom-control-input" type="radio" name="validator-filter" id="filterAll" value='_all_' checked>
+          <label class="custom-control-label" for="filterAll">All</label>
+        </div>    
+        <div class="custom-control custom-radio mr-4">
+          <input class="custom-control-input" type="radio" name="validator-filter" id="filterActive" value='_active_'>
+          <label class="custom-control-label" for="filterActive">
+            Active
+          </label>
         </div>
+        <div class="custom-control custom-radio">
+          <input class="custom-control-input" type="radio" name="validator-filter" id="filterInactive" value='_inactive_'>
+          <label class="custom-control-label" for="filterInactive">
+            Inactive
+          </label>
+        </div>  
       </div>
     </div>
+
   </div>
 
   <div class='validator-table'>
-    <table class='table-striped'>
+    <table>
       <thead>
         <tr>
           <th>Address/Name</th>
-          <th>Expected Blocks</th>
-          <th>Produced Blocks</th>
-          <th>Efficiency</th>
+          <th width="20%">Blocks</th>
+          <th width="15%">Efficiency</th>
+          <th>Stake</th>
           <th class='d-none'></th>
         </tr>
       </thead>
       <tbody>
         <% @validators.each do |v| %>
           <tr>
-            <td data-order="<%= v.account_id %>">
+            <td class='col-address' data-order="<%= v.account_id %>">
               <span
                 class='fa fa-circle status-icon <%= v.status %>'
                 data-toggle='tooltip'
@@ -50,14 +55,14 @@
                 <strong><%= v.account_id.truncate(30) %></strong>
               </a>
             </td>
-            <td data-order='<%= v.expected_blocks %>'>
-              <%= v.expected_blocks %>
-            </td>
             <td data-order='<%= v.produced_blocks %>'>
-              <%= v.produced_blocks %>
+              <%= v.produced_blocks %>/<%= v.expected_blocks %>
             </td>
             <td data-order='<%= v.efficiency * 100 %>' class='technical'>
               <%= v.efficiency.round(2) %>%
+            </td>
+            <td data-order='<%= v.stake %>'>
+              <%= format_amount(v.stake, denom: "near") %>
             </td>
             <td class='d-none'>
               _all_ <%= v.active? ? '_active_' : '_inactive_' %>
@@ -68,4 +73,5 @@
       </tbody>
     </table>
   </div>
+
 </section>

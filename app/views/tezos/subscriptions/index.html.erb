@@ -1,0 +1,60 @@
+<% content_for :body_class, 'subscription-index' %>
+
+<%= form_for @subscription, url: tezos_baker_subscriptions_path, html: { method: 'POST', class: 'subscription-form' } do |f| -%>
+  <h1 class='header'>
+    Subscribe to Events
+    <div class='d-flex align-items-center'>
+      <%= link_to 'back', tezos_baker_path(id: @validator.id), class: 'btn btn-sm btn-outline-secondary' %>
+      <%= f.submit 'save subscription', class: 'btn btn btn-primary ml-2' %>
+    </div>
+  </h1>
+
+  <h2>
+    <label class='text-muted'>Baker</label>
+    <span class='technical'><%= @validator.short_name %></span>
+  </h2>
+
+  <% if flash[:notice] %>
+    <div class='alert alert-primary auto-alert-hide'>
+      <%= flash[:notice].html_safe %>
+    </div>
+  <% end -%>
+  <% if @subscription && @subscription.errors.any? -%>
+    <div class='alert alert-warning'>
+      <% @subscription.errors.full_messages.each do |message| -%>
+        <div><%= message %></div>
+      <% end -%>
+    </div>
+  <% end -%>
+
+  <div class='row event-kinds-container mb-3 mt-4'>
+    <% @chain.event_kinds.in_groups_of(2, false).each do |event_kinds| -%>
+      <div class='col-12 col-md-6'>
+        <% event_kinds.each do |event_kind| -%>
+          <div class='card'>
+            <h5 class='card-header'>
+              <div class='card-header-parts'>
+                <div><%= event_kind_to_name(event_kind) %></div>
+                <div class='btn-group btn-group-toggle' data-toggle='buttons'>
+                  <% selected = @subscription && @subscription.subscribes_to_kind?(event_kind) -%>
+                  <label class='btn btn-outline-light btn-sm <%= 'active' unless selected %>'>
+                    <input type='radio' name='alert_subscription[event_kinds][<%= event_kind %>]' <%= 'checked=true' unless selected %> value='off' autocomplete='off'> Off
+                  </label>
+                  <label class='btn btn-outline-light btn-sm <%= 'active' if selected %>'>
+                    <input type='radio' name='alert_subscription[event_kinds][<%= event_kind %>]' <%= 'checked=true' if selected %> value='on' autocomplete='off'> On
+                  </label>
+                </div>
+              </div>
+            </h5>
+            <div class='card-body'>
+              <div class='info'>
+                You will receive an email up to once every <%= time_ago_in_words(ALERT_MINIMUM_TIMEOUT.ago) %>
+                about this type of event.
+              </div>
+            </div>
+          </div>
+        <% end -%>
+      </div>
+    <% end -%>
+  </div>
+<% end -%>

@@ -1,0 +1,9 @@
+<div class='data-block'>
+  <h3 class="data-block__title">Uptime history</h3>
+  <div class='validator-epochs-performance-chart-container'>
+    <canvas class='validator-epochs-performance-chart'></canvas>
+  </div>
+</div>
+<script>
+  App.seed.VALIDATOR_EPOCHS_PERFORMANCE_CHART = <%= performance_chart.to_json.html_safe %>;
+</script>

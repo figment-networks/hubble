@@ -6,12 +6,4 @@ namespace :tezos do
       end
     end
   end
-
-  task detect_events: :environment do
-    Tezos::Chain.enabled.each do |chain|
-      TaskLock.with_lock!(:alerts, "tezos-#{chain.slug}") do
-        Tezos::EventDetectionService.new.detect_events!(chain)
-      end
-    end
-  end
 end

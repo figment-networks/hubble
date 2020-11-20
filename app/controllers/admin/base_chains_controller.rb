@@ -42,6 +42,11 @@ class Admin::BaseChainsController < Admin::BaseController
     end
   end
 
+  def show
+    @status = @chain.status
+    flash[:error] = "Can't fetch service status" unless @status.success?
+  end
+
   def ensure_single_primary_chain
     chain_class.where.not(id: @chain.id).update_all(primary: false)
   end
@@ -55,6 +60,6 @@ class Admin::BaseChainsController < Admin::BaseController
   end
 
   def chain_params
-    raise NotImplementedError
+    params.require(chain_class.model_name.param_key).permit(:name, :slug, :api_url, :testnet, :disabled, :primary)
   end
 end

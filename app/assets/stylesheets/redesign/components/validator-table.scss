@@ -63,6 +63,7 @@
 
 .validator-table {
   margin: 0 auto 0 auto;
+  overflow-x: auto;
 
   .dataTables_wrapper {
     overflow-x: auto;
@@ -81,12 +82,9 @@
     }
 
     tbody {
-      tr {
-        height: 49px;
-      }
-      td {
-        padding: 7.5px 19px;
-        border-bottom: 1px solid $border-color !important;
+      td {	
+        padding: 7.5px 19px;	
+        border-bottom: 1px solid $border-color !important;	
       }
       &:last-child {
         td { border-bottom: none; }
@@ -108,6 +106,27 @@
         font-size: 14px;
         letter-spacing: 0;
         line-height: 18px;
+      }
+      td {
+        span.status-icon {
+          font-size: 10px;
+          color: $gray-300;
+          margin-right: 8px;
+
+          &.online {
+            @extend .text-success;
+          }
+
+          &.offline {
+            @extend .text-danger;
+            opacity: 0.5;
+          }
+        }
+
+        &.timestamp {
+          white-space: nowrap;
+          font-size: $font-size-sm;
+        }
       }
       .col-voting span:last-child {
         font-weight: 600;

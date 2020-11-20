@@ -1,8 +1,8 @@
-.validators {
+.validators, .validator-groups {
   box-shadow: $box-shadow;
 }
 
-.validator-table-header {
+.validator-table-header, .validator-groups-table-header {
   margin-top: 0px;
   background: $primary;
   color: white;
@@ -42,14 +42,14 @@
   .controls {
     display: flex;
     align-items: center;
-    .validator-search {
+    .validator-search, .validator-groups-search {
       max-width: 150px;
       margin-right: 4px;
     }
   }
 }
 
-.validator-table {
+.validator-table, .validator-groups-table {
   margin: 0 auto 0 auto;
 
   .dataTables_wrapper {
