@@ -150,7 +150,25 @@
         <% end -%>
       </td>
     </tr>
+    <% if defined?(@chain.tx_search_url) %>
+      <tr>
+        <th class='align-middle'>Tx Search:</th>
+        <td>
+            <%= form_for [:admin, @chain] do |f| %>
+              <div class='rpc-host-edit d-flex'>
+                <%= f.text_field :tx_search_url, class: 'mr-2 w-50 form-control technical', placeholder: 'tx search url' %>
 
+                <div class='text-nowrap mr-4'><label class='text-sm text-muted mb-0'>
+                  <%= f.check_box :tx_search_enabled, class: 'form-control d-inline h-auto w-auto' %>
+                  Tx Search Enabled
+                </label></div>
+
+                <%= f.submit 'update', disabled: @chain.dead?, class: 'btn btn-sm btn-primary ml-auto' %>
+              </div>
+            <% end -%>
+        </td>
+      </tr>
+    <% end %>
     <tr>
       <th class='align-middle'>
         Tokens:

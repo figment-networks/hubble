@@ -1,9 +1,9 @@
-.validators {
+.validators, .validator-groups {
   border: 1px solid $border-color;
   border-radius: 6px;
 }
 
-.validator-table-header {
+.validator-table-header, .validator-groups-table-header {
   display: flex;
   align-items: center;
   color: $primary;
@@ -35,7 +35,7 @@
       small { display: block; }
     }
   }
-  
+
   .validator-table__filter {
     color: $primary;
     font-size: 12px;
@@ -45,8 +45,8 @@
     border: none;
     background: none;
   }
-  
-  .validator-search {
+
+  .validator-search, .validator-groups-search {
     height: 40px;
     max-width: 272px;
     width: 100%;
@@ -61,7 +61,7 @@
   }
 }
 
-.validator-table {
+.validator-table, .validator-groups-table {
   margin: 0 auto 0 auto;
   overflow-x: auto;
 
@@ -82,9 +82,9 @@
     }
 
     tbody {
-      td {	
-        padding: 7.5px 19px;	
-        border-bottom: 1px solid $border-color !important;	
+      td {
+        padding: 7.5px 19px;
+        border-bottom: 1px solid $border-color !important;
       }
       &:last-child {
         td { border-bottom: none; }

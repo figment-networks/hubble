@@ -1,31 +1,45 @@
 <% content_for :body_class, 'chain-show' %>
 
-<%= render partial: 'celo/shared/chain_header', locals: { summary_link: true } %>
+<%= render partial: 'shared/redesign/chain_header', locals: { active_tab: 'Validators' } %>
 
 <%= render_flash_messages %>
 
-<div class='row info-cards'>
-  <div class='col-12 col-md-9 order-1 order-md-0'>
-    <%= render partial: 'celo/shared/validator_groups', locals: { validator_groups: @validator_groups } %>
-  </div>
+<div class="container">
+  <div class="content">
+    <div class='row info-cards'>
+      <div class='col-12 col-md-9 order-1 order-md-0'>
+        <div class="row">
+          <%= render partial: 'validator_groups_summary', locals: {
+              validator_groups_summary: @validator_groups_summary,
+              current_groups_summary_total: @current_groups_summary_total,
+              chain: @chain } %>
 
-  <div class='col-12 col-md-3 order-0 order-md-1 info-cards'>
-    <div class='card'>
-      <h5 class='card-header'>Current Block</h5>
-      <div class='card-body'>
-        <%= link_to '#', class: 'large-number' do %>
-          <span class='technical'><%= @height %></span>
-        <% end %>
-        <div class='sub-info'>
-          <small class='text-muted technical'><%= @last_block_time.strftime('%Y-%m-%d %H:%M %Z') %></small>
-          <small class='text-muted'><%= time_ago_in_words(@last_block_time, true) %> ago</small>
+          <%= render partial: 'blocks_summary', locals: {
+              blocks_summary: @blocks_summary, average_block_time: @average_block_time,
+              chain: @chain } %>
+        </div>
+
+        <%= render partial: 'celo/shared/validator_groups', locals: { validator_groups: @validator_groups } %>
+      </div>
+
+
+      <div class='col-12 col-md-3 order-0 order-md-1 info-cards mb-5'>
+        <div class='data-block'>
+          <h5 class='data-block__title'>Current Block</h5>
+          <div>
+            <%= link_to '#', class: 'large-number' do %>
+              <span class='technical'><%= @height %></span>
+            <% end %>
+            <div class=''>
+              <small class='text-muted'>
+                <%= @last_block_time.strftime('%Y-%m-%d %H:%M %Z') %>
+                <br/>
+                <%= time_ago_in_words(@last_block_time, true) %> ago
+              </small>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-
-    <%= render partial: 'validator_groups_summary', locals: { validator_groups_summary: @validator_groups_summary, chain: @chain } %>
-
-    <%= render partial: 'blocks_summary', locals: { blocks_summary: @blocks_summary,
-        average_block_time: @average_block_time, chain: @chain } %>
   </div>
 </div>

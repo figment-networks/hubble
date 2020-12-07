@@ -1,12 +1,12 @@
 <% content_for :body_class, 'events-index' %>
 
 <%= render partial: '/cosmoslike/redesign/shared/chain_header',
-  locals: { active_tab: 'Events', faucet_link: true, events_link: true, reports_link: true } %>
+  locals: { active_tab: 'Events', faucet_link: true, events_link: true, reports_link: true, tx_search_link: true } %>
 
 <div class="content">
   <div class="container">
     <%= render partial: '/cosmoslike/shared/sync_errors' %>
-    
+
     <div class='data-block'>
       <h3 class='data-block__title'>Current Block</h3>
       <div class='d-flex align-items-center flex-wrap'>
@@ -20,7 +20,7 @@
         </small>
       </div>
     </div>
-    
+
     <div class='data-table mb-4'>
       <table class="w-100 event-history">
         <thead>
@@ -72,7 +72,7 @@
         </tbody>
       </table>
     </div>
-      
+
 
     <div class='mt-5'>
       <%== pagy_bootstrap_nav(@pagy).html_safe %>

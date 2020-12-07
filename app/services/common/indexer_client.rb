@@ -12,12 +12,27 @@ class Common::IndexerClient
     @timeout  = options[:timeout] || self.class::DEFAULT_TIMEOUT
   end
 
-  def get(path, params = {})
+  def get(path = nil, params = {})
+    request(path, :get, params)
+  end
+
+  def post(path = nil, params = {}, body: {}, content_type: nil)
+    request(path, :post, params, body, content_type)
+  end
+
+  private
+
+  attr_reader :endpoint, :timeout
+
+  def request(path, req_method, params = {}, body = {}, content_type = nil)
     Rails.logger.info("#{endpoint}#{path} #{params} timeout: #{timeout}")
+    headers = content_type ? { 'Content-Type' => content_type, params: params } : { params: params }
+
     resp = RestClient::Request.execute(
-      method: :get,
+      method: req_method,
       url: "#{endpoint}#{path}",
-      headers: { params: params },
+      headers: headers,
+      payload: body,
       timeout: timeout
     )
     JSON.load(resp.body)
@@ -31,10 +46,6 @@ class Common::IndexerClient
   rescue StandardError => err
     handle_error(err)
   end
-
-  private
-
-  attr_reader :endpoint, :timeout
 
   def handle_error(err)
     message = err

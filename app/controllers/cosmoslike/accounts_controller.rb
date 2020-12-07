@@ -3,6 +3,9 @@ class Cosmoslike::AccountsController < Cosmoslike::BaseController
     respond_to do |format|
       format.html do
         @found_account = @chain.accounts.find_by(address: params[:id])
+        @account = @chain.namespace::AccountDecorator.new(@chain, params[:id])
+        raise ActiveRecord::RecordNotFound if !@account.exists?
+
         page_title @chain.network_name, @chain.name, params[:id]
         meta_description "Delegations, Recent Delegation Transactions, Balance, and Pending Rewards for #{params[:id]}#{" (owner of #{@found_account.validator.long_name})" if @found_account.try(:validator)}"
       end

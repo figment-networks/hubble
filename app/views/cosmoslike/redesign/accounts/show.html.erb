@@ -17,8 +17,6 @@
       </h5>
     <% end -%>
 
-    <% @account = @chain.namespace::AccountDecorator.new(@chain, params[:id]) -%>
-
     <% if @account.error? -%>
       <%= render partial: 'shared/display_error' %>
     <% else -%>

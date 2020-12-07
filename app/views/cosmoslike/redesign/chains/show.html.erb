@@ -1,10 +1,9 @@
 <% content_for :body_class, 'chain-show' %>
 
-<% content_for :promo_wc_script do %>
-  <%= javascript_include_tag "lib/figment-promo.bundled.js", type: 'module', media: 'all' %>
-<% end %>
+<%= render "/shared/dh_banner_script" %>
 
-<%= render partial: '/cosmoslike/redesign/shared/chain_header', locals: { active_tab: 'Validators', faucet_link: true, events_link: true, reports_link: true } %>
+<%= render partial: '/cosmoslike/redesign/shared/chain_header', locals: { active_tab: 'Validators', faucet_link: true, events_link: true, tx_search_link: true, reports_link: true } %>
+
 <div class='content'>
   <div class='container'>
 
@@ -219,11 +218,7 @@
           </div>
         <% end -%>
 
-        <% if show_datahub_promotion?(@chain) %>
-          <div class='data-block d-none d-md-block'>
-            <figment-promo height="500px" text="Connect to <%= @chain.network_name %> with Datahub" to="https://figment.io/datahub/<%= @chain.network_name.downcase %>"/>
-          </div>
-        <% end %>
+        <%= render "/shared/dh_sidebar_banner" %>
       </div>
     </div>
   </div>

@@ -12,7 +12,8 @@ module HomeHelper
       *Near::Chain.enabled.primary,
       *Coda::Chain.enabled.primary,
       *Polkadot::Chain.enabled.primary,
-      *Celo::Chain.enabled.primary
+      *Celo::Chain.enabled.primary,
+      *Avalanche::Chain.enabled.primary
     ]
   end
 
@@ -35,7 +36,8 @@ module HomeHelper
     'Polkadot' => 'polkadot.png',
     'Terra' => 'terra.svg',
     'Tezos' => 'tezos.png',
-    'Celo' => 'celo.svg'
+    'Celo' => 'celo.svg',
+    'Avalanche' => 'avalanche.svg'
   }.freeze
 
   def network_has_image?(network_name)

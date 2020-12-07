@@ -11,7 +11,7 @@ Rails.application.config.assets.precompile += %w[
   near.js near.scss
   polkadot.js polkadot.scss
   coda.js coda.scss
-  celo.js celo.scss
+  redesign/celo.js redesign/celo.scss
   redesign/home.scss home.js
   redesign/cosmoslike.scss
   redesign/cosmoslike.js

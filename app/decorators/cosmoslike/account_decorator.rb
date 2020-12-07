@@ -11,6 +11,14 @@ class Cosmoslike::AccountDecorator
     balances.nil?
   end
 
+  def account_info
+    @account_info ||= @chain.syncer.get_account_info(address)
+  end
+
+  def exists?
+    !account_info.try(:[], 'error')
+  end
+
   def balances
     begin
       @_balances ||= @chain.syncer.get_account_balances(@address)

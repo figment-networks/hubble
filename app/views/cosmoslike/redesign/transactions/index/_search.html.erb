@@ -1,0 +1,99 @@
+<%= bootstrap_form_for search_form, as: :search, method: :get, url: terra_chain_transactions_path(chain) do |f| %>
+  <%= f.hidden_field :network, value: @chain.namespace.to_s.downcase %>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-5">
+        <%= f.text_field :account, label: "Account (Sender/Receiver):", class: "form-control form-control-sm" %>
+        <div class="show-opts">
+          <%= f.collection_radio_buttons :show, terra_tx_include_opts,
+                                          :first,
+                                          :last,
+                                          label: "Include: ",
+                                          inline: true,
+                                          checked: tx_search_show_opt_selected %>
+          <%= f.collection_radio_buttons :chain_ids,
+                                          chain.class.tx_search_enabled.reverse,
+                                          :slug,
+                                          :name,
+                                          label: "Chains: ",
+                                          inline: true,
+                                          checked: chain.class.find_by(slug: selected_chain) %>
+        </div>
+      </div>
+      <div class="col-md-7">
+        <div class="row">
+          <div class="col-md-6">
+            <%= f.text_field :after_time, label: "Start Date:", class: "form-control form-control-sm flatpickr" %>
+          </div>
+          <div class="col-md-6">
+            <%= f.text_field :before_time, label: "End Date:", class: "form-control form-control-sm flatpickr" %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <%= f.text_field :after_height, label: "Start Height:", class: "form-control form-control-sm" %>
+          </div>
+          <div class="col-md-6">
+            <%= f.text_field :before_height, label: "End Height:", class: "form-control form-control-sm" %>
+          </div>
+        </div>
+        <%= f.text_field :memo, label: "Tx Memo:", class: "form-control form-control-sm" %>
+      </div>
+    </div>
+
+    <div class='row'>
+      <div class='col-12'>
+        <p class='mb-3'>Transaction Types <span class='btn btn-sm btn-outline-secondary ml-2' id='types-button'>SHOW</span></p>
+        <div class='card tx-search-types-card' id='types' style='display: none;'>
+          <div class='card-body'>
+
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <% chain.namespace::TransactionSearch::TX_TYPE_NAMES.each_with_index do |tx_module, i| %>
+                <% active = i == 0 ? ' active' : '' %>
+                <% selected = i == 0 ? 'true' : 'false' %>
+
+                <li class="nav-item">
+                  <%= link_to tx_module.first,
+                              "##{tx_module.first}",
+                              class: "nav-link#{active}",
+                              id: "#{tx_module.first}-tab",
+                              'data-toggle' => "tab",
+                              role: "tab",
+                              'aria-controls' => "#{tx_module.first}",
+                              'aria-selected' => "#{selected}"  %>
+                </li>
+              <% end %>
+            </ul>
+
+            <div class="tab-content tx-type-category" id="myTabContent">
+              <% chain.namespace::TransactionSearch::TX_TYPE_NAMES.each_with_index do |tx_module, i| %>
+                <% if i == 0 %>
+                  <div class="tab-pane fade show active mt-3" id="<%= tx_module.first %>" role="tabpanel" aria-labelledby="<%= tx_module.first %>-tab">
+                    <small>
+                      <%= f.collection_check_boxes :type, tx_module.last, :first, :last, inline: true %>
+                    </small>
+                  </div>
+                <% else %>
+                  <div class="tab-pane fade mt-3" id="<%= tx_module.first %>" role="tabpanel" aria-labelledby="<%= tx_module.first %>-tab">
+                    <small>
+                      <%= f.collection_check_boxes :type, tx_module.last, :first, :last, inline: true %>
+                    </small>
+                  </div>
+                <% end %>
+              <% end %>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class='row'>
+      <div class='col-8 mt-3'>
+        <%= f.submit "Search", class: "btn btn-primary btn-sm" %>
+        <%= link_to "Reset Filters", request.path, class: "btn btn-outline-secondary ml-1 btn-sm" %>
+      </div>
+    </div>
+  </div>
+<% end %>

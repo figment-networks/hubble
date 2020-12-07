@@ -76,6 +76,10 @@ class Oasis::Chain < ApplicationRecord
     @client ||= Oasis::Client.new(api_url)
   end
 
+  def last_sync_time
+    @last_sync_time ||= client.status.last_indexed_time
+  end
+
   def current_voting_power
     client.validators.sum(&:recent_total_shares)
   end

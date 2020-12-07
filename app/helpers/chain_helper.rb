@@ -48,6 +48,6 @@ module ChainHelper
   end
 
   def show_datahub_promotion?(chain)
-    [Terra::Chain].include?(chain.class)
+    [Cosmos::Chain, Terra::Chain, Near::Chain].include?(chain.class)
   end
 end

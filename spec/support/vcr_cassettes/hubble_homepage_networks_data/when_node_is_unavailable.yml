@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://min-api.cryptocompare.com/data/pricemulti?fsyms=ATOM,LPT,KAVA,DOT,XTZ,LUNA,IRIS,CELO,NEAR&tsyms=USD
+    uri: https://min-api.cryptocompare.com/data/pricemulti?fsyms=ATOM,LPT,KAVA,DOT,XTZ,LUNA,IRIS,CELO,NEAR,AVAX&tsyms=USD
     body:
       encoding: US-ASCII
       string: ''

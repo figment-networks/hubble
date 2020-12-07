@@ -28,7 +28,7 @@ describe 'cosmos validators' do
       expect(page).to have_content('No governance proposal activity yet.')
       expect(page).to have_content('Event History')
       expect(page).to have_content('Subscribe')
-      expect(page).to have_no_content('Delegations')
+      expect(page).to have_content('Delegations')
       expect(page).to have_content('CURRENT VOTING POWER')
       expect(page).to have_content('ATOM')
       expect(page).to have_content('Proposal Probability')

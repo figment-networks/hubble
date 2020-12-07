@@ -5,6 +5,7 @@
 // = require tooltipster/dist/js/tooltipster.bundle.min
 // = require clipboard/dist/clipboard.min
 // = require datatables/media/js/jquery.dataTables.min
+// = require flatpickr/dist/flatpickr.min
 //
 // disable proper package for now since it's broken
 // require chart.js/dist/Chart.min
@@ -30,6 +31,7 @@
 // = require page/cosmoslike/validator-subscriptions
 // = require page/cosmoslike/governance-index
 // = require page/cosmoslike/governance-proposal
+// = require page/cosmoslike/transaction-index
 //
 // = require components/common/auto-alert-hide
 // = require redesign/components/common/small-average-block-time-chart
@@ -41,6 +43,7 @@
 // = require redesign/components/cosmoslike/validator-voting-power-history
 // = require redesign/components/cosmoslike/validator-uptime-history
 // = require redesign/components/cosmoslike/small-average-voting-power-chart
+// = require redesign/components/cosmoslike/transaction-types-filter.js
 // = require components/cosmoslike/governance-proposal-activity
 // = require components/cosmoslike/tiny-average-active-validators-chart
 // = require components/cosmoslike/ledger

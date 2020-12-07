@@ -135,6 +135,16 @@
       <div class='card-body p-0'><%= render '/admin/indexer/chains/quick_info', chains: Celo::Chain.all %></div>
     </div>
 
+    <div class='card'>
+      <h5 class='card-header header mb-0'>
+        Avalanche
+        <div class='buttons text-right'>
+          <a class='btn btn-sm btn-light' href='<%= new_admin_avalanche_chain_path %>'>+ new</a>
+        </div>
+      </h5>
+      <div class='card-body p-0'><%= render '/admin/avalanche/chains/quick_info', chains: Avalanche::Chain.all %></div>
+    </div>
+
   </div>
 </div>
 

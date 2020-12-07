@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_02_130921) do
+ActiveRecord::Schema.define(version: 2020_11_02_182344) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
@@ -51,6 +51,20 @@ ActiveRecord::Schema.define(version: 2020_11_02_130921) do
     t.bigint "chain_id"
     t.string "address"
     t.index ["chain_type", "chain_id"], name: "index_alertable_addresses_on_chain_type_and_chain_id"
+  end
+
+  create_table "avalanche_chains", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "slug", null: false
+    t.string "api_url", null: false
+    t.boolean "testnet", null: false
+    t.boolean "primary", default: false, null: false
+    t.boolean "disabled", default: true
+    t.boolean "dead", default: false
+    t.integer "position"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["slug"], name: "index_avalanche_chains_on_slug"
   end
 
   create_table "celo_chains", force: :cascade do |t|
@@ -1103,6 +1117,8 @@ ActiveRecord::Schema.define(version: 2020_11_02_130921) do
     t.float "staking_participation"
     t.float "rewards_rate"
     t.float "daily_rewards"
+    t.string "tx_search_url"
+    t.boolean "tx_search_enabled", default: false
   end
 
   create_table "terra_faucets", force: :cascade do |t|

@@ -1,0 +1,29 @@
+<% if transactions.empty? %>
+  <tr>
+    <td colspan='6'>No transactions to display.</td>
+  </tr>
+<% end -%>
+
+<% transactions.each do |transaction| -%>
+
+  <tr>
+    <td>
+      <%= transaction.chain_id.capitalize %>
+    </td>
+    <td>
+      <%= search_form.tx_type_name(transaction.type) %>
+    </td>
+    <td>
+      <%= transaction.height %>
+    </td>
+    <td>
+      <%= transaction.time %>
+    </td>
+    <td>
+      <%= transaction.memo&.truncate(50) %>
+    </td>
+    <td class='text-right'>
+      <%= link_to 'Details...', namespaced_path('transaction', transaction.hash), class: 'btn btn-outline-primary btn-sm' %>
+    </td>
+  </tr>
+<% end -%>
