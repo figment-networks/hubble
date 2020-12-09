@@ -16,3 +16,18 @@
     }
   }
 }
+.show-opts label{
+    margin-right: 0.5rem;
+}
+.tx-search-types-card {
+  box-shadow: none;
+}
+.tx-type-category {
+  label{
+    margin-right: 2rem;
+  }
+  label[for='search_type']{
+    display: none;
+  }
+}
+

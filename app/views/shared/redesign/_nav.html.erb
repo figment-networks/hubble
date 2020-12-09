@@ -12,6 +12,9 @@
 
     <div class="navbar__right">
       <div class='d-md-flex collapse navbar-collapse justify-content-end' id='navbarNavDropdown'>
+        <div class='d-none d-lg-block mr-4'>
+          <%= render partial: '/shared/redesign/search-bar' %>
+        </div>
         <div class="navbar__overlay" data-toggle='collapse' data-target='#navbarNavDropdown'></div>
         <div class="navbar__body">
           <button class='navbar-toggler d-block' type='button' data-toggle='collapse' data-target='#navbarNavDropdown' aria-controls='navbarNavDropdown' aria-expanded='false' aria-label='Toggle navigation'>

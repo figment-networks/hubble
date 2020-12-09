@@ -61,7 +61,14 @@ Rails.application.routes.draw do
   get '/chains/*path', to: redirect('/cosmos/chains/%{path}')
 
   namespace :cosmos, network: 'cosmos' do concerns :cosmoslike end
-  namespace :terra, network: 'terra' do concerns :cosmoslike end
+
+  namespace :terra, network: 'terra' do
+    concerns :cosmoslike
+    resources :chains, format: false, constraints: { id: /[^\/]+/ }, only: %i[show] do
+      resources :transactions, only: %i[index show]
+    end
+  end
+
   namespace :iris, network: 'iris' do concerns :cosmoslike end
   namespace :kava, network: 'kava' do concerns :cosmoslike end
   namespace :emoney, network: 'emoney' do concerns :cosmoslike end
@@ -167,6 +174,12 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :avalanche, network: 'avalanche' do
+    resources :chains, format: false, constraints: { id: /[^\/]+/ }, only: :show do
+      get :search, on: :member
+    end
+  end
+
   namespace :telegram do
     resource :account, only: %i[show create destroy]
     post '/webhooks/:token', to: 'webhooks#create'
@@ -253,6 +266,10 @@ Rails.application.routes.draw do
     end
 
     namespace :celo do
+      resources :chains, except: [:index]
+    end
+
+    namespace :avalanche do
       resources :chains, except: [:index]
     end
 

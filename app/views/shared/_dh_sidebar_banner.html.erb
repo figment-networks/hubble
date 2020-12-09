@@ -1,0 +1,5 @@
+<% if show_datahub_promotion?(@chain) %>
+  <div class='data-block d-none d-md-block'>
+    <figment-promo height="500px" text="Connect to <%= @chain.network_name %> with Datahub" to="https://figment.io/datahub/<%= @chain.network_name.downcase %>"/>
+  </div>
+<% end %>

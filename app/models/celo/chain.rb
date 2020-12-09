@@ -1,6 +1,4 @@
 class Celo::Chain < ApplicationRecord
-  self.table_name = 'celo_chains'
-
   ASSET = 'celo'.freeze
 
   DEFAULT_TOKEN_DISPLAY = 'CELO'.freeze

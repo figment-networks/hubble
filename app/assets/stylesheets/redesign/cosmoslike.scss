@@ -6,6 +6,7 @@
 @import 'redesign/common/datatables-overrides';
 
 @import 'tooltipster/dist/css/tooltipster.bundle.min';
+@import 'flatpickr/dist/flatpickr.min';
 
 @import 'redesign/common/nav';
 @import 'redesign/common/footer';
@@ -29,4 +30,5 @@
 @import 'redesign/components/data-table';
 @import 'redesign/components/delegations-table';
 @import 'redesign/components/errors';
+@import 'redesign/components/search-bar';
 @import 'components/rewards-table';

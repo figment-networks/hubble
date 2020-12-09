@@ -2,7 +2,7 @@ module Oasis
   class ValidatorEvent < Common::Resource
     field :height
     field :time, type: :timestamp
-    field :actor
+    field :alertable_address
     field :kind
     field :data
     field :from
@@ -49,6 +49,7 @@ module Oasis
       super(attrs)
       @icon_name = ICON_CLASSES[kind]
       @chain_slug = chain_slug
+      @alertable_address = data['actor']
 
       if active_escrow_balance_change?
         # Cosmoslike events are pre-formatted
@@ -70,6 +71,10 @@ module Oasis
       end
 
       @kind = EVENT_KINDS[kind]
+    end
+
+    def alertable
+      @alertable ||= AlertableAddress.find_by(address: alertable_address)
     end
 
     def positive?

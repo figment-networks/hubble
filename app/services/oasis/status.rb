@@ -29,8 +29,12 @@ module Oasis
       new({ 'success' => false })
     end
 
+    def stale?
+      last_indexed_time < FRESH_TIME_LIMIT.ago
+    end
+
     def status
-      (Time.current - last_indexed_time) <= FRESH_TIME_LIMIT ? 'OK' : 'STALE'
+      stale? ? 'STALE' : 'OK'
     end
   end
 end

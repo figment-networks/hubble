@@ -1,0 +1,20 @@
+.search-form {
+  width: 100%;
+  max-width: 100%;
+
+  @include media-breakpoint-up(lg) {
+    max-width: 200px;
+  }
+
+  @include media-breakpoint-up(xl) {
+    max-width: 272px;
+  }
+}
+.search-form__input {
+  width: 100% !important;
+  height: 40px;
+  padding: 13px 13px 13px 32px;
+  border: 1px solid #c3c3c3;
+  background: #fff image-url('icons/search.svg') no-repeat;
+  background-position: 9px 50%;
+}

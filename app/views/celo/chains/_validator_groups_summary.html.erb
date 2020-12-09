@@ -1,14 +1,24 @@
-<div class='card'>
-  <h5 class='card-header'>Total Shares</h5>
-  <div class='card-body'>
-    <label>Past <%= validator_groups_summary.count %> days:</label>
-    <div class='small-validator-groups-summary-chart-container'>
-      <canvas
-        class='validator-groups-summary-chart'
-        data-chart="<%= validator_groups_summary.to_json %>"
-        data-token="<%= chain.class::DEFAULT_TOKEN_DISPLAY %>"
-      >
-      </canvas>
+<div class="col-lg-6 mb-5">
+  <div class='data-block'>
+    <h3 class='data-block__title'>Voting Shares</h3>
+    <div>
+      <div class='d-flex justify-content-between align-items-baseline'>
+        <span class='data-block__value'>
+          <%= format_amount(current_groups_summary_total, chain, denom: chain.class::DEFAULT_TOKEN_REMOTE) %>
+        </span>
+        <span class="text-small">Past <%= validator_groups_summary.count %> days</span>
+      </div>
+
+      <div class='charts data-block__chart'>
+        <div class='small-validator-groups-summary-chart-container'>
+          <canvas
+            class='validator-groups-summary-chart'
+            data-chart="<%= validator_groups_summary.to_json %>"
+            data-token="<%= chain.class::DEFAULT_TOKEN_DISPLAY %>"
+            data-name="validator-groups-summary"
+          ></canvas>
+        </div>
+      </div>
     </div>
   </div>
 </div>

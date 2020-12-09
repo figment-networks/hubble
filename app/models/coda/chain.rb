@@ -40,4 +40,8 @@ class Coda::Chain < ApplicationRecord
   def client
     @client ||= Coda::Client.new(api_url)
   end
+
+  def last_sync_time
+    @last_sync_time ||= status.last_block_time
+  end
 end

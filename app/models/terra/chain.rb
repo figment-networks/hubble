@@ -19,6 +19,9 @@ class Terra::Chain < ApplicationRecord
   }.freeze
 
   scope :primary, -> { find_by(primary: true) || order('created_at DESC').first }
+  scope :tx_search_enabled, -> { where(tx_search_enabled: true) }
+
+  alias_attribute :tx_search_enabled?, :tx_search_enabled
 
   def network_name
     'Terra'

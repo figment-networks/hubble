@@ -1,5 +1,8 @@
 <% content_for :body_class, 'validator-show' %>
 
+<%= render partial: '/cosmoslike/redesign/shared/chain_header', locals: { active_tab: '', events_link: true, tx_search_link: true, reports_link: true } %>
+<%= render_flash_messages %>
+
 <div class='validator-header'>
   <div class='container'>
     <div class='d-flex flex-wrap'>
@@ -74,13 +77,10 @@
           </li>
         </ul>
         <%= render partial: 'big_charts' %>
-        <% if true || @chain.governance_params_synced? -%>
+        <% if @chain.governance_params_synced? -%>
           <%= render partial: 'governance' %>
         <% end -%>
-        <!-- UNLESS STATEMENT TO BE REMOVED WHEN DELEGATIONS INDEXING FIXED -->
-        <% unless @chain.network_name == 'Cosmos' %>
-          <%= render partial: 'delegations' %>
-        <% end %>
+        <%= render partial: 'delegations' %>
       </div>
 
       <div class='col-md-12 col-lg-6'>

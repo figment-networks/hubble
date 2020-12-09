@@ -1,5 +1,6 @@
 require 'indexer/resources/baker'
 require 'indexer/resources/event'
+require 'indexer/resources/block'
 
 class Tezos::Chain < ApplicationRecord
   ASSET = 'tezos'.freeze
@@ -85,6 +86,10 @@ class Tezos::Chain < ApplicationRecord
 
   def alert_delivery_method
     :telegram
+  end
+
+  def last_sync_time
+    @last_sync_time ||= Indexer::Block.retrieve('latest').timestamp
   end
 
   private

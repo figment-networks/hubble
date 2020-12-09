@@ -12,7 +12,12 @@ class Common::SyncChecker
 
   def run
     network.titleize.constantize::Chain.enabled.find_each do |chain|
-      notifier.post(attachments: [sync_error(chain)]) if out_of_sync?(chain) && Rails.env.production?
+      if out_of_sync?(chain) && Rails.env.production?
+        puts "#{network.capitalize} - #{chain.slug} is out of sync.  Attempting to notify Slack."
+        notifier.post(attachments: [sync_error(chain)])
+      else
+        puts "#{network.capitalize} - #{chain.slug} looks healthy."
+      end
     end
   end
 

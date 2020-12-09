@@ -1,5 +1,9 @@
-<header class='network-chain-header pt-5'>
+<header class='network-chain-header pt-4'>
   <div class="container">
+    <div class='d-block d-lg-none mb-3'>
+      <%= render partial: '/shared/redesign/search-bar' %>
+    </div>
+    <%= render "/shared/dh_chain_header_banner" %>
     <div class="d-flex align-items-center flex-wrap">
       <% if network_has_image?(@chain.network_name) -%>
         <%= link_to namespaced_path(chain: @chain), class: 'chains-list__card-link' do %>

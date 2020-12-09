@@ -1,0 +1,8 @@
+<% content_for :body_class, 'admin-chain-edit' %>
+
+<h2 class='header'>
+  Editing <%= @chain.network_name %> Chain
+  <%= link_to 'back', admin_root_path, class: 'btn btn-sm btn-outline-secondary' %>
+</h2>
+
+<%= render "form", chain: @chain %>

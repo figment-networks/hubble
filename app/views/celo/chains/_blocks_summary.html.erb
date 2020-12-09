@@ -1,18 +1,22 @@
-<div class='card'>
-  <h5 class='card-header'>Average Block Time</h5>
-  <div class='card-body'>
-    <label>Last blocks:</label>
-    <div class='stat-value technical'>
-      <%= average_block_time.round(2) %> seconds
-    </div>
+<div class="col-lg-6 mb-5">
+  <div class='data-block'>
+    <h3 class='data-block__title'>Average Block Time</h3>
+    <div>
+      <div class='d-flex justify-content-between align-items-baseline'>
+        <div>
+          <span class='data-block__value'>
+            <%= average_block_time.round(2) %>
+          </span>
+          <span class="data-block__label">seconds</span>
+        </div>
+        <span class="text-small">Past 48 hours</span>
+      </div>
 
-    <label>Past 48 hours:</label>
-    <div class='average-block-time-chart-container'>
-      <canvas
-        class='average-block-time-chart'
-        data-chart="<%= blocks_summary.to_json %>"
-      >
-      </canvas>
+      <div class='charts data-block__chart'>
+        <div class='small-average-block-time-chart-container'>
+          <canvas class='average-block-time-chart' data-chart="<%= blocks_summary.to_json %>"></canvas>
+        </div>
+      </div>
     </div>
   </div>
 </div>

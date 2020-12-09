@@ -58,10 +58,22 @@ class Admin::Cosmoslike::ChainsController < Admin::BaseController
     if params.has_key?(:"#{@namespace.name.downcase}_chain")
       updates = params.require(:"#{@namespace.name.downcase}_chain").permit(
         %i[
-          sdk_version notes primary disabled dead
-          rpc_host lcd_host rpc_path lcd_path rpc_port lcd_port
-          use_ssl_for_rpc use_ssl_for_lcd
+          sdk_version
+          notes
+          primary
+          disabled
+          dead
+          rpc_host
+          lcd_host
+          rpc_path
+          lcd_path
+          rpc_port
+          lcd_port
+          use_ssl_for_rpc
+          use_ssl_for_lcd
           validator_event_defs
+          tx_search_url
+          tx_search_enabled
         ],
         validator_event_defs: %i[unique_id kind n m height],
         twitter_events_config: @chain.class::TWITTER_CONFIG_FIELDS
