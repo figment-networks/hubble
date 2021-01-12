@@ -1,0 +1,102 @@
+<% content_for :body_class, 'validator-show' %>
+
+<%= render partial: 'shared/redesign/chain_header', locals: { active_tab: nil } %>
+
+<%= render_flash_messages %>
+
+<div class='validator-header'>
+  <div class='container'>
+    <div class='d-flex flex-wrap'>
+      <div class='mr-auto pb-4'>
+        <div class='d-flex align-items-center flex-wrap'>
+          <h2 class='validator-group-header__title'><%= @validator.display_name %></h2>
+          <% if (url = heuristic_url(@validator.metadata_url)) %>
+            <%= link_to url, class: 'external-link', target: :blank do %>
+              <%= url %>&nbsp;&nbsp;<span class='fas fa-external-link-alt'></span>
+            <% end -%>
+          <% end -%>
+        </div>
+      </div>
+      <div class='validator-info pb-4'>
+        <ul class="validator-info__list">
+          <li class="validator-info__item">
+            <p class="text-label validator-info__label">Validator group</p>
+            <%= link_to namespaced_path('validator_group', @validator.affiliation),
+                class: "validator-info__value technical" do %>
+              <%= @validator.affiliation %>
+            <% end -%>
+          </li>
+
+          <li class="validator-info__item">
+            <p class="text-label validator-info__label">Account</p>
+            <%= link_to namespaced_path('account', @validator.address), class: "validator-info__value technical" do %>
+              <%= @validator.address %>
+            <% end -%>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class='content'>
+  <div class='container'>
+    <div class='row'>
+      <div class='col-md-12 col-lg-6 mb-4 pb-2'>
+        <ul class="data-blocks__list">
+          <li class="data-blocks__item">
+            <div class='data-block'>
+              <div>
+                <div>
+                  <h3 class='data-block__title'>Score</h3>
+                  <div class='d-flex flex-wrap align-items-end justify-content-between'>
+                    <div class='data-block__large-number mr-4'>
+                      <%= @validator.score %>%
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="data-blocks__item">
+            <%= render partial: 'uptime', locals: { uptime: @validator.uptime } %>
+          </li>
+          <li class="data-blocks__item">
+            <%= render partial: 'lifetime',
+                locals: { first_seen: @validator.started_at, last_updated: @validator.recent_at } %>
+          </li>
+          <li class="data-blocks__item">
+            <%= render partial: 'commission', locals: { commission: @validator.factored_commission } %>
+          </li>
+        </ul>
+      </div>
+
+      <div class='col-md-12 col-lg-6 mb-4 pb-2'>
+        <div class='data-block'>
+          <h5 class='data-block__title'>Scores History <small>&mdash; Last <%= @validator_scores.count %> Days</small>
+          </h5>
+          <div class='validator-score-chart-container'>
+            <canvas
+              class='validator-score-chart'
+              data-chart="<%= @validator_scores.to_json %>"
+              data-name="score-chart"
+              data-token="<%= @chain.class::DEFAULT_TOKEN_DISPLAY %>"
+            ></canvas>
+          </div>
+        </div>
+
+        <div class='data-block'>
+          <h5 class='data-block__title'>Uptime History <small>&mdash; Last <%= @validator_hourly_uptime.count %> Hours</small>
+          </h5>
+          <div class='validator-hourly-uptime-chart-container'>
+            <canvas
+              class='validator-hourly-uptime-chart'
+              data-chart="<%= @validator_hourly_uptime.to_json %>"
+              data-name="hourly-uptime-chart"
+            ></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

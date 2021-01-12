@@ -6,9 +6,5 @@ FactoryBot.define do
     testnet  { false }
     disabled { false }
     primary  { true }
-
-    token_map do
-      { "coda": { "factor": 9, "display": 'CODA', "primary": true } }
-    end
   end
 end

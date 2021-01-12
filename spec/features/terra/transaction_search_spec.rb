@@ -21,7 +21,7 @@ describe 'terra transactions' do
       expect(page).to have_content('552886')
       expect(page).not_to have_content('552928')
 
-      fill_in 'search_account', with: 'terra18npmlvy8aedc6rzyhm6gkwdyd070cquatlmqtc'
+      fill_in 'search_accounts_array', with: 'terra18npmlvy8aedc6rzyhm6gkwdyd070cquatlmqtc'
       click_button 'Search'
 
       expect(page).to have_content(chain.name)

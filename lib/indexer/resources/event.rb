@@ -78,6 +78,10 @@ module Indexer
         sender_id
       when 'missed_bake'
         sender_id
+      when 'baker_activated'
+        sender_id
+      when 'baker_deactivated'
+        sender_id
       when 'steal'
         sender_id
       when 'double_bake'
@@ -101,6 +105,10 @@ module Indexer
         "Baker #{baker_long_name} missed an endorsement at slot #{slot} for block #{block_id}"
       when 'missed_bake'
         "Baker #{baker_long_name} missed a bake at block #{block_id}"
+      when 'baker_activated'
+        "Baker #{baker_long_name} was activated around block #{block_id}"
+      when 'baker_deactivated'
+        "Baker #{baker_long_name} was deactivated around block #{block_id}"
       when 'steal'
         "Baker #{baker_long_name} stole a bake at block #{block_id}!"
       when 'double_bake'

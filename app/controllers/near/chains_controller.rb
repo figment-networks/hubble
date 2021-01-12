@@ -19,11 +19,15 @@ class Near::ChainsController < Near::BaseController
 
   private
 
+  def block_stats
+    @block_stats ||= client.block_stats.reverse
+  end
+
   def serialized_block_intervals
-    client.block_times_interval.reverse.map(&:point)
+    block_stats.map(&:block_time_point)
   end
 
   def serialized_validator_intervals
-    client.validator_times_interval.reverse.map(&:point)
+    block_stats.map(&:validators_count_point)
   end
 end

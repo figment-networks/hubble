@@ -6,10 +6,6 @@ FactoryBot.define do
     primary { false }
     testnet { false }
     disabled { false }
-    token_map do
-      { 'noasis' => { 'factor' => 9, 'display' => 'OASIS', 'primary' => true },
-        'GAS' => { 'factor' => 0.0, 'display' => 'GAS', 'primary' => false } }
-    end
     validator_event_defs do
       [{ 'kind' => 'voting_power_change', 'height' => 1 },
        { 'kind' => 'active_set_inclusion', 'height' => 1 },

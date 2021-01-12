@@ -33,16 +33,12 @@ module FormattingHelper
   def round_if_whole(num, precision = 3)
     return 0 if num.blank? || num.zero? || num.to_f.nan? || num.to_f.infinite?
 
-    if precision == 0
-      return num.round.floor
-    end
+    return num.round.floor if precision == 0
 
     if num <= 0.0001
-      # force printing with precision instead of scientific notation
-      # and then strip off trailing 0s
       return 0 if num.round(5).zero?
 
-      return ('%.5f' % num).sub(/0*$/, '')
+      return num.to_d
     end
 
     tries = 10

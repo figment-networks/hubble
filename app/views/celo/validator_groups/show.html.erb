@@ -1,0 +1,72 @@
+<% content_for :body_class, 'validator-group-show' %>
+
+<%= render partial: 'shared/redesign/chain_header', locals: { active_tab: nil } %>
+
+<%= render_flash_messages %>
+
+<div class='validator-group-header'>
+  <div class='container'>
+    <div class='d-flex flex-wrap'>
+      <div class='mr-auto pb-4'>
+        <div class='d-flex align-items-center flex-wrap'>
+          <h2 class='validator-group-header__title'><%= @validator_group.display_name %></h2>
+          <% if (url = heuristic_url(@validator_group.recent_metadata_url)) %>
+            <%= link_to url, class: 'external-link', target: :blank do %>
+              <%= url %>&nbsp;&nbsp;<span class='fas fa-external-link-alt'></span>
+            <% end -%>
+          <% end -%>
+        </div>
+      </div>
+      <div class='validator-group-info pb-4'>
+        <ul class="validator-group-info__list">
+          <li class="validator-group-info__item">
+            <p class="text-label validator-group-info__label">Address</p>
+              <%= link_to namespaced_path('account', @validator_group.address), class: "validator-info__value technical" do %>
+                <%= @validator_group.address %>
+              <% end %>
+            </p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class='content'>
+  <div class='container'>
+    <div class='row'>
+      <div class='col-md-12 col-lg-6 mb-4 pb-2'>
+        <ul class="data-blocks__list">
+          <li class="data-blocks__item">
+            <div class='data-block'>
+              <div>
+                <div>
+                  <h3 class='data-block__title'>Votes</h3>
+                  <div class='d-flex flex-wrap align-items-end justify-content-between'>
+                    <div class='data-block__large-number mr-4'>
+                      <%= format_amount(@validator_group.votes, denom: @chain.class::DEFAULT_TOKEN_REMOTE) %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="data-blocks__item">
+            <%= render partial: 'celo/validators/uptime', locals: { uptime: @validator_group.uptime } %>
+          </li>
+          <li class="data-blocks__item">
+            <%= render partial: 'celo/validators/lifetime',
+                locals: { first_seen: @validator_group.started_at, last_updated: @validator_group.recent_at} %>
+          </li>
+          <li class="data-blocks__item">
+            <%= render partial: 'celo/validators/commission', locals: { commission: @validator_group.factored_commission } %>
+          </li>
+        </ul>
+      </div>
+
+      <div class='col-md-12 col-lg-6'>
+        <%= render partial: 'celo/shared/validators', locals: { validators: @validators } %>
+      </div>
+    </div>
+  </div>
+</div>

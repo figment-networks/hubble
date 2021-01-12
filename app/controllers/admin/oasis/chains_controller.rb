@@ -1,15 +1,6 @@
 class Admin::Oasis::ChainsController < Admin::BaseChainsController
   def create
     @chain = chain_class.create(chain_params)
-    @chain.update(
-      token_map: {
-        "#{@chain.class::DEFAULT_TOKEN_REMOTE}": {
-          display: @chain.class::DEFAULT_TOKEN_DISPLAY,
-          factor: @chain.class::DEFAULT_TOKEN_FACTOR,
-          primary: true
-        }
-      }
-    )
 
     if @chain.persisted? && @chain.valid?
       if @chain.primary?
@@ -64,22 +55,6 @@ class Admin::Oasis::ChainsController < Admin::BaseChainsController
       end
 
       updates[:validator_event_defs] = new_defns
-    end
-
-    if params.has_key?(:new_token)
-      updates[:token_map] = @chain.token_map.merge(
-        "#{params[:new_token][:remote]}": {
-          display: params[:new_token][:display],
-          factor: params[:new_token][:factor].to_i
-        }
-      )
-      if params[:new_token][:primary]
-        updates[:token_map] = updates[:token_map].map { |k, v| v['primary'] = false; [k, v] }.to_h
-        updates[:token_map][:"#{params[:new_token][:remote]}"]['primary'] = true
-      end
-    end
-    if params.has_key?(:remove_token)
-      updates[:token_map] = @chain.token_map.without(params[:remove_token])
     end
 
     Rails.logger.info("UPDATES: #{updates}")

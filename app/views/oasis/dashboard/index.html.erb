@@ -1,32 +1,34 @@
 <% content_for :body_class, 'dashboard' %>
 
-<h1 class='d-flex align-items-center justify-content-between'>
-  <span>Dashboard for <%= @chain.name %></span>
+<div class='container mt-3'>
+  <h1 class='d-flex align-items-center justify-content-between'>
+    <span>Dashboard for <%= @chain.name %></span>
 
-  <%= link_to namespaced_path, class: 'btn btn-sm btn-outline-secondary' do %>
-    <span class='d-none d-md-inline'><span class='fas fa-chevron-left'></span> back to chain</span>
-    <span class='d-inline d-md-none fa fa-arrow-circle-up'></span>
-  <% end %>
-</h1>
+    <%= link_to namespaced_path, class: 'btn btn-sm btn-outline-secondary' do %>
+      <span class='d-none d-md-inline'><span class='fas fa-chevron-left'></span> back to chain</span>
+      <span class='d-inline d-md-none fa fa-arrow-circle-up'></span>
+    <% end %>
+  </h1>
 
-<div class='card'>
-  <h5 class='card-header'>Alert Subscriptions</h5>
-  <div class='card-body alert-subscription-list'>
-    <% if @subscriptions.empty? -%>
-      No validators subscribed to yet.
-    <% else -%>
-      <div class='list-group list-group-flush users-alert-subscription mb-0'>
-        <% @subscriptions.each_with_index do |subscription, i| -%>
-          <div class='list-group-item d-flex flex-column flex-md-row align-items-md-center justify-content-between pl-0 pr-0 pt-0'>
-            <div class='info mt-0'>
-              <%= render partial: 'users/settings/alertable_info', locals: { subscription: subscription } %>
+  <div class='card'>
+    <h5 class='card-header'>Alert Subscriptions</h5>
+    <div class='card-body alert-subscription-list'>
+      <% if @subscriptions.empty? -%>
+        No validators subscribed to yet.
+      <% else -%>
+        <div class='list-group list-group-flush users-alert-subscription mb-0'>
+          <% @subscriptions.each_with_index do |subscription, i| -%>
+            <div class='list-group-item d-flex flex-column flex-md-row align-items-md-center justify-content-between pl-0 pr-0 pt-0'>
+              <div class='info mt-0'>
+                <%= render partial: 'users/settings/alertable_info', locals: { subscription: subscription } %>
+              </div>
+              <div class='details d-flex flex-column align-items-md-end pt-1'>
+                <%= render partial: 'users/settings/alertable_badges', locals: { subscription: subscription } %>
+              </div>
             </div>
-            <div class='details d-flex flex-column align-items-md-end pt-1'>
-              <%= render partial: 'users/settings/alertable_badges', locals: { subscription: subscription } %>
-            </div>
-          </div>
-        <% end -%>
-      </div>
-    <% end -%>
+          <% end -%>
+        </div>
+      <% end -%>
+    </div>
   </div>
 </div>

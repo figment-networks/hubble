@@ -115,7 +115,6 @@ Rails.application.routes.draw do
       end
 
       resources :accounts, only: %i[show]
-      resources :events, only: %i[index]
       resources :reports, only: %i[new create show]
     end
   end
@@ -171,6 +170,12 @@ Rails.application.routes.draw do
   namespace :celo, network: 'celo' do
     resources :chains, format: false, constraints: { id: /[^\/]+/ }, only: :show do
       get :search, on: :member
+      resources :validator_groups, only: :show
+      resources :validators, only: :show
+      resources :blocks, only: :show do
+        resources :transactions
+      end
+      resources :accounts, only: :show
     end
   end
 

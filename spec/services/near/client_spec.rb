@@ -12,12 +12,10 @@ describe Near::Client do
     stub_endpoint('/blocks/height', {}, 'block')
     stub_endpoint('/blocks/hash', {}, 'block')
     stub_endpoint('/block_times', { limit: 100 }, 'block_times')
-    stub_endpoint('/block_times_interval', { period: '48', interval: 'h' }, 'block_times_interval')
+    stub_endpoint('/block_stats', { limit: '48', bucket: 'h' }, 'block_stats')
     stub_endpoint('/validators', {}, 'validators')
     stub_endpoint('/validators/id', {}, 'validator')
     stub_endpoint('/validators/height', {}, 'validator')
-    stub_endpoint('/validator_times_interval', { period: '48', interval: 'h' },
-                  'validator_times_interval')
     stub_endpoint('/accounts/id', {}, 'account')
   end
 
@@ -63,27 +61,20 @@ describe Near::Client do
     end
   end
 
-  describe '#block_times' do
-    let(:result) { client.block_times }
-
-    it 'returns the block times list' do
-      expect(result).to be_a Near::BlockTime
-      expect(result.count).to be_a Integer
-      expect(result.diff).to be_a Float
-      expect(result.avg).to be_a Float
-    end
-  end
-
-  describe '#block_times_interval' do
-    let(:result) { client.block_times_interval }
+  describe '#block_stats' do
+    let(:result) { client.block_stats }
     let(:stat)   { result.first }
 
-    it 'returns the block times stats' do
+    it 'returns the block stats' do
       expect(result).to be_an Array
-      expect(stat).to be_a Near::IntervalStat
-      expect(stat.time_interval).to be_a Time
-      expect(stat.count).to be_a Integer
-      expect(stat.avg).to be_a Float
+      expect(result.first).to be_a Near::BlockStat
+
+      expect(stat.time).to be_a Time
+      expect(stat.bucket).to be_a String
+      expect(stat.blocks_count).to be_an Integer
+      expect(stat.block_time_avg).to be_a Float
+      expect(stat.validators_count).to be_an Integer
+      expect(stat.transactions_count).to be_an Integer
     end
   end
 
@@ -108,15 +99,6 @@ describe Near::Client do
       expect(validator.epochs.first).to be_a Near::ValidatorEpoch
       expect(validator.account).to be_a Near::Account
       expect(validator.blocks.first).to be_a Near::Block
-    end
-  end
-
-  describe '#validator_times_interval' do
-    let(:result) { client.validator_times_interval }
-
-    it 'returns validator stats' do
-      expect(result).to be_an Array
-      expect(result.first).to be_a Near::IntervalStat
     end
   end
 

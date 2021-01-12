@@ -3,7 +3,10 @@ require 'features_helper'
 describe 'tezos homepage' do
   let!(:chain) { create(:tezos_chain) }
 
-  before { visit '/tezos' }
+  before do
+    allow(Indexer::Event).to receive(:list).and_return({ events: [Indexer::Event.new(sender_id: 'asdf123', type: 'baker_activated'), Indexer::Event.new(sender_id: 'asdf456', type: 'baker_deactivated')] })
+    visit '/tezos'
+  end
 
   it 'visiting as not signed in user', :vcr do
     expect(page).to have_content('Tezos')
@@ -16,6 +19,14 @@ describe 'tezos homepage' do
     expect(page).to have_content('REWARDS AVAILABLE')
     expect(page).to have_content('Latest Events')
     expect(page).to have_content('Baker Performance')
+
+    expect(page).to have_content('asdf123')
+    expect(page).to have_content('Baker Activated')
+    expect(page).to have_css('.fa-toggle-on')
+
+    expect(page).to have_content('asdf456')
+    expect(page).to have_content('Baker Deactivated')
+    expect(page).to have_css('.fa-toggle-off')
   end
 
   it 'can access governance page', :vcr do

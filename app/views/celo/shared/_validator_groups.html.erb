@@ -20,7 +20,7 @@
       <% validator_groups.each do |validator_group| -%>
         <tr>
           <td class='col-address' data-order='<%= validator_group.address %>'>
-            <%= link_to '#' do %>
+            <%= link_to namespaced_path('validator_group', validator_group.address) do %>
               <strong><%= validator_group.display_name.truncate(38) %></strong>
             <% end -%>
           </td>

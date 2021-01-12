@@ -1,0 +1,223 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://localhost:9292/celo/account/by_height?address=0x456f41406B32c45D59E539e4BBA3D7898c3584dA
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (darwin18.0.0 x86_64) ruby/2.6.6p146
+      Content-Length:
+      - '0'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - localhost:9292
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      X-Content-Type-Options:
+      - nosniff
+      Content-Length:
+      - '1177'
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "name": "Figment",
+          "metadata_url": "https://figment.io",
+          "gold_balance": "7495217225382662000",
+          "total_locked_gold": "1864712049423024000",
+          "total_nonvoting_locked_gold": "1864712049423024000",
+          "stable_token_balance": "5172401081485857000",
+          "activity": [
+            {
+              "height": 100,
+              "address": "0x456f41406B32c45D59E539e4BBA3D7898c3584dA",
+              "amount": 1000000000000000,
+              "kind": "GoldWithdrawn",
+              "transaction_hash": "0x525da41d338faf9713cc30cc4f8d462b0fc945bd391861d953a4d03fdc5d4322",
+              "data": {
+                "account": "0x6dd6E0C51F819B14A1cb713Faa927304f872285B",
+                "value": 1000000000000000
+              }
+            },
+            {
+              "height": 100,
+              "address": "0x456f41406B32c45D59E539e4BBA3D7898c3584dA",
+              "amount": 1000000000000000,
+              "kind": "ValidatorEpochPaymentDistributed",
+              "transaction_hash": "0x525da41d338faf9713cc30cc4f8d462b0fc945bd391861d953a4d03fdc5d4322",
+              "data": {
+                "validator": "0x6dd6E0C51F819B14A1cb713Faa927304f872285B",
+                "validator_payment": 1000000000000000,
+                "group": "0x456f41406B32c45D59E539e4BBA3D7898c3584dA",
+                "group_payment": 1000000000000000
+              }
+            }
+          ]
+        }
+  recorded_at: Tue, 05 Jan 2021 12:38:05 GMT
+- request:
+    method: get
+    uri: http://localhost:9292/celo/account/details/0x456f41406B32c45D59E539e4BBA3D7898c3584dA
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (darwin18.0.0 x86_64) ruby/2.6.6p146
+      Content-Length:
+      - '0'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - localhost:9292
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      X-Content-Type-Options:
+      - nosniff
+      Content-Length:
+      - '3897'
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "name": "Figment",
+          "metadata_url": "https://figment.io",
+          "internal_transfers_sent": [
+            {
+              "height": 100,
+              "address": "0x456f41406B32c45D59E539e4BBA3D7898c3584dA",
+              "amount": 1000000000000000,
+              "kind": "InternalTransferSent",
+              "transaction_hash": "0x525da41d338faf9713cc30cc4f8d462b0fc945bd391861d953a4d03fdc5d4322",
+              "data": {
+                "to": "0x22C8a9178841BA95a944AFD1a1fAaE517d3f5DAA",
+                "from": "0x6131a6D616A4be3737B38988847270a64bC10CAa",
+                "type": "transfer",
+                "index": 0,
+                "value": 1000000000000000,
+                "success": true
+              }
+            }
+          ],
+          "validator_group_vote_cast_received": [
+            {
+              "height": 100,
+              "address": "0x456f41406B32c45D59E539e4BBA3D7898c3584dA",
+              "amount": 1000000000000000,
+              "kind": "ValidatorGroupVoteCastReceived",
+              "transaction_hash": "0x525da41d338faf9713cc30cc4f8d462b0fc945bd391861d953a4d03fdc5d4322",
+              "data": {
+                "account": "0x456f41406B32c45D59E539e4BBA3D7898c3584dA",
+                "group": "0x6dd6E0C51F819B14A1cb713Faa927304f872285B",
+                "value": 1000000000000000
+              }
+            }
+          ],
+          "validator_group_vote_cast_sent": [
+            {
+              "height": 100,
+              "address": "0x456f41406B32c45D59E539e4BBA3D7898c3584dA",
+              "amount": 1000000000000000,
+              "kind": "ValidatorGroupVoteCastSent",
+              "transaction_hash": "0x525da41d338faf9713cc30cc4f8d462b0fc945bd391861d953a4d03fdc5d4322",
+              "data": {
+                "account": "0x6dd6E0C51F819B14A1cb713Faa927304f872285B",
+                "group": "0x456f41406B32c45D59E539e4BBA3D7898c3584dA",
+                "value": 1000000000000000
+              }
+            }
+          ],
+          "gold_locked": [
+            {
+              "height": 100,
+              "address": "0x456f41406B32c45D59E539e4BBA3D7898c3584dA",
+              "amount": 1000000000000000,
+              "kind": "GoldLocked",
+              "transaction_hash": "0x525da41d338faf9713cc30cc4f8d462b0fc945bd391861d953a4d03fdc5d4322",
+              "data": {
+                "account": "0x6dd6E0C51F819B14A1cb713Faa927304f872285B",
+                "value": 1000000000000000
+              }
+            }
+          ],
+          "gold_unlocked": [
+            {
+              "height": 100,
+              "address": "0x456f41406B32c45D59E539e4BBA3D7898c3584dA",
+              "amount": 1000000000000000,
+              "kind": "GoldUnlocked",
+              "transaction_hash": "0x525da41d338faf9713cc30cc4f8d462b0fc945bd391861d953a4d03fdc5d4322",
+              "data": {
+                "account": "0x6dd6E0C51F819B14A1cb713Faa927304f872285B",
+                "value": 1000000000000000
+              }
+            }
+          ],
+          "gold_withdrawn": [
+            {
+              "height": 100,
+              "address": "0x456f41406B32c45D59E539e4BBA3D7898c3584dA",
+              "amount": 1000000000000000,
+              "kind": "GoldWithdrawn",
+              "transaction_hash": "0x525da41d338faf9713cc30cc4f8d462b0fc945bd391861d953a4d03fdc5d4322",
+              "data": {
+                "account": "0x6dd6E0C51F819B14A1cb713Faa927304f872285B",
+                "value": 1000000000000000
+              }
+            }
+          ],
+          "account_slashed": [
+            {
+              "height": 100,
+              "address": "0x456f41406B32c45D59E539e4BBA3D7898c3584dA",
+              "amount": 1000000000000000,
+              "kind": "AccountSlashed",
+              "transaction_hash": "0x525da41d338faf9713cc30cc4f8d462b0fc945bd391861d953a4d03fdc5d4322",
+              "data": {
+                "slashed": "0x6dd6E0C51F819B14A1cb713Faa927304f872285B",
+                "penalty": 1000000000000000,
+                "reporter": "0x456f41406B32c45D59E539e4BBA3D7898c3584dA",
+                "reward": 1000000000000000
+              }
+            }
+          ],
+          "reward_received": [
+            {
+              "height": 100,
+              "address": "0x456f41406B32c45D59E539e4BBA3D7898c3584dA",
+              "amount": 1000000000000000,
+              "kind": "ValidatorEpochPaymentDistributed",
+              "transaction_hash": "0x525da41d338faf9713cc30cc4f8d462b0fc945bd391861d953a4d03fdc5d4322",
+              "data": {
+                "validator": "0x6dd6E0C51F819B14A1cb713Faa927304f872285B",
+                "validator_payment]": 1000000000000000,
+                "group": "0x456f41406B32c45D59E539e4BBA3D7898c3584dA",
+                "group_payment": 1000000000000000
+              }
+            }
+          ]
+        }
+  recorded_at: Tue, 05 Jan 2021 12:38:05 GMT
+recorded_with: VCR 6.0.0

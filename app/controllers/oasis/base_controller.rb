@@ -1,4 +1,6 @@
 class Oasis::BaseController < Indexer::BaseController
+  layout 'redesign/application'
+
   private
 
   def set_behind_chain_alert

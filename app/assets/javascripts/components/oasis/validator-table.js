@@ -3,6 +3,7 @@ class ValidatorTable {
     this.container = container;
     this.skipColumns = skipColumns || [];
     this.searchBox = $('.validator-table-header .validator-search');
+    this.radioButtons = document.querySelectorAll('.validator-table-header .custom-radio input');
   }
 
   search() {
@@ -10,26 +11,10 @@ class ValidatorTable {
     this.table.search(term).draw();
   }
 
-  settingsPopoverContent() {
-    const generateContent = (button) => {
-      const contentEl = $(button).siblings('.validator-table-settings');
-      const html = $(contentEl.html());
-      return html
-          .find('button').click((e) => {
-            const button = $(e.currentTarget);
-            const target = button.data('target');
-            App.config.currentValidatorFilter = target;
-            button.addClass('active').siblings().removeClass('active');
-            this.search();
-          })
-          .end()
-          .find(`button[data-target=${App.config.currentValidatorFilter}]`)
-          .addClass('active')
-          .end();
-    };
-    return function() {
-      return generateContent(this);
-    };
+  filter(radio) {
+    const filter = radio.value;
+    App.config.currentValidatorFilter = filter;
+    this.search();
   }
 
   render() {
@@ -62,11 +47,8 @@ class ValidatorTable {
 
     this.searchBox.keyup(() => this.search(this.table));
 
-    $('.validator-table-header .validator-table-settings-target').popover({
-      html: true,
-      placement: 'bottom',
-      offset: '-40%p',
-      content: this.settingsPopoverContent()
+    this.radioButtons.forEach((radio) => {
+      radio.addEventListener('change', () => this.filter(radio));
     });
   }
 }

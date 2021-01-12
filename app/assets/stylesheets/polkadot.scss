@@ -17,6 +17,7 @@
 
 //TODO: move to shared? most of transaction view css is relevant to all networks
 @import 'page/cosmoslike/transaction';
+@import 'page/polkadot/validator';
 
 // components
 @import 'components/network-chain-header';

@@ -1,4 +1,6 @@
 class Near::Chain < ApplicationRecord
+  include TokenMap
+
   ASSET = 'near'.freeze
 
   DEFAULT_TOKEN_DISPLAY = 'NEAR'.freeze
@@ -13,6 +15,16 @@ class Near::Chain < ApplicationRecord
   scope :primary, -> { find_by(primary: true) || order('created_at DESC').first }
 
   delegate :status, to: :client
+
+  def self.token_map
+    {
+      'default' => {
+        'near' => {
+          'factor' => 24, 'display' => 'Ⓝ', 'primary' => true
+        }
+      }
+    }
+  end
 
   def network_name
     'NEAR'

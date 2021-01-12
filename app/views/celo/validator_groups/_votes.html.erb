@@ -1,0 +1,12 @@
+<div class='data-block'>
+  <div>
+    <div>
+      <h3 class='data-block__title'>Votes</h3>
+      <div class='d-flex flex-wrap align-items-end justify-content-between'>
+        <div class='data-block__large-number mr-4'>
+          <%= format_amount(@validator_group.votes, denom: @chain.class::DEFAULT_TOKEN_REMOTE) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

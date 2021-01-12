@@ -1,86 +1,83 @@
 <% content_for :body_class, 'transaction-show' -%>
 
-<%= render partial: '/oasis/shared/chain_header', locals: { summary_link: true } %>
+<%= render partial: '/oasis/shared/chain_header', locals: { new_reports_link: true, active_tab: '' } %>
 
-<h2 class='mb-4'>
-    <label class='text-muted'>Tx</label>
-    <span class='technical text-lg'><%= params['id'] %></span>
-  </h2>
-
-<% if @transaction.blank? %>
-  <div class='error-content d-flex justify-content-between align-items-center flex-column'>
-    <h1 class='display'>No Transaction Found</h1>
-    <p>Sorry! We are unable to find a transaction with the provided public key and/or height.</p>
-  </div>
-<% elsif @error %>
-  <%= render partial: 'shared/display_error' %>
-<% else %>
-
-  <div class='row'>
-    <div class='col-12 col-md-3 order-0 order-md-1 info-cards'>
-      <div class='card'>
-        <h5 class='card-header d-flex justify-content-between align-items-center'>
-          Height
-          <a href='<%= oasis_chain_block_path( @chain.slug, @block.height ) %>' class='text-sm text-white'><span class='fas fa-chevron-left'></span> back</a>
-        </h5>
-        <div class='card-body'>
-          <span class='large-number technical'><%= @block.height %></span>
-        </div>
-      </div>
-
-      <div class='card'>
-        <h5 class='card-header'>Timestamp</h5>
-        <div class='card-body'>
-          <span class='technical'><%= format_timestamp(@block.time) %></span>
-        </div>
-      </div>
-
-      <div class='card'>
-        <h5 class='card-header'>Fees</h5>
-        <div class='card-body'>
-          <ul class='list-unstyled mb-0'>
-              <li><%= oasis_format_amount(@transaction.fee) %></li>
-          </ul>
-        </div>
-      </div>
+<div class='container'>
+  <div class='content'>
+    <%= link_to oasis_chain_block_path( @chain.slug, @block.height ), class: 'link text-uppercase' do %>
+      <span class='fas fa-chevron-left'></span> back
+    <% end %>
+    <div class='data-block my-4'>
+      <label class='data-block__title'>Transaction</label>
+      <span class='data-block__value d-block word-break'><%= params['id'] %></span>
     </div>
 
-    <div class='col-12 col-md-9 order-1 order-md-0'>
-      <section class='card'>
-        <header class='card-header d-flex align-items-center justify-content-between'>
-          <h4 class='m-0'>Transaction Details</h4>
-          <span class='d-none d-md-flex badge badge-pill badge-light text-uppercase'><%= @transaction.method %></span>
-        </header>
-        <main>
+    <% if @transaction.blank? %>
+      <div class='error-content d-flex justify-content-between align-items-center flex-column'>
+        <h1 class='display'>No Transaction Found</h1>
+        <p>Sorry! We are unable to find a transaction with the provided public key and/or height.</p>
+      </div>
+    <% elsif @error %>
+      <%= render partial: 'shared/display_error' %>
+    <% else %>
 
-          <section>
-            <div class='table-responsive'>
-              <table class='table table-sm'>
-                <thead>
-                  <tr class='text-uppercase text-secondary'>
-                    <th>Parameter</th>
-                    <th>Value</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class='text-nowrap'>Nonce</td>
-                    <td><%= oasis_format_amount(@transaction.nonce) %></td>
-                  </tr>
-                  <tr>
-                    <td class='text-nowrap'>Gas Limit</td>
-                    <td><%= oasis_format_amount(@transaction.gas_limit, denom: 'GAS') %></td>
-                  </tr>
-                  <tr>
-                    <td class='text-nowrap'>Gas Price</td>
-                    <td><%= oasis_format_amount(@transaction.gas_price, denom: 'GAS') %></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+      <div class='row'>
+        <div class='col-12 col-md-3 order-0 order-md-1 info-cards'>
+          <div class='data-block'>
+            <h5 class='data-block__title'>Height</h5>
+            <span class='large-number technical'><%= @block.height %></span>
+          </div>
+
+          <div class='data-block'>
+            <h5 class='data-block__title'>Timestamp</h5>
+            <span class='technical'><%= format_timestamp(@block.time) %></span>
+          </div>
+
+          <div class='data-block'>
+            <h5 class='data-block__title'>Fees</h5> 
+              <ul class='list-unstyled mb-0'>
+                <li><%= oasis_format_amount(@transaction.fee) %></li>
+              </ul>
+          </div>
+        </div>
+
+        <div class='col-12 col-md-9 order-1 order-md-0'>
+          <section class='data-table m-0'>
+            <header class='data-table__header'>
+              <h4 class='data-table__title'>Transaction Details</h4>
+            </header>
+            <main>
+
+              <section>
+                <div class='table-responsive'>
+                  <table class='w-100'>
+                    <thead>
+                      <tr class='text-uppercase text-secondary'>
+                        <th>Parameter</th>
+                        <th>Value</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class='text-nowrap'>Nonce</td>
+                        <td><%= oasis_format_amount(@transaction.nonce) %></td>
+                      </tr>
+                      <tr>
+                        <td class='text-nowrap'>Gas Limit</td>
+                        <td><%= oasis_format_amount(@transaction.gas_limit, denom: 'GAS') %></td>
+                      </tr>
+                      <tr>
+                        <td class='text-nowrap'>Gas Price</td>
+                        <td><%= oasis_format_amount(@transaction.gas_price, denom: 'GAS') %></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+            </main>
           </section>
-        </main>
-      </section>
-    </div>
+        </div>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>

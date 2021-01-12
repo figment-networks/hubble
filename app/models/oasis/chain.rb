@@ -1,9 +1,10 @@
 class Oasis::Chain < ApplicationRecord
+  include TokenMap
+
   ASSET = 'oasis'.freeze
   SUPPORTS_LEDGER = false
-  EVENTS_PAGE_SIZE = 20
 
-  DEFAULT_TOKEN_DISPLAY = 'OASIS'.freeze
+  DEFAULT_TOKEN_DISPLAY = 'ROSE'.freeze
   DEFAULT_TOKEN_REMOTE = 'noasis'.freeze
   DEFAULT_TOKEN_FACTOR = 9
 
@@ -18,6 +19,24 @@ class Oasis::Chain < ApplicationRecord
   validates :name, presence: true
   validates :slug, format: { with: /\A[a-z0-9-]+\z/ }, uniqueness: true, presence: true
   validates :api_url, presence: true
+
+  def self.token_map
+    {
+      'amber' => {
+        'noasis' => {
+          'factor' => 9, 'display' => 'AMBER', 'primary' => true
+        }
+      },
+      'default' => {
+        'GAS' => {
+          'factor' => 0, 'display' => 'GAS'
+        },
+        'noasis' => {
+          'factor' => 9, 'display' => 'ROSE', 'primary' => true
+        }
+      }
+    }
+  end
 
   def to_param
     slug
@@ -35,10 +54,6 @@ class Oasis::Chain < ApplicationRecord
     'Oasis'
   end
 
-  def token_display
-    'Oasis'
-  end
-
   def failing_sync?
     false
   end
@@ -52,24 +67,11 @@ class Oasis::Chain < ApplicationRecord
   end
 
   def primary_token
-    token_map.each { |k, v| return k if v['primary'] }
-    token_map.keys.first # fallback, should only happen on chain#create
-  end
-
-  def primary_display
-    token_map.each { |k, v| return token_map[k]['display'] if v['primary'] }
+    DEFAULT_TOKEN_REMOTE
   end
 
   def primary_token_divisor
-    token_map.each { |k, v| return 10 ** token_map[k]['factor'] if v['primary'] }
-  end
-
-  def primary_display
-    token_map.each { |k, v| return token_map[k]['display'] if v['primary'] }
-  end
-
-  def primary_token_divisor
-    token_map.each { |k, v| return 10 ** token_map[k]['factor'] if v['primary'] }
+    10 ** DEFAULT_TOKEN_FACTOR
   end
 
   def client

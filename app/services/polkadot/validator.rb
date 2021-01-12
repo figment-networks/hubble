@@ -16,6 +16,10 @@ module Polkadot
 
     alias online? online
 
+    def address
+      stash_account
+    end
+
     def display_name
       @display_name.presence || account_details&.display_name || stash_account
     end

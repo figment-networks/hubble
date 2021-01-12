@@ -11,7 +11,7 @@
           <% if @validator.has_info? %>
             <h2 class='validator-header__title'><%= @validator.moniker.truncate(40, separator: '...') %></h2>
             <% if @validator.info_field( 'description', 'website' ) && (url = heuristic_url(@validator.info_field( 'description', 'website' ))) %>
-              <%= link_to url, class: "external-link" do %>
+              <%= link_to url, class: 'external-link', target: :blank do %>
                 <%= url %>&nbsp;&nbsp;<span class='fas fa-external-link-alt'></span>
               <% end -%>
             <% end -%>

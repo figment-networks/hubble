@@ -14,7 +14,13 @@ module Polkadot
     field :unbonded
     field :withdrawn
     field :delegations
+    field :free, type: :integer
+    field :reserved, type: :integer
+    field :misc_frozen, type: :integer
+    field :fee_frozen, type: :integer
     collection :transfers, type: Polkadot::Transfer
+
+    alias balance free
 
     def initialize(attributes = {})
       super(attributes)

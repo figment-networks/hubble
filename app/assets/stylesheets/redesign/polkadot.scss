@@ -1,0 +1,31 @@
+// TODO: DRY these with other networks/cosmoslike. Up to `network-chain-header`.
+// Review which are actually needed
+@import 'common/bootstrap-variables';
+@import 'bootstrap/scss/bootstrap';
+@import 'common/bootstrap-overrides';
+
+@import 'datatables/media/css/jquery.dataTables.min';
+@import 'common/datatables-overrides';
+
+@import 'tooltipster/dist/css/tooltipster.bundle.min';
+
+@import 'common/nav';
+@import 'common/footer';
+@import 'common/typography';
+@import 'common/misc';
+@import 'common/error-content';
+@import 'redesign/common/logotypes';
+
+//TODO: move to shared? most of transaction view css is relevant to all networks
+@import 'page/cosmoslike/transaction';
+
+// components
+@import 'redesign/components/network-chain-header';
+@import 'redesign/components/data-block';
+@import 'redesign/components/data-table';
+@import 'redesign/components/validator-header';
+@import 'redesign/components/validator-table';
+@import 'components/transactions-table';
+@import 'components/delegations-table';
+@import 'redesign/components/search-bar';
+@import 'redesign/components/event-history';

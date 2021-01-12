@@ -18,6 +18,11 @@ class ResourceTest < Common::Resource
   collection :items, type: CollectionTest
 end
 
+class InheritedResourceTest < ResourceTest
+  field :data
+  field :count, type: :string
+end
+
 describe Common::Resource do
   let(:resource_class) { ResourceTest }
   let(:resource)       { resource_class.new(attrs) }
@@ -48,7 +53,8 @@ describe Common::Resource do
           'time' => '2020-07-17T15:02:10-05:00',
           'items' => [
             { 'id' => 2 }
-          ]
+          ],
+          'extra_param' => true
         }
       end
 
@@ -61,6 +67,44 @@ describe Common::Resource do
 
         expect(resource.items).to be_a Array
         expect(resource.items[0].id).to eq 2
+      end
+
+      it 'does not handle undefined fields' do
+        expect { resource.extra_param }.to raise_error NoMethodError
+      end
+    end
+
+    context 'with inheritance' do
+      let(:resource_class) { InheritedResourceTest }
+
+      let(:attrs) do
+        {
+          'id' => 1,
+          'name' => 'test',
+          'count' => '12345',
+          'time' => '2020-07-17T15:02:10-05:00',
+          'items' => [
+            { 'id' => 2 }
+          ],
+          'extra_param' => true,
+          'data' => 12345
+        }
+      end
+
+      it 'assigns attributes' do
+        expect(resource.id).to eq 1
+        expect(resource.name).to eq 'test'
+        expect(resource.count).to eq '12345'
+        expect(resource.count_with_default).to eq 100
+        expect(resource.time).to be_a Time
+        expect(resource.data).to eq 12345
+
+        expect(resource.items).to be_a Array
+        expect(resource.items[0].id).to eq 2
+      end
+
+      it 'does not handle undefined fields' do
+        expect { resource.extra_param }.to raise_error NoMethodError
       end
     end
   end
@@ -75,6 +119,14 @@ describe Common::Resource do
         time
         items
       ]
+    end
+  end
+
+  describe '.mapping' do
+    it 'returns field mapping' do
+      expect(BasicResourceTest.mapping).to eq nil
+      expect(ResourceTest.mapping.keys).to eq %i[id name count count_with_default time items]
+      expect(InheritedResourceTest.mapping.keys).to eq %i[id name count count_with_default time items data]
     end
   end
 end

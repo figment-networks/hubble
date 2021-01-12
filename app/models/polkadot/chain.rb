@@ -37,6 +37,18 @@ class Polkadot::Chain < ApplicationRecord
     }.with_indifferent_access
   end
 
+  def primary_token
+    DEFAULT_TOKEN_REMOTE
+  end
+
+  def primary_display
+    DEFAULT_TOKEN_DISPLAY
+  end
+
+  def primary_token_divisor
+    10 ** DEFAULT_TOKEN_FACTOR
+  end
+
   def client
     @client ||= Polkadot::Client.new(api_url)
   end

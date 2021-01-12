@@ -1,7 +1,7 @@
 <% if row[:type] == :amount %>
-  <td class="<%= row[:class] %>"><%= format_amount(row[:value].to_i, @chain, denom: @chain.class::DEFAULT_TOKEN_REMOTE) %></td>
+  <td class="text-sm <%= row[:class] %>"><%= format_amount(row[:value].to_i, @chain, denom: @chain.class::DEFAULT_TOKEN_REMOTE) %></td>
 <% elsif row[:type] == :account %>
-  <td class="<%= row[:class] %>"><%= link_to row[:value], namespaced_path('account', row[:value]) %></td>
+  <td class="text-sm <%= row[:class] %>"><%= link_to row[:value], namespaced_path('account', row[:value]) %></td>
 <% else %>
-  <td class="<%= row[:class] %>"><%= row[:value] %></td>
+  <td class="text-sm <%= row[:class] %>"><%= row[:value] %></td>
 <% end %>

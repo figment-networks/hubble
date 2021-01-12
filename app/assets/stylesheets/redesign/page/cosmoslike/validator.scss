@@ -77,50 +77,6 @@
     }
   }
 }
-.event-history {
-  min-width: 500px;
-}
-.event-history__arrow {
-  width: 12px;
-  height: 15px;
-}
-.event-history__forbidden-sign {
-  width: 13px;
-  height: 13px;
-}
-.event-history__block {
-  margin: 0;
-  color: $secondary;
-  font-size: 14px;
-  letter-spacing: 0;
-  line-height: 24px;
-  text-decoration: underline;
-}
-.event-history__date {
-  color: $primary;
-  font-size: 12px;
-  letter-spacing: 0;
-  line-height: 24px;
-}
-.event-history__value {
-  margin: 0;
-  color: $primary;
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0;
-  line-height: 24px;
-
-  span {
-    color: rgba(17,17,17,0.25);
-  }
-}
-.event-history__amount {
-  opacity: 0.55;
-  color: $primary;
-  font-size: 12px;
-  letter-spacing: 0;
-  line-height: 15px;
-}
 .validator-show .chart-container {
   display: flex;
   align-items: center;
@@ -136,19 +92,4 @@
 .status-pie-chart {
   height: 26px !important;
   width: auto !important;
-}
-
-@media (max-width: 600px) {
-  .validator-info__item {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .validator-info__value {
-    width: 100%;
-    margin-top: 6px;
-    word-break: break-all;
-  }
-  .validator-info__item + .validator-info__item {
-    margin-top: 10px;
-  }
 }

@@ -20,12 +20,12 @@ module OasisHelper
   end
 
   def to_partial_path(event)
-    '/common/validator_events/' + event.kind
+    '/common/redesign/validator_events/' + event.kind
   end
 
   def oasis_format_amount(amount, chain = nil, denom: nil, thousands_delimiter: true, hide_units: false, html: true, precision: 3)
     chain ||= @chain
-    denom ||= chain.primary_display
+    denom ||= chain.token_display
     token = chain.token_map.select { |_k, v| v['display'] == denom }
 
     amount /= (10 ** token.values.first['factor'].to_f)

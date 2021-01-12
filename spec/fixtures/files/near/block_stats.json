@@ -1,0 +1,42 @@
+[
+  {
+    "time": "2021-01-03T12:00:00-06:00",
+    "bucket": "h",
+    "blocks_count": 1163,
+    "block_time_avg": 1.11,
+    "validators_count": 58,
+    "transactions_count": 13
+  },
+  {
+    "time": "2021-01-03T11:00:00-06:00",
+    "bucket": "h",
+    "blocks_count": 3228,
+    "block_time_avg": 1.11,
+    "validators_count": 58,
+    "transactions_count": 54
+  },
+  {
+    "time": "2021-01-03T10:00:00-06:00",
+    "bucket": "h",
+    "blocks_count": 3225,
+    "block_time_avg": 1.12,
+    "validators_count": 58,
+    "transactions_count": 36
+  },
+  {
+    "time": "2021-01-03T09:00:00-06:00",
+    "bucket": "h",
+    "blocks_count": 3229,
+    "block_time_avg": 1.11,
+    "validators_count": 58,
+    "transactions_count": 28
+  },
+  {
+    "time": "2021-01-03T08:00:00-06:00",
+    "bucket": "h",
+    "blocks_count": 3231,
+    "block_time_avg": 1.11,
+    "validators_count": 58,
+    "transactions_count": 44
+  }
+]

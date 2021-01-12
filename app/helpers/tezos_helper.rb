@@ -8,6 +8,8 @@ module TezosHelper
     when 'missed_endorsement' then 'fa-check-double'
     when 'double_bake' then 'fa-exclamation'
     when 'double_endorsement' then 'fa-exclamation'
+    when 'baker_activated' then 'fa-toggle-on'
+    when 'baker_deactivated' then 'fa-toggle-off'
     end
   end
 

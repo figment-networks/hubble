@@ -29,23 +29,6 @@ class Admin::Coda::ChainsController < Admin::BaseChainsController
   def chain_updates
     updates = params.key?(:coda_chain) ? chain_params : {}
 
-    if params.has_key?(:new_token)
-      updates[:token_map] = @chain.token_map.merge(
-        "#{params[:new_token][:remote]}": {
-          display: params[:new_token][:display],
-          factor: params[:new_token][:factor].to_i
-        }
-      )
-      if params[:new_token][:primary]
-        updates[:token_map] = updates[:token_map].map { |k, v| v['primary'] = false; [k, v] }.to_h
-        updates[:token_map][:"#{params[:new_token][:remote]}"]['primary'] = true
-      end
-    end
-
-    if params.has_key?(:remove_token)
-      updates[:token_map] = @chain.token_map.without(params[:remove_token])
-    end
-
     updates
   end
 end

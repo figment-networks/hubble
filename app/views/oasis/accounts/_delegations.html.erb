@@ -1,6 +1,6 @@
-<div class='delegations mb-5'>
-  <div class='delegations-table-header'>
-    <h4>Delegations</h4>
+<div class='data-table'>
+  <div class='data-table__header'>
+    <h3 class='data-table__title'>Delegations</h3>
   </div>
   <div class='delegations-table'>
     <table data-empty='<%= account.delegations.blank? %>'>
@@ -14,15 +14,15 @@
       <tbody>
         <% if account.delegations.empty? %>
           <tr>
-            <td class='p-3 text-center' colspan='5'>No delegations.</td>
+            <td class='data-table__empty' colspan='5'>No delegations.</td>
           </tr>
         <% else %>
           <% account.delegations.each do |delegation| %>
             <tr>
-              <td data-order='<%= delegation.validator_uid %>'>
+              <td class='text-sm' data-order='<%= delegation.validator_uid %>'>
                 <%= link_to delegation.validator_uid.truncate(30), oasis_chain_validator_path(@chain.slug, delegation.validator_uid) %>
               </td>
-              <td data-order='<%= delegation.shares %>'>
+              <td class='text-sm' data-order='<%= delegation.shares %>'>
                 <%= oasis_format_amount( delegation.shares) %>
               </td>
               <td data-order='<%= delegation.status %>'>

@@ -4,21 +4,29 @@
   </div>
 <% end %>
 
-<section class='validators'>
-  <div class='validator-table-header'>
-    <h4>
-      Validators
-      <small>&nbsp;&mdash; <%= validators.count %> total&nbsp;</small>
-    </h4>
-
-    <div class='controls'>
+<section class='data-table validators'>
+  <div class='validator-table-header justify-content-between py-1 flex-wrap'>
+    <div class='d-flex align-items-center flex-grow-1 py-2'>
+      <h4>Validators</h4>
       <input type='text' class='form-control form-control-sm validator-search' placeholder='filter validators...'>
-      <a tabindex=0 class='btn btn-sm btn-outline-light validator-table-settings-target'><span class='fas fa-cog'></span></a>
-      <div class='validator-table-settings d-none'>
-        <div class='btn-group' role='group' aria-label='Validator table filter'>
-          <button type='button' data-target='_all_' class='btn btn-outline-primary'>All</button>
-          <button type='button' data-target='_active_' class='btn btn-outline-primary'>Active</button>
-          <button type='button' data-target='_inactive_' class='btn btn-outline-primary'>Inactive</button>
+    </div>
+    <div class='controls'>
+      <div class='d-flex align-items-center py-2'>
+        <div class="custom-control custom-radio mr-4">
+          <input class="custom-control-input" type="radio" name="validator-filter" id="filterAll" value='_all_' checked>
+          <label class="custom-control-label" for="filterAll">All</label>
+        </div>
+        <div class="custom-control custom-radio mr-4">
+          <input class="custom-control-input" type="radio" name="validator-filter" id="filterActive" value='_active_'>
+          <label class="custom-control-label" for="filterActive">
+            Active
+          </label>
+        </div>
+        <div class="custom-control custom-radio">
+          <input class="custom-control-input" type="radio" name="validator-filter" id="filterInactive" value='_inactive_'>
+          <label class="custom-control-label" for="filterInactive">
+            Inactive
+          </label>
         </div>
       </div>
       <script>
@@ -42,7 +50,7 @@
       <tbody>
       <% validators.each do |validator| -%>
         <tr>
-          <td data-order='<%= validator.stash_account %>'>
+          <td class='col-address' data-order='<%= validator.stash_account %>'>
             <%= link_to namespaced_path('validator', validator.stash_account) do %>
               <strong><%= validator.display_name.truncate(38) %></strong>
             <% end -%>

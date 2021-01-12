@@ -1,0 +1,239 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://localhost:9292/celo/validator_group/details
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (darwin18.0.0 x86_64) ruby/2.6.6p146
+      Content-Length:
+      - '0'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - localhost:9292
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      X-Content-Type-Options:
+      - nosniff
+      Content-Length:
+      - '2295'
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "id": 2,
+          "created_at": "2020-10-30T20:51:15.483833Z",
+          "updated_at": "2020-11-02T08:38:35.944898Z",
+          "started_at_height": 1614740,
+          "started_at": "2020-10-21T18:00:25Z",
+          "recent_at_height": 1615014,
+          "recent_at": "2020-10-21T18:23:15Z",
+          "address": "0x87614eD7AF361a563C6a3624CcadD52e165f67C2",
+          "recent_name": "Figment",
+          "recent_metadata_url": "https://figment.io",
+          "last_sequences": [
+            {
+              "height": 1615014,
+              "time": "2020-10-21T18:23:15Z",
+              "address": "0x87614eD7AF361a563C6a3624CcadD52e165f67C2",
+              "commission": "100000000000000000000000",
+              "active_votes": "4221409232884096309",
+              "active_vote_units": "414001021153639342594282769831151178116",
+              "pending_votes": "50004600000000000000000",
+              "members_count": 5
+            },
+            {
+              "height": 1615013,
+              "time": "2020-10-21T18:23:10Z",
+              "address": "0x87614eD7AF361a563C6a3624CcadD52e165f67C2",
+              "commission": "100000000000000000000000",
+              "active_votes": "4221409232884096309",
+              "active_vote_units": "414001021153639342594282769831151178116",
+              "pending_votes": "50004600000000000000000",
+              "members_count": 5
+            },
+            {
+              "height": 1615012,
+              "time": "2020-10-21T18:23:05Z",
+              "address": "0x87614eD7AF361a563C6a3624CcadD52e165f67C2",
+              "commission": "100000000000000000000000",
+              "active_votes": "4221409232884096309",
+              "active_vote_units": "414001021153639342594282769831151178116",
+              "pending_votes": "50004600000000000000000",
+              "members_count": 5
+            },
+            {
+              "height": 1615011,
+              "time": "2020-10-21T18:23:00Z",
+              "address": "0x87614eD7AF361a563C6a3624CcadD52e165f67C2",
+              "commission": "100000000000000000000000",
+              "active_votes": "4221409232884096309",
+              "active_vote_units": "414001021153639342594282769831151178116",
+              "pending_votes": "50004600000000000000000",
+              "members_count": 5
+            },
+            {
+              "height": 1615010,
+              "time": "2020-10-21T18:22:55Z",
+              "address": "0x87614eD7AF361a563C6a3624CcadD52e165f67C2",
+              "commission": "100000000000000000000000",
+              "active_votes": "4221409232884096309",
+              "active_vote_units": "414001021153639342594282769831151178116",
+              "pending_votes": "50004600000000000000000",
+              "members_count": 5
+            }
+          ]
+        }
+  recorded_at: Mon, 14 Dec 2020 14:40:32 GMT
+- request:
+    method: get
+    uri: http://localhost:9292/celo/validators/by_height
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (darwin18.0.0 x86_64) ruby/2.6.6p146
+      Content-Length:
+      - '0'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - localhost:9292
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      X-Content-Type-Options:
+      - nosniff
+      Content-Length:
+      - '3354'
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "items": [
+            {
+              "height": 1614899,
+              "time": "2020-10-21T18:13:40Z",
+              "address": "0x2A43f97f8BF959E31F69A894ebD80A88572C8553",
+              "name": "Figment",
+              "metadata_url": "https://figment.io",
+              "signed": true,
+              "score": 8.683456024306e+23,
+              "affiliation": "0x87614eD7AF361a563C6a3624CcadD52e165f67C2"
+            },
+            {
+              "height": 1614899,
+              "time": "2020-10-21T18:13:40Z",
+              "address": "0xAe1ec841923811219b98ACeB1db297AADE2F46F3",
+              "name": "Figment 2",
+              "metadata_url": "https://figment.io",
+              "signed": true,
+              "score": 7.208675930157707e+23,
+              "affiliation": "0x87614eD7AF361a563C6a3624CcadD52e165f67C2"
+            },
+            {
+              "height": 1614899,
+              "time": "2020-10-21T18:13:40Z",
+              "address": "0x621843731fe33418007C06ee48CfD71e0ea828d9",
+              "name": "Figment 3",
+              "metadata_url": "https://figment.io",
+              "signed": true,
+              "score": 9.962490293596e+23,
+              "affiliation": "0x87614eD7AF361a563C6a3624CcadD52e165f67C2"
+            },
+            {
+              "height": 1614899,
+              "time": "2020-10-21T18:13:40Z",
+              "address": "0x30D060F129817c4DE5fBc1366d53e19f43c8c64f",
+              "name": "Figment 4",
+              "metadata_url": "https://figment.io",
+              "signed": true,
+              "score": 9.774281851669e+23,
+              "affiliation": "0x87614eD7AF361a563C6a3624CcadD52e165f67C2"
+            },
+            {
+              "height": 1614899,
+              "time": "2020-10-21T18:13:40Z",
+              "address": "0xAD682035bE6Ab6f06e478D2BDab0EAb6477B460E",
+              "name": "Figment 5",
+              "metadata_url": "https://figment.io",
+              "signed": true,
+              "score": 9.683517528982e+23,
+              "affiliation": "0x87614eD7AF361a563C6a3624CcadD52e165f67C2"
+            },
+            {
+              "height": 1614899,
+              "time": "2020-10-21T18:13:40Z",
+              "address": "0xCda518F6b5a797C3EC45D37c65b83e0b0748eDca",
+              "name": "Figment 6",
+              "metadata_url": "https://figment.io",
+              "signed": true,
+              "score": 9.95144802733e+23,
+              "affiliation": "0x5edfCe0bad47e24E30625c275457F5b4Bb619241"
+            },
+            {
+              "height": 1614899,
+              "time": "2020-10-21T18:13:40Z",
+              "address": "0x456f41406B32c45D59E539e4BBA3D7898c3584dA",
+              "name": "Figment 7",
+              "metadata_url": "https://figment.io",
+              "signed": true,
+              "score": 9.921448327843e+23,
+              "affiliation": "0x5edfCe0bad47e24E30625c275457F5b4Bb619241"
+            },
+            {
+              "height": 1614899,
+              "time": "2020-10-21T18:13:40Z",
+              "address": "0x050f34537F5b2a00B9B9C752Cb8500a3fcE3DA7d",
+              "name": "Figment 8",
+              "metadata_url": "https://figment.io",
+              "signed": true,
+              "score": 7.076061078169844e+23,
+              "affiliation": "0x5edfCe0bad47e24E30625c275457F5b4Bb619241"
+            },
+            {
+              "height": 1614899,
+              "time": "2020-10-21T18:13:40Z",
+              "address": "0xb4e92c94A2712e98c020A81868264bdE52C188Cb",
+              "name": "Figment 9",
+              "metadata_url": "https://figment.io",
+              "signed": true,
+              "score": 9.766767034198e+23,
+              "affiliation": "0x5edfCe0bad47e24E30625c275457F5b4Bb619241"
+            },
+            {
+              "height": 1614899,
+              "time": "2020-10-21T18:13:40Z",
+              "address": "0xDD1F519F63423045F526b8c83edC0eB4BA6434a4",
+              "name": "Figment 10",
+              "metadata_url": "https://figment.io",
+              "signed": true,
+              "score": 9.998069323906e+23,
+              "affiliation": "0x5edfCe0bad47e24E30625c275457F5b4Bb619241"
+            }
+          ]
+        }
+  recorded_at: Mon, 14 Dec 2020 14:40:32 GMT
+recorded_with: VCR 6.0.0

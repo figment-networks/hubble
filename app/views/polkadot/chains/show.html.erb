@@ -1,27 +1,31 @@
 <% content_for :body_class, 'chain-show' %>
 
-<%= render partial: 'polkadot/shared/chain_header', locals: { summary_link: true } %>
-<%= render_flash_messages %>
+<%= render partial: 'polkadot/shared/chain_header', locals: { summary_link: true, active_tab: 'Validators' } %>
 
-<div class='row info-cards'>
-  <div class='col-12 col-md-9 order-1 order-md-0'>
-    <%= render partial: 'polkadot/shared/validators', locals: { validators: @validators, stale_data: false } %>
-  </div>
+<div class='container'>
+  <div class='content'>
+    <%= render_flash_messages %>
+    <div class='row info-cards'>
+      <div class='col-12 col-md-9 order-1 order-md-0'>
+        <%= render partial: 'validators_daily_stake', locals: { validators_daily_stake: @validators_daily_stake, chain: @chain } %>
+        <%= render partial: 'polkadot/shared/validators', locals: { validators: @validators, stale_data: false } %>
+      </div>
 
-  <div class='col-12 col-md-3 order-0 order-md-1 info-cards'>
-    <div class='card'>
-      <h5 class='card-header'>Current Block</h5>
-      <div class='card-body'>
-        <%= link_to polkadot_chain_block_path(@chain.slug, @height), class: 'large-number' do %>
-          <span class='technical'><%= @height %></span>
-        <% end %>
-        <div class='sub-info'>
-          <small class='text-muted technical'><%= @latest_block_time.strftime('%Y-%m-%d %H:%M %Z') %></small>
-          <small class='text-muted'><%= time_ago_in_words(@latest_block_time, true) %> ago</small>
+      <div class='col-12 col-md-3 order-0 order-md-1 info-cards mb-5'>
+        <div class='data-block'>
+          <h3 class='data-block__title'>Current Block</h3>
+            <%= link_to polkadot_chain_block_path(@chain.slug, @height), class: 'data-block__large-number' do %>
+              <span class='technical'><%= @height %></span>
+            <% end %>
+            <div>
+              <small class='text-muted'>
+                <%= @latest_block_time.strftime('%Y-%m-%d %H:%M %Z') %>
+                <br/>
+                <%= time_ago_in_words(@latest_block_time, true) %> ago
+              </small>
+            </div>
         </div>
       </div>
-    </div>
-
-    <%= render partial: 'validators_daily_stake', locals: { validators_daily_stake: @validators_daily_stake, chain: @chain } %>
+    </div>  
   </div>
 </div>

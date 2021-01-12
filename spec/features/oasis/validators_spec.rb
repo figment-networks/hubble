@@ -5,29 +5,26 @@ def visit_validator_page(chain_slug, validator_id)
 end
 
 describe 'oasis validators' do
-  let!(:chain) { create(:oasis_chain, api_url: 'https://localhost:1111') }
-  let(:validator_id) { 'oasis1qzsp62l07fqsxgdeqszwz8hm34hhwem9ny73qnpr' }
+  let!(:chain) { create(:oasis_chain, api_url: 'http://localhost:1111') }
+  let(:validator_id) { 'oasis1qz72lvk2jchk0fjrz7u2swpazj3t5p0edsdv7sf8' }
   let(:user) { create(:user) }
 
   context 'logged out' do
     it 'visiting Oasis Validators View as not signed in user', :vcr do
       visit_validator_page(chain.slug, validator_id)
 
-      expect(page).to have_content('Oasis')
       expect(page).to have_content(validator_id)
-      expect(page).to have_content('Entity ID')
-      expect(page).to have_content('Voting Power History')
-      expect(page).to have_content('Current Voting Power')
+      expect(page).to have_content('ENTITY ID')
+      expect(page).to have_content('VOTING POWER HISTORY')
+      expect(page).to have_content('CURRENT VOTING POWER')
       expect(page).to have_content('Blocks')
-      expect(page).to have_content('Lifetime')
-      expect(page).to have_content('Uptime History')
+      expect(page).to have_content('LIFETIME')
+      expect(page).to have_content('UPTIME HISTORY')
       expect(page).to have_content('Event History')
-      expect(page).to have_content('Voting power increased at block 90844')
-      expect(page).to have_content('Added to active set at block 5100')
-      expect(page).to have_content('Removed from active set at block 1199')
-      expect(page).to have_content('Removed from active set at block 1199')
+      expect(page).to have_content('1015800')
+      expect(page).to have_content('Added to active set')
       expect(page).to have_content('Delegations')
-      expect(page).to have_content('399.79')
+      expect(page).to have_content('69,485,000')
     end
   end
 

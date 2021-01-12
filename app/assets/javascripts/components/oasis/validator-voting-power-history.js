@@ -61,9 +61,7 @@ class ValidatorVotingPowerHistory {
         datasets: [
           {
             data: scaledData,
-            borderColor: '#70707a',
             fill: false,
-            borderWidth: 1,
             cubicInterpolationMode: 'monotone',
             steppedLine: false
           }
@@ -71,7 +69,8 @@ class ValidatorVotingPowerHistory {
       },
       options: {
         elements: {
-          point: {radius: 1, backgroundColor: '#70707a', hitRadius: 6, hoverRadius: 3}
+          line: {borderColor: '#4D74FF', borderWidth: 2},
+          point: {radius: 3, borderColor: '#C8C8C8', backgroundColor: '#fff', hitRadius: 6, hoverRadius: 3}
         },
         layout: {
           padding: {top: 5, bottom: 5, left: 5, right: 5}

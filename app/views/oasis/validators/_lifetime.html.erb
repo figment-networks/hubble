@@ -1,0 +1,17 @@
+<div class='data-block'>
+  <h3 class='data-block__title'>Lifetime</h3>
+  <div class='d-flex'>
+    <div class="mr-5">
+      <p class="text-label m-0">First Seen:</p>
+      <p class="stat-value paragraph">
+        <%= validator.started_at.try(:strftime, '%B %d, %Y at %H:%M %Z') || 'Never' %>
+      </p>
+    </div>
+    <div>
+      <p class="text-label m-0">Total Proposed Blocks:</p>
+      <p class="stat-value paragraph">
+        <%= validator.accumulated_proposed_count %>
+      </p> 
+    </div>
+  </div>
+</div>

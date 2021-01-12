@@ -3,10 +3,12 @@ module Common
     include ActiveModel::Model
 
     def initialize(attrs = {})
-      fields = self.class.fields
-      return super(attrs) unless fields
+      mapping = self.class.mapping
+      return super(attrs) unless mapping
 
-      self.class.fields.each_pair do |name, opts|
+      attrs = HashWithIndifferentAccess.new(attrs)
+
+      mapping.each_pair do |name, opts|
         key = name.to_s
         val = attrs[key]
         val = opts[:default] if val.nil? && !opts[:default].nil?
@@ -17,9 +19,9 @@ module Common
         when :float
           instance_variable_set("@#{name}", val&.to_f)
         when :timestamp
-          if val
-            instance_variable_set("@#{name}", Time.zone.parse(val))
-          end
+          instance_variable_set("@#{name}", Time.zone.parse(val)) if val
+        when :unix_timestamp
+          instance_variable_set("@#{name}", Time.zone.at(val)) if val
         when Class
           if val
             val = opts[:collection] ? val.map { |v| opts[:type].new(v) } : opts[:type].new(val)
@@ -28,6 +30,14 @@ module Common
         else
           instance_variable_set("@#{name}", val)
         end
+      end
+    end
+
+    def method_missing(method_name, *arguments, &block)
+      if instance_variable_defined?("@#{method_name}")
+        instance_variable_get("@#{method_name}")
+      else
+        super
       end
     end
 
@@ -51,6 +61,15 @@ module Common
 
     def self.field_names
       @_fields.keys
+    end
+
+    def self.mapping
+      @_mapping ||= ancestors.
+        select { |ancestor| ancestor.respond_to?(:fields) }.
+        flat_map(&:fields).
+        compact.
+        reverse.
+        reduce(&:merge)
     end
   end
 end

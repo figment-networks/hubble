@@ -23,6 +23,8 @@ describe 'Tezos Subscriptions' do
       expect(page).to have_content('Missed Endorsement')
       expect(page).to have_content('Double Bake')
       expect(page).to have_content('Double Endorsement')
+      expect(page).to have_content('Baker Activated')
+      expect(page).to have_content('Baker Deactivated')
 
       choose 'alert_subscription[event_kinds][missed_bake]', option: 'on'
       choose 'alert_subscription[event_kinds][steal]', option: 'on'

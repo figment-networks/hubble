@@ -14,46 +14,9 @@
       </button>
       <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
         <%= form_with(method: :get, local: true) do |f| %>
-          <div class="px-2 mb-2 nowrap">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="filterMissedBakes" name="types[]" value="missed_bakes" <%= 'checked' if params[:types].nil? || params[:types].include?("missed_bakes") %>>
-              <label class="form-check-label" for="filterMissedBakes">
-                Missed Bakes
-              </label>
-            </div>
-          </div>
-          <div class="px-2 mb-2 nowrap">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="filterMissedEndorsements" name="types[]" value="missed_endorsements" <%= 'checked' if params[:types].nil? || params[:types].include?("missed_endorsements") %>>
-              <label class="form-check-label" for="filterMissedEndorsements">
-                Missed Endorsements
-              </label>
-            </div>
-          </div>
-          <div class="px-2 mb-2 nowrap">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="filterSteals" name="types[]" value="steals" <%= 'checked' if params[:types].nil? || params[:types].include?("steals") %>>
-              <label class="form-check-label" for="filterSteals">
-                Steals
-              </label>
-            </div>
-          </div>
-          <div class="px-2 mb-2 nowrap">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="filterDoubleBakes" name="types[]" value="double_bakes" <%= 'checked' if params[:types].nil? || params[:types].include?("double_bakes") %>>
-              <label class="form-check-label" for="filterDoubleBakes">
-                Double Bakes
-              </label>
-            </div>
-          </div>
-          <div class="px-2 mb-2 nowrap">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="filterDoubleEndorsements" name="types[]" value="double_endorsements" <%= 'checked' if params[:types].nil? || params[:types].include?("double_endorsements") %>>
-              <label class="form-check-label" for="filterDoubleEndorsements">
-                Double Endorsements
-              </label>
-            </div>
-          </div>
+          <% @chain.event_kinds.each do |type| %>
+            <%= render "event_type_checkbox", type: type %>
+          <% end %>
 
           <div class="px-2">
             <%= f.submit "Update", name: nil, class: "btn btn-sm btn-info" %>

@@ -1,0 +1,239 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://localhost:9292/celo/status
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (darwin18.0.0 x86_64) ruby/2.6.6p146
+      Content-Length:
+      - '0'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - localhost:9292
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      X-Content-Type-Options:
+      - nosniff
+      Content-Length:
+      - '318'
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "app_name": "celo-indexer",
+          "app_version": "0.0.2",
+          "go_version": "1.14",
+          "chain_id": 44787,
+          "indexing_started": true,
+          "last_index_version": 1,
+          "last_indexed_height": 1614750,
+          "last_indexed_time": "2020-10-21T18:01:15Z",
+          "last_indexed_at": "2020-11-02T07:58:44.031439Z",
+          "indexing_lag": 199900
+        }
+  recorded_at: Thu, 17 Dec 2020 16:08:07 GMT
+- request:
+    method: get
+    uri: http://localhost:9292/celo/block/by_height?height=1614750
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (darwin18.0.0 x86_64) ruby/2.6.6p146
+      Content-Length:
+      - '0'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - localhost:9292
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      X-Content-Type-Options:
+      - nosniff
+      Content-Length:
+      - '1152'
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "height": 1614760,
+          "time": 1603303325,
+          "hash": "0x929145bcb26a7f14fbf0758105b7a778da760453c0c7640e3a5d83fb78a0459c",
+          "parent_hash": "0x73617acd82ff9e29a92417a09752f3ee299d6a65d66f540ca3703bd91522b7ae",
+          "coinbase": "0x050f34537F5b2a00B9B9C752Cb8500a3fcE3DA7d",
+          "root": "0xa9d2a5e97ea72a4129dafaef7e58feec58f67c484a91a8934461a00112efc399",
+          "tx_hash": "0x5befa0989f181f4be41ca2169c0424d741a00d2e51141d7ded237a44e409d866",
+          "recipient_hash": "0x5bf75d97b231ed7cc69526b775063788d0aaf86566cde1b9f7491937c3e452d5",
+          "size": 960,
+          "gas_used": 48030,
+          "total_difficulty": 1614761,
+          "extra": {
+            "added_validators": null,
+            "added_validators_public_keys": [],
+            "removed_validators": 0,
+            "seal": "6kG+cgVfdhGzaWSaeAhsK7BI4e3AqCFPa/CcfgdH1gEfepE0gNvjwwBefoL8hBoDNXSC1EF3DOtHqcUwdZ4oJAE=",
+            "aggregated_seal": {
+              "bitmap": 871,
+              "signature": "J+MN7fNVJTq+O6o8q+oQdoFtdti5XpLKoIE8F2mKHeYoxyG9NhRr0wW684VvpUcB",
+              "round": 0
+            },
+            "parent_aggregated_seal": {
+              "bitmap": 1023,
+              "signature": "o+vxp2bV0KxMy91fzILrh/pdnf9iHxhAaCLN5TwwpzUGakNlCRR3KxiPJTE4hhIB",
+              "round": 0
+            }
+          },
+          "tx_count": 1
+        }
+  recorded_at: Thu, 17 Dec 2020 16:08:07 GMT
+- request:
+    method: get
+    uri: http://localhost:9292/celo/transactions/by_height?height=1614750
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (darwin18.0.0 x86_64) ruby/2.6.6p146
+      Content-Length:
+      - '0'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - localhost:9292
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      X-Content-Type-Options:
+      - nosniff
+      Content-Length:
+      - '641'
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "items": [
+            {
+              "nonce": 7006,
+              "gas_price": 500000000,
+              "gas": 72513,
+              "gateway_fee": 0,
+              "gateway_fee_recipient": "",
+              "index": 0,
+              "gas_used": 48030,
+              "cumulative_gas_used": 48030,
+              "success": true,
+              "operations": [
+                {
+                  "name": "internalTransfer",
+                  "details": {
+                    "index": 0,
+                    "type": "transfer",
+                    "from": "0x6131a6D616A4be3737B38988847270a64bC10CAa",
+                    "to": "0x22C8a9178841BA95a944AFD1a1fAaE517d3f5DAA",
+                    "value": 1000000000000000,
+                    "success": true
+                  }
+                }
+              ]
+            }
+          ]
+        }
+  recorded_at: Thu, 17 Dec 2020 16:08:07 GMT
+- request:
+    method: get
+    uri: http://localhost:9292/celo/validator_groups/by_height?height=1614750
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (darwin18.0.0 x86_64) ruby/2.6.6p146
+      Content-Length:
+      - '0'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - localhost:9292
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      X-Content-Type-Options:
+      - nosniff
+      Content-Length:
+      - '995'
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "items": [
+            {
+              "height": 1614972,
+              "time": "2020-10-21T18:19:45Z",
+              "address": "0x87614eD7AF361a563C6a3624CcadD52e165f67C2",
+              "name": "Figment",
+              "metadata_url": "https://figment.io",
+              "commission": "100000000000000000000000",
+              "active_votes": "4221409232884096309",
+              "active_vote_units": "414001021153639342594282769831151178116",
+              "pending_votes": "50004600000000000000000",
+              "members_count": 5,
+              "members_avg_uptime": 0.98
+            },
+            {
+              "height": 1614972,
+              "time": "2020-10-21T18:19:45Z",
+              "address": "0x5edfCe0bad47e24E30625c275457F5b4Bb619241",
+              "name": "Other Group",
+              "metadata_url": "https://othergroup.io",
+              "commission": "100000000000000000000000",
+              "active_votes": "10221917122277860650303",
+              "active_vote_units": "1001727345817411982091515383645927774055330",
+              "pending_votes": "50037917177172000000030",
+              "members_count": 5,
+              "members_avg_uptime": 0.92
+            }
+          ]
+        }
+  recorded_at: Thu, 17 Dec 2020 16:08:07 GMT
+recorded_with: VCR 6.0.0

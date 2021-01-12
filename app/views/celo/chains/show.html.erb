@@ -27,7 +27,7 @@
         <div class='data-block'>
           <h5 class='data-block__title'>Current Block</h5>
           <div>
-            <%= link_to '#', class: 'large-number' do %>
+            <%= link_to celo_chain_block_path(@chain.slug, @height), class: 'large-number' do %>
               <span class='technical'><%= @height %></span>
             <% end %>
             <div class=''>

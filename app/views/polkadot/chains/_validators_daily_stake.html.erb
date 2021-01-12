@@ -1,14 +1,17 @@
-<div class='card'>
-  <h5 class='card-header'>Total stake</h5>
-  <div class='card-body'>
-    <label>Past <%= validators_daily_stake.count %> days:</label>
-    <div class='small-validators-daily-stake-chart-container'>
-      <canvas
-        class='validators-daily-stake-chart'
-        data-chart="<%= validators_daily_stake.to_json %>"
-        data-token="<%= chain.class::DEFAULT_TOKEN_DISPLAY %>"
-      >
-      </canvas>
+<div class='data-block'>
+  <h3 class='data-block__title'>Total stake</h3>
+  <label class='text-small active m-0'>Past <%= validators_daily_stake.count %> days:</label>
+  <div class='d-flex'>
+    <div class='col-lg-6 col-md-12 charts data-block__chart'>
+      <div class='small-validators-daily-stake-chart-container'>
+        <canvas
+          style='height: 50px'
+          class='validators-daily-stake-chart'
+          data-chart="<%= validators_daily_stake.to_json %>"
+          data-token="<%= chain.class::DEFAULT_TOKEN_DISPLAY %>"
+        >
+        </canvas>
+      </div>
     </div>
   </div>
 </div>

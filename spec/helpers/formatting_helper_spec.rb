@@ -34,4 +34,46 @@ describe FormattingHelper do
       end
     end
   end
+
+  describe '#round_if_whole' do
+    subject { round_if_whole(amount, precision) }
+
+    let(:amount) { nil }
+    let(:precision) { 3 }
+
+    context 'nil' do
+      it 'returns 0' do
+        expect(subject).to eq 0
+      end
+    end
+
+    context 'precision 2' do
+      let(:amount) { 1.21212 }
+      let(:precision) { 2 }
+
+      it 'returns 1.23' do
+        expect(subject).to eq 1.21
+      end
+    end
+
+    context '0.00005' do
+      let(:amount) { 0.00005 }
+
+      it 'returns 0.00005' do
+        expect(subject).to eq 0.00005
+      end
+
+      it 'to_s returns "0.00005"' do
+        expect(subject.to_s).to eq '0.00005'
+      end
+    end
+
+    context 'very small amount' do
+      let(:amount) { 0.000001 }
+
+      it 'returns 0' do
+        expect(subject).to eq 0
+      end
+    end
+  end
 end

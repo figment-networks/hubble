@@ -1,6 +1,6 @@
-<div class='delegations mb-5'>
-  <div class='delegations-table-header'>
-    <h4>Delegations</h4>
+<div class='data-table mb-5'>
+  <div class='data-table__header'>
+    <h4 class='data-table__title'>Delegations</h4>
   </div>
   <div class='delegations-table'>
     <table data-empty='<%= @account_details.delegations.blank? %>'>
@@ -14,19 +14,19 @@
         <% delegations = @account_details.delegations %>
         <% if delegations.nil? %>
           <tr>
-            <td class='p-3 text-center' colspan='5'>Unable to retrieve delegation data.</td>
+            <td class='data-table__empty' colspan='5'>Unable to retrieve delegation data.</td>
           </tr>
         <% elsif delegations.empty? %>
           <tr>
-            <td class='p-3 text-center' colspan='5'>No delegations.</td>
+            <td class='data-table__empty' colspan='5'>No delegations.</td>
           </tr>
         <% else %>
           <% delegations.each do |delegation| %>
             <tr>
-              <td>
+              <td class='text-sm'>
                 <%= link_to delegation['validator_stash'], namespaced_path('validator', delegation['validator_stash']) %>
               </td>
-              <td data-order='<%= delegation['amount'] %>'>
+              <td class='text-sm' data-order='<%= delegation['amount'] %>'>
                 <%= format_amount(delegation['amount'].to_i, @chain, denom: @chain.class::DEFAULT_TOKEN_REMOTE) %>
               </td>
             </tr>

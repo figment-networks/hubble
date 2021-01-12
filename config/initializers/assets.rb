@@ -5,11 +5,9 @@ Rails.application.config.assets.precompile += %w[
   errors.scss
   account.js account.scss
   cosmoslike.js cosmoslike.scss
-  oasis.js oasis.scss
   livepeer.js livepeer.scss
   tezos.js tezos.scss
   near.js near.scss
-  polkadot.js polkadot.scss
   coda.js coda.scss
   redesign/celo.js redesign/celo.scss
   redesign/home.scss home.js
@@ -18,4 +16,8 @@ Rails.application.config.assets.precompile += %w[
   lib/figment-promo.bundled.js
   redesign/near.scss
   redesign/near.js
+  redesign/polkadot.scss
+  redesign/polkadot.js
+  redesign/oasis.scss
+  redesign/oasis.js
 ]

@@ -107,11 +107,9 @@ module Oasis
       return nil
     end
 
-    def validator_events(address, after = nil)
-      chain = Oasis::Chain.find_by(api_url: @endpoint)
-      list = get("/system_events/#{address}", after: after)['items'] || []
-
-      list.map { |event| Oasis::ValidatorEvent.new(event, chain.slug) }
+    def validator_events(chain, address, after = nil)
+      events_list = get("/system_events/#{address}", after: after)['items'] || []
+      events_list.map { |event| Oasis::EventFactory.generate(event, chain) }
     end
 
     def rewards(address)
