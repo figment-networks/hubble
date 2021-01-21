@@ -56,7 +56,7 @@ class Cosmoslike::TransactionsController < Cosmoslike::BaseController
       :page,
       :network,
       :chain_ids,
-      :account,
+      :accounts_array,
       :show,
       :memo,
       :after_time,

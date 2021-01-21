@@ -109,7 +109,7 @@ class Cosmoslike::ProposalTallyDecorator
 
   def percent_nowithveto_to_win
     # to win, the amount of veto votes
-    # has to be more than the gov params veto threshld
+    # has to be more than the gov params veto threshold
     target = current_veto_threshold
     percentage = target.zero? ? 100 : (raw_nowithveto / target) * 100
     round_if_whole([percentage.to_f, 100].min, 2)

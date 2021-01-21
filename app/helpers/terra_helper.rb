@@ -8,8 +8,4 @@ module TerraHelper
   def terra_tx_include_opts
     SEARCH_INCLUDE_OPTIONS
   end
-
-  def terra_tx_chain(transaction)
-    Terra::Chain.find_by(slug: transaction.chain_id)
-  end
 end

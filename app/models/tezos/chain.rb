@@ -52,7 +52,9 @@ class Tezos::Chain < ApplicationRecord
       { kind: 'missed_endorsement' },
       { kind: 'steal' },
       { kind: 'double_bake' },
-      { kind: 'double_endorsement' }
+      { kind: 'double_endorsement' },
+      { kind: 'baker_activated' },
+      { kind: 'baker_deactivated' }
     ].map(&:with_indifferent_access)
   end
 

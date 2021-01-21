@@ -1,0 +1,18 @@
+<div class='data-block lifetime-block'>
+  <h3 class='data-block__title'>Lifetime</h3>
+  <div class="d-flex justify-content-between">
+    <div class="mr-3">
+      <p class="text-label m-0">First Seen:</p>
+      <p class='stat-value paragraph'>
+        <%= first_seen.try(:strftime, '%B %d, %Y at %H:%M %Z') || 'Never' %>
+      </p>
+    </div>
+    <div>
+      <p class="text-label m-0">Last Updated:</p>
+      <p class='stat-value paragraph'>
+        <%= last_updated.try(:strftime, "%B %d, %Y at %H:%M %Z") || 'Never' %>
+      </p>
+    </div>
+  </div>
+
+</div>

@@ -12,8 +12,8 @@ describe 'oasis transactions' do
       expect(page).to have_content('Oasis')
       expect(page).to have_content(block_id)
       expect(page).to have_content('Transaction Details')
-      expect(page).to have_content('Timestamp')
-      expect(page).to have_content('Fees')
+      expect(page).to have_content(/Timestamp/i)
+      expect(page).to have_content('FEES')
     end
   end
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_02_182344) do
+ActiveRecord::Schema.define(version: 2020_12_30_162637) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
@@ -91,7 +91,6 @@ ActiveRecord::Schema.define(version: 2020_11_02_182344) do
     t.boolean "dead", default: false
     t.text "token_denom"
     t.bigint "token_factor", default: 0
-    t.jsonb "token_map", default: {}
     t.integer "position"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -938,7 +937,6 @@ ActiveRecord::Schema.define(version: 2020_11_02_182344) do
     t.datetime "updated_at", null: false
     t.text "token_denom"
     t.bigint "token_factor", default: 0
-    t.jsonb "token_map", default: {}
     t.index ["slug"], name: "index_near_chains_on_slug"
   end
 
@@ -955,7 +953,6 @@ ActiveRecord::Schema.define(version: 2020_11_02_182344) do
     t.bigint "token_factor", default: 0
     t.boolean "dead", default: false
     t.integer "position"
-    t.jsonb "token_map", default: {}
     t.jsonb "validator_event_defs", default: [{"kind"=>"voting_power_change", "height"=>0}, {"kind"=>"active_set_inclusion", "height"=>0}, {"kind"=>"reward_cut_change", "height"=>0}, {"kind"=>"slash", "height"=>0}]
     t.index ["name"], name: "index_oasis_chains_on_name"
   end

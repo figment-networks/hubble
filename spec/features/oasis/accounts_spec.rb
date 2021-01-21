@@ -9,9 +9,9 @@ describe 'oasis accounts' do
       visit "/oasis/chains/#{chain.slug}/accounts/#{account_id}"
 
       expect(page).to have_content('Oasis')
-      expect(page).to have_content('Account')
+      expect(page).to have_content('ACCOUNT')
       expect(page).to have_content('Delegations')
-      expect(page).to have_content('Balance')
+      expect(page).to have_content('BALANCE')
     end
   end
 end

@@ -1,0 +1,38 @@
+<% content_for :body_class, 'account-show' %>
+
+<%= render partial: '/shared/redesign/chain_header', locals: { active_tab: '' } %>
+
+<div class='container'>
+  <div  class='content'>
+    <div class='data-block'>
+      <h3 class='data-block__title'>Account</h3>
+      <span class='technical text-lg'><%= params[:id] %></span>
+    </div>
+    <% if @account_details.name %>
+<!-- TODO: metadata_url, link to a validator/validator group when Indexer returns data -->
+      <div class='data-block'>
+        <h3 class='data-block__title'>Owner</h3>
+        <span class='text-monospace'><%= @account_details.name %></span>
+      </div>
+    <% end %>
+    <% if @error %>
+      <%= render partial: 'shared/display_error' %>
+    <% else %>
+      <div class='d-flex flex-wrap mt-4'>
+        <% @account.balances.each do |balance| %>
+          <div class='mr-5 mb-3'>
+            <%= render layout: 'shared/redesign/data_block', locals: { header: balance[:header] } do %>
+              <%= format_amount(balance[:value], @chain, denom: @chain.class::DEFAULT_TOKEN_REMOTE) %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+      <div class='mt-1'>
+        <div>
+          <%= render partial: 'transfers', locals: { transfers: @account_details.transfers } %>
+          <%= render partial: 'transactions', locals: { transactions: @account_details.transactions } %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

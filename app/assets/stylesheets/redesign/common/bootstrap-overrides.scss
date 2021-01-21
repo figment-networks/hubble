@@ -108,12 +108,14 @@ dl {
 }
 
 .custom-control-label::after {
-  top: 3px;
   left: -21px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .custom-control-label::before {
-  top: 0;
+  top: 50%;
+  transform: translateY(-50%);
   left: -24px;
   width: 18px;
   height: 18px;
@@ -137,6 +139,7 @@ dl {
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0;
+  vertical-align: middle;
 }
 
 .text-muted {

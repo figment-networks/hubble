@@ -3,7 +3,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-5">
-        <%= f.text_field :account, label: "Account (Sender/Receiver):", class: "form-control form-control-sm" %>
+        <%= f.text_field :accounts_array, label: "Account (Sender/Receiver):", class: "form-control form-control-sm" %>
         <div class="show-opts">
           <%= f.collection_radio_buttons :show, terra_tx_include_opts,
                                           :first,

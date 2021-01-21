@@ -8,7 +8,7 @@ describe 'oasis reports' do
     visit new_oasis_chain_report_path(chain)
 
     expect(page).to have_content('Oasis')
-    expect(page).to have_content('Generate Report for Account')
+    expect(page).to have_content('GENERATE REPORT FOR ACCOUNT')
   end
 
   it 'visiting Show Oasis Report View', :vcr do
@@ -18,7 +18,7 @@ describe 'oasis reports' do
     expect(page).to have_content('Figment Inc')
     expect(page).to have_content('Export')
     expect(page).to have_content('New Report')
-    expect(page).to have_content('Reward')
+    expect(page).to have_content('REWARD')
     expect(page).to have_content('32.151347714')
   end
 end

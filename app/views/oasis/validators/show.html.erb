@@ -1,35 +1,35 @@
 <% content_for :body_class, 'validator-show' %>
 
-<%= render partial: '/oasis/shared/chain_header', locals: { summary_link: true, show_report_link: true } %>
-<%= render partial: '/oasis/shared/sync_errors' %>
+<%= render partial: '/oasis/shared/chain_header', locals: { new_reports_link: true, active_tab: '' } %>
 
-<h2 class='mb-3'>
-  <%= @validator.long_name %>
-</h2>
+<div class='validator-header pb-4'>
+  <div class='container'>
+    <h2 class='validator-header__title'>Validator</h2>
+    <p class='data-block__value d-block word-break mt-2'><%= @validator.long_name %></p>
+  </div>
+</div>
 
-<% if @error %>
-  <%= render partial: 'shared/display_error' %>
-<% else %>
-  <div class='row mb-4'>
-    <div class='col-12 col-md-8'>
-      <div class='info'>
-        <h5 class='mb-0'>
-          <label class='text-muted'>Entity ID</label>
-          <span class='technical'><%= @validator.entity_uid %></span>
-        </h5>
+
+<div class='container'>
+  <div class='content'>
+    <%= render partial: '/oasis/shared/sync_errors' %>
+    <% if @error %>
+      <%= render partial: 'shared/display_error' %>
+    <% else %>
+      <div class='row'>
+        <div class='col-md-12 col-lg-6 mb-4 pb-2'>
+          <%= render partial: 'current_voting_power', locals: {chain: @chain, validator: @validator} %>
+          <%= render partial: 'lifetime', locals: {validator: @validator} %>
+          <%= render partial: 'entity_id', locals: {validator: @validator} %>
+          <%= render partial: 'big_charts', locals: {chain: @chain, validator: @validator} %>
+          <%= render partial: 'delegations', locals: {delegations: @validator.delegations} %>
+        </div>
+
+        <div class='col-md-12 col-lg-6'>
+          <%= render partial: 'sidebar', locals: {validator: @validator, chain: @chain} %>
+          <%= render partial: 'events', locals: {events: @events, validator: @validator} %>
+        </div>
       </div>
-    </div>
+    <% end %>
   </div>
-
-  <div class='row'>
-    <div class='col-12 col-md-8 order-1 order-md-0'>
-      <%= render partial: 'big_charts', locals: {chain: @chain, validator: @validator} %>
-      <%= render partial: 'events', locals: {events: @events} %>
-      <%= render partial: 'delegations', locals: {delegations: @validator.delegations} %>
-    </div>
-
-    <div class='col-12 col-md-4 order-0 order-md-1 info-cards'>
-      <%= render partial: 'sidebar', locals: {validator: @validator, chain: @chain} %>
-    </div>
-  </div>
-<% end %>
+</div>

@@ -43,3 +43,6 @@ end
 every '0 * * * *' do
   rake 'health:check_chains'
 end
+
+# When adding new tasks, add them to `hubble-cron` file as well.
+# Looks like only our old staging uses `whenever` gem

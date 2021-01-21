@@ -1,0 +1,12 @@
+<div>
+  <span class='d-inline d-md-none <%= icon_classes %> mr-1'></span>
+  <span class='font-weight-bold'>
+    <%= event.delegator %>
+    <%= event.added? ? ' joined ' : ' left ' %>
+    delegator set
+  </span>
+  <span class='text-muted'>
+    at block
+    <%= link_to event.height, namespaced_path( 'block', event.height ), class: 'technical' %>
+  </span>
+</div>

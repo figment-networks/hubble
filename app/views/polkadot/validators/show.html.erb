@@ -1,85 +1,109 @@
 <% content_for :body_class, 'validator-show' %>
 
-<%= render partial: '/polkadot/shared/chain_header', locals: { summary_link: true } %>
+<%= render partial: 'polkadot/shared/chain_header', locals: { summary_link: true, active_tab: '' } %>
 
-<h2 class='mb-3'>
-  <%= @validator.display_name %>
-  <% if @validator.account_details.web_name %>
-    <%= link_to @validator.account_details.web_name, class: 'btn btn-outline-primary ml-3', target: :blank do %>
-      Visit Site <span class='fas fa-external-link-alt ml-1'></span>
-    <% end %>
-  <% end -%>
-</h2>
-
-<div class='row mb-4'>
-  <div class='col-12 col-md-8'>
-    <div class='info'>
-      <h5 class='mb-0'>
-        <label class='text-muted'>Account</label>
-        <span class='technical'>
-          <%= link_to @validator.stash_account, namespaced_path('account', @validator.stash_account) %>
-        </span>
-      </h5>
+<div class='validator-header border-top-0'>
+  <div class='container'>
+    <div class='d-flex flex-wrap'>
+      <h2 class='mb-4 validator-header__title mr-auto'>
+        <%= @validator.display_name.truncate(30) %>
+      </h2>
+      <div class='validator-info pb-4'>
+        <ul class="validator-info__list">
+          <li class="validator-info__item">
+            <p class="text-label validator-info__label">Account</p>
+            <%= link_to @validator.stash_account, namespaced_path('account', @validator.stash_account), class: 'validator-info__value technical' %>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>
 
-<div class='row'>
-  <div class='col-12 col-md-8 order-1 order-md-0'>
-    <div class='card'>
-      <h5 class='card-header'>Total Stake History <small>&mdash; Last <%= @validator_daily_stake.count %> Days</small>
-      </h5>
-      <div class='card-body'>
-        <div class='validator-daily-stake-chart-container'>
-          <canvas
-            class='validator-daily-stake-chart'
-            data-chart="<%= @validator_daily_stake.to_json %>"
-            data-name="daily-stake-chart"
-            data-token="<%= @chain.class::DEFAULT_TOKEN_DISPLAY %>"
-          ></canvas>
+<div class='container'>
+  <div class='content'>
+    <h2 class='mb-3'>
+      <% if @validator.account_details.web_name %>
+        <%= link_to @validator.account_details.web_name, class: 'btn btn-outline-primary ml-3', target: :blank do %>
+          Visit Site <span class='fas fa-external-link-alt ml-1'></span>
+        <% end %>
+      <% end -%>
+    </h2>
+
+    <div class='row'>
+        <div class='col-md-12 col-lg-6 mb-4 pb-2'>
+          <div class='d-flex data-block flex-wrap align-items-end'>
+            <div class='mr-5'>
+              <%= render layout: 'shared/redesign/data_block', locals: { header: 'Total stake' } do %>
+                <div class='data-block__large-number d-flex'>
+                  <%= format_amount(@validator.total_stake, @chain, denom: @chain.class::DEFAULT_TOKEN_REMOTE) %>
+                </div>
+              <% end %>
+            </div>
+
+            <div class='ml-5'>
+              <%= render layout: 'shared/redesign/data_block', locals: { header: 'Own stake' } do %>
+                <div class='data-block__large-number d-flex'>
+                  <%= format_amount(@validator.own_stake, @chain, denom: @chain.class::DEFAULT_TOKEN_REMOTE, precision: 0) %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+
+          <div class='d-flex data-block'>
+            <div class='mr-5'>
+              <%= render layout: 'shared/redesign/data_block', locals: { header: 'Lifetime' } do %>
+                <label class='text-label m-0'>First Seen:</label>
+                <div class='stat-value'>
+                  <%= @validator.started_at.try(:strftime, '%B %d, %Y at %H:%M %Z') || 'Never' %>
+                </div>
+              <% end %>
+            </div>
+            <div class='mr-5'>
+              <%= render layout: 'shared/redesign/data_block', locals: { header: 'Commission' } do %>
+                <div class='data-block__large-number'>
+                  <%= rounded_percentage(@validator.factored_commission) %> %
+                </div>
+              <% end %>
+            </div>
+            <div>
+              <div class='data-block'>
+                <div class='data-block__value'><%= @validator.reward_points %></div>
+                <h3 class='text-label'>Reward points</h3>
+              </div>
+            </div>
+          </div>
+
+          <div class='data-block'>
+            <h5 class='data-block__title'>Total Stake History <small>&mdash; Last <%= @validator_daily_stake.count %> Days</small>
+            </h5>
+            <div class='validator-daily-stake-chart-container'>
+              <canvas
+                class='validator-daily-stake-chart'
+                data-chart="<%= @validator_daily_stake.to_json %>"
+                data-name="daily-stake-chart"
+                data-token="<%= @chain.class::DEFAULT_TOKEN_DISPLAY %>"
+              ></canvas>
+            </div>
+          </div>
+
+          <div class='data-block'>
+            <h5 class='data-block__title'>Uptime History <small>&mdash; Last <%= Polkadot::Client::DEFAULT_HOURS_LIMIT %> Hours</small>
+            </h5>
+            <div class='validator-hourly-uptime-chart-container'>
+              <canvas
+                class='validator-hourly-uptime-chart'
+                data-chart="<%= @validator_hourly_uptime.to_json %>"
+                data-name="hourly-uptime-chart"
+              ></canvas>
+            </div>
+          </div>
+        </div>
+
+        <div class='col-md-12 col-lg-6'>
+          <%= render partial: 'events', locals: {events: @events} %>
         </div>
       </div>
     </div>
-
-    <div class='card'>
-      <h5 class='card-header'>Uptime History <small>&mdash; Last <%= Polkadot::Client::DEFAULT_HOURS_LIMIT %> Hours</small>
-      </h5>
-      <div class='card-body'>
-        <div class='validator-hourly-uptime-chart-container'>
-          <canvas
-            class='validator-hourly-uptime-chart'
-            data-chart="<%= @validator_hourly_uptime.to_json %>"
-            data-name="hourly-uptime-chart"
-          ></canvas>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class='col-12 col-md-4 order-0 order-md-1 info-cards'>
-    <%= render layout: 'shared/sidebar_card', locals: { header: 'Total stake' } do %>
-      <div class='large-number'>
-        <%= format_amount(@validator.total_stake, @chain, denom: @chain.class::DEFAULT_TOKEN_REMOTE) %>
-      </div>
-    <% end %>
-
-    <%= render layout: 'shared/sidebar_card', locals: { header: 'Own stake' } do %>
-      <%= format_amount(@validator.own_stake, @chain, denom: @chain.class::DEFAULT_TOKEN_REMOTE) %>
-    <% end %>
-
-    <%= render layout: 'shared/sidebar_card', locals: { header: 'Commission' } do %>
-      <%= rounded_percentage(@validator.factored_commission) %> %
-    <% end %>
-
-    <%= render layout: 'shared/sidebar_card', locals: { header: 'Reward points' } do %>
-      <%= @validator.reward_points %>
-    <% end %>
-
-    <%= render layout: 'shared/sidebar_card', locals: { header: 'Lifetime' } do %>
-      <label>First Seen:</label>
-      <div class='stat-value'>
-        <%= @validator.started_at.try(:strftime, '%B %d, %Y at %H:%M %Z') || 'Never' %>
-      </div>
-    <% end %>
   </div>
 </div>

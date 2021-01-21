@@ -1,0 +1,49 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://localhost:9292/celo/status
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (darwin18.0.0 x86_64) ruby/2.6.6p146
+      Content-Length:
+      - '0'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - localhost:9292
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      X-Content-Type-Options:
+      - nosniff
+      Content-Length:
+      - '318'
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "app_name": "celo-indexer",
+          "app_version": "0.0.2",
+          "go_version": "1.14",
+          "chain_id": 44787,
+          "indexing_started": true,
+          "last_index_version": 1,
+          "last_indexed_height": 1614750,
+          "last_indexed_time": "2020-10-21T18:01:15Z",
+          "last_indexed_at": "2020-11-02T07:58:44.031439Z",
+          "indexing_lag": 199900
+        }
+  recorded_at: Thu, 10 Dec 2020 15:05:32 GMT
+recorded_with: VCR 6.0.0

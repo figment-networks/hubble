@@ -18,7 +18,8 @@ module Polkadot
 
     def account_details(address)
       Rails.cache.fetch([self.class.name, 'account_details', address].join('-'), expires_in: SHORT_EXPIRY_TIME) do
-        Polkadot::AccountDetails.new(get("/account_details/#{address}"))
+        raw_account_details = get("/account_details/#{address}")
+        Polkadot::AccountDetails.new(raw_account_details.merge(raw_account_details['account']))
       end
     end
 
@@ -78,6 +79,11 @@ module Polkadot
       Rails.cache.fetch([self.class.name, 'validators_count'].join('-'), expires_in: MEDIUM_EXPIRY_TIME) do
         validators_uptime(status.indexed_validators_height).count
       end
+    end
+
+    def validator_events(chain, address, after = nil)
+      events_list = get("/system_events/#{address}", after: after)['items'] || []
+      events_list.map { |event| Polkadot::EventFactory.generate(event, chain) }
     end
 
     private

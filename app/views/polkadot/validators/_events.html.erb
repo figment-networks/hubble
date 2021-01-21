@@ -1,0 +1,46 @@
+<a name='events'></a>
+<div class='data-table mb-4'>
+  <div class='data-table__header d-flex justify-content-between align-items-center'>
+    <h3 class='data-table__title'>Event History</h3>
+  </div>
+
+    <% if events.empty? -%>
+      <p class='data-table__empty'>No events yet.</p>
+    <% else -%>
+      <div class="table-responsive ">
+        <table class="w-100 event-history">
+          <thead>
+            <tr>
+              <th>EVENT</th>
+              <th>BLOCK</th>
+              <th>DATE</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% events.each do |event| -%>
+              <tr>
+                <%= render partial: polkadot_event_to_partial_path(event), locals: { event: event, icon_classes: nil } %>
+                <td>
+                  <div class='d-flex align-items-center justify-content-between'>
+                    <span class="event-history__date">
+                      <%= event.timestamp.strftime("%B %d, %Y") -%>
+                    </span>
+                  </div>
+                </td>
+              </tr>
+            <% end -%>
+
+            <% if @pagination.pages > 1 %>
+              <tr>
+                <td colspan="3">
+                  <%= raw(pagy_bootstrap_nav(@pagination)) %>
+                </td>
+              </tr>
+            <% end -%>
+
+          </tbody>
+        </table>
+      </div>
+    <% end -%>
+
+</div>

@@ -1,39 +1,37 @@
-<div class='card'>
-  <h5 class='card-header'>
-    <div class='card-header-parts'>Delegations</div>
-  </h5>
-  <div class='card-body p-0'>
-    <div class='delegations-table'>
-      <table>
-        <thead>
+<div class='data-table'>
+  <div class='data-table__header'>
+    <h3 class='data-table__title'>Delegations</h3>
+  </div>
+  <div class='delegations-table'>
+    <table>
+      <thead>
+        <tr>
+          <th>Account</th>
+          <th>Amount</th>
+          <th>Share</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if delegations.empty? -%>
           <tr>
-            <th>Account</th>
-            <th>Amount</th>
-            <th>Share</th>
+            <td class='p-3 text-center' colspan='3'>No delegations.</td>
           </tr>
-        </thead>
-        <tbody>
-          <% if delegations.empty? -%>
-            <tr>
-              <td class='p-3 text-center' colspan='3'>No delegations.</td>
-            </tr>
-          <% end -%>
+        <% end -%>
 
-          <% (delegations||[]).each do |del| -%>
-            <tr>
-              <td data-order='<%= del.delegator_uid %>' class='text-sm'>
-                  <%= link_to del.delegator_uid.truncate(30), oasis_chain_account_path(@chain, del.delegator_uid) %>
-              </td>
-              <td data-order='<%= del.shares %>'>
-                <%= oasis_format_amount( del.shares) %>
-              </td>
-              <td>
-                <span class='technical'><%= round_if_whole(delegation_share(delegations, del.shares) * 100, 2) %>%</span>
-              </td>
-            </tr>
-          <% end -%>
-        </tbody>
-      </table>
-    </div>
+        <% (delegations||[]).each do |del| -%>
+          <tr>
+            <td data-order='<%= del.delegator_uid %>' class='text-sm'>
+                <%= link_to del.delegator_uid.truncate(30), oasis_chain_account_path(@chain, del.delegator_uid) %>
+            </td>
+            <td data-order='<%= del.shares %>'>
+              <%= oasis_format_amount( del.shares) %>
+            </td>
+            <td>
+              <span class='technical'><%= round_if_whole(delegation_share(delegations, del.shares) * 100, 2) %>%</span>
+            </td>
+          </tr>
+        <% end -%>
+      </tbody>
+    </table>
   </div>
 </div>

@@ -179,6 +179,23 @@ $box-shadow: 0px 5px 15px 3px #F2F2F2;
   word-break: break-all;
 }
 
+.button-primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  width: 128px;
+  border: none;
+  border-radius: 6px;
+  background: $primary;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 15px;
+  text-align: center;
+}
+
 .button-secondary {
   display: flex;
   align-items: center;
@@ -195,6 +212,7 @@ $box-shadow: 0px 5px 15px 3px #F2F2F2;
   text-align: center;
 }
 
+.button-primary:hover,
 .button-secondary:hover {
   text-decoration: none;
 }

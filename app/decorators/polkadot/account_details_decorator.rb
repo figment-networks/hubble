@@ -7,9 +7,9 @@ class Polkadot::AccountDetailsDecorator < SimpleDelegator
   end
 
   def balances
-    %i[deposits bonded unbonded withdrawn].map do |field|
-      value_sum = send(field)&.sum { |deposit| deposit['amount'].to_i } || 0
-      { header: field.to_s.humanize, value: value_sum }
+    %i[balance reserved misc_frozen fee_frozen deposits bonded unbonded withdrawn].map do |field|
+      value_sum = send(field).respond_to?(:sum) ? send(field).sum { |deposit| deposit['amount'].to_i } : send(field)
+      { header: field.to_s.humanize, value: value_sum || 0 }
     end
   end
 

@@ -1,50 +1,49 @@
 <% content_for :body_class, 'account-show' %>
 
-<%= render partial: '/oasis/shared/chain_header', locals: { summary_link: true, show_report_link: true } %>
-<%= render_flash_messages %>
+<%= render partial: '/oasis/shared/chain_header', locals: { show_report_link: true, active_tab: '' } %>
 
-<h2 class='mb-0'>
-  <label class='text-muted'>Account</label>
-  <span class='technical text-lg'><%= params[:id] %></span>
-</h2>
-<% if false -%>
-  <h5 class='mb-4'>
-    <label class='text-muted'>Owner</label>
-    <a href='<%= namespaced_path( 'validator', @found_account.validator ) %>'>
-      <span class='technical'><%= @found_account.validator.long_name %></span>
-    </a>
-  </h5>
-<% end -%>
-
-<% if @error %>
-  <%= render partial: 'shared/display_error' %>
-<% else %>
-  <div class='row'>
-    <div class='col-12 col-md-3 order-0 order-md-1 info-cards'>
-      <div class='card'>
-        <h5 class='card-header'>Balance</h5>
-        <div class='card-body'>
-            <div><%= oasis_format_amount( @account.total_balance) %></div>
-        </div>
-      </div>
-
-      <div class='card'>
-        <h5 class='card-header'>Delegation</h5>
-        <div class='card-body'>
-          <label class='text-muted mb-0 mt-0'>Bonded</label>
-          <%= oasis_format_amount( @account.bonded_balance) %>
-
-          <label class='text-muted mb-0 mt-3'>Unbonding</label>
-          <%= oasis_format_amount( @account.debonding_balance) %>
-
-          <label class='text-muted mb-0 mt-3'>Unbonded</label>
-          <%= oasis_format_amount( @account.liquid_balance) %>
-        </div>
-      </div>
+<div class="container">
+  <div class="content">  
+    <%= render_flash_messages %>
+    <div class='data-block'>
+      <label class='data-block__title'>Account</label>
+      <span class='data-block__value d-block word-break'><%= params[:id] %></span>
     </div>
+    <% if false -%>
+      <h5 class='mb-4'>
+        <label class='text-muted'>Owner</label>
+        <%= link_to namespaced_path( 'validator', @found_account.validator ) do %>
+          <span class='technical'><%= @found_account.validator.long_name %></span>
+        <% end -%>
+      </h5>
+    <% end -%>
 
-    <div class='col-12 col-md-9 order-1 order-md-0'>
+    <% if @error %>
+      <%= render partial: 'shared/display_error' %>
+    <% else %>
+      <div class='data-block d-flex flex-wrap mt-5'>
+        <div class='mr-5'>
+          <h3 class='data-block__title'>Balance</h3>
+          <div><%= oasis_format_amount( @account.total_balance) %></div>
+        </div>
+        <div>
+          <h3 class='data-block__title'>Delegation</h3>
+          <div>
+            <label class='text-muted mb-0 mt-0'>Bonded</label>
+            <%= oasis_format_amount( @account.bonded_balance) %>
+          </div>
+          <div>
+            <label class='text-muted mb-0'>Unbonding</label>
+            <%= oasis_format_amount( @account.debonding_balance) %>
+          </div>
+          <div>
+            <label class='text-muted mb-0'>Unbonded</label>
+            <%= oasis_format_amount( @account.liquid_balance) %>
+          </div>
+        </div>
+      </div>
+      
       <%= render partial: 'delegations', locals: {account: @account} %>
-    </div>
+    <% end -%>
   </div>
-<% end -%>
+</div>

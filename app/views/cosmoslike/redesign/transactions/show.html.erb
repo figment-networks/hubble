@@ -41,7 +41,7 @@
 
           <div class='data-block'>
             <h3 class='data-block__title'>Timestamp</h5>
-            <span class='technical'><%= format_timestamp(@block.timestamp) %></span>
+            <span class='technical paragraph'><%= format_timestamp(@block.timestamp) %></span>
           </div>
 
           <div class='data-block'>
@@ -60,7 +60,7 @@
             <h3 class='data-block__title'>Raw JSON</h3>
             <div class='text-nowrap'>
               <% if @chain.enabled? -%>
-                <%= link_to 'View', namespaced_path('block_transaction', @block, @transaction, format: 'json'), class: 'btn btn-outline-secondary btn-sm', target: '_blank' %>
+                <%= link_to 'View', namespaced_path('block_transaction', @block, @transaction, format: 'json'), class: 'button-secondary', target: '_blank' %>
               <% else -%>
                 <span class='text-muted'>&mdash;</span>
               <% end -%>

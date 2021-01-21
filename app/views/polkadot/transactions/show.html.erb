@@ -1,97 +1,99 @@
 <% content_for :body_class, 'transaction-show' -%>
 
-<%= render partial: '/polkadot/shared/chain_header', locals: { summary_link: true } %>
+<%= render partial: '/polkadot/shared/chain_header', locals: { summary_link: true, active_tab: '' } %>
 
-<h2 class='mb-4'>
-  <label class='text-muted'>Tx</label>
-  <span class='technical text-lg'><%= params[:id] %></span>
-</h2>
+<div class='container'>
+  <div  class='content'>
+    <%= link_to polkadot_chain_block_path(@chain.slug, @transaction.block), class: 'link text-uppercase' do %>
+      <span class='fas fa-chevron-left'></span>
+      back
+    <% end %>
+    <h2 class='my-4'>
+      <label class='data-block__title'>TRANSACTION</label>
+      <span class='data-block__value d-block word-break'><%= params[:id] %></span>
+    </h2>
 
-<% unless @transaction.present? -%>
-  <%= render partial: 'shared/display_error' %>
-<% else -%>
-  <div class='row'>
-    <div class='col-12 col-md-3 order-0 order-md-1 info-cards'>
-      <div class='card'>
-        <h5 class='card-header d-flex justify-content-between align-items-center'>
-          Height
-          <%= link_to polkadot_chain_block_path(@chain.slug, @transaction.block), class: 'text-sm text-white' do %>
-            <span class='fas fa-chevron-left'></span>
-            back
+    <% unless @transaction.present? -%>
+      <%= render partial: 'shared/display_error' %>
+    <% else -%>
+      <div class='row'>
+        <div class='col-12 col-md-3 order-0 order-md-1 info-cards'>
+          <div class='data-block'>
+            <h5 class='data-block__title'>
+              Height
+            </h5>
+            <span class='large-number technical'><%= @transaction.block %></span>
+          </div>
+
+          <%= render layout: 'shared/redesign/data_block', locals: { header: 'Result' } do %>
+            <% if @transaction.is_success -%>
+              <span class='badge badge-success'>SUCCESS</span>
+            <% else -%>
+              <span class='badge badge-danger'>ERROR</span>
+            <% end -%>
           <% end %>
-        </h5>
-        <div class='card-body'>
-          <span class='large-number technical'><%= @transaction.block %></span>
+
+          <%= render layout: 'shared/redesign/data_block', locals: { header: 'Timestamp' } do %>
+            <span class='technical'><%= format_timestamp(@transaction.time) %></span>
+          <% end %>
+
+          <%= render layout: 'shared/redesign/data_block', locals: { header: 'Fees' } do %>
+            <%= format_amount(@transaction.fee, @chain, denom: @chain.class::DEFAULT_TOKEN_REMOTE) %>
+          <% end %>
+
+          <%= render layout: 'shared/redesign/data_block', locals: { header: 'Raw JSON' } do %>
+            <%= link_to 'View', namespaced_path('block_transaction', params[:block_id], @transaction.hash, format: 'json'),
+                target: '_blank', class: 'button-secondary' %>
+          <% end %>
+        </div>
+
+        <div class='col-12 col-md-9 order-1 order-md-0'>
+          <section class='data-table'>
+            <header class='data-table__header'>
+              <h4 class='data-table__title'>Transaction Details</h4>
+            </header>
+            <main>
+              <section>
+                <div class='table-responsive'>
+                  <table class='w-100'>
+                    <tbody>
+                    <% if @transaction.humanized_method %>
+                      <tr>
+                        <td colspan="2" class='transaction-section-title text-uppercase'><%= @transaction.humanized_method %></td>
+                      </tr>
+                    <% end %>
+
+                    <% @transaction.humanized_attributes.each do |row| %>
+                      <tr>
+                        <td class='text-sm text-nowrap'><%= row[:name] %></td>
+                        <%= render partial: '/polkadot/shared/row_value', locals: { row: row } %>
+                      </tr>
+                    <% end %>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <% if @transaction.parameters %>
+                <section>
+                  <div class='transaction-section-title bg-light'>PARAMETERS</div>
+                  <div class='table-responsive'>
+                    <table class='table table-sm'>
+                      <tbody>
+                      <% @transaction.parameters.each do |parameter| %>
+                        <tr>
+                          <td><%= parameter %></td>
+                        </tr>
+                      <% end %>
+                      </tbody>
+                    </table>
+                  </div>
+                </section>
+              <% end %>
+            </main>
+          </section>
         </div>
       </div>
-
-      <%= render layout: 'shared/sidebar_card', locals: { header: 'Timestamp' } do %>
-        <span class='technical'><%= format_timestamp(@transaction.time) %></span>
-      <% end %>
-
-      <%= render layout: 'shared/sidebar_card', locals: { header: 'Result' } do %>
-        <% if @transaction.is_success -%>
-          <span class='badge text-lg badge-success'>SUCCESS</span>
-        <% else -%>
-          <span class='badge text-lg badge-danger'>ERROR</span>
-        <% end -%>
-      <% end %>
-
-      <%= render layout: 'shared/sidebar_card', locals: { header: 'Fees' } do %>
-        <%= format_amount(@transaction.fee, @chain, denom: @chain.class::DEFAULT_TOKEN_REMOTE) %>
-      <% end %>
-
-      <%= render layout: 'shared/sidebar_card', locals: { header: 'Raw JSON' } do %>
-        <%= link_to 'View', namespaced_path('block_transaction', params[:block_id], @transaction.hash, format: 'json'),
-            target: '_blank', class: 'btn btn-outline-secondary btn-sm' %>
-      <% end %>
-    </div>
-
-    <div class='col-12 col-md-9 order-1 order-md-0'>
-      <section class='card'>
-        <header class='card-header d-flex align-items-center justify-content-between'>
-          <h4 class='m-0'>Transaction Details</h4>
-        </header>
-        <main>
-          <section>
-            <div class='table-responsive pt-2'>
-              <table class='table table-sm table-borderless'>
-                <tbody>
-                <% if @transaction.humanized_method %>
-                  <tr>
-                    <td class='text-nowrap border-none'><h4><%= @transaction.humanized_method %></h4></td>
-                  </tr>
-                <% end %>
-
-                <% @transaction.humanized_attributes.each do |row| %>
-                  <tr>
-                    <td class='text-nowrap'><%= row[:name] %></td>
-                    <%= render partial: '/polkadot/shared/row_value', locals: { row: row } %>
-                  </tr>
-                <% end %>
-                </tbody>
-              </table>
-            </div>
-          </section>
-
-          <% if @transaction.parameters %>
-            <section>
-              <div class='transaction-section-title bg-light'>PARAMETERS</div>
-              <div class='table-responsive'>
-                <table class='table table-sm'>
-                  <tbody>
-                  <% @transaction.parameters.each do |parameter| %>
-                    <tr>
-                      <td><%= parameter %></td>
-                    </tr>
-                  <% end %>
-                  </tbody>
-                </table>
-              </div>
-            </section>
-          <% end %>
-        </main>
-      </section>
-    </div>
+    <% end %>
   </div>
-<% end %>
+</div>

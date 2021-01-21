@@ -49,7 +49,7 @@ module Terra
 
     attr_accessor :network
     attr_accessor :type
-    attr_accessor :account
+    attr_accessor :accounts_array
     attr_accessor :sender
     attr_accessor :receiver
     attr_accessor :show
@@ -66,12 +66,12 @@ module Terra
 
       @type = attrs['type'].reject(&:blank?) if attrs['type']
 
-      @account = [attrs['account']] unless attrs['account'] == ''
+      @accounts_array = attrs['accounts_array'] == '' ? [nil] : [attrs['accounts_array']]
       case attrs['show']
       when 'sent'
-        @sender = [attrs['account']] unless attrs['account'] == ''
+        @sender = [attrs['accounts_array']] unless attrs['accounts_array'] == ''
       when 'received'
-        @receiver = [attrs['account']] unless attrs['account'] == ''
+        @receiver = [attrs['accounts_array']] unless attrs['accounts_array'] == ''
       end
 
       @chain_ids = [attrs.fetch('chain_ids', chain.slug)]
@@ -98,13 +98,13 @@ module Terra
     end
 
     def to_hash(page)
-      account_provided = account[0] && sender.blank? && receiver.blank? ? account : nil
+      accounts_provided = accounts_array[0] && sender.blank? && receiver.blank? ? accounts_array : nil
       types = (type || []).select(&:present?).join(',')
 
       {
         network: network,
         type: type,
-        account: account_provided,
+        account: accounts_provided,
         sender: sender,
         receiver: receiver,
         show: show,

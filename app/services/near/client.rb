@@ -32,10 +32,10 @@ module Near
       Near::BlockTime.new(get('/block_times', limit: limit))
     end
 
-    # Get block times within a period
-    def block_times_interval(period: '48', interval: 'h')
-      get('/block_times_interval', period: period, interval: interval).map do |r|
-        Near::IntervalStat.new(r)
+    # Get block stats for a given time interval
+    def block_stats(period: '48', interval: 'h')
+      get('/block_stats', limit: period, bucket: interval).map do |record|
+        Near::BlockStat.new(record)
       end
     end
 
@@ -47,21 +47,17 @@ module Near
     # Get validator by hash or height
     def validator(id)
       data = get("/validators/#{id}")
-      Near::Validator.new(data['validator'].merge(
-                            "account": data['account'],
-                            "epochs": data['epochs'],
-                            "blocks": data['blocks']
-                          ))
+
+      data['validator'].merge!(
+        'account': data['account'],
+        'epochs': data['epochs'],
+        'blocks': data['blocks']
+      )
+
+      Near::Validator.new(data['validator'])
     end
 
     alias validator_by_height validator
-
-    # Get validator counts withing a period
-    def validator_times_interval(period: '48', interval: 'h')
-      get('/validator_times_interval', period: period, interval: interval).map do |r|
-        Near::IntervalStat.new(r)
-      end
-    end
 
     # Get account by name
     def account(id)

@@ -1,43 +1,17 @@
-<div class='card'>
-  <h5 class='card-header'>Current Voting Power</h5>
-  <div class='card-body'>
-    <div class='large-number'><%= oasis_format_amount(validator.recent_active_escrow_balance) %></div>
-    <div>
-      <label class='text-muted d-inline mb-0'>Proposal Probability</label>
-      <span class='technical'><%= round_if_whole((validator.recent_active_escrow_balance.to_f / chain.current_voting_power.to_f) * 100, 2) %>%</span>
-    </div>
+<div class='data-block'>
+  <div class='d-flex justify-content-between align-content-center mb-2'>
+    <h3 class='data-block__title m-0'>Blocks</h3>
+    <span class='text-label'>Last 50</span>
   </div>
-</div>
-
-<div class='card'>
-  <h5 class='card-header'>Blocks</h5>
-  <div class='card-body'>
-    <label class='text-muted'>Last 50</label>
-    <div class='block-heatmap-container'>
-      <div class='block-heatmap'>
-        <% validator.last_sequences.reverse_each do |block| -%>
-          <% precommitted = block['precommit_validated'] -%>
-          <% proposed = block['proposed'] -%>
-          <a class='block <%= precommitted ? 'ok' : 'missed' %> <%= proposed ? 'proposed' : '' %>'
-             href='<%= oasis_chain_block_path( chain.slug, block['height'] ) %>'
-             title="Block <%= block['height'] %> <span class='fas fa-arrow-right text-sm text-muted mx-2'></span> <span class='badge badge-<%= precommitted ? 'success' : 'danger' %>'><%= precommitted ? 'OK' : 'MISSED' %></span>"></a>
-        <% end -%>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<div class='card'>
-  <h5 class='card-header'>Lifetime</h5>
-  <div class='card-body'>
-    <label>First Seen:</label>
-    <div class='stat-value'>
-      <%= validator.started_at.try(:strftime, '%B %d, %Y at %H:%M %Z') || 'Never' %>
-    </div>
-    <label>Total Proposed Blocks:</label>
-    <div class='stat-value'>
-      <%= validator.accumulated_proposed_count %>
+  <div class='block-heatmap-container'>
+    <div class='block-heatmap'>
+      <% validator.last_sequences.reverse_each do |block| -%>
+        <% precommitted = block['precommit_validated'] -%>
+        <% proposed = block['proposed'] -%>
+        <a class='block <%= precommitted ? 'ok' : 'missed' %> <%= proposed ? 'proposed' : '' %>'
+            href='<%= oasis_chain_block_path( chain.slug, block['height'] ) %>'
+            title="Block <%= block['height'] %> <span class='fas fa-arrow-right text-sm text-muted mx-2'></span> <span class='badge badge-<%= precommitted ? 'success' : 'danger' %>'><%= precommitted ? 'OK' : 'MISSED' %></span>"></a>
+      <% end -%>
     </div>
   </div>
 </div>

@@ -14,11 +14,13 @@
 @import 'redesign/common/logotypes';
 
 @import 'page/celo/chain';
+@import 'page/celo/validator';
 
 // components
 @import 'redesign/components/network-chain-header';
 @import 'redesign/components/data-block';
 @import 'redesign/components/data-table';
 @import 'redesign/components/validator-table';
+@import 'redesign/components/validator-header';
 @import 'components/transactions-table';
 @import 'components/delegations-table';

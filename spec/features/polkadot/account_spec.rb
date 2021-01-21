@@ -11,8 +11,11 @@ describe 'polkadot account details' do
     expect(page).to have_content('XiaoGong')
     expect(page).to have_content('455439044@qq.com')
     expect(page).to have_content('Account Details')
-    expect(page).to have_content('Deposits')
-    expect(page).to have_content('Bonded')
-    expect(page).to have_content('Withdrawn')
+    expect(page).to have_content('DEPOSITS')
+    expect(page).to have_content('BONDED')
+    expect(page).to have_content('WITHDRAWN')
+    expect(page).to have_content('BALANCE')
+    expect(page).to have_content('RESERVED')
+    expect(page).to have_content('FROZEN')
   end
 end

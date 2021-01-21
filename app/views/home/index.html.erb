@@ -68,10 +68,10 @@
                 <% end %>
               <% end %>
 
-              <% if chain.token_price? -%>
+              <% if chain.token_price?(@token_prices) -%>
                 <li class='col-6 p-0 mt-3'>
                   <p class='chains-list__label m-0'>Token Price</p>
-                  <p class='chains-list__data m-0'>$<%= chain.token_price.round(2) %></p>
+                  <p class='chains-list__data m-0'>$<%= chain.token_price(@token_prices).round(2) %></p>
                 </li>
               <% end -%>
             </ul>

@@ -1,113 +1,115 @@
 <% content_for :body_class, 'dashboard' %>
 
-<h1 class='d-flex align-items-center justify-content-between'>
-  <span>Dashboard for <%= @chain.name %></span>
+<div class='container mt-3'>
+  <h1 class='d-flex align-items-center justify-content-between'>
+    <span>Dashboard for <%= @chain.name %></span>
 
-  <%= link_to namespaced_path, class: 'btn btn-sm btn-outline-secondary' do %>
-    <span class='d-none d-md-inline'><span class='fas fa-chevron-left'></span> back to chain</span>
-    <span class='d-inline d-md-none fa fa-arrow-circle-up'></span>
-  <% end %>
-</h1>
+    <%= link_to namespaced_path, class: 'btn btn-sm btn-outline-secondary' do %>
+      <span class='d-none d-md-inline'><span class='fas fa-chevron-left'></span> back to chain</span>
+      <span class='d-inline d-md-none fa fa-arrow-circle-up'></span>
+    <% end %>
+  </h1>
 
-<% all_subscriptions = current_user.alert_subscriptions -%>
-<% subscriptions = all_subscriptions.select { |subscription| subscription.alertable.chain == @chain } -%>
+  <% all_subscriptions = current_user.alert_subscriptions -%>
+  <% subscriptions = all_subscriptions.select { |subscription| subscription.alertable.chain == @chain } -%>
 
-<% all_watched_accounts = current_user.watches.where(chainlike: @chain, watchable_type: "#{@chain.namespace}::Account") -%>
-<% watched_accounts = all_watched_accounts.select { |acc| acc.chain == @chain } -%>
+  <% all_watched_accounts = current_user.watches.where(chainlike: @chain, watchable_type: "#{@chain.namespace}::Account") -%>
+  <% watched_accounts = all_watched_accounts.select { |acc| acc.chain == @chain } -%>
 
-<% all_watched_validators = current_user.watches.where(chainlike: @chain, watchable_type: "#{@chain.namespace}::Validator") -%>
-<% watched_validators = all_watched_validators.select { |acc| acc.chain == @chain } -%>
+  <% all_watched_validators = current_user.watches.where(chainlike: @chain, watchable_type: "#{@chain.namespace}::Validator") -%>
+  <% watched_validators = all_watched_validators.select { |acc| acc.chain == @chain } -%>
 
-<% if current_admin && params[:show_me_everything] -%>
-  <script>
-    App.config.watchedAddressInfoPath = '<%= namespaced_path('account', 'ADDRESS') %>';
-  </script>
+  <% if current_admin && params[:show_me_everything] -%>
+    <script>
+      App.config.watchedAddressInfoPath = '<%= namespaced_path('account', 'ADDRESS') %>';
+    </script>
 
-  <div class='card'>
-    <h5 class='card-header'>Accounts</h5>
-    <div class='card-body p-0'>
-      <%= form_with url: namespaced_path('watches'), method: 'post' do -%>
-        <input type='hidden' name='watchable_type' value='account' />
-        <input type='text' class='form-control technical' name='watchable_finder' placeholder='<%= @chain.prefixes[:account_address] %>...' />
-        <button type='submit' class='btn btn-sm btn-primary'>Add Account</button>
-      <% end -%>
+    <div class='card'>
+      <h5 class='card-header'>Accounts</h5>
+      <div class='card-body p-0'>
+        <%= form_with url: namespaced_path('watches'), method: 'post' do -%>
+          <input type='hidden' name='watchable_type' value='account' />
+          <input type='text' class='form-control technical' name='watchable_finder' placeholder='<%= @chain.prefixes[:account_address] %>...' />
+          <button type='submit' class='btn btn-sm btn-primary'>Add Account</button>
+        <% end -%>
 
-      <div class='dashboard-accounts watching-table'>
-        <table>
-          <thead>
-            <tr>
-              <th>Address</th>
-              <th>Balance</th>
-              <th>Delegated</th>
-              <th>Pending Rewards</th>
-              <th>Total</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <% watched_accounts.each do |account| -%>
-              <tr class='loading' data-account-address='<%= account.address %>'>
-                <td class='technical '>
-                  <%= link_to account.address.truncate(30), namespaced_path('account', account) %>
-                </td>
-                <td class='technical text-nowrap account-balance'><span class='fas fa-spin fa-sync text-muted'></span></td>
-                <td class='technical text-nowrap account-delegated'><span class='fas fa-spin fa-sync text-muted'></span></td>
-                <td class='technical text-nowrap account-pending-rewards'><span class='fas fa-spin fa-sync text-muted'></span></td>
-                <td class='technical text-nowrap account-total'><span class='fas fa-spin fa-sync text-muted'></span></td>
+        <div class='dashboard-accounts watching-table'>
+          <table>
+            <thead>
+              <tr>
+                <th>Address</th>
+                <th>Balance</th>
+                <th>Delegated</th>
+                <th>Pending Rewards</th>
+                <th>Total</th>
               </tr>
-            <% end -%>
-          </tbody>
+            </thead>
 
-          <tfoot>
-            <tr>
-              <td class='text-right'><span class='text-sm text-muted'>Totals:</span></td>
-              <td class='text-nowrap text-muted total-balance'>&mdash;</td>
-              <td class='text-nowrap text-muted total-delegated'>&mdash;</td>
-              <td class='text-nowrap text-muted total-pending-rewards'>&mdash;</td>
-              <td class='text-nowrap text-muted total-total'>&mdash;</td>
-            </tr>
-          </tfoot>
-        </table>
+            <tbody>
+              <% watched_accounts.each do |account| -%>
+                <tr class='loading' data-account-address='<%= account.address %>'>
+                  <td class='technical '>
+                    <%= link_to account.address.truncate(30), namespaced_path('account', account) %>
+                  </td>
+                  <td class='technical text-nowrap account-balance'><span class='fas fa-spin fa-sync text-muted'></span></td>
+                  <td class='technical text-nowrap account-delegated'><span class='fas fa-spin fa-sync text-muted'></span></td>
+                  <td class='technical text-nowrap account-pending-rewards'><span class='fas fa-spin fa-sync text-muted'></span></td>
+                  <td class='technical text-nowrap account-total'><span class='fas fa-spin fa-sync text-muted'></span></td>
+                </tr>
+              <% end -%>
+            </tbody>
+
+            <tfoot>
+              <tr>
+                <td class='text-right'><span class='text-sm text-muted'>Totals:</span></td>
+                <td class='text-nowrap text-muted total-balance'>&mdash;</td>
+                <td class='text-nowrap text-muted total-delegated'>&mdash;</td>
+                <td class='text-nowrap text-muted total-pending-rewards'>&mdash;</td>
+                <td class='text-nowrap text-muted total-total'>&mdash;</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class='card'>
-    <h5 class='card-header'>Validators</h5>
-    <div class='card-body'>
-      <%= form_with url: namespaced_path('watches'), method: 'post' do -%>
-        <input type='hidden' name='watchable_type' value='validator' />
-        <input type='text' class='form-control technical' name='watchable_finder' placeholder='<%= @chain.prefixes[:validator_operator_address] %>...' />
-        <button type='submit' class='btn btn-sm btn-primary'>Add Validator</button>
-      <% end -%>
+    <div class='card'>
+      <h5 class='card-header'>Validators</h5>
+      <div class='card-body'>
+        <%= form_with url: namespaced_path('watches'), method: 'post' do -%>
+          <input type='hidden' name='watchable_type' value='validator' />
+          <input type='text' class='form-control technical' name='watchable_finder' placeholder='<%= @chain.prefixes[:validator_operator_address] %>...' />
+          <button type='submit' class='btn btn-sm btn-primary'>Add Validator</button>
+        <% end -%>
 
-      <% [watched_validators, watched_accounts.select(&:validator).map(&:validator), subscriptions.map(&:alertable).select { |al| al.is_a?(Cosmos::Validator) }].flatten.uniq.each do |validator| -%>
-        <div>
-          <%= link_to validator.long_name, namespaced_path('validator', validator) %>
-        </div>
-      <% end -%>
-    </div>
-  </div>
-<% end -%>
-
-<div class='card'>
-  <h5 class='card-header'>Alert Subscriptions</h5>
-  <div class='card-body alert-subscription-list'>
-    <% if subscriptions.empty? -%>
-      You have not created any subscriptions yet.
-    <% else -%>
-      <div class='list-group list-group-flush users-alert-subscription mb-0'>
-        <% subscriptions.each_with_index do |subscription, i| -%>
-          <div class='list-group-item d-flex flex-column flex-md-row align-items-md-center justify-content-between pl-0 pr-0 pt-0'>
-            <div class='info'>
-              <%= render partial: 'users/settings/alertable_info', locals: { subscription: subscription } %>
-            </div>
-            <div class='details d-flex flex-column align-items-md-end pt-1'>
-              <%= render partial: 'users/settings/alertable_badges', locals: { subscription: subscription } %>
-            </div>
+        <% [watched_validators, watched_accounts.select(&:validator).map(&:validator), subscriptions.map(&:alertable).select { |al| al.is_a?(Cosmos::Validator) }].flatten.uniq.each do |validator| -%>
+          <div>
+            <%= link_to validator.long_name, namespaced_path('validator', validator) %>
           </div>
         <% end -%>
       </div>
-    <% end -%>
+    </div>
+  <% end -%>
+
+  <div class='card'>
+    <h5 class='card-header'>Alert Subscriptions</h5>
+    <div class='card-body alert-subscription-list'>
+      <% if subscriptions.empty? -%>
+        You have not created any subscriptions yet.
+      <% else -%>
+        <div class='list-group list-group-flush users-alert-subscription mb-0'>
+          <% subscriptions.each_with_index do |subscription, i| -%>
+            <div class='list-group-item d-flex flex-column flex-md-row align-items-md-center justify-content-between pl-0 pr-0 pt-0'>
+              <div class='info'>
+                <%= render partial: 'users/settings/alertable_info', locals: { subscription: subscription } %>
+              </div>
+              <div class='details d-flex flex-column align-items-md-end pt-1'>
+                <%= render partial: 'users/settings/alertable_badges', locals: { subscription: subscription } %>
+              </div>
+            </div>
+          <% end -%>
+        </div>
+      <% end -%>
+    </div>
   </div>
 </div>

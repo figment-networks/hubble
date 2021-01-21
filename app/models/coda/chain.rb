@@ -1,4 +1,6 @@
 class Coda::Chain < ApplicationRecord
+  include TokenMap
+
   ASSET = 'coda'.freeze
 
   DEFAULT_TOKEN_DISPLAY = 'CODA'.freeze
@@ -16,6 +18,16 @@ class Coda::Chain < ApplicationRecord
   scope :primary, -> { find_by(primary: true) || order('created_at DESC').first }
 
   delegate :status, to: :client
+
+  def self.token_map
+    {
+      'default' => {
+        'coda' => {
+          'factor' => 9, 'display' => 'CODA', 'primary' => true
+        }
+      }
+    }
+  end
 
   def network_name
     'Coda'

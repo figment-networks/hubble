@@ -1,18 +1,19 @@
 <% content_for :body_class, 'block-show' %>
 
-<%= render partial: '/polkadot/shared/chain_header', locals: { summary_link: true } %>
+<%= render partial: '/polkadot/shared/chain_header', locals: { summary_link: true, active_tab: '' } %>
 
-<h2 class='mb-4'>
-  <label class='text-muted'>Block</label>
-  <span class='technical text-lg'><%= @block.hash %></span>
-</h2>
+<div class='container'>
+  <div class='content'>
+    <div class='data-block'>
+      <h2 class='data-block__title'>Block</h2>
+      <span class='data-block__value d-block word-break'><%= @block.hash %></span>
+    </div>
 
-<div class='row'>
-  <%= render partial: 'shared/block_sidebar', locals: { block: @block } %>
-
-  <div class='col-12 col-md-9 order-1 order-md-0'>
-    <%= render partial: 'transactions', locals: { transactions: @transactions } %>
-    <%= render partial: 'polkadot/shared/validators', locals:
-        { validators: @validators, stale_data: @validators_height < @block.height } %>
+    <%= render partial: 'shared/redesign/block_sidebar', locals: { block: @block } %>
+    <div class='mt-5'>
+      <%= render partial: 'shared/redesign/transactions', locals: { transactions: @transactions } %>
+      <%= render partial: 'polkadot/shared/validators', locals:
+          { validators: @validators, stale_data: @validators_height < @block.height } %>
+    </div>
   </div>
 </div>

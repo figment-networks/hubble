@@ -23,7 +23,7 @@
       <%= transaction.memo&.truncate(50) %>
     </td>
     <td class='text-right'>
-      <%= link_to 'Details...', namespaced_path('transaction', transaction.hash), class: 'btn btn-outline-primary btn-sm' %>
+      <%= link_to 'Details...', namespaced_path('transaction', transaction.hash, chain: transaction.chain), class: 'btn btn-outline-primary btn-sm' %>
     </td>
   </tr>
 <% end -%>

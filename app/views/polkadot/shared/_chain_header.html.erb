@@ -1,34 +1,51 @@
-<header class='network-chain-header'>
-  <h1>
-    <a class='secret-link' href='<%= namespaced_path %>'>
-      <%= @chain.network_name %>
-      <% if @chain -%>
-        <small class='chain-info text-muted'>
-          <span class='d-none d-md-inline'>&mdash;</span>
-          <%= @chain.name %>
-          <% if @chain.testnet? %>
-            <span class='d-none d-md-inline badge badge-pill badge-light'>TESTNET</span>
-            <span class='d-inline d-md-none text-muted'><span class='fas fa-vial'></span></span>
-          <% end %>
-        </small>
+<header class='network-chain-header pt-4'>
+  <div class="container">
+    <div class='d-block d-lg-none mb-5'>
+      <%= render partial: '/shared/redesign/search-bar' %>
+    </div>
+    <div class="d-flex align-items-center flex-wrap">
+      <% if network_has_image?(@chain.network_name) -%>
+        <%= link_to namespaced_path(chain: @chain), class: 'chains-list__card-link' do %>
+          <%= image_tag network_image(@chain.network_name), class: "#{@chain.network_name.downcase}-img" %>
+        <% end -%>
+      <% else -%>
+        <p class='logo-fallback'><%= @chain.network_name %></p>
       <% end -%>
-    </a>
-  </h1>
+      <div class="network-chain-header-arrow mx-3">→</div>
 
-  <div class='buttons ml-auto'>
-    <% if @chain -%>
-      <% if current_admin -%>
-        <a class='ml-1 btn btn-info' href='<%= namespaced_path( admin: true ) %>'>
-          <span class='d-none d-md-inline'>Admin</span>
-          <span class='d-inline d-md-none fa fa-crown'></span>
-        </a>
+      <% if !@no_chain_select && grouped_visible_chains.any? %>
+        <div class='dropdown chain-select'>
+          <button class='dropdown-toggle' id='chain-menu-link' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+            <%= @chain.name %>
+          </button>
+          <div class='dropdown-menu' aria-labelledby='chain-menu-link'>
+            <% grouped_visible_chains.each do |network, chains| -%>
+              <div class='dropdown-label'><%= network %></div>
+              <% chains.each do |chain| -%>
+                <% path = controller_name == 'dashboard' ? namespaced_path('dashboard', chain: chain) : namespaced_path(chain: chain) -%>
+                <%= link_to path, class: "dropdown-item #{'current-chain' if chain == @chain}" do %>
+                  <%= chain.name %>
+                <% end -%>
+              <% end -%>
+              <div class='dropdown-divider'></div>
+            <% end -%>
+          </div>
+        </div>
       <% end -%>
-      <% if defined? summary_link -%>
-        <a class='ml-1 btn btn-outline-secondary' href='<%= namespaced_path %>'>
-          <span class='d-none d-md-inline'>Summary</span>
-          <span class='d-inline d-md-none fa fa-arrow-circle-up'></span>
-        </a>
-      <% end -%>
+    </div>
+
+    <% if @chain.testnet? %>
+      <div class="mt-1">
+        <span class='p-0 d-none d-md-inline badge badge-pill badge-light'>TESTNET</span>
+        <span class='p-0 d-inline d-md-none text-muted'><span class='fas fa-vial'></span></span>
+      </div>
     <% end -%>
+
+    <div class='tabs mt-4'>
+      <%= render partial: '/shared/redesign/chain_header_link', locals: { active_tab: active_tab, link_text: 'Validators', link_path:  namespaced_path(chain: @chain), } %>
+      <% if current_admin -%>
+        <%= render partial: '/shared/redesign/chain_header_link', locals: { active_tab: active_tab, link_text: 'Admin', link_path:  namespaced_path(admin: true), } %>
+      <% end -%>
+    </div>
   </div>
 </header>

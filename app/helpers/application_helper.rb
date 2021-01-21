@@ -112,7 +112,7 @@ module ApplicationHelper
   end
 
   def heuristic_url(value)
-    Addressable::URI.heuristic_parse(value).to_s rescue nil
+    Addressable::URI.heuristic_parse(value).to_s.presence rescue nil
   end
 
   def render_markdown(text)

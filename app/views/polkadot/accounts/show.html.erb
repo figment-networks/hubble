@@ -1,61 +1,65 @@
 <% content_for :body_class, 'account-show' %>
 
-<%= render partial: '/polkadot/shared/chain_header', locals: { summary_link: true } %>
+<%= render partial: '/polkadot/shared/chain_header', locals: { summary_link: true, active_tab: '' } %>
 
-<h2 class='mb-0'>
-  <label class='text-muted'>Account</label>
-  <span class='technical text-lg'><%= params[:id] %></span>
-</h2>
-<% if @account_details.display_name %>
-  <h5 class='mb-4'>
-    <label class='text-muted'>Owner</label>
-    <span class='technical'><%= @account_details.display_name %></span>
-  </h5>
-<% end %>
-
-<% if @error %>
-  <%= render partial: 'shared/display_error' %>
-<% else %>
-  <div class='row'>
-    <div class='col-12 col-md-3 order-0 order-md-1 info-cards'>
-      <% @account_details.balances.each do |balance| %>
-        <%= render layout: 'shared/sidebar_card', locals: { header: balance[:header] } do %>
-          <%= format_amount(balance[:value], @chain, denom: @chain.class::DEFAULT_TOKEN_REMOTE) %>
+<div class='container'>
+  <div  class='content'>
+    <div class='data-block'>
+      <h3 class='data-block__title'>Account</h3>
+      <span class='technical text-lg'><%= params[:id] %></span>
+    </div>
+    <% if @account_details.display_name %>
+      <div class='data-block'>
+        <h3 class='data-block__title'>Owner</h3>
+        <span class='text-monospace'><%= @account_details.display_name %></span>
+      </div>
+    <% end %>
+    <% if @error %>
+      <%= render partial: 'shared/display_error' %>
+    <% else %>
+      <div class='d-flex flex-wrap mt-4'>
+        <% @account_details.balances.each do |balance| %>
+          <div class='mr-5 mb-3'>
+            <%= render layout: 'shared/redesign/data_block', locals: { header: balance[:header] } do %>
+                <%= format_amount(balance[:value], @chain, denom: @chain.class::DEFAULT_TOKEN_REMOTE) %>
+            <% end %>
+          </div>
         <% end %>
-      <% end %>
-    </div>
+      </div>
+      <div class='mt-1'>
+        <div>
+          <section class='data-table m-0'>
+            <header class='data-table__header'>
+              <h4 class='data-table__title'>Account Details</h4>
+            </header>
+            <main>
+              <section>
+                <div class='table-responsive'>
+                  <table class='w-100'>
+                    <tbody>
+                    <% if @account_details.identity_fields.empty? %>
+                      <tr>
+                        <td class='data-table__empty' colspan='2'>No account details.</td>
+                      </tr>
+                    <% end %>
 
-    <div class='col-12 col-md-9 order-1 order-md-0'>
-      <section class='card'>
-        <header class='card-header d-flex align-items-center justify-content-between'>
-          <h4 class='m-0'>Account Details</h4>
-        </header>
-        <main>
-          <section>
-            <div class='table-responsive'>
-              <table class='table table-sm'>
-                <tbody>
-                <% if @account_details.identity_fields.empty? %>
-                  <tr>
-                    <td class='p-3 text-center' colspan='2'>No account details.</td>
-                  </tr>
-                <% end %>
-
-                <% @account_details.identity_fields.each do |field| %>
-                  <tr>
-                    <td><%= field[:label] %></td>
-                    <td><%= field[:value] %></td>
-                  </tr>
-                <% end %>
-                </tbody>
-              </table>
-            </div>
+                    <% @account_details.identity_fields.each do |field| %>
+                      <tr>
+                        <td class='text-sm'><%= field[:label] %></td>
+                        <td class='text-sm'><%= field[:value] %></td>
+                      </tr>
+                    <% end %>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+            </main>
           </section>
-        </main>
-      </section>
 
-      <%= render partial: 'delegations' %>
-      <%= render partial: 'transfers' %>
-    </div>
+          <%= render partial: 'delegations' %>
+          <%= render partial: 'transfers' %>
+        </div>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>

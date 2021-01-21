@@ -1,0 +1,12 @@
+<div class='data-block'>
+  <h3 class='data-block__title'>Current Voting Power</h3>
+  <div class='d-flex flex-wrap align-items-end justify-content-between'>
+    <div class='data-block__large-number mr-4'>
+      <%= oasis_format_amount(validator.recent_active_escrow_balance) %>
+    </div>
+    <div>
+      <span class='data-block__value'><%= round_if_whole((validator.recent_active_escrow_balance.to_f / chain.current_voting_power.to_f) * 100, 2) %>%</span>
+      <label class='d-block text-label'>Proposal Probability</label>
+    </div>
+  </div>
+</div>

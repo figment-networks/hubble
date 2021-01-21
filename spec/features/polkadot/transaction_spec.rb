@@ -12,7 +12,7 @@ describe 'polkadot transaction details', :vcr do
     let(:transaction_id) { '0x81530d93a9fa83f13bda35f291268cfa5cf33a04e39e7cd5227ce446a185a1f1' }
 
     it 'visiting transaction page' do
-      expect(page).to have_content('Send')
+      expect(page).to have_content('SEND')
       expect(page).to have_content('From')
       expect(page).to have_content('To')
       expect(page).to have_content('15kUt2i86LHRWCkE3D9Bg1HZAoc2smhn1fwPzDERTb1BXAkX')

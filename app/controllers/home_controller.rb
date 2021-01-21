@@ -1,8 +1,17 @@
+require 'cryptocompare'
+
 class HomeController < ApplicationController
   layout 'redesign/home'
 
+  TOKEN_PRICE_LIST = %i[ATOM LPT KAVA DOT XTZ LUNA IRIS CELO NEAR AVAX].freeze
+
   def index
     page_title 'Hubble'
+    @token_prices = Rails.cache.fetch('token_prices', expires_in: 4.hours) do
+      Cryptocompare::Price.find(TOKEN_PRICE_LIST, :USD)
+    end
+  rescue StandardError
+    @token_prices = nil
   end
 
   def catch_404

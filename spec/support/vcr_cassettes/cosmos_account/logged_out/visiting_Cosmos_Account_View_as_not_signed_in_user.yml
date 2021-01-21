@@ -1,0 +1,321 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://localhost:443/status
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (linux-gnu x86_64) ruby/2.6.6p146
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - localhost:443
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      X-Server-Time:
+      - '1608231494'
+      Date:
+      - Thu, 17 Dec 2020 18:58:14 GMT
+      Content-Length:
+      - '1097'
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+          "jsonrpc": "2.0",
+          "id": "",
+          "result": {
+            "node_info": {
+              "protocol_version": {
+                "p2p": "7",
+                "block": "10",
+                "app": "0"
+              },
+              "id": "10ba76f13e57c39232caa7efed4245793b909b6a",
+              "listen_addr": "tcp://127.0.0.1:26656",
+              "network": "cosmoshub-3",
+              "version": "0.32.10",
+              "channels": "4020212223303800",
+              "moniker": "4ymfKF4TkJ",
+              "other": {
+                "tx_index": "on",
+                "rpc_address": "tcp://127.0.0.1:26657"
+              }
+            },
+            "sync_info": {
+              "latest_block_hash": "1A7099A78F9B4A957B8738B291507B728BCBE019B5A56480550B9EAD46DACC84",
+              "latest_app_hash": "65DD4DCA1F17765E8BBB4DE5CFEFA2EE9BBD823E62C3EBEA9DE0B99A9EB948B0",
+              "latest_block_height": "4462278",
+              "latest_block_time": "2020-12-17T18:58:00.47161329Z",
+              "catching_up": false
+            },
+            "validator_info": {
+              "address": "3FA1E7EA2EF8AF23305EA0AE87083C157A366133",
+              "pub_key": {
+                "type": "tendermint/PubKeyEd25519",
+                "value": "lbVd5aCE+KdolSSs0orRtkV+kjjLnpYBoKm+1L9SonU="
+              },
+              "voting_power": "0"
+            }
+          }
+        }
+  recorded_at: Thu, 17 Dec 2020 18:58:14 GMT
+- request:
+    method: get
+    uri: http://localhost:443/auth/accounts/cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Typhoeus - https://github.com/typhoeus/typhoeus
+      Expect:
+      - ''
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      X-Server-Time:
+      - '1608231494'
+      Date:
+      - Thu, 17 Dec 2020 18:58:14 GMT
+      Content-Length:
+      - '324'
+    body:
+      encoding: UTF-8
+      string: '{"height":"4462278","result":{"type":"cosmos-sdk/Account","value":{"address":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7","coins":[{"denom":"uatom","amount":"729188124"}],"public_key":{"type":"tendermint/PubKeySecp256k1","value":"A/ME5Wre92HJOJH4wBFveSeq3Yj8wZJrn/pEWc3pcrSc"},"account_number":"18571","sequence":"196"}}}'
+  recorded_at: Thu, 17 Dec 2020 18:58:14 GMT
+- request:
+    method: get
+    uri: http://localhost:443/bank/balances/cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Typhoeus - https://github.com/typhoeus/typhoeus
+      Expect:
+      - ''
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      X-Server-Time:
+      - '1608231497'
+      Date:
+      - Thu, 17 Dec 2020 18:58:17 GMT
+      Content-Length:
+      - '89'
+    body:
+      encoding: UTF-8
+      string: |-
+        {"height":"4462279","result":[
+          {
+            "denom": "uatom",
+            "amount": "729188124"
+          }
+        ]}
+  recorded_at: Thu, 17 Dec 2020 18:58:17 GMT
+- request:
+    method: get
+    uri: http://localhost:443/staking/delegators/cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7/delegations
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Typhoeus - https://github.com/typhoeus/typhoeus
+      Expect:
+      - ''
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      X-Server-Time:
+      - '1608231497'
+      Date:
+      - Thu, 17 Dec 2020 18:58:17 GMT
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: |-
+        {"height":"4462279","result":[
+          {
+            "delegator_address": "cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7",
+            "validator_address": "cosmosvaloper1pjmngrwcsatsuyy8m3qrunaun67sr9x7z5r2qs",
+            "shares": "1000000000.000000000000000000",
+            "balance": "1000000000"
+          },
+          {
+            "delegator_address": "cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7",
+            "validator_address": "cosmosvaloper19j2hd230c3hw6ds843yu8akc0xgvdvyuz9v02v",
+            "shares": "1000000000.000000000000000000",
+            "balance": "1000000000"
+          },
+          {
+            "delegator_address": "cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7",
+            "validator_address": "cosmosvaloper19kwwdw0j64xhrmgkz49l0lmu5uyujjayxakwsn",
+            "shares": "500000000.000000000000000000",
+            "balance": "500000000"
+          },
+          {
+            "delegator_address": "cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7",
+            "validator_address": "cosmosvaloper124maqmcqv8tquy764ktz7cu0gxnzfw54n3vww8",
+            "shares": "1000000000.000000000000000000",
+            "balance": "1000000000"
+          },
+          {
+            "delegator_address": "cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7",
+            "validator_address": "cosmosvaloper1tflk30mq5vgqjdly92kkhhq3raev2hnz6eete3",
+            "shares": "1000000000.000000000000000000",
+            "balance": "1000000000"
+          },
+          {
+            "delegator_address": "cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7",
+            "validator_address": "cosmosvaloper10e4vsut6suau8tk9m6dnrm0slgd6npe3jx5xpv",
+            "shares": "500000000.000000000000000000",
+            "balance": "500000000"
+          },
+          {
+            "delegator_address": "cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7",
+            "validator_address": "cosmosvaloper14kn0kk33szpwus9nh8n87fjel8djx0y070ymmj",
+            "shares": "1000000000.000000000000000000",
+            "balance": "1000000000"
+          },
+          {
+            "delegator_address": "cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7",
+            "validator_address": "cosmosvaloper146kwpzhmleafmhtaxulfptyhnvwxzlvm87hwnm",
+            "shares": "1000000000.000000000000000000",
+            "balance": "1000000000"
+          },
+          {
+            "delegator_address": "cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7",
+            "validator_address": "cosmosvaloper1hjct6q7npsspsg3dgvzk3sdf89spmlpfdn6m9d",
+            "shares": "13400000000.000000000000000000",
+            "balance": "13400000000"
+          },
+          {
+            "delegator_address": "cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7",
+            "validator_address": "cosmosvaloper1ehkfl7palwrh6w2hhr2yfrgrq8jetgucudztfe",
+            "shares": "500000000.000000000000000000",
+            "balance": "500000000"
+          },
+          {
+            "delegator_address": "cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7",
+            "validator_address": "cosmosvaloper16lsdqdqcz7yywd82dtrt4nmf2u3peq4ukc8ap8",
+            "shares": "1000000000.000000000000000000",
+            "balance": "999900021"
+          }
+        ]}
+  recorded_at: Thu, 17 Dec 2020 18:58:17 GMT
+- request:
+    method: get
+    uri: http://localhost:443/staking/delegators/cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7/unbonding_delegations
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Typhoeus - https://github.com/typhoeus/typhoeus
+      Expect:
+      - ''
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      X-Server-Time:
+      - '1608231497'
+      Date:
+      - Thu, 17 Dec 2020 18:58:17 GMT
+      Content-Length:
+      - '32'
+    body:
+      encoding: UTF-8
+      string: '{"height":"4462279","result":[]}'
+  recorded_at: Thu, 17 Dec 2020 18:58:18 GMT
+- request:
+    method: get
+    uri: http://localhost:443/distribution/delegators/cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7/rewards
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Typhoeus - https://github.com/typhoeus/typhoeus
+      Expect:
+      - ''
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      X-Server-Time:
+      - '1608231497'
+      Date:
+      - Thu, 17 Dec 2020 18:58:17 GMT
+      Content-Length:
+      - '1649'
+    body:
+      encoding: UTF-8
+      string: '{"height":"4462279","result":{"rewards":[{"validator_address":"cosmosvaloper1pjmngrwcsatsuyy8m3qrunaun67sr9x7z5r2qs","reward":[{"denom":"uatom","amount":"10881173.203168823000000000"}]},{"validator_address":"cosmosvaloper19j2hd230c3hw6ds843yu8akc0xgvdvyuz9v02v","reward":[{"denom":"uatom","amount":"10880324.882145764000000000"}]},{"validator_address":"cosmosvaloper19kwwdw0j64xhrmgkz49l0lmu5uyujjayxakwsn","reward":[{"denom":"uatom","amount":"2703112.295394448000000000"}]},{"validator_address":"cosmosvaloper124maqmcqv8tquy764ktz7cu0gxnzfw54n3vww8","reward":[{"denom":"uatom","amount":"11242243.467704799000000000"}]},{"validator_address":"cosmosvaloper1tflk30mq5vgqjdly92kkhhq3raev2hnz6eete3","reward":[{"denom":"uatom","amount":"11977991.400221714000000000"}]},{"validator_address":"cosmosvaloper10e4vsut6suau8tk9m6dnrm0slgd6npe3jx5xpv","reward":[{"denom":"uatom","amount":"5440520.366501724000000000"}]},{"validator_address":"cosmosvaloper14kn0kk33szpwus9nh8n87fjel8djx0y070ymmj","reward":[{"denom":"uatom","amount":"10932892.894755874000000000"}]},{"validator_address":"cosmosvaloper146kwpzhmleafmhtaxulfptyhnvwxzlvm87hwnm","reward":[{"denom":"uatom","amount":"11097377.764485796000000000"}]},{"validator_address":"cosmosvaloper1hjct6q7npsspsg3dgvzk3sdf89spmlpfdn6m9d","reward":[{"denom":"uatom","amount":"72937626.890504158800000000"}]},{"validator_address":"cosmosvaloper1ehkfl7palwrh6w2hhr2yfrgrq8jetgucudztfe","reward":[{"denom":"uatom","amount":"5137571.819190746000000000"}]},{"validator_address":"cosmosvaloper16lsdqdqcz7yywd82dtrt4nmf2u3peq4ukc8ap8","reward":null}],"total":[{"denom":"uatom","amount":"153230834.984073846800000000"}]}}'
+  recorded_at: Thu, 17 Dec 2020 18:58:18 GMT
+- request:
+    method: get
+    uri: http://localhost:443/staking/delegators/cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7/txs
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Typhoeus - https://github.com/typhoeus/typhoeus
+      Expect:
+      - ''
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      X-Server-Time:
+      - '1608231497'
+      Date:
+      - Thu, 17 Dec 2020 18:58:18 GMT
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '[{"total_count":"9","count":"9","page_number":"1","page_total":"1","limit":"100","txs":[{"height":"539078","txhash":"53277FC9AAE296087B42667D407620A91835713F7918662963119E8C67341BBC","raw_log":"[{\"msg_index\":0,\"success\":true,\"log\":\"\",\"events\":[{\"type\":\"delegate\",\"attributes\":[{\"key\":\"validator\",\"value\":\"cosmosvaloper1hjct6q7npsspsg3dgvzk3sdf89spmlpfdn6m9d\"},{\"key\":\"amount\",\"value\":\"4000000000\"}]},{\"type\":\"message\",\"attributes\":[{\"key\":\"sender\",\"value\":\"cosmos1jv65s3grqf6v6jl3dp4t6c9t9rk99cd88lyufl\"},{\"key\":\"module\",\"value\":\"staking\"},{\"key\":\"sender\",\"value\":\"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7\"},{\"key\":\"action\",\"value\":\"delegate\"}]},{\"type\":\"transfer\",\"attributes\":[{\"key\":\"recipient\",\"value\":\"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7\"},{\"key\":\"amount\",\"value\":\"11015uatom\"}]}]}]","logs":[{"msg_index":0,"success":true,"log":"","events":[{"type":"delegate","attributes":[{"key":"validator","value":"cosmosvaloper1hjct6q7npsspsg3dgvzk3sdf89spmlpfdn6m9d"},{"key":"amount","value":"4000000000"}]},{"type":"message","attributes":[{"key":"sender","value":"cosmos1jv65s3grqf6v6jl3dp4t6c9t9rk99cd88lyufl"},{"key":"module","value":"staking"},{"key":"sender","value":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7"},{"key":"action","value":"delegate"}]},{"type":"transfer","attributes":[{"key":"recipient","value":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7"},{"key":"amount","value":"11015uatom"}]}]}],"gas_wanted":"200000","gas_used":"126513","tx":{"type":"cosmos-sdk/StdTx","value":{"msg":[{"type":"cosmos-sdk/MsgDelegate","value":{"delegator_address":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7","validator_address":"cosmosvaloper1hjct6q7npsspsg3dgvzk3sdf89spmlpfdn6m9d","amount":{"denom":"uatom","amount":"4000000000"}}}],"fee":{"amount":[{"denom":"uatom","amount":"5000"}],"gas":"200000"},"signatures":[{"pub_key":{"type":"tendermint/PubKeySecp256k1","value":"A/ME5Wre92HJOJH4wBFveSeq3Yj8wZJrn/pEWc3pcrSc"},"signature":"rfBk5/uQIApW0mFOSVWLDfwxomSvXrAK6OBh4weTll13ME0cphGO4QerD31tQ56h9HUaZlGumwR9udkw0tmYpQ=="}],"memo":""}},"timestamp":"2020-01-24T18:37:50Z","events":[{"type":"delegate","attributes":[{"key":"validator","value":"cosmosvaloper1hjct6q7npsspsg3dgvzk3sdf89spmlpfdn6m9d"},{"key":"amount","value":"4000000000"}]},{"type":"message","attributes":[{"key":"sender","value":"cosmos1jv65s3grqf6v6jl3dp4t6c9t9rk99cd88lyufl"},{"key":"module","value":"staking"},{"key":"sender","value":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7"},{"key":"action","value":"delegate"}]},{"type":"transfer","attributes":[{"key":"recipient","value":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7"},{"key":"amount","value":"11015uatom"}]}]},{"height":"615615","txhash":"88508C8A21A207358B1380B055CE3380967E0DEE6860022776B8BEB1982E49D6","raw_log":"[{\"msg_index\":0,\"success\":true,\"log\":\"\",\"events\":[{\"type\":\"delegate\",\"attributes\":[{\"key\":\"validator\",\"value\":\"cosmosvaloper16lsdqdqcz7yywd82dtrt4nmf2u3peq4ukc8ap8\"},{\"key\":\"amount\",\"value\":\"1000000000\"}]},{\"type\":\"message\",\"attributes\":[{\"key\":\"module\",\"value\":\"staking\"},{\"key\":\"sender\",\"value\":\"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7\"},{\"key\":\"action\",\"value\":\"delegate\"}]}]}]","logs":[{"msg_index":0,"success":true,"log":"","events":[{"type":"delegate","attributes":[{"key":"validator","value":"cosmosvaloper16lsdqdqcz7yywd82dtrt4nmf2u3peq4ukc8ap8"},{"key":"amount","value":"1000000000"}]},{"type":"message","attributes":[{"key":"module","value":"staking"},{"key":"sender","value":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7"},{"key":"action","value":"delegate"}]}]}],"gas_wanted":"150000","gas_used":"87635","tx":{"type":"cosmos-sdk/StdTx","value":{"msg":[{"type":"cosmos-sdk/MsgDelegate","value":{"delegator_address":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7","validator_address":"cosmosvaloper16lsdqdqcz7yywd82dtrt4nmf2u3peq4ukc8ap8","amount":{"denom":"uatom","amount":"1000000000"}}}],"fee":{"amount":[{"denom":"uatom","amount":"3750"}],"gas":"150000"},"signatures":[{"pub_key":{"type":"tendermint/PubKeySecp256k1","value":"A/ME5Wre92HJOJH4wBFveSeq3Yj8wZJrn/pEWc3pcrSc"},"signature":"ySBBkaQfwthdh2VR0L+r+Eyumw256mmlTaaGRUhpBLJffs76o0G1vRCmRV8B/XlCYnEDHYmOcnGL0sgZoJlfBA=="}],"memo":"Delegate
+        to your favourite validator with Hubble - https://hubble.figment.network"}},"timestamp":"2020-01-31T01:34:18Z","events":[{"type":"delegate","attributes":[{"key":"validator","value":"cosmosvaloper16lsdqdqcz7yywd82dtrt4nmf2u3peq4ukc8ap8"},{"key":"amount","value":"1000000000"}]},{"type":"message","attributes":[{"key":"module","value":"staking"},{"key":"sender","value":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7"},{"key":"action","value":"delegate"}]}]},{"height":"615632","txhash":"E73ED79599A0CFDB62CBCC77BBDEE1A62937EAE736F57BBDB271D421F4B427BE","raw_log":"[{\"msg_index\":0,\"success\":true,\"log\":\"\",\"events\":[{\"type\":\"delegate\",\"attributes\":[{\"key\":\"validator\",\"value\":\"cosmosvaloper1tflk30mq5vgqjdly92kkhhq3raev2hnz6eete3\"},{\"key\":\"amount\",\"value\":\"1000000000\"}]},{\"type\":\"message\",\"attributes\":[{\"key\":\"module\",\"value\":\"staking\"},{\"key\":\"sender\",\"value\":\"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7\"},{\"key\":\"action\",\"value\":\"delegate\"}]}]}]","logs":[{"msg_index":0,"success":true,"log":"","events":[{"type":"delegate","attributes":[{"key":"validator","value":"cosmosvaloper1tflk30mq5vgqjdly92kkhhq3raev2hnz6eete3"},{"key":"amount","value":"1000000000"}]},{"type":"message","attributes":[{"key":"module","value":"staking"},{"key":"sender","value":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7"},{"key":"action","value":"delegate"}]}]}],"gas_wanted":"150000","gas_used":"91997","tx":{"type":"cosmos-sdk/StdTx","value":{"msg":[{"type":"cosmos-sdk/MsgDelegate","value":{"delegator_address":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7","validator_address":"cosmosvaloper1tflk30mq5vgqjdly92kkhhq3raev2hnz6eete3","amount":{"denom":"uatom","amount":"1000000000"}}}],"fee":{"amount":[{"denom":"uatom","amount":"3750"}],"gas":"150000"},"signatures":[{"pub_key":{"type":"tendermint/PubKeySecp256k1","value":"A/ME5Wre92HJOJH4wBFveSeq3Yj8wZJrn/pEWc3pcrSc"},"signature":"e1NtVwTXIFkuJ+4v7p6tqTzT9+a7raCJo+uAGMpHE7VXqs08NyK2xDxpZ8fT+aqos/GtBznXzvAaQgB9iOaHYw=="}],"memo":"Delegate
+        to your favourite validator with Hubble - https://hubble.figment.network"}},"timestamp":"2020-01-31T01:36:17Z","events":[{"type":"delegate","attributes":[{"key":"validator","value":"cosmosvaloper1tflk30mq5vgqjdly92kkhhq3raev2hnz6eete3"},{"key":"amount","value":"1000000000"}]},{"type":"message","attributes":[{"key":"module","value":"staking"},{"key":"sender","value":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7"},{"key":"action","value":"delegate"}]}]},{"height":"615646","txhash":"64CB94BEA30A7E3017BEE7A81A055D89CAEA528BAE9E0F1A28E14169B828C852","raw_log":"[{\"msg_index\":0,\"success\":true,\"log\":\"\",\"events\":[{\"type\":\"delegate\",\"attributes\":[{\"key\":\"validator\",\"value\":\"cosmosvaloper19j2hd230c3hw6ds843yu8akc0xgvdvyuz9v02v\"},{\"key\":\"amount\",\"value\":\"1000000000\"}]},{\"type\":\"message\",\"attributes\":[{\"key\":\"module\",\"value\":\"staking\"},{\"key\":\"sender\",\"value\":\"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7\"},{\"key\":\"action\",\"value\":\"delegate\"}]}]}]","logs":[{"msg_index":0,"success":true,"log":"","events":[{"type":"delegate","attributes":[{"key":"validator","value":"cosmosvaloper19j2hd230c3hw6ds843yu8akc0xgvdvyuz9v02v"},{"key":"amount","value":"1000000000"}]},{"type":"message","attributes":[{"key":"module","value":"staking"},{"key":"sender","value":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7"},{"key":"action","value":"delegate"}]}]}],"gas_wanted":"150000","gas_used":"95318","tx":{"type":"cosmos-sdk/StdTx","value":{"msg":[{"type":"cosmos-sdk/MsgDelegate","value":{"delegator_address":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7","validator_address":"cosmosvaloper19j2hd230c3hw6ds843yu8akc0xgvdvyuz9v02v","amount":{"denom":"uatom","amount":"1000000000"}}}],"fee":{"amount":[{"denom":"uatom","amount":"3750"}],"gas":"150000"},"signatures":[{"pub_key":{"type":"tendermint/PubKeySecp256k1","value":"A/ME5Wre92HJOJH4wBFveSeq3Yj8wZJrn/pEWc3pcrSc"},"signature":"izgt9neCdF3zAy93yuw35jm75Gf+ItGEw+FCDwz8SU42JTYsEjcfZcF63dvVUSi3T4IU7dOHvGMt5ghpOaqiXA=="}],"memo":"Delegate
+        to your favourite validator with Hubble - https://hubble.figment.network"}},"timestamp":"2020-01-31T01:37:55Z","events":[{"type":"delegate","attributes":[{"key":"validator","value":"cosmosvaloper19j2hd230c3hw6ds843yu8akc0xgvdvyuz9v02v"},{"key":"amount","value":"1000000000"}]},{"type":"message","attributes":[{"key":"module","value":"staking"},{"key":"sender","value":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7"},{"key":"action","value":"delegate"}]}]},{"height":"615655","txhash":"937C06183E93F9B947AE1E43851AE9D7EF7C9CDD0A6F514B7342DFD99E7283BB","raw_log":"[{\"msg_index\":0,\"success\":true,\"log\":\"\",\"events\":[{\"type\":\"delegate\",\"attributes\":[{\"key\":\"validator\",\"value\":\"cosmosvaloper124maqmcqv8tquy764ktz7cu0gxnzfw54n3vww8\"},{\"key\":\"amount\",\"value\":\"1000000000\"}]},{\"type\":\"message\",\"attributes\":[{\"key\":\"module\",\"value\":\"staking\"},{\"key\":\"sender\",\"value\":\"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7\"},{\"key\":\"action\",\"value\":\"delegate\"}]}]}]","logs":[{"msg_index":0,"success":true,"log":"","events":[{"type":"delegate","attributes":[{"key":"validator","value":"cosmosvaloper124maqmcqv8tquy764ktz7cu0gxnzfw54n3vww8"},{"key":"amount","value":"1000000000"}]},{"type":"message","attributes":[{"key":"module","value":"staking"},{"key":"sender","value":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7"},{"key":"action","value":"delegate"}]}]}],"gas_wanted":"150000","gas_used":"95369","tx":{"type":"cosmos-sdk/StdTx","value":{"msg":[{"type":"cosmos-sdk/MsgDelegate","value":{"delegator_address":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7","validator_address":"cosmosvaloper124maqmcqv8tquy764ktz7cu0gxnzfw54n3vww8","amount":{"denom":"uatom","amount":"1000000000"}}}],"fee":{"amount":[{"denom":"uatom","amount":"3750"}],"gas":"150000"},"signatures":[{"pub_key":{"type":"tendermint/PubKeySecp256k1","value":"A/ME5Wre92HJOJH4wBFveSeq3Yj8wZJrn/pEWc3pcrSc"},"signature":"Pp7u2DoKGZIJ4LL4NYJbzZGdy7dXybtjV9UD48aUACFkrZ0osqs7GAdfCGFIswjC8Cid89FSERmaZ05pVnVz3A=="}],"memo":"Delegate
+        to your favourite validator with Hubble - https://hubble.figment.network"}},"timestamp":"2020-01-31T01:38:58Z","events":[{"type":"delegate","attributes":[{"key":"validator","value":"cosmosvaloper124maqmcqv8tquy764ktz7cu0gxnzfw54n3vww8"},{"key":"amount","value":"1000000000"}]},{"type":"message","attributes":[{"key":"module","value":"staking"},{"key":"sender","value":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7"},{"key":"action","value":"delegate"}]}]},{"height":"615667","txhash":"47BB638DF8E09D9BD4A36BCE693B04366D9C7BCDCE4C3168555CC4913BE55932","raw_log":"[{\"msg_index\":0,\"success\":true,\"log\":\"\",\"events\":[{\"type\":\"delegate\",\"attributes\":[{\"key\":\"validator\",\"value\":\"cosmosvaloper14kn0kk33szpwus9nh8n87fjel8djx0y070ymmj\"},{\"key\":\"amount\",\"value\":\"1000000000\"}]},{\"type\":\"message\",\"attributes\":[{\"key\":\"module\",\"value\":\"staking\"},{\"key\":\"sender\",\"value\":\"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7\"},{\"key\":\"action\",\"value\":\"delegate\"}]}]}]","logs":[{"msg_index":0,"success":true,"log":"","events":[{"type":"delegate","attributes":[{"key":"validator","value":"cosmosvaloper14kn0kk33szpwus9nh8n87fjel8djx0y070ymmj"},{"key":"amount","value":"1000000000"}]},{"type":"message","attributes":[{"key":"module","value":"staking"},{"key":"sender","value":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7"},{"key":"action","value":"delegate"}]}]}],"gas_wanted":"150000","gas_used":"99998","tx":{"type":"cosmos-sdk/StdTx","value":{"msg":[{"type":"cosmos-sdk/MsgDelegate","value":{"delegator_address":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7","validator_address":"cosmosvaloper14kn0kk33szpwus9nh8n87fjel8djx0y070ymmj","amount":{"denom":"uatom","amount":"1000000000"}}}],"fee":{"amount":[{"denom":"uatom","amount":"3750"}],"gas":"150000"},"signatures":[{"pub_key":{"type":"tendermint/PubKeySecp256k1","value":"A/ME5Wre92HJOJH4wBFveSeq3Yj8wZJrn/pEWc3pcrSc"},"signature":"D3I/sVOJash9OLYnbPbKY3hEw+N7RYXgpuaDp/XutJlLINzKdoQFjvxRXRfCUpd6wAnYGoFORp4k7PkiUjDYIA=="}],"memo":"Delegate
+        to your favourite validator with Hubble - https://hubble.figment.network"}},"timestamp":"2020-01-31T01:40:21Z","events":[{"type":"delegate","attributes":[{"key":"validator","value":"cosmosvaloper14kn0kk33szpwus9nh8n87fjel8djx0y070ymmj"},{"key":"amount","value":"1000000000"}]},{"type":"message","attributes":[{"key":"module","value":"staking"},{"key":"sender","value":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7"},{"key":"action","value":"delegate"}]}]},{"height":"615680","txhash":"94B8DD8B892DAF3C27A87D395A26F9934AABC4A07CFAF363D770E25960C7775E","raw_log":"[{\"msg_index\":0,\"success\":true,\"log\":\"\",\"events\":[{\"type\":\"delegate\",\"attributes\":[{\"key\":\"validator\",\"value\":\"cosmosvaloper1pjmngrwcsatsuyy8m3qrunaun67sr9x7z5r2qs\"},{\"key\":\"amount\",\"value\":\"500000000\"}]},{\"type\":\"message\",\"attributes\":[{\"key\":\"sender\",\"value\":\"cosmos1jv65s3grqf6v6jl3dp4t6c9t9rk99cd88lyufl\"},{\"key\":\"module\",\"value\":\"staking\"},{\"key\":\"sender\",\"value\":\"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7\"},{\"key\":\"action\",\"value\":\"delegate\"}]},{\"type\":\"transfer\",\"attributes\":[{\"key\":\"recipient\",\"value\":\"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7\"},{\"key\":\"amount\",\"value\":\"5399154uatom\"}]}]}]","logs":[{"msg_index":0,"success":true,"log":"","events":[{"type":"delegate","attributes":[{"key":"validator","value":"cosmosvaloper1pjmngrwcsatsuyy8m3qrunaun67sr9x7z5r2qs"},{"key":"amount","value":"500000000"}]},{"type":"message","attributes":[{"key":"sender","value":"cosmos1jv65s3grqf6v6jl3dp4t6c9t9rk99cd88lyufl"},{"key":"module","value":"staking"},{"key":"sender","value":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7"},{"key":"action","value":"delegate"}]},{"type":"transfer","attributes":[{"key":"recipient","value":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7"},{"key":"amount","value":"5399154uatom"}]}]}],"gas_wanted":"150000","gas_used":"120184","tx":{"type":"cosmos-sdk/StdTx","value":{"msg":[{"type":"cosmos-sdk/MsgDelegate","value":{"delegator_address":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7","validator_address":"cosmosvaloper1pjmngrwcsatsuyy8m3qrunaun67sr9x7z5r2qs","amount":{"denom":"uatom","amount":"500000000"}}}],"fee":{"amount":[{"denom":"uatom","amount":"3750"}],"gas":"150000"},"signatures":[{"pub_key":{"type":"tendermint/PubKeySecp256k1","value":"A/ME5Wre92HJOJH4wBFveSeq3Yj8wZJrn/pEWc3pcrSc"},"signature":"8b2DZDnZXvGIqVFPLACSiakwOarSDhVilDSJvEGfr+hbh1lrONTkG8Nyzf+YH/PubbmR7InUqkqYKnx8NEEglA=="}],"memo":"Delegate
+        to your favourite validator with Hubble - https://hubble.figment.network"}},"timestamp":"2020-01-31T01:41:52Z","events":[{"type":"delegate","attributes":[{"key":"validator","value":"cosmosvaloper1pjmngrwcsatsuyy8m3qrunaun67sr9x7z5r2qs"},{"key":"amount","value":"500000000"}]},{"type":"message","attributes":[{"key":"sender","value":"cosmos1jv65s3grqf6v6jl3dp4t6c9t9rk99cd88lyufl"},{"key":"module","value":"staking"},{"key":"sender","value":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7"},{"key":"action","value":"delegate"}]},{"type":"transfer","attributes":[{"key":"recipient","value":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7"},{"key":"amount","value":"5399154uatom"}]}]},{"height":"2956807","txhash":"8DF0DA94D012C05768148D9AA8689E30CB785569A7C921340477E3F7C071296C","raw_log":"[{\"msg_index\":0,\"success\":true,\"log\":\"\",\"events\":[{\"type\":\"delegate\",\"attributes\":[{\"key\":\"validator\",\"value\":\"cosmosvaloper1hjct6q7npsspsg3dgvzk3sdf89spmlpfdn6m9d\"},{\"key\":\"amount\",\"value\":\"3500000000\"}]},{\"type\":\"message\",\"attributes\":[{\"key\":\"sender\",\"value\":\"cosmos1jv65s3grqf6v6jl3dp4t6c9t9rk99cd88lyufl\"},{\"key\":\"module\",\"value\":\"staking\"},{\"key\":\"sender\",\"value\":\"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7\"},{\"key\":\"action\",\"value\":\"delegate\"}]},{\"type\":\"transfer\",\"attributes\":[{\"key\":\"recipient\",\"value\":\"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7\"},{\"key\":\"amount\",\"value\":\"11409uatom\"}]}]}]","logs":[{"msg_index":0,"success":true,"log":"","events":[{"type":"delegate","attributes":[{"key":"validator","value":"cosmosvaloper1hjct6q7npsspsg3dgvzk3sdf89spmlpfdn6m9d"},{"key":"amount","value":"3500000000"}]},{"type":"message","attributes":[{"key":"sender","value":"cosmos1jv65s3grqf6v6jl3dp4t6c9t9rk99cd88lyufl"},{"key":"module","value":"staking"},{"key":"sender","value":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7"},{"key":"action","value":"delegate"}]},{"type":"transfer","attributes":[{"key":"recipient","value":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7"},{"key":"amount","value":"11409uatom"}]}]}],"gas_wanted":"200000","gas_used":"126831","tx":{"type":"cosmos-sdk/StdTx","value":{"msg":[{"type":"cosmos-sdk/MsgDelegate","value":{"delegator_address":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7","validator_address":"cosmosvaloper1hjct6q7npsspsg3dgvzk3sdf89spmlpfdn6m9d","amount":{"denom":"uatom","amount":"3500000000"}}}],"fee":{"amount":[{"denom":"uatom","amount":"3500"}],"gas":"200000"},"signatures":[{"pub_key":{"type":"tendermint/PubKeySecp256k1","value":"A/ME5Wre92HJOJH4wBFveSeq3Yj8wZJrn/pEWc3pcrSc"},"signature":"tZfsVh4aRsU0qTK7rTHQl5B7773KXxV881doerHVVeBvfCP0PyxIcpgDEXU0UUdLpXDyaV7SditW6+en7/3myg=="}],"memo":""}},"timestamp":"2020-08-12T01:36:40Z","events":[{"type":"delegate","attributes":[{"key":"validator","value":"cosmosvaloper1hjct6q7npsspsg3dgvzk3sdf89spmlpfdn6m9d"},{"key":"amount","value":"3500000000"}]},{"type":"message","attributes":[{"key":"sender","value":"cosmos1jv65s3grqf6v6jl3dp4t6c9t9rk99cd88lyufl"},{"key":"module","value":"staking"},{"key":"sender","value":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7"},{"key":"action","value":"delegate"}]},{"type":"transfer","attributes":[{"key":"recipient","value":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7"},{"key":"amount","value":"11409uatom"}]}]},{"height":"3195688","txhash":"B7F8BFBCAC4172AC70A49C52EDE9B022CB58FBA65099035B46856C63D7D42CC0","raw_log":"[{\"msg_index\":0,\"success\":true,\"log\":\"\",\"events\":[{\"type\":\"delegate\",\"attributes\":[{\"key\":\"validator\",\"value\":\"cosmosvaloper1hjct6q7npsspsg3dgvzk3sdf89spmlpfdn6m9d\"},{\"key\":\"amount\",\"value\":\"600000000\"}]},{\"type\":\"message\",\"attributes\":[{\"key\":\"sender\",\"value\":\"cosmos1jv65s3grqf6v6jl3dp4t6c9t9rk99cd88lyufl\"},{\"key\":\"module\",\"value\":\"staking\"},{\"key\":\"sender\",\"value\":\"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7\"},{\"key\":\"action\",\"value\":\"delegate\"}]},{\"type\":\"transfer\",\"attributes\":[{\"key\":\"recipient\",\"value\":\"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7\"},{\"key\":\"amount\",\"value\":\"17757uatom\"}]}]}]","logs":[{"msg_index":0,"success":true,"log":"","events":[{"type":"delegate","attributes":[{"key":"validator","value":"cosmosvaloper1hjct6q7npsspsg3dgvzk3sdf89spmlpfdn6m9d"},{"key":"amount","value":"600000000"}]},{"type":"message","attributes":[{"key":"sender","value":"cosmos1jv65s3grqf6v6jl3dp4t6c9t9rk99cd88lyufl"},{"key":"module","value":"staking"},{"key":"sender","value":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7"},{"key":"action","value":"delegate"}]},{"type":"transfer","attributes":[{"key":"recipient","value":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7"},{"key":"amount","value":"17757uatom"}]}]}],"gas_wanted":"200000","gas_used":"126617","tx":{"type":"cosmos-sdk/StdTx","value":{"msg":[{"type":"cosmos-sdk/MsgDelegate","value":{"delegator_address":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7","validator_address":"cosmosvaloper1hjct6q7npsspsg3dgvzk3sdf89spmlpfdn6m9d","amount":{"denom":"uatom","amount":"600000000"}}}],"fee":{"amount":[{"denom":"uatom","amount":"3500"}],"gas":"200000"},"signatures":[{"pub_key":{"type":"tendermint/PubKeySecp256k1","value":"A/ME5Wre92HJOJH4wBFveSeq3Yj8wZJrn/pEWc3pcrSc"},"signature":"4+YwLUKZ3wxMrrGH2c966wSXiULpi2yaYKnShPLvNq0xCegNwKjzVxxzQYgOWCLeVoDd29pbGRFPol0TZ6/5+g=="}],"memo":""}},"timestamp":"2020-09-01T01:50:29Z","events":[{"type":"delegate","attributes":[{"key":"validator","value":"cosmosvaloper1hjct6q7npsspsg3dgvzk3sdf89spmlpfdn6m9d"},{"key":"amount","value":"600000000"}]},{"type":"message","attributes":[{"key":"sender","value":"cosmos1jv65s3grqf6v6jl3dp4t6c9t9rk99cd88lyufl"},{"key":"module","value":"staking"},{"key":"sender","value":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7"},{"key":"action","value":"delegate"}]},{"type":"transfer","attributes":[{"key":"recipient","value":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7"},{"key":"amount","value":"17757uatom"}]}]}]},{"total_count":"2","count":"2","page_number":"1","page_total":"1","limit":"100","txs":[{"height":"3049602","txhash":"1D94BB86D54C734500F8BB0F8674892D384AB6BEAFE88225AD4761EF1300E002","data":"0C08E8D6E4FA0510C583A1AA02","raw_log":"[{\"msg_index\":0,\"success\":true,\"log\":\"\",\"events\":[{\"type\":\"message\",\"attributes\":[{\"key\":\"sender\",\"value\":\"cosmos1jv65s3grqf6v6jl3dp4t6c9t9rk99cd88lyufl\"},{\"key\":\"sender\",\"value\":\"cosmos1fl48vsnmsdzcv85q5d2q4z5ajdha8yu34mf0eh\"},{\"key\":\"module\",\"value\":\"staking\"},{\"key\":\"sender\",\"value\":\"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7\"},{\"key\":\"action\",\"value\":\"begin_unbonding\"}]},{\"type\":\"transfer\",\"attributes\":[{\"key\":\"recipient\",\"value\":\"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7\"},{\"key\":\"amount\",\"value\":\"141177uatom\"},{\"key\":\"recipient\",\"value\":\"cosmos1tygms3xhhs3yv487phx3dw4a95jn7t7lpm470r\"},{\"key\":\"amount\",\"value\":\"6800000000uatom\"}]},{\"type\":\"unbond\",\"attributes\":[{\"key\":\"validator\",\"value\":\"cosmosvaloper1hjct6q7npsspsg3dgvzk3sdf89spmlpfdn6m9d\"},{\"key\":\"amount\",\"value\":\"6800000000\"},{\"key\":\"completion_time\",\"value\":\"2020-09-09T19:22:16Z\"}]}]}]","logs":[{"msg_index":0,"success":true,"log":"","events":[{"type":"message","attributes":[{"key":"sender","value":"cosmos1jv65s3grqf6v6jl3dp4t6c9t9rk99cd88lyufl"},{"key":"sender","value":"cosmos1fl48vsnmsdzcv85q5d2q4z5ajdha8yu34mf0eh"},{"key":"module","value":"staking"},{"key":"sender","value":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7"},{"key":"action","value":"begin_unbonding"}]},{"type":"transfer","attributes":[{"key":"recipient","value":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7"},{"key":"amount","value":"141177uatom"},{"key":"recipient","value":"cosmos1tygms3xhhs3yv487phx3dw4a95jn7t7lpm470r"},{"key":"amount","value":"6800000000uatom"}]},{"type":"unbond","attributes":[{"key":"validator","value":"cosmosvaloper1hjct6q7npsspsg3dgvzk3sdf89spmlpfdn6m9d"},{"key":"amount","value":"6800000000"},{"key":"completion_time","value":"2020-09-09T19:22:16Z"}]}]}],"gas_wanted":"200000","gas_used":"146254","tx":{"type":"cosmos-sdk/StdTx","value":{"msg":[{"type":"cosmos-sdk/MsgUndelegate","value":{"delegator_address":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7","validator_address":"cosmosvaloper1hjct6q7npsspsg3dgvzk3sdf89spmlpfdn6m9d","amount":{"denom":"uatom","amount":"6800000000"}}}],"fee":{"amount":[{"denom":"uatom","amount":"3500"}],"gas":"200000"},"signatures":[{"pub_key":{"type":"tendermint/PubKeySecp256k1","value":"A/ME5Wre92HJOJH4wBFveSeq3Yj8wZJrn/pEWc3pcrSc"},"signature":"PqAkV1a9FyVn6SiFcb3e3jOP2o5fARVmYwOG42vJt8lj4OPR90EtG6zaBQIuSfdELHy/jNGZSVstl5MMD4RkuA=="}],"memo":""}},"timestamp":"2020-08-19T19:22:16Z","events":[{"type":"message","attributes":[{"key":"sender","value":"cosmos1jv65s3grqf6v6jl3dp4t6c9t9rk99cd88lyufl"},{"key":"sender","value":"cosmos1fl48vsnmsdzcv85q5d2q4z5ajdha8yu34mf0eh"},{"key":"module","value":"staking"},{"key":"sender","value":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7"},{"key":"action","value":"begin_unbonding"}]},{"type":"transfer","attributes":[{"key":"recipient","value":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7"},{"key":"amount","value":"141177uatom"},{"key":"recipient","value":"cosmos1tygms3xhhs3yv487phx3dw4a95jn7t7lpm470r"},{"key":"amount","value":"6800000000uatom"}]},{"type":"unbond","attributes":[{"key":"validator","value":"cosmosvaloper1hjct6q7npsspsg3dgvzk3sdf89spmlpfdn6m9d"},{"key":"amount","value":"6800000000"},{"key":"completion_time","value":"2020-09-09T19:22:16Z"}]}]},{"height":"3957266","txhash":"3EA3BECD5CB42CC4EEC0331A2EB9D1C9609D165E990997CD46F867EB9B940ADB","data":"0C08B386FAFD0510DEC2DBC603","raw_log":"[{\"msg_index\":0,\"success\":true,\"log\":\"\",\"events\":[{\"type\":\"message\",\"attributes\":[{\"key\":\"sender\",\"value\":\"cosmos1jv65s3grqf6v6jl3dp4t6c9t9rk99cd88lyufl\"},{\"key\":\"sender\",\"value\":\"cosmos1fl48vsnmsdzcv85q5d2q4z5ajdha8yu34mf0eh\"},{\"key\":\"module\",\"value\":\"staking\"},{\"key\":\"sender\",\"value\":\"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7\"},{\"key\":\"action\",\"value\":\"begin_unbonding\"}]},{\"type\":\"transfer\",\"attributes\":[{\"key\":\"recipient\",\"value\":\"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7\"},{\"key\":\"amount\",\"value\":\"25453520uatom\"},{\"key\":\"recipient\",\"value\":\"cosmos1tygms3xhhs3yv487phx3dw4a95jn7t7lpm470r\"},{\"key\":\"amount\",\"value\":\"6700000000uatom\"}]},{\"type\":\"unbond\",\"attributes\":[{\"key\":\"validator\",\"value\":\"cosmosvaloper1hjct6q7npsspsg3dgvzk3sdf89spmlpfdn6m9d\"},{\"key\":\"amount\",\"value\":\"6700000000\"},{\"key\":\"completion_time\",\"value\":\"2020-11-25T16:15:47Z\"}]}]}]","logs":[{"msg_index":0,"success":true,"log":"","events":[{"type":"message","attributes":[{"key":"sender","value":"cosmos1jv65s3grqf6v6jl3dp4t6c9t9rk99cd88lyufl"},{"key":"sender","value":"cosmos1fl48vsnmsdzcv85q5d2q4z5ajdha8yu34mf0eh"},{"key":"module","value":"staking"},{"key":"sender","value":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7"},{"key":"action","value":"begin_unbonding"}]},{"type":"transfer","attributes":[{"key":"recipient","value":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7"},{"key":"amount","value":"25453520uatom"},{"key":"recipient","value":"cosmos1tygms3xhhs3yv487phx3dw4a95jn7t7lpm470r"},{"key":"amount","value":"6700000000uatom"}]},{"type":"unbond","attributes":[{"key":"validator","value":"cosmosvaloper1hjct6q7npsspsg3dgvzk3sdf89spmlpfdn6m9d"},{"key":"amount","value":"6700000000"},{"key":"completion_time","value":"2020-11-25T16:15:47Z"}]}]}],"gas_wanted":"200000","gas_used":"146470","tx":{"type":"cosmos-sdk/StdTx","value":{"msg":[{"type":"cosmos-sdk/MsgUndelegate","value":{"delegator_address":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7","validator_address":"cosmosvaloper1hjct6q7npsspsg3dgvzk3sdf89spmlpfdn6m9d","amount":{"denom":"uatom","amount":"6700000000"}}}],"fee":{"amount":[{"denom":"uatom","amount":"5000"}],"gas":"200000"},"signatures":[{"pub_key":{"type":"tendermint/PubKeySecp256k1","value":"A/ME5Wre92HJOJH4wBFveSeq3Yj8wZJrn/pEWc3pcrSc"},"signature":"h1yOJv40MDebf/Z9l+Sq6zmP/NIZ8lucxDhskQ42jF02IgAv7t8CUnvgCb5nGUHazSFVo6QwNpUqLBeEqH2kTA=="}],"memo":""}},"timestamp":"2020-11-04T16:15:47Z","events":[{"type":"message","attributes":[{"key":"sender","value":"cosmos1jv65s3grqf6v6jl3dp4t6c9t9rk99cd88lyufl"},{"key":"sender","value":"cosmos1fl48vsnmsdzcv85q5d2q4z5ajdha8yu34mf0eh"},{"key":"module","value":"staking"},{"key":"sender","value":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7"},{"key":"action","value":"begin_unbonding"}]},{"type":"transfer","attributes":[{"key":"recipient","value":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7"},{"key":"amount","value":"25453520uatom"},{"key":"recipient","value":"cosmos1tygms3xhhs3yv487phx3dw4a95jn7t7lpm470r"},{"key":"amount","value":"6700000000uatom"}]},{"type":"unbond","attributes":[{"key":"validator","value":"cosmosvaloper1hjct6q7npsspsg3dgvzk3sdf89spmlpfdn6m9d"},{"key":"amount","value":"6700000000"},{"key":"completion_time","value":"2020-11-25T16:15:47Z"}]}]}]},{"total_count":"3","count":"3","page_number":"1","page_total":"1","limit":"100","txs":[{"height":"615706","txhash":"CBDFE10D79C86895E78AAD09427A0B423C2C9716B931CD357537E732F8CE416A","data":"0C0895ECBCF20510AF8FFEE602","raw_log":"[{\"msg_index\":0,\"success\":true,\"log\":\"\",\"events\":[{\"type\":\"message\",\"attributes\":[{\"key\":\"sender\",\"value\":\"cosmos1jv65s3grqf6v6jl3dp4t6c9t9rk99cd88lyufl\"},{\"key\":\"sender\",\"value\":\"cosmos1jv65s3grqf6v6jl3dp4t6c9t9rk99cd88lyufl\"},{\"key\":\"module\",\"value\":\"staking\"},{\"key\":\"sender\",\"value\":\"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7\"},{\"key\":\"action\",\"value\":\"begin_redelegate\"}]},{\"type\":\"redelegate\",\"attributes\":[{\"key\":\"source_validator\",\"value\":\"cosmosvaloper1j0vaeh27t4rll7zhmarwcuq8xtrmvqhudrgcky\"},{\"key\":\"destination_validator\",\"value\":\"cosmosvaloper1hjct6q7npsspsg3dgvzk3sdf89spmlpfdn6m9d\"},{\"key\":\"amount\",\"value\":\"500000000\"},{\"key\":\"completion_time\",\"value\":\"2020-02-21T01:44:53Z\"}]},{\"type\":\"transfer\",\"attributes\":[{\"key\":\"recipient\",\"value\":\"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7\"},{\"key\":\"amount\",\"value\":\"5277471uatom\"},{\"key\":\"recipient\",\"value\":\"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7\"},{\"key\":\"amount\",\"value\":\"29052075uatom\"}]}]}]","logs":[{"msg_index":0,"success":true,"log":"","events":[{"type":"message","attributes":[{"key":"sender","value":"cosmos1jv65s3grqf6v6jl3dp4t6c9t9rk99cd88lyufl"},{"key":"sender","value":"cosmos1jv65s3grqf6v6jl3dp4t6c9t9rk99cd88lyufl"},{"key":"module","value":"staking"},{"key":"sender","value":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7"},{"key":"action","value":"begin_redelegate"}]},{"type":"redelegate","attributes":[{"key":"source_validator","value":"cosmosvaloper1j0vaeh27t4rll7zhmarwcuq8xtrmvqhudrgcky"},{"key":"destination_validator","value":"cosmosvaloper1hjct6q7npsspsg3dgvzk3sdf89spmlpfdn6m9d"},{"key":"amount","value":"500000000"},{"key":"completion_time","value":"2020-02-21T01:44:53Z"}]},{"type":"transfer","attributes":[{"key":"recipient","value":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7"},{"key":"amount","value":"5277471uatom"},{"key":"recipient","value":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7"},{"key":"amount","value":"29052075uatom"}]}]}],"gas_wanted":"550000","gas_used":"203713","tx":{"type":"cosmos-sdk/StdTx","value":{"msg":[{"type":"cosmos-sdk/MsgBeginRedelegate","value":{"delegator_address":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7","validator_src_address":"cosmosvaloper1j0vaeh27t4rll7zhmarwcuq8xtrmvqhudrgcky","validator_dst_address":"cosmosvaloper1hjct6q7npsspsg3dgvzk3sdf89spmlpfdn6m9d","amount":{"denom":"uatom","amount":"500000000"}}}],"fee":{"amount":[{"denom":"uatom","amount":"13750"}],"gas":"550000"},"signatures":[{"pub_key":{"type":"tendermint/PubKeySecp256k1","value":"A/ME5Wre92HJOJH4wBFveSeq3Yj8wZJrn/pEWc3pcrSc"},"signature":"9YuclaEWeNxAuLSoIxac5+YOXy4Qy2irqckg1QWdPYg0N9ogXvnEhTgRIHIDwEMWgYkoueOn67RiQE0paC6qbQ=="}],"memo":""}},"timestamp":"2020-01-31T01:44:53Z","events":[{"type":"message","attributes":[{"key":"sender","value":"cosmos1jv65s3grqf6v6jl3dp4t6c9t9rk99cd88lyufl"},{"key":"sender","value":"cosmos1jv65s3grqf6v6jl3dp4t6c9t9rk99cd88lyufl"},{"key":"module","value":"staking"},{"key":"sender","value":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7"},{"key":"action","value":"begin_redelegate"}]},{"type":"redelegate","attributes":[{"key":"source_validator","value":"cosmosvaloper1j0vaeh27t4rll7zhmarwcuq8xtrmvqhudrgcky"},{"key":"destination_validator","value":"cosmosvaloper1hjct6q7npsspsg3dgvzk3sdf89spmlpfdn6m9d"},{"key":"amount","value":"500000000"},{"key":"completion_time","value":"2020-02-21T01:44:53Z"}]},{"type":"transfer","attributes":[{"key":"recipient","value":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7"},{"key":"amount","value":"5277471uatom"},{"key":"recipient","value":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7"},{"key":"amount","value":"29052075uatom"}]}]},{"height":"615714","txhash":"E8265CA22FEA0263A1850A002EDC6C4A7339EF331CBCE7B186279AD5DCB5AF5C","data":"0C08CEECBCF20510E1F9CDAB03","raw_log":"[{\"msg_index\":0,\"success\":true,\"log\":\"\",\"events\":[{\"type\":\"message\",\"attributes\":[{\"key\":\"sender\",\"value\":\"cosmos1jv65s3grqf6v6jl3dp4t6c9t9rk99cd88lyufl\"},{\"key\":\"sender\",\"value\":\"cosmos1jv65s3grqf6v6jl3dp4t6c9t9rk99cd88lyufl\"},{\"key\":\"module\",\"value\":\"staking\"},{\"key\":\"sender\",\"value\":\"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7\"},{\"key\":\"action\",\"value\":\"begin_redelegate\"}]},{\"type\":\"redelegate\",\"attributes\":[{\"key\":\"source_validator\",\"value\":\"cosmosvaloper1w42lm7zv55jrh5ggpecg0v643qeatfkd9aqf3f\"},{\"key\":\"destination_validator\",\"value\":\"cosmosvaloper1hjct6q7npsspsg3dgvzk3sdf89spmlpfdn6m9d\"},{\"key\":\"amount\",\"value\":\"500000000\"},{\"key\":\"completion_time\",\"value\":\"2020-02-21T01:45:50Z\"}]},{\"type\":\"transfer\",\"attributes\":[{\"key\":\"recipient\",\"value\":\"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7\"},{\"key\":\"amount\",\"value\":\"5097717uatom\"},{\"key\":\"recipient\",\"value\":\"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7\"},{\"key\":\"amount\",\"value\":\"2935uatom\"}]}]}]","logs":[{"msg_index":0,"success":true,"log":"","events":[{"type":"message","attributes":[{"key":"sender","value":"cosmos1jv65s3grqf6v6jl3dp4t6c9t9rk99cd88lyufl"},{"key":"sender","value":"cosmos1jv65s3grqf6v6jl3dp4t6c9t9rk99cd88lyufl"},{"key":"module","value":"staking"},{"key":"sender","value":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7"},{"key":"action","value":"begin_redelegate"}]},{"type":"redelegate","attributes":[{"key":"source_validator","value":"cosmosvaloper1w42lm7zv55jrh5ggpecg0v643qeatfkd9aqf3f"},{"key":"destination_validator","value":"cosmosvaloper1hjct6q7npsspsg3dgvzk3sdf89spmlpfdn6m9d"},{"key":"amount","value":"500000000"},{"key":"completion_time","value":"2020-02-21T01:45:50Z"}]},{"type":"transfer","attributes":[{"key":"recipient","value":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7"},{"key":"amount","value":"5097717uatom"},{"key":"recipient","value":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7"},{"key":"amount","value":"2935uatom"}]}]}],"gas_wanted":"550000","gas_used":"197349","tx":{"type":"cosmos-sdk/StdTx","value":{"msg":[{"type":"cosmos-sdk/MsgBeginRedelegate","value":{"delegator_address":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7","validator_src_address":"cosmosvaloper1w42lm7zv55jrh5ggpecg0v643qeatfkd9aqf3f","validator_dst_address":"cosmosvaloper1hjct6q7npsspsg3dgvzk3sdf89spmlpfdn6m9d","amount":{"denom":"uatom","amount":"500000000"}}}],"fee":{"amount":[{"denom":"uatom","amount":"13750"}],"gas":"550000"},"signatures":[{"pub_key":{"type":"tendermint/PubKeySecp256k1","value":"A/ME5Wre92HJOJH4wBFveSeq3Yj8wZJrn/pEWc3pcrSc"},"signature":"MC0nJXoxcnsUhxNu/C1Y0RBvDPEXA7wJNgaB5+oZadAgN3wzRvWKxQXwEgXqrPlM7FbXNcbtw0Q5wdBhf1kd+w=="}],"memo":""}},"timestamp":"2020-01-31T01:45:50Z","events":[{"type":"message","attributes":[{"key":"sender","value":"cosmos1jv65s3grqf6v6jl3dp4t6c9t9rk99cd88lyufl"},{"key":"sender","value":"cosmos1jv65s3grqf6v6jl3dp4t6c9t9rk99cd88lyufl"},{"key":"module","value":"staking"},{"key":"sender","value":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7"},{"key":"action","value":"begin_redelegate"}]},{"type":"redelegate","attributes":[{"key":"source_validator","value":"cosmosvaloper1w42lm7zv55jrh5ggpecg0v643qeatfkd9aqf3f"},{"key":"destination_validator","value":"cosmosvaloper1hjct6q7npsspsg3dgvzk3sdf89spmlpfdn6m9d"},{"key":"amount","value":"500000000"},{"key":"completion_time","value":"2020-02-21T01:45:50Z"}]},{"type":"transfer","attributes":[{"key":"recipient","value":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7"},{"key":"amount","value":"5097717uatom"},{"key":"recipient","value":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7"},{"key":"amount","value":"2935uatom"}]}]},{"height":"615733","txhash":"F9C4ECFD6F88E8005B9B68B242402B5547D338A754CDE6389F42E49A8C48884A","data":"0B08D5EDBCF20510F7F8E53F","raw_log":"[{\"msg_index\":0,\"success\":true,\"log\":\"\",\"events\":[{\"type\":\"message\",\"attributes\":[{\"key\":\"sender\",\"value\":\"cosmos1jv65s3grqf6v6jl3dp4t6c9t9rk99cd88lyufl\"},{\"key\":\"sender\",\"value\":\"cosmos1jv65s3grqf6v6jl3dp4t6c9t9rk99cd88lyufl\"},{\"key\":\"module\",\"value\":\"staking\"},{\"key\":\"sender\",\"value\":\"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7\"},{\"key\":\"action\",\"value\":\"begin_redelegate\"}]},{\"type\":\"redelegate\",\"attributes\":[{\"key\":\"source_validator\",\"value\":\"cosmosvaloper1u6ddcsjueax884l3tfrs66497c7g86skn7pa0u\"},{\"key\":\"destination_validator\",\"value\":\"cosmosvaloper1hjct6q7npsspsg3dgvzk3sdf89spmlpfdn6m9d\"},{\"key\":\"amount\",\"value\":\"500000000\"},{\"key\":\"completion_time\",\"value\":\"2020-02-21T01:48:05Z\"}]},{\"type\":\"transfer\",\"attributes\":[{\"key\":\"recipient\",\"value\":\"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7\"},{\"key\":\"amount\",\"value\":\"5390719uatom\"},{\"key\":\"recipient\",\"value\":\"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7\"},{\"key\":\"amount\",\"value\":\"7129uatom\"}]}]}]","logs":[{"msg_index":0,"success":true,"log":"","events":[{"type":"message","attributes":[{"key":"sender","value":"cosmos1jv65s3grqf6v6jl3dp4t6c9t9rk99cd88lyufl"},{"key":"sender","value":"cosmos1jv65s3grqf6v6jl3dp4t6c9t9rk99cd88lyufl"},{"key":"module","value":"staking"},{"key":"sender","value":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7"},{"key":"action","value":"begin_redelegate"}]},{"type":"redelegate","attributes":[{"key":"source_validator","value":"cosmosvaloper1u6ddcsjueax884l3tfrs66497c7g86skn7pa0u"},{"key":"destination_validator","value":"cosmosvaloper1hjct6q7npsspsg3dgvzk3sdf89spmlpfdn6m9d"},{"key":"amount","value":"500000000"},{"key":"completion_time","value":"2020-02-21T01:48:05Z"}]},{"type":"transfer","attributes":[{"key":"recipient","value":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7"},{"key":"amount","value":"5390719uatom"},{"key":"recipient","value":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7"},{"key":"amount","value":"7129uatom"}]}]}],"gas_wanted":"550000","gas_used":"207814","tx":{"type":"cosmos-sdk/StdTx","value":{"msg":[{"type":"cosmos-sdk/MsgBeginRedelegate","value":{"delegator_address":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7","validator_src_address":"cosmosvaloper1u6ddcsjueax884l3tfrs66497c7g86skn7pa0u","validator_dst_address":"cosmosvaloper1hjct6q7npsspsg3dgvzk3sdf89spmlpfdn6m9d","amount":{"denom":"uatom","amount":"500000000"}}}],"fee":{"amount":[{"denom":"uatom","amount":"13750"}],"gas":"550000"},"signatures":[{"pub_key":{"type":"tendermint/PubKeySecp256k1","value":"A/ME5Wre92HJOJH4wBFveSeq3Yj8wZJrn/pEWc3pcrSc"},"signature":"WN4N4Qp6dNH23aNX8Ug3BpWi4oyO3Ju+vgQAApEC1h5XoMB4RzhnoIPGe/4UYbZMKvtyNRwIMmNKUi6O9782UA=="}],"memo":""}},"timestamp":"2020-01-31T01:48:05Z","events":[{"type":"message","attributes":[{"key":"sender","value":"cosmos1jv65s3grqf6v6jl3dp4t6c9t9rk99cd88lyufl"},{"key":"sender","value":"cosmos1jv65s3grqf6v6jl3dp4t6c9t9rk99cd88lyufl"},{"key":"module","value":"staking"},{"key":"sender","value":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7"},{"key":"action","value":"begin_redelegate"}]},{"type":"redelegate","attributes":[{"key":"source_validator","value":"cosmosvaloper1u6ddcsjueax884l3tfrs66497c7g86skn7pa0u"},{"key":"destination_validator","value":"cosmosvaloper1hjct6q7npsspsg3dgvzk3sdf89spmlpfdn6m9d"},{"key":"amount","value":"500000000"},{"key":"completion_time","value":"2020-02-21T01:48:05Z"}]},{"type":"transfer","attributes":[{"key":"recipient","value":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7"},{"key":"amount","value":"5390719uatom"},{"key":"recipient","value":"cosmos1hjct6q7npsspsg3dgvzk3sdf89spmlpfg8wwf7"},{"key":"amount","value":"7129uatom"}]}]}]}]'
+  recorded_at: Thu, 17 Dec 2020 18:58:19 GMT
+recorded_with: VCR 6.0.0

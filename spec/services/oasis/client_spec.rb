@@ -166,12 +166,12 @@ describe Oasis::Client do
 
   describe '#validator_events' do
     let(:validator_events) do
-      client.validator_events('oasis1qp22l6gy0u2cp6krh4ruuezf09f20t0qkupkhq2g', 50)
+      client.validator_events(chain, 'oasis1qp22l6gy0u2cp6krh4ruuezf09f20t0qkupkhq2g', 50)
     end
 
     it 'returns validator_events list' do
       expect(validator_events).to be_a Array
-      expect(validator_events.first).to be_a Oasis::ValidatorEvent
+      expect(validator_events.first).to be_a Common::Event::ActiveSetInclusion
     end
   end
 

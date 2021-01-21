@@ -1,121 +1,130 @@
 <% content_for :body_class, 'validator-subscriptions' %>
 
-<%= form_for @subscription, url: namespaced_path('validator_subscriptions', @validator.address), html: { method: 'POST', class: 'validator-subscription-form' } do |f| -%>
-  <h1 class='header'>
-    Subscribe to Events
-    <div class='d-flex align-items-center'>
-      <%= link_to 'back', namespaced_path('validator', @validator.address), class:'btn btn-sm btn-outline-secondary' %>
-      <%= f.submit 'save subscription', class: 'btn btn btn-primary ml-2' %>
-    </div>
-  </h1>
+<div class="container">
+  <div class="content">
+  
+    <%= form_for @subscription, url: namespaced_path('validator_subscriptions', @validator.address), html: { method: 'POST', class: 'validator-subscription-form' } do |f| -%>
+      <div class='d-flex justify-content-between align-items-center mb-4'>
+        <h1 class='validator-header__title'>Subscribe to Events</h1>
+        <div class='d-flex align-items-center'>
+          <%= link_to 'back', namespaced_path('validator', @validator.address), class:'button-secondary' %>
+          <%= f.submit 'save subscription', class: 'button-primary ml-2' %>
+        </div>
+      </div>
 
-  <h2>
-    <label class='text-muted'>Validator</label>
-    <span class='technical'><%= @alertable.short_name %></span>
-  </h2>
+      <div class='data-block'>
+        <h3 class='data-block__title'>Validator</h3>
+        <span class='technical'><%= @alertable.short_name %></span>
+      </div>
 
-  <% if flash[:notice] %>
-    <div class='alert alert-primary auto-alert-hide'>
-      <%= flash[:notice].html_safe %>
-    </div>
-  <% end -%>
-  <% if @subscription && @subscription.errors.any? -%>
-    <div class='alert alert-warning'>
-      <% @subscription.errors.full_messages.each do |msg| -%>
-        <div><%= msg %></div>
+      <% if flash[:notice] %>
+        <div class='alert alert-primary auto-alert-hide'>
+          <%= flash[:notice].html_safe %>
+        </div>
       <% end -%>
-    </div>
-  <% end -%>
+      <% if @subscription && @subscription.errors.any? -%>
+        <div class='alert alert-warning'>
+          <% @subscription.errors.full_messages.each do |msg| -%>
+            <div><%= msg %></div>
+          <% end -%>
+        </div>
+      <% end -%>
 
 
-  <% @event_defs.keys.in_groups_of(2, false).each do |kind_group| %>
-    <div class='row event-kinds-container mb-3 mt-4'>
-      <div class='card-deck'>
-        <% kind_group.each do |event_kind| -%>
-          <% definitions = @event_defs[event_kind] -%>
-          <% selected = @subscription && @subscription.subscribes_to_kind?(event_kind) -%>
-          <div class='card'>
-            <h5 class='card-header'>
-              <div class='card-header-parts'>
-                <div><%= event_kind_to_name event_kind %></div>
-                <div class='btn-group btn-group-toggle' data-toggle='buttons'>
-                  <label class='btn btn-outline-light btn-sm <%= 'active' unless selected %>'>
-                    <input type='radio' name='alert_subscription[event_kinds][<%= event_kind %>]' <%= 'checked=true' unless selected %> value='off' autocomplete='off'> Off
-                  </label>
-                  <label class='btn btn-outline-light btn-sm <%= 'active' if selected %>'>
-                    <input type='radio' name='alert_subscription[event_kinds][<%= event_kind %>]' <%= 'checked=true' if selected %> value='on' autocomplete='off'> On
-                  </label>
-                </div>
-              </div>
-            </h5>
-            <div class='card-body'>
-              <% has_settings = true -%>
-              <% case event_kind -%>
-              <% when 'voting_power_change' -%>
-                <div class='controls d-flex align-items-start align-items-md-center flex-column flex-md-row'>
-                  <span class='text-muted text-nowrap mr-4'>Notify on</span>
-                  <div class='input-group input-group-lg'>
-                    <input type='text' class='form-control' autocomplete='off'
-                           name='alert_subscription[data][percent_change]'
-                           value='<%= @subscription && @subscription.data['percent_change'] %>'
-                           placeholder='percentage' />
-                    <div class='input-group-append'>
-                      <span class='input-group-text'>%</span>
+      <% @event_defs.keys.in_groups_of(2, false).each do |kind_group| %>
+        <div class='row event-kinds-container mb-3 mt-4'>
+          <% kind_group.each do |event_kind| -%>
+            <% definitions = @event_defs[event_kind] -%>
+            <% selected = @subscription && @subscription.subscribes_to_kind?(event_kind) -%>
+            <div class='col-lg-6 col-md-12'>
+              <div class='data-table h-100 mt-3'>
+                <h5 class='data-table__header'>
+                  <div class='card-header-parts'>
+                    <div class="data-table__title"><%= event_kind_to_name event_kind %></div>
+                    <div class='d-flex align-items-center'>
+                      <div class="custom-control custom-radio mr-4">
+                        <input id='<%= event_kind %>_off' class="custom-control-input" type='radio' name='alert_subscription[event_kinds][<%= event_kind %>]' <%='checked=true' unless selected %> value='off' autocomplete='off'/>
+                        <label for='<%= event_kind %>_off' class='custom-control-label'>Off</label>
+                      </div>
+                      <div class="custom-control custom-radio">
+                        <input id='<%= event_kind %>_on' class="custom-control-input" type='radio' name='alert_subscription[event_kinds][<%= event_kind %>]' <%='checked=true' if selected %> value='on' autocomplete='off'/>
+                        <label for='<%= event_kind %>_on' class='custom-control-label'>On</label>
+                      </div>  
                     </div>
                   </div>
-                  <span class='text-muted text-nowrap ml-md-4'>Change (<span class='technical text-lg font-weight-bold'>+</span>/<span class='technical text-lg font-weight-bold'>-</span>)</span>
-                </div>
-              <% when 'n_of_m' -%>
-                <div class='controls d-flex flex-column'>
-                  <% definitions.sort_by { |defn| defn['m'] }.each_with_index do |defn, i| -%>
-                    <div class='text-muted <%= 'mt-2' unless i == 0 %>'>
-                      <span class='fas fa-flag text-primary mr-2'></span>
-                      No precommit on <%= defn['n'] %> of last <%= defn['m'] %> blocks
+                </h5>
+                <div class='card-body'>
+                  <% has_settings = true -%>
+                  <% case event_kind -%>
+                  <% when 'voting_power_change' -%>
+                    <div class='controls d-flex align-items-start align-items-md-center flex-column flex-md-row'>
+                      <span class='text-muted text-nowrap mr-4'>Notify on</span>
+                      <div class='input-group input-group-lg'>
+                        <input type='text' class='form-control' autocomplete='off'
+                              name='alert_subscription[data][percent_change]'
+                              value='<%= @subscription && @subscription.data['percent_change'] %>'
+                              placeholder='percentage' />
+                        <div class='input-group-append'>
+                          <span class='input-group-text'>%</span>
+                        </div>
+                      </div>
+                      <span class='text-muted text-nowrap ml-md-4'>Change (<span class='technical text-lg font-weight-bold'>+</span>/<span class='technical text-lg font-weight-bold'>-</span>)</span>
                     </div>
-                  <% end -%>
-                </div>
-              <% when 'n_consecutive' -%>
-                <div class='controls d-flex flex-column'>
-                  <% definitions.sort_by { |defn| defn['n'] }.each_with_index do |defn, i| -%>
-                    <div class='text-muted <%= 'mt-2' unless i == 0 %>'>
-                      <span class='fas fa-flag text-primary mr-2'></span>
-                      No precommit for <%= defn['n'] %> consecutive blocks
+                  <% when 'n_of_m' -%>
+                    <div class='controls d-flex flex-column'>
+                      <% definitions.sort_by { |defn| defn['m'] }.each_with_index do |defn, i| -%>
+                        <div class='text-muted <%= 'mt-2' unless i == 0 %>'>
+                          <span class='fas fa-flag text-primary mr-2'></span>
+                          No precommit on <%= defn['n'] %> of last <%= defn['m'] %> blocks
+                        </div>
+                      <% end -%>
                     </div>
+                  <% when 'n_consecutive' -%>
+                    <div class='controls d-flex flex-column'>
+                      <% definitions.sort_by { |defn| defn['n'] }.each_with_index do |defn, i| -%>
+                        <div class='text-muted <%= 'mt-2' unless i == 0 %>'>
+                          <span class='fas fa-flag text-primary mr-2'></span>
+                          No precommit for <%= defn['n'] %> consecutive blocks
+                        </div>
+                      <% end -%>
+                    </div>
+                  <% else -%>
+                    <% has_settings = false -%>
                   <% end -%>
+
+                  <div class='info <% if has_settings -%>mt-4<% end -%>'>
+                    You will receive an email up to once every <%= time_ago_in_words ALERT_MINIMUM_TIMEOUT.ago %>
+                    about this type of event.
+                  </div>
+
+                  <div class='recent-event-count mt-4'>
+                    There have been
+                    <% klass = event_kind_to_class( event_kind ) -%>
+                    <%= @alertable.recent_events(klass, 1.week.ago).count %> instances in the past week.
+                  </div>
                 </div>
-              <% else -%>
-                <% has_settings = false -%>
-              <% end -%>
-
-              <div class='info <% if has_settings -%>mt-4<% end -%>'>
-                You will receive an email up to once every <%= time_ago_in_words ALERT_MINIMUM_TIMEOUT.ago %>
-                about this type of event.
-              </div>
-
-              <div class='recent-event-count mt-4'>
-                There have been
-                <% klass = event_kind_to_class( event_kind ) -%>
-                <%= @alertable.recent_events(klass, 1.week.ago).count %> instances in the past week.
               </div>
             </div>
+          <% end -%>
+        </div>
+      <% end -%>
+
+
+      <div class='d-flex flex-column align-items-center justify-content-center mt-5'/>
+        <% selected = @subscription && @subscription.wants_daily_digest? -%>
+        <span class='text-muted text-lg'>Receive Daily Digest?</span>
+        <span class='text-muted text-sm text-center daily-digest-description'>All events will be included regardless of instant notification settings above.</span>
+        <div class='d-flex align-items-center mt-3'>
+          <div class="custom-control custom-radio mr-4">
+            <input class="custom-control-input" id="alert_off" type='radio' name='alert_subscription[wants_daily_digest]' <%= 'checked=true' unless selected %> value='off' autocomplete='off'>
+            <label for='alert_off' class='custom-control-label'>Off</label>
           </div>
-        <% end -%>
+          <div class="custom-control custom-radio">
+            <input class="custom-control-input" id="alert_on" type='radio' name='alert_subscription[wants_daily_digest]' <%= 'checked=true' if selected %> value='on' autocomplete='off'>
+            <label for='alert_on' class='custom-control-label'>On</label>
+          </div>  
+        </div>
       </div>
-    </div>
-  <% end -%>
-
-
-  <div class='d-flex flex-column align-items-center justify-content-center mt-5'/>
-    <% selected = @subscription && @subscription.wants_daily_digest? -%>
-    <span class='text-muted text-lg'>Receive Daily Digest?</span>
-    <span class='text-muted text-sm text-center daily-digest-description'>All events will be included regardless of instant notification settings above.</span>
-    <div class='btn-group btn-group-toggle mt-4' data-toggle='buttons'>
-      <label class='btn btn-outline-primary <%= 'active' unless selected %>'>
-        <input type='radio' name='alert_subscription[wants_daily_digest]' <%= 'checked=true' unless selected %> value='off' autocomplete='off'> Off
-      </label>
-      <label class='btn btn-outline-primary <%= 'active' if selected %>'>
-        <input type='radio' name='alert_subscription[wants_daily_digest]' <%= 'checked=true' if selected %> value='on' autocomplete='off'> On
-      </label>
-    </div>
+    <% end -%>
   </div>
-<% end -%>
+</div>

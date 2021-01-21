@@ -1,6 +1,6 @@
-<div class='transactions mb-5'>
-  <div class='transactions-table-header'>
-    <h4>Transactions</h4>
+<div class='data-table mb-5'>
+  <div class='data-table__header'>
+    <h4 class='data-table__title'>Transactions</h4>
   </div>
   <div class='transactions-table'>
     <table data-empty='<%= transactions.blank? %>' class='table'>
@@ -16,11 +16,11 @@
       <tbody>
         <% if transactions.nil? -%>
           <tr>
-            <td class='p-3 text-center' colspan='5'>Unable to retrieve transaction data.</td>
+            <td class='data-table__empty' colspan='5'>Unable to retrieve transaction data.</td>
           </tr>
         <% elsif transactions.empty? -%>
           <tr>
-            <td class='p-3 text-center' colspan='5'>No transactions in this block.</td>
+            <td class='data-table__empty' colspan='5'>No transactions in this block.</td>
           </tr>
         <% end -%>
 

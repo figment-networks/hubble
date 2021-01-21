@@ -1,0 +1,41 @@
+<div class='data-table mb-5'>
+  <div class='data-table__header'>
+    <h4 class='data-table__title'>Transactions</h4>
+  </div>
+  <div>
+    <table class='w-100' data-empty='<%= transactions.blank? %>'>
+      <thead>
+      <tr>
+        <th>Hash</th>
+        <th>Amount</th>
+        <th>Kind</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% if transactions.nil? %>
+        <tr>
+          <td class='data-table__empty' colspan='5'>Unable to retrieve transfer data.</td>
+        </tr>
+      <% elsif transactions.empty? %>
+        <tr>
+          <td class='data-table__empty' colspan='5'>No transactions.</td>
+        </tr>
+      <% else %>
+        <% transactions.each do |transfer| %>
+          <tr>
+            <td class='text-sm'>
+              <%= link_to transfer.transaction_hash.truncate(20), namespaced_path('block_transaction', transfer.height, transfer.transaction_hash) %>
+            </td>
+            <td class='text-sm' data-order='<%= transfer.amount %>'>
+              <%= format_amount(transfer.amount, @chain, denom: @chain.class::DEFAULT_TOKEN_REMOTE) %>
+            </td>
+            <td class='text-sm'>
+              <%= transfer.kind %>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

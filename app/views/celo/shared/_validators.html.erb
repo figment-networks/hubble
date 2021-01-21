@@ -1,0 +1,38 @@
+<section class='validators'>
+  <div class='validator-table-header justify-content-between py-1 flex-wrap'>
+    <div class='d-flex align-items-center flex-grow-1 py-2'>
+      <h4>Validators</h4>
+      <input type='text' class='form-control validator-search' placeholder='Search to filter...'>
+    </div>
+  </div>
+
+  <div class='validator-table'>
+    <table>
+      <thead>
+      <tr>
+        <th>Address/Name</th>
+        <th>Score</th>
+        <th class='d-none'></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% validators.each do |validator| -%>
+        <tr>
+          <td data-order='<%= validator.display_name %>'>
+            <%= link_to namespaced_path('validator', validator.address) do %>
+              <strong><%= validator.display_name.truncate(38) %></strong>
+            <% end -%>
+          </td>
+          <td class="technical" data-order='<%= validator.score %>'>
+            <%= validator.score %> %
+          </td>
+          <td class='d-none'>
+            <%= validator.address %>
+            <%= validator.display_name %>
+          </td>
+        </tr>
+      <% end -%>
+      </tbody>
+    </table>
+  </div>
+</section>
