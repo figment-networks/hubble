@@ -1,83 +1,79 @@
 <% content_for :body_class, 'report-show' %>
 
-<%= render partial: 'chain_header', locals: { delegator_lists_link: true } %>
+<%= render partial: 'chain_header', locals: { active_tab: '', delegator_lists_link: true, events_link: true } %>
 <%= render partial: 'sync_errors' %>
 
-<div class='row'>
-  <div class='col-12 col-md-9 order-1 order-md-0'>
-    <div class='report'>
-      <div class='report-table-header'>
-        <h4>Delegator List Report</h4>
+<div class='content'>
+  <div class='container'>
+    <div class='row'>
+      <div class='col-12 col-md-9 order-1 order-md-0'>
+        <div class='report data-table'>
+          <div class='report-table-header data-table__header'>
+            <h4 class='data-table__title'>Delegator List Report</h4>
+          </div>
+          <div class='report-table'>
+            <table class='border-bottom-0'>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Delegator</th>
+                  <th>Fees</th>
+                  <th>Reward Tokens</th>
+                  <th>Pending Stake</th>
+                  <th>Unclaimed Stake</th>
+                  <th>Unbonding Tokens</th>
+                  <th>Unbonded Tokens</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @report.data.each.with_index do |data, index| -%>
+                  <tr>
+                    <td><%= index + 1 %></td>
+                    <td><%= livepeer_explorer_link(data[:delegator_address], page: :staking, short: true) %></td>
+                    <td><%= livepeer_eth_amount(data[:fees]) %></td>
+                    <td><%= livepeer_lpt_amount(data[:reward_tokens]) %></td>
+                    <td><%= livepeer_lpt_amount(data[:pending_stake]) %></td>
+                    <td><%= livepeer_lpt_amount(data[:unclaimed_stake]) %></td>
+                    <td><%= livepeer_lpt_amount(data[:unbonding_tokens]) %></td>
+                    <td><%= livepeer_lpt_amount(data[:unbonded_tokens]) %></td>
+                  </tr>
+                <% end -%>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
-      <div class='report-table'>
-        <table>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Delegator</th>
-              <th>Fees</th>
-              <th>Reward Tokens</th>
-              <th>Pending Stake</th>
-              <th>Unclaimed Stake</th>
-              <th>Unbonding Tokens</th>
-              <th>Unbonded Tokens</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @report.data.each.with_index do |data, index| -%>
-              <tr>
-                <td><%= index + 1 %></td>
-                <td><%= livepeer_explorer_link(data[:delegator_address], page: :staking, short: true) %></td>
-                <td><%= livepeer_eth_amount(data[:fees]) %></td>
-                <td><%= livepeer_lpt_amount(data[:reward_tokens]) %></td>
-                <td><%= livepeer_lpt_amount(data[:pending_stake]) %></td>
-                <td><%= livepeer_lpt_amount(data[:unclaimed_stake]) %></td>
-                <td><%= livepeer_lpt_amount(data[:unbonding_tokens]) %></td>
-                <td><%= livepeer_lpt_amount(data[:unbonded_tokens]) %></td>
-              </tr>
-            <% end -%>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
 
-  <div class='col-12 col-md-3 order-0 order-md-1 info-cards'>
-    <div class='card'>
-      <h5 class='card-header'>Delegator List</h5>
-      <div class='card-body'>
-        <%= link_to @delegator_list.name, namespaced_path('delegator_list', @delegator_list, pre_path: 'edit'), target: '_blank' %>
-      </div>
-    </div>
-    <% if round_range? -%>
-      <div class='card'>
-        <h5 class='card-header'>Round</h5>
-        <div class='card-body'>
-          <%= link_to namespaced_path('round', params[:round_number]), class: 'large-number' do %>
-            <span class='technical'><%= params[:round_number] %></span>
-          <% end -%>
+      <div class='col-12 col-md-3 order-0 order-md-1 info-cards'>
+        <div class='data-block'>
+          <h5 class='data-block__title'>Delegator List</h5>
+          <%= link_to @delegator_list.name, namespaced_path('delegator_list', @delegator_list, pre_path: 'edit'), target: '_blank', class: 'data-block__value' %>
         </div>
-      </div>
-    <% end -%>
-    <% if date_range? -%>
-      <div class='card'>
-        <h5 class='card-header'>Date Range</h5>
-        <div class='card-body'>
-          <div>
-            <label class='d-inline'>Start date:</label>
-            <span class='technical'><%= params[:start_date] %></span>
+        <% if round_range? -%>
+          <div class='data-block'>
+            <h5 class='data-block__title'>Round</h5>
+            <%= link_to namespaced_path('round', params[:round_number]), class: 'data-block__large-number' do %>
+              <span class='technical'><%= params[:round_number] %></span>
+            <% end -%>
           </div>
-          <div>
-            <label class='d-inline'>End date:</label>
-            <span class='technical'><%= params[:end_date] %></span>
+        <% end -%>
+        <% if date_range? -%>
+          <div class='data-block'>
+            <h5 class='data-block__title'>Date Range</h5>
+            <div>
+              <label class='d-inline'>Start date:</label>
+              <span class='technical'><%= params[:start_date] %></span>
+            </div>
+            <div>
+              <label class='d-inline'>End date:</label>
+              <span class='technical'><%= params[:end_date] %></span>
+            </div>
           </div>
+        <% end -%>
+        <div class='data-block'>
+          <h5 class='data-block__title'>CSV</h5>
+          <%= link_to 'Export CSV', report_params.merge(format: 'csv'), class: 'button-secondary' %>
         </div>
-      </div>
-    <% end -%>
-    <div class='card'>
-      <h5 class='card-header'>CSV</h5>
-      <div class='card-body'>
-        <%= link_to 'Export CSV', report_params.merge(format: 'csv'), class: 'btn btn-outline-secondary btn-sm' %>
       </div>
     </div>
   </div>

@@ -9,8 +9,7 @@ module Common
       attrs = HashWithIndifferentAccess.new(attrs)
 
       mapping.each_pair do |name, opts|
-        key = name.to_s
-        val = attrs[key]
+        val = attrs[opts[:source]]
         val = opts[:default] if val.nil? && !opts[:default].nil?
 
         case opts[:type]
@@ -45,6 +44,7 @@ module Common
       @_fields ||= {}
       @_fields[name] = {
         type: opts[:type],
+        source: opts.fetch(:source, name.to_s),
         collection: opts[:collection] == true,
         default: opts[:default]
       }

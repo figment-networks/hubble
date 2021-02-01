@@ -84,7 +84,7 @@
 
           <div class='info mt-5'>
             <div class='data-block__title mb-1'>PROPOSAL DESCRIPTION</div>
-            <div class='paragraph'><%= Rinku.auto_link(strip_tags(@proposal.description), :urls, "target='_blank' rel='nofollow'") { |url| "#{URI(url.split('#').first).host} <span class='fas fa-external-link-alt'></span>" }.html_safe -%></div>
+            <div class='paragraph proposal-description-text'><%= Rinku.auto_link(strip_tags(@proposal.description), :urls, "target='_blank' rel='nofollow'") { |url| "#{URI(url.split('#').first).host} <span class='fas fa-external-link-alt'></span>" }.html_safe -%></div>
           </div>
 
           <div class='mt-5'>
@@ -103,7 +103,7 @@
                       </td>
                     </tr>
                   <% else -%>
-                    <% filter_double_votes(@proposal.votes).each do |vote| -%>
+                    <% filter_double_votes(@proposal.votes.includes([account: :validator])).each do |vote| -%>
                       <tr data-vote-id='<%= vote.id %>'>
                         <td class='text-uppercase text-md vote-option vote-<%= vote.option.downcase %>'><%= vote.short_option %></td>
                         <td>
@@ -143,7 +143,7 @@
                       </td>
                     </tr>
                   <% else %>
-                    <% @proposal.deposits.each do |deposit| -%>
+                    <% @proposal.deposits.includes([account: :validator]).each do |deposit| -%>
                       <tr>
                         <td class='text-nowrap'><%= format_amount(deposit.amount, denom: deposit.amount_denom) %></td>
                         <td>

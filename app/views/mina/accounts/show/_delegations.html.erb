@@ -1,0 +1,24 @@
+<%= render_card "Delegations", class: "account-delegations", body_class: "no-padding" do %>
+  <% if delegations.any? %>
+    <table class="table table-striped delegations">
+      <thead>
+        <tr role="row">
+          <th>Account</th>
+          <th>Amount</th>
+          <th>Share</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% delegations.each do |delegation| %>
+          <tr>
+            <td><%= link_to delegation.account.truncate(30), mina_chain_account_path(chain, delegation.account) %></td>
+            <td><%= format_amount(delegation.balance, denom: "mina") %></td>
+            <td><%= mina_delegation_share(delegation.balance, account.delegated_amount) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <div class="text-empty">Account does not have any delegations</div>
+  <% end %>
+<% end %>

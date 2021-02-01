@@ -1,0 +1,105 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://localhost:5252/address/P-avax1m7el5kqkd00y9p594gr35l659jekm6wgxgtgcw
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (darwin19.6.0 x86_64) ruby/2.6.6p146
+      Content-Length:
+      - '0'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - localhost:5252
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Wed, 20 Jan 2021 13:00:09 GMT
+      Content-Length:
+      - '103'
+    body:
+      encoding: UTF-8
+      string: '{"balance":"73644034434739","unlocked":"73644034434739","lockedStakeable":"0","lockedNotStakeable":"0"}'
+  recorded_at: Wed, 20 Jan 2021 13:00:09 GMT
+- request:
+    method: get
+    uri: http://localhost:5252/validators?reward_address=P-avax1m7el5kqkd00y9p594gr35l659jekm6wgxgtgcw
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (darwin19.6.0 x86_64) ruby/2.6.6p146
+      Content-Length:
+      - '0'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - localhost:5252
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Wed, 20 Jan 2021 13:00:10 GMT
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '[{"node_id":"NodeID-H8eZ2xwjXoFUoo5kLCF7rFgMEGaqfVfQS","stake_amount":"100000000000000","stake_percent":0.046355135501497356,"potential_reward":"798430327398","reward_address":"P-avax1m7el5kqkd00y9p594gr35l659jekm6wgxgtgcw","active":true,"active_start_time":"2021-01-12T19:06:22Z","active_end_time":"2021-02-12T19:06:22Z","active_progress_percent":24.984700791517323,"uptime":100,"delegations_count":1,"delegations_percent":0.02440214738897023,"delegated_amount":"147189800000","delegated_amount_percent":0.0003593959923709059,"delegation_fee":5,"capacity":"399852810200000","capacity_percent":0.03679745,"first_height":279654,"last_height":279654,"created_at":"2020-10-09T01:37:13.005263Z","updated_at":"2021-01-20T12:59:32.226732Z"},{"node_id":"NodeID-4gTwepTF5fcacXB7gdYZLTtfSFsYh4faj","stake_amount":"2500000000000000","stake_percent":1.158878387537434,"potential_reward":"20004914507761","reward_address":"P-avax1m7el5kqkd00y9p594gr35l659jekm6wgxgtgcw","active":true,"active_start_time":"2021-01-07T01:40:20Z","active_end_time":"2021-02-07T01:40:20Z","active_progress_percent":43.456997685185186,"uptime":99.97000098228455,"delegations_count":230,"delegations_percent":5.612493899463153,"delegated_amount":"417427740873688","delegated_amount_percent":1.019240852113696,"delegation_fee":5,"capacity":"9582572259126312","capacity_percent":4.17427740873688,"first_height":279654,"last_height":279654,"created_at":"2020-10-09T01:37:13.005263Z","updated_at":"2021-01-20T12:59:32.226732Z"},{"node_id":"NodeID-Ns1eDN3K9HTnavgiBQhtpzRxUCxJ55Xhc","stake_amount":"2500000000000000","stake_percent":1.158878387537434,"potential_reward":"20008189605685","reward_address":"P-avax1m7el5kqkd00y9p594gr35l659jekm6wgxgtgcw","active":true,"active_start_time":"2021-01-07T01:38:18Z","active_end_time":"2021-02-07T01:40:36Z","active_progress_percent":43.45931347623218,"uptime":99.98000264167786,"delegations_count":72,"delegations_percent":1.7569546120058566,"delegated_amount":"207117402217167","delegated_amount_percent":0.5057223007784698,"delegation_fee":5,"capacity":"9792882597782833","capacity_percent":2.07117402217167,"first_height":279654,"last_height":279654,"created_at":"2020-10-09T01:37:13.005263Z","updated_at":"2021-01-20T12:59:32.226732Z"},{"node_id":"NodeID-5s9gCg2xSYZQEyw6Dp8ShsQom1W8SXnsc","stake_amount":"2800000000000000","stake_percent":1.297943794041926,"potential_reward":"22400018946466","reward_address":"P-avax1m7el5kqkd00y9p594gr35l659jekm6wgxgtgcw","active":true,"active_start_time":"2021-01-07T01:50:50Z","active_end_time":"2021-02-07T01:50:50Z","active_progress_percent":43.43347617980884,"uptime":99.97000098228455,"delegations_count":56,"delegations_percent":1.3665202537823329,"delegated_amount":"200000000000000","delegated_amount_percent":0.48834361127049014,"delegation_fee":5,"capacity":"11000000000000000","capacity_percent":1.7857142857142858,"first_height":279654,"last_height":279654,"created_at":"2020-10-09T01:37:13.005263Z","updated_at":"2021-01-20T12:59:32.226732Z"},{"node_id":"NodeID-MXNBsr8xSHE9CKfmyzvBYyEzxAbLuHTAn","stake_amount":"3000000000000000","stake_percent":1.3906540650449208,"potential_reward":"24001585362406","reward_address":"P-avax1m7el5kqkd00y9p594gr35l659jekm6wgxgtgcw","active":true,"active_start_time":"2021-01-07T01:48:41Z","active_end_time":"2021-02-07T01:45:41Z","active_progress_percent":43.44121192433781,"uptime":99.98000264167786,"delegations_count":0,"delegations_percent":0,"delegated_amount":"0","delegated_amount_percent":0,"delegation_fee":5,"capacity":"12000000000000000","capacity_percent":0,"first_height":279654,"last_height":279654,"created_at":"2020-10-09T01:37:13.005263Z","updated_at":"2021-01-20T12:59:32.226732Z"}]'
+  recorded_at: Wed, 20 Jan 2021 13:00:10 GMT
+- request:
+    method: get
+    uri: http://localhost:5252/delegations?reward_address=P-avax1m7el5kqkd00y9p594gr35l659jekm6wgxgtgcw
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (darwin19.6.0 x86_64) ruby/2.6.6p146
+      Content-Length:
+      - '0'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - localhost:5252
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Wed, 20 Jan 2021 13:00:10 GMT
+      Content-Length:
+      - '2'
+    body:
+      encoding: UTF-8
+      string: "[]"
+  recorded_at: Wed, 20 Jan 2021 13:00:10 GMT
+recorded_with: VCR 6.0.0

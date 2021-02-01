@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= page_title? ? page_title : 'Prime (by Figment)' %></title>
+    <%= csrf_meta_tags %>
+
+    <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
+
+    <link rel='icon' type='image/png' sizes='32x32' href='<%= asset_path('icons/favicon-32x32.png') %>' />
+    <link rel='icon' type='image/png' sizes='96x96' href='<%= asset_path('icons/favicon-96x96.png') %>' />
+    <link rel='apple-touch-icon' sizes='180x180' href='<%= asset_path('icons/apple-icon-180x180.png') %>' />
+
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.2/css/all.css' integrity='sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr' crossorigin='anonymous'>
+
+    <link rel='canonical' href='<%= ((canonical = yield(:canonical_url)).blank? ? request.url : canonical).chomp('/') %>' />
+    <% if meta_description? -%>
+      <meta name='description' content='<%= meta_description %>' />
+    <% end -%>
+
+    <%= stylesheet_link_tag 'prime', media: 'all' %>
+    <%= javascript_include_tag 'prime', media: 'all' %>
+  </head>
+
+  <body class='<%= yield :body_class %> <%= monitor_body_classes %>'>
+
+    <div class='content-wrapper'>
+      <div class='container'>
+        <%= yield %>
+      </div>
+    </div>
+  </body>
+</html>

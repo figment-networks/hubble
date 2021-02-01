@@ -16,6 +16,10 @@ class Common::IndexerClient
     request(path, :get, params)
   end
 
+  def get_collection(class_name, path, params = {})
+    get(path, params).map { |record| class_name.new(record) }
+  end
+
   def post(path = nil, params = {}, body: {}, content_type: nil)
     request(path, :post, params, body, content_type)
   end

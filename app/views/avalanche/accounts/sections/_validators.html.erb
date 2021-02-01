@@ -1,0 +1,41 @@
+<section class='data-table'>
+  <div class='data-table__header'>
+    <h3 class="data-table__title">
+      Beneficiary Validators
+    </h3>
+  </div>
+  <td>
+    <table class="w-100">
+      <thead>
+      <tr role="row">
+        <th width="15%">Node ID</th>
+        <th width="10%">Time Left</th>
+        <th width="10%">Total Stake</th>
+        <th width="10%">Uptime</th>
+        <th width="10%">Capacity</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% validators.each do |validator| %>
+        <tr>
+          <td class='technical'>
+            <%= link_to validator.node_id, avalanche_chain_validator_path(@chain, validator.node_id) %>
+          </td>
+          <td class='technical'><small><%= remaining_time(validator.active_end_time) %></small></td></td>
+          <td class='technical'><small><%= format_amount(validator.total_stake, denom: @chain.class::DEFAULT_TOKEN_REMOTE) %></small></td></td>
+          <td class='technical'><small><%= validator.uptime %>%</small></td></td>
+          <td class='technical'><small><%= capacity_remaining(validator.capacity_percent) %>%</small></td></td>
+        </tr>
+      <% end %>
+
+      <% if @pagination_validators.pages > 1 %>
+        <tr>
+          <td colspan="3">
+            <%= raw(pagy_bootstrap_nav(@pagination_validators)) %>
+          </td>
+        </tr>
+      <% end -%>
+      </tbody>
+    </table>
+  </td>
+</section>

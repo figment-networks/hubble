@@ -26,7 +26,7 @@ describe 'Livepeer Reports', livepeer: :factory do
       find('a .fa-file').click
 
       expect(page).to have_content('Generate a report')
-      expect(page).to have_content('Delegator List Report')
+      expect(page).to have_content('DELEGATOR LIST REPORT')
 
       choose 'Round'
 
@@ -42,8 +42,8 @@ describe 'Livepeer Reports', livepeer: :factory do
       expect(page).to have_content('CB31...0E04')
       expect(page).to have_content('20 ETH 200 LPT 200 LPT 100 LPT 0 LPT 200 LPT')
 
-      expect(page).to have_content("Delegator List\n#{delegator_list.name}")
-      expect(page).to have_content("Round\n1000")
+      expect(page).to have_content("DELEGATOR LIST\n#{delegator_list.name}")
+      expect(page).to have_content("ROUND\n1000")
     end
 
     it 'generating a date range report' do
@@ -52,7 +52,7 @@ describe 'Livepeer Reports', livepeer: :factory do
       find('a .fa-file').click
 
       expect(page).to have_content('Generate a report')
-      expect(page).to have_content('Delegator List Report')
+      expect(page).to have_content('DELEGATOR LIST REPORT')
 
       choose 'Date range'
 
@@ -69,7 +69,7 @@ describe 'Livepeer Reports', livepeer: :factory do
       expect(page).to have_content('CB31...0E04')
       expect(page).to have_content('60 ETH 600 LPT 400 LPT 200 LPT 800 LPT 200 LPT')
 
-      expect(page).to have_content("Delegator List\n#{delegator_list.name}")
+      expect(page).to have_content("DELEGATOR LIST\n#{delegator_list.name}")
 
       expect(page).to have_content("Start date: #{start_date}")
       expect(page).to have_content("End date: #{end_date}")

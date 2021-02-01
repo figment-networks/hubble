@@ -56,6 +56,6 @@ class Livepeer::DelegatorListsController < Livepeer::BaseController
   end
 
   def delegator_list_params
-    params.require(:delegator_list).permit(:name, :email_alerts_enabled, addresses: [])
+    params.require(:delegator_list).permit(:name, addresses: [])
   end
 end

@@ -3,6 +3,4 @@ class Avalanche::HomeChainDecorator < HomeChainDecorator
     client.validators_count
   rescue StandardError
   end
-
-  def avg_block_time; end
 end

@@ -1,84 +1,76 @@
 <% content_for :body_class, 'round-show' %>
 
-<%= render partial: 'chain_header', locals: { summary_link: true } %>
+<%= render partial: 'chain_header', locals: { active_tab: '', delegator_lists_link: true, events_link: true } %>
 
-<h2 class='mb-4'>
-  <label class='text-muted'>Round</label>
-  <span class='technical text-lg'><%= @round.number %></span>
-</h2>
-
-<div class='row'>
-  <div class='col-12 col-md-9 order-1 order-md-0'>
-    <div class='pools'>
-      <div class='pools-table-header'>
-        <h4>Pools</h4>
+<div class='content'>
+  <div class='container'>
+    <div class='d-flex flex-wrap'>
+      <div class='mr-5 mb-4'>
+        <h3 class='data-block__title'>Round</h3>
+        <div class='d-flex'>
+          <% if (previous_round = @round.previous_round) -%>
+            <%= link_to namespaced_path('round', previous_round), class: 'data-block__value text-decoration-none' do %>
+              <span class='fas fa-chevron-left'></span>
+            <% end -%>
+          <% end -%>
+          <span class='data-block__value mx-2'><%= @round.number %></span>
+          <% if (next_round = @round.next_round) -%>
+            <%= link_to namespaced_path('round', next_round), class: 'data-block__value text-decoration-none' do %>
+              <span class='fas fa-chevron-right'></span>
+            <% end -%>
+          <% end -%>
+        </div>
       </div>
-      <div class='pools-table'>
-        <table>
-          <thead>
-            <tr>
-              <th>Orchestrator Address</th>
-              <th>Total Stake</th>
-              <th>Reward Tokens</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @pools.each do |pool| %>
+      <div class='mr-5 mb-4'>
+        <h3 class='data-block__title'>Timestamp</h3>
+        <span class='data-block__value'><%= format_timestamp(@round.initialized_at) %></span>
+      </div>
+      <div>
+        <h3 class='data-block__title'>Mintable Tokens</h3>
+        <span class='data-block__value'><%= livepeer_lpt_amount(@round.mintable_tokens) %></span>
+      </div>
+    </div>
+  
+    <div class='mt-3'>
+      <div class='data-table'>
+        <div class='data-table__header'>
+          <h4 class='data-table__title'>Pools</h4>
+        </div>
+        <div>
+          <table class='w-100'>
+            <thead>
               <tr>
-                <% orchestrator = @orchestrators.find { |t| t.address == pool.orchestrator_address } %>
-                <td>
-                  <% if orchestrator.present? -%>
-                    <%= render partial: 'orchestrator_link', locals: { orchestrator: orchestrator } %>
-                  <% else -%>
-                    <%= livepeer_explorer_link(pool.orchestrator_address, page: :campaign) %>
-                  <% end -%>
-                </td>
-                <td data-order='<%= pool.total_stake %>'><%= livepeer_lpt_amount(pool.total_stake) %></td>
-                <td data-order='<%= pool.reward_tokens %>'>
-                  <% if pool.reward_tokens.present? -%>
-                    <%= livepeer_lpt_amount(pool.reward_tokens) %>
-                  <% else -%>
-                    <span class="text-muted">MISSED</span>
-                  <% end -%>
-                </td>
+                <th>Orchestrator Address</th>
+                <th>Total Stake</th>
+                <th>Reward Tokens</th>
               </tr>
-            <% end %>
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              <% @pools.each do |pool| %>
+                <tr>
+                  <% orchestrator = @orchestrators.find { |t| t.address == pool.orchestrator_address } %>
+                  <td>
+                    <% if orchestrator.present? -%>
+                      <%= render partial: 'orchestrator_link', locals: { orchestrator: orchestrator } %>
+                    <% else -%>
+                      <%= livepeer_explorer_link(pool.orchestrator_address, page: :campaign) %>
+                    <% end -%>
+                  </td>
+                  <td data-order='<%= pool.total_stake %>'><%= livepeer_lpt_amount(pool.total_stake) %></td>
+                  <td data-order='<%= pool.reward_tokens %>'>
+                    <% if pool.reward_tokens.present? -%>
+                      <%= livepeer_lpt_amount(pool.reward_tokens) %>
+                    <% else -%>
+                      <span class="text-muted">MISSED</span>
+                    <% end -%>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
-  </div>
-
-  <div class='col-12 col-md-3 order-0 order-md-1 info-cards'>
-    <div class='card'>
-      <h5 class='card-header'>Round</h5>
-      <div class='card-body'>
-        <% if (previous_round = @round.previous_round) -%>
-          <%= link_to namespaced_path('round', previous_round), class: 'text-muted' do %>
-            <span class='fas fa-chevron-left'></span>
-          <% end -%>
-        <% end -%>
-
-        <span class='large-number technical'><%= @round.number %></span>
-
-        <% if (next_round = @round.next_round) -%>
-          <%= link_to namespaced_path('round', next_round), class: 'text-muted' do %>
-            <span class='fas fa-chevron-right'></span>
-          <% end -%>
-        <% end -%>
-      </div>
-    </div>
-    <div class='card'>
-      <h5 class='card-header'>Timestamp</h5>
-      <div class='card-body'>
-        <span class='technical'><%= format_timestamp(@round.initialized_at) %></span>
-      </div>
-    </div>
-    <div class='card'>
-      <h5 class='card-header'>Mintable Tokens</h5>
-      <div class='card-body'>
-        <span class='technical'><%= livepeer_lpt_amount(@round.mintable_tokens) %></span>
-      </div>
-    </div>
+    
   </div>
 </div>

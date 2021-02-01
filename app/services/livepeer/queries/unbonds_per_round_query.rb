@@ -6,6 +6,10 @@ class Livepeer::Queries::UnbondsPerRoundQuery < Livepeer::Queries::UnbondsQuery
   ].freeze
 
   def call
-    group_by_round_and_delegator(filter_by_range(filter_by_delegators(exclude_rebonds(unbonds))))
+    unbonds.
+      then { |r| exclude_rebonds(r) }.
+      then { |r| filter_by_delegators(r) }.
+      then { |r| filter_by_range(r) }.
+      then { |r| group_by_round_and_delegator(r) }
   end
 end

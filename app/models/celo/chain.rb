@@ -1,4 +1,6 @@
 class Celo::Chain < ApplicationRecord
+  include TokenMap
+
   ASSET = 'celo'.freeze
 
   DEFAULT_TOKEN_DISPLAY = 'CELO'.freeze
@@ -23,16 +25,6 @@ class Celo::Chain < ApplicationRecord
 
   def enabled?
     !disabled
-  end
-
-  def token_map
-    {
-      DEFAULT_TOKEN_REMOTE => {
-        display: DEFAULT_TOKEN_DISPLAY,
-        factor: DEFAULT_TOKEN_FACTOR,
-        primary: true
-      }
-    }.with_indifferent_access
   end
 
   def client

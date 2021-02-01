@@ -1,0 +1,53 @@
+<section class="data-table validators">
+  <div class='validator-table-header justify-content-between py-1 flex-wrap'>
+    <div class="d-flex align-items-center flex-grow-1 py-2">
+      <h4>
+        Validators
+      </h4>
+      <input type='text' class='form-control form-control-sm validator-search' placeholder='filter validators...'>
+    </div>
+  </div>
+
+  <div class='validator-table'>
+    <table>
+      <thead>
+        <tr>
+          <th width="15%">Node ID</th>
+          <th width="10%">Time Left</th>
+          <th width="10%">Total Stake</th>
+          <th width="10%">Uptime</th>
+          <th width="10%">Capacity</th>
+          <th class='d-none'></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @validators.each do |validator| %>
+          <tr>
+            <td class='col-address' data-order="<%= validator.node_id %>">
+              <%= link_to validator.node_id, avalanche_chain_validator_path(@chain, validator.node_id) %>
+            </td>
+            <td data-order='<%= validator.active_end_time %>'>
+              <%= remaining_time(validator.active_end_time) %>
+            </td>
+            <td data-order='<%= validator.total_stake %>'>
+              <%= format_amount(validator.total_stake, denom: @chain.class::DEFAULT_TOKEN_REMOTE) %>
+            </td>
+            <td data-order='<%= validator.uptime %>'>
+              <%= validator.uptime %>%
+            </td>
+            <td data-order='<%= validator.capacity_percent %>'>
+              <%= capacity_remaining(validator.capacity_percent) %>%
+            </td>
+            <td class='d-none'>
+              _all_ <%= validator.active? ? '_active_' : '_inactive_' %>
+              <%= validator.node_id %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</section>
+<script>
+    App.config.currentValidatorFilter = "<%= validators.count(&:active) > 0 ? "_active_" : "_all_" %>"
+</script>

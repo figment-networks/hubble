@@ -6,23 +6,7 @@
   <div class="container">
     <%= render partial: '/cosmoslike/shared/sync_errors' %>
     
-    <div class='row'>
-      <div class='col-12 col-md-9'>
-        <section class='data-table'>
-          <div class='data-table__header'>
-            <h3 class='data-table__title'>Governance Proposals</h3>
-
-            <% if @chain.class::SUPPORTS_LEDGER -%>
-              <div class='controls'>
-                <button class='btn btn-sm btn-outline-light' data-toggle='modal' data-target='#proposal-modal'>New Proposal</button>
-              </div>
-            <% end -%>
-          </div>
-
-          <%= render 'proposals_table', proposals: @proposals %>
-        </section>
-      </div>
-
+    <div class='row flex-sm-row-reverse'>
       <div class='col-12 col-md-3'>
         <div class='data-block'>
           <h2 class='data-block__title'>Parameters</h2>
@@ -47,6 +31,22 @@
             </div>
           </div>
         </div>
+      </div>
+
+      <div class='col-12 col-md-9'>
+        <section class='data-table m-0'>
+          <div class='data-table__header'>
+            <h3 class='data-table__title'>Governance Proposals</h3>
+
+            <% if @chain.class::SUPPORTS_LEDGER -%>
+              <div class='controls'>
+                <button class='btn btn-sm btn-outline-light' data-toggle='modal' data-target='#proposal-modal'>New Proposal</button>
+              </div>
+            <% end -%>
+          </div>
+
+          <%= render 'proposals_table', proposals: @proposals %>
+        </section>
       </div>
     </div>
 

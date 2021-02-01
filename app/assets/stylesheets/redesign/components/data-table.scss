@@ -6,7 +6,6 @@
 }
 .data-table__header {
   padding: 16px 18px;
-  border-bottom: 1px solid $table-border;
 }
 .data-table__title {
   margin: 0;
@@ -25,12 +24,13 @@
   line-height: 15px;
   white-space: nowrap;
   text-transform: uppercase;
+  border-top: 1px solid $table-border !important;
   border-bottom: 1px solid $table-border !important;
+  border-top: 1px solid $table-border;
 }
 .data-table td {
   padding: 8px 16px;
   border-bottom: 1px solid #ddd !important;
-  white-space: nowrap;
 }
 .data-table .data-table__empty {
   margin: 0;

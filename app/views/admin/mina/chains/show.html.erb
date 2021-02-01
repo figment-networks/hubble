@@ -1,0 +1,82 @@
+<% content_for :body_class, 'admin-chain-show' %>
+
+<h2 class='header'>
+  <span>
+    <%= @chain.network_name %> / <%= @chain.name %>
+    <%= @chain.testnet? ? "<span class='fas fa-vial text-info' title='Testnet Chain'></span>".html_safe : "<span class='fas fa-link text-success' title='Mainnet Chain'></span>".html_safe %>
+  </span>
+  <div class='buttons'>
+    <a class='btn btn-sm btn-outline-secondary' href='<%= admin_root_path %>'>back</a>
+  </div>
+</h2>
+
+<table class='table table-sm mb-5'>
+  <tbody>
+    <tr>
+      <th class='align-middle' style='border-top: none;'>Status:</th>
+      <td style='border-top: none;'>
+        <div class='chain-status d-flex'>
+          <% if @chain.enabled? %>
+            <div class='sync-status text-muted'><span class='fas fa-sync fa-spin text-success'></span> Syncing</div>
+
+            <%= form_for [:admin, @chain] do |f| %>
+              <%= f.hidden_field :disabled, value: true %>
+              <%= f.button "<span class='fas fa-exclamation-triangle'></span> disable".html_safe, class: 'btn btn-sm btn-warning', data: @chain.primary? ? { toggle: 'tooltip' } : nil, title: @chain.primary? ? "Warning, this is the primary #{@chain.network_name} chain!" : nil %>
+            <% end -%>
+
+          <% else %>
+            <div class='sync-status text-muted'><span class='fas fa-exclamation-triangle text-warning'></span> Disabled</div>
+
+            <%= form_for [:admin, @chain] do |f| %>
+              <%= f.hidden_field :disabled, value: false %>
+              <%= f.button "<span class='fas fa-play-circle'></span> enable".html_safe, class: 'btn btn-sm btn-primary', data: { toggle: 'tooltip' }, title: 'Node is up and ready to enable syncing.' %>
+            <% end -%>
+
+            <%= button_to namespaced_path( admin: true ), method: 'delete', class: 'btn btn-sm btn-danger action-delete-confirmation' do "<span class='fas fa-times'></span> delete".html_safe end %>
+          <% end -%>
+
+          <a class='button_to btn btn-sm btn-secondary' href='<%= edit_admin_mina_chain_path(@chain) %>'>
+            <span class="fas fa-edit"></span> edit
+          </a>
+        </div>
+      </td>
+    </tr>
+
+    <tr>
+      <th class='align-middle'>Indexer API URL:</th>
+      <td>
+        <%= @chain.api_url %>
+      </td>
+    </tr>
+    <tr>
+      <th class='align-middle'>Primary?</th>
+      <td>
+        <%= @chain.primary? ? "Yes" : "No" %>
+      </td>
+    </tr>
+
+    <% if @status %>
+      <tr>
+        <th class='align-middle'>App Version</th>
+        <td><%= @status.app_version %>, commit: <%= @status.git_commit %></td>
+      </tr>
+      <tr>
+        <th class='align-middle'>App Runtime</th>
+        <td><%= @status.go_version %></td>
+      </tr>
+      <tr>
+        <th class='align-middle'>Last Block Height</th>
+        <td><%= @status.last_block_height %></td>
+      </tr>
+      <tr>
+        <th class='align-middle'>Last Block Time</th>
+        <td><%= @status.last_block_time %></td>
+      </tr>
+      <tr>
+        <th class='align-middle'>Sync Status</th>
+        <td><%= @status.sync_status&.upcase || "N/A" %></td>
+      </tr>
+    <% end %>
+
+  </tbody>
+</table>

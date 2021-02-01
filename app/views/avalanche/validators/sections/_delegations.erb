@@ -1,0 +1,33 @@
+<section class='data-table validators'>
+  <div class='data-table__header'>
+    <h3 class="data-table__title">
+      Active Delegations
+    </h3>
+  </div>
+  <td>
+    <div class='validator-table'>
+    <table class="w-100">
+      <thead>
+      <tr role="row">
+        <th>Reward Address</th>
+        <th>Stake Amount</th>
+        <th>Potential Reward</th>
+        <th>Ends On</th>
+      </tr>
+      </thead>
+        <tbody>
+        <% delegations.each do |delegation| %>
+          <tr>
+            <td class='col-address'>
+              <%= link_to delegation.reward_address, avalanche_chain_account_path(@chain, delegation.reward_address) %>
+            </td>
+            <td class='technical'><small><%= format_amount(delegation.stake_amount, denom: @chain.class::DEFAULT_TOKEN_REMOTE) %></small></td></td>
+            <td class='technical'><small><%= format_amount(delegation.potential_reward, denom: @chain.class::DEFAULT_TOKEN_REMOTE) %></small></td></td>
+            <td class='technical'><small><%= delegation.active_end_time.try(:strftime, "%B %d, %Y at %H:%M %Z")  %></small></td></td>
+          </tr>
+        <% end %>
+        </tbody>
+    </table>
+    </div>
+  </td>
+</section>

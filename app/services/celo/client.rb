@@ -46,10 +46,19 @@ module Celo
           # ignore other operation types for now
           next if operation['details']['type'] != 'transfer'
 
-          operation.merge(operation['details'])
+          operation.merge(operation['details']).merge(
+            transaction_hash: transaction['hash'],
+            height: transaction['height'],
+            kind: operation['name']
+          )
         end
-        Celo::Transaction.new(transaction.merge(transfers: transfers, block: height))
+        Celo::Transaction.new(transaction.merge(transfers: transfers))
       end
+    end
+
+    def transaction(height, transaction_id)
+      # TODO: remove `|| transactions(height)` when switching to a real indexer
+      transactions(height).find { |transaction| transaction.hash == transaction_id } || transactions(height).first
     end
 
     def validator_groups(height = DEFAULT_LATEST_HEIGHT)

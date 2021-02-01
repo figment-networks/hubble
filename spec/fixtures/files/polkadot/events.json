@@ -1,0 +1,667 @@
+{
+  "items": [
+    {
+      "height": 2678756,
+      "time": "2020-11-29T11:36:18Z",
+      "actor": "1WG3jyNqniQMRZGQUc7QD2kVLT8hkRPGMSqAb5XYQM1UDxN",
+      "kind": "delegation_joined",
+      "data": {
+        "stash_accounts": [
+          "13YpUPjbY3Uzkb5bWvA3xZ9Zn1A4bkaU1K9noNn2wuvy3CBF"
+        ]
+      }
+    },
+    {
+      "height": 2678756,
+      "time": "2020-11-29T11:36:18Z",
+      "actor": "1WG3jyNqniQMRZGQUc7QD2kVLT8hkRPGMSqAb5XYQM1UDxN",
+      "kind": "delegation_left",
+      "data": {
+        "stash_accounts": [
+          "13JzoDg4j2UWwoJQ4v36LepJ6HbQNALpNVFwrGce57XdYqjk",
+          "12j7MnJonQi9vxxT1n9U9GwRnU2157dsJmfqU3PmtFU6mmen"
+        ]
+      }
+    },
+    {
+      "height": 2693137,
+      "time": "2020-11-30T11:36:18Z",
+      "actor": "1WG3jyNqniQMRZGQUc7QD2kVLT8hkRPGMSqAb5XYQM1UDxN",
+      "kind": "delegation_left",
+      "data": {
+        "stash_accounts": [
+          "15tot6vc6gmUSDw6zWnREDdPZjEdUJPGmT149jfaQg6BoArg",
+          "15SYe3kWYnJRLVBM573eu6oUtNRbRVzFqCf4tXbtZpxpqntm"
+        ]
+      }
+    },
+    {
+      "height": 2707522,
+      "time": "2020-12-01T11:36:18Z",
+      "actor": "1WG3jyNqniQMRZGQUc7QD2kVLT8hkRPGMSqAb5XYQM1UDxN",
+      "kind": "delegation_joined",
+      "data": {
+        "stash_accounts": [
+          "1yHoHpo1yFzR7pnq49nCTf52mMepmy3JmLoswABjJSa8Q94",
+          "15VXUmqUafHyeSLNycYVuZigJdCMJh7SYbGaxNm5d7VjUUfd",
+          "13JzoDg4j2UWwoJQ4v36LepJ6HbQNALpNVFwrGce57XdYqjk",
+          "15QMToYB6iu4EsaxZxJTyKCR4znQBukJEH8My4sXiShcdqav"
+        ]
+      }
+    },
+    {
+      "height": 2707522,
+      "time": "2020-12-01T11:36:18Z",
+      "actor": "1WG3jyNqniQMRZGQUc7QD2kVLT8hkRPGMSqAb5XYQM1UDxN",
+      "kind": "delegation_left",
+      "data": {
+        "stash_accounts": [
+          "12x37ZRme69zffJ8rpn7v3eoN7tY9g1sydF3bVQQcBSsvgNZ"
+        ]
+      }
+    },
+    {
+      "height": 2750622,
+      "time": "2020-12-04T11:36:18Z",
+      "actor": "1WG3jyNqniQMRZGQUc7QD2kVLT8hkRPGMSqAb5XYQM1UDxN",
+      "kind": "delegation_left",
+      "data": {
+        "stash_accounts": [
+          "16Xg7rvZTi44waEn9azSEBRR3f51BmBHePNBZovExfX7PUR7",
+          "15vr7i2G96oR1yYq9W7FAiXVMZM8ts4RdYKEY7HGMfUXYNZL",
+          "12DvFm75YwGdgs9XcyYedtBnnLDTACi9XgmsWUoMm7ENF9Kr"
+        ]
+      }
+    },
+    {
+      "height": 2764978,
+      "time": "2020-12-05T11:36:24Z",
+      "actor": "1WG3jyNqniQMRZGQUc7QD2kVLT8hkRPGMSqAb5XYQM1UDxN",
+      "kind": "delegation_joined",
+      "data": {
+        "stash_accounts": [
+          "13riWV7YXGpCdFxexdGzXybk6JyBAKn9yUqd61ZoHu8rhdc8"
+        ]
+      }
+    },
+    {
+      "height": 2764978,
+      "time": "2020-12-05T11:36:24Z",
+      "actor": "1WG3jyNqniQMRZGQUc7QD2kVLT8hkRPGMSqAb5XYQM1UDxN",
+      "kind": "delegation_left",
+      "data": {
+        "stash_accounts": [
+          "13YpUPjbY3Uzkb5bWvA3xZ9Zn1A4bkaU1K9noNn2wuvy3CBF",
+          "15QMToYB6iu4EsaxZxJTyKCR4znQBukJEH8My4sXiShcdqav"
+        ]
+      }
+    },
+    {
+      "height": 2779346,
+      "time": "2020-12-06T11:36:18Z",
+      "actor": "1WG3jyNqniQMRZGQUc7QD2kVLT8hkRPGMSqAb5XYQM1UDxN",
+      "kind": "delegation_joined",
+      "data": {
+        "stash_accounts": [
+          "1sdEj2dBvsGUQ2MqiZWJ8hHss7cCZ4nFcrjE6xDBCtPYiJx",
+          "12VqEAo2Sz6KC5d8u7GwBHRDu8FabPZ3mi2QtsBaK6DGsmz7",
+          "1x9pvw2PP78ygZHAtqo3dyCZ2nh132jT5vwPEuJ1SFzc3b4"
+        ]
+      }
+    },
+    {
+      "height": 2793655,
+      "time": "2020-12-07T11:36:18Z",
+      "actor": "1WG3jyNqniQMRZGQUc7QD2kVLT8hkRPGMSqAb5XYQM1UDxN",
+      "kind": "delegation_left",
+      "data": {
+        "stash_accounts": [
+          "12VqEAo2Sz6KC5d8u7GwBHRDu8FabPZ3mi2QtsBaK6DGsmz7",
+          "13riWV7YXGpCdFxexdGzXybk6JyBAKn9yUqd61ZoHu8rhdc8",
+          "1sdEj2dBvsGUQ2MqiZWJ8hHss7cCZ4nFcrjE6xDBCtPYiJx",
+          "12sC6CfAohPMKQV459Y9ov2K2eRieW17yKPcdGV8NzPePeNL",
+          "1x9pvw2PP78ygZHAtqo3dyCZ2nh132jT5vwPEuJ1SFzc3b4"
+        ]
+      }
+    },
+    {
+      "height": 2793655,
+      "time": "2020-12-07T11:36:18Z",
+      "actor": "1WG3jyNqniQMRZGQUc7QD2kVLT8hkRPGMSqAb5XYQM1UDxN",
+      "kind": "delegation_joined",
+      "data": {
+        "stash_accounts": [
+          "1evGWXFutcZu6xgCdtvBzdiMMrVDBTnurf5HVTSptmrpa5H",
+          "1W5B1rYynBdHL5UdH3jmGrdPbwqYvqDc4qiXyGQSGpXNDK7"
+        ]
+      }
+    },
+    {
+      "height": 2807974,
+      "time": "2020-12-08T11:36:18Z",
+      "actor": "1WG3jyNqniQMRZGQUc7QD2kVLT8hkRPGMSqAb5XYQM1UDxN",
+      "kind": "delegation_left",
+      "data": {
+        "stash_accounts": [
+          "14daRqHJhRET7tDfE2yKJYtCZdF9EiX3BVKofBJ2FyWsGqyQ",
+          "13JzoDg4j2UWwoJQ4v36LepJ6HbQNALpNVFwrGce57XdYqjk"
+        ]
+      }
+    },
+    {
+      "height": 2822264,
+      "time": "2020-12-09T11:36:18Z",
+      "actor": "1WG3jyNqniQMRZGQUc7QD2kVLT8hkRPGMSqAb5XYQM1UDxN",
+      "kind": "delegation_joined",
+      "data": {
+        "stash_accounts": [
+          "1558y35R4KvcKvMLMogrGFWAeB1Ld5GH64dPqLxJpMJJx9Ca"
+        ]
+      }
+    },
+    {
+      "height": 2822264,
+      "time": "2020-12-09T11:36:18Z",
+      "actor": "1WG3jyNqniQMRZGQUc7QD2kVLT8hkRPGMSqAb5XYQM1UDxN",
+      "kind": "delegation_left",
+      "data": {
+        "stash_accounts": [
+          "1W5eXTvLuFY5E9scBcPVk98QKvfgWsgcME38PGbFX6c5Evz"
+        ]
+      }
+    },
+    {
+      "height": 2836579,
+      "time": "2020-12-10T11:36:18Z",
+      "actor": "1WG3jyNqniQMRZGQUc7QD2kVLT8hkRPGMSqAb5XYQM1UDxN",
+      "kind": "delegation_left",
+      "data": {
+        "stash_accounts": [
+          "1W5B1rYynBdHL5UdH3jmGrdPbwqYvqDc4qiXyGQSGpXNDK7"
+        ]
+      }
+    },
+    {
+      "height": 2850905,
+      "time": "2020-12-11T11:36:18Z",
+      "actor": "1WG3jyNqniQMRZGQUc7QD2kVLT8hkRPGMSqAb5XYQM1UDxN",
+      "kind": "delegation_joined",
+      "data": {
+        "stash_accounts": [
+          "12Dv28itFKgbd6fUuoEdeNcwAfkUoEwP5ZjFiHCniZ241wDK"
+        ]
+      }
+    },
+    {
+      "height": 2850905,
+      "time": "2020-12-11T11:36:18Z",
+      "actor": "1WG3jyNqniQMRZGQUc7QD2kVLT8hkRPGMSqAb5XYQM1UDxN",
+      "kind": "delegation_left",
+      "data": {
+        "stash_accounts": [
+          "12mmTXPKQWJeFyEZ1zCyGNCdHvG5PzQxj99k58fs4Vd16qnY",
+          "166YtWXP26rrkXgY8szZGnn6SaEyWxiFoX3ov1eWPiwYcyY6"
+        ]
+      }
+    },
+    {
+      "height": 2865238,
+      "time": "2020-12-12T11:36:18Z",
+      "actor": "1WG3jyNqniQMRZGQUc7QD2kVLT8hkRPGMSqAb5XYQM1UDxN",
+      "kind": "delegation_joined",
+      "data": {
+        "stash_accounts": [
+          "13JzoDg4j2UWwoJQ4v36LepJ6HbQNALpNVFwrGce57XdYqjk"
+        ]
+      }
+    },
+    {
+      "height": 2865238,
+      "time": "2020-12-12T11:36:18Z",
+      "actor": "1WG3jyNqniQMRZGQUc7QD2kVLT8hkRPGMSqAb5XYQM1UDxN",
+      "kind": "delegation_left",
+      "data": {
+        "stash_accounts": [
+          "1yHoHpo1yFzR7pnq49nCTf52mMepmy3JmLoswABjJSa8Q94",
+          "15okqZxcjta6WJoAD4UAuf8FmRjjseX6y3rjWXXsuawLVpM4"
+        ]
+      }
+    },
+    {
+      "height": 2879559,
+      "time": "2020-12-13T11:36:18Z",
+      "actor": "1WG3jyNqniQMRZGQUc7QD2kVLT8hkRPGMSqAb5XYQM1UDxN",
+      "kind": "delegation_left",
+      "data": {
+        "stash_accounts": [
+          "15VXUmqUafHyeSLNycYVuZigJdCMJh7SYbGaxNm5d7VjUUfd",
+          "13JzoDg4j2UWwoJQ4v36LepJ6HbQNALpNVFwrGce57XdYqjk",
+          "12Dv28itFKgbd6fUuoEdeNcwAfkUoEwP5ZjFiHCniZ241wDK",
+          "11mhVB9dkk2bykjMfswuq9u2BK76qmC38p5STsEEHpTULD3"
+        ]
+      }
+    },
+    {
+      "height": 2879559,
+      "time": "2020-12-13T11:36:18Z",
+      "actor": "1WG3jyNqniQMRZGQUc7QD2kVLT8hkRPGMSqAb5XYQM1UDxN",
+      "kind": "delegation_joined",
+      "data": {
+        "stash_accounts": [
+          "12zaDqdaWsgqzurDwWRp1siYKZXnr9PH2fCFZG3M4rMgADDo"
+        ]
+      }
+    },
+    {
+      "height": 2893884,
+      "time": "2020-12-14T11:36:18Z",
+      "actor": "1WG3jyNqniQMRZGQUc7QD2kVLT8hkRPGMSqAb5XYQM1UDxN",
+      "kind": "delegation_joined",
+      "data": {
+        "stash_accounts": [
+          "13JzoDg4j2UWwoJQ4v36LepJ6HbQNALpNVFwrGce57XdYqjk"
+        ]
+      }
+    },
+    {
+      "height": 2908209,
+      "time": "2020-12-15T11:36:18Z",
+      "actor": "1WG3jyNqniQMRZGQUc7QD2kVLT8hkRPGMSqAb5XYQM1UDxN",
+      "kind": "delegation_joined",
+      "data": {
+        "stash_accounts": [
+          "13e8CRDe8FyspYVP1HJDSeveXhisfk2eicfhB3yaUJqrzEes"
+        ]
+      }
+    },
+    {
+      "height": 2908209,
+      "time": "2020-12-15T11:36:18Z",
+      "actor": "1WG3jyNqniQMRZGQUc7QD2kVLT8hkRPGMSqAb5XYQM1UDxN",
+      "kind": "delegation_left",
+      "data": {
+        "stash_accounts": [
+          "12g5joKchBGwyv9AoXzwKbBM8zNHhbFN2LHAj7VEMR26R9hJ",
+          "13JzoDg4j2UWwoJQ4v36LepJ6HbQNALpNVFwrGce57XdYqjk",
+          "14G9FiR3r7naS1V1paUgwkXwa4TcJW7T89Gbi7wnopgR1UP6"
+        ]
+      }
+    },
+    {
+      "height": 2922530,
+      "time": "2020-12-16T11:36:24Z",
+      "actor": "1WG3jyNqniQMRZGQUc7QD2kVLT8hkRPGMSqAb5XYQM1UDxN",
+      "kind": "delegation_left",
+      "data": {
+        "stash_accounts": [
+          "1558y35R4KvcKvMLMogrGFWAeB1Ld5GH64dPqLxJpMJJx9Ca"
+        ]
+      }
+    },
+    {
+      "height": 2936855,
+      "time": "2020-12-17T11:36:18Z",
+      "actor": "1WG3jyNqniQMRZGQUc7QD2kVLT8hkRPGMSqAb5XYQM1UDxN",
+      "kind": "delegation_joined",
+      "data": {
+        "stash_accounts": [
+          "13JzoDg4j2UWwoJQ4v36LepJ6HbQNALpNVFwrGce57XdYqjk"
+        ]
+      }
+    },
+    {
+      "height": 2951215,
+      "time": "2020-12-18T11:36:18Z",
+      "actor": "1WG3jyNqniQMRZGQUc7QD2kVLT8hkRPGMSqAb5XYQM1UDxN",
+      "kind": "delegation_joined",
+      "data": {
+        "stash_accounts": [
+          "129cJX9SCgH7n9dupnRnFX963GvkeacarT1pMiu1e5VY211e"
+        ]
+      }
+    },
+    {
+      "height": 2965566,
+      "time": "2020-12-19T11:36:18Z",
+      "actor": "1WG3jyNqniQMRZGQUc7QD2kVLT8hkRPGMSqAb5XYQM1UDxN",
+      "kind": "delegation_left",
+      "data": {
+        "stash_accounts": [
+          "13JzoDg4j2UWwoJQ4v36LepJ6HbQNALpNVFwrGce57XdYqjk",
+          "12T9Q7sXMhHfCFnYZivdQq5C8qaF9wH8cDzBQNPagzFRDwZV"
+        ]
+      }
+    },
+    {
+      "height": 2979930,
+      "time": "2020-12-20T11:36:18Z",
+      "actor": "1WG3jyNqniQMRZGQUc7QD2kVLT8hkRPGMSqAb5XYQM1UDxN",
+      "kind": "delegation_left",
+      "data": {
+        "stash_accounts": [
+          "129cJX9SCgH7n9dupnRnFX963GvkeacarT1pMiu1e5VY211e",
+          "14Frcyhpw7csuQMqAcmCvNiTguvU9VFSwri8CdoFis5xB6ET",
+          "1ZdX1U4pfh2HJR42z8FXTDyYsisiECgGxrpjdFR5fUhdmJ2",
+          "126zPRsti33y2Xbr12F1od1KPyQpis2SzDNoCQqHBhsnxBwQ"
+        ]
+      }
+    },
+    {
+      "height": 3022973,
+      "time": "2020-12-23T11:36:18Z",
+      "actor": "1WG3jyNqniQMRZGQUc7QD2kVLT8hkRPGMSqAb5XYQM1UDxN",
+      "kind": "delegation_joined",
+      "data": {
+        "stash_accounts": [
+          "15yU5UcFqBQukMqK3HZYEbkj7DxYTx7dGioNVE4GtbR6Y7LP"
+        ]
+      }
+    },
+    {
+      "height": 3037326,
+      "time": "2020-12-24T11:36:24Z",
+      "actor": "1WG3jyNqniQMRZGQUc7QD2kVLT8hkRPGMSqAb5XYQM1UDxN",
+      "kind": "delegation_left",
+      "data": {
+        "stash_accounts": [
+          "13DwjYN3BeexLs8svX41b6D8dJMiPwWXokKtgCBiXoRgpLy5",
+          "141LH1fCUEBdd4oW3PSZzjBSr8abyy6UcdXvuq3hVtH7WgB8"
+        ]
+      }
+    },
+    {
+      "height": 3051670,
+      "time": "2020-12-25T11:36:18Z",
+      "actor": "1WG3jyNqniQMRZGQUc7QD2kVLT8hkRPGMSqAb5XYQM1UDxN",
+      "kind": "delegation_joined",
+      "data": {
+        "stash_accounts": [
+          "15MjPe9bQZmZfwd4qVSauTtWpYfPdxrrKbV3ZCd9xE7JkDtB"
+        ]
+      }
+    },
+    {
+      "height": 3051670,
+      "time": "2020-12-25T11:36:18Z",
+      "actor": "1WG3jyNqniQMRZGQUc7QD2kVLT8hkRPGMSqAb5XYQM1UDxN",
+      "kind": "delegation_left",
+      "data": {
+        "stash_accounts": [
+          "14GhxnV8CX4Xzce4818HEtCNFVUbvSLcL79baB1GYa42XsF2"
+        ]
+      }
+    },
+    {
+      "height": 3066007,
+      "time": "2020-12-26T11:36:18Z",
+      "actor": "1WG3jyNqniQMRZGQUc7QD2kVLT8hkRPGMSqAb5XYQM1UDxN",
+      "kind": "delegation_joined",
+      "data": {
+        "stash_accounts": [
+          "1utzXwtxbRXTEJ62FnhdSbk7xKQov3eQBUJP3eDt41LW5LJ",
+          "14A7eNwBYCkHnD663CGgwvDAYrxdTujpe9LxDiGRL2mwDtN"
+        ]
+      }
+    },
+    {
+      "height": 3066007,
+      "time": "2020-12-26T11:36:18Z",
+      "actor": "1WG3jyNqniQMRZGQUc7QD2kVLT8hkRPGMSqAb5XYQM1UDxN",
+      "kind": "delegation_left",
+      "data": {
+        "stash_accounts": [
+          "1t4BKbHrrfhsm51NGJ5jNbVaS5mir2rpxSjy491ASFzWQyT"
+        ]
+      }
+    },
+    {
+      "height": 3080358,
+      "time": "2020-12-27T11:36:18Z",
+      "actor": "1WG3jyNqniQMRZGQUc7QD2kVLT8hkRPGMSqAb5XYQM1UDxN",
+      "kind": "delegation_joined",
+      "data": {
+        "stash_accounts": [
+          "12bcFzyGMN1G2ALaBLfXPbjo5oZP7AHNe3GCNwuFpAkuimx2"
+        ]
+      }
+    },
+    {
+      "height": 3080358,
+      "time": "2020-12-27T11:36:18Z",
+      "actor": "1WG3jyNqniQMRZGQUc7QD2kVLT8hkRPGMSqAb5XYQM1UDxN",
+      "kind": "delegation_left",
+      "data": {
+        "stash_accounts": [
+          "14K6CfR5NsTg1SZQVKpCVvwXS1bz1Bx1DpG98fYCcqo4gpaQ"
+        ]
+      }
+    },
+    {
+      "height": 3094677,
+      "time": "2020-12-28T11:36:18Z",
+      "actor": "1WG3jyNqniQMRZGQUc7QD2kVLT8hkRPGMSqAb5XYQM1UDxN",
+      "kind": "delegation_left",
+      "data": {
+        "stash_accounts": [
+          "15wgtKR7bPfcM2qjojk2aMSzLWto6r3qJqP3pByCn72qr6Xo",
+          "15MWAdxaSibGv9N45miDANVizyHDj1NvMk91aGeJHL2GMnvM"
+        ]
+      }
+    },
+    {
+      "height": 3109006,
+      "time": "2020-12-29T11:36:18Z",
+      "actor": "1WG3jyNqniQMRZGQUc7QD2kVLT8hkRPGMSqAb5XYQM1UDxN",
+      "kind": "delegation_joined",
+      "data": {
+        "stash_accounts": [
+          "15MWAdxaSibGv9N45miDANVizyHDj1NvMk91aGeJHL2GMnvM"
+        ]
+      }
+    },
+    {
+      "height": 3109006,
+      "time": "2020-12-29T11:36:18Z",
+      "actor": "1WG3jyNqniQMRZGQUc7QD2kVLT8hkRPGMSqAb5XYQM1UDxN",
+      "kind": "delegation_left",
+      "data": {
+        "stash_accounts": [
+          "16XX9rmK81gRbYaQQFys58MWRrWqHzj4937nDgGpqh1Qdh9z"
+        ]
+      }
+    },
+    {
+      "height": 3123300,
+      "time": "2020-12-30T11:36:18Z",
+      "actor": "1WG3jyNqniQMRZGQUc7QD2kVLT8hkRPGMSqAb5XYQM1UDxN",
+      "kind": "delegation_left",
+      "data": {
+        "stash_accounts": [
+          "12bcFzyGMN1G2ALaBLfXPbjo5oZP7AHNe3GCNwuFpAkuimx2",
+          "14A7eNwBYCkHnD663CGgwvDAYrxdTujpe9LxDiGRL2mwDtN"
+        ]
+      }
+    },
+    {
+      "height": 3137602,
+      "time": "2020-12-31T11:36:18Z",
+      "actor": "1WG3jyNqniQMRZGQUc7QD2kVLT8hkRPGMSqAb5XYQM1UDxN",
+      "kind": "delegation_joined",
+      "data": {
+        "stash_accounts": [
+          "13p1CHMAmfPNzXsyJLenskCBaAFkPM2pKYhdwuYKCMRgQJ9w"
+        ]
+      }
+    },
+    {
+      "height": 3137602,
+      "time": "2020-12-31T11:36:18Z",
+      "actor": "1WG3jyNqniQMRZGQUc7QD2kVLT8hkRPGMSqAb5XYQM1UDxN",
+      "kind": "delegation_left",
+      "data": {
+        "stash_accounts": [
+          "13xKUHd7XAGPaXMc76X118czTcJSACcGTah439djdE4apo98"
+        ]
+      }
+    },
+    {
+      "height": 3151904,
+      "time": "2021-01-01T11:36:18Z",
+      "actor": "1WG3jyNqniQMRZGQUc7QD2kVLT8hkRPGMSqAb5XYQM1UDxN",
+      "kind": "delegation_joined",
+      "data": {
+        "stash_accounts": [
+          "1b9VuS6BZg2vNrohBjFu15VDf3T1bWWwTGTFRWJtKU3sUSm",
+          "1Bej29TCHm9qz3My26JBi5fqGpwKLNvJ5X33V6kuhgKAfwF"
+        ]
+      }
+    },
+    {
+      "height": 3151904,
+      "time": "2021-01-01T11:36:18Z",
+      "actor": "1WG3jyNqniQMRZGQUc7QD2kVLT8hkRPGMSqAb5XYQM1UDxN",
+      "kind": "delegation_left",
+      "data": {
+        "stash_accounts": [
+          "15yU5UcFqBQukMqK3HZYEbkj7DxYTx7dGioNVE4GtbR6Y7LP"
+        ]
+      }
+    },
+    {
+      "height": 3180481,
+      "time": "2021-01-03T11:36:24Z",
+      "actor": "1WG3jyNqniQMRZGQUc7QD2kVLT8hkRPGMSqAb5XYQM1UDxN",
+      "kind": "delegation_joined",
+      "data": {
+        "stash_accounts": [
+          "1NxCVBFsQXQr2prS7S43pgFZnFhAfVAvX4KZubFUNiHsZqU"
+        ]
+      }
+    },
+    {
+      "height": 3194789,
+      "time": "2021-01-04T11:36:18Z",
+      "actor": "1WG3jyNqniQMRZGQUc7QD2kVLT8hkRPGMSqAb5XYQM1UDxN",
+      "kind": "delegation_joined",
+      "data": {
+        "stash_accounts": [
+          "13GRKKvYuC7h873LKbreukYU2PjTmY1oxuYfw4h1cSRedi64",
+          "152ZJxKRD9pkG6EtQrRxNrsnugEub5bq9DKgwSJBzGwt2MoK"
+        ]
+      }
+    },
+    {
+      "height": 3194789,
+      "time": "2021-01-04T11:36:18Z",
+      "actor": "1WG3jyNqniQMRZGQUc7QD2kVLT8hkRPGMSqAb5XYQM1UDxN",
+      "kind": "delegation_left",
+      "data": {
+        "stash_accounts": [
+          "1Bej29TCHm9qz3My26JBi5fqGpwKLNvJ5X33V6kuhgKAfwF"
+        ]
+      }
+    },
+    {
+      "height": 3223410,
+      "time": "2021-01-06T11:36:18Z",
+      "actor": "1WG3jyNqniQMRZGQUc7QD2kVLT8hkRPGMSqAb5XYQM1UDxN",
+      "kind": "delegation_left",
+      "data": {
+        "stash_accounts": [
+          "13p1CHMAmfPNzXsyJLenskCBaAFkPM2pKYhdwuYKCMRgQJ9w",
+          "1NxCVBFsQXQr2prS7S43pgFZnFhAfVAvX4KZubFUNiHsZqU",
+          "152ZJxKRD9pkG6EtQrRxNrsnugEub5bq9DKgwSJBzGwt2MoK",
+          "13GRKKvYuC7h873LKbreukYU2PjTmY1oxuYfw4h1cSRedi64"
+        ]
+      }
+    },
+    {
+      "height": 3237712,
+      "time": "2021-01-07T11:36:18Z",
+      "actor": "1WG3jyNqniQMRZGQUc7QD2kVLT8hkRPGMSqAb5XYQM1UDxN",
+      "kind": "delegation_left",
+      "data": {
+        "stash_accounts": [
+          "1b9VuS6BZg2vNrohBjFu15VDf3T1bWWwTGTFRWJtKU3sUSm"
+        ]
+      }
+    },
+    {
+      "height": 3252022,
+      "time": "2021-01-08T11:36:18Z",
+      "actor": "1WG3jyNqniQMRZGQUc7QD2kVLT8hkRPGMSqAb5XYQM1UDxN",
+      "kind": "delegation_left",
+      "data": {
+        "stash_accounts": [
+          "12zaDqdaWsgqzurDwWRp1siYKZXnr9PH2fCFZG3M4rMgADDo"
+        ]
+      }
+    },
+    {
+      "height": 3266315,
+      "time": "2021-01-09T11:36:18Z",
+      "actor": "1WG3jyNqniQMRZGQUc7QD2kVLT8hkRPGMSqAb5XYQM1UDxN",
+      "kind": "delegation_left",
+      "data": {
+        "stash_accounts": [
+          "15MWAdxaSibGv9N45miDANVizyHDj1NvMk91aGeJHL2GMnvM"
+        ]
+      }
+    },
+    {
+      "height": 3309235,
+      "time": "2021-01-12T11:36:18Z",
+      "actor": "1WG3jyNqniQMRZGQUc7QD2kVLT8hkRPGMSqAb5XYQM1UDxN",
+      "kind": "delegation_left",
+      "data": {
+        "stash_accounts": [
+          "19a2q66RSy5Zpj7aEtdc689D6ETtEEW5WxV1W9sDi32SBuN"
+        ]
+      }
+    },
+    {
+      "height": 3323573,
+      "time": "2021-01-13T11:36:18Z",
+      "actor": "1WG3jyNqniQMRZGQUc7QD2kVLT8hkRPGMSqAb5XYQM1UDxN",
+      "kind": "delegation_left",
+      "data": {
+        "stash_accounts": [
+          "1uiUv2WdjPg1CEL2wCMTZMqWERXS2YEqBpbgydxMUArpf9n"
+        ]
+      }
+    },
+    {
+      "height": 3335926,
+      "time": "2021-01-14T08:12:54Z",
+      "actor": "1WG3jyNqniQMRZGQUc7QD2kVLT8hkRPGMSqAb5XYQM1UDxN",
+      "kind": "active_balance_change_2",
+      "data": {
+        "after": 8174211900763973,
+        "before": 8067211900763973,
+        "change": -1.3
+      }
+    },
+    {
+      "height": 3409773,
+      "time": "2021-01-19T11:36:18Z",
+      "actor": "1WG3jyNqniQMRZGQUc7QD2kVLT8hkRPGMSqAb5XYQM1UDxN",
+      "kind": "delegation_joined",
+      "data": {
+        "stash_accounts": [
+          "1Tjkcip2cExMLuWpXH3cmdoSeh6V3jaRYVuUATWTnaTGCoo"
+        ]
+      }
+    },
+    {
+      "height": 3424157,
+      "time": "2021-01-20T11:36:18Z",
+      "actor": "1WG3jyNqniQMRZGQUc7QD2kVLT8hkRPGMSqAb5XYQM1UDxN",
+      "kind": "delegation_left",
+      "data": {
+        "stash_accounts": [
+          "14wUidBUo3aM1HvGLsRjYcj3syup5tYTkDU1zp1jm7MMeLzk"
+        ]
+      }
+    }
+  ]
+}

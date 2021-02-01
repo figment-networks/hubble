@@ -14,6 +14,7 @@ class ResourceTest < Common::Resource
   field :count, type: :integer
   field :count_with_default, type: :integer, default: 100
   field :time, type: :timestamp
+  field :modified_name, source: 'modifiedName'
 
   collection :items, type: CollectionTest
 end
@@ -54,7 +55,8 @@ describe Common::Resource do
           'items' => [
             { 'id' => 2 }
           ],
-          'extra_param' => true
+          'extra_param' => true,
+          'modifiedName' => 'value'
         }
       end
 
@@ -64,6 +66,7 @@ describe Common::Resource do
         expect(resource.count).to eq 12345
         expect(resource.count_with_default).to eq 100
         expect(resource.time).to be_a Time
+        expect(resource.modified_name).to eq 'value'
 
         expect(resource.items).to be_a Array
         expect(resource.items[0].id).to eq 2
@@ -117,6 +120,7 @@ describe Common::Resource do
         count
         count_with_default
         time
+        modified_name
         items
       ]
     end
@@ -125,8 +129,8 @@ describe Common::Resource do
   describe '.mapping' do
     it 'returns field mapping' do
       expect(BasicResourceTest.mapping).to eq nil
-      expect(ResourceTest.mapping.keys).to eq %i[id name count count_with_default time items]
-      expect(InheritedResourceTest.mapping.keys).to eq %i[id name count count_with_default time items data]
+      expect(ResourceTest.mapping.keys).to eq %i[id name count count_with_default time modified_name items]
+      expect(InheritedResourceTest.mapping.keys).to eq %i[id name count count_with_default time modified_name items data]
     end
   end
 end

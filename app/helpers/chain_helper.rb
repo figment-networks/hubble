@@ -33,9 +33,9 @@ module ChainHelper
     sync_interval = distance_of_time_in_words(@chain.class::SYNC_INTERVAL)
 
     [
-      "<p><label class='text-muted'>Last synced:</label>#{sync_time}</p>",
-      "<p><label class='text-muted'>Sync interval:</label>#{sync_interval}</p>",
-      ("<div class='buttons'><a class='btn btn-sm btn-outline-primary' href='#{logs_path}'>View Log</a></div>" if logs_path)
+      "<div class='mr-4'><p class='text-label'>Last synced:</label><p class='paragraph m-0'>#{sync_time}</p></div>",
+      "<div class='mr-4'><p class='text-label'>Sync interval:</label><p class='paragraph m-0'>#{sync_interval}</p></div>",
+      ("<a class='sync__link' href='#{logs_path}'>Sync Log</a>" if logs_path)
     ].join('')
   end
 
@@ -48,6 +48,6 @@ module ChainHelper
   end
 
   def show_datahub_promotion?(chain)
-    [Cosmos::Chain, Terra::Chain, Near::Chain].include?(chain.class)
+    [Cosmos::Chain, Terra::Chain, Near::Chain, Avalanche::Chain].include?(chain.class)
   end
 end

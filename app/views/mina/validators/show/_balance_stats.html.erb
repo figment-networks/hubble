@@ -1,0 +1,8 @@
+<%= render_card "Balance History", class: "validator-balance-history" do %>
+  <canvas
+    class="validator-balance-chart"
+    data-chart="<%= stats.balance_chart_data.to_json %>"
+    data-name="balance-stats"
+    data-token="<%= @chain.class::DEFAULT_TOKEN_DISPLAY %>">
+  </canvas>
+<% end %>

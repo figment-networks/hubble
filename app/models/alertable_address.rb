@@ -15,7 +15,11 @@ class AlertableAddress < ApplicationRecord
   end
 
   def long_name
-    chain.get_alertable_name(address)
+    if chain.respond_to?(:client)
+      chain.client.get_alertable_name(address)
+    else
+      chain.get_alertable_name(address)
+    end
   end
 
   def short_name(max_length = 16)
@@ -23,6 +27,10 @@ class AlertableAddress < ApplicationRecord
   end
 
   def recent_events(klass, time_ago)
-    chain.get_recent_events(address, klass, time_ago)
+    if chain.respond_to?(:client)
+      chain.client.get_recent_events(chain, address, klass, time_ago)
+    else
+      chain.get_recent_events(address, klass, time_ago)
+    end
   end
 end

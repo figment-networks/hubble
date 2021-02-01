@@ -10,7 +10,7 @@ module HomeHelper
       *Tezos::Chain.enabled.primary,
       *Oasis::Chain.enabled.primary,
       *Near::Chain.enabled.primary,
-      *Coda::Chain.enabled.primary,
+      *Mina::Chain.enabled.primary,
       *Polkadot::Chain.enabled.primary,
       *Celo::Chain.enabled.primary,
       *Avalanche::Chain.enabled.primary
@@ -25,7 +25,7 @@ module HomeHelper
   end
 
   NETWORKS_IMAGES = {
-    'Coda' => 'coda.png',
+    'Mina' => 'mina.svg',
     'Cosmos' => 'cosmos.svg',
     'e-Money' => 'e-money.png',
     'IRIS' => 'iris.svg',

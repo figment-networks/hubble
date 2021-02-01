@@ -1,9 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+
   include ApplicationHelper
-  include NamespacedChainsHelper
   include AdminHelper
-  include HomeHelper
   include ActionView::Helpers::DateHelper
 
   before_action :http_basic_auth if REQUIRE_HTTP_BASIC

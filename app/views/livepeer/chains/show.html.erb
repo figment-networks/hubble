@@ -1,93 +1,104 @@
 <% content_for :body_class, 'chain-show' %>
 
-<%= render partial: 'chain_header', locals: { delegator_lists_link: true, events_link: true } %>
+<%= render partial: 'chain_header', locals: { active_tab: 'Orchestrators', delegator_lists_link: true, events_link: true } %>
 <%= render partial: 'sync_errors' %>
 
-<div class='row info-cards'>
-  <div class='col-12 col-md-9 order-1 order-md-0'>
-    <section class='orchestrators'>
-      <div class='orchestrators-table-header'>
-        <h4>
-          Orchestrators
-          <small>&nbsp;&mdash; <%= @orchestrators.count %> total&nbsp;</small>
-        </h4>
-
-        <div class='controls'>
-          <input type='text' class='form-control form-control-sm orchestrators-search' placeholder='filter orchestrators...'>
-          <a tabindex=0 class='btn btn-sm btn-outline-light orchestrators-table-settings-target'><span class='fas fa-cog'></span></a>
-          <div class='orchestrators-table-settings d-none'>
-            <div class='btn-group' role='group' aria-label='Orchestrators table filter'>
-              <button type='button' data-target='⭐️' class='btn btn-outline-primary'>All</button>
-              <button type='button' data-target='✔' class='btn btn-outline-primary'>Active</button>
-              <button type='button' data-target='𐄂' class='btn btn-outline-primary'>Inactive</button>
+<div class='content'>
+  <div class='container'>
+    <div class='row info-cards'>
+      <div class='col-12 col-md-9 order-1 order-md-0'>
+        <section class='data-table validators m-0'>
+          <div class='validator-table-header orchestrators-table-header justify-content-between py-1 flex-wrap'>
+            <div class='d-flex align-items-center flex-grow-1 py-2'>
+              <h4>Orchestrators</h4>
+              <input type='text' class='form-control form-control-sm validator-search orchestrators-search' placeholder='filter orchestrators...'>
             </div>
+            <div class='controls'>
+              <div class='d-flex align-items-center py-2'>
+                <div class="custom-control custom-radio mr-4">
+                  <input class="custom-control-input" type="radio" name="validator-filter" id="filterAll" value='_all_' checked>
+                  <label class="custom-control-label" for="filterAll">All</label>
+                </div>
+                <div class="custom-control custom-radio mr-4">
+                  <input class="custom-control-input" type="radio" name="validator-filter" id="filterActive" value='_active_'>
+                  <label class="custom-control-label" for="filterActive">
+                    Active
+                  </label>
+                </div>
+                <div class="custom-control custom-radio">
+                  <input class="custom-control-input" type="radio" name="validator-filter" id="filterInactive" value='_inactive_'>
+                  <label class="custom-control-label" for="filterInactive">
+                    Inactive
+                  </label>
+                </div>
+              </div>
+            </div>
+            <script>
+              App.config.currentOrchestratorsFilter = '_all_'
+            </script>
           </div>
-          <script>
-            App.config.currentOrchestratorsFilter = '⭐️'
-          </script>
-        </div>
+
+          <div class='validator-table orchestrators-table'>
+            <table class='w-100'>
+              <thead>
+                <tr>
+                  <th>Address/Name</th>
+                  <th>Reward Cut</th>
+                  <th>Fee Share</th>
+                  <th class='d-none'></th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @orchestrators.each do |orchestrator| -%>
+                  <tr>
+                    <td class='col-address'><%= render partial: 'orchestrator_link', locals: { orchestrator: orchestrator } %></td>
+                    <td class='technical' data-order='<%= orchestrator.reward_cut %>'><%= number_to_percentage(orchestrator.reward_cut) %></td>
+                    <td class='technical' data-order='<%= orchestrator.fee_share %>'><%= number_to_percentage(orchestrator.fee_share) %></td>
+                    <td class='d-none'>_all_ <%= orchestrator.active ? '_active_' : '_inactive_' %></td>
+                  </tr>
+                <% end -%>
+              </tbody>
+            </table>
+          </div>
+        </section>
       </div>
 
-      <div class='orchestrators-table'>
-        <table>
-          <thead>
-            <tr>
-              <th>Address/Name</th>
-              <th>Reward Cut</th>
-              <th>Fee Share</th>
-              <th class='d-none'></th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @orchestrators.each do |orchestrator| -%>
-              <tr>
-                <td><%= render partial: 'orchestrator_link', locals: { orchestrator: orchestrator } %></td>
-                <td class='technical' data-order='<%= orchestrator.reward_cut %>'><%= number_to_percentage(orchestrator.reward_cut) %></td>
-                <td class='technical' data-order='<%= orchestrator.fee_share %>'><%= number_to_percentage(orchestrator.fee_share) %></td>
-                <td class='d-none'>⭐️ <%= orchestrator.active ? '✔' : '𐄂' %></td>
-              </tr>
-            <% end -%>
-          </tbody>
-        </table>
-      </div>
-    </section>
-  </div>
-
-  <div class='col-12 col-md-3 order-0 order-md-1 info-cards'>
-    <div class='card'>
-      <h5 class='card-header'>Current Round</h5>
-      <div class='card-body'>
-        <% if @latest_round.present? -%>
-          <span class='large-number technical'><%= @latest_round.number + 1 %></span>
-        <% else -%>
-          <span class='text-muted'>&mdash;</span>
-        <% end -%>
-      </div>
-    </div>
-    <div class='card'>
-      <h5 class='card-header'>Latest Round</h5>
-      <div class='card-body'>
-        <% if @latest_round.present? -%>
-          <%= link_to namespaced_path('round', @latest_round), class: 'large-number' do %>
-            <span class='technical'><%= @latest_round.number %></span>
+      <div class='col-12 col-md-3 order-0 order-md-1 info-cards mb-5'>
+        <div class='data-block'>
+          <h3 class='data-block__title'>Current Round</h3>
+          <% if @latest_round.present? -%>
+            <p class='data-block__large-number'>
+              <span class='technical'><%= @latest_round.number + 1 %></span>
+            </p>
+          <% else -%>
+            <span class='text-muted'>&mdash;</span>
           <% end -%>
-          <div class='sub-info'>
-            <small class='text-muted technical'><%= @latest_round.initialized_at&.strftime('%Y-%m-%d %H:%M %Z') %></small>
-            <small class='text-muted'><%= time_ago_in_words(@latest_round.initialized_at, true) %> ago</small>
-          </div>
-        <% else -%>
-          <span class='text-muted'>&mdash;</span>
-        <% end -%>
-      </div>
-    </div>
-    <div class='card'>
-      <h5 class='card-header'>Last Sync</h5>
-      <div class='card-body'>
-        <% if @chain.last_sync_time -%>
-          <span class='technical'><%= format_timestamp(@chain.last_sync_time) %></span>
-        <% else -%>
-          <span class='text-muted'>&mdash;</span>
-        <% end -%>
+        </div>
+        <div class='data-block'>
+          <h3 class='data-block__title'>Latest Round</h3>
+          <% if @latest_round.present? -%>
+            <%= link_to namespaced_path('round', @latest_round), class: 'data-block__large-number' do %>
+              <span class='technical'><%= @latest_round.number %></span>
+            <% end -%>
+            <div>
+              <small class='text-muted'>
+                <%= @latest_round.initialized_at&.strftime('%Y-%m-%d %H:%M %Z') %>
+                <br/>
+                <%= time_ago_in_words(@latest_round.initialized_at, true) %> ago
+              </small>
+            </div>
+          <% else -%>
+            <span class='text-muted'>&mdash;</span>
+          <% end -%>
+        </div>
+        <div class='data-block'>
+          <h3 class='data-block__title'>Last Sync</h3>
+          <% if @chain.last_sync_time -%>
+            <span class='technical'><%= format_timestamp(@chain.last_sync_time) %></span>
+          <% else -%>
+            <span class='text-muted'>&mdash;</span>
+          <% end -%>
+        </div>
       </div>
     </div>
   </div>

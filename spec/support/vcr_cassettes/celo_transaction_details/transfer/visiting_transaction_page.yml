@@ -1,0 +1,69 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://localhost:9292/celo/transactions/by_height?height=1614760
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (darwin18.0.0 x86_64) ruby/2.6.6p146
+      Content-Length:
+      - '0'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - localhost:9292
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      X-Content-Type-Options:
+      - nosniff
+      Content-Length:
+      - '839'
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "items": [
+            {
+              "hash": "0x929145bcb26a7f14fbf0758105b7a778da760453c0c7640e3a5d83fb78a0459c",
+              "height": 1614760,
+              "time": 1603303325,
+              "address": "0x22C8a9178841BA95a944AFD1a1fAaE517d3f5DAA",
+              "nonce": 7006,
+              "gas_price": 500000000,
+              "gas": 72513,
+              "gateway_fee": 0,
+              "gateway_fee_recipient": "",
+              "index": 0,
+              "gas_used": 48030,
+              "cumulative_gas_used": 48030,
+              "success": true,
+              "operations": [
+                {
+                  "name": "internalTransfer",
+                  "details": {
+                    "index": 0,
+                    "type": "transfer",
+                    "from": "0x6131a6D616A4be3737B38988847270a64bC10CAa",
+                    "to": "0x22C8a9178841BA95a944AFD1a1fAaE517d3f5DAA",
+                    "value": 1000000000000000,
+                    "success": true
+                  }
+                }
+              ]
+            }
+          ]
+        }
+  recorded_at: Thu, 07 Jan 2021 16:27:33 GMT
+recorded_with: VCR 6.0.0

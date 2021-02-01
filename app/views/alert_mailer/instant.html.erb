@@ -6,7 +6,7 @@
       <table width='100%' cellpadding='0' cellspacing='0'>
         <tr>
           <td class='attributes_item'><strong><%= @alertable.chain.alertable_type.humanize %>:</strong>
-            <%= link_to @alertable.short_name, namespaced_path(@alertable.chain.alertable_type, @alertable.address, chain: @alertable.chain, full: true) %>
+            <%= link_to @alertable.short_name, namespaced_path(@alertable.chain.alertable_type, @alertable, chain: @alertable.chain, full: true) %>
           </td>
         </tr>
         <tr>
@@ -29,7 +29,7 @@
 <table class='body-sub'>
   <tr>
     <td>
-      <p class='sub'>You can manage this subscription <%= link_to 'here', namespaced_path("#{@alertable.chain.alertable_type}_subscriptions", @alertable.address, chain: @alertable.chain, full: true) %>.</p>
+      <p class='sub'>You can manage this subscription <%= link_to 'here', namespaced_path("#{@alertable.chain.alertable_type}_subscriptions", @alertable, chain: @alertable.chain, full: true) %>.</p>
     </td>
   </tr>
 </table>

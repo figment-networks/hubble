@@ -1,9 +1,5 @@
 require 'features_helper'
 
-def visit_chain_dashboard_page(chain_slug)
-  visit "/oasis/chains/#{chain_slug}/dashboard"
-end
-
 describe 'oasis dashboard' do
   let!(:chain) { create(:oasis_chain, api_url: 'http://localhost:1111') }
   let!(:alertable) { create(:alertable_address, chain: chain) }
@@ -16,7 +12,7 @@ describe 'oasis dashboard' do
 
   context 'logged out' do
     it 'visiting Oasis Dashboard View as not signed in user', :vcr do
-      visit_chain_dashboard_page(chain.slug)
+      visit_chain_dashboard_page
       expect(page).to have_content('Login')
     end
   end
@@ -25,7 +21,7 @@ describe 'oasis dashboard' do
     it 'visiting Oasis Dashboard View as signed in user', :vcr do
       log_in(user)
 
-      visit_chain_dashboard_page(chain.slug)
+      visit_chain_dashboard_page
 
       expect(page).to have_content("Dashboard for #{chain.name}")
       expect(page).to have_content('Last notified')

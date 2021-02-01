@@ -1,0 +1,65 @@
+<% content_for :body_class, 'transaction-show' -%>
+
+<%= render partial: '/shared/redesign/chain_header', locals: { active_tab: '' } %>
+
+<div class='container'>
+  <div  class='content'>
+    <%= link_to celo_chain_block_path(@chain.slug, @transaction.height), class: 'link text-uppercase' do %>
+      <span class='fas fa-chevron-left'></span>
+      back
+    <% end %>
+    <h2 class='my-4'>
+      <label class='data-block__title'>TRANSACTION</label>
+      <span class='data-block__value d-block word-break'><%= params[:id] %></span>
+    </h2>
+
+    <% unless @transaction.present? -%>
+      <%= render partial: 'shared/display_error' %>
+    <% else -%>
+      <div class='row'>
+        <div class='col-12 col-md-3 order-0 order-md-1 info-cards'>
+          <div class='data-block'>
+            <h5 class='data-block__title'>
+              Height
+            </h5>
+            <span class='large-number technical'><%= @transaction.height %></span>
+          </div>
+
+          <%= render layout: 'shared/redesign/data_block', locals: { header: 'Result' } do %>
+            <% if @transaction.is_success -%>
+              <span class='badge badge-success'>SUCCESS</span>
+            <% else -%>
+              <span class='badge badge-danger'>ERROR</span>
+            <% end -%>
+          <% end %>
+
+          <%= render layout: 'shared/redesign/data_block', locals: { header: 'Timestamp' } do %>
+            <span class='technical'><%= format_timestamp(@transaction.time) %></span>
+          <% end %>
+
+          <%= render layout: 'shared/redesign/data_block', locals: { header: 'Gas' } do %>
+            <%= format_amount(@transaction.gas, @chain, denom: @chain.class::DEFAULT_TOKEN_REMOTE) %>
+          <% end %>
+
+          <%= render layout: 'shared/redesign/data_block', locals: { header: 'Gas price' } do %>
+            <%= format_amount(@transaction.gas_price, @chain, denom: @chain.class::DEFAULT_TOKEN_REMOTE) %>
+          <% end %>
+
+          <%= render layout: 'shared/redesign/data_block', locals: { header: 'Gas used' } do %>
+            <%= format_amount(@transaction.gas_used, @chain, denom: @chain.class::DEFAULT_TOKEN_REMOTE) %>
+          <% end %>
+
+          <%= render layout: 'shared/redesign/data_block', locals: { header: 'Raw JSON' } do %>
+            <%= link_to 'View', namespaced_path('block_transaction', params[:block_id], @transaction.hash, format: 'json'),
+                target: '_blank', class: 'button-secondary' %>
+          <% end %>
+        </div>
+
+        <div class='col-12 col-md-9 order-1 order-md-0'>
+          <%= render partial: 'celo/shared/transfers', locals: { transfers: @transaction.transfers } %>
+        </div>
+
+      </div>
+    <% end %>
+  </div>
+</div>

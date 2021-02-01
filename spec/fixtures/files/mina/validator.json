@@ -1,0 +1,35 @@
+{
+  "account": {
+    "public_key": "4vsRCVaJmjRqg6SvTcMLwNfpTLP2XwdUNN943vK7gGSeXtjvzhzSA2RhpK9uSQHxYhAorPu9bxHSUJB8mrwobJtpnfo8W8g86EfDMTz9wz634E6ZaGajQUBDPvKsujPTjYyACMNik6EsMPYz",
+    "delegate": null,
+    "balance": "214400549245733",
+    "balance_unknown": "214400549245733",
+    "nonce": 0,
+    "start_height": 269,
+    "start_time": "2020-06-10T12:15:00-05:00",
+    "last_height": 6807,
+    "last_time": "2020-07-20T10:57:00-05:00"
+  },
+  "delegations": [
+    {
+      "public_key": "4vsRCVJhmBojW4PbXgWUhn1hSNX4rypY4NUYh4aSuwfuVXJdy6WKbCoz9nuAN3RJVDAn3BvN9b8VdnvC4G6tL9JU7xof5fQjSCAD2F5RtPKC3KQfpYJk72NU4m1XMZhDK3PdFmHcyfFUpXDV",
+      "delegate": "4vsRCVaJmjRqg6SvTcMLwNfpTLP2XwdUNN943vK7gGSeXtjvzhzSA2RhpK9uSQHxYhAorPu9bxHSUJB8mrwobJtpnfo8W8g86EfDMTz9wz634E6ZaGajQUBDPvKsujPTjYyACMNik6EsMPYz",
+      "balance": "3973947999806",
+      "balance_unknown": "3973947999806",
+      "nonce": 30,
+      "start_height": 316,
+      "start_time": "2020-06-10T19:30:00-05:00",
+      "last_height": 3456,
+      "last_time": "2020-06-28T05:30:00-05:00"
+    }
+  ],
+  "validator": {
+    "account": "4vsRCVaJmjRqg6SvTcMLwNfpTLP2XwdUNN943vK7gGSeXtjvzhzSA2RhpK9uSQHxYhAorPu9bxHSUJB8mrwobJtpnfo8W8g86EfDMTz9wz634E6ZaGajQUBDPvKsujPTjYyACMNik6EsMPYz",
+    "blocks_created": 1391,
+    "blocks_proposed": 0,
+    "start_height": 269,
+    "start_time": "2020-06-10T12:15:00-05:00",
+    "last_height": 6807,
+    "last_time": "2020-07-20T10:57:00-05:00"
+  }
+}

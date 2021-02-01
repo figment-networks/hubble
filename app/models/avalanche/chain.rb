@@ -1,9 +1,11 @@
 class Avalanche::Chain < ApplicationRecord
+  include TokenMap
+
   ASSET = 'avalanche'.freeze
 
   DEFAULT_TOKEN_DISPLAY = 'AVAX'.freeze
   DEFAULT_TOKEN_REMOTE = 'avax'.freeze
-  DEFAULT_TOKEN_FACTOR = 18
+  DEFAULT_TOKEN_FACTOR = 9
 
   validates :name, presence: true
   validates :slug, format: { with: /\A[a-z0-9-]+\z/ }, uniqueness: true, presence: true
@@ -25,21 +27,15 @@ class Avalanche::Chain < ApplicationRecord
     !disabled
   end
 
-  def token_map
-    {
-      DEFAULT_TOKEN_REMOTE => {
-        display: DEFAULT_TOKEN_DISPLAY,
-        factor: DEFAULT_TOKEN_FACTOR,
-        primary: true
-      }
-    }.with_indifferent_access
-  end
-
   def client
     @client ||= Avalanche::Client.new(api_url)
   end
 
   def status
     @client_status ||= client.status
+  end
+
+  def last_sync_time
+    @last_sync_time ||= status.sync_time
   end
 end

@@ -6,4 +6,12 @@ module AdminHelper
     end
     @_current_admin
   end
+
+  def prime_toggle_text(user)
+    if user.prime?
+      'Revoke Prime'
+    else
+      'Grant Prime'
+    end
+  end
 end

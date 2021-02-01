@@ -7,6 +7,7 @@ class Oasis::Chain < ApplicationRecord
   DEFAULT_TOKEN_DISPLAY = 'ROSE'.freeze
   DEFAULT_TOKEN_REMOTE = 'noasis'.freeze
   DEFAULT_TOKEN_FACTOR = 9
+  STALE_SYNC_TIME = 15
 
   has_many :alertable_addresses, as: :chain, dependent: :destroy
   has_many :alert_subscriptions, through: :alertable_addresses
@@ -54,8 +55,12 @@ class Oasis::Chain < ApplicationRecord
     'Oasis'
   end
 
+  def token_display
+    DEFAULT_TOKEN_DISPLAY
+  end
+
   def failing_sync?
-    false
+    last_sync_time < STALE_SYNC_TIME.minutes.ago
   end
 
   def has_dashboard?
@@ -97,37 +102,7 @@ class Oasis::Chain < ApplicationRecord
     end
   end
 
-  def get_alertable_name(address)
-    # to be updated to pull entity_name once that PR is merged
-    validator = client.validator(address, 0)
-    validator.entity_name.presence || validator.address
-  end
-
   def get_events_for_alert(subscription, seconds_ago, date = nil)
-    all_events = retrieve_events(subscription.alertable.address, seconds_ago)
-
-    # filter out events prior to last alert time
-    if !date
-      filtered_events = all_events.select { |e| e.time > subscription.last_instant_at }
-    else
-      filtered_events = all_events.select do |e|
-        e.time >= date.beginning_of_day && e.time <= date.end_of_day
-      end
-    end
-  end
-
-  def get_recent_events(address, klass, time_ago)
-    all_events = retrieve_events(address, Time.now - time_ago)
-    all_events.select { |e| e.time >= time_ago && klass == "Common::ValidatorEvents::#{e.kind.classify}".constantize }
-  end
-
-  private
-
-  def retrieve_events(address, seconds_ago)
-    # get events from twice the supplied timeframe to ensure all unsent events are picked up
-    blocks_back = (seconds_ago * 2) / client.block_times(1000).avg
-    start_block = (client.current_block.height - blocks_back).round.to_i
-
-    client.validator_events(address, start_block)
+    client.get_events_for_alert(self, subscription, seconds_ago, date)
   end
 end

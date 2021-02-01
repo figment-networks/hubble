@@ -3,7 +3,7 @@ require 'features_helper'
 describe 'cosmos validators' do
   let!(:chain) { create(:cosmos_chain) }
   let!(:validator) { create(:cosmos_validator_synced, chain: chain) }
-  let!(:event) { create(:cosmos_event, chainlike_id: chain.id, validatorlike_id: validator.id) }
+  let!(:event) { create(:cosmos_event, chainlike: chain, validatorlike: validator) }
 
   context 'logged out' do
     it 'visiting Cosmos Single Event View as not signed in user' do

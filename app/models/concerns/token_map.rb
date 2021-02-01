@@ -8,4 +8,18 @@ module TokenMap
   def token_map
     self.class.token_map[slug] || self.class.token_map['default']
   end
+
+  class_methods do
+    def token_map
+      {
+        'default' => {
+          self::DEFAULT_TOKEN_REMOTE => {
+            'factor' => self::DEFAULT_TOKEN_FACTOR,
+            'display' => self::DEFAULT_TOKEN_DISPLAY,
+            'primary' => true
+          }
+        }
+      }
+    end
+  end
 end

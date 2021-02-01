@@ -4,7 +4,7 @@ class Livepeer::OrchestratorsController < Livepeer::BaseController
   def show
     @orchestrator = @chain.orchestrators.find_by!(address: params[:address])
 
-    @events = @orchestrator.events.includes(:round)
+    @events = @orchestrator.events.order(timestamp: :desc).includes(:round)
     @delegators = @orchestrator.delegators.order(pending_stake: :desc)
 
     page_title "Orchestrator #{@orchestrator.name_or_address}"

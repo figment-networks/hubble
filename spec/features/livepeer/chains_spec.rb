@@ -19,18 +19,16 @@ describe 'Livepeer Chains' do
 
     find("a[href='/livepeer/chains/#{chain.slug}']").click
 
-    expect(page).to have_content("Livepeer — #{chain.name}")
-
-    expect(page).to have_content("Orchestrators\n — 1 total")
+    expect(page).to have_content('Orchestrators')
 
     expect(page).to have_content('FBDDD6ADD2FDE17677875A751695DCB00915F57C')
     expect(page).to have_content('20%')
     expect(page).to have_content('80%')
 
-    expect(page).to have_content('Current Round')
+    expect(page).to have_content('CURRENT ROUND')
     expect(page).to have_content(round.number + 1)
 
-    expect(page).to have_content('Latest Round')
+    expect(page).to have_content('LATEST ROUND')
     expect(page).to have_content(round.number)
   end
 end

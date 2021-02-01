@@ -7,7 +7,10 @@ class Livepeer::Queries::StakesPerRoundQuery < Livepeer::Queries::StakesQuery
   ].freeze
 
   def call
-    group_by_round_and_delegator(filter_by_range(filter_by_delegators(chain.stakes)))
+    chain.stakes.
+      then { |r| filter_by_delegators(r) }.
+      then { |r| filter_by_range(r) }.
+      then { |r| group_by_round_and_delegator(r) }
   end
 
   private

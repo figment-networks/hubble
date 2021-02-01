@@ -11,6 +11,10 @@ http_interactions:
       - "*/*"
       User-Agent:
       - rest-client/2.1.0 (darwin19.6.0 x86_64) ruby/2.6.6p146
+      Content-Length:
+      - '0'
+      Content-Type:
+      - application/x-www-form-urlencoded
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Host:
@@ -23,11 +27,11 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Tue, 17 Nov 2020 16:58:33 GMT
+      - Tue, 19 Jan 2021 12:37:48 GMT
       Content-Length:
-      - '192'
+      - '258'
     body:
       encoding: UTF-8
-      string: '{"app_name":"avalanche-indexer","app_version":"0.1.1","git_commit":"3ea161b3d77c29d28cd9c0e9c2f354e01dbad6c1","go_version":"go1.15.2","network_name":"mainnet","node_version":"avalanche/1.0.4"}'
-  recorded_at: Tue, 17 Nov 2020 16:58:33 GMT
+      string: '{"app_name":"avalanche-indexer","app_version":"0.2.1","git_commit":"8b1290b7d5d08f1827b47df85236d6279bc8e5b0","go_version":"go1.15.6","network_name":"mainnet","node_version":"avalanche/1.1.1","sync_status":"current","sync_time":"2021-01-19T12:37:32.226755Z"}'
+  recorded_at: Tue, 19 Jan 2021 12:37:48 GMT
 recorded_with: VCR 6.0.0

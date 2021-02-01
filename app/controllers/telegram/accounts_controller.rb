@@ -1,5 +1,5 @@
 module Telegram
-  class AccountsController < ApplicationController
+  class AccountsController < Hubble::ApplicationController
     before_action :require_user
     layout 'account'
 

@@ -1,5 +1,5 @@
 module Telegram
-  class WebhooksController < ApplicationController
+  class WebhooksController < Hubble::ApplicationController
     skip_before_action :verify_authenticity_token
     skip_before_action :http_basic_auth if REQUIRE_HTTP_BASIC
 

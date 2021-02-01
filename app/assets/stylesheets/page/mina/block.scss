@@ -1,0 +1,12 @@
+.block-show {
+  .card-body {
+    &.no-padding {
+      padding: 0px;
+    }
+
+    table.transactions,
+    table.snarkers {
+      margin-bottom: 0px;
+    }
+  }
+}

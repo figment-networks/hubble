@@ -15,7 +15,7 @@
       <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
         <%= form_with(method: :get, local: true) do |f| %>
           <% @chain.event_kinds.each do |type| %>
-            <%= render "event_type_checkbox", type: type %>
+            <%= render 'shared/redesign/event_type_checkbox', type: type %>
           <% end %>
 
           <div class="px-2">

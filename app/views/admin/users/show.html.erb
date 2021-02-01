@@ -7,6 +7,7 @@
     <small class='text-muted'><%= @user.email %></small>
   </div>
   <div class='d-flex justify-content-end align-items-center'>
+    <%= button_to prime_toggle_text(@user), toggle_prime_admin_user_path(@user), method: 'patch', class: 'btn btn-sm btn-outline-secondary', form: { class: 'd-inline mr-2' } %>
     <a class='btn btn-sm btn-outline-warning mr-2 <%= 'disabled' if !@user.verified? %>' <%= 'disabled=disabled' if !@user.verified? %> href='<%= masq_admin_user_path(@user) %>'>login-as</a>
     <%= button_to 'delete', admin_user_path(@user), method: 'delete', class: 'btn btn-sm btn-danger action-delete-confirmation', form: { class: 'd-inline mr-2' } %>
     <a class='btn btn-sm btn-outline-secondary' href='<%= admin_users_path %>'>back</a>

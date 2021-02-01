@@ -1,58 +1,66 @@
 <% content_for :body_class, 'report-new' %>
+<%= render partial: 'chain_header', locals: { active_tab: '', delegator_lists_link: true, events_link: true } %>
 
-<div class='row'>
-  <div class='col-12'>
-    <h2 class='header text-center d-block'>Generate a report</h2>
-  </div>
-</div>
+<div class='content'>
+  <div class='container'>
+    <div class='row'>
+      <div class='col-12'>
+        <h2 class='text-center d-block'>Generate a report</h2>
+      </div>
+    </div>
 
-<div class='row clearfix mt-2 pt-3 justify-content-md-center'>
-  <div class='col-12 col-md-6'>
-    <div class='report-form'>
-      <form action='<%= url_for(action: :show) %>' autocomplete='off'>
-        <div class='card'>
-          <h5 class='card-header'>Delegator List Report</h5>
-          <div class='card-body'>
-            <fieldset class='range-type-group form-group'>
-              <label class='d-block'>Range type</label>
-              <div class='btn-group btn-group-toggle' data-toggle='buttons'>
-                <label class='btn btn-outline-secondary active'>
-                  <input id='round-range' name='range_type' type='radio' value='round' checked> Round
-                </label>
-                <label class='btn btn-outline-secondary'>
-                  <input id='date-range' name='range_type' type='radio' value='date'> Date range
-                </label>
-              </div>
-            </fieldset>
-
-            <fieldset class='round-range-group'>
-              <div class='form-group'>
-                <label for='round-number'>Round number</label>
-                <select class='form-control' id='round-number' name='round_number'>
-                  <%= options_for_select(@round_numbers) %>
-                </select>
-              </div>
-            </fieldset>
-
-            <fieldset class='date-range-group d-none' disabled>
-              <div class='form-row'>
-                <div class='form-group col'>
-                  <label for='start-date'>Start date</label>
-                  <input class='form-control' id='start-date' name='start_date' type='date' required>
+    <div class='row clearfix mt-2 pt-3 justify-content-md-center'>
+      <div class='col-12 col-md-6'>
+        <div class='report-form'>
+          <form action='<%= url_for(action: :show) %>' autocomplete='off'>
+            <div class='data-block'>
+              <h3 class='data-block__title'>Delegator List Report</h3>
+              <fieldset class='range-type-group form-group'>
+                <label class='d-block'>Range type</label>
+                <div class='d-flex align-items-center'>
+                  <div class='custom-control custom-radio'>
+                    <input class='custom-control-input' id='round-range' name='range_type' type='radio' value='round' checked>
+                    <label for='round-range' class='custom-control-label'>
+                      Round
+                    </label>
+                  </div>
+                  <div class='custom-control custom-radio ml-2'>
+                    <input class='custom-control-input' id='date-range' name='range_type' type='radio' value='date'>
+                    <label for='date-range' class='custom-control-label'>
+                      Date range
+                    </label>
+                  </div>
                 </div>
-                <div class='form-group col'>
-                  <label for='end-date'>End date</label>
-                  <input class='form-control' id='end-date' name='end_date' type='date' required>
-                </div>
-              </div>
-            </fieldset>
-          </div>
-        </div>
+              </fieldset>
 
-        <div class='text-center'>
-          <button type='submit' class='btn btn-primary'>Generate</button>
+              <fieldset class='round-range-group'>
+                <div class='form-group'>
+                  <label for='round-number'>Round number</label>
+                  <select class='form-control' id='round-number' name='round_number'>
+                    <%= options_for_select(@round_numbers) %>
+                  </select>
+                </div>
+              </fieldset>
+
+              <fieldset class='date-range-group d-none' disabled>
+                <div class='form-row'>
+                  <div class='form-group col'>
+                    <label for='start-date'>Start date</label>
+                    <input class='form-control' id='start-date' name='start_date' type='date' required>
+                  </div>
+                  <div class='form-group col'>
+                    <label for='end-date'>End date</label>
+                    <input class='form-control' id='end-date' name='end_date' type='date' required>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <div class='d-flex justify-content-center my-3'>
+              <button type='submit' class='button-primary'>Generate</button>
+            </div>
+          </form>
         </div>
-      </form>
+      </div>
     </div>
   </div>
 </div>

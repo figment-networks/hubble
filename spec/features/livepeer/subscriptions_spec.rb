@@ -18,7 +18,7 @@ describe 'Livepeer Subscriptions' do
       find('a .fa-bell').click
 
       expect(page).to have_content('Subscribe to Events')
-      expect(page).to have_content("Delegator List #{delegator_list.name}")
+      expect(page).to have_content('DELEGATOR LIST')
 
       expect(page).to have_content('Reward Cut Change')
       expect(page).to have_content('Missed Reward Call')
@@ -51,7 +51,7 @@ describe 'Livepeer Subscriptions' do
         find('a .fa-bell').click
 
         expect(page).to have_content('Subscribe to Events')
-        expect(page).to have_content("Delegator List #{delegator_list.name}")
+        expect(page).to have_content('DELEGATOR LIST')
 
         choose 'alert_subscription[event_kinds][reward_cut_change]', option: 'off'
 

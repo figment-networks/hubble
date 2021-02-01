@@ -178,7 +178,10 @@ $box-shadow: 0px 5px 15px 3px #F2F2F2;
 .word-break {
   word-break: break-all;
 }
-
+.btn {
+  font-size: 12px;
+  font-weight: 600;
+}
 .button-primary {
   display: flex;
   align-items: center;
@@ -203,6 +206,7 @@ $box-shadow: 0px 5px 15px 3px #F2F2F2;
   height: 32px;
   width: 128px;
   border: 1px solid $primary;
+  background: transparent;
   border-radius: 6px;
   color: $primary;
   font-size: 12px;
@@ -210,6 +214,10 @@ $box-shadow: 0px 5px 15px 3px #F2F2F2;
   letter-spacing: 0;
   line-height: 15px;
   text-align: center;
+}
+
+.button-secondary span {
+  line-height: normal;
 }
 
 .button-primary:hover,
@@ -273,4 +281,20 @@ $box-shadow: 0px 5px 15px 3px #F2F2F2;
 .pagy-bootstrap-nav .pagination {
   justify-content: center;
   margin-bottom: 0;
+}
+.chart-container {
+  display: flex;
+  align-items: center;
+  height: 26px;
+  transform: translateX(-10px);
+
+  span {
+    font-size: 12px;
+    letter-spacing: 0;
+    line-height: 24px;
+  }
+}
+.status-pie-chart {
+  height: 26px !important;
+  width: auto !important;
 }
