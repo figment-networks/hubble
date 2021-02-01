@@ -1,73 +1,75 @@
 <% content_for :body_class, 'delegator-list-index' %>
 
-<%= render partial: 'chain_header', locals: { summary_link: true, events_link: true } %>
+<%= render partial: 'chain_header', locals: { active_tab: 'Delegator Lists', delegator_lists_link: true, events_link: true } %>
 <%= render partial: 'sync_errors' %>
 
-<div class='row'>
-  <div class='col-12 col-md-9 order-1 order-md-0'>
-    <div class='delegator-lists'>
-      <div class='delegator-lists-table-header'>
-        <h4>Delegator Lists</h4>
-        <%= link_to namespaced_path('delegator_list', pre_path: 'new'), class: 'btn btn-sm btn-outline-light' do %>
-          <span class='fas fa-plus'></span>
-        <% end -%>
+<div class='content'>
+  <div class='container'>
+    <div class='row'>
+      <div class='col-12 col-md-9 order-1 order-md-0'>
+        <div class='data-table m-0'>
+          <div class='data-table__header d-flex align-items-center justify-content-between'>
+            <h4 class='data-table__title'>Delegator Lists</h4>
+            <%= link_to namespaced_path('delegator_list', pre_path: 'new'), class: 'btn btn-sm btn-outline-dark' do %>
+              <span class='fas fa-plus'></span>
+            <% end -%>
+          </div>
+          <div class='delegator-lists-table'>
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Delegators</th>
+                  <th>Email Alerts</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @delegator_lists.each do |delegator_list| %>
+                  <tr>
+                    <td><%= delegator_list.id %></td>
+                    <td><%= delegator_list.name %></td>
+                    <td><%= delegator_list.addresses.count %></td>
+                    <td>
+                      <% if delegator_list.alert_subscriptions.present? -%>
+                        <span class='badge badge-success'>SUBSCRIBED</span>
+                      <% else -%>
+                        <span class='badge badge-danger'>NOT SUBSCRIBED</span>
+                      <% end -%>
+                    </td>
+                    <td class='text-right'>
+                      <%= link_to namespaced_path('delegator_list_report', delegator_list, pre_path: 'new'), class: 'btn btn-outline-primary btn-sm' do %>
+                        <span class='fas fa-file'></span>
+                      <% end -%>
+                      <%= link_to namespaced_path('delegator_list_events', delegator_list), class: 'btn btn-outline-primary btn-sm' do %>
+                        <span class='fas fa-clock'></span>
+                      <% end -%>
+                      <%= link_to namespaced_path('delegator_list_subscriptions', delegator_list), class: 'btn btn-outline-primary btn-sm' do %>
+                        <span class='fas fa-bell'></span>
+                      <% end -%>
+                      <%= link_to namespaced_path('delegator_list', delegator_list, pre_path: 'edit'), class: 'btn btn-outline-primary btn-sm' do %>
+                        <span class='fas fa-pen'></span>
+                      <% end -%>
+                      <%= link_to namespaced_path('delegator_list', delegator_list), data: { method: :delete, confirm: 'Are you sure?' }, class: 'btn btn-outline-primary btn-sm' do %>
+                        <span class='fas fa-trash'></span>
+                      <% end -%>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
-      <div class='delegator-lists-table'>
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Delegators</th>
-              <th>Email Alerts</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @delegator_lists.each do |delegator_list| %>
-              <tr>
-                <td><%= delegator_list.id %></td>
-                <td><%= delegator_list.name %></td>
-                <td><%= delegator_list.addresses.count %></td>
-                <td>
-                  <% if delegator_list.alert_subscriptions.present? -%>
-                    <span class='badge badge-success'>SUBSCRIBED</span>
-                  <% else -%>
-                    <span class='badge badge-danger'>NOT SUBSCRIBED</span>
-                  <% end -%>
-                </td>
-                <td class='text-right'>
-                  <%= link_to namespaced_path('delegator_list_report', delegator_list, pre_path: 'new'), class: 'btn btn-outline-primary btn-sm' do %>
-                    <span class='fas fa-file'></span>
-                  <% end -%>
-                  <%= link_to namespaced_path('delegator_list_events', delegator_list), class: 'btn btn-outline-primary btn-sm' do %>
-                    <span class='fas fa-clock'></span>
-                  <% end -%>
-                  <%= link_to namespaced_path('delegator_list_subscriptions', delegator_list), class: 'btn btn-outline-primary btn-sm' do %>
-                    <span class='fas fa-bell'></span>
-                  <% end -%>
-                  <%= link_to namespaced_path('delegator_list', delegator_list, pre_path: 'edit'), class: 'btn btn-outline-primary btn-sm' do %>
-                    <span class='fas fa-pen'></span>
-                  <% end -%>
-                  <%= link_to namespaced_path('delegator_list', delegator_list), data: { method: :delete, confirm: 'Are you sure?' }, class: 'btn btn-outline-primary btn-sm' do %>
-                    <span class='fas fa-trash'></span>
-                  <% end -%>
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
 
-  <div class='col-12 col-md-3 order-0 order-md-1 info-cards'>
-    <div class='card'>
-      <h5 class='card-header'>Count</h5>
-      <div class='card-body'>
-        <span class='large-number technical'>
-          <%= current_user.livepeer_delegator_lists.for(@chain).count %>/<%= Livepeer::DelegatorList::RECORDS_LIMIT %>
-        </span>
+      <div class='col-12 col-md-3 order-0 order-md-1 info-cards mb-3'>
+        <div class='data-block'>
+          <h3 class='data-block__title'>Count</h3>
+          <span class='data-block__value'>
+            <%= current_user.livepeer_delegator_lists.for(@chain).count %>/<%= Livepeer::DelegatorList::RECORDS_LIMIT %>
+          </span>
+        </div>
       </div>
     </div>
   </div>

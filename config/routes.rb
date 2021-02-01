@@ -15,10 +15,15 @@ Rails.application.routes.draw do
     end
   end
 
-  # HUBBLE
   root to: 'home#index'
   get '/disclaimer', to: 'home#disclaimer', as: :disclaimer
 
+  # PRIME
+  namespace :prime do
+    root to: 'home#index'
+  end
+
+  # HUBBLE
   concern :cosmoslike do
     resources :chains, format: false, constraints: { id: /[^\/]+/ }, only: %i[show] do
       get '/dashboard' => 'dashboard#index', as: 'dashboard'
@@ -85,7 +90,20 @@ Rails.application.routes.draw do
     root to: 'chains#show'
   end
 
-  namespace :coda, network: 'coda' do
+  namespace :avalanche, network: 'avalanche' do
+    resources :chains, constraints: { id: /[^\/]+/ } do
+      member do
+        get :show
+        get :search
+      end
+
+      resources :validators, only: :show, constraints: { id: /[^\/]+/ }
+      resources :accounts, only: :show
+    end
+    root to: 'chains#show'
+  end
+
+  namespace :mina, network: 'mina' do
     resources :chains do
       member do
         get :show
@@ -163,7 +181,9 @@ Rails.application.routes.draw do
         resources :transactions
       end
       resources :accounts, only: :show
-      resources :validators, only: :show
+      resources :validators, only: :show do
+        resources :subscriptions, only: %i[index create], controller: '/util/subscriptions'
+      end
     end
   end
 
@@ -176,12 +196,6 @@ Rails.application.routes.draw do
         resources :transactions
       end
       resources :accounts, only: :show
-    end
-  end
-
-  namespace :avalanche, network: 'avalanche' do
-    resources :chains, format: false, constraints: { id: /[^\/]+/ }, only: :show do
-      get :search, on: :member
     end
   end
 
@@ -207,6 +221,7 @@ Rails.application.routes.draw do
     resources :users do
       member do
         get :masq
+        patch :toggle_prime
       end
       resources :alert_subscriptions, only: %i[destroy]
     end
@@ -266,7 +281,7 @@ Rails.application.routes.draw do
       resources :chains, except: [:index]
     end
 
-    namespace :coda do
+    namespace :mina do
       resources :chains, except: [:index]
     end
 

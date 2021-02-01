@@ -7,6 +7,9 @@ class Livepeer::Queries::SharesPerRoundQuery < Livepeer::Queries::SharesQuery
   ].freeze
 
   def call
-    group_by_round_and_delegator(filter_by_range(filter_by_delegators(chain.shares)))
+    chain.shares.
+      then { |r| filter_by_delegators(r) }.
+      then { |r| filter_by_range(r) }.
+      then { |r| group_by_round_and_delegator(r) }
   end
 end

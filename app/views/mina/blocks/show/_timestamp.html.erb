@@ -1,0 +1,6 @@
+<%= render_card "Timestamp" do %>
+  <span class="technical"><%= block.time.strftime("%Y-%m-%d @ %H:%M %Z") %></span>
+  <small class="text-muted">
+    <%= time_ago_in_words(block.time, true) %> ago
+  </small>
+<% end %>

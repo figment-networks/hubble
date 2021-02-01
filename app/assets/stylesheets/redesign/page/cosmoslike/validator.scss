@@ -77,19 +77,3 @@
     }
   }
 }
-.validator-show .chart-container {
-  display: flex;
-  align-items: center;
-  height: 26px;
-  transform: translateX(-10px);
-
-  span {
-    font-size: 12px;
-    letter-spacing: 0;
-    line-height: 24px;
-  }
-}
-.status-pie-chart {
-  height: 26px !important;
-  width: auto !important;
-}

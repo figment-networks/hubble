@@ -29,7 +29,7 @@
       </div>
       <div class='mt-1'>
         <div>
-          <%= render partial: 'transfers', locals: { transfers: @account_details.transfers } %>
+          <%= render partial: 'celo/shared/transfers', locals: { transfers: @account_details.transfers } %>
           <%= render partial: 'transactions', locals: { transactions: @account_details.transactions } %>
         </div>
       </div>

@@ -1,0 +1,39 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://localhost:8081/validator/153RWxqZyAWBM2brLkBEkYmyVyf5aMqGHewbvG3jqENyCKyC?eras_limit=1&sessions_limit=1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (darwin20.2.0 arm) ruby/2.6.6p146
+      Content-Length:
+      - '0'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - localhost:8081
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Thu, 07 Jan 2021 22:50:39 GMT
+      Content-Length:
+      - '1596'
+    body:
+      encoding: UTF-8
+      string: '{"id":345,"created_at":"2020-10-12T04:40:28.167855Z","updated_at":"2021-01-07T19:37:24.594554Z","started_at_height":1261972,"started_at":"2020-08-22T15:36:18Z","recent_at_height":3242482,"recent_at":"2021-01-07T19:36:18Z","stash_account":"153RWxqZyAWBM2brLkBEkYmyVyf5aMqGHewbvG3jqENyCKyC","recent_as_validator_height":3242482,"display_name":"","uptime":1,"last_session_sequences":[{"id":266970,"session":1356,"start_height":3240098,"end_height":3242482,"time":"2021-01-07T19:36:18Z","stash_account":"153RWxqZyAWBM2brLkBEkYmyVyf5aMqGHewbvG3jqENyCKyC","online":true}],"last_era_sequences":[{"id":43239,"era":219,"start_height":3223411,"end_height":3237712,"time":"2021-01-07T11:36:18Z","stash_account":"153RWxqZyAWBM2brLkBEkYmyVyf5aMqGHewbvG3jqENyCKyC","controller_account":"13iSWXfj6ACwWsuPGKxZVkL1y8UU1uvytQpWxHvfi67tkETu","session_accounts":["1Z34okdNY7Jx7dqYHNS8bdUUDT5imznBfo3VzbaEU8dadig","15Fp8XgZBLmGaPbEQKWqNZxWrfuYuTX9jvdduFmYXtE7r84V","14VEJdBk8appjwGg7wG1t9wk4ASs3JdsoW2gLHVjLupDpscD","1LAfN1rRPqqDxLtXovAXZonKG94E7riYBggXCs3H8bTwSjq","16PsK7UP4wCiFLJzFkB9g57cax2VuBPcVKg1HfoJZQX4tt1o"],"index":174,"total_stake":19281982623987960,"own_stake":200200350813,"stakers_stake":19281782423637148,"reward_points":1040,"commission":200000000,"stakers_count":4}],"delegations":[{"era":82,"validator_stash":"153RWxqZyAWBM2brLkBEkYmyVyf5aMqGHewbvG3jqENyCKyC","amount":10000000000},{"era":82,"validator_stash":"153RWxqZyAWBM2brLkBEkYmyVyf5aMqGHewbvG3jqENyCKyC","amount":26900000000000000},{"era":82,"validator_stash":"153RWxqZyAWBM2brLkBEkYmyVyf5aMqGHewbvG3jqENyCKyC","amount":26900000000000000}]}
+
+'
+  recorded_at: Thu, 07 Jan 2021 22:50:39 GMT
+recorded_with: VCR 6.0.0

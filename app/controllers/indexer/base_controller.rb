@@ -1,4 +1,4 @@
-class Indexer::BaseController < ApplicationController
+class Indexer::BaseController < Hubble::ApplicationController
   before_action :find_chain
 
   protected

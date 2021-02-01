@@ -1,0 +1,14 @@
+<%= render_card "Lifetime", class: "validator-lifetime" do %>
+  <label>First Seen</label>
+  <div class="stat-value">
+    <%= validator.start_time.try(:strftime, "%B %d, %Y at %H:%M %Z") || "N/A" %>
+  </div>
+  <label>Last Seen</label>
+  <div class="stat-value">
+    <%= validator.last_time.try(:strftime, "%B %d, %Y at %H:%M %Z") || "N/A" %>
+  </div>
+  <label>Blocks Produced</label>
+  <div class="stat-value">
+    <%= validator.blocks_created %>
+  </div>
+<% end %>

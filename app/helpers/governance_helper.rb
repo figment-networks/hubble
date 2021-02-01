@@ -1,6 +1,6 @@
 module GovernanceHelper
   def filter_double_votes(votes)
-    grouped = votes.group_by(&:account)
+    grouped = votes.includes([:account]).group_by(&:account)
     grouped.entries.map do |_account, votes|
       votes.max_by(&:created_at)
     end

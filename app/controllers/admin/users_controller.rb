@@ -20,4 +20,10 @@ class Admin::UsersController < Admin::BaseController
     session[:uid] = User.find(params[:id]).id
     redirect_to root_path
   end
+
+  def toggle_prime
+    user = User.find_by(id: params[:id])
+    user.toggle! :prime
+    redirect_to admin_users_path
+  end
 end

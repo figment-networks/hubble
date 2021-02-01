@@ -1,4 +1,4 @@
-class Util::LogsController < ApplicationController
+class Util::LogsController < Hubble::ApplicationController
   layout 'redesign/application'
 
   def index

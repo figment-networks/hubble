@@ -1,40 +1,48 @@
 <% content_for :body_class, 'events-index' %>
+<%= render partial: 'chain_header', locals: { active_tab: '', delegator_lists_link: true, events_link: true } %>
 
-<%= render partial: '/livepeer/base/chain_header', locals: { summary_link: true } %>
-<%= render partial: '/livepeer/base/sync_errors' %>
+<div class='content'>
+  <div class='container'>
+    <%= render partial: '/livepeer/base/sync_errors' %>
 
-<h3>
-  Events for <%= link_to @delegator_list.name, namespaced_path('delegator_list', @delegator_list) %>
-  <small class='text-sm text-muted'>
-    showing <%= @pagy.from %>-<%= @pagy.to %>
-    of <%= pluralize(@pagy.count, 'total event') %>
-  </small>
-</h3>
-
-<% if @events.empty? -%>
-  <p class='text-muted py-4 mb-0 text-center'>No events yet.</p>
-<% else -%>
-  <% @events.each do |event| -%>
-    <div class='card mb-1 shadow-none'>
-      <div class='card-body'>
-        <div class='inner-event d-flex align-items-start flex-column flex-md-row align-items-md-center'>
-          <% icon_classes = "fa fa-#{event.icon_name} text-#{event.positive? ? 'success' : 'danger'}" %>
-          <div class='d-none d-md-block <%= icon_classes %> mr-3'></div>
-          <div class='event-content'>
-            <%= render partial: event.to_partial_path, locals: { event: event, icon_classes: icon_classes } %>
-          </div>
-          <div class='timestamp ml-md-auto text-sm text-muted ml-md-3 mt-2 mt-md-0 text-nowrap text-md-right'>
-            <%= link_to namespaced_path('event', event) do %>
-              <div class='d-inline d-md-block'><%= event.timestamp.strftime("%B %d, %Y") %></div>
-              <div class='d-inline d-md-block'><%= event.timestamp.strftime("at %H:%M %Z") %></div>
-            <% end %>
-          </div>
-        </div>
+    <div class='data-table'>
+      <div class='data-table__header'>
+        <h3 class="data-table__title">Events for <%= link_to @delegator_list.name, namespaced_path('delegator_list', @delegator_list) %></h3>
+      </div>
+      <div class='table-responsive'>
+        <table class='w-100'>
+          <thead>
+            <tr>
+              <th>Event</th>
+              <th>Round</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if @events.empty? -%>
+              <tr>
+                <td class='data-table__empty' colspan='3'>No events yet.</td>
+              </tr>
+            <% else -%>
+              <% @events.each do |event| -%>
+                <tr>
+                  <% icon_classes = "fa fa-#{event.icon_name} text-#{event.positive? ? 'success' : 'danger'}" %>
+                  <%= render partial: event.to_partial_path, locals: { event: event, icon_classes: icon_classes } %>
+                  <td>
+                    <%= link_to namespaced_path('event', event), class: "event-history__date" do %>
+                      <%= event.timestamp.strftime("%B %d, %Y") %>
+                      <%= event.timestamp.strftime("at %H:%M %Z") %>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end -%>
+            <% end -%>
+          </tbody>
+        </table>
       </div>
     </div>
-  <% end -%>
-<% end -%>
-
-<div class='mt-5 d-flex justify-content-center'>
-  <%== pagy_bootstrap_nav(@pagy) %>
+    <div class='mt-5 d-flex justify-content-center'>
+      <%== pagy_bootstrap_nav(@pagy) %>
+    </div>
+  </div>
 </div>

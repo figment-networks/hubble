@@ -24,12 +24,16 @@
           <% if !user.verified? -%>
             <span class='badge badge-danger'>pending</span>
           <% end -%>
+          <% if user.prime? %>
+            <span class='ml-2 badge badge-success'>PRIME</span>
+          <% end %>
         </td>
         <td class='extra-info'></td>
         <td>
           <div class='d-flex user-list-buttons'>
+            <%= button_to prime_toggle_text(user), toggle_prime_admin_user_path(user), method: 'patch', class: 'btn btn-sm btn-outline-success' %>
             <a class='btn btn-sm btn-outline-warning <%= 'disabled' if !user.verified? %>' <%= 'disabled=disabled' if !user.verified? %> href='<%= masq_admin_user_path(user) %>'>login-as</a>
-            <a class='btn btn-sm btn-outline-primary' href='<%= admin_user_path(user) %>'>details</a>
+            <%= link_to 'Details', admin_user_path(user), class: 'btn btn-sm btn-outline-primary' %>
           </div>
         </td>
       </tr>

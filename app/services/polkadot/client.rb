@@ -29,6 +29,10 @@ module Polkadot
       end
     end
 
+    def block_times(limit = nil)
+      get("/block_times/#{limit}")['avg']
+    end
+
     def transactions(height)
       block(height).transactions
     end
@@ -81,9 +85,36 @@ module Polkadot
       end
     end
 
-    def validator_events(chain, address, after = nil)
-      events_list = get("/system_events/#{address}", after: after)['items'] || []
-      events_list.map { |event| Polkadot::EventFactory.generate(event, chain) }
+    def validator_events(chain:, address:, types: nil, start_date: nil, end_date: nil, start_block: nil)
+      raw_events = get("/system_events/#{address}", after: start_block)['items'] || []
+      events = raw_events.map { |event| Polkadot::EventFactory.generate(event, chain) }
+      events.select! { |event| types.include?(event.kind_class) } if types.present?
+      events.select! { |event| event.time >= Time.zone.parse(start_date) } if start_date.present?
+      events.select! { |event| event.time <= Time.zone.parse(end_date).end_of_day } if end_date.present?
+      events.sort_by(&:time).reverse
+    end
+
+    def get_alertable_name(address)
+      validator = validator(address)
+      validator.display_name.presence || validator.address
+    end
+
+    def get_recent_events(chain, address, klass, time_ago)
+      all_events = retrieve_events(chain, address, Time.now - time_ago)
+      all_events.select { |e| e.time >= time_ago && klass == "Common::ValidatorEvents::#{e.kind_class.classify}".constantize }
+    end
+
+    def get_events_for_alert(chain, subscription, seconds_ago, date = nil)
+      all_events = retrieve_events(chain, subscription.alertable.address, seconds_ago)
+
+      # filter out events prior to last alert time
+      if !date
+        filtered_events = all_events.select { |e| e.time > subscription.last_instant_at }
+      else
+        filtered_events = all_events.select do |e|
+          e.time >= date.beginning_of_day && e.time <= date.end_of_day
+        end
+      end
     end
 
     private
@@ -95,6 +126,13 @@ module Polkadot
       end
       last_indexed_era_time = Time.zone.parse(validators_summary['last_indexed_era']['time'])
       all_summaries.select { |summary| summary.indexing_completed?(last_indexed_era_time) }
+    end
+
+    def retrieve_events(chain, address, seconds_ago)
+      # get events from twice the supplied timeframe to ensure all unsent events are picked up
+      blocks_back = (seconds_ago * 2) / block_times(1000)
+      start_block = (status.last_block_height - blocks_back).round.to_i
+      validator_events(chain: chain, address: address, start_block: start_block)
     end
   end
 end

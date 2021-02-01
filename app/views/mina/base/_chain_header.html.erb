@@ -1,0 +1,35 @@
+<header class='network-chain-header'>
+  <h1>
+    <a class='secret-link' href='<%= namespaced_path %>'>
+      <%= @chain.network_name %>
+      <% if @chain -%>
+        <small class='chain-info text-muted'>
+          <span class='d-none d-md-inline'>&mdash;</span>
+          <%= @chain.name %>
+          <% if @chain.testnet? -%>
+            <span class='d-none d-md-inline badge badge-pill badge-light'>TESTNET</span>
+            <span class='d-inline d-md-none text-muted'><span class='fas fa-vial'></span></span>
+          <% end -%>
+        </small>
+      <% end -%>
+    </a>
+  </h1>
+
+  <div class='buttons ml-auto'>
+    <% if current_admin -%>
+      <a class='ml-1 btn btn-info' href='<%= namespaced_path(admin: true) %>'>
+        <span class='d-none d-md-inline'>Admin</span>
+        <span class='d-inline d-md-none fa fa-crown'></span>
+      </a>
+    <% end -%>
+
+    <%= content_for :chain_header if content_for?(:chain_header) %>
+
+    <% if defined?(summary_link) -%>
+      <a class='ml-1 btn btn-outline-secondary' href='<%= namespaced_path %>'>
+        <span class='d-none d-md-inline'>Summary</span>
+        <span class='d-inline d-md-none fa fa-arrow-circle-up'></span>
+      </a>
+    <% end -%>
+  </div>
+</header>

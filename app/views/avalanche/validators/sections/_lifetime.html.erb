@@ -1,0 +1,23 @@
+<div class="data-block">
+  <h3 class="data-block__title">Lifetime</h3>
+  <div class="row">
+    <div class="col-md-12 col-lg-4 mb-3">
+      <label class="text-label m-0">Started On</label>
+      <div class="stat-value paragraph">
+        <%= validator.active_start_time.try(:strftime, "%B %d, %Y at %H:%M %Z") || "N/A" %>
+      </div>
+    </div>
+    <div class="col-md-12 col-lg-4 mb-3">
+      <label class="text-label m-0">Ends On</label>
+      <div class="stat-value paragraph">
+        <%= validator.active_end_time.try(:strftime, "%B %d, %Y at %H:%M %Z") || "N/A" %>
+      </div>
+    </div>
+    <div class="col-md-12 col-lg-4 mb-3">
+      <label class="text-label m-0">Time Left</label>
+      <div class="stat-value paragraph">
+        <%= remaining_time(validator.active_end_time) || "N/A" %>
+      </div>
+    </div>
+  </div>
+</div>

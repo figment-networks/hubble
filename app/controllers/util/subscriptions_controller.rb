@@ -1,4 +1,4 @@
-class Util::SubscriptionsController < ApplicationController
+class Util::SubscriptionsController < Hubble::ApplicationController
   before_action :set_chain_and_validator
 
   layout 'redesign/application'

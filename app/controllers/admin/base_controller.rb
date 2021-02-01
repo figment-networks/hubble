@@ -1,4 +1,4 @@
-class Admin::BaseController < ApplicationController
+class Admin::BaseController < Hubble::ApplicationController
   include AdminHelper
 
   before_action :require_administrator

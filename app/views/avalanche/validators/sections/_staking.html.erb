@@ -1,0 +1,29 @@
+<div class="data-block">
+  <h3 class="data-block__title">Validator Information</h3>
+  <div class="row">
+    <div class="col-md-12 col-lg-3 mb-3">
+      <label class="text-label m-0">Staking Balance</label>
+      <div class="stat-value paragraph">
+        <%= format_amount(validator.total_stake, denom: @chain.class::DEFAULT_TOKEN_REMOTE) %>
+      </div>
+    </div>
+    <div class="col-md-12 col-lg-3 mb-3">
+      <label class="text-label m-0">Space Available for Delegation</label>
+      <div class="stat-value paragraph">
+        <%= capacity_remaining(validator.capacity_percent) %>%
+      </div>
+    </div>
+    <div class="col-md-12 col-lg-3 mb-3">
+      <label class="text-label m-0">Available Capacity</label>
+      <div class="stat-value paragraph">
+        <%= format_amount(validator.capacity, denom: @chain.class::DEFAULT_TOKEN_REMOTE) %>
+      </div>
+    </div>
+    <div class="col-md-12 col-lg-3 mb-3">
+      <label class="text-label m-0">Delegation Fee</label>
+      <div class="stat-value paragraph">
+        <%= validator.delegation_fee %>%
+      </div>
+    </div>
+  </div>
+</div>

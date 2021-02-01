@@ -21,10 +21,6 @@ module Polkadot
       super(attributes)
     end
 
-    def id
-      hash
-    end
-
     def fee
       partial_fee + tip
     end

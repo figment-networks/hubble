@@ -45,7 +45,7 @@ http_interactions:
           "last_indexed_at": "2020-11-02T07:58:44.031439Z",
           "indexing_lag": 199900
         }
-  recorded_at: Thu, 17 Dec 2020 16:08:07 GMT
+  recorded_at: Mon, 11 Jan 2021 14:58:49 GMT
 - request:
     method: get
     uri: http://localhost:9292/celo/block/by_height?height=1614750
@@ -109,7 +109,7 @@ http_interactions:
           },
           "tx_count": 1
         }
-  recorded_at: Thu, 17 Dec 2020 16:08:07 GMT
+  recorded_at: Mon, 11 Jan 2021 14:58:49 GMT
 - request:
     method: get
     uri: http://localhost:9292/celo/transactions/by_height?height=1614750
@@ -139,13 +139,17 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Content-Length:
-      - '641'
+      - '839'
     body:
       encoding: UTF-8
       string: |
         {
           "items": [
             {
+              "hash": "0x929145bcb26a7f14fbf0758105b7a778da760453c0c7640e3a5d83fb78a0459c",
+              "height": 1614760,
+              "time": 1603303325,
+              "address": "0x22C8a9178841BA95a944AFD1a1fAaE517d3f5DAA",
               "nonce": 7006,
               "gas_price": 500000000,
               "gas": 72513,
@@ -171,7 +175,7 @@ http_interactions:
             }
           ]
         }
-  recorded_at: Thu, 17 Dec 2020 16:08:07 GMT
+  recorded_at: Mon, 11 Jan 2021 14:58:49 GMT
 - request:
     method: get
     uri: http://localhost:9292/celo/validator_groups/by_height?height=1614750
@@ -235,5 +239,5 @@ http_interactions:
             }
           ]
         }
-  recorded_at: Thu, 17 Dec 2020 16:08:07 GMT
+  recorded_at: Mon, 11 Jan 2021 14:58:49 GMT
 recorded_with: VCR 6.0.0

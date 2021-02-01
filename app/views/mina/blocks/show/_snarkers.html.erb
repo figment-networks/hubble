@@ -1,0 +1,28 @@
+<%= render_card "SNARK Jobs", body_class: "no-padding" do %>
+  <% if snark_jobs.any? %>
+    <table class="table table-striped snarkers">
+      <thead>
+        <tr role="row">
+          <th width="60%">Snarker</th>
+          <th>Works Performed</th>
+          <th>Fee</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% snark_jobs.each do |job| %>
+          <tr>
+            <td><%= link_to job.prover.truncate(40), mina_chain_account_path(@chain, job.prover) %>
+            <td><%= job.works_count %></td>
+            <td>
+              <span data-toggle="tooltip" data-tooltip-side="right" title="<%= format_amount job.fee, denom: "nmina" %>">
+                <%= format_amount job.fee, denom: "mina" %>
+              </span>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <div class="text-empty">No SNARK jobs in this block</div>
+  <% end %>
+<% end %>

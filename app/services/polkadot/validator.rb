@@ -29,6 +29,8 @@ module Polkadot
     end
 
     def uptime
+      return 0 if accumulated_uptime_count.to_f <= 0
+
       accumulated_uptime.to_f / accumulated_uptime_count.to_f
     end
 

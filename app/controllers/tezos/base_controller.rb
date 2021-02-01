@@ -1,5 +1,5 @@
 module Tezos
-  class BaseController < ApplicationController
+  class BaseController < Hubble::ApplicationController
     before_action :set_chain
 
     private

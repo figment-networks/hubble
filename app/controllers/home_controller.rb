@@ -1,9 +1,9 @@
 require 'cryptocompare'
 
-class HomeController < ApplicationController
+class HomeController < Hubble::ApplicationController
   layout 'redesign/home'
 
-  TOKEN_PRICE_LIST = %i[ATOM LPT KAVA DOT XTZ LUNA IRIS CELO NEAR AVAX].freeze
+  TOKEN_PRICE_LIST = %i[ATOM LPT KAVA DOT XTZ LUNA IRIS CELO NEAR AVAX MINA ROSE].freeze
 
   def index
     page_title 'Hubble'

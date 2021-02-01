@@ -1,0 +1,58 @@
+.transaction-index {
+  .card {
+    .card-header {
+      h4 {
+        margin-bottom: 0;
+      }
+    }
+
+    .no-padding {
+      padding: 0;
+    }
+
+    table {
+      margin-bottom: 0;
+    }
+  }
+
+  form.new_search {
+    .flatpickr {
+      background: #fff;
+    }
+
+    .show-opts {
+      label:first-child {
+        display: block;
+      }
+    }
+  }
+
+  .transactions-search-results {
+    .inline-pagination {
+      padding: 12px;
+      text-align: center;
+
+      a {
+        margin: 0 auto;
+      }
+    }
+  }
+}
+
+.transaction-show {
+  .card-body {
+    &.no-padding {
+      padding: 0;
+    }
+  }
+}
+
+.flatpickr-clear {
+  padding: 4px;
+  cursor: pointer;
+  border-top: 1px solid #eee;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

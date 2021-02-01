@@ -1,43 +1,65 @@
-<header class='network-chain-header'>
-  <h1>
-    <%= link_to namespaced_path, class: 'secret-link' do %>
-      <%= @chain.network_name %>
-      <% if @chain -%>
-        <small class='chain-info text-muted'>
-          <span class='d-none d-md-inline'>&mdash;</span>
-          <%= @chain.name %>
-          <% if @chain.testnet? -%>
-            <span class='d-none d-md-inline badge badge-pill badge-light'>TESTNET</span>
-            <span class='d-inline d-md-none text-muted'><span class='fas fa-vial'></span></span>
-          <% end -%>
-        </small>
-      <% end -%>
-    <% end -%>
-  </h1>
+<header class='network-chain-header pt-4'>
+  <div class="container">
+    <div class='d-block d-lg-none mb-5'>
+      <%= render partial: '/shared/redesign/search-bar' %>
+    </div>
 
-  <div class='buttons ml-auto'>
-    <% if current_admin -%>
-      <%= link_to namespaced_path(admin: true), class: 'ml-1 btn btn-info' do %>
-        <span class='d-none d-md-inline'>Admin</span>
-        <span class='d-inline d-md-none fa fa-crown'></span>
+    <div class="d-flex align-items-center flex-wrap">
+      <% if network_has_image?(@chain.network_name) -%>
+        <%= link_to namespaced_path(chain: @chain), class: 'chains-list__card-link' do %>
+          <%= image_tag network_image(@chain.network_name), class: "#{@chain.network_name.downcase}-img" %>
+        <% end -%>
+      <% else -%>
+        <p class='logo-fallback'><%= @chain.network_name %></p>
       <% end -%>
-    <% end -%>
-    <% if defined?(events_link) -%>
-      <%= link_to 'Events', namespaced_path('events'), class: 'ml-1 btn btn-outline-primary' %>
-    <% end -%>
-    <% if defined?(delegator_lists_link) -%>
-      <%= link_to 'Delegator Lists', namespaced_path('delegator_lists'), class: 'ml-1 btn btn-outline-primary' %>
-    <% end -%>
-    <% if defined?(summary_link) -%>
-      <%= link_to namespaced_path, class: 'ml-1 btn btn-outline-secondary' do %>
-        <span class='d-none d-md-inline'>Summary</span>
-        <span class='d-inline d-md-none fa fa-arrow-circle-up'></span>
+      <div class="network-chain-header-arrow mx-3">→</div>
+
+      <% if !@no_chain_select && grouped_visible_chains.any? %>
+        <div class='dropdown chain-select'>
+          <button class='dropdown-toggle' id='chain-menu-link' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+            <%= @chain.name %>
+          </button>
+          <div class='dropdown-menu' aria-labelledby='chain-menu-link'>
+            <% grouped_visible_chains.each do |network, chains| -%>
+              <div class='dropdown-label'><%= network %></div>
+              <% chains.each do |chain| -%>
+                <% path = controller_name == 'dashboard' ? namespaced_path('dashboard', chain: chain) : namespaced_path(chain: chain) -%>
+                <%= link_to path, class: "dropdown-item #{'current-chain' if chain == @chain}" do %>
+                  <%= chain.name %>
+                <% end -%>
+              <% end -%>
+              <div class='dropdown-divider'></div>
+            <% end -%>
+          </div>
+        </div>
       <% end -%>
+    </div>
+
+    <% if @chain.testnet? %>
+      <div class="mt-1">
+        <span class='p-0 d-none d-md-inline badge badge-pill badge-light'>TESTNET</span>
+        <span class='p-0 d-inline d-md-none text-muted'><span class='fas fa-vial'></span></span>
+      </div>
     <% end -%>
-    <div class='ml-1 tooltip-target info-tooltip-target' data-toggle='tooltip' title='<%= chain_header_tooltip_info %>'>
-      <span class='fas fa-info'></span>
+
+    <div class="sync d-flex flex-wrap">
+      <%= chain_header_tooltip_info.html_safe %>
+    </div>
+    
+    <div class='tabs'>
+      <%= render partial: '/shared/redesign/chain_header_link', locals: { active_tab: active_tab, link_text: 'Orchestrators', link_path:  namespaced_path(chain: @chain), } %>
+      <% if current_admin -%>
+        <%= render partial: '/shared/redesign/chain_header_link', locals: { active_tab: active_tab, link_text: 'Admin', link_path:  namespaced_path(admin: true), } %>
+      <% end -%>
+      <% if defined?(events_link) -%>
+        <%= render partial: '/shared/redesign/chain_header_link', locals: { active_tab: active_tab, link_text: 'Events', link_path:  namespaced_path('events'), } %>
+      <% end -%>
+      <% if defined?(delegator_lists_link) -%>
+        <%= render partial: '/shared/redesign/chain_header_link', locals: { active_tab: active_tab, link_text: 'Delegator Lists', link_path:  namespaced_path('delegator_lists'), } %>
+      <% end -%>
     </div>
   </div>
+
 </header>
 
 <% if @chain.notes.present? -%>

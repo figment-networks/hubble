@@ -24,8 +24,8 @@
 
       <% transactions.each do |transaction| -%>
         <tr>
-          <td data-order='<%= transaction.id %>'>
-            <span class='technical'><%= transaction.id.truncate(60) %></span>
+          <td data-order='<%= transaction.hash %>'>
+            <span class='technical'><%= transaction.hash.truncate(60) %></span>
           </td>
           <td data-order='<%= transaction.is_success %>'>
             <% if transaction.is_success -%>
@@ -35,7 +35,7 @@
             <% end -%>
           </td>
           <td class='text-right'>
-            <a class='btn btn-outline-primary btn-sm' href='<%= namespaced_path( 'block_transaction', transaction.block, transaction.id ) %>'>Details...</a>
+            <a class='btn btn-outline-primary btn-sm' href='<%= namespaced_path( 'block_transaction', transaction.block, transaction.hash ) %>'>Details...</a>
           </td>
         </tr>
       <% end -%>

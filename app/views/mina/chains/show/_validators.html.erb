@@ -1,0 +1,72 @@
+<section class="validators">
+  <div class="validator-table-header">
+    <h4>
+      Validators
+      <small>&nbsp;&mdash; <%= @validators.size %> total&nbsp;</small>
+      <div class="validators-chart-container">
+        <canvas class="validators-chart" data-chart="<%= validator_intervals.to_json %>" data-name="validators"></canvas>
+      </div>
+      <script>
+        App.config.currentValidatorFilter = "<%= mina_validators_active_filter(@validators) %>";
+      </script>
+    </h4>
+
+    <div class="controls">
+      <input type="text" class="form-control form-control-sm validator-search" placeholder="filter validators...">
+      <a tabindex=0 class="btn btn-sm btn-outline-light validator-table-settings-target"><span class="fas fa-cog"></span></a>
+      <div class="validator-table-settings d-none">
+        <div class="btn-group" role="group" aria-label="Validator table filter">
+          <button type="button" data-target="_all_" class="btn btn-outline-primary">All</button>
+          <button type="button" data-target="_active_" class="btn btn-outline-primary">Active</button>
+          <button type="button" data-target="_inactive_" class="btn btn-outline-primary">Inactive</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="validator-table">
+    <table class="table-striped">
+      <thead>
+        <tr>
+          <th>Address/Name</th>
+          <th>Blocks Produced</th>
+          <th>Delegations</th>
+          <th>Stake</th>
+          <th class="d-none"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @validators.each do |validator| %>
+          <tr>
+            <td>
+              <span
+                class="fa fa-circle status-icon <%= validator.status %>"
+                data-toggle="tooltip"
+                data-tooltip-side="right"
+                title="Last seen active <%= time_ago_in_words validator.last_time %> ago">
+              </span>
+              <a href="<%= mina_chain_validator_path(@chain, id: validator.account) %>">
+                <%= validator.account.truncate(20) %>
+              </a>
+            </td>
+            <td>
+              <%= validator.blocks_created %>
+            </td>
+            <td>
+              <%= validator.delegated_accounts %>
+            </td>
+            <td data-order="<%= validator.account_balance %>">
+              <span data-toggle="tooltip" data-tooltip-side="left" title="<%= mina_validator_power(validator.account_balance, validator_pool) %> of validator pool">
+                <%= format_amount(validator.account_balance, denom: "mina") %>
+              </span>
+            </td>
+            <td class="d-none">
+              _all_ <%= validator.active? ? "_active_" : "_inactive_" %>
+              <%= validator.account %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</section>

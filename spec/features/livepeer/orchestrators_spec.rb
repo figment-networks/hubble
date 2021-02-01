@@ -79,18 +79,18 @@ describe 'Livepeer Orchestrators' do
     expect(page).to have_link('Visit Site', href: 'http://orchestrator.example')
     expect(page).to have_content('9FFDA5FA31C5FCC21DE84A1B0A849EFA0DD9D264')
 
-    expect(page).to have_content('Event History — most recent 20')
-    expect(page).to have_content("Slashed with penalty 20.65K LPT in round 1848\nAugust 12, 2020\nat 18:07 UTC")
-    expect(page).to have_content("Deactivated in round 1806\nJuly 06, 2020\nat 14:18 UTC")
-    expect(page).to have_content("Missed a reward call in round 1734\nMay 02, 2020\nat 21:37 UTC")
-    expect(page).to have_content("Reward cut changed to 30% in round 1673\nMarch 09, 2020\nat 12:16 UTC")
+    expect(page).to have_content('Event History')
+    expect(page).to have_content('Slashed with penalty 20.65K LPT')
+    expect(page).to have_content('Deactivated 1806')
+    expect(page).to have_content('Missed a reward call 1734')
+    expect(page).to have_content('Reward cut changed to 30% 1673')
 
     expect(page).to have_content('Delegators')
     expect(page).to have_content('E1C2047311F5DB1E082D722F2F867D54C6F61F03 1.23M LPT 99.63%')
     expect(page).to have_content('308A23B3E963D253252D2A7C6FABD81338E66C7F 4.57K LPT 0.37%')
 
-    expect(page).to have_content("Reward Cut\n40%")
-    expect(page).to have_content("Fee Share\n0%")
-    expect(page).to have_content("Total Stake\n1.23M LPT")
+    expect(page).to have_content("REWARD CUT\n40%")
+    expect(page).to have_content("FEE SHARE\n0%")
+    expect(page).to have_content("TOTAL STAKE\n1.23M LPT")
   end
 end

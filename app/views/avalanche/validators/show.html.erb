@@ -1,0 +1,54 @@
+<% content_for :body_class, "validator-show" %>
+
+<%= render "/shared/dh_banner_script" %>
+<%= render partial: "shared/redesign/chain_header", locals: { active_tab: '' } %>
+
+<div class='validator-header border-top-0'>
+  <div class='container'>
+    <div class='d-flex flex-wrap'>
+      <h2 class='mb-4 validator-header__title mr-auto'>
+        <%= @validator.validator.node_id %>
+      </h2>
+      <div class='validator-info pb-4'>
+        <ul class="validator-info__list">
+          <li class="validator-info__item">
+            <p class="text-label validator-info__label">Beneficiary</p>
+            <%= link_to @validator.validator.reward_address, avalanche_chain_account_path(@chain, @validator.validator.reward_address) %>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render_flash_messages %>
+
+<div class='content'>
+  <div class='container'>
+    <div>
+      <div class="row">
+        <div class="col-md-12 col-lg-6 mb-5 mb-lg-0">
+          <%= render "avalanche/validators/sections/staking", validator: @validator.validator %>
+        </div>
+        <%= render "avalanche/validators/sections/stats", validator_hourly_uptime_avg: @validator_hourly_uptime_avg %>
+        <div class="col-md-12 col-lg-6">
+            <%= render "avalanche/validators/sections/lifetime", validator: @validator.validator %>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class='content'>
+  <div class='container'>
+    <div>
+      <div class='mt-2'>
+        <% if @validator.delegations.empty? -%>
+          <p class="text-label validator-info__label">There are no delegations currently for this validator</p><br>
+        <% else -%>
+          <%= render "avalanche/validators/sections/delegations", delegations: @validator.delegations %>
+        <% end -%>
+      </div>
+    </div>
+  </div>
+</div>

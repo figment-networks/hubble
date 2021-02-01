@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://min-api.cryptocompare.com/data/pricemulti?fsyms=ATOM,LPT,KAVA,DOT,XTZ,LUNA,IRIS,CELO,NEAR,AVAX&tsyms=USD
+    uri: https://min-api.cryptocompare.com/data/pricemulti?fsyms=ATOM,LPT,KAVA,DOT,XTZ,LUNA,IRIS,CELO,NEAR,AVAX,MINA,ROSE&tsyms=USD
     body:
       encoding: US-ASCII
       string: ''
@@ -21,7 +21,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Mon, 02 Nov 2020 15:15:01 GMT
+      - Mon, 25 Jan 2021 12:57:34 GMT
       Content-Type:
       - application/json; charset=UTF-8
       Transfer-Encoding:
@@ -45,9 +45,9 @@ http_interactions:
       X-Cryptocompare-Cache-Hit:
       - 'false'
       X-Cryptocompare-Server-Id:
-      - ccc-api14
+      - ccc-api17
     body:
       encoding: UTF-8
-      string: '{"ATOM":{"USD":4.65},"LPT":{"USD":1.595},"KAVA":{"USD":1.615},"DOT":{"USD":4.045},"XTZ":{"USD":1.912},"LUNA":{"USD":0.2914},"IRIS":{"USD":0.04529},"CELO":{"USD":1.629},"NEAR":{"USD":0.6241}}'
-  recorded_at: Mon, 02 Nov 2020 15:15:01 GMT
+      string: '{"ATOM":{"USD":8.41},"LPT":{"USD":4.749},"KAVA":{"USD":2.456},"DOT":{"USD":18.45},"XTZ":{"USD":3.134},"LUNA":{"USD":0.9224},"IRIS":{"USD":0.06712},"CELO":{"USD":2.915},"NEAR":{"USD":2.533},"AVAX":{"USD":12.85},"ROSE":{"USD":0.06283}}'
+  recorded_at: Mon, 25 Jan 2021 12:57:34 GMT
 recorded_with: VCR 6.0.0

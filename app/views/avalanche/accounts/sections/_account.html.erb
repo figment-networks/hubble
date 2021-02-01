@@ -1,0 +1,29 @@
+<div class="data-block">
+  <h3 class="data-block__title">Account Information</h3>
+  <div class="row">
+    <div class="col-md-12 col-lg-3 mb-3">
+      <label class="text-label m-0">Balance</label>
+      <div>
+        <%= format_amount(account.balance, denom: @chain.class::DEFAULT_TOKEN_REMOTE) %>
+      </div>
+    </div>
+    <div class="col-md-12 col-lg-3 mb-3">
+      <label class="text-label m-0">Unlocked</label>
+      <div>
+        <%= format_amount(account.unlocked, denom: @chain.class::DEFAULT_TOKEN_REMOTE) %>
+      </div>
+    </div>
+    <div class="col-md-12 col-lg-3 mb-3">
+      <label class="text-label m-0">Locked Stakeable</label>
+      <div>
+        <%= format_amount(account.locked_stakeable, denom: @chain.class::DEFAULT_TOKEN_REMOTE) %>
+      </div>
+    </div>
+    <div class="col-md-12 col-lg-3 mb-3">
+      <label class="text-label m-0">Locked Not Stakeable</label>
+      <div>
+        <%= format_amount(account.locked_not_stakeable, denom: @chain.class::DEFAULT_TOKEN_REMOTE) %>
+      </div>
+    </div>
+  </div>
+</div>

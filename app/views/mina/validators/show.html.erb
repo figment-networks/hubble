@@ -1,0 +1,42 @@
+<% content_for :body_class, "validator-show" %>
+
+<%= render "chain_header", summary_link: true %>
+<%= render_flash_messages %>
+
+<div class="row mb-4">
+  <div class="col-12 col-md-8">
+    <div class="info">
+      <h2 class="mb-3">
+        <label class="text-muted">Validator</label>
+        <%= @validator.account.truncate(30) %>
+      </h2>
+      <h5 class="mb-0">
+        <label class="text-muted">Account</label>
+        <span class="technical">
+          <%= link_to @validator.account.truncate(50), mina_chain_account_path(@chain, @validator.account) %>
+        </span>
+      </h5>
+    </div>
+  </div>
+  <div class="col-12 col-md-4">
+    <%= render "mina/validators/show/ledger" if @chain.supports_ledger? %>
+  </div>
+</div>
+
+<div class="row info-cards">
+  <div class="col-12 col-md-8 order-1 order-md-0">
+    <%= render "mina/validators/show/balance_stats", stats: @stats %>
+    <%= render "mina/validators/show/transactions", chain: @chain, validator: @validator, transactions: @transactions %>
+    <%= render "mina/validators/show/delegations",  delegations: @delegations, validator: @validator, account: @account, chain: @chain %>
+  </div>
+  <div class="col-12 col-md-4 order-0 order-md-1 info-cards">
+    <%= render "mina/validators/show/staking",
+      validator: @validator,
+      account:   @account,
+      total:     @staking_pool,
+      ledger:    @chain.supports_ledger?
+    %>
+    <%= render "mina/validators/show/lifetime", validator: @validator %>
+    <%= render "mina/validators/show/blocks",   blocks: @blocks.reverse, account: @validator.account %>
+  </div>
+</div>

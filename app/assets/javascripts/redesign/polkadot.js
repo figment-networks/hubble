@@ -7,6 +7,7 @@
 // = require tooltipster/dist/js/tooltipster.bundle.min
 // = require clipboard/dist/clipboard.min
 // = require datatables/media/js/jquery.dataTables.min
+// = require flatpickr/dist/flatpickr.min
 //
 // disable proper package for now since it's broken
 // require chart.js/dist/Chart.min

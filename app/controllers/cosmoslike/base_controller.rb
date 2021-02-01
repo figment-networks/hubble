@@ -1,4 +1,4 @@
-class Cosmoslike::BaseController < ApplicationController
+class Cosmoslike::BaseController < Hubble::ApplicationController
   before_action :find_chain
   before_action :set_behind_chain_alert
 

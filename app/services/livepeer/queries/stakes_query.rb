@@ -6,7 +6,10 @@ class Livepeer::Queries::StakesQuery < Livepeer::Queries::ReportQuery
   ].freeze
 
   def call
-    group_by_delegator(filter_by_range(filter_by_delegators(chain.stakes)))
+    chain.stakes.
+      then { |r| filter_by_delegators(r) }.
+      then { |r| filter_by_range(r) }.
+      then { |r| group_by_delegator(r) }
   end
 
   def filter_by_date(relation)

@@ -1,0 +1,2 @@
+module Prime::ApplicationHelper
+end

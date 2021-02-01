@@ -115,5 +115,39 @@ module Oasis
     def rewards(address)
       get("/balance/#{address}").map { |rewards| Oasis::RewardsReport.new(rewards) }
     end
+
+    def get_alertable_name(address)
+      # to be updated to pull entity_name once that PR is merged
+      validator = validator(address, 0)
+      validator.entity_name.presence || validator.address
+    end
+
+    def get_recent_events(chain, address, klass, time_ago)
+      all_events = retrieve_events(chain, address, Time.now - time_ago)
+      all_events.select { |e| e.time >= time_ago && klass == "Common::ValidatorEvents::#{e.kind_class.classify}".constantize }
+    end
+
+    def get_events_for_alert(chain, subscription, seconds_ago, date = nil)
+      all_events = retrieve_events(chain, subscription.alertable.address, seconds_ago)
+
+      # filter out events prior to last alert time
+      if !date
+        filtered_events = all_events.select { |e| e.time > subscription.last_instant_at }
+      else
+        filtered_events = all_events.select do |e|
+          e.time >= date.beginning_of_day && e.time <= date.end_of_day
+        end
+      end
+    end
+
+    private
+
+    def retrieve_events(chain, address, seconds_ago)
+      # get events from twice the supplied timeframe to ensure all unsent events are picked up
+      blocks_back = (seconds_ago * 2) / block_times(1000).avg
+      start_block = (current_block.height - blocks_back).round.to_i
+
+      validator_events(chain, address, start_block)
+    end
   end
 end

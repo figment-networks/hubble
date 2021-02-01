@@ -41,10 +41,9 @@ describe 'Livepeer Delegator List Events' do
       find('a .fa-clock').click
 
       expect(page).to have_content("Events for #{delegator_list.name}")
-      expect(page).to have_content('showing 1-2 of 2 total events')
 
       expect(page).to have_content('C22BC16573B4A9844499CDB01B3B07268A82299B' \
-        ' changed reward cut to 30% in round 1000')
+        ' changed reward cut to 30% 1000')
     end
   end
 end

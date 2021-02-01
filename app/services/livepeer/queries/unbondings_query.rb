@@ -5,7 +5,11 @@ class Livepeer::Queries::UnbondingsQuery < Livepeer::Queries::ReportQuery
   ].freeze
 
   def call
-    group_by_delegator(filter_by_range(filter_by_delegators(exclude_same_round_rebonds(chain.unbonds))))
+    chain.unbonds.
+      then { |r| exclude_same_round_rebonds(r) }.
+      then { |r| filter_by_delegators(r) }.
+      then { |r| filter_by_range(r) }.
+      then { |r| group_by_delegator(r) }
   end
 
   private

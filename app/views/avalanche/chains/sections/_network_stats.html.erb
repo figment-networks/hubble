@@ -1,0 +1,64 @@
+<div class='data-block'>
+  <h3 class='data-block__title'>Network Statistics</h3>
+  <% if stats_daily %>
+    <small class='text-muted'>
+      <%= stats_daily.time.strftime('%Y-%m-%d') %> UTC
+    </small>
+    <div class="row">
+      <div class="col-xl-6 col-lg-12 col-md-12 col-sm-6  mt-4">
+        <p class="text-small m-0">Staked Amount</p>
+        <p class="data-block__value m-0">
+          <%= format_amount(stats_daily.total_staked_amount, denom: @chain.class::DEFAULT_TOKEN_REMOTE) %>
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-6 col-lg-12 col-md-12 col-sm-6  mt-4">
+        <p class="text-small m-0">Delegated Amount</p>
+        <p class="data-block__value m-0">
+          <%= format_amount(stats_daily.total_delegated, denom: @chain.class::DEFAULT_TOKEN_REMOTE) %>
+        </p>
+      </div>
+    </div>
+    <div class="row f-wrap justify-content-between">
+      <div class="col-xl-6 col-lg-12 col-md-12 col-sm-6  mt-4">
+        <p class="text-small m-0">Peers</p>
+        <p class="data-block__value m-0 word-break">
+          <%= stats_daily.peers %>
+        </p>
+      </div>
+    </div>
+    <div class="row f-wrap justify-content-between">
+      <div class="col-xl-6 col-lg-12 col-md-12 col-sm-6  mt-4">
+        <p class="text-small m-0">Blockchains</p>
+        <p class="data-block__value m-0 word-break">
+          <%= stats_daily.blockchains %>
+        </p>
+      </div>
+    </div>
+    <div class="row f-wrap justify-content-between">
+      <div class="col-xl-6 col-lg-12 col-md-12 col-sm-6  mt-4">
+        <p class="text-small m-0">Active Validators</p>
+        <p class="data-block__value m-0">
+          <%= stats_daily.active_validators %> <br>
+          <span class="text-small m-0">
+            (<%= stats_daily.pending_validators %> pending)
+          </span>
+        </p>
+      </div>
+    </div>
+    <div class="row f-wrap justify-content-between">
+      <div class="col-xl-6 col-lg-12 col-md-12 col-sm-6  mt-4">
+        <p class="text-small m-0">Active Delegations</p>
+        <p class="data-block__value m-0">
+          <%= stats_daily.active_delegations %> <br>
+          <span class="text-small m-0">
+            (<%= stats_daily.pending_delegations %> pending)
+          </span>
+        </p>
+      </div>
+    </div>
+  <% else %>
+    <span class='text-muted'>Unavailable</span>
+  <% end %>
+</div>

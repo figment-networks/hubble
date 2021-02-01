@@ -3,6 +3,7 @@ module Avalanche
     field :app_version
     field :go_version
     field :success
+    field :sync_time, type: :timestamp
 
     def initialize(attributes = {})
       super(attributes)

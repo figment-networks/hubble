@@ -1,0 +1,38 @@
+<% content_for :body_class, "account-show" %>
+
+<%= render "/shared/dh_banner_script" %>
+<%= render partial: "shared/redesign/chain_header", locals: { active_tab: '' } %>
+
+<div class='validator-header border-top-0'>
+  <div class='container'>
+    <div>
+      <h3 class='text-label m-0'>Account</h3>
+      <h2 class='mb-4 validator-header__title mr-auto'>
+        <%= params[:id] %>
+      </h2>
+    </div>
+  </div>
+</div>
+
+<%= render_flash_messages %>
+
+<div class='content'>
+  <div class='container'>
+      <div class="row">
+        <div class="col-md-12 col-lg-6 mb-5 mb-lg-0">
+          <%= render "avalanche/accounts/sections/account", account: @account %>
+        </div>
+      </div>
+    <% if @validators.empty? -%>
+      <br><p class="text-label validator-info__label">This Beneficiary has no Active Validators</p><br>
+    <% else -%>
+        <%= render "avalanche/accounts/sections/validators", validators: @validators unless @validators.empty? %>
+    <% end -%>
+
+    <% if @delegations.empty? -%>
+      <br><p class="text-label validator-info__label">This Address has no Active Delegations</p><br>
+    <% else -%>
+      <%= render "avalanche/accounts/sections/delegations", delegations: @delegations unless @delegations.empty? %>
+    <% end -%>
+  </div>
+</div>

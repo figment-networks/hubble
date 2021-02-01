@@ -42,5 +42,9 @@ module Common
     def added?
       data['status'] == 'added'
     end
+
+    def kind_class
+      self.class.name.split('::').last.underscore
+    end
   end
 end
