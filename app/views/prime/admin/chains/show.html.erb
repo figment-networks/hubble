@@ -1,0 +1,156 @@
+<% content_for :body_class, 'prime-admin-chain-show' %>
+
+<h2 class='header'>
+  <span>
+    <%= @chain.network.name.capitalize %> / <%= @chain.name %>
+    <% if @chain.primary? %>
+      <span class='fas fa-star text-primary' title='Primary'></span>
+    <% end %>
+  </span>
+  <div class='buttons'>
+    <%= link_to 'back', prime_admin_root_path, class: 'btn btn-sm btn-outline-secondary' %>
+  </div>
+</h2>
+
+<table class='table table-sm mb-5'>
+  <tbody>
+    <tr>
+      <th class='align-middle mt-0'>Status:</th>
+      <td class='mt-0'>
+        <div class='chain-status d-flex'>
+
+          <% if @chain.active? %>
+            <div class='sync-status text-muted'>Active</div>
+
+            <%= form_for @chain, url: prime_admin_network_chain_path, method: 'patch' do |f| %>
+              <%= f.hidden_field :active, value: false %>
+              <%= f.button  class: 'btn btn-sm btn-warning ml-2', data: @chain.primary? ? { toggle: 'tooltip' } : nil, title: @chain.primary? ? "Warning, this is the primary #{@chain.network.name.capitalize} chain!" : nil do %>
+                <span class='fas fa-exclamation-triangle'></span> disable
+              <% end %>
+            <% end -%>
+
+            <% if !@chain.primary? -%>
+              <%= form_for @chain, url: prime_admin_network_chain_path, method: 'patch' do |f| %>
+                <%= f.hidden_field :primary, value: true %>
+                <%= f.button class: 'btn btn-sm btn-dark ml-3' do %>
+                  <span class='fas fa-star'></span> make primary
+                <% end %>
+              <% end -%>
+            <% end -%>
+
+          <% else -%>
+            <% if @chain.dead? -%>
+              <div class='sync-status text-muted'><span class='fas fa-skull-crossbones text-dark'></span> Dead</div>
+            <% else -%>
+              <div class='sync-status text-muted'><span class='fas fa-exclamation-triangle text-warning'></span> Disabled</div>
+
+              <%= form_for @chain, url: prime_admin_network_chain_path, method: 'patch' do |f| %>
+                <%= f.hidden_field :active, value: true %>
+                <%= f.button class: 'btn btn-sm btn-primary ml-3' do %>
+                  <span class='fas fa-play-circle'></span> enable
+                <% end %>
+              <% end -%>
+
+              <%= form_for @chain, url: prime_admin_network_chain_path, method: 'patch' do |f| %>
+                <%= f.hidden_field :dead, value: true %>
+                <%= f.button class: 'btn btn-sm btn-warning ml-3' do %>
+                  <span class='fas fa-skull-crossbones'></span> mark as dead
+                <% end %>
+              <% end -%>
+            <% end -%>
+
+            <%= button_to prime_admin_network_chain_path, method: 'delete', class: 'btn btn-sm btn-danger action-delete-confirmation ml-3' do %>
+              <span class='fas fa-times'></span> delete
+            <% end %>
+          <% end %>
+
+        </div>
+      </td>
+    </tr>
+
+    <tr>
+      <th class='align-middle'>API URL:</th>
+      <td>
+        <%= form_for @chain, url: prime_admin_network_chain_path, method: 'patch' do |f| %>
+          <div class='rpc-host-edit d-flex'>
+            <%= f.text_field :api_url, class: 'mr-2 w-50 form-control technical', placeholder: 'api_url' %>
+            <%= f.submit 'update', class: 'btn btn-sm btn-primary ml-auto' %>
+          </div>
+        <% end -%>
+      </td>
+    </tr>
+
+    <tr>
+      <th class='align-middle'>FIGMENT VALIDATOR:</th>
+      <td>
+        <%= form_for @chain, url: prime_admin_network_chain_path, method: 'patch' do |f| %>
+          <div class='rpc-host-edit d-flex'>
+            <%= f.text_field :figment_validator_addresses, class: 'mr-2 w-50 form-control technical', placeholder: 'comma separated if multiple addresses' %>
+            <%= f.submit 'update', class: 'btn btn-sm btn-primary ml-auto' %>
+          </div>
+        <% end -%>
+      </td>
+    </tr>
+
+    <tr>
+      <th class='align-middle'>TOKEN DEFAULTS:</th>
+      <td>
+        <%= form_for @chain, url: prime_admin_network_chain_path, method: 'patch' do |f| %>
+          <div class='d-flex flex-column py-3'>
+            <div class='d-flex'>
+              <div class='w-100 mr-4'>
+                <%= f.label :reward_token_remote, 'Remote ID:', class: 'text-muted text-sm mb-0' %>
+                <%= f.text_field :reward_token_remote, class: 'mr-2 w-50 form-control technical', placeholder: 'token remote' %>
+              </div>
+              <div class='w-100 ml-4'>
+                <%= f.label :reward_token_display, 'Display:', class: 'text-muted text-sm mb-0' %>
+                <%= f.text_field :reward_token_display, class: 'mr-2 w-50 form-control technical', placeholder: 'token display' %>
+              </div>
+            </div>
+            <div class='d-flex'>
+              <div class='w-100 mr-4'>
+                <%= f.label :reward_token_factor, 'Factor:', class: 'text-muted text-sm mt-3 mb-0' %>
+                <%= f.text_field :reward_token_factor, class: 'mr-2 w-50 form-control technical', placeholder: 'token factor' %>
+              </div>
+              <div class='w-100 ml-4'>
+
+              </div>
+            </div>
+            <%= f.submit 'update', class: 'mt-3 ml-auto btn btn-sm btn-primary' %>
+          </div>
+        <% end -%>
+      </td>
+    </tr>
+
+    <tr>
+      <th class='align-middle'>Lifetime Stats:</th>
+      <td>
+        <%= form_for @chain, url: prime_admin_network_chain_path, method: 'patch' do |f| %>
+          <div class='d-flex flex-column py-3'>
+            <div class='d-flex'>
+              <div class='w-100 mr-4'>
+                <%= f.label :genesis_block_time, 'Genesis Block Date:', class: 'text-muted text-sm mb-0' %>
+                <%= f.text_field :genesis_block_time, class: 'mr-2 w-50 form-control technical' %>
+              </div>
+              <div class='w-100 ml-4'>
+                <%= f.label :genesis_block_height, 'Genesis Block Height:', class: 'text-muted text-sm mb-0' %>
+                <%= f.text_field :genesis_block_height, class: 'mr-2 w-50 form-control technical' %>
+              </div>
+            </div>
+            <div class='d-flex'>
+              <div class='w-100 mr-4'>
+                <%= f.label :final_block_time, 'Final Block Date:', class: 'text-muted text-sm mt-3 mb-0' %>
+                <%= f.text_field :final_block_time, class: 'mr-2 w-50 form-control technical' %>
+              </div>
+              <div class='w-100 ml-4'>
+                <%= f.label :final_block_height, 'Final Block Height:', class: 'text-muted text-sm mt-3 mb-0' %>
+                <%= f.text_field :final_block_height, class: 'mr-2 w-50 form-control technical' %>
+              </div>
+            </div>
+            <%= f.submit 'update', class: 'mt-3 ml-auto btn btn-sm btn-primary' %>
+          </div>
+        <% end -%>
+      </td>
+    </tr>
+  </tbody>
+</table>

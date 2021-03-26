@@ -1,0 +1,16 @@
+<div class="section__item section__item--narrow">
+  <div class="chart-box">
+    <div class="chart-box__header">
+      <p class="chart-box__text">Portfolio Distribution</p>
+    </div>
+    <div class="chart-box__content">
+      <div id="portfolio-distribution-chart">
+        <% if user_accounts.count > 0 %>
+          <%= pie_chart(build_portfolio_chart_data(enabled_networks, @network_token_balances), legend: "bottom", theme: 'figment', tooltip: tooltips_to_usd) %>
+        <% else %>
+          <span class='portfolio-distribution-no-address'>You have not added any addresses to your account!</span>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -14,7 +14,7 @@ describe 'Livepeer Chains' do
     )
   end
 
-  it 'visiting the chain overview page', :vcr do
+  it 'shows the chain overview', :vcr do
     visit '/'
 
     find("a[href='/livepeer/chains/#{chain.slug}']").click

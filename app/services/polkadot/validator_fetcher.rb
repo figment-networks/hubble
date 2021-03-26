@@ -5,14 +5,14 @@ class Polkadot::ValidatorFetcher
     @client = client
   end
 
-  def perform(stash_account)
+  def perform(stash_account, network: nil)
     validator_details = client.validator_details(stash_account)
     era_sequence = validator_details['last_era_sequences']&.first
     attributes = {}
     attributes.merge!(era_sequence) if era_sequence
     attributes.merge!(validator_details)
     attributes.merge!('account_details' => account_details(attributes['stash_account'], attributes['display_name']))
-    Polkadot::Validator.new(attributes)
+    Polkadot::Validator.new(attributes, network: network)
   end
 
   private

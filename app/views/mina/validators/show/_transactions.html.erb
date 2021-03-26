@@ -1,10 +1,10 @@
-<div class="card recent-transactions">
-  <div class="card-header d-flex align-items-center justify-content-between">
-    <h4>Recent Transactions</h4>
-    <%= link_to "Search Transactions", mina_chain_transactions_path(chain, account: validator.account), class: "btn btn-outline-light btn-sm" %>
+<div class="data-table recent-transactions">
+  <div class="data-table__header d-flex align-items-center justify-content-between">
+    <h3 class='data-table__title'>Recent Transactions</h3>
+    <%= link_to "Search Transactions", mina_chain_transactions_path(chain, account: validator.public_key), class: "btn btn-outline-primary" %>
   </div>
   <div class="card-body no-padding">
-    <table class="table table-striped transactions">
+    <table class="table transactions">
       <thead>
         <tr role="row">
           <th>Type</th>
@@ -16,17 +16,25 @@
         </tr>
       </thead>
       <tbody>
-        <% transactions.each_with_index do |tx, idx| %>
+        <% if transactions.any? %>
+          <% transactions.each_with_index do |tx, idx| %>
+            <tr>
+              <td>
+                <%= mina_tx_icon(tx, validator.public_key) %>
+                <%= tx.formatted_type %>
+              </td>
+              <td><%= link_to tx.time.strftime("%b %d, %Y"), mina_chain_block_path(chain, tx.block_hash) %></td>
+              <td><%= link_to tx.sender.truncate(10), mina_chain_account_path(chain, tx.sender) if tx.sender %></td>
+              <td><%= link_to tx.receiver.truncate(10), mina_chain_account_path(chain, tx.receiver) %></td>
+              <td><%= format_amount tx.amount %></td>
+              <td class="text-right"><%= link_to "details", mina_chain_transaction_path(chain, tx.hash), class: "btn btn-outline-primary btn-sm" %></td>
+            </tr>
+          <% end %>
+        <% else %>
           <tr>
-            <td>
-              <%= mina_tx_icon(tx, validator.account) %>
-              <%= tx.formatted_type %>
+            <td colspan='6' class='data-table__empty'>
+              No transactions for this validator
             </td>
-            <td><%= link_to tx.time.strftime("%b %d, %Y"), mina_chain_block_path(chain, tx.block_hash) %></td>
-            <td><%= link_to tx.sender.truncate(10), mina_chain_account_path(chain, tx.sender) if tx.sender %></td>
-            <td><%= link_to tx.receiver.truncate(10), mina_chain_account_path(chain, tx.receiver) %></td>
-            <td><%= format_amount tx.amount, denom: "mina" %></td>
-            <td class="text-right"><%= link_to "details", mina_chain_transaction_path(chain, tx.hash), class: "btn btn-outline-primary btn-sm" %></td>
           </tr>
         <% end %>
       </tbody>

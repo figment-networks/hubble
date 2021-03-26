@@ -2,7 +2,7 @@ require 'features_helper'
 
 describe 'celo validator groups' do
   let(:chain) { create(:celo_chain) }
-  let(:address) { '0x87614eD7AF361a563C6a3624CcadD52e165f67C2' }
+  let(:address) { '0x35aE10F412503aBcf9275133613E8df7f56E72Be' }
 
   it 'visiting list of validator groups', :vcr do
     visit "/celo/chains/#{chain.slug}"
@@ -12,7 +12,7 @@ describe 'celo validator groups' do
     expect(page).to have_content('VOTING SHARES')
     expect(page).to have_content('AVERAGE BLOCK TIME')
     expect(page).to have_content('Past 48 hours')
-    expect(page).to have_content('100 %')
+    expect(page).to have_content('UP')
   end
 
   it 'visiting validator group details', :vcr do

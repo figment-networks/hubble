@@ -1,0 +1,70 @@
+.network-info__header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 56px 24px 40px;
+
+  @include media(s) {
+    padding: 42px 13.5px 16px;
+  }
+}
+
+.network-info__title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+  font-weight: 400;
+  font-family: "Austin Cyr";
+  font-size: 46px;
+  line-height: 55px;
+  color: #000000;
+}
+
+.network-info__logo {
+  width: 64px;
+  height: 64px;
+  margin-right: 24px;
+}
+
+.network-info__content {
+  padding: 40px 24px;
+
+  @include media(s) {
+    padding: 12px;
+  }
+}
+
+.network-info__list {
+  max-width: 506px;
+  margin: 0 auto;
+}
+
+.network-info__item {
+  display: flex;
+  align-items: center;
+}
+
+.network-info__item + .network-info__item {
+  margin-top: 32px;
+}
+
+.network-info__text {
+  width: 50%;
+  font-size: 14px;
+  line-height: 17px;
+  color: #212529;
+}
+
+.network-info__link {
+  word-break: break-all;
+
+  @include media(s) {
+    font-size: 12px;
+    line-height: 16px;
+  }
+}
+
+.network-info__tooltip {
+  width: 50%;
+}

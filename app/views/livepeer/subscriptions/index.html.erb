@@ -38,7 +38,7 @@
         <% @event_kinds.in_groups_of(2, false).each do |event_kinds| -%>
           <div class='col-12 col-md-6'>
             <% event_kinds.each do |event_kind| -%>
-              <div class='data-table'>
+              <div class='data-table m-0'>
                 <div class='data-table__header'>
                   <div class='card-header-parts'>
                     <h3 class='data-table__title'><%= event_kind_to_name(event_kind) %></h3>
@@ -89,7 +89,7 @@
           <div class="custom-control custom-radio">
             <input class="custom-control-input" id="alert_on" type='radio' name='alert_subscription[wants_daily_digest]' <%= 'checked=true' if selected %> value='on' autocomplete='off'>
             <label for='alert_on' class='custom-control-label'>On</label>
-          </div>  
+          </div>
         </div>
       </div>
     <% end -%>

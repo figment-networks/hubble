@@ -20,9 +20,9 @@
           <td class='technical'>
             <%= link_to delegation.node_id, avalanche_chain_validator_path(@chain, delegation.node_id) %>
           </td>
-          <td class='technical'><small><%= format_amount(delegation.stake_amount, denom: @chain.class::DEFAULT_TOKEN_REMOTE) %></small></td></td>
-          <td class='technical'><small><%= format_amount(delegation.potential_reward, denom: @chain.class::DEFAULT_TOKEN_REMOTE) %></small></td></td>
-          <td class='technical'><small><%= delegation.active_end_time.try(:strftime, "%B %d, %Y at %H:%M %Z")  %></small></td></td>
+          <td class='technical'><small><%= format_amount(delegation.stake_amount, denom: @chain.class::DEFAULT_TOKEN_REMOTE) %></small></td>
+          <td class='technical'><small><%= format_amount(delegation.potential_reward, denom: @chain.class::DEFAULT_TOKEN_REMOTE) %></small></td>
+          <td class='technical'><small><%= delegation.active_end_time.try(:strftime, "%B %d, %Y at %H:%M %Z")  %></small></td>
         </tr>
       <% end -%>
 

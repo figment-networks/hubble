@@ -12,10 +12,15 @@
 @import 'common/typography';
 @import 'common/misc';
 @import 'common/tables';
+@import 'common/logotypes';
 
 @import 'components/tezos/donut-charts';
 
 @import 'page/tezos/governance';
 
-@import 'components/network-chain-header';
 @import 'components/gov-proposals-table';
+@import 'components/data-block';
+@import 'components/data-table';
+@import 'components/network-chain-header';
+@import 'components/validator-header';
+@import 'components/search-bar';

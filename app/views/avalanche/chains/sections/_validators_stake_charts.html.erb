@@ -1,0 +1,68 @@
+<div class="row charts">
+  <div class="col-lg-6 mb-5">
+    <div class='data-block'>
+      <div class="charts">
+        <div class='d-flex justify-content-between align-items-baseline'>
+          <div>
+            <span>Total Amount Delegated</span>
+          </div>
+          <div class='delegations-stake-switcher btn-group btn-group-sm'>
+            <button type='button' data-target='last24h' class='bg-transparent border-0 p-0 text-small sparkline-button'>Past 24h</button>
+            <button type='button' data-target='last30d' class='bg-transparent border-0 p-0 ml-2 text-small sparkline-button'>Past 30d</button>
+          </div>
+        </div>
+        <div class="last24h-chart-container">
+          <canvas
+            class="sparkline-chart last24h-chart"
+            style='height: 50px'
+            data-chart="<%= validators_hourly_stake.to_json %>"
+            data-name="last24h"
+            data-token="<%= @chain.class::DEFAULT_TOKEN_DISPLAY %>">
+          </canvas>
+        </div>
+        <div class="last30d-chart-container">
+          <canvas
+            class="sparkline-chart last30d-chart"
+            style='height: 50px'
+            data-chart="<%= validators_daily_stake.to_json %>"
+            data-name="last30d"
+            data-token="<%= @chain.class::DEFAULT_TOKEN_DISPLAY %>">
+          </canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6 mb-5">
+    <div class='data-block'>
+      <div class="charts">
+        <div class='d-flex justify-content-between align-items-baseline'>
+          <div>
+            <span>Staking Participation</span>
+          </div>
+          <div class='delegations-stake-switcher btn-group btn-group-sm'>
+            <button type='button' data-target='validators' class='bg-transparent border-0 p-0 text-small sparkline-button'>Validators</button>
+            <button type='button' data-target='delegations' class='bg-transparent border-0 p-0 ml-2 text-small sparkline-button'>Delegations</button>
+          </div>
+        </div>
+        <div class="validators-chart-container">
+          <canvas
+            class="sparkline-chart validators-chart"
+            style='height: 50px'
+            data-chart="<%= @staking_participation_stats.validator_chart_info.to_json %>"
+            data-token=""
+            data-name="validators">
+          </canvas>
+        </div>
+        <div class="delegations-chart-container">
+          <canvas
+            class="sparkline-chart delegations-chart"
+            style='height: 50px'
+            data-chart="<%= @staking_participation_stats.delegations_chart_info.to_json %>"
+            data-token=""
+            data-name="delegations">
+          </canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

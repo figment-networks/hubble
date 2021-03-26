@@ -1,4 +1,14 @@
 <div class="data-block">
-  <h3 class="data-block__title">Staking Balance</h3>
-  <%= format_amount(account.staking_balance, denom: 'near') %>
+  <div class="row">
+    <div class="col-md-12 col-lg-6 mb-3">
+    <h3 class="data-block__title">Staking Balance</h3>
+    <%= format_amount(account.staking_balance, denom: 'near') %>
+    </div>
+    <div class="col-md-12 col-lg-6 mb-3">
+      <label class="text-label m-0">Reward Fee</label>
+      <div class="stat-value paragraph">
+        <%= @validator.reward_fee %>
+      </div>
+    </div>
+  </div>
 </div>

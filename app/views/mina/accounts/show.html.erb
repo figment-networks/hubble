@@ -1,20 +1,37 @@
 <% content_for :body_class, "account-show" %>
 
-<%= render "chain_header", summary_link: true %>
+<%= render partial: '/mina/base/chain_header', locals: { active_tab: '' } %>
 <%= render_flash_messages %>
-
-<h2 class="mb-3">
-  <label class="text-muted">Account</label>
-  <%= @account.public_key.truncate(30) %>
-</h2>
-
-<div class="row info-cards">
-  <div class="col-12 col-md-8 order-1 order-md-0">
-    <%= render "mina/accounts/show/transactions", account: @account, transactions: @transactions, chain: @chain %>
-    <%= render "mina/accounts/show/delegations", delegations: @delegations %>
+<div class="validator-header pb-4">
+  <div class="container">
+    <div class='d-flex flex-wrap'>
+      <div class='mr-auto pb-4'>
+        <h2 class="validator-header__title">Account</h2>
+      </div>
+      <div class='pb-4'>
+        <ul class='validator-info__list'>
+          <li class='validator-info__item'>
+            <p class='validator-info__value technical'>
+              <%= @account.public_key %>
+            </p>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
-  <div class="col-12 col-md-4 order-0 order-md-1 info-cards">
-    <%= render "mina/accounts/show/balance", account: @account %>
-    <%= render "mina/accounts/show/lifetime", account: @account %>
+</div>
+
+<div class='container'>
+  <div class='content'>
+    <div class="row info-cards">
+      <div class="col-md-12 col-lg-7 mb-4 pb-2">
+        <%= render "mina/accounts/show/balance", account: @account, delegations: @delegations %>
+        <%= render "mina/accounts/show/lifetime", account: @account %>
+        <%= render "mina/accounts/show/transactions", account: @account, transactions: @transactions, chain: @chain %>
+      </div>
+      <div class="col-md-12 col-lg-5">
+        <%= render "mina/accounts/show/delegations", delegations: @delegations, chain: @chain %>
+      </div>
+    </div>
   </div>
 </div>

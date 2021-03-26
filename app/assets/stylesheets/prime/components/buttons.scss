@@ -1,0 +1,81 @@
+.button {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 15px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.button--primary {
+  padding: 12px 16px;
+  background: #111111;
+  color: #FFFFFF;
+}
+
+.button--primary[disabled] {
+  background: #cfcfcf;
+  cursor: not-allowed;
+}
+
+.button--secondary {
+  padding: 8px 16px;
+  color: #111111;
+  border: 1px solid #000000;
+  border-radius: 4px;
+}
+
+.button--danger {
+  color: #FFFFFF;
+  background: #EB5757;
+  border: 1px solid #EB5757;
+}
+
+.button--l {
+  padding: 16px 48px;
+  font-size: 14px;
+  line-height: 17px;
+
+  @include media(s) {
+    padding: 16px 24px;
+  }
+}
+
+.button__icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+}
+
+.delete-btn {
+  width: 14px;
+  height: 16px;
+  padding: 0;
+  background-image: image-url("prime/icons/bin.svg");
+  background-size: contain;
+  border: none;
+}
+
+.add-button {
+  position: relative;
+  padding-left: 24px;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 15px;
+  display: flex;
+  align-items: center;
+  color: #111111;
+}
+
+.add-button::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  background-image: image-url("prime/icons/plus-circle.svg") center no-repeat;
+  background-size: contain;
+}

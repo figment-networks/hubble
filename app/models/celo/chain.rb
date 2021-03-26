@@ -5,7 +5,7 @@ class Celo::Chain < ApplicationRecord
 
   DEFAULT_TOKEN_DISPLAY = 'CELO'.freeze
   DEFAULT_TOKEN_REMOTE = 'celo'.freeze
-  DEFAULT_TOKEN_FACTOR = 21 # TODO: check and replace
+  DEFAULT_TOKEN_FACTOR = 18
 
   validates :name, presence: true
   validates :slug, format: { with: /\A[a-z0-9-]+\z/ }, uniqueness: true, presence: true

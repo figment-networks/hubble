@@ -1,0 +1,20 @@
+<div class="block slider__item">
+  <div class="block__header">
+    <%= image_tag prime_network_image(network), alt: network.name.capitalize, class: "block__img" %>
+    <h3 class="block__title"><%= network.name.capitalize %></h3>
+  </div>
+
+  <div class="block__content">
+    <div class="block__section">
+      <div class="block__row">
+        <div>
+          <p class="block__label">Avg. Uptime</p>
+          <p class="block__value"><%= prime_network_average_uptime(network)%></p>
+        </div>
+        <!-- TO DO: Ask Yannick how to decide where this should link when multiple validators on network -->
+        <%= link_to 'Hubble Profile', hubble_validator_linker(network.name, network.primary.figment_validator_addresses[0]), class: 'button button--primary', target: 'blank' %>
+      </div>
+    </div>
+  </div>
+
+</div>

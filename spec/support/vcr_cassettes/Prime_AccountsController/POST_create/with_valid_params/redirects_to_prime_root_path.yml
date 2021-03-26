@@ -1,0 +1,39 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://localhost:2222/account/138QdRbUTB9eNY94Q4Mj5r39FkgMiyHCAy8UFMNA5gvtrfSB
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (linux-gnu x86_64) ruby/2.6.6p146
+      Content-Length:
+      - '0'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - localhost:2222
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Tue, 02 Feb 2021 03:07:11 GMT
+      Content-Length:
+      - '142'
+    body:
+      encoding: UTF-8
+      string: '{"nonce":13,"referendum_count":2,"free":"1716228980719","reserved":"804170000000","misc_frozen":"1018249380627","fee_frozen":"1018249380627"}
+
+'
+  recorded_at: Tue, 02 Feb 2021 03:07:11 GMT
+recorded_with: VCR 6.0.0

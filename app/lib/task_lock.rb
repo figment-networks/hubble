@@ -14,7 +14,7 @@ class TaskLock
       block.call
     end
   rescue Suo::LockClientError
-    puts "Running #{resource} task without a lock because it was not possible to connect to Memcached"
+    Rails.logger.info("Running #{resource} task without a lock because it was not possible to connect to Memcached")
     block.call
   end
 

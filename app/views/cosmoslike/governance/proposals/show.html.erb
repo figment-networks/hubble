@@ -1,246 +1,248 @@
 <% content_for :body_class, 'governance-proposal' %>
 
-<%= render partial: '/cosmoslike/shared/chain_header', locals: { summary_link: true, governance_link: true } %>
-<%= render partial: '/cosmoslike/shared/sync_errors' %>
+<%= render partial: '/cosmoslike/shared/chain_header', locals: { active_tab: '', faucet_link: true } %>
 
-<div class='row'>
-  <div class='col-12 col-md-9'>
-    <div class='proposal-details'>
-      <div class='proposal-header d-flex align-items-center justify-content-between'>
-        <div class='d-flex align-items-start'>
-          <h3><%= @proposal.title %></h3>
-          <span class='d-none d-md-inline badge badge-pill badge-primary ml-2 mt-2 text-uppercase'><%= @proposal.status_string %></span>
-        </div>
-      </div>
+<div class="content">
+  <div class="container">
+    <%= render partial: '/cosmoslike/shared/sync_errors' %>
+    <div class='row'>
+      <div class='col-12 col-md-9'>
+        <div class='proposal-details'>
+          <div class='proposal-header d-flex align-items-center justify-content-between'>
+            <div class='d-flex align-items-center'>
+              <h3 class="data-table__title m-0"><%= @proposal.title %></h3>
+              <span class='d-none d-md-inline badge badge-pill badge-primary ml-2 text-uppercase'><%= @proposal.status_string %></span>
+            </div>
+          </div>
 
-      <div class='such-progress'>
-        <div class='chart-status-string'>
-          <label class='text-sm text-muted mb-0'>Current Status:</label>
-          <%= proposal_status_string(@proposal, @tally_result).html_safe %>
-        </div>
-
-        <% if @proposal.in_voting_period? -%>
-          <div class='proposal-progress-wrapper'>
-            <div class='proposal-progress'>
-              <% if @tally_result.quorum_reached? -%>
-                <div class='marker text-muted' style='left: <%= @tally_result.yes_threshold_percentage %>%;'><div class='notch bg-dark'></div>Pass Threshold</div>
-              <% else -%>
-                <div class='marker text-muted' style='left: 40%;'><div class='notch bg-secondary'></div>Quorum (<%= round_if_whole(@chain.governance_params.quorum * 100, 0) %>%)</div>
-              <% end -%>
-              <div class='progress'>
-                <div class='progress-bar bg-success' data-toggle='tooltip' title="<div class='text-center'><div class='mb-1 text-strong text-success'>Yes</div><span class='technical'><%= @tally_result.percent_yes %>%</span></div>" style='width: <%= @tally_result.progress_yes %>%;'></div>
-                <div class='progress-bar bg-secondary' data-toggle='tooltip' title="<div class='text-center'><div class='mb-1 text-strong text-secondary'>Abstain</div><span class='technical'><%= @tally_result.percent_abstain %>%</span></div>" style='width: <%= @tally_result.progress_abstain %>%;'></div>
-                <div class='progress-bar bg-danger' data-toggle='tooltip' title="<div class='text-center'><div class='mb-1 text-strong text-danger'>No</div><span class='technical'><%= @tally_result.percent_no %>%</span></div>" style='width: <%= @tally_result.progress_no %>%;'></div>
-                <div class='progress-bar bg-veto' data-toggle='tooltip' title="<div class='text-center'><div class='mb-1 text-strong text-veto'>No (VETO)</div><span class='technical'><%= @tally_result.percent_nowithveto %>%</span></div>" style='width: <%= @tally_result.progress_nowithveto %>%;'></div>
-                <div class='progress-bar bg-light' data-toggle='tooltip' title="<div class='text-center'><div class='mb-1 text-strong text-dark'>Has Not Voted</div><span class='technical'><%= @tally_result.percent_didntvote %>%</span></div>" style='flex-grow: 1;'></div>
+          <div class='such-progress data-block'>
+            <div class='chart-status-string'>
+              <label class='data-block__title mb-1'>Current Status</label>
+              <div class="paragraph">
+                <%= proposal_status_string(@proposal, @tally_result).html_safe %>
               </div>
             </div>
+
+            <% if @proposal.in_voting_period? -%>
+              <div class='proposal-progress-wrapper'>
+                <div class='proposal-progress'>
+                  <% if @tally_result.quorum_reached? -%>
+                    <div class='marker text-muted' style='left: <%= @tally_result.yes_threshold_percentage %>%;'><div class='notch bg-dark'></div>Pass Threshold</div>
+                  <% else -%>
+                    <div class='marker text-muted' style='left: 40%;'><div class='notch bg-secondary'></div>Quorum (<%= round_if_whole(@chain.governance_params.quorum * 100, 0) %>%)</div>
+                  <% end -%>
+                  <div class='progress'>
+                    <div class='progress-bar bg-success' data-toggle='tooltip' title="<div class='text-center'><div class='mb-1 text-strong text-success'>Yes</div><span class='technical'><%= @tally_result.percent_yes %>%</span></div>" style='width: <%= @tally_result.progress_yes %>%;'></div>
+                    <div class='progress-bar bg-secondary' data-toggle='tooltip' title="<div class='text-center'><div class='mb-1 text-strong text-secondary'>Abstain</div><span class='technical'><%= @tally_result.percent_abstain %>%</span></div>" style='width: <%= @tally_result.progress_abstain %>%;'></div>
+                    <div class='progress-bar bg-danger' data-toggle='tooltip' title="<div class='text-center'><div class='mb-1 text-strong text-danger'>No</div><span class='technical'><%= @tally_result.percent_no %>%</span></div>" style='width: <%= @tally_result.progress_no %>%;'></div>
+                    <div class='progress-bar bg-veto' data-toggle='tooltip' title="<div class='text-center'><div class='mb-1 text-strong text-veto'>No (VETO)</div><span class='technical'><%= @tally_result.percent_nowithveto %>%</span></div>" style='width: <%= @tally_result.progress_nowithveto %>%;'></div>
+                    <div class='progress-bar bg-light' data-toggle='tooltip' title="<div class='text-center'><div class='mb-1 text-strong text-dark'>Has Not Voted</div><span class='technical'><%= @tally_result.percent_didntvote %>%</span></div>" style='flex-grow: 1;'></div>
+                  </div>
+                </div>
+              </div>
+            <% end -%>
+
+            <% if !@proposal.in_deposit_period? -%>
+              <div class='vote-tallies mt-5'>
+                <div class='tally flex-column align-items-center text-center border-success'>
+                  <% if @proposal.in_voting_period? -%>
+                    <div class='mini-progress bg-success' style='width: <%= @tally_result.percent_yes_to_win %>%;'></div>
+                  <% end -%>
+                  <h6 class='tally-title'>YES</h6>
+                  <div class='technical tally-value text-lg'><%= @tally_result.percent_yes.round(2) %>%</div>
+                  <div class='tally-voting-power text-muted'><%= format_amount(@tally_result.raw_yes, denom: @proposal.denom, in_millions: true) %></div>
+                </div>
+                <div class='tally flex-column align-items-center text-center border-secondary'>
+                  <h6 class='tally-title'>ABSTAIN</h6>
+                  <div class='technical tally-value text-lg'><%= @tally_result.percent_abstain.round(2) %>%</div>
+                  <div class='tally-voting-power text-muted'><%= format_amount(@tally_result.raw_abstain, denom: @proposal.denom, in_millions: true) %></div>
+                </div>
+                <div class='tally flex-column align-items-center text-center border-danger'>
+                  <h6 class='tally-title'>NO</h6>
+                  <div class='technical tally-value text-lg'><%= @tally_result.percent_no.round(2) %>%</div>
+                  <div class='tally-voting-power text-muted'><%= format_amount(@tally_result.raw_no, denom: @proposal.denom, in_millions: true) %></div>
+                </div>
+                <div class='tally flex-column align-items-center text-center border-veto'>
+                  <% if @proposal.in_voting_period? -%>
+                    <div class='mini-progress bg-veto' style='width: <%= @tally_result.percent_nowithveto_to_win %>%;'></div>
+                  <% end -%>
+                  <h6 class='tally-title'>NO (VETO)</h6>
+                  <div class='technical tally-value text-lg'><%= @tally_result.percent_nowithveto.round(2) %>%</div>
+                  <div class='tally-voting-power text-muted'><%= format_amount(@tally_result.raw_nowithveto, denom: @proposal.denom, in_millions: true) %></div>
+                </div>
+              </div>
+            <% end -%>
+          </div>
+
+          <% if @proposal.additional_data -%>
+            <div class='info mt-5'>
+              <%= proposal_additional_data(@proposal.proposal_type) %>
+            </div>
+          <% end -%>
+
+          <div class='info mt-5'>
+            <div class='data-block__title mb-1'>PROPOSAL DESCRIPTION</div>
+            <div class='paragraph proposal-description-text'><%= Rinku.auto_link(strip_tags(@proposal.description), :urls, "target='_blank' rel='nofollow'") { |url| "#{URI(url.split('#').first).host} <span class='fas fa-external-link-alt'></span>" }.html_safe -%></div>
+          </div>
+
+          <div class='mt-5'>
+            <div class='data-block__title mb-2'>VOTES</div>
+            <div class='table-responsive'>
+              <table class='table table-sm votes-table'>
+                <tbody>
+                  <% if @proposal.votes.empty? %>
+                    <tr>
+                      <td colspan='2' align='middle'>
+                        <% if @proposal.missing_vote_data? -%>
+                          Missing voting data.
+                        <% else -%>
+                          No votes cast.
+                        <% end -%>
+                      </td>
+                    </tr>
+                  <% else -%>
+                    <% filter_double_votes(@proposal.votes.includes([account: :validator])).each do |vote| -%>
+                      <tr data-vote-id='<%= vote.id %>'>
+                        <td class='text-uppercase text-md vote-option vote-<%= vote.option.downcase %>'><%= vote.short_option %></td>
+                        <td>
+                          <% if vote.account.try(:validator) -%>
+                            <%= link_to namespaced_path('validator', vote.account.validator) do %>
+                              <%= vote.account.validator.short_name %>
+                            <% end -%>
+                          <% elsif vote.account -%>
+                            <%= link_to namespaced_path('account', vote.account.address) do %>
+                              <span class='technical'><%= vote.account.address %></span>
+                            <% end -%>
+                          <% else -%>
+                            &mdash;
+                          <% end -%>
+                        </td>
+                      </tr>
+                    <% end -%>
+                  <% end -%>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class='mt-5'>
+            <div class='data-block__title text-left mb-2'>DEPOSITS</div>
+            <div class='table-responsive'>
+              <table class='table table-sm deposits-table'>
+                <tbody>
+                  <% if @proposal.deposits.empty? -%>
+                    <tr>
+                      <td colspan='2' align='middle'>
+                        <% if @proposal.missing_deposits_data? -%>
+                          Missing deposit data.
+                        <% else -%>
+                          No deposits made.
+                        <% end -%>
+                      </td>
+                    </tr>
+                  <% else %>
+                    <% @proposal.deposits.includes([account: :validator]).each do |deposit| -%>
+                      <tr>
+                        <td class='text-nowrap'><%= format_amount(deposit.amount, denom: deposit.amount_denom) %></td>
+                        <td>
+                          <% if deposit.account.try(:validator) -%>
+                            <%= link_to namespaced_path('validator', deposit.account.validator) do %>
+                              <%= deposit.account.validator.short_name %>
+                            <% end -%>
+                          <% elsif deposit.account -%>
+                            <%= link_to namespaced_path('account', deposit.account.address) do %>
+                              <span class='technical'><%= deposit.account.address %></span>
+                            <% end -%>
+                          <% else -%>
+                            &mdash;
+                          <% end -%>
+                        </td>
+                      </tr>
+                    <% end -%>
+                  <% end -%>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class='col-12 col-md-3'>
+        <% if !@proposal.rejected? && @chain.class::SUPPORTS_LEDGER -%>
+          <div class='d-flex align-items-center justify-content-center mb-4'>
+            <% if !@proposal.in_deposit_period? -%>
+              <button class='btn btn-outline-primary d-block' data-toggle='modal' data-target='#proposal-vote-modal'>Vote</button>
+            <% else -%>
+              <button class='btn btn-outline-primary mr-2 d-block' data-toggle='modal' data-target='#proposal-deposit-modal'>Deposit</button>
+            <% end -%>
           </div>
         <% end -%>
 
-        <% if !@proposal.in_deposit_period? -%>
-          <div class='vote-tallies mt-5'>
-            <div class='tally flex-column align-items-center text-center border-success'>
-              <% if @proposal.in_voting_period? -%>
-                <div class='mini-progress bg-success' style='width: <%= @tally_result.percent_yes_to_win %>%;'></div>
-              <% end -%>
-              <h6 class='tally-title'>YES</h6>
-              <div class='technical tally-value text-lg'><%= @tally_result.percent_yes %>%</div>
-              <div class='tally-voting-power text-muted'><%= format_amount(@tally_result.raw_yes, denom: @proposal.denom, in_millions: true) %></div>
-            </div>
-            <div class='tally flex-column align-items-center text-center border-secondary'>
-              <!-- <div class='mini-progress bg-secondary' style='width: <%= @tally_result.percent_abstain_to_win %>%;'></div> -->
-              <h6 class='tally-title'>ABSTAIN</h6>
-              <div class='technical tally-value text-lg'><%= @tally_result.percent_abstain %>%</div>
-              <div class='tally-voting-power text-muted'><%= format_amount(@tally_result.raw_abstain, denom: @proposal.denom, in_millions: true) %></div>
-            </div>
-            <div class='tally flex-column align-items-center text-center border-danger'>
-              <!-- <div class='mini-progress bg-danger' style='width: <%= @tally_result.percent_no_to_win %>%;'></div> -->
-              <h6 class='tally-title'>NO</h6>
-              <div class='technical tally-value text-lg'><%= @tally_result.percent_no %>%</div>
-              <div class='tally-voting-power text-muted'><%= format_amount(@tally_result.raw_no, denom: @proposal.denom, in_millions: true) %></div>
-            </div>
-            <div class='tally flex-column align-items-center text-center border-veto'>
-              <% if @proposal.in_voting_period? -%>
-                <div class='mini-progress bg-veto' style='width: <%= @tally_result.percent_nowithveto_to_win %>%;'></div>
-              <% end -%>
-              <h6 class='tally-title'>NO (VETO)</h6>
-              <div class='technical tally-value text-lg'><%= @tally_result.percent_nowithveto %>%</div>
-              <div class='tally-voting-power text-muted'><%= format_amount(@tally_result.raw_nowithveto, denom: @proposal.denom, in_millions: true) %></div>
-            </div>
+        <div class='data-block'>
+          <h3 class='data-block__title'>
+            Info
+            <span class='badge badge-pill badge-dark'>#<%= @proposal.ext_id %></span>
+          </h3>
+          <label class='text-small mb-0 mt-0'>Submitted</label>
+          <div class="technical">
+            <%= @proposal.submit_time.strftime("%Y-%m-%d at %H:%M %Z") %>
           </div>
-        <% end -%>
-      </div>
 
-      <% if @proposal.additional_data -%>
-        <div class='info mt-5'>
-          <%= render partial: 'additional_data' %>
-        </div>
-      <% end -%>
+          <div class='proposal-period-progress'>
+            <% if @proposal.in_deposit_period? -%>
+              <label class='text-muted mb-0 mt-3'>Deposit Period</label>
+              <div class='progress'>
+                <div class='progress-bar bg-primary' style='width: <%= round_if_whole(proposal_period_progress_percentage(@proposal, period: :deposit) * 100, 2) %>%;'></div>
+              </div>
+              <div class='mt-2 text-sm text-muted proposal-period-time-left'>Ends in <%= distance_of_time_in_words(Time.now, @proposal.deposit_end_time, highest_measures: 2) %></div>
+            <% elsif !@proposal.rejected? && @proposal.in_voting_period? -%>
+              <label class='text-muted mb-0 mt-3'>Voting Period</label>
+              <div class='progress position-relative mt-1'>
+                <div class='progress-bar bg-primary' style='width: <%= round_if_whole(proposal_period_progress_percentage(@proposal, period: :voting) * 100, 2) %>%;'></div>
+                <small class='proposal-period-text justify-content-center d-flex position-absolute w-100 technical'><%= round_if_whole(proposal_period_progress_percentage(@proposal, period: :voting) * 100, 0) %>%</small>
+              </div>
+              <div class='mt-1 text-sm text-muted proposal-period-time-left'>Ends in <%= distance_of_time_in_words(Time.now, @proposal.voting_end_time, highest_measures: 2) %></div>
+            <% end -%>
+          </div>
 
-      <div class='info mt-5'>
-        <div class='title mb-1'>PROPOSAL DESCRIPTION</div>
-        <div class='proposal-description-text'><%= Rinku.auto_link(strip_tags(@proposal.description), :urls, "target='_blank' rel='nofollow'") { |url| "#{URI(url.split('#').first).host} <span class='fas fa-external-link-alt'></span>" }.html_safe -%></div>
-      </div>
-
-      <div class='mt-5'>
-        <div class='title mb-1'>VOTES</div>
-        <div class='table-responsive'>
-          <table class='table table-sm votes-table'>
-            <tbody>
-              <% if @proposal.votes.empty? %>
-                <tr>
-                  <td colspan='2' align='middle'>
-                    <% if @proposal.missing_vote_data? -%>
-                      Missing voting data.
-                    <% else -%>
-                      No votes cast.
-                    <% end -%>
-                  </td>
-                </tr>
-              <% else -%>
-                <% filter_double_votes(@proposal.votes).each do |vote| -%>
-                  <tr data-vote-id='<%= vote.id %>'>
-                    <td class='text-uppercase text-md vote-option vote-<%= vote.option.downcase %>'><%= vote.short_option %></td>
-                    <td>
-                      <% if vote.account.try(:validator) -%>
-                        <a href='<%= namespaced_path( 'validator', vote.account.validator ) %>'><%= vote.account.validator.short_name %></a>
-                      <% elsif vote.account -%>
-                        <a href='<%= namespaced_path( 'account', vote.account.address ) %>'>
-                          <span class='technical'><%= vote.account.address %></span>
-                        </a>
-                      <% else -%>
-                        &mdash;
-                      <% end -%>
-                    </td>
-                  </tr>
-                <% end -%>
-              <% end -%>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <div class='mt-5'>
-        <div class='title text-left mb-1'>DEPOSITS</div>
-        <div class='table-responsive'>
-          <table class='table table-sm deposits-table'>
-            <tbody>
-              <% if @proposal.deposits.empty? -%>
-                <tr>
-                  <td colspan='2' align='middle'>
-                    <% if @proposal.missing_deposits_data? -%>
-                      Missing deposit data.
-                    <% else -%>
-                      No deposits made.
-                    <% end -%>
-                  </td>
-                </tr>
-              <% else %>
-                <% @proposal.deposits.each do |deposit| -%>
-                  <tr>
-                    <td class='text-nowrap'><%= format_amount( deposit.amount, denom: deposit.amount_denom ) %></td>
-                    <td>
-                      <% if deposit.account.try(:validator) -%>
-                        <a href='<%= namespaced_path( 'validator', deposit.account.validator ) %>'>
-                          <%= deposit.account.validator.short_name %>
-                        </a>
-                      <% elsif deposit.account -%>
-                        <a href='<%= namespaced_path( 'account', deposit.account.address ) %>'>
-                          <span class='technical'><%= deposit.account.address %></span>
-                        </a>
-                      <% else -%>
-                        &mdash;
-                      <% end -%>
-                    </td>
-                  </tr>
-                <% end -%>
-              <% end -%>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class='col-12 col-md-3'>
-    <% if !@proposal.rejected? && @chain.class::SUPPORTS_LEDGER -%>
-      <div class='d-flex align-items-center justify-content-center mb-4'>
-        <% if !@proposal.in_deposit_period? -%>
-          <button class='btn btn-outline-primary d-block' data-toggle='modal' data-target='#proposal-vote-modal'>Vote</button>
-        <% else -%>
-          <button class='btn btn-outline-primary mr-2 d-block' data-toggle='modal' data-target='#proposal-deposit-modal'>Deposit</button>
-        <% end -%>
-      </div>
-    <% end -%>
-
-    <div class='card'>
-      <h5 class='card-header d-flex align-items-center justify-content-between'>
-        Info
-        <span class='badge badge-pill badge-sm badge-light'>#<%= @proposal.ext_id %></span>
-      </h5>
-      <div class='card-body'>
-        <label class='text-muted mb-0 mt-0'>Submitted</label>
-        <div>
-          <%= @proposal.submit_time.strftime("%Y-%m-%d at %H:%M %Z") %>
-        </div>
-
-        <div class='proposal-period-progress'>
-          <% if @proposal.in_deposit_period? -%>
-            <label class='text-muted mb-0 mt-3'>Deposit Period</label>
-            <div class='progress'>
-              <div class='progress-bar bg-primary' style='width: <%= round_if_whole(proposal_period_progress_percentage(@proposal, period: :deposit) * 100, 2) %>%;'></div>
+          <% if !@proposal.in_deposit_period? -%>
+            <div class='network-voting-progress'>
+              <label class='text-small mb-0 mt-3'>Percent <%= @proposal.finalized? ? 'Voted' : 'Voting' %></label>
+              <div class='progress position-relative mt-1'>
+                <div class='progress-bar bg-primary' style='width: <%= @tally_result.percent_voted %>%;'></div>
+                <small class='network-voting-progress-text justify-content-center d-flex position-absolute w-100 technical'><%= @tally_result.percent_voted(0) %>%</small>
+              </div>
+              <div class='mt-1 text-sm text-muted network-voting-atoms'>
+                <%= format_amount(@tally_result.cumulative_voting_power, denom: @proposal.denom, hide_units: true, in_millions: true, precision: 0) %>
+                of
+                <%= format_amount(@tally_result.total_bonded, denom: @proposal.denom, in_millions: true, precision: 0) %>
+                have voted.
+              </div>
             </div>
-            <div class='mt-2 text-sm text-muted proposal-period-time-left'>Ends in <%= distance_of_time_in_words(Time.now, @proposal.deposit_end_time, highest_measures: 2) %></div>
-          <% elsif !@proposal.rejected? && @proposal.in_voting_period? -%>
-            <label class='text-muted mb-0 mt-3'>Voting Period</label>
-            <div class='progress position-relative mt-1'>
-              <div class='progress-bar bg-primary' style='width: <%= round_if_whole(proposal_period_progress_percentage(@proposal, period: :voting) * 100, 2) %>%;'></div>
-              <small class='proposal-period-text justify-content-center d-flex position-absolute w-100 technical'><%= round_if_whole(proposal_period_progress_percentage(@proposal, period: :voting) * 100, 0) %>%</small>
-            </div>
-            <div class='mt-1 text-sm text-muted proposal-period-time-left'>Ends in <%= distance_of_time_in_words(Time.now, @proposal.voting_end_time, highest_measures: 2) %></div>
           <% end -%>
         </div>
 
-        <% if !@proposal.in_deposit_period? -%>
-          <div class='network-voting-progress'>
-            <label class='text-muted mb-0 mt-3'>Percent <%= @proposal.finalized? ? 'Voted' : 'Voting' %></label>
-            <div class='progress position-relative mt-1'>
-              <div class='progress-bar bg-primary' style='width: <%= @tally_result.percent_voted %>%;'></div>
-              <small class='network-voting-progress-text justify-content-center d-flex position-absolute w-100 technical'><%= @tally_result.percent_voted(0) %>%</small>
-            </div>
-            <div class='mt-1 text-sm text-muted network-voting-atoms'>
-              <%= format_amount(@tally_result.cumulative_voting_power, denom: @proposal.denom, hide_units: true, in_millions: true, precision: 0) %>
-              of
-              <%= format_amount(@tally_result.total_bonded, denom: @proposal.denom, in_millions: true, precision: 0) %>
-              have voted.
-            </div>
+        <div class='data-block'>
+          <h3 class='data-block__title'>Tallying Procedure</h3>
+          <label class='text-small mb-0 mt-0'>Quorum</label>
+          <div class='data-block__value'>
+            <%= round_if_whole(@chain.governance_params.quorum * 100, 2) %>%
           </div>
-        <% end -%>
-      </div>
-    </div>
 
-    <div class='card'>
-      <h5 class='card-header'>Tallying Procedure</h5>
-      <div class='card-body'>
-        <label class='text-muted mb-0 mt-0'>Quorum</label>
-        <div class='technical'>
-          <%= round_if_whole(@chain.governance_params.quorum * 100, 2) %>%
-        </div>
+          <label class='text-small mb-0 mt-3'>Pass Threshold</label>
+          <div class='data-block__value'>
+            <%= round_if_whole(@chain.governance_params.tally_param_threshold * 100, 2) %>%
+          </div>
 
-        <label class='text-muted mb-0 mt-3'>Pass Threshold</label>
-        <div class='technical'>
-          <%= round_if_whole(@chain.governance_params.tally_param_threshold * 100, 2) %>%
-        </div>
+          <label class='text-small mb-0 mt-3'>Veto Threshold</label>
+          <div class='data-block__value'>
+            <%= round_if_whole(@chain.governance_params.tally_param_veto * 100, 2) %>%
+          </div>
 
-        <label class='text-muted mb-0 mt-3'>Veto Threshold</label>
-        <div class='technical'>
-          <%= round_if_whole(@chain.governance_params.tally_param_veto * 100, 2) %>%
-        </div>
-
-        <label class='text-muted mb-0 mt-3'>Governance Penalty</label>
-        <div class='technical'>
-          <%= @chain.governance_params.tally_param_governance_penalty %>
+          <label class='text-small mb-0 mt-3'>Governance Penalty</label>
+          <div class='data-block__value'>
+            <%= @chain.governance_params.tally_param_governance_penalty %>
+          </div>
         </div>
       </div>
     </div>
@@ -448,9 +450,6 @@
 
 <script>
   App.config.proposalId = <%= @proposal.ext_id.to_json %>;
-  App.config.depositMinimum = <%= @chain.governance_params.min_deposit_amount.to_json %>;
   App.config.currentDepositTotal = <%= @proposal.total_deposits_for_denom(@chain.remote_denom).to_json %>;
-  App.config.addressInfoPathTemplate = '<%= namespaced_path( 'account', 'ADDRESS' ) %>';
-  App.config.broadcastTxPath = '<%= namespaced_path( 'broadcast', pre_path: true ) %>';
-  App.config.viewTxPath = '<%= namespaced_path( 'transaction', 'TRANSACTION_HASH' ) %>';
 </script>
+<%= render partial: 'cosmoslike/governance/governance_scripts' %>

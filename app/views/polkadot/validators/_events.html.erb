@@ -32,7 +32,7 @@
           <div class="form-group">
             <%= f.label :types, "Event types:" %>
             <% event_kind_types(Polkadot::EventFactory.event_classes).each do |event_class| %>
-              <%= render 'shared/redesign/event_type_checkbox', type: event_class %>
+              <%= render 'shared/event_type_checkbox', type: event_class %>
             <% end %>
           </div>
 

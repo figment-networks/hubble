@@ -1,11 +1,17 @@
-<%= render_card "Lifetime", class: "account-lifetime" do %>
-  <label>First Seen</label>
-  <div class="stat-value">
-    <%= account.start_time.try(:strftime, "%B %d, %Y at %H:%M %Z") || "N/A" %>
+<div class='data-block account-lifetime'>
+  <h3 class='data-block__title'>Lifetime</h3>
+  <div class='d-flex flex-wrap'>
+    <div class='mr-5'>
+      <label class='text-label m-0'>First Seen</label>
+      <div class="stat-value paragraph m-0 mt-1">
+        <%= account.start_time.try(:strftime, "%B %d, %Y at %H:%M %Z") || "N/A" %>
+      </div>
+    </div>
+    <div class='mr-5'>
+      <label class='text-label m-0'>Last Seen</label>
+      <div class="stat-value paragraph m-0 mt-1">
+        <%= account.last_time.try(:strftime, "%B %d, %Y at %H:%M %Z") || "N/A" %>
+      </div>
+    </div>
   </div>
-
-  <label>Last Seen</label>
-  <div class="stat-value">
-    <%= account.last_time.try(:strftime, "%B %d, %Y at %H:%M %Z") || "N/A" %>
-  </div>
-<% end %>
+</div>

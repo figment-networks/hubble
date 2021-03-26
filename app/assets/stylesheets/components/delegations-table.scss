@@ -46,27 +46,9 @@
     }
 
     tbody {
-      tr.odd {
-        background-color: $gray-100;
-      }
-      tr {
-        td { border-bottom: 1px solid $gray-200; }
-        &:last-child {
-          td { border-bottom: none; }
-        }
-      }
       td.timestamp {
         white-space: nowrap;
         font-size: $font-size-sm;
-      }
-    }
-
-    thead {
-      th {
-        padding: 4px 6px;
-        background-color: $primary;
-        color: white;
-        border-bottom: none;
       }
     }
   }

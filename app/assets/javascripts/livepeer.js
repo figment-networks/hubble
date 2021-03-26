@@ -22,7 +22,8 @@
 // = require page/livepeer/delegator-list-index
 // = require page/livepeer/delegator-list-edit
 // = require page/livepeer/report-new
-// = require page/livepeer/report-show
+// = require page/livepeer/delegator-list-report-show
+// = require page/livepeer/pool-report-show
 // = require page/livepeer/subscription-index
 //
 // = require components/livepeer/orchestrators-table
@@ -31,4 +32,5 @@
 // = require components/livepeer/delegator-lists-table
 // = require components/livepeer/delegator-list-form
 // = require components/livepeer/report-form
-// = require components/livepeer/report-table
+// = require components/livepeer/delegator-list-report-table
+// = require components/livepeer/pool-report-table

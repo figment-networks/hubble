@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= page_title? ? page_title : 'Hubble (by Figment)' %></title>
+    <%= csrf_meta_tags %>
+
+    <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
+
+    <%= favicon_link_tag asset_path('icons/favicon-32x32.png'), rel: 'icon', type: 'image/png' %>
+    <%= favicon_link_tag asset_path('icons/favicon-96x96.png'), rel: 'icon', type: 'image/png' %>
+    <%= favicon_link_tag asset_path('icons/apple-icon-180x180.png'), rel: 'apple-touch-icon', type: 'image/png' %>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Source+Code+Pro&display=swap" rel="stylesheet">
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.2/css/all.css' integrity='sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr' crossorigin='anonymous'>
+
+    <link rel='canonical' href='<%= ((canonical = yield(:canonical_url)).blank? ? request.url : canonical).chomp('/') %>' />
+    <% if meta_description? -%>
+      <meta name='description' content='<%= meta_description %>' />
+    <% end -%>
+
+    <%= stylesheet_link_tag 'home', media: 'all' %>
+
+    <%= js_namespace %>
+    <%= javascript_include_tag 'home', media: 'all' %>
+  </head>
+
+  <body class='<%= yield :body_class %> <%= monitor_body_classes %>'>
+    <%= render partial: 'home_nav' %>
+
+    <div class='container'>
+      <%= render_flash_messages %>
+      <%= yield %>
+    </div>
+
+    <%= render partial: 'shared/footer' %>
+
+    <%= yield :modals %>
+
+    <script>
+      Array.prototype.push.apply( window.App.mode, <%= [yield(:body_class), *monitor_body_classes.split].to_json.html_safe %> );
+    </script>
+    <%= render partial: 'layouts/gtm' -%>
+  </body>
+</html>

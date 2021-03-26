@@ -1,14 +1,14 @@
 <% content_for :body_class, 'dashboard' %>
 
-<div class='container mt-3'>
-  <h1 class='d-flex align-items-center justify-content-between'>
-    <span>Dashboard for <%= @chain.name %></span>
+<div class='container pt-5'>
+  <div class='d-flex align-items-center justify-content-between mb-3'>
+    <h1 class='page-title'>Dashboard for <%= @chain.name %></h1>
 
-    <%= link_to namespaced_path, class: 'btn btn-sm btn-outline-secondary' do %>
+    <%= link_to namespaced_path, class: 'button-secondary' do %>
       <span class='d-none d-md-inline'><span class='fas fa-chevron-left'></span> back to chain</span>
       <span class='d-inline d-md-none fa fa-arrow-circle-up'></span>
     <% end %>
-  </h1>
+  </div>
 
   <% all_subscriptions = current_user.alert_subscriptions -%>
   <% subscriptions = all_subscriptions.select { |subscription| subscription.alertable.chain == @chain } -%>
@@ -24,9 +24,11 @@
       App.config.watchedAddressInfoPath = '<%= namespaced_path('account', 'ADDRESS') %>';
     </script>
 
-    <div class='card'>
-      <h5 class='card-header'>Accounts</h5>
-      <div class='card-body p-0'>
+    <div class='data-table'>
+      <div class='data-table__header pb-0'>
+        <h3 class='data-table__title'>Accounts</h3>
+      </div>
+      <div class='p-3'>
         <%= form_with url: namespaced_path('watches'), method: 'post' do -%>
           <input type='hidden' name='watchable_type' value='account' />
           <input type='text' class='form-control technical' name='watchable_finder' placeholder='<%= @chain.prefixes[:account_address] %>...' />
@@ -73,9 +75,11 @@
       </div>
     </div>
 
-    <div class='card'>
-      <h5 class='card-header'>Validators</h5>
-      <div class='card-body'>
+    <div class='data-table'>
+      <div class='data-table__header pb-0'>
+        <h3 class='data-table__title'>Validators</h3>
+      </div>
+      <div class='p-3'>
         <%= form_with url: namespaced_path('watches'), method: 'post' do -%>
           <input type='hidden' name='watchable_type' value='validator' />
           <input type='text' class='form-control technical' name='watchable_finder' placeholder='<%= @chain.prefixes[:validator_operator_address] %>...' />
@@ -91,9 +95,11 @@
     </div>
   <% end -%>
 
-  <div class='card'>
-    <h5 class='card-header'>Alert Subscriptions</h5>
-    <div class='card-body alert-subscription-list'>
+  <div class='data-table'>
+    <div class='data-table__header pb-0'>
+      <h3 class='data-table__title'>Alert Subscriptions</h3>
+    </div>
+    <div class='p-3 alert-subscription-list'>
       <% if subscriptions.empty? -%>
         You have not created any subscriptions yet.
       <% else -%>

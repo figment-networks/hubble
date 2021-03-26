@@ -1,10 +1,4 @@
 class Iris::ChainsController < Cosmoslike::ChainsController
-  layout 'redesign/application'
-
-  def self.controller_path
-    'cosmoslike/redesign/chains'
-  end
-
   def broadcast
     tx = { tx: params[:payload], mode: 'sync' }
     r = @chain.syncer(5000).broadcast_tx(tx)

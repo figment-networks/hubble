@@ -1,7 +1,7 @@
 <header class='network-chain-header pt-4'>
   <div class="container">
     <div class='d-block d-lg-none mb-5'>
-      <%= render partial: '/shared/redesign/search-bar' %>
+      <%= render partial: '/shared/search-bar' %>
     </div>
 
     <div class="d-flex align-items-center flex-wrap">
@@ -47,15 +47,15 @@
     </div>
     
     <div class='tabs'>
-      <%= render partial: '/shared/redesign/chain_header_link', locals: { active_tab: active_tab, link_text: 'Orchestrators', link_path:  namespaced_path(chain: @chain), } %>
+      <%= render partial: '/shared/chain_header_link', locals: { active_tab: active_tab, link_text: 'Orchestrators', link_path:  namespaced_path(chain: @chain), } %>
       <% if current_admin -%>
-        <%= render partial: '/shared/redesign/chain_header_link', locals: { active_tab: active_tab, link_text: 'Admin', link_path:  namespaced_path(admin: true), } %>
+        <%= render partial: '/shared/chain_header_link', locals: { active_tab: active_tab, link_text: 'Admin', link_path:  namespaced_path(admin: true), } %>
       <% end -%>
       <% if defined?(events_link) -%>
-        <%= render partial: '/shared/redesign/chain_header_link', locals: { active_tab: active_tab, link_text: 'Events', link_path:  namespaced_path('events'), } %>
+        <%= render partial: '/shared/chain_header_link', locals: { active_tab: active_tab, link_text: 'Events', link_path:  namespaced_path('events'), } %>
       <% end -%>
       <% if defined?(delegator_lists_link) -%>
-        <%= render partial: '/shared/redesign/chain_header_link', locals: { active_tab: active_tab, link_text: 'Delegator Lists', link_path:  namespaced_path('delegator_lists'), } %>
+        <%= render partial: '/shared/chain_header_link', locals: { active_tab: active_tab, link_text: 'Delegator Lists', link_path:  namespaced_path('delegator_lists'), } %>
       <% end -%>
     </div>
   </div>

@@ -36,23 +36,25 @@ module Oasis
       end
     end
 
-    def validator(address, limit = 0)
-      validator = Oasis::Validator.new(get("/validator/#{address}", sequences_limit: limit))
-      delegations = get('/delegations')['items'].select do |d|
-        d['validator_uid'] == validator.address
-      end
+    def validator(address, limit = 0, network: nil, retrieve_delegations: true)
+      validator = Oasis::Validator.new(get("/validator/#{address}", sequences_limit: limit), network: network)
+      if retrieve_delegations
+        delegations = get('/delegations')['items'].select do |d|
+          d['validator_uid'] == validator.address
+        end
 
-      validator.delegations = delegations.map do |delegation|
-        Oasis::Delegation.new(delegation)
-      end
+        validator.delegations = delegations.map do |delegation|
+          Oasis::Delegation.new(delegation)
+        end
 
-      debonding_delegations = get('/debonding_delegations')['items']
+        debonding_delegations = get('/debonding_delegations')['items']
 
-      return validator if debonding_delegations.nil?
+        return validator if debonding_delegations.nil?
 
-      debonding_delegations = debonding_delegations.select { |d| d['validator_uid'] == validator.address }
-      debonding_delegations.map do |delegation|
-        validator.delegations << Oasis::Delegation.new(delegation, 'debonding')
+        debonding_delegations = debonding_delegations.select { |d| d['validator_uid'] == validator.address }
+        debonding_delegations.map do |delegation|
+          validator.delegations << Oasis::Delegation.new(delegation, 'debonding')
+        end
       end
       return validator
     end
@@ -70,23 +72,38 @@ module Oasis
       end
     end
 
-    def account(address)
-      account = Oasis::Account.new(get("/account/#{address}"), address)
-      delegations = get('/delegations')['items'].select { |d| d['delegator_uid'] == address }
-      account.delegations = delegations.map do |delegation|
-        Oasis::Delegation.new(delegation)
+    def account(address, retrieve_delegations: true)
+      Rails.cache.fetch([self.class.name, 'account_details', address].join('-'), expires_in: SHORT_EXPIRY_TIME) do
+        account = Oasis::Account.new(get("/account/#{address}"), address)
+
+        if retrieve_delegations
+          delegations = get('/delegations')['items'].select { |d| d['delegator_uid'] == address }
+          account.delegations = delegations.map do |delegation|
+            Oasis::Delegation.new(delegation)
+          end
+
+          debonding_delegations = get('/debonding_delegations')['items']
+
+          return account if debonding_delegations.nil?
+
+          debonding_delegations = debonding_delegations.select { |d| d['delegator_uid'] == address }
+          debonding_delegations.each do |delegation|
+            account.delegations << Oasis::Delegation.new(delegation, 'debonding')
+          end
+        end
+        return account
       end
+    end
 
-      debonding_delegations = get('/debonding_delegations')['items']
-
-      return account if debonding_delegations.nil?
-
-      debonding_delegations = debonding_delegations.select { |d| d['delegator_uid'] == address }
-      debonding_delegations.map do |delegation|
-        account.delegations << Oasis::Delegation.new(delegation, 'debonding')
+    def prime_rewards(prime_account)
+      Rails.cache.fetch([self.class.name, 'rewards', prime_account.address].join('-'), expires_in: MEDIUM_EXPIRY_TIME) do
+        token_factor = prime_account.network.primary.reward_token_factor
+        token_display = prime_account.network.primary.reward_token_display
+        list = get("/balance/#{prime_account.address}") || []
+        list.map do |reward|
+          Prime::Reward::Oasis.new(reward, prime_account, token_factor: token_factor, token_display: token_display)
+        end
       end
-
-      return account
     end
 
     def transactions(height)

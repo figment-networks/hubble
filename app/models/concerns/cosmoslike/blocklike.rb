@@ -57,7 +57,7 @@ module Cosmoslike::Blocklike
       if block_meta.nil?
         # we're building this block from scratch with no data
         begin
-          syncer = chain.namespace::SyncBase.new(chain, 250)
+          syncer = chain.namespace::SyncBase.new(chain, 500)
           raw_block = syncer.get_block(height)['result']
           block_txs = raw_block['block']['data']['txs']
           block_meta = raw_block['block_meta'] || raw_block['block']
@@ -72,7 +72,7 @@ module Cosmoslike::Blocklike
         # there are transactions in the block
         begin
           if block_meta['num_txs'].to_i > 0 || block_meta['header']['num_txs'].to_i > 0
-            syncer = chain.namespace::SyncBase.new(chain, 250)
+            syncer = chain.namespace::SyncBase.new(chain, 500)
             block_txs = syncer.get_block(height)['result']['block']['data']['txs']
           end
         rescue StandardError

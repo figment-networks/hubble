@@ -1,12 +1,13 @@
-<%= render_card "Daily Volume", class: "transactions-stats" do %>
+<div class='data-block transactions-stats'>
+  <h3 class='data-block__title'>Daily Volume</h3>
   <div class="transactions-volume-switcher btn-group btn-group-sm">
     <button type="button" data-target="payments" class="btn btn-outline-secondary">Payments</button>
     <button type="button" data-target="fees" class="btn btn-outline-secondary">Fees</button>
     <button type="button" data-target="work-fees" class="btn btn-outline-secondary">Worker</button>
   </div>
-  <label>Past 30 Days:</label>
+  <label class='text-small d-block'>Past 30 Days:</label>
   <div class="charts">
-    <div class="payments-chart-container">
+    <div class="payments-chart-container data-block__chart">
       <canvas
         class="sparkline-chart payments-chart"
         data-chart="<%= stats.payments_chart_data.to_json %>"
@@ -14,7 +15,7 @@
         data-token="<%= @chain.class::DEFAULT_TOKEN_DISPLAY %>">
       </canvas>
     </div>
-    <div class="fees-chart-container">
+    <div class="fees-chart-container data-block__chart">
       <canvas
         class="sparkline-chart fees-chart"
         data-chart="<%= stats.fees_chart_data.to_json %>"
@@ -22,7 +23,7 @@
         data-token="<%= @chain.class::DEFAULT_TOKEN_DISPLAY %>">
       </canvas>
     </div>
-    <div class="work-fees-chart-container">
+    <div class="work-fees-chart-container data-block__chart">
       <canvas
         class="sparkline-chart work-fees-chart"
         data-chart="<%= stats.work_fees_chart_data.to_json %>"
@@ -31,4 +32,5 @@
       </canvas>
     </div>
   </div>
-<% end %>
+</div>
+

@@ -2,7 +2,7 @@ require 'features_helper'
 
 describe 'celo validator details' do
   let(:chain) { create(:celo_chain) }
-  let(:address) { '0xDD1F519F63423045F526b8c83edC0eB4BA6434a4' }
+  let(:address) { '0x112fF12927CD6f924d80b9Aba32E531733B602fF' }
 
   it 'visiting validator details', :vcr do
     visit "/celo/chains/#{chain.slug}/validators/#{address}"

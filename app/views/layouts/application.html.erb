@@ -10,7 +10,7 @@
     <link rel='icon' type='image/png' sizes='96x96' href='<%= asset_path('icons/favicon-96x96.png') %>' />
     <link rel='apple-touch-icon' sizes='180x180' href='<%= asset_path('icons/apple-icon-180x180.png') %>' />
 
-    <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro:400|Comfortaa:400,700' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Source+Code+Pro&display=swap" rel="stylesheet">
     <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.2/css/all.css' integrity='sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr' crossorigin='anonymous'>
 
     <link rel='canonical' href='<%= ((canonical = yield(:canonical_url)).blank? ? request.url : canonical).chomp('/') %>' />
@@ -18,25 +18,26 @@
       <meta name='description' content='<%= meta_description %>' />
     <% end -%>
 
-    <%= stylesheet_link_tag @chain.class::ASSET, media: 'all' %>
+    <%= stylesheet_link_tag "#{@chain.class::ASSET}", media: 'all' %>
 
     <%= js_namespace %>
-    <%= javascript_include_tag @chain.class::ASSET, media: 'all' %>
+    <%= javascript_include_tag "#{@chain.class::ASSET}", media: 'all' %>
+    <%= javascript_pack_tag 'application' %>
+    <%= yield :promo_wc_script %>
   </head>
 
   <body class='<%= yield :body_class %> <%= monitor_body_classes %>'>
-    <%= render partial: '/shared/nav' %>
+    <div class='screen'>
+      <%= render partial: '/shared/nav' %>
 
-    <div class='content-wrapper'>
-      <div class='container'>
-        <%= yield %>
+      <div class='main'>
+        <%= yield %>  
+      </div>
+
+      <div class="footer-wrapper">
+        <%= render partial: 'shared/footer' %>
       </div>
     </div>
-
-    <footer>
-      Copyright &copy; <%= Date.today.year %> Figment Inc.
-      All rights reserved. <%= link_to 'Disclaimer', disclaimer_path %>
-    </footer>
 
     <%= yield :modals %>
 

@@ -1,6 +1,10 @@
 class Admin::UsersController < Admin::BaseController
   def index
-    @users = User.all
+    if params[:prime_only]
+      @users = User.with_prime_access
+    else
+      @users = User.all
+    end
   end
 
   def show

@@ -1,11 +1,11 @@
-<div class='card'>
-  <h5 class='card-header'>
-    <div class='card-header-parts'>
-      Governance Proposal Activity
-      <a class='btn btn-sm btn-outline-light' href='<%= namespaced_path( 'governance_root' ) %>'>View All</a>
+<div class='data-table'>
+  <div class='data-table__header'>
+    <div class='d-flex justify-content-between align-items-center flex-wrap'>
+      <h3 class='data-table__title'>Governance Proposal Activity</h3>
+      <%= link_to 'View All', namespaced_path( 'governance_root' ), class: "button-secondary" %>
     </div>
-  </h5>
-  <div class='card-body p-0'>
+  </div>
+  <div>
     <%= render 'cosmoslike/governance/main/proposals_table', proposals: @validator.proposals, with_validator: @validator %>
   </div>
 </div>

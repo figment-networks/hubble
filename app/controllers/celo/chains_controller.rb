@@ -4,7 +4,7 @@ class Celo::ChainsController < Celo::BaseController
     @height = status.last_indexed_height
     @last_block_time = status.last_block_time
     @validator_groups = client.validator_groups(@height)
-    validator_groups_summary = client.validator_groups_summary
+    validator_groups_summary = client.validator_groups_summary(@validator_groups.count)
     @validator_groups_summary = validator_groups_summary.map do |summary|
       Common::SummaryChartDecorator.new(summary).point(@chain)
     end

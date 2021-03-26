@@ -1,26 +1,34 @@
 <% content_for :body_class, "transaction-index" %>
 
-<%= render "chain_header", summary_link: true %>
+<%= render partial: '/mina/base/chain_header', locals: { active_tab: 'Transaction Search' } %>
 <%= render_flash_messages %>
 
-<h2 class="mb-3">
-  <label class="text-muted">Transaction Search</label>
-</h2>
+<div class='container'>
+  <div class='content'>
+    <div class='data-table transactions-search-form'>
+      <div class='data-table__header'>
+        <h3 class='data-table__title'>Filter Transactions</h3>
+      </div>
+      <div class='px-3 pb-4'>
+        <%= render "mina/transactions/index/search",
+          search_form: @search_form,
+          chain: @chain
+        %>
+      </div>
+    </div>
 
-<%= render_card "Filter Transactions", class: "transactions-search-form" do %>
-  <%= render "mina/transactions/index/search",
-    search_form: @search_form,
-    chain: @chain
-  %>
-<% end %>
-
-<%= render_card "Search Results", body_class: "no-padding" do %>
-  <div class="transactions-search-results">
-    <% if @transactions.any? %>
-      <%= render "mina/transactions/index/table", transactions: @transactions %>
-      <%= render "mina/transactions/index/pagination", search_form: @search_form, transactions: @transactions %>
-    <% else %>
-      <div class="text-empty">No transactions found</div>
-    <% end %>
+    <div class='data-table'>
+      <div class='data-table__header'>
+        <h3 class='data-table__title'>Search Results</h3>
+      </div>
+      <div class="transactions-search-results">
+        <% if @transactions.any? %>
+          <%= render "mina/transactions/index/table", transactions: @transactions %>
+          <%= render "mina/transactions/index/pagination", search_form: @search_form, transactions: @transactions %>
+        <% else %>
+          <div class="data-table__empty">No transactions found</div>
+        <% end %>
+      </div>
+    </div>
   </div>
-<% end %>
+</div>

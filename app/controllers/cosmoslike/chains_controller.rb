@@ -15,7 +15,7 @@ class Cosmoslike::ChainsController < Cosmoslike::BaseController
     query = (params[:query] || '').strip
 
     if query == ''
-      render template: 'cosmoslike/redesign/chains/search_failed'
+      render template: 'cosmoslike/chains/search_failed'
 
     elsif query =~ /^\d+$/
       redirect_to namespaced_path('block', query)
@@ -26,7 +26,7 @@ class Cosmoslike::ChainsController < Cosmoslike::BaseController
     elsif query.downcase.starts_with?(@chain.prefixes[:validator_operator_address])
       validator = @chain.validators.find_by(owner: query.downcase)
       if validator.nil?
-        render template: 'cosmoslike/redesign/chains/search_failed'
+        render template: 'cosmoslike/chains/search_failed'
         return
       else
         redirect_to namespaced_path('validator', validator)
@@ -53,7 +53,7 @@ class Cosmoslike::ChainsController < Cosmoslike::BaseController
         end
       end
 
-      render template: 'cosmoslike/redesign/chains/search_failed'
+      render template: 'cosmoslike/chains/search_failed'
       return
 
     end
@@ -68,7 +68,7 @@ class Cosmoslike::ChainsController < Cosmoslike::BaseController
     @hcs = @chain.namespace::HaltedChainService.new(@chain) rescue nil
     @validator_states = @hcs.validator_states rescue nil
 
-    render template: 'cosmoslike/redesign/chains/halted'
+    render template: 'cosmoslike/chains/halted'
   end
   alias prestart halted
 

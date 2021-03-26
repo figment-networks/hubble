@@ -6,7 +6,7 @@ module ChainHelper
 
   def visible_chains
     Rails.application.eager_load! unless Rails.configuration.cache_classes
-    ApplicationRecord.descendants.select { |ar_class| ar_class.name.ends_with?('::Chain') }.map do |chain_class|
+    hubble_chain_classes.map do |chain_class|
       chains = chain_class.all
       chains = chain_class.has_synced if chain_class.respond_to?(:has_synced)
       chains = chains.alive if chain_class.respond_to?(:alive)
@@ -15,6 +15,12 @@ module ChainHelper
       end
       chains.to_a
     end.flatten
+  end
+
+  def hubble_chain_classes
+    ApplicationRecord.descendants.select do |ar_class|
+      ar_class.name.ends_with?('::Chain') && !ar_class.name.starts_with?('Prime::')
+    end
   end
 
   def sort_chains(chains)

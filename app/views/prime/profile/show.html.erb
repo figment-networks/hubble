@@ -1,0 +1,31 @@
+<% @page_title = 'My Profile' %>
+
+<div class="section">
+  <div class="page__container">
+    <div class="profile">
+
+      <%= form_for @current_user do |f| -%>
+        <div class="profile__section">
+          <label for="input-name" class="label">Name</label>
+          <div class="profile__row">
+            <%= f.text_field :name, placeholder: 'Your Name', class: 'input profile__input' %>
+          </div>
+        </div>
+        <div class="profile__section">
+          <label for="input-email" class="label">E-mail</label>
+          <div class="profile__row">
+            <%= f.email_field :email, placeholder: 'your@email.com', class: 'input profile__input' %>
+          </div>
+        </div>
+        <div class="profile__section">
+          <label for="input-password" class="label">Password</label>
+          <div class="profile__row">
+            <%= f.password_field :password, placeholder: 'Confirm or change password', class: 'input profile__input' %>
+          </div>
+        </div>
+        <%= f.submit class: 'button button--primary profile__button button--l', value: 'Update' %>
+      <% end %>
+    </div>
+  </div>
+</div>
+

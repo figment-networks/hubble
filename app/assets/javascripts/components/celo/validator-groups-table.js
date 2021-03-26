@@ -1,7 +1,8 @@
 class ValidatorGroupsTable {
-  constructor(container, skipColumns) {
+  constructor(container, skipColumns, emptyTableMessage = 'No validator groups data') {
     this.container = container;
     this.skipColumns = skipColumns || [];
+    this.emptyTableMessage = emptyTableMessage;
     this.searchBox = $('.validator-groups-table-header .validator-groups-search');
   }
 
@@ -17,6 +18,9 @@ class ValidatorGroupsTable {
       autoWidth: false,
       className: 'validator-groups-table',
       order: [[1, 'desc'], [3, 'desc']],
+      language: {
+        emptyTable: this.emptyTableMessage
+      },
       columns: _.compact([
         _.includes(this.skipColumns, 'address') ? {visible: false} : {
           width: 'auto'

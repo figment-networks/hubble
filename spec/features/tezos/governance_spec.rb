@@ -14,8 +14,8 @@ describe 'tezos governance' do
     expect(page).to have_content(promoted_proposal_id)
     expect(page).to have_content(promoted_proposal_title)
     expect(page).to have_content('Proposal successfully promoted.')
-    expect(page).to have_content('Info')
-    expect(page).to have_content('Tallying Procedure')
+    expect(page).to have_content('INFO')
+    expect(page).to have_content('TALLYING PROCEDURE')
 
     click_button('SHOW') # description
     expect(page).to have_content('Features')

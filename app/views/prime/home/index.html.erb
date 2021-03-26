@@ -1,6 +1,64 @@
-<% content_for :body_class, 'homepage' %>
+<% content_for :body_class, 'prime-home' %>
+<%
+  @page_title = 'Home'
+  @new_account_modal = true
+  @network_info_modal = true
+%>
 
-<h3 class='home-title'>
-  <span>Welcome to Prime by </span>
-  <%= image_tag 'prime/figment-inline.svg', class: 'figment-logo', alt: 'figment.io logo' %>
-</h3>
+<div class="section">
+  <div class="page__container">
+    <div class="section__header">
+      <h2 class="section__title">Supported Networks</h2>
+      <div class="arrows">
+        <button class="arrows__prev" id="slideBack">
+          <%= image_tag 'prime/icons/angle-active.svg', alt: 'arrow left' %>
+        </button>
+        <button class="arrows__next" id="slideForward">
+          <%= image_tag 'prime/icons/angle-active.svg', alt: 'arrow right' %>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div id="slider" class="slider">
+    <%= render enabled_networks, show_add_account_button: true %>
+  </div>
+</div>
+
+<div class="section">
+  <div class="page__container">
+    <div class="section__row">
+      <div class="section__item section__item--fullwidth">
+        <div class="section__header">
+          <h2 class="section__title">SUPPORTED NETWORK UPDATES</h2>
+        </div>
+        <table id="networks_updates_table" class="table table-pagination">
+          <thead>
+            <tr>
+              <th>Network</th>
+              <th>Publish Date</th>
+              <th>Title</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if network_events.count > 0 && network_events.first.success? %>
+              <%= render network_events, truncate_titles: true %>
+            <% else %>
+              <tr>
+                <td colspan='3'>We are experiencing issues getting network events.  Please check back later.</td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <div class="section__item">
+        <%= render '/prime/shared/events_calendar', small: true %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render 'prime/shared/validators_performance_table', validators: figment_validators %>
+
+<script>
+  App.seed.CALENDAR_EVENTS = <%= build_calendar_events_array(calendar_events).as_json.to_json.html_safe %>
+</script>

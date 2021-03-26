@@ -1,0 +1,27 @@
+<%
+  @page_title = 'My Addresses'
+  @new_account_modal = true
+  @add_account_modal = true
+  @network_info_modal = true
+  @delete_account_modal = true
+%>
+
+<div class="section">
+  <div class="page__container">
+    <table id="my_address_table" class="table table-pagination">
+      <thead>
+        <tr>
+          <th>Network</th>
+          <th>Address</th>
+          <th>Balance</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% user_accounts.each do |account| %>
+          <%= render 'account_table_row', account: account %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

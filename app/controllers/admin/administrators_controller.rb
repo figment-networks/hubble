@@ -78,7 +78,7 @@ class Admin::AdministratorsController < Admin::BaseController
       @qr = RQRCode::QRCode.new(
         ['otpauth://totp/', @administrator.email,
          '?secret=', @secret,
-         '&issuer=', URI.escape("Hubble #{"(#{Rails.env}) " unless Rails.env.production?}Admin")].join('')
+         '&issuer=', URI.encode_www_form_component("Hubble #{"(#{Rails.env}) " unless Rails.env.production?}Admin")].join('')
       )
     end
   end

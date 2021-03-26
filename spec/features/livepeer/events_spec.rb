@@ -37,7 +37,7 @@ describe 'Livepeer Events' do
     ]
   end
 
-  it 'visiting all events view', :vcr do
+  it 'shows the events page', :vcr do
     visit "livepeer/chains/#{chain.slug}"
 
     click_link 'Events'
@@ -53,7 +53,7 @@ describe 'Livepeer Events' do
     expect(page).to have_content('Example Orchestrator changed reward cut to 12.34% 1000')
   end
 
-  it 'visiting events view for a single orchestrator' do
+  it 'shows the events page for a single orchestrator' do
     visit "/livepeer/chains/#{chain.slug}/events?orchestrator_address=#{orchestrator.address}"
 
     expect(page).to have_content('Events')

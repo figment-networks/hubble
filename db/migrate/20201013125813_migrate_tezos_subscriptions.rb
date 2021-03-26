@@ -24,3 +24,5 @@ class MigrateTezosSubscriptions < ActiveRecord::Migration[5.2]
 
   end
 end
+
+class Subscription < ApplicationRecord; end

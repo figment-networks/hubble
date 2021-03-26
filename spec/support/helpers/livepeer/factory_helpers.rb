@@ -25,6 +25,16 @@ module Livepeer::FactoryHelpers
     )
   end
 
+  def create_pool(round, orchestrator_address, total_stake:, reward_tokens:)
+    create(
+      :livepeer_pool,
+      round: round,
+      orchestrator_address: orchestrator_address,
+      total_stake: total_stake,
+      reward_tokens: reward_tokens
+    )
+  end
+
   def create_share(pool, delegator_address, fees:, reward_tokens:)
     create(
       :livepeer_share,

@@ -39,10 +39,6 @@ class Polkadot::Chain < ApplicationRecord
     !disabled
   end
 
-  def primary_token
-    DEFAULT_TOKEN_REMOTE
-  end
-
   def primary_display
     DEFAULT_TOKEN_DISPLAY
   end

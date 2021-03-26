@@ -1,15 +1,16 @@
-<%= render_card "Height", class: "block-height" do %>
+<div class='mr-5 mb-4 block-height'>
+  <h3 class='data-block__title'>Height</h3>
   <% if block.height > 1 %>
-    <%= link_to mina_chain_block_path(chain, block.height - 1), class: "text-muted" do %>
+    <%= link_to mina_chain_block_path(chain, block.height - 1), class: "data-block__value text-decoration-none" do %>
       <span class="fas fa-chevron-left"></span>
     <% end %>
   <% end %>
 
-  <span class="large-number technical"><%= block.height %></span>
+  <span class="data-block__value"><%= block.height %></span>
 
   <% if block.height < last_block.height %>
-    <%= link_to mina_chain_block_path(chain, block.height + 1), class: "text-muted" do %>
+    <%= link_to mina_chain_block_path(chain, block.height + 1), class: "data-block__value text-decoration-none" do %>
       <span class="fas fa-chevron-right"></span>
     <% end %>
   <% end %>
-<% end %>
+</div>

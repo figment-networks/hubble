@@ -9,3 +9,10 @@ class RemoveDuplicateSubscriptions < ActiveRecord::Migration[5.2]
     end
   end
 end
+
+# fix for this legacy migration
+class User < ApplicationRecord
+  def self.with_subscriptions
+    User.none
+  end
+end

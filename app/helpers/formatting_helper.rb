@@ -3,7 +3,7 @@ module FormattingHelper
 
   def format_amount(amount, chain = nil, denom: nil, thousands_delimiter: true, hide_units: false, html: true, precision: 3, in_millions: false)
     chain ||= @chain
-    denom ||= chain.token_map[chain.primary_token]
+    denom ||= chain.primary_token
 
     # first account for the scaling factor on this chain
     if denom == 'gas'
@@ -20,7 +20,9 @@ module FormattingHelper
                  else [amount, '']
                  end
 
-    num_str = "#{number_with_delimiter(round_if_whole(val, precision))}#{scale}"
+    rounded_value = round_if_whole(val, precision)
+    rounded_value = number_with_delimiter(rounded_value) if thousands_delimiter
+    num_str = "#{rounded_value}#{scale}"
     denom_str = hide_units ? '' : denom
     if html
       num_str = "<span class='text-monospace'>#{num_str}</span>"

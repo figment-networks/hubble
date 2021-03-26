@@ -1,44 +1,41 @@
-<div class='card'>
-  <h5 class='card-header d-flex align-items-center justify-content-between'>
+<div class='data-block'>
+  <h3 class='data-block__title'>
     Info
-  </h5>
-
-  <div class='card-body'>
-    <label class='text-muted mb-0 mt-0'>Submitted Time</label>
-    <div>
-      <%= DateTime.parse(proposal.submitted_time).strftime("%Y-%m-%d at %H:%M %Z") %>
-    </div>
-    <label class='text-muted mb-0 mt-3'>Submitted in Period</label>
-    <div>
-      <%= proposal.start_period %>
-    </div>
-
-    <% if proposal.is_active? -%>
-      <div class='proposal-period-progress'>
-        <label class='text-muted mb-0 mt-3'>Currently in</label>
-        <label class='text-muted mb-0 mt-0'><%= current_period.period_type.titleize %> Period</label>
-        <div class='progress position-relative mt-1'>
-          <div class='progress-bar bg-primary' style='width: <%= round_if_whole(tezos_proposal_period_progress_percentage(current_period) * 100, 2) %>%;'></div>
-          <small class='proposal-period-text justify-content-center d-flex position-absolute w-100 technical'><%= round_if_whole(tezos_proposal_period_progress_percentage(current_period) * 100, 0) %>%</small>
-        </div>
-        <div class='mt-1 text-sm text-muted proposal-period-time-left'>Ends in <%= distance_of_time_in_words(Time.now, current_period.end_time_approximation, highest_measures: 2) %></div>
-      </div>
-
-      <% if current_period.period_type != 'testing' %>
-        <div class='network-voting-progress'>
-          <label class='text-muted mb-0 mt-3'>Percent Voting</label>
-          <div class='progress position-relative mt-1'>
-            <div class='progress-bar bg-primary' style='width: <%= tally_result.percent_voted %>%;'></div>
-            <small class='network-voting-progress-text justify-content-center d-flex position-absolute w-100 technical'><%= tally_result.percent_voted(0) %>%</small>
-          </div>
-          <div class='mt-1 text-sm text-muted network-voting-atoms'>
-            <%= tally_result.cumulative_voting_power %>
-            of
-            <%= tally_result.total_rolls %>
-            rolls have voted.
-          </div>
-        </div>
-      <% end %>
-    <% end -%>
+  </h3>
+  <label class='text-label m-0'>Submitted Time</label>
+  <div class='text-monospace'>
+    <%= DateTime.parse(proposal.submitted_time).strftime("%Y-%m-%d at %H:%M %Z") %>
   </div>
+  <label class='text-label mt-3'>Submitted in Period</label>
+  <div class='text-monospace'>
+    <%= proposal.start_period %>
+  </div>
+
+  <% if proposal.is_active? -%>
+    <div class='proposal-period-progress mt-4'>
+      <label class='data-block__title mt-3 d-inline'>Currently in</label>
+      <label class='data-block__title mt-3 d-inline'><%= current_period.period_type.titleize %> Period</label>
+      <div class='progress position-relative mt-1'>
+        <div class='progress-bar bg-primary' style='width: <%= round_if_whole(tezos_proposal_period_progress_percentage(current_period) * 100, 2) %>%;'></div>
+        <small class='proposal-period-text justify-content-center d-flex position-absolute w-100 technical'><%= round_if_whole(tezos_proposal_period_progress_percentage(current_period) * 100, 0) %>%</small>
+      </div>
+      <div class='mt-1 text-sm text-muted proposal-period-time-left'>Ends in <%= distance_of_time_in_words(Time.now, current_period.end_time_approximation, highest_measures: 2) %></div>
+    </div>
+
+    <% if current_period.period_type != 'testing' %>
+      <div class='network-voting-progress'>
+        <label class='data-block__title mt-3'>Percent Voting</label>
+        <div class='progress position-relative mt-1'>
+          <div class='progress-bar bg-primary' style='width: <%= tally_result.percent_voted %>%;'></div>
+          <small class='network-voting-progress-text justify-content-center d-flex position-absolute w-100 technical'><%= tally_result.percent_voted(0) %>%</small>
+        </div>
+        <div class='mt-1 text-sm text-muted network-voting-atoms'>
+          <%= tally_result.cumulative_voting_power %>
+          of
+          <%= tally_result.total_rolls %>
+          rolls have voted.
+        </div>
+      </div>
+    <% end %>
+  <% end -%>
 </div>

@@ -1,13 +1,14 @@
-<%= render_card "Current Block", class: "chain-block" do %>
-  <%= link_to mina_chain_block_path(chain, block.height), class: "large-number" do %>
+<div class='data-block chain-block'>
+  <h3 class='data-block__title'>Current block</h3>
+  <%= link_to mina_chain_block_path(chain, block.height), class: "data-block__large-number" do %>
     <span class='technical'><%= block.height %></span>
   <% end %>
   <div class='sub-info'>
-    <small class='text-muted technical'>
+    <small class='text-muted'>
       <%= block.time.strftime('%Y-%m-%d %H:%M:%S %Z') %>
     </small>
     <small class='text-muted'>
       <%= time_ago_in_words(block.time, true) %> ago
     </small>
   </div>
-<% end %>
+</div>

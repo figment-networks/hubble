@@ -12,7 +12,7 @@
     <% if @error %>
       <%= render partial: 'shared/display_error' %>
     <% else %>
-      <%= render partial: 'shared/redesign/block_sidebar', locals: {block: @block} %>
+      <%= render partial: 'shared/block_sidebar', locals: {block: @block} %>
       <%= render partial: 'transactions', locals: {transactions: @transactions} %>
       <%= render partial: 'validators', locals: {validators: @validators} %>
     <% end %>

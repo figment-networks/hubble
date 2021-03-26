@@ -1,15 +1,18 @@
-<div>
-  <span class='d-inline d-md-none <%= icon_classes %> mr-1'></span>
+<% if @validator.nil? %>
+  <td>
+    <span class='paragraph font-weight-bold'>
+      <%= link_to event.validatorlike.short_name, namespaced_path('validator', event.validatorlike) %>
+    </span>
+  </td>
+<% end -%>
+<td>
+  <%= image_tag "event-missed.svg", alt: "forbidden sign", class: 'event-history__forbidden-sign mr-2' %>
   <span class='font-weight-bold'>
-    <% if @validator.nil? %>
-      <%= link_to event.validatorlike.short_name, namespaced_path( 'validator', event.validatorlike ) %> missed
-    <% else -%>
-      Missed
-    <% end -%>
+    Missed
     <span class='technical'><%= event.data['n'] %></span> consecutive precommits
   </span>
-  <span class='text-muted'>
-    as of block
-    <%= link_to event.height, namespaced_path( 'block', event.height ), class: 'technical' %>
-  </span>
-</div>
+</td>
+<td>  
+  <%= link_to event.height, namespaced_path('block', event.height), class: 'technical event-history__block'%>
+</td>
+

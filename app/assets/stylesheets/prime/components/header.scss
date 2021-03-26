@@ -1,0 +1,36 @@
+.header {
+  display: none;
+  position: relative;
+  justify-content: center;
+  width: 100%;
+  padding: 15px 40px;
+  background: #111111;
+  z-index: 99;
+
+  @include media(m, 124px) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+  }
+
+
+  @include media(s) {
+    padding: 16px 40px;
+  }
+}
+
+.header__btn {
+  position: absolute;
+  top: 50%;
+  left: 16px;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  background: url("../../img/icons/menu.svg") center no-repeat;
+  background-size: contain;
+}
+
+.header__btn.active {
+  background: url("../../img/icons/close.svg") center no-repeat;
+}

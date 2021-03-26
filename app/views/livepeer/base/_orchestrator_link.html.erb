@@ -1,7 +1,7 @@
 <%= link_to namespaced_path('orchestrator', orchestrator) do %>
   <% if orchestrator.name? -%>
-    <span class='technical'><%= orchestrator.name %></span>
+    <strong><%= orchestrator.name %></strong>
   <% else -%>
-    <span class='technical'><%= livepeer_address(orchestrator.address) %></span>
+    <strong><%= livepeer_address(orchestrator.address) %></strong>
   <% end -%>
 <% end -%>

@@ -3,5 +3,7 @@ $(document).ready(function() {
     return;
   }
 
-  new App.Celo.ValidatorGroupsTable($('.validator-groups-table'), ['state']).render();
+  new App.Celo.ValidatorGroupsTable(
+      $('.validator-groups-table'), ['state'],
+      'No validator group data for blocks more than 24h ago').render();
 });

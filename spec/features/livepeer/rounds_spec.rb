@@ -23,7 +23,7 @@ describe 'Livepeer Rounds' do
     )
   end
 
-  it 'visiting the round page' do
+  it 'shows the round page' do
     visit "/livepeer/chains/#{chain.slug}"
 
     click_link round.number.to_s

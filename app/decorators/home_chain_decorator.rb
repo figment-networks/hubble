@@ -7,6 +7,10 @@ class HomeChainDecorator < SimpleDelegator
 
   def avg_block_time; end
 
+  def avg_block_time_units
+    'SEC'
+  end
+
   def rewards_rate; end
 
   def daily_rewards; end

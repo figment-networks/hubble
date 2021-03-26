@@ -6,14 +6,14 @@
 @import 'common/datatables-overrides';
 
 @import 'tooltipster/dist/css/tooltipster.bundle.min';
+@import 'flatpickr/dist/flatpickr.min';
 
 @import 'common/nav';
 @import 'common/footer';
 @import 'common/typography';
 @import 'common/misc';
-@import 'common/error-content';
+@import 'common/logotypes';
 
-// app pages
 @import 'page/cosmoslike/chain';
 @import 'page/cosmoslike/faucet';
 @import 'page/cosmoslike/validator';
@@ -23,10 +23,13 @@
 @import 'page/common/dashboard';
 @import 'page/common/users';
 
-// components
 @import 'components/network-chain-header';
+@import 'components/validator-header';
 @import 'components/validator-table';
-@import 'components/transactions-table';
+@import 'components/data-block';
+@import 'components/data-table';
 @import 'components/delegations-table';
+@import 'components/errors';
+@import 'components/search-bar';
+@import 'components/event-history';
 @import 'components/rewards-table';
-@import 'components/gov-proposals-table';

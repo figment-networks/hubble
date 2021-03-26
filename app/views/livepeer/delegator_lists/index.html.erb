@@ -65,7 +65,7 @@
 
       <div class='col-12 col-md-3 order-0 order-md-1 info-cards mb-3'>
         <div class='data-block'>
-          <h3 class='data-block__title'>Count</h3>
+          <h3 class='data-block__title'>List Count</h3>
           <span class='data-block__value'>
             <%= current_user.livepeer_delegator_lists.for(@chain).count %>/<%= Livepeer::DelegatorList::RECORDS_LIMIT %>
           </span>

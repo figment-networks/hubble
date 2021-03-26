@@ -1,0 +1,13 @@
+<div id="delete-<%= account.address %>-modal" class="modal hidden">
+  <div class="modal__content delete-modal__content">
+    <button class="modal__close" data-close="modal6">
+      <%= image_tag 'prime/icons/cross.svg', alt: "close" %>
+    </button>
+    <h3 class="modal__title">Are you sure you want to delete your address?</h3>
+    <p class="delete-modal__name"><%= account.network.name.capitalize %></p>
+    <a href="#" class="link delete-modal__link"><%= account.address %></a>
+  </div>
+  <div class="modal__footer">
+    <%= button_to 'Delete', prime_account_path(account), method: :delete, class: "button button--danger modal__button button--l", id: "confirm-delete-#{account.address}-button" %>
+  </div>
+</div>

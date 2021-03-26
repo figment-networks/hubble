@@ -1,55 +1,53 @@
 <% delegation_object = @chain.namespace::ValidatorDelegationsDecorator.new(@chain, @validator) -%>
 
-<div class='card'>
-  <h5 class='card-header'>
-    <div class='card-header-parts'>Delegations</div>
-  </h5>
-  <div class='card-body p-0'>
-    <div class='delegations-table'>
-      <table data-empty='<%= delegation_object.error? || delegation_object.empty? %>'>
-        <thead>
+<div class='data-table'>
+  <div class='data-table__header'>
+    <h3 class='data-table__title'>Delegations</h3>
+  </div>
+  <div class='delegations-table'>
+    <table data-empty='<%= delegation_object.error? || delegation_object.empty? %>'>
+      <thead>
+        <tr>
+          <th>Account</th>
+          <th>Amount</th>
+          <th>Share</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if !@validator.has_info? || delegation_object.error? -%>
           <tr>
-            <th>Account</th>
-            <th>Amount</th>
-            <th>Share</th>
+            <td class='data-table__empty' colspan='3'>Unable to retrieve delegation data.</td>
           </tr>
-        </thead>
-        <tbody>
-          <% if !@validator.has_info? || delegation_object.error? -%>
-            <tr>
-              <td class='p-3 text-center' colspan='3'>Unable to retrieve delegation data.</td>
-            </tr>
-          <% elsif delegation_object.empty? -%>
-            <tr>
-              <td class='p-3 text-center' colspan='3'>No delegations.</td>
-            </tr>
-          <% end -%>
+        <% elsif delegation_object.empty? -%>
+          <tr>
+            <td class='data-table__empty' colspan='3'>No delegations.</td>
+          </tr>
+        <% end -%>
 
-          <% (delegation_object.delegations||[]).each do |del| -%>
-            <% next if del[:status] == 'unbonding' -%>
-            <tr>
-              <td data-order='<%= del[:account] %>' class='text-sm'>
-                <% if del[:validator] -%>
-                  <%= link_to del[:validator].short_name, namespaced_path( 'account', del[:account] ) %>
-                <% elsif del[:account] -%>
-                  <a href='<%= namespaced_path( 'account', del[:account] ) %>'>
-                    <span class='technical'><%= del[:account] %></span>
-                  </a>
-                <% else -%>
-                  Unknown
+        <% (delegation_object.delegations||[]).each do |del| -%>
+          <% next if del[:status] == 'unbonding' -%>
+          <tr>
+            <td data-order='<%= del[:account] %>' class='text-sm'>
+              <% if del[:validator] -%>
+                <%= link_to del[:validator].short_name, namespaced_path( 'account', del[:account] ) %>
+              <% elsif del[:account] -%>
+                <%= link_to namespaced_path( 'account', del[:account] ) do %>
+                  <span class='technical'><%= del[:account] %></span>
                 <% end -%>
-              </td>
-              <td data-order='<%= del[:amount] %>'>
-                <%= format_amount( del[:amount], @chain, denom: @chain.token_map[@chain.primary_token]['display'] ) %>
-              </td>
-              <td>
-                <span class='technical'><%= round_if_whole( del[:share], 2 ) %>%</span>
-              </td>
-            </tr>
-          <% end -%>
-        </tbody>
-      </table>
-    </div>
+              <% else -%>
+                Unknown
+              <% end -%>
+            </td>
+            <td data-order='<%= del[:amount] %>'>
+              <%= format_amount( del[:amount], @chain, denom: @chain.token_map[@chain.primary_token]['display'] ) %>
+            </td>
+            <td>
+              <span class='technical'><%= round_if_whole( del[:share], 2 ) %>%</span>
+            </td>
+          </tr>
+        <% end -%>
+      </tbody>
+    </table>
   </div>
 </div>
 

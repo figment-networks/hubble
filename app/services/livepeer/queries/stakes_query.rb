@@ -1,4 +1,4 @@
-class Livepeer::Queries::StakesQuery < Livepeer::Queries::ReportQuery
+class Livepeer::Queries::StakesQuery < Livepeer::Queries::DelegatorListReportQuery
   FIELDS = [
     'delegator_address',
     'SUM(pending_stake) AS pending_stake',

@@ -1,5 +1,5 @@
 <div class='gov-proposals-table'>
-  <table data-empty='<%= proposals.empty? %>' data-with-validator='<%= !!defined?(with_validator) %>'>
+  <table class='border-0' data-empty='<%= proposals.empty? %>' data-with-validator='<%= !!defined?(with_validator) %>'>
     <thead>
       <tr role='row'>
         <th>Title</th>
@@ -14,7 +14,7 @@
     <tbody>
       <% if proposals.empty? -%>
         <tr>
-          <td colspan='<% if defined? with_validator -%>4<% else -%>3<% end -%>' class='text-center py-3'>
+          <td colspan='<% if defined? with_validator -%>4<% else -%>3<% end -%>' class='data-table__empty'>
             <% if defined? with_validator -%>
               <% if with_validator.has_info? -%>
                 No governance proposal activity yet.
@@ -27,16 +27,29 @@
           </td>
         </tr>
       <% else %>
+        <script>
+          App.seed.GOVERNANCE_PROPOSAL_ACTIVITY = {}
+        </script>
         <% proposals.select(&:valid_proposal?).each do |proposal| -%>
           <tr>
             <td data-order='<%= proposal.title %>'>
               <%= link_to proposal.title, namespaced_path( 'governance_proposal', proposal ) %>
             </td>
             <td data-order='<%= proposal.proposal_status %>'>
-              <div class='badge badge-pill badge-primary text-uppercase'><%= proposal.status_string %></div>
               <% if !proposal.ended? -%>
                 <div class='text-sm text-muted'>Current: <%= proposal_status_string(proposal).html_safe %></div>
               <% end -%>
+              <div class="chart-container">
+                <canvas id='<%= proposal.id %>' class='status-pie-chart'></canvas>
+              </div>
+              <script>
+                App.seed.GOVERNANCE_PROPOSAL_ACTIVITY[<%= proposal.id %>] = [
+                  <%= proposal.tally_result_yes %>,
+                  <%= proposal.tally_result_abstain %>,
+                  <%= proposal.tally_result_no %>,
+                  <%= proposal.tally_result_nowithveto %>
+                ]
+              </script>
             </td>
             <% if defined? with_validator -%>
               <td>

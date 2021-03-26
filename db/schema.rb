@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_13_143726) do
+ActiveRecord::Schema.define(version: 2021_01_17_012023) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
@@ -169,14 +169,13 @@ ActiveRecord::Schema.define(version: 2021_01_13_143726) do
     t.jsonb "validator_event_defs", default: [{"kind"=>"voting_power_change", "height"=>0}, {"kind"=>"active_set_inclusion", "height"=>0}]
     t.integer "failed_sync_count", default: 0
     t.jsonb "governance", default: {}, null: false
-    t.string "ext_id"
     t.datetime "halted_at"
     t.string "last_round_state", default: ""
+    t.string "ext_id"
     t.string "token_denom", default: "atom"
     t.bigint "token_factor", default: 0
     t.string "sdk_version"
     t.text "notes"
-    t.string "network"
     t.boolean "use_ssl_for_lcd", default: false
     t.jsonb "staking_pool", default: {}
     t.string "remote_denom"
@@ -191,6 +190,7 @@ ActiveRecord::Schema.define(version: 2021_01_13_143726) do
     t.string "rpc_path"
     t.string "lcd_path"
     t.boolean "use_ssl_for_rpc", default: false
+    t.string "network"
     t.float "staking_participation"
     t.float "rewards_rate"
     t.float "daily_rewards"
@@ -969,6 +969,51 @@ ActiveRecord::Schema.define(version: 2021_01_13_143726) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["slug"], name: "index_polkadot_chains_on_slug"
+  end
+
+  create_table "prime_accounts", force: :cascade do |t|
+    t.bigint "prime_network_id"
+    t.bigint "user_id"
+    t.string "type", null: false
+    t.string "address", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["address"], name: "index_prime_accounts_on_address"
+    t.index ["prime_network_id"], name: "index_prime_accounts_on_prime_network_id"
+    t.index ["user_id"], name: "index_prime_accounts_on_user_id"
+  end
+
+  create_table "prime_chains", force: :cascade do |t|
+    t.bigint "prime_network_id"
+    t.string "type", null: false
+    t.string "name", null: false
+    t.string "slug", null: false
+    t.string "api_url", null: false
+    t.boolean "primary", default: false
+    t.boolean "active", default: false
+    t.boolean "dead", default: false
+    t.string "figment_validator_addresses", array: true
+    t.string "reward_token_remote", null: false
+    t.string "reward_token_display", null: false
+    t.integer "reward_token_factor", null: false
+    t.datetime "genesis_block_time"
+    t.integer "genesis_block_height"
+    t.datetime "final_block_time"
+    t.integer "final_block_height"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_prime_chains_on_name"
+    t.index ["prime_network_id"], name: "index_prime_chains_on_prime_network_id"
+  end
+
+  create_table "prime_networks", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "validator_title", default: "validator"
+    t.string "deligator_title", default: "delegator"
+    t.jsonb "network_info"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_prime_networks_on_name"
   end
 
   create_table "stats_average_snapshots", force: :cascade do |t|

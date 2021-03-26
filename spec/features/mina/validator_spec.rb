@@ -3,7 +3,7 @@ require 'features_helper'
 describe 'mina validator', :vcr do
   let(:chain)      { create :mina_chain }
   let(:public_key) do
-    '4vsRCVaJmjRqg6SvTcMLwNfpTLP2XwdUNN943vK7gGSeXtjvzhzSA2RhpK9uSQHxYhAorPu9bxHSUJB8mrwobJtpnfo8W8g86EfDMTz9wz634E6ZaGajQUBDPvKsujPTjYyACMNik6EsMPYz'
+    'B62qmFf6UZn2sg3j8bYLGmMinzS2FHX6hDM71nFxAfMhvh4hnGBtkBD'
   end
 
   before do
@@ -13,36 +13,36 @@ describe 'mina validator', :vcr do
   it 'displays validator details' do
     expect(page).to have_text 'Recent Transactions'
     expect(page).to have_text 'Delegations'
-    expect(page).to have_text 'Staking Balance'
-    expect(page).to have_text 'Lifetime'
-    expect(page).to have_text 'Block Production'
+    expect(page).to have_text 'STAKING BALANCE'
+    expect(page).to have_text 'LIFETIME'
+    expect(page).to have_text 'BLOCKS'
 
     within '.recent-transactions' do
       expect(page).to have_link 'Search Transactions', href: mina_chain_transactions_path(chain,
                                                                                           account: public_key)
 
       within 'table.transactions' do
-        expect(page.all('tbody tr').size).to eq 25
+        expect(page.all('tbody tr').size).to eq 18
       end
     end
 
     within '.validator-staking' do
-      expect(page).to have_text '186,205.658 MINA'
+      expect(page).to have_text '14,784,005.98 MINA'
     end
 
     within '.validator-lifetime' do
-      expect(page).to have_text 'June 10, 2020 at 17:15 UTC'
-      expect(page).to have_text 'July 15, 2020 at 23:21 UTC'
-      expect(page).to have_text '1221'
+      expect(page).to have_text 'First Seen'
+      expect(page).to have_text 'Last Seen'
+      expect(page).to have_text 'Blocks Produced'
     end
 
     within '.validator-delegations' do
-      expect(page.all('tbody > tr').size).to eq 1
+      expect(page.all('tbody > tr').size).to eq 32
     end
 
     within '.validator-blocks' do
       block_link = page.all('a').last[:href]
-      expect(block_link).to include mina_chain_block_path(chain, '6082')
+      expect(block_link).to include mina_chain_block_path(chain, '540')
     end
   end
 end

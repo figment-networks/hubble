@@ -1,0 +1,49 @@
+.profile {
+  max-width: 438px;
+  margin: 92px auto 0;
+}
+
+.profile__section + .profile__section {
+  margin-top: 40px;
+}
+
+.profile__row {
+  display: flex;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.field_with_errors {
+  width: 100%;
+}
+
+.profile__change-button {
+  margin-left: 20px;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 15px;
+  color: #000000;
+}
+
+.profile__button {
+  margin: 54px auto 0;
+}
+
+.change-modal__subtitle {
+  margin: 14px 0 48px;
+}
+
+.change-modal__buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.change-modal__section {
+  max-width: 372px;
+  margin: 0 auto 24px;
+}
+
+.change-modal__section label {
+  margin-bottom: 4px;
+}

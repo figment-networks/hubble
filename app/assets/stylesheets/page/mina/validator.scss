@@ -13,17 +13,27 @@
 
   .block-heatmap {
     display: flex;
-
     .block {
       width: 2%;
       height: 30px;
+      margin-right: 1px;
       background: black;
       border-right: 1px solid white;
-      &.ok { background: $success; &:hover { background: lighten($success, 10%); } }
+      &.ok {
+        border: 1px solid $success;
+        background: #fff;
+        &:hover {
+          background: lighten($success, 10%);
+          border: 1px solid lighten($success, 10%);
+        }
+      }
       &.missed { background: $danger; &:hover { background: lighten($danger, 10%); } }
-      &.produced { background: $primary; &:hover { background: lighten($primary, 10%); } }
-      &:last-child {
-        border-right: none;
+      &.proposed {
+        border: 3px solid $primary;
+        &:hover {
+          background: lighten($primary, 10%);
+          border: 1px solid lighten($primary, 10%);
+        }
       }
     }
   }
@@ -47,4 +57,7 @@
   .validator-ledger {
     text-align: center;
   }
+}
+.validator-balance-chart-container {
+  max-height: 150px;
 }

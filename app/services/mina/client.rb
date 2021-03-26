@@ -22,16 +22,12 @@ module Mina
 
     # Get last N blocks
     def blocks(limit: 50)
-      get('/blocks', limit: limit).map do |block|
-        Mina::Block.new(block)
-      end
+      get_collection(Mina::Block, '/blocks', limit: limit)
     end
 
     # Get block stats for a given interval and period
     def block_stats(period: 48, interval: 'h')
-      get('/block_stats', period: period, interval: interval).map do |stat|
-        Mina::BlockStat.new(stat)
-      end
+      get_collection(Mina::BlockStat, '/block_stats', period: period, interval: interval)
     end
 
     # Get block average times
@@ -41,7 +37,7 @@ module Mina
 
     # Get validators
     def validators
-      get('/validators').map { |v| Mina::Validator.new(v) }
+      get_collection(Mina::Validator, '/validators')
     end
 
     # Get validator details
@@ -51,7 +47,7 @@ module Mina
 
     # Search transactions
     def transactions(params = {})
-      get('/transactions', params).map { |t| Mina::Transaction.new(t) }
+      get_collection(Mina::Transaction, '/transactions', params)
     end
 
     # Get transaction details
@@ -59,16 +55,13 @@ module Mina
       Mina::Transaction.new(get("/transactions/#{id}"))
     end
 
-    # Get transaction stats for a given period of time
-    def transactions_stats(period: 48, interval: 'h')
-      get('/transactions_stats', period: period, interval: interval).map do |stat|
-        Mina::TransactionStat.new(stat)
-      end
-    end
-
     # Get account details
     def account(id)
       Mina::Account.new(get("/accounts/#{id}"))
+    end
+
+    def delegations(public_key: nil, delegate: nil)
+      get_collection(Mina::Account, '/delegations', { public_key: public_key, delegate: delegate })
     end
   end
 end

@@ -1,0 +1,32 @@
+.slider {
+  display: flex;
+  overflow-x: auto;
+}
+
+.slider__item {
+  margin-left: 16px;
+}
+
+.slider__item:first-child {
+  margin-left: 30px;
+
+  @include media(s) {
+    margin-left: 16px;
+  }
+}
+
+.arrows {
+  display: flex;
+}
+
+.arrows__prev {
+  margin-right: 28px;
+  transform: rotate(180deg);
+}
+
+.arrows__prev,
+.arrows__next {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

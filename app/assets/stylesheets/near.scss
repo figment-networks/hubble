@@ -11,6 +11,7 @@
 @import 'common/footer';
 @import 'common/typography';
 @import 'common/misc';
+@import 'common/logotypes';
 
 // app pages
 @import 'page/near/chain';
@@ -18,6 +19,10 @@
 
 // components
 @import 'components/network-chain-header';
-@import 'components/near/validator-table';
+@import 'components/data-block';
+@import 'components/data-table';
+@import 'components/validator-header';
+@import 'components/validator-table';
 @import 'components/near/validator-epochs-table';
+@import 'components/search-bar';
 @import 'components/transactions-table';

@@ -1,0 +1,22 @@
+<div class="section">
+  <div class="page__container">
+    <div class="section__header">
+      <h2 class="section__title">REWARDS Overview</h2>
+    </div>
+    <div class="section__row">
+      
+      <div class="section__item section__item--narrow">
+        <div class="chart-box">
+          <div class="chart-box__header">
+            <p class="chart-box__text">Monthly Rewards Distribution</p>
+          </div>
+          <div class="chart-box__content">
+            <div id="rewards-distribution-chart">
+              <%= line_chart(build_reward_history_chart_data, reward_history_chart_options) %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

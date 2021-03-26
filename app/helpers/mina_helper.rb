@@ -5,10 +5,6 @@ module MinaHelper
     %w[received Received]
   ].freeze
 
-  def mina_validators_active_filter(validators)
-    validators.count(&:active?) > 0 ? '_active_' : '_inactive_'
-  end
-
   def mina_tx_icon(tx, public_key)
     dir = tx.receiver == public_key ? 'down' : 'up'
     tag.i(class: "fa fa-caret-#{dir} tx-dir #{dir}") { '' }

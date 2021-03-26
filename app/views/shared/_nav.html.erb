@@ -1,81 +1,56 @@
-<nav class='navbar navbar-expand-lg navbar-light bg-white'>
-  <div class='container'>
-    <div class='brands'>
-      <div class='navbar-brand'>
-        <a href='/'>
-          <img height='35px' src='<%= image_path 'hubble-logo.png' %>' alt='Hubble (by Figment)' />
-        </a>
-        <a href='https://figment.io'>
-          <div class='figment-logo'>
-            <span class='text-muted text-sm'>by</span>
-            <img height='20px' src='<%= image_path 'figment-inline.svg' %>' />
-          </div>
-        </a>
-      </div>
+<nav class='navbar navbar-expand-lg navbar-light py-4'>
+  <div class='container flex-nowrap'>
+    <div class="navbar__left">
+      <button class='navbar-toggler d-block' type='button' data-toggle='collapse' data-target='#navbarNavDropdown' aria-controls='navbarNavDropdown' aria-expanded='false' aria-label='Toggle navigation'>
+        <span class='d-sm-block d-md-none navbar-toggler-icon'></span>
+      </button>
     </div>
+    
+    <%= link_to root_path do %>
+      <%= image_tag 'hubble-logo-dark.svg', size: "79x18", alt: 'Hubble logo' %>
+    <% end %>
 
-    <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarNavDropdown' aria-controls='navbarNavDropdown' aria-expanded='false' aria-label='Toggle navigation'>
-      <span class='navbar-toggler-icon'></span>
-    </button>
-    <div class='collapse navbar-collapse' id='navbarNavDropdown'>
-      <ul class='navbar-nav ml-auto'>
-        <% if @chain -%>
-          <form class='form-inline my-2 my-lg-0' action='<%= namespaced_path( 'search', pre_path: true ) %>'>
-            <input class='form-control form-control-sm mr-sm-2' name='query' type='search' value='<%= params[:query] %>' placeholder='Search <%= @chain.name %>...' aria-label='Search'>
-          </form>
-          <li class='sep'>|</li>
+    <div class="navbar__right">
+      <div class='d-md-flex collapse navbar-collapse justify-content-end' id='navbarNavDropdown'>
+        <div class='d-none d-lg-block mr-4'>
+          <%= render partial: '/shared/search-bar' %>
+        </div>
+        <div class="navbar__overlay" data-toggle='collapse' data-target='#navbarNavDropdown'></div>
+        <div class="navbar__body">
+          <button class='navbar-toggler d-block' type='button' data-toggle='collapse' data-target='#navbarNavDropdown' aria-controls='navbarNavDropdown' aria-expanded='false' aria-label='Toggle navigation'>
+            <span class='d-sm-block d-md-none navbar-toggler-icon'></span>
+          </button>
+          <ul class='navbar-nav ml-auto'>
+            <% if current_user -%>
+              <% if @chain && @chain.has_dashboard? -%>
+                <li class='nav-item'>
+                  <a class='link' href='<%= namespaced_path( 'dashboard', chain: @chain || Cosmos::Chain.primary ) %>'>Dashboard</a>
+                </li>
+                <li class='sep'></li>
+              <% end -%>
 
-          <% if !@no_chain_select && grouped_visible_chains.any? -%>
-            <li class='nav-item dropdown top-nav-chain-select'>
-              <a class='nav-link dropdown-toggle' href='#' id='chain-menu-link' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
-                <%= @chain.name %>
-              </a>
-              <div class='dropdown-menu' aria-labelledby='chain-menu-link'>
-                <% grouped_visible_chains.each do |network, chains| -%>
-                  <div class='dropdown-label'><%= network %></div>
-                  <% chains.each do |chain| -%>
-                    <% path = controller_name == 'dashboard' ? namespaced_path( 'dashboard', chain: chain ) : namespaced_path( chain: chain ) -%>
-                    <a class='dropdown-item <%= 'current-chain' if chain == @chain %>' href='<%= path %>'>
-                      <%= chain.name %>
-                      <!-- <% if chain == @chain -%><span class='fas fa-circle text-sm'></span><% end -%> -->
-                    </a>
-                  <% end -%>
-                  <div class='dropdown-divider'></div>
-                <% end -%>
-              </div>
-            </li>
-            <li class='sep'>|</li>
-          <% end -%>
-        <% end -%>
-
-        <% if current_user -%>
-          <% if @chain && @chain.has_dashboard? -%>
-            <li class='nav-item'>
-              <a class='nav-link' href='<%= namespaced_path( 'dashboard', chain: @chain || Cosmos::Chain.primary ) %>'>Dashboard</a>
-            </li>
-            <li class='sep'>|</li>
-          <% end -%>
-
-          <li class='nav-item dropdown'>
-            <a class='nav-link dropdown-toggle' href='#' id='account-menu-link' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
-              Account
-            </a>
-            <div class='dropdown-menu' aria-labelledby='account-menu-link'>
-              <a class='dropdown-item' href='<%= settings_users_path %>'>Settings</a>
-              <a class='dropdown-item' href='<%= telegram_account_path %>'>Telegram Account</a>
-              <a class='dropdown-item' href='<%= logout_path %>'>Logout</a>
-            </div>
-          </li>
-        <% else -%>
-          <li class='nav-item'>
-            <a class='nav-link' href='<%= login_path %>'>Login</a>
-          </li>
-          <li class='sep'>/</li>
-          <li class='nav-item'>
-            <a class='nav-link' href='<%= new_user_path %>'>Signup</a>
-          </li>
-        <% end -%>
-      </ul>
+              <li class='nav-item dropdown'>
+                <a class='link dropdown-toggle' href='#' id='account-menu-link' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+                  Account
+                </a>
+                <div class='dropdown-menu dropdown-menu-right' aria-labelledby='account-menu-link'>
+                  <%= link_to 'Settings', settings_users_path, class: "dropdown-item link" %>
+                  <%= link_to 'Telegram Account', telegram_account_path, class: "dropdown-item link" %>
+                  <%= link_to 'Logout', logout_path, class: "dropdown-item link" %>
+                </div>
+              </li>
+            <% else -%>
+              <li class='nav-item'>
+                <%= link_to 'Login', login_path, class: "link" %>
+              </li>
+              <li class='sep'></li>
+              <li class='nav-item'>
+                <%= link_to 'Signup', new_user_path, class: "link" %>
+              </li>
+            <% end -%>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 </nav>

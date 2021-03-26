@@ -1,12 +1,13 @@
-<%= render_card "Community Pool", class: "chain-pool" do %>
-  <div class="sub-info">
-    <small class="text-muted">Total Currency</small>
-    <%= format_amount(block.total_currency, denom: "mina") %>
+<div class='data-block chain-pool'>
+  <h3 class='data-block__title'>Community Pool</h3>
+  <div class="sub-info mb-2">
+    <small class="text-label">Total Currency</small>
+    <%= format_amount(block.total_currency) %>
   </div>
   <div class="sub-info">
-    <small class="text-muted">
+    <small class="text-label">
       Validator Pool
     </small>
-    <%= format_amount(validator_pool, denom: "mina") %>
+    <%= format_amount(validator_pool) %>
   </div>
-<% end %>
+</div>

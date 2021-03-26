@@ -1,30 +1,38 @@
-<%= render_card "Delegations", class: "validator-delegations", body_class: "no-padding" do %>
-  <% if delegations.any? %>
-    <table class="table table-striped delegations">
-      <thead>
-        <tr role="row">
-          <th>Account</th>
-          <th>Amount</th>
-          <th>Share</th>
+<div class='data-table validator-delegations'>
+  <div class='data-table__header'>
+    <h3 class='data-table__title'>Delegations</h3>
+  </div>
+  <table class="table delegations m-0">
+    <thead>
+    <tr role="row">
+      <th>Account</th>
+      <th>Amount</th>
+      <th>Share</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% if delegations.any? %>
+      <% delegations.each do |delegation| %>
+        <tr>
+          <td class="technical">
+            <%= link_to delegation.public_key.truncate(20), mina_chain_account_path(chain, delegation.public_key) %>
+          </td>
+          <td>
+            <%= format_amount(delegation.balance) %>
+          </td>
+          <td class="technical">
+            <%= mina_delegation_share(delegation.balance, validator.stake) %>
+          </td>
         </tr>
-      </thead>
-      <tbody>
-        <% delegations.each do |delegation| %>
-          <tr>
-            <td class="technical">
-              <%= link_to delegation.public_key.truncate(30), mina_chain_account_path(chain, delegation.public_key) %>
-            </td>
-            <td>
-              <%= format_amount(delegation.balance, denom: "mina") %>
-            </td>
-            <td class="technical">
-              <%= mina_delegation_share(delegation.balance, validator.delegated_balance) %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  <% else %>
-    <div class="text-empty">Validator does not have any delegations</div>
-  <% end %>
-<% end %>
+      <% end %>
+    <% else %>
+      <tr>
+        <td colspan='3' class='data-table__empty'>
+        Validator does not have any delegations
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+

@@ -11,13 +11,17 @@
 @import 'common/footer';
 @import 'common/typography';
 @import 'common/misc';
-@import 'common/error-content';
+@import 'common/logotypes';
 
-@import 'page/cosmoslike/transaction';
+@import 'page/celo/chain';
+@import 'page/celo/validator';
 
 // components
 @import 'components/network-chain-header';
+@import 'components/data-block';
+@import 'components/data-table';
 @import 'components/validator-table';
+@import 'components/validator-header';
 @import 'components/transactions-table';
 @import 'components/delegations-table';
-
+@import 'components/search-bar';

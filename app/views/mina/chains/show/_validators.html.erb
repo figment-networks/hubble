@@ -1,31 +1,38 @@
 <section class="validators">
-  <div class="validator-table-header">
-    <h4>
-      Validators
-      <small>&nbsp;&mdash; <%= @validators.size %> total&nbsp;</small>
-      <div class="validators-chart-container">
-        <canvas class="validators-chart" data-chart="<%= validator_intervals.to_json %>" data-name="validators"></canvas>
-      </div>
-      <script>
-        App.config.currentValidatorFilter = "<%= mina_validators_active_filter(@validators) %>";
-      </script>
-    </h4>
-
-    <div class="controls">
+  <div class="validator-table-header justify-content-between py-1 flex-wrap">
+    <div class='d-flex align-items-center flex-grow-1 py-2'>
+      <h4>Validators</h4>
       <input type="text" class="form-control form-control-sm validator-search" placeholder="filter validators...">
-      <a tabindex=0 class="btn btn-sm btn-outline-light validator-table-settings-target"><span class="fas fa-cog"></span></a>
-      <div class="validator-table-settings d-none">
-        <div class="btn-group" role="group" aria-label="Validator table filter">
-          <button type="button" data-target="_all_" class="btn btn-outline-primary">All</button>
-          <button type="button" data-target="_active_" class="btn btn-outline-primary">Active</button>
-          <button type="button" data-target="_inactive_" class="btn btn-outline-primary">Inactive</button>
+      <script>
+        App.config.currentValidatorFilter = "_all_";
+      </script>
+    </div>
+
+    <div class='controls'>
+      <div class='d-flex align-items-center py-2'>
+        <div class="custom-control custom-radio mr-4">
+          <input class="custom-control-input" type="radio" name="validator-filter" id="filterAll" value='_all_' checked>
+          <label class="custom-control-label" for="filterAll">All</label>
+        </div>
+        <div class="custom-control custom-radio mr-4">
+          <input class="custom-control-input" type="radio" name="validator-filter" id="filterActive" value='_active_'>
+          <label class="custom-control-label" for="filterActive">
+            Active
+          </label>
+        </div>
+        <div class="custom-control custom-radio">
+          <input class="custom-control-input" type="radio" name="validator-filter" id="filterInactive" value='_inactive_'>
+          <label class="custom-control-label" for="filterInactive">
+            Inactive
+          </label>
         </div>
       </div>
     </div>
   </div>
 
+
   <div class="validator-table">
-    <table class="table-striped">
+    <table class="w-100">
       <thead>
         <tr>
           <th>Address/Name</th>
@@ -38,31 +45,31 @@
       <tbody>
         <% @validators.each do |validator| %>
           <tr>
-            <td>
+            <td class='col-address'>
               <span
                 class="fa fa-circle status-icon <%= validator.status %>"
                 data-toggle="tooltip"
                 data-tooltip-side="right"
                 title="Last seen active <%= time_ago_in_words validator.last_time %> ago">
               </span>
-              <a href="<%= mina_chain_validator_path(@chain, id: validator.account) %>">
-                <%= validator.account.truncate(20) %>
+              <a href="<%= mina_chain_validator_path(@chain, id: validator.public_key) %>">
+                <%= validator.display_name.truncate(20) %>
               </a>
             </td>
             <td>
               <%= validator.blocks_created %>
             </td>
             <td>
-              <%= validator.delegated_accounts %>
+              <%= validator.delegations %>
             </td>
-            <td data-order="<%= validator.account_balance %>">
-              <span data-toggle="tooltip" data-tooltip-side="left" title="<%= mina_validator_power(validator.account_balance, validator_pool) %> of validator pool">
-                <%= format_amount(validator.account_balance, denom: "mina") %>
+            <td data-order="<%= validator.stake %>">
+              <span data-toggle="tooltip" data-tooltip-side="left" title="<%= mina_validator_power(validator.stake, validator_pool) %> of validator pool">
+                <%= format_amount(validator.stake) %>
               </span>
             </td>
             <td class="d-none">
               _all_ <%= validator.active? ? "_active_" : "_inactive_" %>
-              <%= validator.account %>
+              <%= validator.public_key %>
             </td>
           </tr>
         <% end %>

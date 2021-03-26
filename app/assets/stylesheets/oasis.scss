@@ -11,6 +11,7 @@
 @import 'common/footer';
 @import 'common/typography';
 @import 'common/misc';
+@import 'common/logotypes';
 @import 'common/error-content';
 
 // app pages
@@ -23,6 +24,11 @@
 
 // components
 @import 'components/network-chain-header';
+@import 'components/validator-header';
 @import 'components/validator-table';
 @import 'components/transactions-table';
 @import 'components/delegations-table';
+@import 'components/data-block';
+@import 'components/data-table';
+@import 'components/event-history';
+@import 'components/search-bar';

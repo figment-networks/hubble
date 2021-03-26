@@ -27,14 +27,14 @@ class SmallAverageVotingPowerChart {
           {
             cubicInterpolationMode: 'monotone',
             data: data,
-            borderColor: '#70707a',
+            borderColor: '#4D74FF',
             fill: false
           }
         ]
       },
       options: {
         elements: {
-          point: {radius: 0, backgroundColor: '#70707a', hitRadius: 6, hoverRadius: 3}
+          point: {radius: 0, backgroundColor: '#4D74FF', hitRadius: 6, hoverRadius: 3}
         },
         layout: {
           padding: {top: 5, bottom: 5, left: 5, right: 5}

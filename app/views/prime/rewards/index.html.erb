@@ -1,0 +1,10 @@
+<% 
+  @page_title = 'My Rewards' 
+  @new_account_modal = true
+  @add_account_modal = true
+%>
+
+<%= render 'network_summary_slider', networks: user_networks %>
+
+<%= render 'rewards_charts' %>
+<%= render 'payout_history_table', rewards: user_rewards.select { |reward| reward.time >= payout_display_time } %>

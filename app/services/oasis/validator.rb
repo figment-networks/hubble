@@ -1,6 +1,7 @@
 module Oasis
   class Validator < Common::Resource
     PERIOD_ACTIVE = 1.hour
+    COMMISSION_PERCENTAGE_FACTOR = 10 ** 3
 
     field :id
     field :created_at, type: :timestamp
@@ -37,13 +38,15 @@ module Oasis
     field :as_validator_height
     field :proposed_height
     field :delegations
+    field :network, type: Prime::Network
 
     def self.failed(id)
       new('address' => id)
     end
 
-    def initialize(attr)
+    def initialize(attr, network: nil)
       super(attr)
+      @network = network if network
       @delegations = []
       @uptime ||= accumulated_uptime / accumulated_uptime_count if accumulated_uptime
     end
@@ -62,6 +65,10 @@ module Oasis
 
     def online?(height)
       recent_at_height == height
+    end
+
+    def factored_commission
+      recent_commission / COMMISSION_PERCENTAGE_FACTOR
     end
 
     def current_uptime_percent

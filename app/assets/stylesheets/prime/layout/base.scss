@@ -1,0 +1,167 @@
+* {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+@font-face {
+  font-family: "Austin Cyr Roman";
+  src: url("../fonts/AustinCyr-Roman.eot");
+  src: url("../fonts/AustinCyr-Roman.eot?#iefix") format("embedded-opentype"), url("../fonts/AustinCyr-Roman.woff2") format("woff2"), url("../fonts/AustinCyr-Roman.woff") format("woff"), url("../fonts/AustinCyr-Roman.ttf") format("truetype"), url("../fonts/AustinCyr-Roman.svg#AustinCyr-Roman") format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+html {
+  font-family: "Inter", sans-serif;
+}
+
+html,
+body {
+  overflow-x: auto;
+}
+
+body {
+  background: #F1F1F1;
+}
+
+.container {
+  width: 100%;
+  max-width: 1170px;
+  margin: 0 auto;
+  padding: 0 30px;
+
+  @include media(s, 168px) {
+    padding: 0 15px;
+  }
+}
+
+button, a {
+  cursor: pointer;
+}
+
+.page {
+  min-height: 100vh;
+}
+
+.page__content {
+  max-width: 100%;
+  padding: 24px 0 30px 256px;
+
+  @include media(m, 124px) {
+    padding: 112px 0 30px;
+  }
+
+
+  @include media(s) {
+    padding-top: 89px;
+  }
+}
+
+.page__container {
+  padding: 0 30px;
+
+  @include media(s) {
+    padding: 0 16px;
+  }
+}
+
+.page__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+
+  @include media(s) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.page__header-button {
+  @include media(s) {
+    width: 100%;
+    margin-top: 16px;
+  }
+}
+
+.page__title {
+  font-family: "Austin Cyr";
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 32px;
+  color: #111111;
+}
+
+.section + .section {
+  margin-top: 24px;
+}
+
+.section__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.section__title {
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 15px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #212529;
+}
+
+.section__row {
+  display: flex;
+
+  @include media(m) {
+    flex-direction: column;
+  }
+}
+
+.section__item + .section__item {
+  margin-left: 30px;
+
+  @include media(m) {
+    margin: 30px 0 0;
+  }
+}
+
+.section__item--narrow {
+  width: 43%;
+
+  @include media(m) {
+    width: 100%;
+  }
+}
+
+.section__item--wide {
+  width: 57%;
+
+  @include media(m) {
+    width: 100%;
+  }
+}
+
+.section__item--fullwidth {
+  width: 100%;
+}
+
+.link {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+  text-decoration: underline;
+  color: #000000;
+}
+
+.color-success {
+  font-weight: 600;
+  color: #3BB086;
+}
+
+.text-uppercase {
+  text-transform: uppercase;
+}

@@ -1,16 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html lang='en'>
   <head>
-    <title><%= page_title? ? page_title : 'Prime (by Figment)' %></title>
+    <title><%= prime_page_title %></title>
     <%= csrf_meta_tags %>
 
-    <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <meta http-equiv='X-UA-Compatible' content='ie=edge'>
 
     <link rel='icon' type='image/png' sizes='32x32' href='<%= asset_path('icons/favicon-32x32.png') %>' />
     <link rel='icon' type='image/png' sizes='96x96' href='<%= asset_path('icons/favicon-96x96.png') %>' />
     <link rel='apple-touch-icon' sizes='180x180' href='<%= asset_path('icons/apple-icon-180x180.png') %>' />
 
-    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.2/css/all.css' integrity='sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr' crossorigin='anonymous'>
+    <link rel='preconnect' href='https://fonts.gstatic.com'>
+    <link href='https://fonts.googleapis.com/css2?family=Inter:wght@500;600&display=swap' rel='stylesheet'>
 
     <link rel='canonical' href='<%= ((canonical = yield(:canonical_url)).blank? ? request.url : canonical).chomp('/') %>' />
     <% if meta_description? -%>
@@ -18,15 +20,36 @@
     <% end -%>
 
     <%= stylesheet_link_tag 'prime', media: 'all' %>
+    <%= prime_js_namespace %>
     <%= javascript_include_tag 'prime', media: 'all' %>
   </head>
 
   <body class='<%= yield :body_class %> <%= monitor_body_classes %>'>
+    <%= render partial: '/prime/shared/branding' %>
 
-    <div class='content-wrapper'>
-      <div class='container'>
+    <div class='page'>
+      <%= render partial: 'prime/shared/nav' %>
+      <div class="page__content">
+
+        <div class="page__container">
+          <div class="page__header">
+            <h1 class="page__title"><%= @page_title %></h1>
+            <% if @add_account_modal %>
+              <button class="button button--primary page__header-button" data-target="add-address-modal">
+                <%= image_tag 'prime/icons/plus-light.svg', alt: 'plus' %>
+                Add address
+              </button>
+            <% end %>
+          </div>
+        </div>
+        <%= render_flash_messages %>
         <%= yield %>
       </div>
     </div>
+    <%= render partial: '/prime/shared/modals' %>
+
+    <script>
+      Array.prototype.push.apply( window.App.mode, <%= [yield(:body_class)].to_json.html_safe %> );
+    </script>
   </body>
 </html>

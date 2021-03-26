@@ -25,7 +25,7 @@
             <span class='large-number technical'><%= @transaction.block %></span>
           </div>
 
-          <%= render layout: 'shared/redesign/data_block', locals: { header: 'Result' } do %>
+          <%= render layout: 'shared/data_block', locals: { header: 'Result' } do %>
             <% if @transaction.is_success -%>
               <span class='badge badge-success'>SUCCESS</span>
             <% else -%>
@@ -33,15 +33,15 @@
             <% end -%>
           <% end %>
 
-          <%= render layout: 'shared/redesign/data_block', locals: { header: 'Timestamp' } do %>
+          <%= render layout: 'shared/data_block', locals: { header: 'Timestamp' } do %>
             <span class='technical'><%= format_timestamp(@transaction.time) %></span>
           <% end %>
 
-          <%= render layout: 'shared/redesign/data_block', locals: { header: 'Fees' } do %>
+          <%= render layout: 'shared/data_block', locals: { header: 'Fees' } do %>
             <%= format_amount(@transaction.fee, @chain, denom: @chain.class::DEFAULT_TOKEN_REMOTE) %>
           <% end %>
 
-          <%= render layout: 'shared/redesign/data_block', locals: { header: 'Raw JSON' } do %>
+          <%= render layout: 'shared/data_block', locals: { header: 'Raw JSON' } do %>
             <%= link_to 'View', namespaced_path('block_transaction', params[:block_id], @transaction.hash, format: 'json'),
                 target: '_blank', class: 'button-secondary' %>
           <% end %>

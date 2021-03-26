@@ -1,189 +1,216 @@
 <% content_for :body_class, 'validator-show' %>
 
-<%= render partial: '/cosmoslike/shared/chain_header', locals: { summary_link: true } %>
-<%= render partial: '/cosmoslike/shared/sync_errors' %>
+<%= render partial: '/cosmoslike/shared/chain_header', locals: { active_tab: '', events_link: true, tx_search_link: true, reports_link: true } %>
 <%= render_flash_messages %>
 
-<% if @validator.has_info? %>
-  <h2 class='mb-3'>
-    <%= @validator.moniker.truncate(40) %>
-    <% if @validator.info_field( 'description', 'website' ) && (url = heuristic_url(@validator.info_field( 'description', 'website' ))) %>
-      <a class='btn btn-outline-primary ml-3' href='<%= url %>' target='_blank'>Visit Site <span class='fas fa-external-link-alt ml-1'></span></a>
-    <% end -%>
-  </h2>
-<% end -%>
+<div class='validator-header'>
+  <div class='container'>
+    <div class='d-flex flex-wrap'>
+      <div class='mr-auto pb-4'>
+        <div class='d-flex align-items-center flex-wrap'>
+          <% if @validator.has_info? %>
+            <h2 class='validator-header__title'><%= @validator.moniker.truncate(40, separator: '...') %></h2>
+            <% if @validator.info_field( 'description', 'website' ) && (url = heuristic_url(@validator.info_field( 'description', 'website' ))) %>
+              <%= link_to url, class: 'external-link', target: :blank do %>
+                <%= url %>&nbsp;&nbsp;<span class='fas fa-external-link-alt'></span>
+              <% end -%>
+            <% end -%>
+          <% else -%>
+          <div>
+            <h2 class="validator-header__title">Validator</h2>
+            <p class="data-block__value d-block word-break mt-2"><%= @validator.address %></p>
+          </div>
+          <% end -%>
+        </div>
+        <% if @chain.class::SUPPORTS_LEDGER -%>
+          <button class='stake-button' data-toggle='modal' data-target='#delegation-modal'>Stake Now</button>
+        <% end -%>
+      </div>
+      <div class='validator-info pb-4'>
+        <ul class="validator-info__list">
+          <% if @validator.has_info? -%>
+            <li class="validator-info__item">
+              <p class="text-label validator-info__label">Owner</p>
+              <p class="validator-info__value technical"><%= @validator.owner %></p>
+            </li>
+          <% end -%>
 
-<div class='row mb-4'>
-  <div class='col-12 col-md-8'>
-    <div class='info'>
-      <% if @validator.has_info? -%>
-        <h5 class='mb-0'>
-          <label class='text-muted'>Owner</label>
-          <span class='technical'><%= @validator.owner %></span>
-        </h5>
-      <% end -%>
-
-      <h5 class='mb-0'>
-        <label class='text-muted'><%= @validator.has_info? ? 'Address' : 'Validator' %></label>
-        <span class='technical'><%= @validator.address %></span>
-      </h5>
-
-      <% if @validator.account -%>
-        <h5 class='mb-0'>
-          <label class='text-muted'>Account</label>
-          <span class='technical'>
-            <a href='<%= namespaced_path( 'account', @validator.account ) %>'><%= @validator.account.address %></a>
-          </span>
-        </h5>
-      <% end -%>
-    </div>
-  </div>
-
-  <% if @chain.class::SUPPORTS_LEDGER -%>
-    <div class='col-12 col-md-4'>
-      <div class='text-center'>
-        <button class='btn btn-lg btn-primary delegate-button' data-toggle='modal' data-target='#delegation-modal'>Stake Now</button>
-        <p class='mt-1 mb-0 text-muted text-sm'>With your Ledger Nano S<br/>on Brave, Chrome, or Opera.</p>
+          <% if @validator.has_info? -%>
+          <li class="validator-info__item">
+            <p class="text-label validator-info__label">Address</p>
+            <p class="validator-info__value technical"><%= @validator.address %></p>
+          </li>
+          <% end -%>
+          <% if @validator.account -%>
+            <li class="validator-info__item">
+              <p class="text-label validator-info__label">Account</p>
+              <%= link_to namespaced_path( 'account', @validator.account ), class: "validator-info__value technical" do %>
+                <%= @validator.account.address %>
+              <% end -%>
+            </li>
+          <% end -%>
+        </ul>
       </div>
     </div>
-  <% end -%>
-</div>
 
-<div class='row'>
-  <div class='col-12 col-md-8 order-1 order-md-0'>
-    <%= render partial: 'big_charts' %>
-    <% if @chain.governance_params_synced? -%>
-      <%= render partial: 'governance' %>
-    <% end -%>
-    <%= render partial: 'events' %>
-
-    <!-- UNLESS STATEMENT TO BE REMOVED WHEN DELEGATIONS INDEXING FIXED -->
-    <% unless @chain.network_name == 'Cosmos' %>
-      <%= render partial: 'delegations' %>
-    <% end %>
-  </div>
-
-  <div class='col-12 col-md-4 order-0 order-md-1 info-cards'>
-    <%= render partial: 'sidebar' %>
   </div>
 </div>
 
+<div class='content'>
+  <div class='container'>
+    <%= render partial: '/cosmoslike/shared/sync_errors' %>
 
-<% content_for :modals do -%>
-  <div class='modal fade' id='delegation-modal' tabindex='-1' role='dialog'>
-    <div class='modal-dialog modal-dialog-centered' role='document'>
-      <div class='modal-content'>
-        <div class='modal-body'>
-          <button type='button' class='close float-right' data-dismiss='modal' aria-label='Close'>
-            <span aria-hidden='true'>&times;</span>
-          </button>
+    <div class='row'>
+      <div class='col-md-12 col-lg-6 mb-4 pb-2'>
+        <ul class="data-blocks__list">
+          <li class="data-blocks__item">
+            <%= render partial: 'current_voting_power' %>
+          </li>
+          <li class="data-blocks__item">
+            <%= render partial: 'uptime' %>
+          </li>
+          <li class="data-blocks__item">
+            <%= render partial: 'lifetime' %>
+          </li>
+          <li class="data-blocks__item">
+            <%= render partial: 'commission' %>
+          </li>
+        </ul>
+        <%= render partial: 'big_charts' %>
+        <% if @chain.governance_params_synced? -%>
+          <%= render partial: 'governance' %>
+        <% end -%>
+        <% # This causes an eager load warning in dev, but we temporarily want to disable delegations in Cosmos 4 %>
+        <% unless @chain.ext_id == 'cosmoshub-4' %>
+          <%= render partial: 'delegations' %>
+        <% end -%>
+      </div>
 
-          <div class='delegation-step step-error text-center p-5'>
-            <h3>An Error Occurred</h3>
-            <p>
-              Sorry, something went wrong. Please disconnect
-              your Ledger, refresh the page, and try again.
-            </p>
-            <div class='alert alert-danger mt-4 mb-0'>
-              <p class='delegation-error mb-0'></p>
-            </div>
-          </div>
+      <div class='col-md-12 col-lg-6'>
+        <%= render partial: 'blocks' %>
+        <%= render partial: 'events' %>
+        <%= render partial: 'pending_rewards' %>
+      </div>
+    </div>
 
-          <div class='delegation-step step-setup text-center p-5'>
-            <h3>Connecting...</h3>
-            <p>Connect, unlock, and open the Cosmos app on your ledger.</p>
-            <div class='p-4'>
-              <span class='fas fa-spin fa-slash text-muted'></span>
-            </div>
-          </div>
 
-          <div class='delegation-step step-choice text-center p-5'>
-            <div class='d-flex flex-column align-items-center'>
-              <button class='mt-4 btn btn-lg btn-outline-primary choice-new-delegation'>New Delegation</button>
-              <button class='mt-3 btn btn-lg btn-outline-primary choice-redelegate'>Withdraw & Re-delegate</button>
-              <div class='text-muted text-sm mt-1'>Pending Rewards: <span class='ml-2 reward-balance text-monospace text-md'></span></div>
-            </div>
-          </div>
+    <% content_for :modals do -%>
+      <div class='modal fade' id='delegation-modal' tabindex='-1' role='dialog'>
+        <div class='modal-dialog modal-dialog-centered' role='document'>
+          <div class='modal-content'>
+            <div class='modal-body'>
+              <button type='button' class='close float-right' data-dismiss='modal' aria-label='Close'>
+                <span aria-hidden='true'>&times;</span>
+              </button>
 
-          <div class='delegation-step step-new-delegation text-center py-5 px-3'>
-            <h3>New Delegation</h3>
-
-            <form class='delegation-form mt-3'>
-              <div class='d-flex align-items-center'>
-                <div class='w-50'>
-                  <div class='d-flex flex-column mt-3'>
-                    <label class='text-muted mb-0'>Validator:</label>
-                    <span class='validator-name'><%= @validator.long_name %></span>
-                  </div>
-                  <div class='d-flex flex-column mt-3'>
-                    <label class='text-muted mb-0'>Account Address:</label>
-                    <span class='account-address text-monospace'></span>
-                  </div>
-                  <div class='d-flex flex-column mt-3'>
-                    <label class='text-muted mb-0'>Account Balance:</label>
-                    <span class='account-balance text-monospace'></span>
-                  </div>
+              <div class='delegation-step step-error text-center p-5'>
+                <h3>An Error Occurred</h3>
+                <p>
+                  Sorry, something went wrong. Please disconnect
+                  your Ledger, refresh the page, and try again.
+                </p>
+                <div class='alert alert-danger mt-4 mb-0'>
+                  <p class='delegation-error mb-0'></p>
                 </div>
+              </div>
 
-                <div class='w-50'>
-                  <div>
-                    <label class='text-muted mb-0 d-inline'>Amount:</label>
+              <div class='delegation-step step-setup text-center p-5'>
+                <h3>Connecting...</h3>
+                <p>Connect, unlock, and open the Cosmos app on your ledger.</p>
+                <div class='p-4'>
+                  <span class='fas fa-spin fa-slash text-muted'></span>
+                </div>
+              </div>
 
-                    <div class='d-flex align-items-center justify-content-center'>
-                      <input class='form-control delegation-amount w-third text-monospace' />
-                      <span class='ml-2 text-monospace'><%= @chain.token_map[@chain.primary_token]['display'] %></span>
-                      <!--<button type='button' class='btn btn-outline-secondary btn-tiny set-max ml-2'><span class='fas fa-arrow-up'></span> max</button>-->
+              <div class='delegation-step step-choice text-center p-5'>
+                <div class='d-flex flex-column align-items-center'>
+                  <button class='mt-4 btn btn-lg btn-outline-primary choice-new-delegation'>New Delegation</button>
+                  <button class='mt-3 btn btn-lg btn-outline-primary choice-redelegate'>Withdraw & Re-delegate</button>
+                  <div class='text-muted text-sm mt-1'>Pending Rewards: <span class='ml-2 reward-balance text-monospace text-md'></span></div>
+                </div>
+              </div>
+
+              <div class='delegation-step step-new-delegation text-center py-5 px-3'>
+                <h3>New Delegation</h3>
+
+                <form class='delegation-form mt-3'>
+                  <div class='d-flex align-items-center'>
+                    <div class='w-50'>
+                      <div class='d-flex flex-column mt-3'>
+                        <label class='text-muted mb-0'>Validator:</label>
+                        <span class='validator-name'><%= @validator.long_name %></span>
+                      </div>
+                      <div class='d-flex flex-column mt-3'>
+                        <label class='text-muted mb-0'>Account Address:</label>
+                        <span class='account-address text-monospace'></span>
+                      </div>
+                      <div class='d-flex flex-column mt-3'>
+                        <label class='text-muted mb-0'>Account Balance:</label>
+                        <span class='account-balance text-monospace'></span>
+                      </div>
+                    </div>
+
+                    <div class='w-50'>
+                      <div>
+                        <label class='text-muted mb-0 d-inline'>Amount:</label>
+
+                        <div class='d-flex align-items-center justify-content-center'>
+                          <input class='form-control delegation-amount w-third text-monospace' />
+                          <span class='ml-2 text-monospace'><%= @chain.token_map[@chain.primary_token]['display'] %></span>
+                        </div>
+                      </div>
+
+                      <div class='d-flex flex-column mt-3'>
+                        <label class='text-muted mb-0'>Transaction Fee:</label>
+                        <span class='transaction-fee text-monospace'></span>
+                      </div>
+                      <div class='d-flex flex-column mt-3'>
+                        <label class='text-muted mb-0'>Total:</label>
+                        <span class='transaction-total text-monospace'>&mdash;</span>
+                      </div>
                     </div>
                   </div>
 
-                  <div class='d-flex flex-column mt-3'>
-                    <label class='text-muted mb-0'>Transaction Fee:</label>
-                    <span class='transaction-fee text-monospace'></span>
+                  <div class='d-flex justify-content-center'>
+                    <div class='amount-error alert alert-danger mb-0 mt-5 text-sm'></div>
+                    <div class='amount-warning alert alert-warning mb-0 mt-5 text-sm'></div>
                   </div>
-                  <div class='d-flex flex-column mt-3'>
-                    <label class='text-muted mb-0'>Total:</label>
-                    <span class='transaction-total text-monospace'>&mdash;</span>
+
+                  <div class='text-center'>
+                    <button type='submit' class='mt-4 btn btn-primary submit-delegation' disabled>Sign with Ledger</button>
                   </div>
+                </form>
+              </div>
+
+              <div class='delegation-step step-confirm text-center'>
+                <div class='p-5'>
+                  <h3>Confirm Transaction</h3>
+                  <p>Review the details on your Ledger and sign the transaction.</p>
+                  <div class='p-4'>
+                    <span class='fas fa-spin fa-slash text-muted'></span>
+                  </div>
+                  <button class='mt-4 btn btn-sm btn-outline-secondary show-transaction-json'>View Raw Transaction</button>
+                </div>
+                <div class='transaction-json-container'>
+                  <pre class='transaction-json text-left'></pre>
                 </div>
               </div>
 
-              <div class='d-flex justify-content-center'>
-                <div class='amount-error alert alert-danger mb-0 mt-5 text-sm'></div>
-                <div class='amount-warning alert alert-warning mb-0 mt-5 text-sm'></div>
+              <div class='delegation-step step-complete text-center p-5'>
+                <h3>Success</h3>
+                <p>Delegation successfully submitted!</p>
+                <div class='p-4 text-center'>
+                  <%= link_to 'View Transaction', class: "btn btn-primary view-transaction" %>
+                </div>
               </div>
-
-              <div class='text-center'>
-                <button type='submit' class='mt-4 btn btn-primary submit-delegation' disabled>Sign with Ledger</button>
-              </div>
-            </form>
-          </div>
-
-          <div class='delegation-step step-confirm text-center'>
-            <div class='p-5'>
-              <h3>Confirm Transaction</h3>
-              <p>Review the details on your Ledger and sign the transaction.</p>
-              <div class='p-4'>
-                <span class='fas fa-spin fa-slash text-muted'></span>
-              </div>
-              <button class='mt-4 btn btn-sm btn-outline-secondary show-transaction-json'>View Raw Transaction</button>
-            </div>
-            <div class='transaction-json-container'>
-              <pre class='transaction-json text-left'></pre>
-            </div>
-          </div>
-
-          <div class='delegation-step step-complete text-center p-5'>
-            <h3>Success</h3>
-            <p>Delegation successfully submitted!</p>
-            <div class='p-4 text-center'>
-              <a class='btn btn-primary view-transaction' href='' target='_blank'>View Transaction</a>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    <% end -%>
+
   </div>
-<% end -%>
+</div>
 
 <script>
   App.config.validatorOperatorAddress = '<%= @validator.owner %>';

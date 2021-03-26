@@ -32,17 +32,17 @@ describe 'tezos homepage' do
   it 'can access governance page', :vcr do
     click_link 'Governance'
     expect(page).to have_content('Governance Proposals')
-    expect(page).to have_content('Current Period')
+    expect(page).to have_content('CURRENT PERIOD')
   end
 
   it 'can see baker performance', :vcr do
     baker_address = 'tz2Q7Km98GPzV1JLNpkrQrSo5YUhPfDp6LmA'
     click_link baker_address
     expect(page).to have_content(baker_address)
-    expect(page).to have_content('All Time Baking %')
-    expect(page).to have_content('All Time Endorsing %')
-    expect(page).to have_content('Baking History by Cycle')
-    expect(page).to have_content('Endorsing History by Cycle')
+    expect(page).to have_content('ALL TIME BAKING %')
+    expect(page).to have_content('ALL TIME ENDORSING %')
+    expect(page).to have_content('BAKING HISTORY BY CYCLE')
+    expect(page).to have_content('ENDORSING HISTORY BY CYCLE')
     expect(page).to have_content('Cycle Reports')
   end
 end

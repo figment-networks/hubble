@@ -47,6 +47,7 @@ class Cosmoslike::ValidatorDelegationsDecorator
   end
 
   def decorate_delegation(delegation)
+    delegation = delegation['shares'] ? delegation : delegation['delegation']
     tokens = (delegation['shares'].to_f / @validator.info_field('delegator_shares').to_f) * @validator.info_field('tokens').to_f
     {
       account: delegation['delegator_address'],

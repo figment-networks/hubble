@@ -1,20 +1,18 @@
 <% content_for :body_class, 'chain-show' %>
 
 <%= render "/shared/dh_banner_script" %>
-<%= render partial: "shared/redesign/chain_header", locals: { active_tab: 'Validators' } %>
+<%= render partial: "shared/chain_header", locals: { active_tab: 'Validators' } %>
 <div class='content'>
   <div class='container'>
     <%= render_flash_messages %>
     <div class='row info-cards'>
       <div class='col-12 col-md-9 order-1 order-md-0'>
-        <div class="row">
-          <div class='col-12 col-md-6 order-1 order-md-0'>
-            <%= render "avalanche/chains/sections/validators_daily_stake",
+            <%= render "avalanche/chains/sections/validators_stake_charts",
                        validators_daily_stake: @validators_daily_stake,
+                       validators_hourly_stake: @validators_hourly_stake,
                        chain: @chain
             %>
-          </div>
-        </div>
+
         <div>
           <%= render "avalanche/chains/sections/validators",
                         validators: @validators

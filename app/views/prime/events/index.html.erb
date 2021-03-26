@@ -1,0 +1,44 @@
+<% content_for :body_class, 'prime-events' %>
+<% @page_title = 'Network News & Events' %>
+
+<div class="section">
+  <div class="page__container">
+    <%= render '/prime/shared/events_calendar', full_width: true %>
+  </div>
+</div>
+
+<div class="section">
+  <div class="page__container">
+    <div class="section__header">
+      <h2 class="section__title">NETWORK UPDATES</h2>
+    </div>
+    <table id="networks_updates_table" class="table">
+      <thead>
+        <tr>
+          <th>Network</th>
+          <th>Publish Date</th>
+          <th>Title</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if network_events.count > 0 %>
+          <% if network_events.first.success? %>
+            <%= render network_events, truncate_titles: false %>
+          <% else %>
+            <tr>
+              <td colspan='3'>We are experiencing issues getting network events.  Please check back later.</td>
+            </tr>
+          <% end %>
+        <% else %>
+          <tr>
+            <td colspan='3'>There are currently no network events to display.</td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+  App.seed.CALENDAR_EVENTS = <%= build_calendar_events_array(calendar_events).as_json.to_json.html_safe %>
+</script>

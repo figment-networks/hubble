@@ -1,117 +1,122 @@
-<%= render "tezos/shared/network_header", locals: { governance_link: true } %>
+<%= render partial: '/tezos/shared/network_header', locals: { active_tab: '', summary_link: true, governance_link: true } %>
 
-<div class="row">
-  <div class="col-md-6">
-    <h2 class="mb-0"><%= @baker.long_name %></h2>
-    <p class="small text-muted"><%= @baker.address %></p>
-  </div>
-  <div class="col-md-6 text-right">
+<div class='validator-header border-top-0 pb-4'>
+  <div class='container'>
+    <div class="row align-items-start">
+      <div class="col-lg-6 col-md-12 pb-2">
+        <h1 class='validator-header__title mb-2 mr-0'><%= @baker.long_name %></h1>
+      </div>
+      <div class="col-lg-6 col-md-12 justify-content-lg-end d-flex justify-content-md-start">
+        <div class='validator-info__item mb-3 w-100'>
+          <p class='text-label validator-info__label'>Address</p>
+          <p class="validator-info__value technical"><%= @baker.address %></p>
+        </div>
+      </div>
+    </div>
     <% if @subscription %>
-      <%= link_to "Subscribed", tezos_baker_subscriptions_path(@baker.id), class: "btn btn-secondary" %>
+      <%= link_to "Subscribed", tezos_baker_subscriptions_path(@baker.id), class: "button-secondary" %>
     <% else %>
-      <%= link_to "Subscribe", tezos_baker_subscriptions_path(@baker.id), class: "btn btn-success" %>
+      <%= link_to "Subscribe", tezos_baker_subscriptions_path(@baker.id), class: "button-secondary" %>
     <% end %>
   </div>
 </div>
+<div class='container'>
+  <div class='content'>
 
-<div class="row">
-  <div class="col-md-6">
-    <div class="card text-center">
-      <div class="card-header">
-        All Time Baking %
-      </div>
-      <div class="card-body">
-        <h1 class="display-3">
-          <%= number_to_percentage(@baker.lifetime_baking_stats.percent_baked * 100, precision: 1) %>
-        </h1>
-        <div class="row text-muted">
-          <div class="col">
+    <div class="d-flex mt-4">
+      <div class="mr-5">
+        <div class="data-block">
+          <div class="data-block__title">
+            All Time Baking %
+          </div>
+          <p class="data-block__large-number text-monospace">
+            <%= number_to_percentage(@baker.lifetime_baking_stats.percent_baked * 100, precision: 1) %>
+          </p>
+          <div class='text-label mb-2'>
             <%= number_with_delimiter @baker.lifetime_baking_stats.blocks_baked, delimiter: "," %> baked blocks
           </div>
-          <div class="col">
+          <div class='text-label'>
             <%= number_with_delimiter @baker.lifetime_baking_stats.total_rights, delimiter: "," %> total rights
           </div>
         </div>
       </div>
-    </div>
-  </div>
 
-  <div class="col-md-6">
-    <div class="card text-center">
-      <div class="card-header">
-        All Time Endorsing %
-      </div>
-      <div class="card-body">
-        <h1 class="display-3">
-          <%= number_to_percentage(@baker.lifetime_endorsing_stats.percent_endorsed * 100, precision: 1) %>
-        </h1>
-        <div class="row text-muted">
-          <div class="col">
+      <div>
+        <div class="data-block">
+          <div class="data-block__title">
+            All Time Endorsing %
+          </div>
+          <p class="data-block__large-number text-monospace">
+            <%= number_to_percentage(@baker.lifetime_endorsing_stats.percent_endorsed * 100, precision: 1) %>
+          </p>
+          <div class="text-label mb-2">
             <%= number_with_delimiter @baker.lifetime_endorsing_stats.endorsed_slots, delimiter: "," %> endorsed slots
           </div>
-          <div class="col">
+          <div class="text-label">
             <%= number_with_delimiter @baker.lifetime_endorsing_stats.total_slots, delimiter: "," %> total rights
           </div>
         </div>
       </div>
     </div>
+
+    <div class="row mt-5">
+      <div class="col-md-12 col-lg-6 mb-4 pb-2">
+        <div class="data-block">
+          <div class="data-block__title">
+            Baking History by Cycle
+          </div>
+          <%= chartkick_chart "LineChart", ([
+            { name: "Blocks Baked", data: @baker.baking_stats_history.except(@current_cycle.number.to_s).transform_values { |v| v.blocks_baked } },
+          ]) %>
+        </div>
+      </div>
+      <div class="col-md-12 col-lg-6">
+        <div class="data-block">
+          <div class="data-block__title">
+            Endorsing History by Cycle
+          </div>
+          <%= chartkick_chart "LineChart", ([
+            { name: "Slots Endorsed", data: @baker.endorsing_stats_history.except(@current_cycle.number.to_s).transform_values { |v| v.endorsed_slots } },
+          ]) %>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="data-table mb-4">
+      <div class="data-table__header">
+        <h3 class='data-table__title'>Cycle Reports</h3>
+      </div>
+      <table class="table table-hover m-0">
+        <thead>
+          <tr>
+            <th>Cycle</th>
+            <th>Blocks Baked</th>
+            <th>Blocks Stolen</th>
+            <th>Blocks Missed</th>
+            <th>% Missed</th>
+            <th>Slots Endorsed</th>
+            <th>Slots Missed</th>
+            <th>% Missed</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @cycle_reports.each do |cycle, baking_stats| %>
+            <tr class="linked">
+              <td><%= link_to cycle, tezos_cycle_url(cycle) %></td>
+              <td><%= link_to baking_stats.blocks_baked, tezos_cycle_url(cycle) %></td>
+              <td><%= link_to baking_stats.blocks_stolen, tezos_cycle_url(cycle) %></td>
+              <td><%= link_to baking_stats.blocks_missed, tezos_cycle_url(cycle) %></td>
+              <td><%= link_to number_to_percentage(baking_stats.percent_missed * 100, precision: 1), tezos_cycle_url(cycle) %></td>
+              <td><%= link_to @baker.endorsing_stats_history[cycle].endorsed_slots, tezos_cycle_url(cycle) %></td>
+              <td><%= link_to @baker.endorsing_stats_history[cycle].missed_slots, tezos_cycle_url(cycle) %></td>
+              <td><%= link_to number_to_percentage(@baker.endorsing_stats_history[cycle].percent_missed * 100, precision: 1), tezos_cycle_url(cycle) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <%== pagy_bootstrap_nav(@pagy) %>
   </div>
 </div>
-
-<div class="card">
-  <div class="card-header">
-    Baking History by Cycle
-  </div>
-  <div class="card-body">
-    <%= line_chart([
-      { name: "Blocks Baked", data: @baker.baking_stats_history.except(@current_cycle.number.to_s).transform_values { |v| v.blocks_baked } },
-    ]) %>
-  </div>
-</div>
-
-<div class="card">
-  <div class="card-header">
-    Endorsing History by Cycle
-  </div>
-  <div class="card-body">
-    <%= line_chart([
-      { name: "Slots Endorsed", data: @baker.endorsing_stats_history.except(@current_cycle.number.to_s).transform_values { |v| v.endorsed_slots } },
-    ]) %>
-  </div>
-</div>
-
-<div class="card">
-  <div class="card-header">
-    Cycle Reports
-  </div>
-  <table class="table table-hover m-0">
-    <thead>
-      <tr>
-        <th>Cycle</th>
-        <th>Blocks Baked</th>
-        <th>Blocks Stolen</th>
-        <th>Blocks Missed</th>
-        <th>% Missed</th>
-        <th>Slots Endorsed</th>
-        <th>Slots Missed</th>
-        <th>% Missed</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @cycle_reports.each do |cycle, baking_stats| %>
-        <tr class="linked">
-          <td><%= link_to cycle, tezos_cycle_url(cycle) %></td>
-          <td><%= link_to baking_stats.blocks_baked, tezos_cycle_url(cycle) %></td>
-          <td><%= link_to baking_stats.blocks_stolen, tezos_cycle_url(cycle) %></td>
-          <td><%= link_to baking_stats.blocks_missed, tezos_cycle_url(cycle) %></td>
-          <td><%= link_to number_to_percentage(baking_stats.percent_missed * 100, precision: 1), tezos_cycle_url(cycle) %></td>
-          <td><%= link_to @baker.endorsing_stats_history[cycle].endorsed_slots, tezos_cycle_url(cycle) %></td>
-          <td><%= link_to @baker.endorsing_stats_history[cycle].missed_slots, tezos_cycle_url(cycle) %></td>
-          <td><%= link_to number_to_percentage(@baker.endorsing_stats_history[cycle].percent_missed * 100, precision: 1), tezos_cycle_url(cycle) %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
-
-<%== pagy_bootstrap_nav(@pagy) %>

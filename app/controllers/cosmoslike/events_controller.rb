@@ -1,11 +1,5 @@
 class Cosmoslike::EventsController < Cosmoslike::BaseController
-  layout 'redesign/application'
-
   include Pagy::Backend
-
-  def self.controller_path
-    'cosmoslike/redesign/events'
-  end
 
   def index
     events = @chain.events.includes(:validatorlike)

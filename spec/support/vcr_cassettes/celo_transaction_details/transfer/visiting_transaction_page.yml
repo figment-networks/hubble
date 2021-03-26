@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://localhost:9292/celo/transactions/by_height?height=1614760
+    uri: http://localhost:9292/transactions?height=290813
     body:
       encoding: US-ASCII
       string: ''
@@ -10,7 +10,7 @@ http_interactions:
       Accept:
       - "*/*"
       User-Agent:
-      - rest-client/2.1.0 (darwin18.0.0 x86_64) ruby/2.6.6p146
+      - rest-client/2.1.0 (darwin20.1.0 arm) ruby/2.7.2p137
       Content-Length:
       - '0'
       Content-Type:
@@ -24,46 +24,39 @@ http_interactions:
       code: 200
       message: OK
     headers:
+      Date:
+      - Wed, 24 Mar 2021 14:23:43 GMT
       Content-Type:
-      - application/json
-      X-Content-Type-Options:
-      - nosniff
+      - application/json; charset=utf-8
       Content-Length:
-      - '839'
+      - '1053'
+      Connection:
+      - close
+      X-Ratelimit-Remaining-Minute:
+      - '4993'
+      X-Ratelimit-Limit-Minute:
+      - '5000'
+      Ratelimit-Remaining:
+      - '4993'
+      Ratelimit-Limit:
+      - '5000'
+      Ratelimit-Reset:
+      - '17'
+      X-Quota-Limit-Day:
+      - '10000000'
+      Quota-Remaining:
+      - '9999907'
+      X-Quota-Remaining-Day:
+      - '9999907'
+      Quota-Reset:
+      - '34577'
+      Quota-Limit:
+      - '10000000'
     body:
       encoding: UTF-8
-      string: |
-        {
-          "items": [
-            {
-              "hash": "0x929145bcb26a7f14fbf0758105b7a778da760453c0c7640e3a5d83fb78a0459c",
-              "height": 1614760,
-              "time": 1603303325,
-              "address": "0x22C8a9178841BA95a944AFD1a1fAaE517d3f5DAA",
-              "nonce": 7006,
-              "gas_price": 500000000,
-              "gas": 72513,
-              "gateway_fee": 0,
-              "gateway_fee_recipient": "",
-              "index": 0,
-              "gas_used": 48030,
-              "cumulative_gas_used": 48030,
-              "success": true,
-              "operations": [
-                {
-                  "name": "internalTransfer",
-                  "details": {
-                    "index": 0,
-                    "type": "transfer",
-                    "from": "0x6131a6D616A4be3737B38988847270a64bC10CAa",
-                    "to": "0x22C8a9178841BA95a944AFD1a1fAaE517d3f5DAA",
-                    "value": 1000000000000000,
-                    "success": true
-                  }
-                }
-              ]
-            }
-          ]
-        }
-  recorded_at: Thu, 07 Jan 2021 16:27:33 GMT
+      string: '{"items":[{"hash":"0x50bfadecfebb773b01b9f0e5a171eaca58e2ac6e3024609d7997320d920b84c7","to":"0x675ef638c3B76cce1521e24A03422B8a7fCc0fc5","height":290813,"time":1589027880,"address":"","size":"144.00
+        B","nonce":2,"gas_price":500000000,"gas":116137,"gateway_fee":0,"gateway_fee_recipient":"","index":0,"gas_used":87354,"cumulative_gas_used":87354,"success":true,"operations":[{"name":"InternalTransfer","details":{"index":0,"type":"transfer","from":"0x675ef638c3B76cce1521e24A03422B8a7fCc0fc5","to":"0x6cC083Aed9e3ebe302A6336dBC7c921C9f03349E","value":199990000000000000000000,"success":true}},{"name":"GoldLocked","details":{"Account":"0x675ef638c3b76cce1521e24a03422b8a7fcc0fc5","Value":199990000000000000000000,"Raw":{"address":"0x0000000000000000000000000000000000000000","topics":null,"data":"0x","blockNumber":"0x0","transactionHash":"0x0000000000000000000000000000000000000000000000000000000000000000","transactionIndex":"0x0","blockHash":"0x0000000000000000000000000000000000000000000000000000000000000000","logIndex":"0x0","removed":false}}}]}]}
+
+'
+  recorded_at: Wed, 24 Mar 2021 14:23:43 GMT
 recorded_with: VCR 6.0.0

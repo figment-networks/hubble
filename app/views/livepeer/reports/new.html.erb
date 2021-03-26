@@ -14,7 +14,7 @@
         <div class='report-form'>
           <form action='<%= url_for(action: :show) %>' autocomplete='off'>
             <div class='data-block'>
-              <h3 class='data-block__title'>Delegator List Report</h3>
+              <h3 class='data-block__title'><%= controller_name.titleize.singularize %></h3>
               <fieldset class='range-type-group form-group'>
                 <label class='d-block'>Range type</label>
                 <div class='d-flex align-items-center'>

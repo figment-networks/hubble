@@ -1,0 +1,34 @@
+<aside class='sidebar'>
+  <div class='sidebar__header'>
+    <div class='logo'>
+      <p class='logo__title'>Figment Prime</p>
+      <p class='logo__subtitle'>By Figment</p>
+    </div>
+  </div>
+  <nav class="nav">
+    <ul class="nav__list">
+      <li class="nav__item">
+        <%= link_to 'Home', prime_root_path, class: "nav__link home-btn #{active_nav_option(prime_root_path)}" %>
+      </li>
+      <li class='nav__item'>
+        <!-- TO DO: Update dasgboard-btn class and icon -->
+        <%= link_to 'Portfolio', prime_portfolio_path, class: "nav__link dashboard-btn #{active_nav_option(prime_portfolio_path)}" %>
+      </li>
+      <li class='nav__item'>
+        <%= link_to 'Rewards', prime_rewards_path, class: "nav__link rewards-btn #{active_nav_option(prime_rewards_path)}" %>
+      </li>
+      <li class='nav__item'>
+        <%= link_to 'Validator Performance', prime_validators_path, class: "nav__link validator-btn #{active_nav_option(prime_validators_path)}" %>
+      </li>
+      <li class='nav__item'>
+        <%= link_to 'Network News & Events', prime_events_path, class: "nav__link network-btn #{active_nav_option(prime_events_path)}" %>
+      </li>
+      <li class='nav__item'>
+        <%= link_to 'My Addresses', prime_accounts_path, class: "nav__link addresses-btn #{active_nav_option(prime_accounts_path)}" %>
+      </li>
+      <li class='nav__item'>
+        <%= link_to 'My Profile', prime_profile_path, class: "nav__link profile-btn #{active_nav_option(prime_profile_path)}" %>
+      </li>
+    </ul>
+  </nav>
+</aside>

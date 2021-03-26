@@ -16,6 +16,10 @@
   }
 }
 
+.charts {
+  height: 80px;
+}
+
 .chain-show {
   .small-average-block-time-chart-container,
   .small-average-voting-power-last30d-chart-container,
@@ -37,4 +41,13 @@
     margin-top: 4px;
     margin-bottom: 12px;
   }
+}
+
+.sparkline-button:focus, .sparkline-button:active {
+  box-shadow: none;
+  outline: none;
+}
+
+.last30d-chart, .last48h-chart {
+  height: 50px;
 }

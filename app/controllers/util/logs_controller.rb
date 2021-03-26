@@ -1,6 +1,4 @@
 class Util::LogsController < Hubble::ApplicationController
-  layout 'redesign/application'
-
   def index
     raise ActionController::NotFound if !params[:network].in?(%w[cosmos terra iris kava emoney])
 

@@ -12,6 +12,7 @@ module Common
     field :icon_name
     field :chain_slug
     field :delegators
+    field :chain
 
     alias kind_string kind
     alias timestamp time
@@ -20,6 +21,7 @@ module Common
       super(attrs)
       @chain_slug = chain.slug
       @alertable_address = data['actor']
+      @chain = chain
     end
 
     def alertable

@@ -1,7 +1,7 @@
 <% content_for :body_class, "validator-show" %>
 
 <%= render "/shared/dh_banner_script" %>
-<%= render partial: "shared/redesign/chain_header", locals: { active_tab: '' } %>
+<%= render partial: "shared/chain_header", locals: { active_tab: '' } %>
 
 <div class='validator-header'>
   <div class='container'>
@@ -38,6 +38,11 @@
             </div>
           </div>
         </div>
+      <% if @delegations.empty? -%>
+        <br><p class="text-label validator-info__label">This Address has no Active Delegations</p><br>
+      <% else -%>
+        <%= render "delegations", delegations: @delegations %>
+      <% end -%>
       <div class='mt-2'>
         <%= render "epochs", epochs: @validator.epochs %>
       </div>

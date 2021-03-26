@@ -1,10 +1,22 @@
-<%= render_card "Staking Balance", class: "validator-staking" do %>
-  <div class="large-number">
-    <%= format_amount(account.balance, denom: "mina") %>
-  </div>
+<div class='data-block validator-staking'>
+  <h3 class='data-block__title'>Staking Balance</h3>
+  <div class='d-flex flex-wrap align-items-end justify-content-between'>
+    <div class="data-block__large-number mr-4">
+      <%= format_amount(validator.stake) %>
+    </div>
 
-  <label>Voting Power</label>
-    <div class="stat-value">
-    <%= mina_validator_power(account.balance, total) %>
+    <div>
+      <div class='data-block__value'>
+        <%= mina_validator_power(validator.stake, total) %>
+      </div>
+      <label class='d-block text-label m-0 mt-1'>of validator pool</label>
+    </div>
+
+    <div>
+      <div class='data-block__value'>
+        <%= validator.delegations %>
+      </div>
+      <label class='d-block text-label m-0 mt-1'>Delegations</label>
+    </div>
   </div>
-<% end %>
+</div>

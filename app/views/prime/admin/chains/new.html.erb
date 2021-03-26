@@ -1,0 +1,48 @@
+<h2 class='header'>
+  Creating New <%= @network.name.capitalize %> Chain
+  <%= link_to 'back', prime_admin_root_path, class: 'btn btn-sm btn-outline-secondary' %>
+</h2>
+
+<%= form_for @chain, url: prime_admin_network_chains_path do |f| %>
+
+  <div class='row'>
+    <div class='col-12 col-md-4'>
+
+      <%= f.hidden_field :prime_network_id, value: @network.id %>
+
+      <div class='form-group'>
+        <label class='d-block'>Chain Name</label>
+        <%= f.text_field :name, class: 'form-control', placeholder: 'Name' %>
+      </div>
+      <div class='form-group'>
+        <label class='d-block'>URL Slug</label>
+        <%= f.text_field :slug, class: 'form-control', placeholder: 'slug' %>
+      </div>
+      <div class='form-group'>
+        <label class='d-block'>API URL</label>
+        <%= f.text_field :api_url, class: 'form-control technical' %>
+      </div>
+      <div class='form-group'>
+        <label class='d-block'>Reward Token Remote</label>
+        <%= f.text_field :reward_token_remote, class: 'form-control technical' %>
+      </div>
+      <div class='form-group'>
+        <label class='d-block'>Reward Token Display</label>
+        <%= f.text_field :reward_token_display, class: 'form-control technical' %>
+      </div>
+      <div class='form-group'>
+        <label class='d-block'>Reward Token Factor</label>
+        <%= f.text_field :reward_token_factor, class: 'form-control technical' %>
+      </div>
+
+      <div class='form-group'>
+        <div><label>
+          <%= f.check_box :primary, class: 'form-control d-inline h-auto w-auto' %>
+          Primary for network?
+        </label></div>
+
+      </div>
+      <%= f.submit 'Create Chain', class: 'btn btn-lg btn-primary mb-3' %>
+    </div>
+  </div>
+<% end -%>

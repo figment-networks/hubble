@@ -1,0 +1,44 @@
+<% content_for :body_class, 'pool-report-show' %>
+
+<%= render partial: 'chain_header', locals: { active_tab: '', delegator_lists_link: true, events_link: true } %>
+<%= render partial: 'sync_errors' %>
+
+<div class='content'>
+  <div class='container'>
+    <div class='row'>
+      <div class='col-12 col-md-9 order-1 order-md-0'>
+        <div class='report data-table m-0'>
+          <div class='report-table-header data-table__header'>
+            <h4 class='data-table__title'>Orchestrator Pool Report</h4>
+          </div>
+          <div class='report-table'>
+            <table class='border-bottom-0'>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Orchestrator</th>
+                  <th>Total Stake</th>
+                  <th>Reward Tokens</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @report.data.each_with_index do |data, index| -%>
+                  <tr>
+                    <td><%= index + 1 %></td>
+                    <td><%= render partial: 'orchestrator', locals: { address: data[:orchestrator_address] } %></td>
+                    <td data-order="<%= data[:total_stake] %>"><%= livepeer_lpt_amount(data[:total_stake]) %></td>
+                    <td data-order="<%= data[:reward_tokens] %>"><%= livepeer_lpt_amount(data[:reward_tokens]) %></td>
+                  </tr>
+                <% end -%>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class='col-12 col-md-3 order-0 order-md-1 info-cards'>
+        <%= render partial: 'report_details' %>
+      </div>
+    </div>
+  </div>
+</div>

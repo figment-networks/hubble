@@ -5,7 +5,7 @@ class BlockTimesChart extends SparklineChart {
     this.interval = interval;
     this.labelfunc = this.labelfunc = function(ylabel, date) {
       const interval = this.interval == 'day' ? 'on' : 'at';
-      return `${ylabel.toFixed(2)}s ${interval} ${moment.utc(date).format('k:mm')}`;
+      return `${ylabel.toFixed(2)} minutes ${interval} ${moment.utc(date).format('k:mm')}`;
     };
   }
 }

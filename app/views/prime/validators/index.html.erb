@@ -1,0 +1,60 @@
+<% content_for :body_class, 'prime-validators' %>
+<% 
+  @page_title = 'Validator Performance' 
+  @new_account_modal = true
+  @add_account_modal = true
+%>
+
+<div class="section">
+  <div class="page__container">
+    <div class="section__header">
+      <h2 class="section__title">Validator Profiles</h2>
+      <div class="arrows">
+        <button class="arrows__prev" id="slideBack">
+          <%= image_tag 'prime/icons/angle-active.svg', alt: 'arrow left' %>
+        </button>
+        <button class="arrows__next" id="slideForward">
+          <%= image_tag 'prime/icons/angle-active.svg', alt: 'arrow right' %>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div id="slider" class="slider">
+    <% enabled_networks.each do |network| %>
+      <%= render '/prime/validators/validator_profile', network: network %>
+    <% end %>
+  </div>
+</div>
+
+<%= render 'prime/shared/validators_performance_table', validators: user_validators %> 
+
+<div class="section">
+  <div class="page__container">
+    <div class="section__header">
+      <h2 class="section__title">Validator events</h2>
+    </div>
+    <!-- TO DO: enable filtering by network -->
+    <table id="validator_events" class="table table-pagination">
+      <thead>
+        <tr>
+          <th>Network</th>
+          <th>Type of event</th>
+          <th>Description</th>
+          <th>Block Height</th>
+          <th>Time Stamp</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if user_validators.count == 0 %>
+          <tr>
+            <td colspan='5'>You do not have any addresses so there are no validators to show.</td>
+          </tr>
+        <% else %>
+          <% build_validator_events.each do |event| %>
+            <%= render 'prime/validators/validator_event_table_row', event: event %>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

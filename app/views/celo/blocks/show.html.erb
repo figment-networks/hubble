@@ -1,6 +1,6 @@
 <% content_for :body_class, 'block-show' %>
 
-<%= render partial: 'shared/redesign/chain_header', locals: { active_tab: '' } %>
+<%= render partial: 'shared/chain_header', locals: { active_tab: '' } %>
 
 <div class='container'>
   <div class='content'>
@@ -9,10 +9,10 @@
       <span class='data-block__value d-block word-break'><%= @block.hash %></span>
     </div>
 
-    <%= render partial: 'shared/redesign/block_sidebar', locals: { block: @block } %>
+    <%= render partial: 'shared/block_sidebar', locals: { block: @block } %>
 
     <div class='mt-5'>
-      <%= render partial: 'shared/redesign/transactions', locals: { transactions: @transactions } %>
+      <%= render partial: 'shared/transactions', locals: { transactions: @transactions } %>
       <%= render partial: 'celo/shared/validator_groups', locals: { validator_groups: @validator_groups} %>
     </div>
   </div>

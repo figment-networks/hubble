@@ -5,6 +5,10 @@ module TokenMap
     self.class::DEFAULT_TOKEN_DISPLAY
   end
 
+  def primary_token
+    self.class::DEFAULT_TOKEN_REMOTE
+  end
+
   def token_map
     self.class.token_map[slug] || self.class.token_map['default']
   end

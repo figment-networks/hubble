@@ -9,7 +9,7 @@ describe 'Livepeer Subscriptions' do
   context 'as a signed in user', :vcr do
     before { log_in(user) }
 
-    it 'subscribing to a delegator list' do
+    it 'subscribes to a delegator list' do
       visit "/livepeer/chains/#{chain.slug}/delegator_lists"
 
       expect(page).to have_content(delegator_list.name)
@@ -45,7 +45,7 @@ describe 'Livepeer Subscriptions' do
         create(:livepeer_alert_subscription, user: user, alertable: delegator_list)
       end
 
-      it 'unsubscribing from a delegator list' do
+      it 'unsubscribes from a delegator list' do
         visit "/livepeer/chains/#{chain.slug}/delegator_lists"
 
         find('a .fa-bell').click

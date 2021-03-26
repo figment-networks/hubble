@@ -13,8 +13,16 @@ module Polkadot
     field :started_at, type: :timestamp
     field :display_name
     field :account_details
+    field :indexer_uptime, type: :float
+    field :network, type: Prime::Network
 
     alias online? online
+
+    def initialize(attributes, network: nil)
+      super(attributes)
+      @indexer_uptime = attributes['uptime']
+      @network = network if network
+    end
 
     def address
       stash_account
@@ -28,6 +36,8 @@ module Polkadot
       commission.to_f / COMMISSION_PERCENTAGE_FACTOR
     end
 
+    # TO DO: Get clarification on these numbers, Fig validators are all zero but
+    # also have 'uptime' with a legit %
     def uptime
       return 0 if accumulated_uptime_count.to_f <= 0
 

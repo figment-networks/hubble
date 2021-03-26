@@ -1,6 +1,7 @@
-<%= render_card "Timestamp" do %>
-  <span class="technical"><%= block.time.strftime("%Y-%m-%d @ %H:%M %Z") %></span>
-  <small class="text-muted">
+<div class='mb-4'>
+  <h3 class='data-block__title'>Timestamp</h3>
+  <span class="data-block__value"><%= block.time.strftime("%Y-%m-%d @ %H:%M %Z") %></span>
+  <small class="text-muted d-block">
     <%= time_ago_in_words(block.time, true) %> ago
   </small>
-<% end %>
+</div>
