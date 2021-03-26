@@ -1,6 +1,5 @@
 class Common::DashboardController < ApplicationController
   before_action :require_user
-  layout 'redesign/application'
 
   def index
     @chain = @namespace::Chain.find_by slug: params[:chain_id]

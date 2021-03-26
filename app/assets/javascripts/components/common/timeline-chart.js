@@ -13,7 +13,6 @@ class TimelineChart {
         datasets: [
           {
             data: this.data,
-            borderColor: '#70707a',
             fill: false,
             cubicInterpolationMode: 'monotone',
             steppedLine: false
@@ -22,7 +21,8 @@ class TimelineChart {
       },
       options: {
         elements: {
-          point: {radius: 2, backgroundColor: '#70707a', hitRadius: 6, hoverRadius: 3}
+          line: {borderColor: '#4D74FF', borderWidth: 2},
+          point: {radius: 3, borderColor: '#C8C8C8', backgroundColor: '#fff', hitRadius: 6, hoverRadius: 4}
         },
         maintainAspectRatio: false,
         legend: {display: false},

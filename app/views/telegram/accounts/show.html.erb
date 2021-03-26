@@ -1,16 +1,14 @@
-<h2 class='header text-center d-block'>
-  Telegram Account
-</h2>
+<h2 class='page-title text-center d-block'>Telegram Account</h2>
 
 <% if @account.persisted? %>
 
   <div class='row clearfix mt-2 pt-3 justify-content-md-center'>
     <div class='col-12 col-md-5'>
-      <div class='card'>
-        <h5 class='card-header'>
-          <%= @account.username %>
-        </h5>
-        <div class='card-body'>
+      <div class='data-table'>
+        <div class='data-table__header pb-0'>
+          <h3 class='data-table__title'><%= @account.username %></h3>
+        </div>
+        <div class='p-3'>
           <% if @account.chat_id.blank? %>
             <div class="alert alert-info" id="waiting-for-telegram-chat-id">
               <p>Please visit the link below to start a conversation with <%= Rails.application.secrets.telegram_bot_name %> on Telegram.
@@ -33,11 +31,11 @@
 
   <div class='row clearfix mt-2 pt-3 justify-content-md-center'>
     <div class='col-12 col-md-5'>
-      <div class='card'>
-        <h5 class='card-header'>
-          Connect to Telegram
-        </h5>
-        <div class='card-body'>
+      <div class='data-table'>
+        <div class='data-table__header pb-0'>
+          <h3 class='data-table__title'>Connect to Telegram</h3>
+        </div>
+        <div class='p-3'>
           <%= render 'form', account: @account %>
         </div>
       </div>

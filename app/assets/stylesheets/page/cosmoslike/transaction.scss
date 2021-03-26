@@ -1,11 +1,11 @@
 .transaction-show {
   .transaction-section-title {
-    color: #4a4d6d;
     font-size: 12px;
     font-weight: 700;
     padding: 1.2rem;
     letter-spacing: 2px;
-    border-top: 1px solid #4a4d6d;
+    color: $primary;
+    border-top: 1px solid $table-border !important;
   }
 
   .no-first-row-top-border {
@@ -16,3 +16,18 @@
     }
   }
 }
+.show-opts label{
+    margin-right: 0.5rem;
+}
+.tx-search-types-card {
+  box-shadow: none;
+}
+.tx-type-category {
+  label{
+    margin-right: 2rem;
+  }
+  label[for='search_type']{
+    display: none;
+  }
+}
+

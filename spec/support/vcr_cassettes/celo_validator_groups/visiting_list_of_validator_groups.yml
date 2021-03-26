@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://localhost:9292/celo/status
+    uri: http://localhost:9292/status
     body:
       encoding: US-ASCII
       string: ''
@@ -10,7 +10,7 @@ http_interactions:
       Accept:
       - "*/*"
       User-Agent:
-      - rest-client/2.1.0 (darwin18.0.0 x86_64) ruby/2.6.6p146
+      - rest-client/2.1.0 (darwin20.1.0 arm) ruby/2.7.2p137
       Content-Length:
       - '0'
       Content-Type:
@@ -24,31 +24,43 @@ http_interactions:
       code: 200
       message: OK
     headers:
+      Date:
+      - Wed, 24 Mar 2021 14:23:44 GMT
       Content-Type:
-      - application/json
-      X-Content-Type-Options:
-      - nosniff
+      - application/json; charset=utf-8
       Content-Length:
-      - '318'
+      - '277'
+      Connection:
+      - close
+      X-Ratelimit-Remaining-Minute:
+      - '4992'
+      X-Ratelimit-Limit-Minute:
+      - '5000'
+      Ratelimit-Remaining:
+      - '4992'
+      Ratelimit-Limit:
+      - '5000'
+      Ratelimit-Reset:
+      - '16'
+      X-Quota-Limit-Day:
+      - '10000000'
+      Quota-Remaining:
+      - '9999906'
+      X-Quota-Remaining-Day:
+      - '9999906'
+      Quota-Reset:
+      - '34576'
+      Quota-Limit:
+      - '10000000'
     body:
       encoding: UTF-8
-      string: |
-        {
-          "app_name": "celo-indexer",
-          "app_version": "0.0.2",
-          "go_version": "1.14",
-          "chain_id": 44787,
-          "indexing_started": true,
-          "last_index_version": 1,
-          "last_indexed_height": 1614750,
-          "last_indexed_time": "2020-10-21T18:01:15Z",
-          "last_indexed_at": "2020-11-02T07:58:44.031439Z",
-          "indexing_lag": 199900
-        }
-  recorded_at: Mon, 14 Dec 2020 14:40:23 GMT
+      string: '{"app_name":"celo-indexer","app_version":"0.1.8","go_version":"1.14","chain_id":42220,"indexing_started":true,"last_index_version":1,"last_indexed_height":311039,"last_indexed_time":"2020-05-10T16:43:31Z","last_indexed_at":"2021-02-09T17:31:15.804488Z","indexing_lag":5492898}
+
+'
+  recorded_at: Wed, 24 Mar 2021 14:23:44 GMT
 - request:
     method: get
-    uri: http://localhost:9292/celo/validator_groups/by_height?height=1614750
+    uri: http://localhost:9292/validator_groups?height=311039
     body:
       encoding: US-ASCII
       string: ''
@@ -56,7 +68,7 @@ http_interactions:
       Accept:
       - "*/*"
       User-Agent:
-      - rest-client/2.1.0 (darwin18.0.0 x86_64) ruby/2.6.6p146
+      - rest-client/2.1.0 (darwin20.1.0 arm) ruby/2.7.2p137
       Content-Length:
       - '0'
       Content-Type:
@@ -70,49 +82,43 @@ http_interactions:
       code: 200
       message: OK
     headers:
+      Date:
+      - Wed, 24 Mar 2021 14:23:45 GMT
       Content-Type:
-      - application/json
-      X-Content-Type-Options:
-      - nosniff
-      Content-Length:
-      - '995'
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - close
+      X-Ratelimit-Remaining-Minute:
+      - '4991'
+      X-Ratelimit-Limit-Minute:
+      - '5000'
+      Ratelimit-Remaining:
+      - '4991'
+      Ratelimit-Limit:
+      - '5000'
+      Ratelimit-Reset:
+      - '15'
+      X-Quota-Limit-Day:
+      - '10000000'
+      Quota-Remaining:
+      - '9999905'
+      X-Quota-Remaining-Day:
+      - '9999905'
+      Quota-Reset:
+      - '34575'
+      Quota-Limit:
+      - '10000000'
     body:
       encoding: UTF-8
-      string: |
-        {
-          "items": [
-            {
-              "height": 1614972,
-              "time": "2020-10-21T18:19:45Z",
-              "address": "0x87614eD7AF361a563C6a3624CcadD52e165f67C2",
-              "name": "Figment",
-              "metadata_url": "https://figment.io",
-              "commission": "100000000000000000000000",
-              "active_votes": "4221409232884096309",
-              "active_vote_units": "414001021153639342594282769831151178116",
-              "pending_votes": "50004600000000000000000",
-              "members_count": 5,
-              "members_avg_uptime": 0.98
-            },
-            {
-              "height": 1614972,
-              "time": "2020-10-21T18:19:45Z",
-              "address": "0x5edfCe0bad47e24E30625c275457F5b4Bb619241",
-              "name": "Other Group",
-              "metadata_url": "https://othergroup.io",
-              "commission": "100000000000000000000000",
-              "active_votes": "10221917122277860650303",
-              "active_vote_units": "1001727345817411982091515383645927774055330",
-              "pending_votes": "50037917177172000000030",
-              "members_count": 5,
-              "members_avg_uptime": 0.92
-            }
-          ]
-        }
-  recorded_at: Mon, 14 Dec 2020 14:40:23 GMT
+      string: '{"items":[{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x82f8Bcf96f24BA60Ef041D192c7CE04C907E2fb8","name":"","metadata_url":"","commission":"0","active_votes":"2917168568983125069335509","pending_votes":"0","members_count":1,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xc64DF5Be250264bf2888591D87cdeB13BFADC501","name":"","metadata_url":"","commission":"100000000000000000000000","active_votes":"2882942817172888047815269","pending_votes":"200000000000000000","members_count":1,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xEEFCfDFc8F5CeD9799A13EcA58DE2ba7534eAB92","name":"","metadata_url":"","commission":"100000000000000000000000","active_votes":"2895547714736187646067519","pending_votes":"10000000000000000000000","members_count":1,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x7C75B0B81A54359E9dCCDa9cb663ca2e3De6B710","name":"","metadata_url":"","commission":"1000000000000000000000000","active_votes":"4301914936322229256507721","pending_votes":"0","members_count":2,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x0f66619058BB9675f3d394FCc2cE236a29901571","name":"","metadata_url":"","commission":"500000000000000000000000","active_votes":"2913392340543460459190772","pending_votes":"0","members_count":2,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xCc4B2Bcbbc9639ef1E91F47acfD12Bd131525e79","name":"","metadata_url":"","commission":"100000000000000000000000","active_votes":"3534485008454284207134694","pending_votes":"0","members_count":2,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xD491e5eC7bbB4C6Ea9eE522F21F6621706e65a3E","name":"","metadata_url":"","commission":"500000000000000000000000","active_votes":"100000000000000000000000","pending_votes":"0","members_count":0,"members_avg_uptime":0},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xAcdf897493A6000dbe256791E8A2beCbb405FD4F","name":"","metadata_url":"","commission":"0","active_votes":"2978561506068098069451842","pending_votes":"0","members_count":1,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x7194DFE766a92308880A943fD70F31c8E7c50e66","name":"","metadata_url":"","commission":"100000000000000000000000","active_votes":"3228957877737339027979432","pending_votes":"12000000000000000000000","members_count":2,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xD72Ed2e3db984bAC3bB351FE652200dE527eFfcf","name":"","metadata_url":"","commission":"500000000000000000000000","active_votes":"2959372622330794418083314","pending_votes":"0","members_count":2,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xF83C93ea360B66DDCD532960304948B1c10786a1","name":"","metadata_url":"","commission":"200000000000000000000000","active_votes":"3510080909084951495817915","pending_votes":"0","members_count":2,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x061E9958028dcAa66fd8B255AD95194203b6c4Da","name":"","metadata_url":"","commission":"100000000000000000000000","active_votes":"2882543683953367380917203","pending_votes":"0","members_count":1,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xc8A81D473992c7c6D3F469A8263F24914625709d","name":"","metadata_url":"","commission":"0","active_votes":"2942797458521434201969383","pending_votes":"0","members_count":1,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x81AE1C73A326325216E25ff1af9EA3871195036E","name":"","metadata_url":"","commission":"50000000000000000000000","active_votes":"2912716674551689118052322","pending_votes":"275330000000000000000","members_count":1,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x8851F4852ce427191Dc8D9065d720619889e3260","name":"","metadata_url":"","commission":"100000000000000000000000","active_votes":"2892291326938692533676216","pending_votes":"0","members_count":1,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xddaa60B6d803674bBc434F1C2B261CeB67C2fd7c","name":"","metadata_url":"","commission":"100000000000000000000000","active_votes":"3172152653864483087254694","pending_votes":"0","members_count":1,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xB33e9e01E561a1Da60f7Cb42508500e571afb6Eb","name":"","metadata_url":"","commission":"450000000000000000000000","active_votes":"2930939889511954074827961","pending_votes":"0","members_count":1,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x0d4f8cEA48cDaDEAe345431577a64983c0535B12","name":"","metadata_url":"","commission":"1000000000000000000000000","active_votes":"4039025875727709253516109","pending_votes":"200000000000000000000000","members_count":2,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x580F29aB04b7ED4E5aA86584D38c9317d9CF0358","name":"","metadata_url":"","commission":"100000000000000000000000","active_votes":"2885994128597761760335670","pending_votes":"5923071782189164865154","members_count":1,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x95aE59515915D6c493a846aE022F93726652b50A","name":"","metadata_url":"","commission":"500000000000000000000000","active_votes":"2875540652503406728620396","pending_votes":"0","members_count":1,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xFaa0b40645Ee5E8D9AE38393e8cDF8e5baA71d13","name":"","metadata_url":"","commission":"0","active_votes":"2889487239331946150354337","pending_votes":"0","members_count":1,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x0339Df3FE4f5ccC864EAE8491E5c8AEc4611A631","name":"","metadata_url":"","commission":"0","active_votes":"2898736414007597308351132","pending_votes":"71027142930640066140","members_count":1,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x8580dB53C3ebC56230662B771ceF2707E92Ef83A","name":"","metadata_url":"","commission":"100000000000000000000000","active_votes":"2923326115553514287590524","pending_votes":"0","members_count":1,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x3FEf91a3422F4dA394C08f115632D3e075d0EFFd","name":"","metadata_url":"","commission":"990000000000000000000000","active_votes":"0","pending_votes":"0","members_count":0,"members_avg_uptime":0},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x3DcF2ED8dC84a63FfD2bfDc3CDb2fA0B1aeAfE5c","name":"","metadata_url":"","commission":"100000000000000000000000","active_votes":"2891726961542230208712798","pending_votes":"0","members_count":1,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x0b04c6ca6f2eA2C57D51C28Bb3E82b0c9B4072Eb","name":"","metadata_url":"","commission":"100000000000000000000000","active_votes":"0","pending_votes":"0","members_count":0,"members_avg_uptime":0},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x481EAdE762d6D0b49580189B78709c9347b395bf","name":"","metadata_url":"","commission":"0","active_votes":"2924760456516393396592174","pending_votes":"0","members_count":2,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x07fa1874ad4655AD0C763a7876503509be11e29E","name":"","metadata_url":"","commission":"100000000000000000000000","active_votes":"2984456008489567648907528","pending_votes":"0","members_count":1,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xA1e923892df867fB5cb7575cCa2538c394aD1BD9","name":"","metadata_url":"","commission":"100000000000000000000000","active_votes":"3202673007667200000","pending_votes":"0","members_count":1,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xE141831c2c1198d79B9Ff61cD97C3bAca7F071E0","name":"","metadata_url":"","commission":"0","active_votes":"2909642597174614619556925","pending_votes":"0","members_count":2,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x5402172E972b31Fc9F0383F53f45823Ab5037379","name":"","metadata_url":"","commission":"100000000000000000000000","active_votes":"2875480760522918629567984","pending_votes":"0","members_count":1,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x614B7654ba0cC6000ABe526779911b70C1F7125A","name":"","metadata_url":"","commission":"100000000000000000000000","active_votes":"2885963589287993893493549","pending_votes":"0","members_count":1,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x8493BD3De67AC341D4cC11531f96a1A2cdBf29aD","name":"","metadata_url":"","commission":"0","active_votes":"2919937867742769777108085","pending_votes":"0","members_count":1,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x01b2b83fDf26aFC3Ca7062C35Bc68c8DdE56dB04","name":"","metadata_url":"","commission":"0","active_votes":"8406725652204320089229538","pending_votes":"21998090000000000000000","members_count":4,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x8a12caB622B8093208931fA008D12D6Ba5AF47E4","name":"","metadata_url":"","commission":"100000000000000000000000","active_votes":"4272684379661467451251578","pending_votes":"500000000000000000000","members_count":2,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x6CF4bB9ff947610944c6D8E0E5Ea26B1dEa73196","name":"","metadata_url":"","commission":"100000000000000000000000","active_votes":"2882508399116291669750360","pending_votes":"0","members_count":1,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xDaDBd6Cfb29b054aDC9c4c2Ef0F21f0BBdb44871","name":"","metadata_url":"","commission":"1000000000000000000000000","active_votes":"8971107902651208766628563","pending_votes":"108001790212000000000","members_count":4,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xD018838832f6112dE72EE6CC9967C56B333a0d1C","name":"","metadata_url":"","commission":"100000000000000000000000","active_votes":"2854578740925352566618339","pending_votes":"0","members_count":1,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xC7d5409fEe80B3Ac37Dbc111664dC511a5982469","name":"","metadata_url":"","commission":"100000000000000000000000","active_votes":"2865029017361216793946961","pending_votes":"0","members_count":1,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x15Ed3f6b79F5Fb9Ef1D99D37314Dd626b3005F0b","name":"","metadata_url":"","commission":"200000000000000000000000","active_votes":"2904144763635043942425304","pending_votes":"0","members_count":1,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x8eB004daD9397B8f23E1279905c584920000756D","name":"","metadata_url":"","commission":"100000000000000000000000","active_votes":"3041884178856638915638166","pending_votes":"0","members_count":1,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x067e453918f2c44D937b05a7eE9DBFB804C54ADd","name":"","metadata_url":"","commission":"500000000000000000000000","active_votes":"3073748649073756146523741","pending_votes":"40954651865397327094423","members_count":2,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x6B0f422041a233A89697a0b7187fAB69469baA76","name":"","metadata_url":"","commission":"500000000000000000000000","active_votes":"4","pending_votes":"0","members_count":1,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x59428ac67d082b71d0a9ECcd75ee0969AE79d929","name":"","metadata_url":"","commission":"500000000000000000000000","active_votes":"1010374548676417","pending_votes":"0","members_count":1,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x249a6B2B260000b08f50A2480e2d703bAf02E8BE","name":"","metadata_url":"","commission":"700000000000000000000000","active_votes":"2851646221207601999896149","pending_votes":"0","members_count":1,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x602B65795BCc64b2fb329AC004236E194f077158","name":"","metadata_url":"","commission":"1000000000000000000000000","active_votes":"2886033910872305667496612","pending_votes":"0","members_count":1,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xc24baeac0Fd189637112B7e33d22FfF2730aF993","name":"","metadata_url":"","commission":"500000000000000000000000","active_votes":"2875401013951116950147959","pending_votes":"0","members_count":1,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xB87f2354E34B26ba6406Ac60EA99DCD8cd5e63Bf","name":"","metadata_url":"","commission":"400000000000000000000000","active_votes":"3748145437734223946666578","pending_votes":"0","members_count":1,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x81cef0668e15639D0b101bdc3067699309D73BED","name":"","metadata_url":"","commission":"75000000000000000000000","active_votes":"2905447356775033535221073","pending_votes":"100000010000000000000","members_count":1,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xE075ba4b1dCAF75513118d7aA08A057c658842c9","name":"","metadata_url":"","commission":"499999999999999999990000","active_votes":"2962863137490661508111565","pending_votes":"0","members_count":1,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x3D451dd723797b3DE938C5B22412032B6452591A","name":"","metadata_url":"","commission":"100000000000000000000000","active_votes":"2882298768342536287935473","pending_votes":"0","members_count":1,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xd25c6a9FEf4744E8d4F90Bf6bdFAF7686909d799","name":"","metadata_url":"","commission":"100000000000000000000000","active_votes":"2913706710769571472289878","pending_votes":"0","members_count":1,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xbB59448319755708d06DACaAc017308129FffdBb","name":"","metadata_url":"","commission":"300000000000000000000000","active_votes":"110000000000000000000000","pending_votes":"0","members_count":1,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xD19FB36B7F433fe13820767ef6d0E26FDbaB68CC","name":"","metadata_url":"","commission":"500000000000000000000000","active_votes":"2845816043181529511892628","pending_votes":"0","members_count":1,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xAF2b000bAed202fA7de0d9DCeB6F6612De348011","name":"","metadata_url":"","commission":"400000000000000000000000","active_votes":"3099907017427822330027503","pending_votes":"0","members_count":1,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x4D5A51039ea45063D4b665B21755db20A738DaDc","name":"","metadata_url":"","commission":"125000000000000000000000","active_votes":"0","pending_votes":"10000000000000000000000","members_count":0,"members_avg_uptime":0},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xA432da0Ed5A2c15cbc681227cCec3b375908FdCB","name":"","metadata_url":"","commission":"1000000000000000000000000","active_votes":"8732080841161484022310270","pending_votes":"0","members_count":3,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x2c2B0f71d59B546B2CAfd222696589c13C3c325C","name":"","metadata_url":"","commission":"250000000000000000000000","active_votes":"6403049333223990127132613","pending_votes":"20000000000000000000000","members_count":2,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x35aE10F412503aBcf9275133613E8df7f56E72Be","name":"","metadata_url":"","commission":"1000000000000000000000000","active_votes":"15982743070658461394105564","pending_votes":"0","members_count":5,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x47b2dB6af05a55d42Ed0F3731735F9479ABF0673","name":"","metadata_url":"","commission":"1000000000000000000000000","active_votes":"10509469675138275805537129","pending_votes":"0","members_count":5,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xbf55dF76204f00AcF296F76cF4Aaf86A866a5eb0","name":"","metadata_url":"","commission":"1000000000000000000000000","active_votes":"6061757086134096982797097","pending_votes":"513914000000000000000000","members_count":4,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x2fd49E97262D505Fd76BB6E0e06eC10e1fd54589","name":"","metadata_url":"","commission":"100000000000000000000000","active_votes":"2442215716116678383316018","pending_votes":"500005001174515494003691","members_count":1,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x21FB4411FA5828344c2788aB07D4cc12a12571b9","name":"","metadata_url":"","commission":"1000000000000000000000000","active_votes":"6558627434148120222324200","pending_votes":"0","members_count":3,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x6f8e6ff69935F000B09d182A4739342fAEaF0c77","name":"","metadata_url":"","commission":"1000000000000000000000000","active_votes":"7289826441057521946672038","pending_votes":"10000000000000000000000","members_count":4,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x7dbB949346Aeda9233218831455d57Eb8344Af82","name":"","metadata_url":"","commission":"1000000000000000000000000","active_votes":"8369905746861872072945362","pending_votes":"0","members_count":4,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x9eB1D96B5f0bdD3114eA1461182c688178ae6c4c","name":"","metadata_url":"","commission":"1000000000000000000000000","active_votes":"6288524264783609992118983","pending_votes":"0","members_count":3,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xbd630a811eD48a57efdF5f7869563b47A0194a5D","name":"","metadata_url":"","commission":"100000000000000000000000","active_votes":"0","pending_votes":"0","members_count":0,"members_avg_uptime":0},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x98c62d86634bB0E3f818EFC550e2F33369Eae7F3","name":"","metadata_url":"","commission":"100000000000000000000000","active_votes":"3975231682431785331268516","pending_votes":"19007584335627614748076","members_count":2,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x8954661e743c60C966E2ff6002B514126bb1cFe2","name":"","metadata_url":"","commission":"100000000000000000000000","active_votes":"2452410970000545140828369","pending_votes":"12498000000000000000000","members_count":1,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x34649AdA2cB44D851a2103Feaa8922DedDABfc1c","name":"","metadata_url":"","commission":"1000000000000000000000000","active_votes":"3418000681526575175646448","pending_votes":"0","members_count":2,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x4dA92da1afbf103F2B52DD29326e34C98cA1E78c","name":"","metadata_url":"","commission":"1000000000000000000000000","active_votes":"7854771694465237406362148","pending_votes":"454900000000000000000","members_count":3,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xFA592ae90E407Da044602342625AAABBF5d50C22","name":"","metadata_url":"","commission":"10000000000000000000000","active_votes":"3181064508511074321993676","pending_votes":"0","members_count":2,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x3C86b6A27a074c1c4CC904d8808A1C33078DB4E6","name":"","metadata_url":"","commission":"100000000000000000000000","active_votes":"3068601349314399949722719","pending_votes":"37570129999999998623744","members_count":2,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x71dcC67baEECd9308e341359f70B782D9C3565b8","name":"","metadata_url":"","commission":"100000000000000000000000","active_votes":"1566155556760172657723201","pending_votes":"1255926449810078577203379","members_count":1,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xA512CbE686eDdb170219aa23Ce6cB243FA2873cB","name":"","metadata_url":"","commission":"100000000000000000000000","active_votes":"0","pending_votes":"0","members_count":0,"members_avg_uptime":0},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x23F4877174fF3849a14a591a928DAcf98375288E","name":"","metadata_url":"","commission":"950000000000000000000000","active_votes":"2848580171634122165192877","pending_votes":"0","members_count":1,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x1D083BECFAac301B4B845d0E5B80A9Da5F6DE946","name":"","metadata_url":"","commission":"100000000000000000000000","active_votes":"2409795024470908952284373","pending_votes":"0","members_count":1,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x89d5bd54C43dDd10905A030DE6Ff02EbB6c51654","name":"","metadata_url":"","commission":"1000000000000000000000000","active_votes":"6260253738927358475695722","pending_votes":"0","members_count":3,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xc764293De02189e248a8040a3D1b04EeC599Aa31","name":"","metadata_url":"","commission":"1000000000000000000000000","active_votes":"20000000000000000000000","pending_votes":"0","members_count":1,"members_avg_uptime":1},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xb35Be22BccB0dB9dC62967dcF15fEB97C20f854e","name":"","metadata_url":"","commission":"500000000000000000000000","active_votes":"0","pending_votes":"0","members_count":0,"members_avg_uptime":0},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x0E912990472bfe5948B5b7333Ecf528D5dA887cF","name":"","metadata_url":"","commission":"100000000000000000000000","active_votes":"20000000000000000000000","pending_votes":"0","members_count":1,"members_avg_uptime":1}]}
+
+'
+  recorded_at: Wed, 24 Mar 2021 14:23:45 GMT
 - request:
     method: get
-    uri: http://localhost:9292/celo/validator_groups/by_height?height=0
+    uri: http://localhost:9292/validator_groups_summary?interval=day&period=89%20days
     body:
       encoding: US-ASCII
       string: ''
@@ -120,7 +126,7 @@ http_interactions:
       Accept:
       - "*/*"
       User-Agent:
-      - rest-client/2.1.0 (darwin18.0.0 x86_64) ruby/2.6.6p146
+      - rest-client/2.1.0 (darwin20.1.0 arm) ruby/2.7.2p137
       Content-Length:
       - '0'
       Content-Type:
@@ -134,49 +140,43 @@ http_interactions:
       code: 200
       message: OK
     headers:
+      Date:
+      - Wed, 24 Mar 2021 14:23:46 GMT
       Content-Type:
-      - application/json
-      X-Content-Type-Options:
-      - nosniff
-      Content-Length:
-      - '995'
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - close
+      X-Ratelimit-Remaining-Minute:
+      - '4990'
+      X-Ratelimit-Limit-Minute:
+      - '5000'
+      Ratelimit-Remaining:
+      - '4990'
+      Ratelimit-Limit:
+      - '5000'
+      Ratelimit-Reset:
+      - '14'
+      X-Quota-Limit-Day:
+      - '10000000'
+      Quota-Remaining:
+      - '9999904'
+      X-Quota-Remaining-Day:
+      - '9999904'
+      Quota-Reset:
+      - '34574'
+      Quota-Limit:
+      - '10000000'
     body:
       encoding: UTF-8
-      string: |
-        {
-          "items": [
-            {
-              "height": 1614972,
-              "time": "2020-10-21T18:19:45Z",
-              "address": "0x87614eD7AF361a563C6a3624CcadD52e165f67C2",
-              "name": "Figment",
-              "metadata_url": "https://figment.io",
-              "commission": "100000000000000000000000",
-              "active_votes": "4221409232884096309",
-              "active_vote_units": "414001021153639342594282769831151178116",
-              "pending_votes": "50004600000000000000000",
-              "members_count": 5,
-              "members_avg_uptime": 0.98
-            },
-            {
-              "height": 1614972,
-              "time": "2020-10-21T18:19:45Z",
-              "address": "0x5edfCe0bad47e24E30625c275457F5b4Bb619241",
-              "name": "Other Group",
-              "metadata_url": "https://othergroup.io",
-              "commission": "100000000000000000000000",
-              "active_votes": "10221917122277860650303",
-              "active_vote_units": "1001727345817411982091515383645927774055330",
-              "pending_votes": "50037917177172000000030",
-              "members_count": 5,
-              "members_avg_uptime": 0.92
-            }
-          ]
-        }
-  recorded_at: Mon, 14 Dec 2020 14:40:23 GMT
+      string: '[{"time_bucket":"2020-04-22T00:00:00Z","time_interval":"day","commission_avg":"368341772151898734177089","commission_min":"0","commission_max":"1000000000000000000000000","active_votes_avg":"3458000590847758777182626","active_votes_min":"0","active_votes_max":"15873233670103211386240319","pending_votes_avg":"36108198032587247617600","pending_votes_min":"0","pending_votes_max":"1255926449810078577203379"},{"time_bucket":"2020-04-23T00:00:00Z","time_interval":"day","commission_avg":"368341772151898734177089","commission_min":"0","commission_max":"1000000000000000000000000","active_votes_avg":"3457167949123237157484694","active_votes_min":"0","active_votes_max":"15875760805379492043123110","pending_votes_avg":"36115601438817441370821","pending_votes_min":"0","pending_votes_max":"1255926449810078577203379"},{"time_bucket":"2020-04-24T00:00:00Z","time_interval":"day","commission_avg":"368341772151898734177089","commission_min":"0","commission_max":"1000000000000000000000000","active_votes_avg":"3457661008063841897167920","active_votes_min":"0","active_votes_max":"15878088459701209827818155","pending_votes_avg":"36510358024022301419835","pending_votes_min":"0","pending_votes_max":"1255926449810078577203379"},{"time_bucket":"2020-04-25T00:00:00Z","time_interval":"day","commission_avg":"368341772151898734177089","commission_min":"0","commission_max":"1000000000000000000000000","active_votes_avg":"3459419201579872192521776","active_votes_min":"0","active_votes_max":"15945413601136180562978156","pending_votes_avg":"36234591763373079563550","pending_votes_min":"0","pending_votes_max":"1255926449810078577203379"},{"time_bucket":"2020-04-26T00:00:00Z","time_interval":"day","commission_avg":"368341772151898734177089","commission_min":"0","commission_max":"1000000000000000000000000","active_votes_avg":"3460404862272267476325013","active_votes_min":"0","active_votes_max":"15947749772566322032473599","pending_votes_avg":"36118198032587247617600","pending_votes_min":"0","pending_votes_max":"1255926449810078577203379"},{"time_bucket":"2020-04-27T00:00:00Z","time_interval":"day","commission_avg":"368341772151898734177089","commission_min":"0","commission_max":"1000000000000000000000000","active_votes_avg":"3460588615285369222230130","active_votes_min":"0","active_votes_max":"15950085466088657761965616","pending_votes_avg":"36104863971559044069135","pending_votes_min":"0","pending_votes_max":"1255926449810078577203379"},{"time_bucket":"2020-04-28T00:00:00Z","time_interval":"day","commission_avg":"368341772151898734177089","commission_min":"0","commission_max":"1000000000000000000000000","active_votes_avg":"3460751570784588515934507","active_votes_min":"0","active_votes_max":"15952420656774940274479211","pending_votes_avg":"36469836055217062308009","pending_votes_min":"0","pending_votes_max":"1255926449810078577203379"},{"time_bucket":"2020-04-29T00:00:00Z","time_interval":"day","commission_avg":"368341772151898734177089","commission_min":"0","commission_max":"1000000000000000000000000","active_votes_avg":"3462285602719552607822134","active_votes_min":"0","active_votes_max":"15954656187503996413197857","pending_votes_avg":"35460120856530888987030","pending_votes_min":"0","pending_votes_max":"1255926449810078577203379"},{"time_bucket":"2020-04-30T00:00:00Z","time_interval":"day","commission_avg":"368341772151898734177089","commission_min":"0","commission_max":"1000000000000000000000000","active_votes_avg":"3464584129868203878836475","active_votes_min":"0","active_votes_max":"15956990352632632247740915","pending_votes_avg":"33761628527827511083332","pending_votes_min":"0","pending_votes_max":"1255926449810078577203379"},{"time_bucket":"2020-05-01T00:00:00Z","time_interval":"day","commission_avg":"368341772151898734177089","commission_min":"0","commission_max":"1000000000000000000000000","active_votes_avg":"3465128686579617192777728","active_votes_min":"0","active_votes_max":"15959324003959081449872972","pending_votes_avg":"33812203754070941948127","pending_votes_min":"0","pending_votes_max":"1255926449810078577203379"},{"time_bucket":"2020-05-02T00:00:00Z","time_interval":"day","commission_avg":"368341772151898734177089","commission_min":"0","commission_max":"1000000000000000000000000","active_votes_avg":"3465675246907635579498878","active_votes_min":"0","active_votes_max":"15961657135248348690339341","pending_votes_avg":"33806097268815433274897","pending_votes_min":"0","pending_votes_max":"1255926449810078577203379"},{"time_bucket":"2020-05-03T00:00:00Z","time_interval":"day","commission_avg":"368341772151898734177089","commission_min":"0","commission_max":"1000000000000000000000000","active_votes_avg":"3466364526678869644598321","active_votes_min":"0","active_votes_max":"15963989745931606886042381","pending_votes_avg":"33574116352530639333594","pending_votes_min":"0","pending_votes_max":"1255926449810078577203379"},{"time_bucket":"2020-05-04T00:00:00Z","time_interval":"day","commission_avg":"368341772151898734177089","commission_min":"0","commission_max":"1000000000000000000000000","active_votes_avg":"3466909964185633559231565","active_votes_min":"0","active_votes_max":"15966321837872543677155474","pending_votes_avg":"33811068417217655394512","pending_votes_min":"0","pending_votes_max":"1255926449810078577203379"},{"time_bucket":"2020-05-05T00:00:00Z","time_interval":"day","commission_avg":"368341772151898734177089","commission_min":"0","commission_max":"1000000000000000000000000","active_votes_avg":"3467427471540358597168343","active_votes_min":"0","active_votes_max":"15968653428706729453023046","pending_votes_avg":"33812706241082568279198","pending_votes_min":"0","pending_votes_max":"1255926449810078577203379"},{"time_bucket":"2020-05-06T00:00:00Z","time_interval":"day","commission_avg":"368341772151898734177089","commission_min":"0","commission_max":"1000000000000000000000000","active_votes_avg":"3467402145182296112336332","active_votes_min":"0","active_votes_max":"15973315183512853292280088","pending_votes_avg":"33813775519693628203067","pending_votes_min":"0","pending_votes_max":"1255926449810078577203379"},{"time_bucket":"2020-05-07T00:00:00Z","time_interval":"day","commission_avg":"368341772151898734177089","commission_min":"0","commission_max":"1000000000000000000000000","active_votes_avg":"3466889063407170019646211","active_votes_min":"0","active_votes_max":"15975645327655691387071679","pending_votes_avg":"33812776365596636169071","pending_votes_min":"0","pending_votes_max":"1255926449810078577203379"},{"time_bucket":"2020-05-08T00:00:00Z","time_interval":"day","commission_avg":"369998104021990740740616","commission_min":"0","commission_max":"1000000000000000000000000","active_votes_avg":"3423958091723642349951859","active_votes_min":"0","active_votes_max":"15978085024464577797392676","pending_votes_avg":"33392157264594334426662","pending_votes_min":"0","pending_votes_max":"1255926449810078577203379"},{"time_bucket":"2020-05-09T00:00:00Z","time_interval":"day","commission_avg":"366666666666666666666543","commission_min":"0","commission_max":"1000000000000000000000000","active_votes_avg":"3382120448114482712719992","active_votes_min":"0","active_votes_max":"15980414276100527264786482","pending_votes_avg":"33243547639104981792971","pending_votes_min":"0","pending_votes_max":"1255926449810078577203379"},{"time_bucket":"2020-05-10T00:00:00Z","time_interval":"day","commission_avg":"366666666666666666666543","commission_min":"0","commission_max":"1000000000000000000000000","active_votes_avg":"3382097883954097077984145","active_votes_min":"0","active_votes_max":"15982743070658461394105564","pending_votes_avg":"33237990348186058275100","pending_votes_min":"0","pending_votes_max":"1255926449810078577203379"}]
+
+'
+  recorded_at: Wed, 24 Mar 2021 14:23:46 GMT
 - request:
     method: get
-    uri: http://localhost:9292/celo/validator_groups/summary_hourly
+    uri: http://localhost:9292/blocks_summary?interval=hour&period=48%20hours
     body:
       encoding: US-ASCII
       string: ''
@@ -184,7 +184,7 @@ http_interactions:
       Accept:
       - "*/*"
       User-Agent:
-      - rest-client/2.1.0 (darwin18.0.0 x86_64) ruby/2.6.6p146
+      - rest-client/2.1.0 (darwin20.1.0 arm) ruby/2.7.2p137
       Content-Length:
       - '0'
       Content-Type:
@@ -198,294 +198,38 @@ http_interactions:
       code: 200
       message: OK
     headers:
+      Date:
+      - Wed, 24 Mar 2021 14:23:47 GMT
       Content-Type:
-      - application/json
-      X-Content-Type-Options:
-      - nosniff
-      Content-Length:
-      - '9087'
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - close
+      X-Ratelimit-Remaining-Minute:
+      - '4989'
+      X-Ratelimit-Limit-Minute:
+      - '5000'
+      Ratelimit-Remaining:
+      - '4989'
+      Ratelimit-Limit:
+      - '5000'
+      Ratelimit-Reset:
+      - '13'
+      X-Quota-Limit-Day:
+      - '10000000'
+      Quota-Remaining:
+      - '9999903'
+      X-Quota-Remaining-Day:
+      - '9999903'
+      Quota-Reset:
+      - '34573'
+      Quota-Limit:
+      - '10000000'
     body:
       encoding: UTF-8
-      string: |
-        [
-          {
-            "time_bucket": "2020-10-21T10:00:00Z",
-            "time_interval": "hour",
-            "commission_avg": "100000000000000000000000",
-            "commission_min": "100000000000000000000000",
-            "commission_max": "100000000000000000000000",
-            "active_votes_avg": "5113014307815055996771",
-            "active_votes_min": "4218166616875009418",
-            "active_votes_max": "10221917122277860650303",
-            "active_vote_units_avg": "501070673419282810717054833207879462616723",
-            "active_vote_units_min": "414001021153639342594282769831151178116",
-            "active_vote_units_max": "1001727345817411982091515383645927774055330",
-            "pending_votes_avg": "50021258588586000000015",
-            "pending_votes_min": "50004600000000000000000",
-            "pending_votes_max": "50037917177172000000030"
-          },
-          {
-            "time_bucket": "2020-10-21T11:00:00Z",
-            "time_interval": "hour",
-            "commission_avg": "100000000000000000000000",
-            "commission_min": "100000000000000000000000",
-            "commission_max": "100000000000000000000000",
-            "active_votes_avg": "5113014307815055996771",
-            "active_votes_min": "4218166616875009418",
-            "active_votes_max": "10221917122277860650303",
-            "active_vote_units_avg": "501070673419282810717054833207879462616723",
-            "active_vote_units_min": "414001021153639342594282769831151178116",
-            "active_vote_units_max": "1001727345817411982091515383645927774055330",
-            "pending_votes_avg": "50021258588586000000015",
-            "pending_votes_min": "50004600000000000000000",
-            "pending_votes_max": "50037917177172000000030"
-          },
-          {
-            "time_bucket": "2020-10-21T12:00:00Z",
-            "time_interval": "hour",
-            "commission_avg": "100000000000000000000000",
-            "commission_min": "100000000000000000000000",
-            "commission_max": "100000000000000000000000",
-            "active_votes_avg": "5113014307815055996771",
-            "active_votes_min": "4218166616875009418",
-            "active_votes_max": "10221917122277860650303",
-            "active_vote_units_avg": "501070673419282810717054833207879462616723",
-            "active_vote_units_min": "414001021153639342594282769831151178116",
-            "active_vote_units_max": "1001727345817411982091515383645927774055330",
-            "pending_votes_avg": "50021258588586000000015",
-            "pending_votes_min": "50004600000000000000000",
-            "pending_votes_max": "50037917177172000000030"
-          },
-          {
-            "time_bucket": "2020-10-21T13:00:00Z",
-            "time_interval": "hour",
-            "commission_avg": "100000000000000000000000",
-            "commission_min": "100000000000000000000000",
-            "commission_max": "100000000000000000000000",
-            "active_votes_avg": "5113014307815055996771",
-            "active_votes_min": "4218166616875009418",
-            "active_votes_max": "10221917122277860650303",
-            "active_vote_units_avg": "501070673419282810717054833207879462616723",
-            "active_vote_units_min": "414001021153639342594282769831151178116",
-            "active_vote_units_max": "1001727345817411982091515383645927774055330",
-            "pending_votes_avg": "50021258588586000000015",
-            "pending_votes_min": "50004600000000000000000",
-            "pending_votes_max": "50037917177172000000030"
-          },
-          {
-            "time_bucket": "2020-10-21T14:00:00Z",
-            "time_interval": "hour",
-            "commission_avg": "100000000000000000000000",
-            "commission_min": "100000000000000000000000",
-            "commission_max": "100000000000000000000000",
-            "active_votes_avg": "5113014307815055996771",
-            "active_votes_min": "4218166616875009418",
-            "active_votes_max": "10221917122277860650303",
-            "active_vote_units_avg": "501070673419282810717054833207879462616723",
-            "active_vote_units_min": "414001021153639342594282769831151178116",
-            "active_vote_units_max": "1001727345817411982091515383645927774055330",
-            "pending_votes_avg": "50021258588586000000015",
-            "pending_votes_min": "50004600000000000000000",
-            "pending_votes_max": "50037917177172000000030"
-          },
-          {
-            "time_bucket": "2020-10-21T15:00:00Z",
-            "time_interval": "hour",
-            "commission_avg": "100000000000000000000000",
-            "commission_min": "100000000000000000000000",
-            "commission_max": "100000000000000000000000",
-            "active_votes_avg": "5113014307815055996771",
-            "active_votes_min": "4218166616875009418",
-            "active_votes_max": "10221917122277860650303",
-            "active_vote_units_avg": "501070673419282810717054833207879462616723",
-            "active_vote_units_min": "414001021153639342594282769831151178116",
-            "active_vote_units_max": "1001727345817411982091515383645927774055330",
-            "pending_votes_avg": "50021258588586000000015",
-            "pending_votes_min": "50004600000000000000000",
-            "pending_votes_max": "50037917177172000000030"
-          },
-          {
-            "time_bucket": "2020-10-21T16:00:00Z",
-            "time_interval": "hour",
-            "commission_avg": "100000000000000000000000",
-            "commission_min": "100000000000000000000000",
-            "commission_max": "100000000000000000000000",
-            "active_votes_avg": "5113014307815055996771",
-            "active_votes_min": "4218166616875009418",
-            "active_votes_max": "10221917122277860650303",
-            "active_vote_units_avg": "501070673419282810717054833207879462616723",
-            "active_vote_units_min": "414001021153639342594282769831151178116",
-            "active_vote_units_max": "1001727345817411982091515383645927774055330",
-            "pending_votes_avg": "50021258588586000000015",
-            "pending_votes_min": "50004600000000000000000",
-            "pending_votes_max": "50037917177172000000030"
-          },
-          {
-            "time_bucket": "2020-10-21T17:00:00Z",
-            "time_interval": "hour",
-            "commission_avg": "100000000000000000000000",
-            "commission_min": "100000000000000000000000",
-            "commission_max": "100000000000000000000000",
-            "active_votes_avg": "5113014307815055996771",
-            "active_votes_min": "4218166616875009418",
-            "active_votes_max": "10221917122277860650303",
-            "active_vote_units_avg": "501070673419282810717054833207879462616723",
-            "active_vote_units_min": "414001021153639342594282769831151178116",
-            "active_vote_units_max": "1001727345817411982091515383645927774055330",
-            "pending_votes_avg": "50021258588586000000015",
-            "pending_votes_min": "50004600000000000000000",
-            "pending_votes_max": "50037917177172000000030"
-          },
-          {
-            "time_bucket": "2020-10-21T18:00:00Z",
-            "time_interval": "hour",
-            "commission_avg": "100000000000000000000000",
-            "commission_min": "100000000000000000000000",
-            "commission_max": "100000000000000000000000",
-            "active_votes_avg": "5113014307815055996771",
-            "active_votes_min": "4218166616875009418",
-            "active_votes_max": "10221917122277860650303",
-            "active_vote_units_avg": "501070673419282810717054833207879462616723",
-            "active_vote_units_min": "414001021153639342594282769831151178116",
-            "active_vote_units_max": "1001727345817411982091515383645927774055330",
-            "pending_votes_avg": "50021258588586000000015",
-            "pending_votes_min": "50004600000000000000000",
-            "pending_votes_max": "50037917177172000000030"
-          },
-          {
-            "time_bucket": "2020-10-21T19:00:00Z",
-            "time_interval": "hour",
-            "commission_avg": "100000000000000000000000",
-            "commission_min": "100000000000000000000000",
-            "commission_max": "100000000000000000000000",
-            "active_votes_avg": "5113014307815055996771",
-            "active_votes_min": "4218166616875009418",
-            "active_votes_max": "10221917122277860650303",
-            "active_vote_units_avg": "501070673419282810717054833207879462616723",
-            "active_vote_units_min": "414001021153639342594282769831151178116",
-            "active_vote_units_max": "1001727345817411982091515383645927774055330",
-            "pending_votes_avg": "50021258588586000000015",
-            "pending_votes_min": "50004600000000000000000",
-            "pending_votes_max": "50037917177172000000030"
-          },
-          {
-            "time_bucket": "2020-10-21T20:00:00Z",
-            "time_interval": "hour",
-            "commission_avg": "100000000000000000000000",
-            "commission_min": "100000000000000000000000",
-            "commission_max": "100000000000000000000000",
-            "active_votes_avg": "5113014307815055996771",
-            "active_votes_min": "4218166616875009418",
-            "active_votes_max": "10221917122277860650303",
-            "active_vote_units_avg": "501070673419282810717054833207879462616723",
-            "active_vote_units_min": "414001021153639342594282769831151178116",
-            "active_vote_units_max": "1001727345817411982091515383645927774055330",
-            "pending_votes_avg": "50021258588586000000015",
-            "pending_votes_min": "50004600000000000000000",
-            "pending_votes_max": "50037917177172000000030"
-          },
-          {
-            "time_bucket": "2020-10-21T21:00:00Z",
-            "time_interval": "hour",
-            "commission_avg": "100000000000000000000000",
-            "commission_min": "100000000000000000000000",
-            "commission_max": "100000000000000000000000",
-            "active_votes_avg": "5113014307815055996771",
-            "active_votes_min": "4218166616875009418",
-            "active_votes_max": "10221917122277860650303",
-            "active_vote_units_avg": "501070673419282810717054833207879462616723",
-            "active_vote_units_min": "414001021153639342594282769831151178116",
-            "active_vote_units_max": "1001727345817411982091515383645927774055330",
-            "pending_votes_avg": "50021258588586000000015",
-            "pending_votes_min": "50004600000000000000000",
-            "pending_votes_max": "50037917177172000000030"
-          }
-        ]
-  recorded_at: Mon, 14 Dec 2020 14:40:23 GMT
-- request:
-    method: get
-    uri: http://localhost:9292/celo/block/summary_hourly?params%5Binterval%5D=hour&params%5Bperiod%5D=48%20hours
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - "*/*"
-      User-Agent:
-      - rest-client/2.1.0 (darwin18.0.0 x86_64) ruby/2.6.6p146
-      Content-Length:
-      - '0'
-      Content-Type:
-      - application/x-www-form-urlencoded
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Host:
-      - localhost:9292
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Content-Type:
-      - application/json
-      X-Content-Type-Options:
-      - nosniff
-      Content-Length:
-      - '1312'
-    body:
-      encoding: UTF-8
-      string: |
-        [
-          {
-            "id": 1,
-            "created_at": "2020-11-02T07:57:54.104175Z",
-            "updated_at": "2020-11-02T08:22:54.018642Z",
-            "index_version": 1,
-            "time_interval": "hour",
-            "time_bucket": "2020-10-21T18:00:00Z",
-            "count": 170,
-            "block_time_avg": 4.970588
-          },
-          {
-            "id": 2,
-            "created_at": "2020-11-02T07:57:54.104175Z",
-            "updated_at": "2020-11-02T08:22:54.018642Z",
-            "index_version": 1,
-            "time_interval": "hour",
-            "time_bucket": "2020-10-21T19:00:00Z",
-            "count": 170,
-            "block_time_avg": 4.96
-          },
-          {
-            "id": 3,
-            "created_at": "2020-11-02T07:57:54.104175Z",
-            "updated_at": "2020-11-02T08:22:54.018642Z",
-            "index_version": 1,
-            "time_interval": "hour",
-            "time_bucket": "2020-10-21T20:00:00Z",
-            "count": 170,
-            "block_time_avg": 4.93
-          },
-          {
-            "id": 4,
-            "created_at": "2020-11-02T07:57:54.104175Z",
-            "updated_at": "2020-11-02T08:22:54.018642Z",
-            "index_version": 1,
-            "time_interval": "hour",
-            "time_bucket": "2020-10-21T21:00:00Z",
-            "count": 170,
-            "block_time_avg": 4.81
-          },
-          {
-            "id": 5,
-            "created_at": "2020-11-02T07:57:54.104175Z",
-            "updated_at": "2020-11-02T08:22:54.018642Z",
-            "index_version": 1,
-            "time_interval": "hour",
-            "time_bucket": "2020-10-21T22:00:00Z",
-            "count": 170,
-            "block_time_avg": 4.85
-          }
-        ]
-  recorded_at: Mon, 14 Dec 2020 14:40:23 GMT
+      string: '[{"id":427,"index_version":1,"time_interval":"hour","time_bucket":"2020-05-09T16:00:00Z","count":720,"block_time_avg":4.993056},{"id":428,"index_version":1,"time_interval":"hour","time_bucket":"2020-05-09T17:00:00Z","count":720,"block_time_avg":4.993056},{"id":429,"index_version":1,"time_interval":"hour","time_bucket":"2020-05-09T18:00:00Z","count":720,"block_time_avg":4.993056},{"id":430,"index_version":1,"time_interval":"hour","time_bucket":"2020-05-09T19:00:00Z","count":720,"block_time_avg":4.993056},{"id":431,"index_version":1,"time_interval":"hour","time_bucket":"2020-05-09T20:00:00Z","count":720,"block_time_avg":4.993056},{"id":432,"index_version":1,"time_interval":"hour","time_bucket":"2020-05-09T21:00:00Z","count":720,"block_time_avg":4.993056},{"id":433,"index_version":1,"time_interval":"hour","time_bucket":"2020-05-09T22:00:00Z","count":720,"block_time_avg":4.993056},{"id":434,"index_version":1,"time_interval":"hour","time_bucket":"2020-05-09T23:00:00Z","count":720,"block_time_avg":4.993056},{"id":435,"index_version":1,"time_interval":"hour","time_bucket":"2020-05-10T00:00:00Z","count":720,"block_time_avg":4.993056},{"id":437,"index_version":1,"time_interval":"hour","time_bucket":"2020-05-10T01:00:00Z","count":720,"block_time_avg":4.993056},{"id":438,"index_version":1,"time_interval":"hour","time_bucket":"2020-05-10T02:00:00Z","count":720,"block_time_avg":4.993056},{"id":439,"index_version":1,"time_interval":"hour","time_bucket":"2020-05-10T03:00:00Z","count":720,"block_time_avg":4.993056},{"id":440,"index_version":1,"time_interval":"hour","time_bucket":"2020-05-10T04:00:00Z","count":720,"block_time_avg":4.993056},{"id":441,"index_version":1,"time_interval":"hour","time_bucket":"2020-05-10T05:00:00Z","count":720,"block_time_avg":4.993056},{"id":442,"index_version":1,"time_interval":"hour","time_bucket":"2020-05-10T06:00:00Z","count":720,"block_time_avg":4.994444},{"id":443,"index_version":1,"time_interval":"hour","time_bucket":"2020-05-10T07:00:00Z","count":720,"block_time_avg":4.993056},{"id":444,"index_version":1,"time_interval":"hour","time_bucket":"2020-05-10T08:00:00Z","count":720,"block_time_avg":4.993056},{"id":445,"index_version":1,"time_interval":"hour","time_bucket":"2020-05-10T09:00:00Z","count":720,"block_time_avg":4.993056},{"id":446,"index_version":1,"time_interval":"hour","time_bucket":"2020-05-10T10:00:00Z","count":720,"block_time_avg":4.993056},{"id":447,"index_version":1,"time_interval":"hour","time_bucket":"2020-05-10T11:00:00Z","count":720,"block_time_avg":4.993056},{"id":448,"index_version":1,"time_interval":"hour","time_bucket":"2020-05-10T12:00:00Z","count":720,"block_time_avg":4.993056},{"id":449,"index_version":1,"time_interval":"hour","time_bucket":"2020-05-10T13:00:00Z","count":720,"block_time_avg":4.993056},{"id":450,"index_version":1,"time_interval":"hour","time_bucket":"2020-05-10T14:00:00Z","count":720,"block_time_avg":4.993056},{"id":451,"index_version":1,"time_interval":"hour","time_bucket":"2020-05-10T15:00:00Z","count":720,"block_time_avg":4.993056},{"id":452,"index_version":1,"time_interval":"hour","time_bucket":"2020-05-10T16:00:00Z","count":523,"block_time_avg":4.99044}]
+
+'
+  recorded_at: Wed, 24 Mar 2021 14:23:47 GMT
 recorded_with: VCR 6.0.0

@@ -1,0 +1,7 @@
+<% orchestrator = @orchestrators.find { |o| o.address == address } %>
+
+<% if orchestrator.present? -%>
+  <%= render partial: 'orchestrator_link', locals: { orchestrator: orchestrator } %>
+<% else -%>
+  <%= livepeer_explorer_link(address, page: :campaign) %>
+<% end -%>

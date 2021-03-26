@@ -1,0 +1,29 @@
+<div class="section">
+  <div class="page__container">
+    <div class="section__header">
+      <h2 class="section__title">FIGMENT VALIDATORS PERFORMANCE</h2>
+    </div>
+    <table id="validators_performance" class="table table-pagination">
+      <thead>
+        <tr>
+          <th>Network</th>
+          <th>On-chain Commission</th>
+          <th>Uptime</th>
+          <th>Lifetime Slashes</th>
+          <th>Reward Rate</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if validators.count == 0 %>
+          <tr>
+            <td colspan='5'>You do not have any addresses so there are no validators to show.</td>
+          </tr>
+        <% else %>
+          <% validators.each do |validator| %>
+            <%= render '/prime/shared/validators_performance_table_row', validator: validator %>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

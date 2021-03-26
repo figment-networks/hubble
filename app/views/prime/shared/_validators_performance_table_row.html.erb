@@ -1,0 +1,9 @@
+<tr>
+  <td>
+    <%= link_to hubble_validator_linker_title(validator), hubble_validator_linker(validator.network_name, validator.address), target: 'blank' %>
+  </td>
+  <td><%= number_to_percentage(validator.factored_commission, precision: 2) %></td>
+  <td><%= number_to_percentage(validator.uptime_as_percentage, precision: 2) %></td>
+  <td>0</td>
+  <td><%= validator.reward_rate_as_percentage %></td>
+</tr>

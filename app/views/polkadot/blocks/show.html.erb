@@ -9,9 +9,9 @@
       <span class='data-block__value d-block word-break'><%= @block.hash %></span>
     </div>
 
-    <%= render partial: 'shared/redesign/block_sidebar', locals: { block: @block } %>
+    <%= render partial: 'shared/block_sidebar', locals: { block: @block } %>
     <div class='mt-5'>
-      <%= render partial: 'shared/redesign/transactions', locals: { transactions: @transactions } %>
+      <%= render partial: 'shared/transactions', locals: { transactions: @transactions } %>
       <%= render partial: 'polkadot/shared/validators', locals:
           { validators: @validators, stale_data: @validators_height < @block.height } %>
     </div>

@@ -1,0 +1,20 @@
+<div class="section">
+  <div class="page__container">
+    <div class="section__header">
+      <h2 class="section__title">CSV files</h2>
+      <div class="arrows">
+        <button class="arrows__prev" id="slideBack">
+          <%= image_tag "prime/icons/angle-active.svg", alt: 'arrow left' %>
+        </button>
+        <button class="arrows__next" id="slideForward">
+          <%= image_tag "prime/icons/angle-active.svg", alt: 'arrow right' %>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="slider">
+    <% networks.each do |network| %>
+      <%= render 'network_summary_card', network: network, reward_total: network_reward_total(network) %>
+    <% end %>
+  </div>
+</div>

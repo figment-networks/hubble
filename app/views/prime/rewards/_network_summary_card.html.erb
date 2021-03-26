@@ -1,0 +1,24 @@
+<div class="block slider__item">
+  <div class="block__header">
+    <%= image_tag prime_network_image(network), alt: network.name.capitalize, class: 'block__img' %>
+    <h3 class="block__title"><%= network.name.capitalize %></h3>
+  </div>
+  <div class="block__content">
+    <div class="block__section">
+      <div class="block__row">
+        <div>
+          <p class="block__value"><%= number_with_precision(reward_total, precision: 2) %> <%= network.primary.reward_token_display %></p>
+          <p class="block__label">(<%= number_to_currency(reward_total * network.price_usd) %>)</p>
+        </div>
+
+        <%= link_to report_params.merge(format: 'csv', network: network.name) do %>
+          <button class="button button--primary">
+            <%= image_tag "prime/icons/export.svg", alt: 'export', class: 'button__icon' %>
+            CSV
+          </button>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+    

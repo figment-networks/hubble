@@ -1,8 +1,6 @@
 class Util::SubscriptionsController < Hubble::ApplicationController
   before_action :set_chain_and_validator
 
-  layout 'redesign/application'
-
   def index
     unless current_user
       redirect_to new_user_path

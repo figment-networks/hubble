@@ -1,154 +1,154 @@
 <% content_for :body_class, 'transaction-show' -%>
 
-<%= render partial: '/cosmoslike/shared/chain_header', locals: { summary_link: true } %>
+<%= render partial: '/cosmoslike/shared/chain_header', locals: { active_tab: '', events_link: true, tx_search_link: true, reports_link: true } %>
 <%= render_flash_messages %>
 
-<h2 class='mb-4'>
-  <label class='text-muted'>Tx</label>
-  <span class='technical text-lg'><%= params[:id] %></span>
-</h2>
+<div class="content">
+  <div class="container">
+    <% unless @error -%>
+      <%= link_to namespaced_path('block', @block), class: 'link text-uppercase' do %>
+        <span class='fas fa-chevron-left'></span> back
+      <% end -%>
+    <% end -%>
+    <h2 class='data-block my-4'>
+      <label class='data-block__title'>Transaction</label>
+      <span class='data-block__value d-block word-break'><%= params[:id] %></span>
+    </h2>
 
-<% if @error -%>
-  <%= render partial: 'shared/display_error' %>
-<% else -%>
-  <% content_for :canonical_url, namespaced_path( 'transaction', @transaction, full: true ) -%>
+    <% if @error -%>
+      <%= render partial: 'shared/display_error' %>
+    <% else -%>
+      <% content_for :canonical_url, namespaced_path('transaction', @transaction, full: true) -%>
 
-  <div class='row'>
-    <div class='col-12 col-md-3 order-0 order-md-1 info-cards'>
-      <div class='card'>
-        <h5 class='card-header d-flex justify-content-between align-items-center'>
-          Height
-          <a href='<%= namespaced_path( 'block', @block ) %>' class='text-sm text-white'><span class='fas fa-chevron-left'></span> back</a>
-        </h5>
-        <div class='card-body'>
-          <span class='large-number technical'><%= @block.height %></span>
-        </div>
-      </div>
+      <div class='row'>
+        <div class='col-12 col-md-3 order-0 order-md-1 info-cards'>
+          <div class='data-block'>
+            <h3 class='data-block__title'>
+              Height
+            </h5>
+            <span class='large-number technical'><%= @block.height %></span>
+          </div>
 
-      <div class='card'>
-        <h5 class='card-header'>Result</h5>
-        <div class='card-body'>
-          <% if @transaction.error? -%>
-            <span class='badge text-lg badge-danger'>ERROR</span>
-            <div class='mt-2 text-muted'><%= @transaction.error_message %></div>
-          <% else -%>
-            <span class='badge text-lg badge-success'>SUCCESS</span>
-          <% end -%>
-        </div>
-      </div>
-
-      <div class='card'>
-        <h5 class='card-header'>Timestamp</h5>
-        <div class='card-body'>
-          <span class='technical'><%= format_timestamp(@block.timestamp) %></span>
-        </div>
-      </div>
-
-      <div class='card'>
-        <h5 class='card-header'>Fees</h5>
-        <div class='card-body'>
-          <ul class='list-unstyled mb-0'>
-            <% if @transaction.fees.empty? -%>
-              <span class='text-muted'>None</span>
+          <div class='data-block'>
+            <h3 class='data-block__title'>Result</h5>
+            <% if @transaction.error? -%>
+              <span class='badge badge-danger'>ERROR</span>
+              <div class='mt-2 text-muted'><%= @transaction.error_message %></div>
+            <% else -%>
+              <span class='badge badge-success'>SUCCESS</span>
             <% end -%>
-            <% @transaction.fees.each do |fee| -%>
-              <li><%= fee %></li>
-            <% end -%>
-          </ul>
+          </div>
+
+          <div class='data-block'>
+            <h3 class='data-block__title'>Timestamp</h5>
+            <span class='technical paragraph'><%= format_timestamp(@block.timestamp) %></span>
+          </div>
+
+          <div class='data-block'>
+            <h3 class='data-block__title'>Fees</h5>
+            <ul class='list-unstyled mb-0'>
+              <% if @transaction.fees.empty? -%>
+                <span class='text-muted'>None</span>
+              <% end -%>
+              <% @transaction.fees.each do |fee| -%>
+                <li><%= fee %></li>
+              <% end -%>
+            </ul>
+          </div>
+
+          <div class='data-block'>
+            <h3 class='data-block__title'>Raw JSON</h3>
+            <div class='text-nowrap'>
+              <% if @chain.enabled? -%>
+                <%= link_to 'View', namespaced_path('block_transaction', @block, @transaction, format: 'json'), class: 'button-secondary', target: '_blank' %>
+              <% else -%>
+                <span class='text-muted'>&mdash;</span>
+              <% end -%>
+            </div>
+          </div>
         </div>
-      </div>
-
-      <div class='card'>
-        <h5 class='card-header'>Raw JSON</h5>
-        <div class='card-body text-nowrap'>
-          <% if @chain.enabled? -%>
-            <a target='_blank' class='btn btn-outline-secondary btn-sm' href='<%= namespaced_path( 'block_transaction', @block, @transaction, format: 'json' ) %>'>View</a>
-          <% else -%>
-            <span class='text-muted'>&mdash;</span>
-          <% end -%>
-        </div>
-      </div>
-    </div>
 
 
-    <div class='col-12 col-md-9 order-1 order-md-0'>
-      <section class='card'>
-        <header class='card-header d-flex align-items-center justify-content-between'>
-          <h4 class='m-0'>Transaction Details</h4>
-          <span class='d-none d-md-flex badge badge-pill badge-light text-uppercase'><%= @transaction.type %></span>
-        </header>
-        <main>
-          <section>
-            <div class='table-responsive pt-2'>
-              <table class='table table-sm table-borderless'>
-                <tbody>
-                  <% messages = @transaction.messages -%>
-                  <% if messages.empty? -%>
-                    <tr class='text-center'>
-                      <td colspan='2'>No Messages.</td>
-                    </tr>
-                  <% else %>
-                    <% messages.each do |msg| -%>
-                      <tr>
-                        <td class='text-nowrap border-none'><%= msg.type( tooltip: false ) %></td>
-                        <td class='m-0 p-0 border-none'>
-                          <table class='table m-0 no-first-row-top-border'>
-                            <% msg.each_info do |key, nice_key, formatted_value| -%>
-                              <tr>
-                                <td class='text-nowrap'>
-                                  <span><%= nice_key %></span>
-                                </td>
-                                <td><%= formatted_value %></td>
-                              </tr>
-                            <% end -%>
-                          </table>
-                        </td>
+        <div class='col-12 col-md-9 order-1 order-md-0'>
+          <section class='data-table'>
+            <header class='data-table__header d-flex align-items-center justify-content-between'>
+              <h4 class='data-table__title m-0'>Transaction Details</h4>
+              <span class='d-none d-md-flex badge badge-pill badge-light text-uppercase'><%= @transaction.type %></span>
+            </header>
+            <main>
+              <section>
+                <div class='table-responsive pt-2'>
+                  <table class='table table-sm table-borderless'>
+                    <tbody>
+                      <% messages = @transaction.messages -%>
+                      <% if messages.empty? -%>
+                        <tr class='text-center'>
+                          <td colspan='2'>No Messages.</td>
+                        </tr>
+                      <% else %>
+                        <% messages.each do |msg| -%>
+                          <tr>
+                            <td class='text-nowrap border-none'><%= msg.type(tooltip: false) %></td>
+                            <td class='m-0 p-0 border-none'>
+                              <table class='table m-0 no-first-row-top-border'>
+                                <% msg.each_info do |key, nice_key, formatted_value| -%>
+                                  <tr>
+                                    <td class='text-nowrap'>
+                                      <span><%= nice_key %></span>
+                                    </td>
+                                    <td><%= formatted_value %></td>
+                                  </tr>
+                                <% end -%>
+                              </table>
+                            </td>
+                          </tr>
+                        <% end -%>
+                      <% end -%>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <% if @transaction.memo.present? -%>
+                <section>
+                  <div class='transaction-section-title'>MEMO</div>
+                  <p class='p-3 pb-0'><%= Rinku.auto_link(strip_tags(@transaction.memo), :urls, "target='_blank' rel='nofollow'").html_safe %></p>
+                </section>
+              <% end -%>
+
+              <section>
+                <div class='transaction-section-title'>RESULT</div>
+                <div class='table-responsive'>
+                  <table class='table table-sm'>
+                    <thead>
+                      <tr class='text-uppercase text-secondary'>
+                        <th>Parameter</th>
+                        <th>Value</th>
                       </tr>
-                    <% end -%>
-                  <% end -%>
-                </tbody>
-              </table>
-            </div>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class='text-nowrap'>Gas Wanted</td>
+                        <td><%= @transaction.gas_wanted %></td>
+                      </tr>
+                      <tr>
+                        <td class='text-nowrap'>Gas Used</td>
+                        <td><%= @transaction.gas_used %></td>
+                      </tr>
+                      <% if !@transaction.log.blank? -%>
+                        <tr>
+                          <td class='text-nowrap'>Log</td>
+                          <td class='technical'><%= @transaction.log %></td>
+                        </tr>
+                      <% end -%>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+            </main>
           </section>
-
-          <% if @transaction.memo.present? -%>
-            <section>
-              <div class='transaction-section-title bg-light'>MEMO</div>
-              <p class='p-3 pb-0'><%= Rinku.auto_link(strip_tags(@transaction.memo), :urls, "target='_blank' rel='nofollow'").html_safe %></p>
-            </section>
-          <% end -%>
-
-          <section>
-            <div class='transaction-section-title bg-light'>RESULT</div>
-            <div class='table-responsive'>
-              <table class='table table-sm'>
-                <thead>
-                  <tr class='text-uppercase text-secondary'>
-                    <th>Parameter</th>
-                    <th>Value</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class='text-nowrap'>Gas Wanted</td>
-                    <td><%= @transaction.gas_wanted %></td>
-                  </tr>
-                  <tr>
-                    <td class='text-nowrap'>Gas Used</td>
-                    <td><%= @transaction.gas_used %></td>
-                  </tr>
-                  <% if !@transaction.log.blank? -%>
-                    <tr>
-                      <td class='text-nowrap'>Log</td>
-                      <td class='technical'><%= @transaction.log %></td>
-                    </tr>
-                  <% end -%>
-                </tbody>
-              </table>
-            </div>
-          </section>
-        </main>
-      </section>
-    </div>
+        </div>
+      </div>
+    <% end -%>
   </div>
-<% end -%>
+</div>

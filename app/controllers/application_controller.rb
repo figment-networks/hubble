@@ -23,6 +23,7 @@ class ApplicationController < ActionController::Base
                 ActionController::UnknownFormat,
                 ActiveRecord::RecordNotFound,
                 Common::IndexerClient::NotFoundError,
+                Prime::MessariDataService::NotFoundError,
                 with: :render_404
   end
 

@@ -11,3 +11,5 @@ class AddLatestLocalHeightToChains < ActiveRecord::Migration[5.2]
     end
   end
 end
+
+# this migration throws a puzzling error and needs to be re-run with `rake db:migrate`

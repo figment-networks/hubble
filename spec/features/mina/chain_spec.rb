@@ -9,30 +9,30 @@ describe 'mina home', :vcr do
 
   it 'displays chain sections' do
     expect(page).to have_link 'Transaction Search', href: mina_chain_transactions_path(chain)
-    expect(page).to have_text 'Daily Volume'
+    expect(page).to have_text 'DAILY VOLUME'
 
     within '.validators' do
       expect(page).to have_text 'Validators'
-      expect(page).to have_text '180 total'
+      expect(page).to have_text '5'
     end
 
     within '.chain-block' do
-      expect(page).to have_text 'Current Block'
-      expect(page).to have_link '7388', href: mina_chain_block_path(chain, '7388')
+      expect(page).to have_text 'CURRENT BLOCK'
+      expect(page).to have_link '727', href: mina_chain_block_path(chain, '727')
     end
 
-    within '.card.chain-pool' do
-      expect(page).to have_text 'Community Pool'
-      expect(page).to have_text '23,839,900.002 MINA'
-      expect(page).to have_text '1,557,594.15 MINA'
+    within '.chain-pool' do
+      expect(page).to have_text 'COMMUNITY POOL'
+      expect(page).to have_text '3,038,159.9k MINA'
+      expect(page).to have_text '2,406,968.695k MINA'
     end
 
-    within '.card.chain-block-times' do
-      expect(page).to have_text 'Average Block Time'
-      expect(page).to have_text '442.8 seconds'
+    within '.chain-block-times' do
+      expect(page).to have_text 'AVERAGE BLOCK TIME'
+      expect(page).to have_text '3.75 minutes'
     end
 
-    within '.card.transactions-stats' do
+    within '.transactions-stats' do
       expect(page).to have_button 'Payments'
       expect(page).to have_button 'Fees'
       expect(page).to have_button 'Worker'

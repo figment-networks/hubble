@@ -1,0 +1,7 @@
+<div class='data-block'>
+  <h3 class='data-block__title'>ACTIVE VALIDATORS</h3>
+  <div class='data-block__value'><%= @validators.size %> <span class='data-block__label'>total</span></div>
+  <div class="validators-chart-container data-block__chart">
+    <canvas class="validators-chart" data-chart="<%= validator_intervals.to_json %>" data-name="validators"></canvas>
+  </div>
+</div>

@@ -23,24 +23,7 @@
     <%= render partial: '/admin/shared/nav' %>
     <div class='content-wrapper'>
       <div class='container'>
-        <% if flash[:error] -%>
-          <div class='alert alert-danger'>
-            <%= flash[:error].html_safe %>
-          </div>
-        <% end -%>
-
-        <% if flash[:notice] %>
-          <div class='alert alert-primary auto-alert-hide'>
-            <%= flash[:notice].html_safe %>
-          </div>
-        <% end -%>
-
-        <% if flash[:warning] %>
-          <div class='alert alert-warning'>
-            <%= flash[:warning].html_safe %>
-          </div>
-        <% end -%>
-
+        <%= render_flash_messages %>
         <%= yield %>
       </div>
     </div>

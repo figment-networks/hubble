@@ -1,4 +1,4 @@
-class Livepeer::Queries::UnbondingsQuery < Livepeer::Queries::ReportQuery
+class Livepeer::Queries::UnbondingsQuery < Livepeer::Queries::DelegatorListReportQuery
   FIELDS = [
     'delegator_address',
     'SUM(livepeer_unbonds.amount) AS unbonding_tokens'

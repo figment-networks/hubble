@@ -12,12 +12,19 @@
 @import 'common/footer';
 @import 'common/typography';
 @import 'common/misc';
+@import 'common/logotypes';
 
 // app pages
 @import 'page/livepeer/chain';
 
 // components
 @import 'components/network-chain-header';
+@import 'components/data-block';
+@import 'components/data-table';
+@import 'components/validator-header';
+@import 'components/validator-table';
+@import 'components/search-bar';
 @import 'components/livepeer/delegators-table';
 @import 'components/livepeer/pools-table';
 @import 'components/livepeer/delegator-lists-table';
+@import 'components/event-history';

@@ -1,7 +1,7 @@
 <header class='network-chain-header pt-4'>
   <div class="container">
     <div class='d-block d-lg-none mb-5'>
-      <%= render partial: '/shared/redesign/search-bar' %>
+      <%= render partial: '/shared/search-bar' %>
     </div>
     <div class="d-flex align-items-center flex-wrap">
       <% if network_has_image?(@chain.network_name) -%>
@@ -42,9 +42,9 @@
     <% end -%>
 
     <div class='tabs mt-4'>
-      <%= render partial: '/shared/redesign/chain_header_link', locals: { active_tab: active_tab, link_text: 'Validators', link_path:  namespaced_path(chain: @chain), } %>
+      <%= render partial: '/shared/chain_header_link', locals: { active_tab: active_tab, link_text: 'Validators', link_path:  namespaced_path(chain: @chain), } %>
       <% if current_admin -%>
-        <%= render partial: '/shared/redesign/chain_header_link', locals: { active_tab: active_tab, link_text: 'Admin', link_path:  namespaced_path(admin: true), } %>
+        <%= render partial: '/shared/chain_header_link', locals: { active_tab: active_tab, link_text: 'Admin', link_path:  namespaced_path(admin: true), } %>
       <% end -%>
     </div>
   </div>

@@ -1,0 +1,22 @@
+<div class="modal hidden" id="add-<%= network.name %>-modal">
+  <div class="modal__content">
+    <button class="modal__close">
+      <%= image_tag 'prime/icons/cross.svg', alt: "close" %>
+    </button>
+    <h3 class="modal__title">Add <%= network.name.capitalize %> address to your Prime account</h3>
+
+    <%= form_for account, url: prime_accounts_path, html: { class: 'form', id: "#{network.name}-add-account-form" } do |f| %>
+      <%= f.hidden_field :prime_network_id, value: network.id %>
+      <%= f.hidden_field :user_id, value: user.id %>
+
+      <label for="network-input" class="form__label">Address</label>
+      <%= f.text_field :address, class: 'input form__input',
+                                  id: "network-input",
+                                  placeholder: "Enter a #{network.name.capitalize} address..." %>
+
+    <% end %>
+  </div>
+  <div class="modal__footer">
+    <button class="button button--primary modal__button button--l" type='submit' form="<%= network.name %>-add-account-form" data-target="">Add to Dashboard</button>
+  </div>
+</div>

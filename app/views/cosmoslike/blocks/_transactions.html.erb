@@ -1,11 +1,11 @@
 <% transactions = @block.transaction_objects -%>
 
-<div class='transactions mb-5'>
-  <div class='transactions-table-header'>
-    <h4>Transactions</h4>
+<div class='data-table my-5'>
+  <div class='data-table__header'>
+    <h4 class='data-table__title'>Transactions</h4>
   </div>
   <div class='transactions-table'>
-    <table data-empty='<%= transactions.blank? %>'>
+    <table class='border-0' data-empty='<%= transactions.blank? %>'>
       <thead>
         <tr>
           <th>Hash</th>
@@ -18,41 +18,41 @@
       <tbody>
         <% if transactions.nil? -%>
           <tr>
-            <td class='p-3 text-center' colspan='5'>Unable to retrieve transaction data.</td>
+            <td class='data-table__empty' colspan='5'>Unable to retrieve transaction data.</td>
           </tr>
         <% elsif transactions.empty? -%>
           <tr>
-            <td class='p-3 text-center' colspan='5'>No transactions in this block.</td>
+            <td class='data-table__empty' colspan='5'>No transactions in this block.</td>
           </tr>
         <% end -%>
 
-        <% (transactions||[]).each do |tr| -%>
+        <% Array(transactions).each do |transaction| -%>
           <tr>
-            <td data-order='<%= tr.hash %>'>
-              <span class='technical'><%= tr.hash.truncate(30) %></span>
+            <td data-order='<%= transaction.hash %>'>
+              <span class='technical'><%= transaction.hash.truncate(30) %></span>
             </td>
-            <td data-order='<%= tr.fees_raw %>'>
+            <td data-order='<%= transaction.fees_raw %>'>
               <ul class='list-unstyled mb-0'>
-                <% if tr.fees.empty? -%>
+                <% if transaction.fees.empty? -%>
                   <span class='text-muted text-lg'>&mdash;</span>
                 <% end -%>
-                <% tr.fees.each do |fee| -%>
+                <% transaction.fees.each do |fee| -%>
                   <li><%= fee %></li>
                 <% end -%>
               </ul>
             </td>
-            <td data-order='<%= tr.gas_raw %>'>
-              <%= tr.gas %>
+            <td data-order='<%= transaction.gas_raw %>'>
+              <%= transaction.gas %>
             </td>
-            <td data-order='<%= tr.error? ? 'error' : 'success' %>'>
-              <% if tr.error? -%>
-                <span class='badge badge-danger' data-toggle='tooltip' title='<%= tr.error_message %>'>ERROR</span>
+            <td data-order='<%= transaction.error? ? 'error' : 'success' %>'>
+              <% if transaction.error? -%>
+                <span class='badge badge-danger' data-toggle='tooltip' title='<%= transaction.error_message %>'>ERROR</span>
               <% else -%>
                 <span class='badge badge-success'>SUCCESS</span>
               <% end -%>
             </td>
             <td class='text-right'>
-              <a class='btn btn-outline-primary btn-sm' href='<%= namespaced_path( 'block_transaction', tr.height, tr ) %>'>Details...</a>
+              <%= link_to 'Details...', namespaced_path('block_transaction', transaction.height, transaction), class: 'btn btn-outline-primary btn-sm' %>
             </td>
           </tr>
         <% end -%>

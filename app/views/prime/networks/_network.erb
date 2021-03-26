@@ -1,0 +1,42 @@
+<div class="block slider__item">
+  <div class="block__header">
+    <%= image_tag prime_network_image(network), alt: network.name.capitalize, class: "block__img" %>
+    <h3 class="block__title"><%= network.name.capitalize %></h3>
+    <div class='more-info-div'>
+      <button data-target="<%= network.name %>-info-modal" class="link more-info-btn">More info</button>
+    </div>
+  </div>
+  <div class="block__content">
+
+    <div class="block__section">
+      <div class="block__row">
+        <div class="block__data">
+          <p class="block__label">Rewards: </p>
+          <p class="block__value"> 1,234.56</p>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="block__section">
+      <div class="block__data">
+        <p class="block__label">Price: </p>
+        <p class="block__value"> <%= number_to_currency(network.price_usd) %></p>
+      </div>
+    </div>
+
+    <div class="block__section">
+      <div class="block__data">
+        <p class="block__label">1-Day Performance: </p>
+        <p class="block__value block__value--<%= price_change_color(network.one_day_roi) %>"> <%= number_with_delimiter(network.one_day_roi.round(2)) %>%</p>
+      </div>
+    </div>
+
+    <% if defined?(show_add_account_button) && show_add_account_button %>
+      <button class="button button--secondary add-address-btn" data-target="add-<%= network.name %>-modal">
+        <%= image_tag 'prime/icons/plus.svg', alt: "plus", class: "button__icon" %>
+        Add address
+      </button>
+    <% end %>
+  </div>
+</div>

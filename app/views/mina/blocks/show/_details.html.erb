@@ -1,6 +1,9 @@
-<%= render_card "Block Details", class: "block-details", body_class: "no-padding" do %>
+<div class='data-table block-details'>
+  <div class='data-table__header'>
+    <h3 class='data-table__title'>Block Details</h3>
+  </div>
   <div class="table-responsive">
-    <table class="table table-sm">
+    <table class="table table-sm m-0">
       <thead>
         <tr class="text-uppercase text-secondary">
           <th>Parameter</th>
@@ -9,12 +12,24 @@
       </thead>
       <tbody>
         <tr>
+          <td class="text-nowrap">Hash</td>
+          <td><%= link_to block.hash.truncate(50), mina_chain_block_path(chain, block.hash) %></td>
+        </tr>
+        <tr>
+          <td class="text-nowrap">Parent Hash</td>
+          <td><%= link_to block.parent_hash.truncate(50), mina_chain_block_path(chain, block.parent_hash) %></td>
+        </tr>
+        <tr>
+          <td class="text-nowrap">Ledger Hash</td>
+          <td><%= block.ledger_hash.truncate(50) %></td>
+        </tr>
+        <tr>
           <td class="text-nowrap">Producer</td>
           <td><%= link_to block.creator.truncate(50), mina_chain_validator_path(chain, block.creator) %></td>
         </tr>
         <tr>
           <td class="text-nowrap">Total Currency</td>
-          <td><%= format_amount block.total_currency, denom: "mina" %></td>
+          <td><%= format_amount block.total_currency %></td>
         </tr>
         <tr>
           <td class="text-nowrap">Epoch</td>
@@ -24,7 +39,23 @@
           <td class="text-nowrap">Slot</td>
           <td><span class="text-monospace"><%= block.slot %></span></td>
         </tr>
+        <tr>
+          <td class="text-nowrap">Canonical</td>
+          <td><%= block.canonical ? "YES" : "NO" %></td>
+        </tr>
+        <tr>
+          <td class="text-nowrap">Coinbase</td>
+          <td><%= format_amount block.coinbase %></td>
+        </tr>
+        <tr>
+          <td class="text-nowrap">Transactions</td>
+          <td><%= block.transactions_count %></td>
+        </tr>
+        <tr>
+          <td class="text-nowrap">SNARK Jobs</td>
+          <td><%= block.snark_jobs_count %></td>
+        </tr>
       </tbody>
     </table>
   </div>
-<% end %>
+</div>

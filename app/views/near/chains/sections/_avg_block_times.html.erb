@@ -1,17 +1,29 @@
 <div class='data-block'>
   <h3 class='data-block__title'>Average Block Time</h3>
+  <div class="charts">
   <div class="d-flex justify-content-between align-items-baseline">
     <div class='data-block__value'>
       <%= block_times.avg %>
       <span class="data-block__label">seconds</span>
     </div>
-    <span class="text-small">Past 48 hours</span>
+    <div class='block-time-switcher btn-group btn-group-sm'>
+      <button type='button' data-target='last48h' class='bg-transparent border-0 p-0 text-small sparkline-button'>Past 48h</button>
+      <button type='button' data-target='last30d' class='bg-transparent border-0 p-0 ml-2 text-small sparkline-button'>Past 30d</button>
+    </div>
   </div>
-  <div class='small-average-block-time-chart-container'>
-    <canvas class='average-block-time-chart'></canvas>
+    <div class='last48h-chart-container'>
+      <canvas
+        class='sparkline-chart last48h-chart'
+        data-name="hourly"
+        data-chart="<%= block_stats_hourly.chart_data.to_json %>">
+      </canvas>
+    </div>
+    <div class='last30d-chart-container'>
+      <canvas
+        class='sparkline-chart last30d-chart'
+        data-name="daily"
+        data-chart="<%= block_stats_daily.chart_data.to_json %>">
+      </canvas>
+    </div>
   </div>
-
-  <script>
-    App.seed.AVERAGE_BLOCK_TIME = <%= block_intervals.to_json.html_safe %>
-  </script>
 </div>

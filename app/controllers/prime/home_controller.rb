@@ -1,5 +1,7 @@
 class Prime::HomeController < Prime::ApplicationController
+  NETWORK_EVENTS_LIMIT = 10
+
   def index
-    page_title 'Prime by Figment'
+    @new_account = Prime::Account.new
   end
 end

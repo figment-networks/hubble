@@ -2,8 +2,6 @@ module Tezos
   class SubscriptionsController < ::Util::SubscriptionsController
     private
 
-    layout 'application'
-
     def set_chain_and_validator
       @namespace = params[:network].titleize.constantize
       @chain = Tezos::Chain.primary

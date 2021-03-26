@@ -1,14 +1,19 @@
-<%= render_card "Balance", class: "account-balance" do %>
-  <div class="large-number">
-    <%= format_amount(account.balance, denom: "mina") %>
+<div class='data-block account-balance'>
+  <h3 class='data-block__title'>Balance</h3>
+  <div class='d-flex flex-wrap align-items-end justify-content-between'>
+    <div class="data-block__large-number mr-4">
+      <%= format_amount(account.balance) %>
+    </div>
+    <div>
+      <% if delegations.any? %>
+        <div class="data-block__value">
+          <%= format_amount(delegations.sum(&:balance)) %>
+        </div>
+        <label class='d-block text-label m-0 mt-1'>Delegated Balance</label>
+      <% else %>
+        <label class='d-block text-label'>Not delegating stake</label>
+      <% end %>
+    </div>
   </div>
 
-  <% if account.delegate %>
-    <label>Delegated Balance</label>
-    <div class="stat-value">
-      N/A
-    </div>
-  <% else %>
-    <label>Not delegating stake</label>
-  <% end %>
-<% end %>
+</div>

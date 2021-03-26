@@ -110,6 +110,7 @@ class Cosmoslike::AccountDecorator
   protected
 
   def decorate_unbonding(unbonding, entry)
+    unbonding = unbonding['validator_address'] ? unbonding : unbonding['unbonding']
     {
       validator: find_validator(unbonding['validator_address']),
       raw_operator: unbonding['validator_address'],
@@ -121,8 +122,9 @@ class Cosmoslike::AccountDecorator
   end
 
   def decorate_delegation(delegation)
+    delegation = delegation['validator_address'] ? delegation : delegation['delegation']
     validator = find_validator(delegation['validator_address'])
-    tokens = delegation['shares'].to_f
+    tokens = delegation['shares'].to_f || delegation['']
 
     if validator
       begin

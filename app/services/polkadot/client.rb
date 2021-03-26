@@ -23,6 +23,17 @@ module Polkadot
       end
     end
 
+    def prime_rewards(prime_account)
+      Rails.cache.fetch([self.class.name, 'rewards', prime_account.address].join('-'), expires_in: MEDIUM_EXPIRY_TIME) do
+        token_factor = prime_account.network.primary.reward_token_factor
+        token_display = prime_account.network.primary.reward_token_display
+        list = get("/rewards/#{prime_account.address}") || []
+        list.map do |reward|
+          Prime::Reward::Polkadot.new(reward, prime_account, token_factor: token_factor, token_display: token_display)
+        end
+      end
+    end
+
     def block(height)
       Rails.cache.fetch([self.class.name, 'block', height].join('-'), expires_in: MEDIUM_EXPIRY_TIME) do
         Polkadot::Block.new(get('/block', height: height))
@@ -71,8 +82,8 @@ module Polkadot
       end
     end
 
-    def validator(stash_account)
-      Polkadot::ValidatorFetcher.new(self).perform(stash_account)
+    def validator(stash_account, network: nil)
+      Polkadot::ValidatorFetcher.new(self).perform(stash_account, network: network)
     end
 
     def validator_details(stash_account)

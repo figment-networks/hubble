@@ -2,7 +2,7 @@ class Mina::ChainsController < Mina::BaseController
   def show
     @status      = client.status
     @validators  = client.validators
-    @pool        = @validators.sum(&:account_balance)
+    @pool        = @validators.sum(&:stake)
     @block       = client.current_block
     @block_times = client.block_times
     @block_stats = block_stats
@@ -25,7 +25,7 @@ class Mina::ChainsController < Mina::BaseController
   end
 
   def transactions_stats
-    stats = client.transactions_stats(interval: 'd', period: 30)
+    stats = client.block_stats(interval: 'd', period: 30)
     Mina::TransactionsStatsDecorator.new(@chain, stats)
   end
 end

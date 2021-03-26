@@ -1,0 +1,127 @@
+.calendar {
+  width: 355px;
+  height: 100%;
+  background: #fff;
+  border: 1px solid #E9E9E9;
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.calendar--fullwidth {
+  width: 100%;
+}
+
+.calendar-wrapper {
+  .fc .fc-toolbar.fc-header-toolbar {
+    margin-bottom: 10px;
+  }
+
+  .fc .fc-col-header-cell-cushion {
+    padding: 12px;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 15px;
+    text-align: center;
+    color: #000000;
+  }
+
+  .fc .fc-toolbar-title {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+    color: #000000;
+  }
+
+  .fc .fc-daygrid-day-number {
+    font-size: 12px;
+    line-height: 15px;
+    color: #000000;
+  }
+
+  .calendar.fc .fc-daygrid-day.fc-day-today {
+    background: #FFF29B;
+  }
+
+  .fc-theme-standard th {
+    border: none;
+    border-bottom: 1px solid #E9E9E9;
+  }
+
+  .fc-theme-standard td {
+    border: none;
+  }
+
+  .fc-theme-standard .fc-scrollgrid {
+    border: none;
+  }
+
+  .fc-theme-standard .fc-daygrid-day {
+    border-top-width: 0;
+    border: 1px solid #E9E9E9;
+  }
+
+  .fc-daygrid-day + .fc-daygrid-day {
+    border-left-width: 0;
+  }
+
+  .fc .fc-scrollgrid table {
+    border-left-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+  }
+
+  .fc-day-other {
+    background: #FCFCFC;
+  }
+
+  .fc .fc-day-other .fc-daygrid-day-top {
+    opacity: 1;
+  }
+
+  .fc .fc-day-other .fc-daygrid-day-top .fc-daygrid-day-number {
+    font-size: 12px;
+    line-height: 15px;
+    color: #747474;
+  }
+
+  .fc .fc-button-primary,
+  .fc .fc-button-primary:disabled {
+    height: 32px;
+    padding: 4px 15px;
+    background: transparent;
+    font-size: 14px;
+    line-height: 24px;
+    color: #111111;
+    border: 1px solid #000000;
+    border-radius: 4px;
+  }
+
+  .fc .fc-button-primary:disabled {
+    cursor: not-allowed;
+    color: #111111;
+    opacity: 1;
+  }
+
+  .fc .fc-prev-button,
+  .fc .fc-next-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 38px;
+    background: #111111;
+    color: #fff;
+  }
+
+  .fc-direction-ltr .fc-toolbar > * > :not(:first-child) {
+    margin-left: 8px;
+  }
+}
+
+.calendar-wrapper-small {
+  height: 360px;
+
+  .fc-daygrid-day-events {
+    min-height: 1.25em !important;
+  }
+}

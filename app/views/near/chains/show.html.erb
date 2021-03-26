@@ -1,7 +1,7 @@
 <% content_for :body_class, 'chain-show' %>
 
 <%= render "/shared/dh_banner_script" %>
-<%= render partial: "shared/redesign/chain_header", locals: { active_tab: 'Validators' } %>
+<%= render partial: "shared/chain_header", locals: { active_tab: 'Validators' } %>
 <%= render "chain_status", status: @status %>
 
 <div class='content'>
@@ -14,7 +14,8 @@
           <div class="col-lg-6 mb-3">
             <%= render "near/chains/sections/avg_block_times",
               block_times: @block_times,
-              block_intervals: @block_intervals
+              block_stats_hourly: @block_stats_hourly,
+              block_stats_daily: @block_stats_daily
             %>
           </div>
           <div class="col-lg-6 mb-3">

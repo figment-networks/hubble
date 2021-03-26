@@ -3,7 +3,10 @@ class ValidatorsChart extends SparklineChart {
     super(target);
 
     this.pointOpts = {
-      radius: 0, backgroundColor: 'white', hitRadius: 10, hoverRadius: 3
+      radius: 0,
+      backgroundColor: '#4D74FF',
+      hitRadius: 10,
+      hoverRadius: 3
     };
 
     this.labelfunc = function(ylabel, date) {

@@ -5,7 +5,7 @@ $veto: darken($danger, 20%);
   margin-bottom: 30px;
 
   &.light-shadow {
-    box-shadow: none; //0 0.1rem 0.25rem rgba(100, 100, 100, 0.15);
+    box-shadow: none;
   }
 
   .card-header {
@@ -103,6 +103,70 @@ dl {
   user-select: none;
 }
 
+.custom-control {
+  padding-left: 25px;
+}
+
+.custom-control-label::after {
+  left: -21px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.custom-control-label::before {
+  top: 50%;
+  transform: translateY(-50%);
+  left: -24px;
+  width: 18px;
+  height: 18px;
+  border: 1px solid #BDBDBD;
+}
+
+.custom-control-input:checked ~ .custom-control-label::before {
+  background-color: #FFF29B;
+  box-shadow: none;
+}
+
+.custom-radio .custom-control-input:checked ~ .custom-control-label::after {
+  height: 12px;
+  width: 12px;
+  background: #111111;
+  border-radius: 50%;
+}
+
+.custom-control-label {
+  color: #111111;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0;
+  vertical-align: middle;
+}
+
+.text-muted {
+  color: $primary !important;
+  opacity: 0.55;
+}
+
+.navbar-toggler {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.navbar .navbar-toggler-icon {
+  width: 20px;
+  height: 14px;
+  background: url(asset_path('icons/menu-icon.svg')) center no-repeat;
+}
+
+.navbar {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  @include media-breakpoint-up(md) {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
 @each $breakpoint in map-keys($grid-breakpoints) {
   @include media-breakpoint-up($breakpoint) {
     $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
@@ -111,5 +175,14 @@ dl {
         .#{$abbrev}#{$infix}-#{$size} { #{$prop}: $length !important; }
       }
     }
+  }
+}
+@media (min-width: 1200px) {
+  .container,
+  .container-lg,
+  .container-md,
+  .container-sm,
+  .container-xl {
+    max-width: 1300px;
   }
 }

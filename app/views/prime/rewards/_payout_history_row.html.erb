@@ -1,0 +1,22 @@
+<tr>
+  <td><%= reward.time.strftime('%m/%d/%y') %></td>
+  <td><%= reward.account.network.name.capitalize %></td>
+  <td>
+    <div class="copy">
+      <%= reward.account.address.truncate(20) %>
+      <button class="copy__btn">
+        <%= image_tag "prime/icons/copy.svg", alt: 'copy' %>
+      </button>
+    </div>
+  </td>
+  <td><%= number_with_precision(factored_amount(reward), precision: 2) %> <%= reward.token_display %></td>
+  <td><%= usd_equivalent(reward) %></td>
+  <td>
+    <div class="copy">
+      <%= reward.validator_address.truncate(20) %>
+      <button class="copy__btn">
+        <%= image_tag "prime/icons/copy.svg", alt: 'copy' %>
+      </button>
+    </div>
+  </td>
+</tr>

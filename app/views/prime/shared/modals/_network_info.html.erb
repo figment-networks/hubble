@@ -1,0 +1,40 @@
+<div id="<%= network.name %>-info-modal" class="modal network-info hidden">
+  <div class="network-info__header">
+    <button class="modal__close">
+      <%= image_tag 'prime/icons/cross.svg', alt: "close" %>
+    </button>
+    <h3 class="network-info__title">
+      <%= image_tag prime_network_image(network), alt: network.name.capitalize, class: "network-info__logo" %>
+      <%= network.name.capitalize %>
+    </h3>
+    <div class="copy network-info__copy">
+      <%= link_to 'Explore the network on Hubble', hubble_network_linker(network), class: "link network-info__link" %>
+      <button class="copy__btn">
+        <%= image_tag 'prime/icons/copy-bright.svg', alt: "copy" %>
+      </button>
+    </div>
+  </div>
+  <hr class="modal__divider">
+  <div class="network-info__content">
+    <ul class="network-info__list">
+
+      <% if network.network_info %>
+        <% network.network_info.each do |order, detail| %>
+          <li class="network-info__item">
+            <div class="tooltip network-info__tooltip">
+              <%= image_tag 'prime/icons/info.svg', alt: "info", class: 'tooltip__icon' %>
+              <p class="tooltip__label"><%= detail['category'] %></p>
+              <div class="tooltip__body-wrapper">
+                <div class="tooltip__body">
+                  <p class="tooltip__text"><%= detail['tip'] %></p>
+                </div>
+              </div>
+            </div>
+            <p class="network-info__text"><%= detail['description'] %></p>
+          </li>
+        <% end %>
+      <% end %>
+
+    </ul>
+  </div>
+</div>

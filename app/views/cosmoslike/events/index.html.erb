@@ -1,70 +1,81 @@
 <% content_for :body_class, 'events-index' %>
 
-<%= render partial: '/cosmoslike/shared/chain_header', locals: { faucet_link: true } %>
-<%= render partial: '/cosmoslike/shared/sync_errors' %>
+<%= render partial: '/cosmoslike/shared/chain_header',
+  locals: { active_tab: 'Events', faucet_link: true, events_link: true, reports_link: true, tx_search_link: true } %>
 
-<h3>
-  Events
-  <% if @validator -%>
-    for <a href='<%= namespaced_path( 'validator', @validator ) %>'><%= @validator.short_name %></a>
-  <% end -%>
-  <small class='text-sm text-muted'>
-    showing <%= @offset+1 %>-<%= [@total, @offset+@chain.class::EVENTS_PAGE_SIZE].min %>
-    of <%= pluralize( @total, 'total event' ) %>
-  </small>
-</h3>
+<div class="content">
+  <div class="container">
+    <%= render partial: '/cosmoslike/shared/sync_errors' %>
 
-<% if @events.empty? -%>
-  <p class='text-muted py-4 mb-0 text-center'>No events yet.</p>
-<% else -%>
-  <% @events.each do |event| -%>
-    <div class='card mb-1 shadow-none'>
-      <div class='card-body'>
-        <div class='inner-event d-flex align-items-start flex-column flex-md-row align-items-md-center'>
-          <% icon_classes = "fa fa-#{event.icon_name} text-#{event.positive? ? 'success' : 'danger'}" %>
-          <div class='d-none d-md-block <%= icon_classes %> mr-3'></div>
-          <div class='event-content'>
-            <%= render partial: event.to_partial_path, locals: { event: event, icon_classes: icon_classes } %>
-          </div>
-          <div class='timestamp ml-md-auto text-sm text-muted ml-md-3 mt-2 mt-md-0 text-nowrap text-md-right'>
-            <a href='<%= namespaced_path( 'event', event ) %>'>
-              <% date_string = event.timestamp.strftime("%B %d, %Y") -%>
-              <% time_string = event.timestamp.strftime("at %H:%M %Z") -%>
-              <div class='d-inline d-md-block'><%= date_string %></div>
-              <div class='d-inline d-md-block'><%= time_string %></div>
-            </a>
-          </div>
-          <% if current_admin -%>
-            <div class='ml-3'>
-              <%= button_to admin_common_validator_event_path(event), method: 'delete', class: 'text-danger btn btn-link px-0', form: { class: 'd-inline' } do %>
-                <span class='fas fa-times'></span>
-              <% end -%>
-            </div>
-          <% end -%>
-        </div>
+    <div class='data-block'>
+      <h3 class='data-block__title'>Current Block</h3>
+      <div class='d-flex align-items-center flex-wrap'>
+        <%= link_to namespaced_path( 'block', @latest_block ), class: "data-block__large-number mr-3" do %>
+          <span class='technical'><%= @latest_block.height %></span>
+        <% end -%>
+        <small class='text-muted'>
+          <%= @latest_block.timestamp %>
+          <br/>
+          <%= time_ago_in_words( @latest_block.timestamp, true ) %> ago
+        </small>
       </div>
     </div>
 
-  <% end -%>
-<% end -%>
+    <div class='data-table mb-4'>
+      <table class="w-100 event-history">
+        <thead>
+          <tr>
+            <% if @validator.nil? %>
+              <th>VALIDATOR</th>
+            <% end -%>
+            <th>EVENT</th>
+            <th>BLOCK</th>
+            <th>DATE</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if @events.empty? -%>
+            <tr>
+              <td colspan='4' class="data-table__empty">No events yet.</td>
+            </tr>
+          <% else -%>
+            <% @events.each do |event| -%>
+              <tr>
+                <%= render partial: event.to_partial_path, locals: { event: event, icon_classes: nil } %>
+                <td>
+                  <div class='d-flex align-items-center justify-content-between'>
+                    <%= link_to namespaced_path( 'event', event ), class: "event-history__date" do %>
+                      <% date_string = event.timestamp.strftime("%B %d, %Y") -%>
+                      <% time_string = event.timestamp.strftime("at %H:%M %Z") -%>
+                      <%= date_string %>
+                      <%= time_string %>
+                    <% end -%>
+                    <% if current_admin -%>
+                      <div class='ml-3'>
+                        <%= button_to admin_common_validator_event_path(event), method: 'delete', class: 'text-danger btn btn-link px-0', form: { class: 'd-inline' } do %>
+                          <span class='fas fa-times'></span>
+                        <% end -%>
+                      </div>
+                  <% end -%>
+                  </div>
+                </td>
+              </tr>
+            <% end -%>
+          <% end -%>
+          <tr>
+            <td colspan="4">
+              <div class='text-small text-muted'>
+                <%= @pagy.from %>-<%= @pagy.to %> of <%= pluralize(@pagy.count, 'total event') %>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-<% total_pages = (@total / @chain.class::EVENTS_PAGE_SIZE.to_f).ceil %>
-<nav class='mt-5'>
-  <ul class='pagination justify-content-center'>
-    <li class='page-item <%= 'disabled' if @page == 1 %>'><a class='page-link' href='<%= namespaced_path( 'events', { page: @page-1, validator: params[:validator] }.compact ) %>'>Previous</a></li>
-    <% start_page = @page - 3 -%>
-    <% end_page = @page + 3 -%>
-    <% if start_page > 1 -%>
-      <li class='page-item disabled'><div class='page-link'>&hellip;</div></li>
-    <% end -%>
-    <% [start_page,1].max.upto([end_page,total_pages].min) do |num| -%>
-      <li class='page-item <%= 'active' if num == @page %>'>
-        <a class='page-link' href='<%= namespaced_path( 'events', { page: num, validator: params[:validator] }.compact ) %>'><%= num %></a>
-      </li>
-    <% end -%>
-    <% if end_page < total_pages -%>
-      <li class='page-item disabled'><div class='page-link'>&hellip;</div></li>
-    <% end -%>
-    <li class='page-item <%= 'disabled' if @page == total_pages %>'><a class='page-link' href='<%= namespaced_path( 'events', { page: @page+1, validator: params[:validator] }.compact ) %>'>Next</a></li>
-  </ul>
-</nav>
+
+    <div class='mt-5'>
+      <%== pagy_bootstrap_nav(@pagy).html_safe %>
+    </div>
+  </div>
+</div>

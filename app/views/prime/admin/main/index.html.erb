@@ -1,0 +1,41 @@
+<% content_for :body_class, 'prime-admin-root' %>
+
+<h3 class='mb-4'>Prime Admin</h3>
+
+<% @networks.each do |network| %>
+  <div class='row'>
+    <div class='col-12'>
+      <div class='card'>
+        <h5 class='card-header header mb-0'>
+          <%= network.name.capitalize %>
+          <div class='buttons text-right'>
+            <%= link_to 'new', new_prime_admin_network_chain_path(network), class: 'btn btn-sm btn-light' %>
+          </div>
+        </h5>
+        <div class='card-body p-0'><%= render 'prime/admin/main/chain_quick_info', chains: network.chains %></div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<div class='row'>
+  <div class='col-12 col-md-3'>
+    <!-- TO DO: text decoration none on hover -->
+    <%= link_to admin_users_path(prime_only: 'true') do %>
+      <div class='card'>
+        <h5 class='card-header'>Prime Users</h5>
+        <div class='card-body'>
+          <div><small class='text-muted'><%= pluralize @prime_users.count, 'prime user' %> total</small></div>
+          <div><small class='text-muted'>
+            <%= @prime_users.where( 'created_at >= ?', 1.day.ago ).count %>
+            new in past day
+          </small></div>
+          <div><small class='text-muted'>
+            <%= @prime_users.where( 'last_seen_at >= ?', 1.day.ago ).count %>
+            seen in past day
+          </small></div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

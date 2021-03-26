@@ -6,7 +6,7 @@
 <div class='content'>
   <div class='container'>
 
-    <div class='data-table'>
+    <div class='data-table m-0'>
       <div class='data-table__header'>
         <h3 class="data-table__title">Events</h3>
       </div>
@@ -27,7 +27,7 @@
             <% else -%>
               <% @events.each do |event| -%>
                 <tr>
-                  <%= render partial: event.to_partial_path.sub('common/', 'common/redesign/'), locals: { event: event, icon_classes: nil } %>
+                  <%= render partial: event.to_partial_path, locals: { event: event, icon_classes: nil } %>
                   <td>
                     <div class='d-flex align-items-center justify-content-between'>
                       <%= link_to namespaced_path( 'event', event ), class: "event-history__date" do %>

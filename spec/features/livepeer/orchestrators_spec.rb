@@ -70,7 +70,7 @@ describe 'Livepeer Orchestrators' do
     ]
   end
 
-  it 'visiting the orchestrator page' do
+  it 'shows the orchestrator page' do
     visit "/livepeer/chains/#{chain.slug}"
 
     click_link 'Example Orchestrator'

@@ -1,0 +1,40 @@
+<% content_for :body_class, 'block-show' %>
+
+<%= render partial: '/shared/chain_header', locals: { active_tab: '' } %>
+
+<div class="content">
+  <div class="container">
+    <h2 class='data-block'>
+      <label class='data-block__title'>Block</label>
+      <span class='data-block__value d-block word-break'><%= @block.hash.truncate(50) %></span>
+    </h2>
+    <div class='data-block d-flex flex-wrap'>
+      <div class='mr-5 mb-4'>
+        <h3 class='data-block__title'>Height</h3>
+          <%= link_to near_chain_block_path(@chain, @block.id - 1), class: 'data-block__value text-decoration-none' do %>
+            <span class='fas fa-chevron-left'></span>
+          <% end -%>
+        <span class='data-block__value'><%= @block.id %></span>
+        <% if @block.id < @last_block.id -%>
+          <%= link_to near_chain_block_path(@chain, @block.id + 1), class: 'data-block__value text-decoration-none' do %>
+            <span class='fas fa-chevron-right'></span>
+          <% end -%>
+        <% end -%>
+      </div>
+      <div class='mb-4'>
+        <h3 class='data-block__title'>Timestamp</h3>
+        <span class='data-block__value'><%= format_timestamp(@block.time) %></span>
+      </div>
+    </div>
+    <div>
+      <h3 class='data-block__title'>Raw JSON</h3>
+      <% if @chain.enabled? -%>
+        <div class='d-flex flex-wrap'>
+          <%= link_to 'Block', near_chain_block_path(@chain, @block.id, format: 'json'), class: 'button-secondary mr-2 mb-2', target: '_blank' %>
+        </div>
+      <% else -%>
+        <span class='text-muted'>&mdash;</span>
+      <% end -%>
+    </div>
+  </div>
+</div>

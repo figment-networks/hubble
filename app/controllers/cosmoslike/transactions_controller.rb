@@ -1,11 +1,5 @@
 class Cosmoslike::TransactionsController < Cosmoslike::BaseController
-  layout 'redesign/application'
-
   include Pagy::Backend
-
-  def self.controller_path
-    'cosmoslike/redesign/transactions'
-  end
 
   def index
     @search_form = @chain.namespace::TransactionSearch.new(@chain, search_params.to_hash)

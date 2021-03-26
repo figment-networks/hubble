@@ -21,6 +21,20 @@ Rails.application.routes.draw do
   # PRIME
   namespace :prime do
     root to: 'home#index'
+
+    resources :accounts, only: %i[index create destroy]
+    get :portfolio, to: 'portfolios#index'
+    get :events, to: 'events#index'
+    get :profile, to: 'profile#show'
+    get :validators, to: 'validators#index'
+    get :rewards, to: 'rewards#index'
+
+    namespace :admin do
+      root to: 'main#index'
+      resources :networks, only: [], path: '' do
+        resources :chains, constraints: { id: /[^\/]+/ }, except: %i[index edit], path: ''
+      end
+    end
   end
 
   # HUBBLE
@@ -86,6 +100,7 @@ Rails.application.routes.draw do
       end
 
       resources :validators, only: :show, constraints: { id: /[^\/]+/ }
+      resources :blocks, only: :show, constraints: { id: /[^\/]+/ }
     end
     root to: 'chains#show'
   end
@@ -147,10 +162,12 @@ Rails.application.routes.draw do
       resources :rounds, only: %i[show], param: :number
       resources :orchestrators, only: %i[show], param: :address
 
+      resource :orchestrator_pool_report, only: %i[new show]
+
       resources :delegator_lists do
-        resource :report, only: %i[new show]
+        resource :report, only: %i[new show], controller: :delegator_list_reports
         resources :subscriptions, only: %i[index create]
-        resources :events, controller: :delegator_list_events
+        resources :events, only: %i[index], controller: :delegator_list_events
       end
     end
   end
@@ -193,7 +210,9 @@ Rails.application.routes.draw do
       resources :validator_groups, only: :show
       resources :validators, only: :show
       resources :blocks, only: :show do
-        resources :transactions
+        resources :transactions, only: :show do
+          resources :operations, only: :show
+        end
       end
       resources :accounts, only: :show
     end

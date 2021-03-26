@@ -1,0 +1,23 @@
+.logo__title {
+  margin-bottom: 8px;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: center;
+  color: #FFFFFF;
+
+  @include media(s) {
+    margin-bottom: 4px;
+    font-size: 16px;
+    line-height: 19px;
+  }
+}
+
+.logo__subtitle {
+  font-size: 8px;
+  line-height: 10px;
+  text-align: center;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #A0AEC0;
+}

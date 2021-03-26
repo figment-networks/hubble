@@ -1,0 +1,33 @@
+<div class="modal-overlay hidden" ></div>
+
+<% if @new_account_modal %>
+  <% enabled_networks.each do |network| %>
+    <%= render '/prime/shared/modals/add_account', network: network, account: @new_account, user: @current_user %>
+  <% end %>
+<% end %>
+
+<% if @network_info_modal %>
+  <% enabled_networks.each do |network| %>
+    <%= render '/prime/shared/modals/network_info', network: network %>
+  <% end %>
+<% end %>
+
+<% if @add_account_modal %>
+  <div id="add-address-modal" class="modal add-address-modal hidden">
+    <div class="modal__content add-address-modal__content">
+      <button class="modal__close" data-close="modal6">
+        <%= image_tag 'prime/icons/cross.svg', alt: 'close' %>
+      </button>
+      <h3 class="modal__title">Add An Address to your Portfolio</h3>
+      <ul class="add-address-modal__list">
+        <%= render enabled_networks, show_add_account_button: true %>
+      </ul>
+    </div>
+  </div>
+<% end %>
+
+<% if @delete_account_modal %>
+  <% user_accounts.each do |account| %>
+    <%= render '/prime/shared/modals/delete_account', account: account %>
+  <% end %>
+<% end %>

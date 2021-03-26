@@ -12,6 +12,7 @@
 @import 'common/footer';
 @import 'common/typography';
 @import 'common/misc';
+@import 'common/logotypes';
 
 // app pages
 @import 'page/mina/chain';
@@ -21,9 +22,8 @@
 @import 'page/mina/transaction';
 
 // components
-@import 'components/mina/validator-table';
-
+@import 'components/validator-table';
+@import 'components/validator-header';
 @import 'components/network-chain-header';
-// @import 'components/near/validator-table';
-// @import 'components/near/validator-epochs-table';
-// @import 'components/transactions-table';
+@import 'components/data-block';
+@import 'components/data-table';

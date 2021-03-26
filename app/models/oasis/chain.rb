@@ -71,10 +71,6 @@ class Oasis::Chain < ApplicationRecord
     'validator'
   end
 
-  def primary_token
-    DEFAULT_TOKEN_REMOTE
-  end
-
   def primary_token_divisor
     10 ** DEFAULT_TOKEN_FACTOR
   end

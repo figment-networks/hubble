@@ -1,0 +1,76 @@
+.validator-header, .validator-group-header {
+  border-bottom: 1px solid $border-color;
+  padding: 37px 0 0;
+}
+.validator-header__title, .validator-group-header__title {
+  margin: 0 22px 0 0;
+  color: $primary;
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 32px;
+  word-break: break-all;
+}
+.stake-button {
+  height: 40px;
+  width: 188px;
+  margin-top: 15px;
+  border-radius: 6px;
+  background-color: $primary;
+  border: none;
+  color: #FFF29B;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 17px;
+  text-align: center;
+}
+.validator-info__list, .validator-group-info__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.validator-info__item, .validator-group-info__item {
+  display: flex;
+  align-items: center;
+}
+.validator-info__item + .validator-info__item,
+.validator-group-info__item + .validator-group-info__item {
+  margin-top: 6px;
+}
+.validator-info__label, .validator-group-info__label {
+  min-width: 48px;
+  margin: 0 24px 0 0;
+}
+.validator-info__value, .validator-group-info__value {
+  width: 100%;
+  max-width: 460px;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 3px 8px;
+  border: 1px solid $border-color;
+  border-radius: 4px;
+  color: $primary;
+  font-size: 13px;
+  letter-spacing: 0;
+}
+
+@media (max-width: 600px) {
+  .validator-info__item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .validator-info__label {
+    margin: 0;
+  }
+  .validator-info__value {
+    width: 100%;
+    margin-top: 8px;
+    word-break: break-all;
+  }
+  .validator-info__item + .validator-info__item {
+    margin-top: 16px;
+  }
+}

@@ -13,7 +13,5 @@ describe 'celo account details' do
     expect(page).to have_content('TOTAL LOCKED GOLD')
     expect(page).to have_content('Transfers')
     expect(page).to have_content('Transactions')
-    expect(page).to have_content('InternalTransferSent')
-    expect(page).to have_content('ValidatorGroupVoteCastReceived')
   end
 end

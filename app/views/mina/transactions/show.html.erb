@@ -1,18 +1,28 @@
 <% content_for :body_class, "transaction-show" %>
 
-<%= render "chain_header", summary_link: true %>
+<%= render partial: '/mina/base/chain_header', locals: { active_tab: '' } %>
 <%= render_flash_messages %>
 
-<h2 class="mb-3">
-  <label class="text-muted">Tx</label>
-  <%= @transaction.hash.truncate(30) %>
-</h2>
+<div class='container'>
+  <div class='content'>
+    <%= link_to namespaced_path("block", @transaction.height), class: "link text-uppercase" do %>
+      <span class="fas fa-chevron-left"></span> back
+    <% end %>
+    <div class="data-block my-4">
+      <label class="data-block__title">TRANSACTION</label>
+      <div class='data-block__value d-block word-break'>
+        <%= @transaction.hash %>
+      </div>
+    </div>
 
-<div class="row info-cards">
-  <div class="col-12 col-md-9 order-1 order-md-0">
-    <%= render "mina/transactions/show/details", transaction: @transaction, chain: @chain %>
-  </div>
-  <div class="col-12 col-md-3 order-0 order-md-1 info-cards">
-    <%= render "mina/transactions/show/height", transaction: @transaction %>
+    <div class="row info-cards">
+      <div class="col-12 col-md-9 order-1 order-md-0">
+        <%= render "mina/transactions/show/details", transaction: @transaction, chain: @chain %>
+      </div>
+      <div class="col-12 col-md-3 order-0 order-md-1 info-cards">
+        <%= render "mina/transactions/show/height", transaction: @transaction %>
+        <%= render "mina/transactions/show/timestamp", transaction: @transaction %>
+      </div>
+    </div>
   </div>
 </div>

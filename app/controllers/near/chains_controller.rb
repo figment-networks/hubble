@@ -7,6 +7,8 @@ class Near::ChainsController < Near::BaseController
     @block_times         = client.block_times
     @block_intervals     = serialized_block_intervals
     @validator_intervals = serialized_validator_intervals
+    @block_stats_hourly = block_stats_charts(limit: 48, bucket: 'h')
+    @block_stats_daily = block_stats_charts(limit: 30, bucket: 'd')
 
     page_title 'Overview'
     meta_description 'Validators'
@@ -18,6 +20,11 @@ class Near::ChainsController < Near::BaseController
   end
 
   private
+
+  def block_stats_charts(opts = {})
+    stats = client.block_stats_charts(opts)
+    Near::BlockStatsDecorator.new(stats)
+  end
 
   def block_stats
     @block_stats ||= client.block_stats.reverse

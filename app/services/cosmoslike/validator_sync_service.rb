@@ -91,7 +91,11 @@ class Cosmoslike::ValidatorSyncService
       return
     end
 
-    indexed_stake_info = stake_info.index_by { |info| info['consensus_pubkey'] }
+    if stake_info[0]['consensus_pubkey'].is_a?(Hash)
+      indexed_stake_info = stake_info.index_by { |info| info['consensus_pubkey']['value'] }
+    else
+      indexed_stake_info = stake_info.index_by { |info| info['consensus_pubkey'] }
+    end
 
     validators = @chain.validators
     total = validators.count
@@ -124,6 +128,8 @@ class Cosmoslike::ValidatorSyncService
 
         if indexed_stake_info[bech32_key]
           validator.update info: indexed_stake_info[bech32_key]
+        elsif indexed_stake_info[amino_pub_key]
+          validator.update info: indexed_stake_info[amino_pub_key]
         end
       rescue StandardError
         puts "Could not get validator info for #{validator.address} -- #{$!.message}\n\n"

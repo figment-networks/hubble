@@ -1,0 +1,15 @@
+.add-address-modal {
+  width: 1182px;
+}
+
+.add-address-modal__content {
+  padding: 40px 51px;
+}
+
+.add-address-modal__list {
+  display: grid;
+  grid-gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(258px, 258px));
+  justify-content: center;
+  margin: 40px 0 0;
+}

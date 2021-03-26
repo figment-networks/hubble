@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://localhost/apikey/XXXX/status
+    uri: http://localhost:443/status
     body:
       encoding: US-ASCII
       string: ''
@@ -68,7 +68,7 @@ http_interactions:
   recorded_at: Tue, 28 Jul 2020 14:46:10 GMT
 - request:
     method: get
-    uri: https://localhost/apikey/XXXX/txs/4407c0f7f87d9b36ae19f853543cf7de50fe1f1f3104486d3d17ba226bdc5dae
+    uri: http://localhost:443/txs/4407c0f7f87d9b36ae19f853543cf7de50fe1f1f3104486d3d17ba226bdc5dae
     body:
       encoding: US-ASCII
       string: ''

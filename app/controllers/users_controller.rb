@@ -32,7 +32,20 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = current_user
+    if user_params[:password].length < 5
+      flash[:error] = 'Please use a more secure password'
+      redirect_back(fallback_location: root_path)
+      return
+    elsif current_user.update(user_params)
+      flash[:success] = 'User info updated.'
+      redirect_back(fallback_location: root_path)
+    else
+      flash[:error] = 'Unable to update user info - '
+      current_user.errors.full_messages.each do |message|
+        flash[:error] += "#{message} "
+      end
+      redirect_back(fallback_location: root_path)
+    end
   end
 
   def welcome
@@ -56,5 +69,11 @@ class UsersController < ApplicationController
   def confirmed
     page_title 'Hubble', 'Account Confirmed'
     @no_chain_select = true
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:name, :email, :password)
   end
 end

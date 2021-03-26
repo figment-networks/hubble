@@ -8,6 +8,8 @@ class User < ApplicationRecord
 
   has_many :livepeer_delegator_lists, class_name: 'Livepeer::DelegatorList'
 
+  has_many  :prime_accounts, class_name: 'Prime::Account', dependent: :destroy, inverse_of: :user
+
   validates :email, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
 
   default_scope -> { where.not(deleted: true) }
@@ -16,6 +18,28 @@ class User < ApplicationRecord
                                   left_joins(:telegram_account).where.not(telegram_accounts: { id: nil, chat_id: nil })
                                 }
   scope :with_subscriptions, ->(network) { where.not("#{network.downcase}_subscriptions_count" => 0) }
+  scope :with_prime_access, -> { where(prime: true) }
+
+  def network_balances
+    network_balances ||= begin
+      balances = {}
+
+      Prime::Network.enabled.each do |network|
+        prime_accounts.for_network(network).each do |account|
+          account = "Prime::#{network.name.capitalize}::AccountDecorator".constantize.new(account)
+          if balances[network.name]
+            balances[network.name] += account.balance
+          else
+            balances[network.name] = account.balance
+          end
+        end
+        if !balances[network.name]
+          balances[network.name] = 0
+        end
+      end
+      balances
+    end
+  end
 
   def self.subscribed_to(alertable)
     ids = AlertSubscription.where(alertable: alertable).pluck(:user_id)

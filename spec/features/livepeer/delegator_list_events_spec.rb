@@ -35,7 +35,7 @@ describe 'Livepeer Delegator List Events' do
   context 'as a signed in user' do
     before { log_in(user) }
 
-    it 'viewing events for a delegator list' do
+    it 'shows the events page for a delegator list' do
       visit "/livepeer/chains/#{chain.slug}/delegator_lists"
 
       find('a .fa-clock').click

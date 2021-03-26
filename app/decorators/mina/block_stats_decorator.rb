@@ -6,7 +6,7 @@ class Mina::BlockStatsDecorator < SimpleDelegator
 
   def blocks_chart_data
     @stats.map do |s|
-      { t: s.time.iso8601, y: s.block_time_avg }
+      { t: s.time.iso8601, y: s.block_minutes_avg }
     end
   end
 

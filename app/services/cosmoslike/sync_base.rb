@@ -213,12 +213,12 @@ class Cosmoslike::SyncBase
   end
 
   def get_account_delegation_transactions(account)
-    r = lcd_get(['staking/delegators', account, 'txs'])
-    if r.is_a?(Array) && r[0].is_a?(Hash) && r[0].has_key?('txs')
-      return r.map { |thing| thing['txs'] }.flatten
-    else
-      return r
+    begin
+      request = lcd_get(['staking/delegators', account, 'txs'])
+    rescue RestClient::InternalServerError
+      Rails.logger.error('Internal Server Error returned from LCD (500)')
     end
+    delegator_transaction_array_check(request)
   end
 
   def broadcast_tx(signed_tx)
@@ -278,9 +278,11 @@ class Cosmoslike::SyncBase
     ) do
       start_time = Time.now.utc.to_f
       Rails.logger.debug "#{@chain.network_name} RPC GET: #{url}"
-      r = RestClient::Request.execute(method: :get, url: url,
-                                      read_timeout: timeout_seconds * 2, open_timeout: timeout_seconds)
-
+      r = RestClient::Request.execute(method: :get,
+                                      url: url,
+                                      read_timeout: timeout_seconds * 2,
+                                      open_timeout: timeout_seconds,
+                                      verify_ssl: !@chain.use_ssl_for_rpc?)
       end_time = Time.now.utc.to_f
       Rails.logger.debug "#{@chain.network_name} RPC #{path} took #{end_time - start_time} seconds" unless Rails.env.production?
       r.body
@@ -306,9 +308,11 @@ class Cosmoslike::SyncBase
     ) do
       start_time = Time.now.utc.to_f
       Rails.logger.debug "#{@chain.network_name} LCD GET: #{url}"
-      opts = { timeout_ms: @timeout * 2, connecttimeout_ms: @timeout }
-      opts.merge!(ssl_verifypeer: false, ssl_verifyhost: 0) if @chain.use_ssl_for_lcd?
-      r = Typhoeus.get(url, opts)
+      r = RestClient::Request.execute(method: :get,
+                                      url: url,
+                                      read_timeout: timeout_seconds * 2,
+                                      open_timeout: timeout_seconds,
+                                      verify_ssl: !@chain.use_ssl_for_lcd?)
       end_time = Time.now.utc.to_f
       Rails.logger.debug "#{@chain.network_name} LCD #{path} took #{end_time - start_time} seconds" unless Rails.env.production?
       r.body
@@ -322,7 +326,7 @@ class Cosmoslike::SyncBase
     end
   end
 
-  def lcd_post(path, body)
+  def lcd_post(path, params = nil)
     path = path.join('/') if path.is_a?(Array)
 
     url = URI::Generic.build(
@@ -334,13 +338,24 @@ class Cosmoslike::SyncBase
 
     start_time = Time.now.utc.to_f
     Rails.logger.debug "#{@chain.network_name} LCD POST: #{url}"
-    opts = { timeout_ms: @timeout * 2, connecttimeout_ms: @timeout, body: body }
-    opts.merge!(ssl_verifypeer: false, ssl_verifyhost: 0) if @chain.use_ssl_for_lcd?
-    r = Typhoeus.post(url, opts)
+    r = RestClient::Request.execute(method: :post,
+                                    url: url,
+                                    read_timeout: timeout_seconds * 2,
+                                    open_timeout: timeout_seconds,
+                                    verify_ssl: !@chain.use_ssl_for_lcd?,
+                                    paylod: params)
     end_time = Time.now.utc.to_f
     Rails.logger.debug "#{@chain.network_name} LCD #{path} took #{end_time - start_time} seconds" unless Rails.env.production?
     body = r.body
 
     JSON.load(body) rescue body
+  end
+
+  def delegator_transaction_array_check(request)
+    if request.is_a?(Array) && request[0].is_a?(Hash) && request[0].has_key?('txs')
+      return request.map { |transactions| transactions['txs'] }.flatten
+    else
+      return request
+    end
   end
 end

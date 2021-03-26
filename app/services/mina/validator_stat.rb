@@ -3,6 +3,6 @@ module Mina
     field :time, type: :timestamp
     field :blocks_produced_count
     field :delegations_count
-    field :delegations_amount
+    field :delegations_amount, type: :integer
   end
 end

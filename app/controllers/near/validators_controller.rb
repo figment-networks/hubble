@@ -1,7 +1,11 @@
 class Near::ValidatorsController < Near::BaseController
+  include Pagy::Backend
+
   def show
-    @validator         = client.validator(params[:id])
+    @validator = client.validator(params[:id])
     @performance_chart = generate_performance_chart(@validator.epochs)
+    delegations = client.delegations(params[:id])
+    @pagination_delegations, @delegations = pagy_array(delegations, items: 10)
   end
 
   private

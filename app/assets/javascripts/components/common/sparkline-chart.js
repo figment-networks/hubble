@@ -13,7 +13,7 @@ class SparklineChart {
 
     const pointOpts = this.pointOpts || {
       radius: 0,
-      backgroundColor: '#70707a',
+      backgroundColor: '#4D74FF',
       hitRadius: 6,
       hoverRadius: 3
     };

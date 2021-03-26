@@ -1,9 +1,9 @@
 <% content_for :body_class, 'user-settings' %>
-
+<%= render_flash_messages %>
 <%= form_for @user do |f| -%>
   <div class='row'>
     <div class='col-12'>
-      <h2 class='header text-center d-block'>
+      <h2 class='page-title text-center d-block'>
         Settings
       </h2>
 
@@ -22,23 +22,25 @@
 
   <div class='row clearfix mt-2 pt-3 justify-content-md-center'>
     <div class='col-12 col-md-5'>
-      <div class='card'>
-        <h5 class='card-header'>User Info</h5>
-        <div class='card-body'>
+      <div class='data-table'>
+        <div class='data-table__header pb-0'>
+          <h3 class='data-table__title'>User Info</h3>
+        </div>
+        <div class='p-3'>
           <div class='form-group'>
-            <%= f.text_field :name, placeholder: 'Your Name', class: 'form-control' %>
+            <%= f.text_field :name, placeholder: 'Your Name', class: 'form-input form-control form-control-sm"' %>
           </div>
           <div class='form-group'>
-            <%= f.email_field :email, placeholder: 'your@email.com', class: 'form-control' %>
+            <%= f.email_field :email, placeholder: 'your@email.com', class: 'form-input form-control form-control-sm"' %>
           </div>
           <div class='form-group mb-0'>
-            <%= f.password_field :password, placeholder: 'change password', class: 'form-control' %>
+            <%= f.password_field :password, placeholder: 'Confirm or update password', class: 'form-input form-control form-control-sm' %>
           </div>
         </div>
       </div>
 
-      <div class='text-center'>
-        <%= f.submit class: 'btn btn-primary', value: 'Update' %>
+      <div class='d-flex justify-content-center mt-4'>
+        <%= f.submit class: 'button-primary', value: 'Update' %>
       </div>
     </div>
   </div>

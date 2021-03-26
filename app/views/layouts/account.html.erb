@@ -25,18 +25,21 @@
   </head>
 
   <body class='<%= yield :body_class %> <%= monitor_body_classes %>'>
-    <%= render partial: '/shared/nav' %>
+    <div class='screen'>
+      <%= render partial: '/shared/nav' %>
+      
+      <div class='main'>
+        <div class='container'>
+          <div class='content'>
+            <%= yield %>  
+          </div>
+        </div>
+      </div>
 
-    <div class='content-wrapper'>
-      <div class='container'>
-        <%= yield %>
+      <div class="footer-wrapper">
+        <%= render partial: 'shared/footer' %>
       </div>
     </div>
-
-    <footer>
-      Copyright &copy; <%= Date.today.year %> Figment Inc.
-      All rights reserved. <%= link_to 'Disclaimer', disclaimer_path %>
-    </footer>
 
     <%= yield :modals %>
 

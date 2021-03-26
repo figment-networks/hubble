@@ -1,8 +1,0 @@
-<div class="px-2 mb-2 nowrap">
-  <div class="form-check">
-    <input class="form-check-input" type="checkbox" id="filter<%= type %>" name="types[]" value="<%= type %>" <%= 'checked' if params[:types].nil? || params[:types].include?(type) %>>
-    <label class="form-check-label" for="filter<%= type %>">
-      <%= event_kind_to_name(type) %>
-    </label>
-  </div>
-</div>

@@ -18,8 +18,8 @@ module Avalanche
       get_collection(Avalanche::NetworkStat, '/network_stats', opts)
     end
 
-    def validators_daily_stake
-      total_delegated_daily
+    def validators_stake(opts = {})
+      total_delegated(opts)
     end
 
     def validator_hourly_uptime_avg(node_id)
@@ -32,8 +32,8 @@ module Avalanche
       end
     end
 
-    def total_delegated_daily
-      get('/network_stats?bucket=d').reverse.map { |n| Avalanche::ValidatorSummary.new(n) }
+    def total_delegated(opts = {})
+      get('/network_stats', opts).reverse.map { |n| Avalanche::ValidatorSummary.new(n) }
     end
 
     def validators_hourly_uptime_avg(node_id)

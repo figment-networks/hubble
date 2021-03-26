@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://localhost:9292/celo/validator_group/details
+    uri: http://localhost:9292/validator_group/0x35aE10F412503aBcf9275133613E8df7f56E72Be?sequences_limit=1
     body:
       encoding: US-ASCII
       string: ''
@@ -10,7 +10,7 @@ http_interactions:
       Accept:
       - "*/*"
       User-Agent:
-      - rest-client/2.1.0 (darwin18.0.0 x86_64) ruby/2.6.6p146
+      - rest-client/2.1.0 (darwin20.1.0 arm) ruby/2.7.2p137
       Content-Length:
       - '0'
       Content-Type:
@@ -24,83 +24,43 @@ http_interactions:
       code: 200
       message: OK
     headers:
+      Date:
+      - Wed, 24 Mar 2021 14:23:48 GMT
       Content-Type:
-      - application/json
-      X-Content-Type-Options:
-      - nosniff
+      - application/json; charset=utf-8
       Content-Length:
-      - '2295'
+      - '1448'
+      Connection:
+      - close
+      X-Ratelimit-Remaining-Minute:
+      - '4988'
+      X-Ratelimit-Limit-Minute:
+      - '5000'
+      Ratelimit-Remaining:
+      - '4988'
+      Ratelimit-Limit:
+      - '5000'
+      Ratelimit-Reset:
+      - '12'
+      X-Quota-Limit-Day:
+      - '10000000'
+      Quota-Remaining:
+      - '9999902'
+      X-Quota-Remaining-Day:
+      - '9999902'
+      Quota-Reset:
+      - '34572'
+      Quota-Limit:
+      - '10000000'
     body:
       encoding: UTF-8
-      string: |
-        {
-          "id": 2,
-          "created_at": "2020-10-30T20:51:15.483833Z",
-          "updated_at": "2020-11-02T08:38:35.944898Z",
-          "started_at_height": 1614740,
-          "started_at": "2020-10-21T18:00:25Z",
-          "recent_at_height": 1615014,
-          "recent_at": "2020-10-21T18:23:15Z",
-          "address": "0x87614eD7AF361a563C6a3624CcadD52e165f67C2",
-          "recent_name": "Figment",
-          "recent_metadata_url": "https://figment.io",
-          "last_sequences": [
-            {
-              "height": 1615014,
-              "time": "2020-10-21T18:23:15Z",
-              "address": "0x87614eD7AF361a563C6a3624CcadD52e165f67C2",
-              "commission": "100000000000000000000000",
-              "active_votes": "4221409232884096309",
-              "active_vote_units": "414001021153639342594282769831151178116",
-              "pending_votes": "50004600000000000000000",
-              "members_count": 5
-            },
-            {
-              "height": 1615013,
-              "time": "2020-10-21T18:23:10Z",
-              "address": "0x87614eD7AF361a563C6a3624CcadD52e165f67C2",
-              "commission": "100000000000000000000000",
-              "active_votes": "4221409232884096309",
-              "active_vote_units": "414001021153639342594282769831151178116",
-              "pending_votes": "50004600000000000000000",
-              "members_count": 5
-            },
-            {
-              "height": 1615012,
-              "time": "2020-10-21T18:23:05Z",
-              "address": "0x87614eD7AF361a563C6a3624CcadD52e165f67C2",
-              "commission": "100000000000000000000000",
-              "active_votes": "4221409232884096309",
-              "active_vote_units": "414001021153639342594282769831151178116",
-              "pending_votes": "50004600000000000000000",
-              "members_count": 5
-            },
-            {
-              "height": 1615011,
-              "time": "2020-10-21T18:23:00Z",
-              "address": "0x87614eD7AF361a563C6a3624CcadD52e165f67C2",
-              "commission": "100000000000000000000000",
-              "active_votes": "4221409232884096309",
-              "active_vote_units": "414001021153639342594282769831151178116",
-              "pending_votes": "50004600000000000000000",
-              "members_count": 5
-            },
-            {
-              "height": 1615010,
-              "time": "2020-10-21T18:22:55Z",
-              "address": "0x87614eD7AF361a563C6a3624CcadD52e165f67C2",
-              "commission": "100000000000000000000000",
-              "active_votes": "4221409232884096309",
-              "active_vote_units": "414001021153639342594282769831151178116",
-              "pending_votes": "50004600000000000000000",
-              "members_count": 5
-            }
-          ]
-        }
-  recorded_at: Mon, 14 Dec 2020 14:40:32 GMT
+      string: '{"id":59,"created_at":"2021-01-21T21:38:01.63307Z","updated_at":"2021-02-09T17:31:16.02489Z","started_at_height":3022,"started_at":"2020-04-22T20:26:19Z","recent_at_height":311039,"recent_at":"2020-05-10T16:43:31Z","address":"0x35aE10F412503aBcf9275133613E8df7f56E72Be","recent_name":"","recent_metadata_url":"","last_sequences":[{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x35aE10F412503aBcf9275133613E8df7f56E72Be","name":"","metadata_url":"","commission":"1000000000000000000000000","active_votes":"15982743070658461394105564","pending_votes":"0","members_count":5,"members_avg_uptime":1}],"delegation_activity":[{"id":3834,"height":173110,"time":"2020-05-02T17:09:25Z","transaction_hash":"0x0f99704e60af2e76f681c840bd3190e753359502846c2da11e178d6bd7c3c493","address":"0x35aE10F412503aBcf9275133613E8df7f56E72Be","amount":10013243929151379599984,"kind":"ValidatorGroupVoteActivatedReceived","data":{"Raw":{"data":"0x","topics":null,"address":"0x0000000000000000000000000000000000000000","removed":false,"logIndex":"0x0","blockHash":"0x0000000000000000000000000000000000000000000000000000000000000000","blockNumber":"0x0","transactionHash":"0x0000000000000000000000000000000000000000000000000000000000000000","transactionIndex":"0x0"},"Group":"0x35ae10f412503abcf9275133613e8df7f56e72be","Units":1001324392915137959998400000000000000000000,"Value":10013243929151379599984,"Account":"0x68fbd650921067bc33124bdca2b00b8c44ada651"}}]}
+
+'
+  recorded_at: Wed, 24 Mar 2021 14:23:48 GMT
 - request:
     method: get
-    uri: http://localhost:9292/celo/validators/by_height
+    uri: http://localhost:9292/validators
     body:
       encoding: US-ASCII
       string: ''
@@ -108,7 +68,7 @@ http_interactions:
       Accept:
       - "*/*"
       User-Agent:
-      - rest-client/2.1.0 (darwin18.0.0 x86_64) ruby/2.6.6p146
+      - rest-client/2.1.0 (darwin20.1.0 arm) ruby/2.7.2p137
       Content-Length:
       - '0'
       Content-Type:
@@ -122,118 +82,38 @@ http_interactions:
       code: 200
       message: OK
     headers:
+      Date:
+      - Wed, 24 Mar 2021 14:23:49 GMT
       Content-Type:
-      - application/json
-      X-Content-Type-Options:
-      - nosniff
-      Content-Length:
-      - '3354'
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - close
+      X-Ratelimit-Remaining-Minute:
+      - '4987'
+      X-Ratelimit-Limit-Minute:
+      - '5000'
+      Ratelimit-Remaining:
+      - '4987'
+      Ratelimit-Limit:
+      - '5000'
+      Ratelimit-Reset:
+      - '11'
+      X-Quota-Limit-Day:
+      - '10000000'
+      Quota-Remaining:
+      - '9999901'
+      X-Quota-Remaining-Day:
+      - '9999901'
+      Quota-Reset:
+      - '34571'
+      Quota-Limit:
+      - '10000000'
     body:
       encoding: UTF-8
-      string: |
-        {
-          "items": [
-            {
-              "height": 1614899,
-              "time": "2020-10-21T18:13:40Z",
-              "address": "0x2A43f97f8BF959E31F69A894ebD80A88572C8553",
-              "name": "Figment",
-              "metadata_url": "https://figment.io",
-              "signed": true,
-              "score": 8.683456024306e+23,
-              "affiliation": "0x87614eD7AF361a563C6a3624CcadD52e165f67C2"
-            },
-            {
-              "height": 1614899,
-              "time": "2020-10-21T18:13:40Z",
-              "address": "0xAe1ec841923811219b98ACeB1db297AADE2F46F3",
-              "name": "Figment 2",
-              "metadata_url": "https://figment.io",
-              "signed": true,
-              "score": 7.208675930157707e+23,
-              "affiliation": "0x87614eD7AF361a563C6a3624CcadD52e165f67C2"
-            },
-            {
-              "height": 1614899,
-              "time": "2020-10-21T18:13:40Z",
-              "address": "0x621843731fe33418007C06ee48CfD71e0ea828d9",
-              "name": "Figment 3",
-              "metadata_url": "https://figment.io",
-              "signed": true,
-              "score": 9.962490293596e+23,
-              "affiliation": "0x87614eD7AF361a563C6a3624CcadD52e165f67C2"
-            },
-            {
-              "height": 1614899,
-              "time": "2020-10-21T18:13:40Z",
-              "address": "0x30D060F129817c4DE5fBc1366d53e19f43c8c64f",
-              "name": "Figment 4",
-              "metadata_url": "https://figment.io",
-              "signed": true,
-              "score": 9.774281851669e+23,
-              "affiliation": "0x87614eD7AF361a563C6a3624CcadD52e165f67C2"
-            },
-            {
-              "height": 1614899,
-              "time": "2020-10-21T18:13:40Z",
-              "address": "0xAD682035bE6Ab6f06e478D2BDab0EAb6477B460E",
-              "name": "Figment 5",
-              "metadata_url": "https://figment.io",
-              "signed": true,
-              "score": 9.683517528982e+23,
-              "affiliation": "0x87614eD7AF361a563C6a3624CcadD52e165f67C2"
-            },
-            {
-              "height": 1614899,
-              "time": "2020-10-21T18:13:40Z",
-              "address": "0xCda518F6b5a797C3EC45D37c65b83e0b0748eDca",
-              "name": "Figment 6",
-              "metadata_url": "https://figment.io",
-              "signed": true,
-              "score": 9.95144802733e+23,
-              "affiliation": "0x5edfCe0bad47e24E30625c275457F5b4Bb619241"
-            },
-            {
-              "height": 1614899,
-              "time": "2020-10-21T18:13:40Z",
-              "address": "0x456f41406B32c45D59E539e4BBA3D7898c3584dA",
-              "name": "Figment 7",
-              "metadata_url": "https://figment.io",
-              "signed": true,
-              "score": 9.921448327843e+23,
-              "affiliation": "0x5edfCe0bad47e24E30625c275457F5b4Bb619241"
-            },
-            {
-              "height": 1614899,
-              "time": "2020-10-21T18:13:40Z",
-              "address": "0x050f34537F5b2a00B9B9C752Cb8500a3fcE3DA7d",
-              "name": "Figment 8",
-              "metadata_url": "https://figment.io",
-              "signed": true,
-              "score": 7.076061078169844e+23,
-              "affiliation": "0x5edfCe0bad47e24E30625c275457F5b4Bb619241"
-            },
-            {
-              "height": 1614899,
-              "time": "2020-10-21T18:13:40Z",
-              "address": "0xb4e92c94A2712e98c020A81868264bdE52C188Cb",
-              "name": "Figment 9",
-              "metadata_url": "https://figment.io",
-              "signed": true,
-              "score": 9.766767034198e+23,
-              "affiliation": "0x5edfCe0bad47e24E30625c275457F5b4Bb619241"
-            },
-            {
-              "height": 1614899,
-              "time": "2020-10-21T18:13:40Z",
-              "address": "0xDD1F519F63423045F526b8c83edC0eB4BA6434a4",
-              "name": "Figment 10",
-              "metadata_url": "https://figment.io",
-              "signed": true,
-              "score": 9.998069323906e+23,
-              "affiliation": "0x5edfCe0bad47e24E30625c275457F5b4Bb619241"
-            }
-          ]
-        }
-  recorded_at: Mon, 14 Dec 2020 14:40:32 GMT
+      string: '{"items":[{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x00751D4E4861aDFFddDFCa5eC27703797A3B9349","name":"","metadata_url":"","signed":true,"score":0.999985687921,"affiliation":"0x1D083BECFAac301B4B845d0E5B80A9Da5F6DE946"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xCDd88f80ed52AfEc9D670f5a6Da8940EEe716f45","name":"","metadata_url":"","signed":true,"score":0.9999999999244,"affiliation":"0x3D451dd723797b3DE938C5B22412032B6452591A"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x9F49E9Ec7199455Dda0B116785470fbAfb4C0B50","name":"","metadata_url":"","signed":null,"score":0.854863210738,"affiliation":"0x0000000000000000000000000000000000000000"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x989F3F2684F96B8cDeC308B4E7538A5a062890f0","name":"","metadata_url":"","signed":true,"score":0.9985537709767,"affiliation":"0xd25c6a9FEf4744E8d4F90Bf6bdFAF7686909d799"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xe8302a78c4eB56Ac1cd1d6aee25719dC54C63E59","name":"","metadata_url":"","signed":null,"score":0.9997003093231,"affiliation":"0x0000000000000000000000000000000000000000"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x822D6b9BBA2A3E460f3aB45fAAED98993522A8F0","name":"","metadata_url":"","signed":true,"score":0.9999999999919,"affiliation":"0x7dbB949346Aeda9233218831455d57Eb8344Af82"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x394B846E0eCf83Ef350A2A7Ccb7Be0C6552e7cBC","name":"","metadata_url":"","signed":true,"score":0.9713325508912,"affiliation":"0x4dA92da1afbf103F2B52DD29326e34C98cA1E78c"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x90b056B00952d71bC7866c067b49f5b062098ac9","name":"","metadata_url":"","signed":true,"score":0.9999998955766,"affiliation":"0x01b2b83fDf26aFC3Ca7062C35Bc68c8DdE56dB04"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xDdc60B465c204Aa7358cE4f009D2dBC65af5C4B4","name":"","metadata_url":"","signed":true,"score":0.999995421682,"affiliation":"0x01b2b83fDf26aFC3Ca7062C35Bc68c8DdE56dB04"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x101d489b6c3B4F1A3C8400deB5AD6e97838627a8","name":"","metadata_url":"","signed":null,"score":0,"affiliation":"0x0000000000000000000000000000000000000000"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x084efAedbD599eff54f00d1b57Fab2F792555e79","name":"","metadata_url":"","signed":true,"score":0.9966475691335,"affiliation":"0x3C86b6A27a074c1c4CC904d8808A1C33078DB4E6"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x12125D1b7f01F32b3A741A6b97CB46f714f273aA","name":"","metadata_url":"","signed":true,"score":0.9999931759516,"affiliation":"0x01b2b83fDf26aFC3Ca7062C35Bc68c8DdE56dB04"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x43fbd2B45Ef5C042F821D24E14933C570e05Ef78","name":"","metadata_url":"","signed":true,"score":0.9999983670247,"affiliation":"0x35aE10F412503aBcf9275133613E8df7f56E72Be"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x5282F82f82E9a74E186b8Ee18cc76808b78DC383","name":"","metadata_url":"","signed":true,"score":0.9941151082411,"affiliation":"0x47b2dB6af05a55d42Ed0F3731735F9479ABF0673"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xDd431a27ADce5B957FE2FE877a65F0e6304D68a0","name":"","metadata_url":"","signed":true,"score":0.9999992402506,"affiliation":"0x9eB1D96B5f0bdD3114eA1461182c688178ae6c4c"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xc8D1Dc1Ac8E0Ac039a8b1284ef687d557F812E5c","name":"","metadata_url":"","signed":null,"score":0.999923119543,"affiliation":"0xCc4B2Bcbbc9639ef1E91F47acfD12Bd131525e79"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xc3722118CCF6dBa9FE35d8bedB09332C85174d57","name":"","metadata_url":"","signed":null,"score":0.9999988944103,"affiliation":"0x7dbB949346Aeda9233218831455d57Eb8344Af82"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xdA71A321C75A0Fe76073384bC52f6D583EAec517","name":"","metadata_url":"","signed":true,"score":0.9999995160952,"affiliation":"0x9eB1D96B5f0bdD3114eA1461182c688178ae6c4c"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x758d1000fB3d37F88cE3BA880882898a3B0ca3aB","name":"","metadata_url":"","signed":true,"score":0.9999998483896,"affiliation":"0xD19FB36B7F433fe13820767ef6d0E26FDbaB68CC"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x4CB665C9DFD45A59f55C458f00Cb2E4F53256163","name":"","metadata_url":"","signed":null,"score":0.3344565981934,"affiliation":"0x3C86b6A27a074c1c4CC904d8808A1C33078DB4E6"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x8CC5De79fC6C21531577F7B3d62c8413FB3bd303","name":"","metadata_url":"","signed":true,"score":0.9999999603001,"affiliation":"0x89d5bd54C43dDd10905A030DE6Ff02EbB6c51654"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x31cAF587f96B7C6fC8f33eB07ad854A21Eec64D9","name":"","metadata_url":"","signed":true,"score":0.9202335569209,"affiliation":"0xDaDBd6Cfb29b054aDC9c4c2Ef0F21f0BBdb44871"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x0c7610F8F4dA332C77c9800012009CcfA48F23e4","name":"","metadata_url":"","signed":null,"score":0,"affiliation":"0x0E912990472bfe5948B5b7333Ecf528D5dA887cF"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xd6DCbBC16cE0fBc95866a881F8F1728C48181507","name":"","metadata_url":"","signed":true,"score":0.9999993860353,"affiliation":"0x6f8e6ff69935F000B09d182A4739342fAEaF0c77"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x206296BeffFB68fCE658535D443c732892162005","name":"","metadata_url":"","signed":true,"score":0.9999999531289,"affiliation":"0x7C75B0B81A54359E9dCCDa9cb663ca2e3De6B710"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x2edfe9E0C9ea37E9459DA3b846E7F1bCCE062494","name":"","metadata_url":"","signed":null,"score":0.9999252739783,"affiliation":"0x0000000000000000000000000000000000000000"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x670e94D7a79361B8a9b5599301C0F44Ae7139d34","name":"","metadata_url":"","signed":null,"score":0.9999551628217,"affiliation":"0x0000000000000000000000000000000000000000"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x64922a5eb79F3468231963763f9513a394DDFF41","name":"","metadata_url":"","signed":null,"score":0,"affiliation":"0x0000000000000000000000000000000000000000"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x9018F223B37bEe553721eD0bc93435239129C8E6","name":"","metadata_url":"","signed":null,"score":0.40951,"affiliation":"0x59428ac67d082b71d0a9ECcd75ee0969AE79d929"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xFEA4A08b3F7E209CB507BDccC52D87c3B0e124e7","name":"","metadata_url":"","signed":null,"score":0.468559,"affiliation":"0x0000000000000000000000000000000000000000"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x30e0bfC25Df7642ee19Ff4fbCbE9ddeA4D1935bc","name":"","metadata_url":"","signed":true,"score":0.9999998156152,"affiliation":"0xDaDBd6Cfb29b054aDC9c4c2Ef0F21f0BBdb44871"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x2632A1CE82Fc88f4e0BfcEc1F19C6CF60c2e2254","name":"","metadata_url":"","signed":true,"score":0.9999991302436,"affiliation":"0x8a12caB622B8093208931fA008D12D6Ba5AF47E4"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xd9aC77973824886cB2100C404925fb788a66Fe2d","name":"","metadata_url":"","signed":null,"score":0.0404356442522,"affiliation":"0x0000000000000000000000000000000000000000"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x9e8A03768c2711c22bcc7999359D6655B7Cdb710","name":"","metadata_url":"","signed":true,"score":0.999997989247,"affiliation":"0xA432da0Ed5A2c15cbc681227cCec3b375908FdCB"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xc538583C030227De48E3279C1009646F29dc097e","name":"","metadata_url":"","signed":null,"score":0,"affiliation":"0xA432da0Ed5A2c15cbc681227cCec3b375908FdCB"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xE63ec388396912F52D73C6C9c6d06e629D7aeA39","name":"","metadata_url":"","signed":null,"score":0.9879507886402,"affiliation":"0x6f8e6ff69935F000B09d182A4739342fAEaF0c77"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xf87a83a0FB9118102b7fE2F19B7940dE3D421932","name":"","metadata_url":"","signed":null,"score":0,"affiliation":"0x98c62d86634bB0E3f818EFC550e2F33369Eae7F3"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xCC5dbDF5c397d69Dfc28da44F690492942c2910A","name":"","metadata_url":"","signed":null,"score":0.962425554931,"affiliation":"0xE141831c2c1198d79B9Ff61cD97C3bAca7F071E0"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xA06043129E96E425682E4279C87cD79100FE6e21","name":"","metadata_url":"","signed":null,"score":0.9984415656376,"affiliation":"0x6B0f422041a233A89697a0b7187fAB69469baA76"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x4D540eC31F9CC5b1d10a329EB4Eddf52CB3dC000","name":"","metadata_url":"","signed":true,"score":0.8283474133831,"affiliation":"0xc24baeac0Fd189637112B7e33d22FfF2730aF993"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x29c9CA0186650063ba6fcaC3a952613B11d6bC36","name":"","metadata_url":"","signed":true,"score":0.9978637264849,"affiliation":"0xB87f2354E34B26ba6406Ac60EA99DCD8cd5e63Bf"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x6155E994466969851a7f6cAa026BbF646f2318Bb","name":"","metadata_url":"","signed":null,"score":0.9353891811052,"affiliation":"0x15Ed3f6b79F5Fb9Ef1D99D37314Dd626b3005F0b"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x9ea3f9130E7e5Df7D553cc311687bdE0c3d88822","name":"","metadata_url":"","signed":null,"score":0.1900116005995,"affiliation":"0x0000000000000000000000000000000000000000"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x5E6A5E96616467aFC672928C14B16c12f2373C9d","name":"","metadata_url":"","signed":true,"score":0.9992249478073,"affiliation":"0xFA592ae90E407Da044602342625AAABBF5d50C22"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x53a3C96D7AB9b38B32038aC0A8d3a7C7EE62962F","name":"","metadata_url":"","signed":null,"score":0,"affiliation":"0xFA592ae90E407Da044602342625AAABBF5d50C22"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xdb2e80840f40033761A5cdFa3B09fE24f95a4aaa","name":"","metadata_url":"","signed":true,"score":0.9999995109517,"affiliation":"0xA432da0Ed5A2c15cbc681227cCec3b375908FdCB"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xc1A42A4550301B16Eb557B46C15d27c222761Ef7","name":"","metadata_url":"","signed":null,"score":0,"affiliation":"0xA432da0Ed5A2c15cbc681227cCec3b375908FdCB"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xAb98b3C66Fb538c90359191067a5eA3aF8e5739B","name":"","metadata_url":"","signed":null,"score":0.9942735830986,"affiliation":"0x0000000000000000000000000000000000000000"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xe51662a4448cc9994Df7B28E4F0b38D678958B0D","name":"","metadata_url":"","signed":false,"score":0.9999994067344,"affiliation":"0x71dcC67baEECd9308e341359f70B782D9C3565b8"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x2B66f23c2987597225D36872a52a3D3337386054","name":"","metadata_url":"","signed":true,"score":0.9983470933549,"affiliation":"0xE075ba4b1dCAF75513118d7aA08A057c658842c9"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x80048b9A29F77C92cD4172dF27CeE4D7BA3a8d07","name":"","metadata_url":"","signed":true,"score":0.9936476982854383,"affiliation":"0xAF2b000bAed202fA7de0d9DCeB6F6612De348011"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xB9a188Db0aFc72dCb817E20ff5A2F247718aAbF3","name":"","metadata_url":"","signed":null,"score":0.8649148282309,"affiliation":"0x0000000000000000000000000000000000000000"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xaB6eeE9dA588d38B43B1d2ea404e824fA2bF382c","name":"","metadata_url":"","signed":true,"score":0.9999625910752,"affiliation":"0x2c2B0f71d59B546B2CAfd222696589c13C3c325C"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x45d8170f30b0d408196Ab0e14AF47D77b18f0A38","name":"","metadata_url":"","signed":true,"score":0.999971609095,"affiliation":"0xCc4B2Bcbbc9639ef1E91F47acfD12Bd131525e79"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xDB0625DaF57C4b08367349bDBed2A0Da069D497F","name":"","metadata_url":"","signed":null,"score":0.8332281830026,"affiliation":"0xA1e923892df867fB5cb7575cCa2538c394aD1BD9"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xe5F947368C986DFe7a025B9B35deE3e5AC3a330e","name":"","metadata_url":"","signed":true,"score":0.9962490293596,"affiliation":"0x5402172E972b31Fc9F0383F53f45823Ab5037379"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x0e47ea88480788289bDa37D8Ae0C2CD680623cfA","name":"","metadata_url":"","signed":true,"score":0.9737645885569,"affiliation":"0x01b2b83fDf26aFC3Ca7062C35Bc68c8DdE56dB04"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xa65C5c32b58012d188f56E9305437fC545F99614","name":"","metadata_url":"","signed":null,"score":0.999900301456,"affiliation":"0x9eB1D96B5f0bdD3114eA1461182c688178ae6c4c"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xe0945F0c413eA24a7A75B5975ACa35eA386fc892","name":"","metadata_url":"","signed":null,"score":0,"affiliation":"0xFA592ae90E407Da044602342625AAABBF5d50C22"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x5423c03551641336b3D5886f85F882FD2BD5DB7E","name":"","metadata_url":"","signed":true,"score":0.883160345305,"affiliation":"0x7dbB949346Aeda9233218831455d57Eb8344Af82"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x7ad4c2fc79CbD6304B178544DF219797f3dFF87A","name":"","metadata_url":"","signed":null,"score":0.9999934987771,"affiliation":"0x067e453918f2c44D937b05a7eE9DBFB804C54ADd"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xB29438f402da218180bBa79fbc0fAdD3e9E151aa","name":"","metadata_url":"","signed":true,"score":0.9999995168629,"affiliation":"0x602B65795BCc64b2fb329AC004236E194f077158"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x5098A28bFa2Da3183E36C009c7D63093b66441a5","name":"","metadata_url":"","signed":true,"score":0.8960550071563,"affiliation":"0x81cef0668e15639D0b101bdc3067699309D73BED"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xadBE75cBD14f92BA2D233b6b81E80D4634fAbB2a","name":"","metadata_url":"","signed":true,"score":0.9999995513932,"affiliation":"0x35aE10F412503aBcf9275133613E8df7f56E72Be"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x8d1A5eF84252586f0f841a9fCF4E31f23c4c21E0","name":"","metadata_url":"","signed":true,"score":0.9999977823145,"affiliation":"0x21FB4411FA5828344c2788aB07D4cc12a12571b9"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x112fF12927CD6f924d80b9Aba32E531733B602fF","name":"","metadata_url":"","signed":true,"score":0.9999995616235,"affiliation":"0x35aE10F412503aBcf9275133613E8df7f56E72Be"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x10bCB8943B7BF9b33E4D510feB212bD20b1cE9B2","name":"","metadata_url":"","signed":true,"score":0.9999976568752,"affiliation":"0x6f8e6ff69935F000B09d182A4739342fAEaF0c77"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x1E554ac038114C0A69834Be928FB95e5aaF18950","name":"","metadata_url":"","signed":true,"score":0.9999781377238,"affiliation":"0x47b2dB6af05a55d42Ed0F3731735F9479ABF0673"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xaC6492D439b3b812e822d1e975338f48bDD0B1f2","name":"","metadata_url":"","signed":false,"score":0.9997910785504,"affiliation":"0xbf55dF76204f00AcF296F76cF4Aaf86A866a5eb0"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x7328B986cF7e7a1Baf62E257aAFa66abdA4109Ce","name":"","metadata_url":"","signed":null,"score":0.732631069198,"affiliation":"0xbf55dF76204f00AcF296F76cF4Aaf86A866a5eb0"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x020e468c252FF18261b1996D25F0FfF4F830Cf7a","name":"","metadata_url":"","signed":true,"score":0.9999984968758,"affiliation":"0x21FB4411FA5828344c2788aB07D4cc12a12571b9"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x399b3D48Fdcd668d274afc6F4be05475A325C6c6","name":"","metadata_url":"","signed":true,"score":0.9999984626749,"affiliation":"0x8851F4852ce427191Dc8D9065d720619889e3260"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xD5Fb8A8E6E81BC77d7D807c05b5b8aEAe7c2a458","name":"","metadata_url":"","signed":true,"score":0.9998364765457,"affiliation":"0x82f8Bcf96f24BA60Ef041D192c7CE04C907E2fb8"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xC3957f7848d6b09DCb29d784036B0A302555E75b","name":"","metadata_url":"","signed":true,"score":0.9202335569209,"affiliation":"0xDaDBd6Cfb29b054aDC9c4c2Ef0F21f0BBdb44871"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xbBC724bdf633287E8bC18aC45800e2eD13877a73","name":"","metadata_url":"","signed":true,"score":0.9982059223681,"affiliation":"0xc64DF5Be250264bf2888591D87cdeB13BFADC501"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x4013c00Bd208Facb6342EA40C2450b716318EBBA","name":"","metadata_url":"","signed":null,"score":0.7700976544609,"affiliation":"0x0000000000000000000000000000000000000000"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xA87710B8DC870483a2bE526EBca9F5048720eDce","name":"","metadata_url":"","signed":true,"score":0.9998971399738,"affiliation":"0xEEFCfDFc8F5CeD9799A13EcA58DE2ba7534eAB92"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x6ac7E3D0BDeb78ddcF3d9b15208B50C08271C213","name":"","metadata_url":"","signed":true,"score":0.9999978561856,"affiliation":"0x7C75B0B81A54359E9dCCDa9cb663ca2e3De6B710"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x48aC52662CBF32f8FC0cd8c1122c7560b482c2AD","name":"","metadata_url":"","signed":null,"score":0.01107951563478795,"affiliation":"0x0f66619058BB9675f3d394FCc2cE236a29901571"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x28B5f40C3f5883021408Ce79F20FCf282E873236","name":"","metadata_url":"","signed":false,"score":0.8084056286791,"affiliation":"0x0f66619058BB9675f3d394FCc2cE236a29901571"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xc2023E0D13F53d181f29B99D829CD75628337D15","name":"","metadata_url":"","signed":true,"score":0.9217497821752,"affiliation":"0xAcdf897493A6000dbe256791E8A2beCbb405FD4F"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xd9bbA95F03425816C5c04E159372b64EB14E6939","name":"","metadata_url":"","signed":null,"score":0.8649148282309,"affiliation":"0x7194DFE766a92308880A943fD70F31c8E7c50e66"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x1Dd301fEaa72F4C07b3ca56ce0C27e98E66B77Bd","name":"","metadata_url":"","signed":true,"score":0.9319447250173,"affiliation":"0x061E9958028dcAa66fd8B255AD95194203b6c4Da"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x00A9e8869e40e038D0FaE63D825a732e6FfF48d1","name":"","metadata_url":"","signed":false,"score":0.9994413517525,"affiliation":"0xD72Ed2e3db984bAC3bB351FE652200dE527eFfcf"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xFE38631E7E164D20754387F7165B9C5b427dA17B","name":"","metadata_url":"","signed":true,"score":0.9999831522007,"affiliation":"0x81AE1C73A326325216E25ff1af9EA3871195036E"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xDdbca691842FD452d8F53575FdFdC2314eb3AD57","name":"","metadata_url":"","signed":false,"score":0.9999999999766,"affiliation":"0xc8A81D473992c7c6D3F469A8263F24914625709d"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x2536075aA9f3d6D5bb7effD0E537A85beAC9612D","name":"","metadata_url":"","signed":null,"score":0.9015229097794,"affiliation":"0x0000000000000000000000000000000000000000"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xd5906766fa2C56700270312F8c9049BCa9939c11","name":"","metadata_url":"","signed":null,"score":0,"affiliation":"0x0000000000000000000000000000000000000000"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x07adF41F00dD7Ec9C63c445f3faD5cCbdc2a7c85","name":"","metadata_url":"","signed":null,"score":0.9999153584992,"affiliation":"0xB33e9e01E561a1Da60f7Cb42508500e571afb6Eb"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x4e957bBC61AFDab63263fFdbAF201F6f596E3e2D","name":"","metadata_url":"","signed":true,"score":0.9985172179411,"affiliation":"0x580F29aB04b7ED4E5aA86584D38c9317d9CF0358"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x44a7Af700ACa1B24ECdB818dF4D202772D606Cb4","name":"","metadata_url":"","signed":true,"score":0.9986423198527,"affiliation":"0x0339Df3FE4f5ccC864EAE8491E5c8AEc4611A631"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xF0b25502595911b64de75F453b34557C1b2c4760","name":"","metadata_url":"","signed":true,"score":0.9557031503683,"affiliation":"0x481EAdE762d6D0b49580189B78709c9347b395bf"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x997490F08B9b99dB00657e2B1BbEc180Cf804A27","name":"","metadata_url":"","signed":true,"score":0.9998578703467,"affiliation":"0x07fa1874ad4655AD0C763a7876503509be11e29E"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xF2D7326927236148905f2031e61F274a78C6d83F","name":"","metadata_url":"","signed":null,"score":0,"affiliation":"0x0000000000000000000000000000000000000000"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xbcc71f31a5987F10Afd29F3BE7119C05A14F5bcB","name":"","metadata_url":"","signed":true,"score":0.9980190733744,"affiliation":"0x249a6B2B260000b08f50A2480e2d703bAf02E8BE"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x588eD7dEefF8DF7c00FF187C398936b101583ec7","name":"","metadata_url":"","signed":true,"score":0.9845526587041,"affiliation":"0xF83C93ea360B66DDCD532960304948B1c10786a1"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x1AB89Fa8bdBd48F4426379abeB59803DD5283E3F","name":"","metadata_url":"","signed":null,"score":0.9998152105375,"affiliation":"0xF83C93ea360B66DDCD532960304948B1c10786a1"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xe4036C56B0026eb86f058c77c55E73e9d65d2EA0","name":"","metadata_url":"","signed":true,"score":0.9999999748855,"affiliation":"0xddaa60B6d803674bBc434F1C2B261CeB67C2fd7c"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x5e69Cca114a77AB0a5804108FAF0cD1E1C802A5e","name":"","metadata_url":"","signed":true,"score":0.9636226746121,"affiliation":"0x614B7654ba0cC6000ABe526779911b70C1F7125A"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x1AEF9bf15de73aDBA318FC8aEa3D2f45d120CC8A","name":"","metadata_url":"","signed":true,"score":0.9999942257494,"affiliation":"0x8493BD3De67AC341D4cC11531f96a1A2cdBf29aD"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x7A918cF803B083955fdC53AE2A5Dd50d06B45f4b","name":"","metadata_url":"","signed":null,"score":0.8649148282309,"affiliation":"0x0000000000000000000000000000000000000000"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x249eF45381b29D9955b365C33F202127499B873f","name":"","metadata_url":"","signed":true,"score":0.9653579118145,"affiliation":"0x6CF4bB9ff947610944c6D8E0E5Ea26B1dEa73196"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x0EBdCCD9091EFB1243417bDf3aDdd63132962586","name":"","metadata_url":"","signed":true,"score":0.9999995904757,"affiliation":"0x0d4f8cEA48cDaDEAe345431577a64983c0535B12"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x3BEbD7Ed4cA0ce7BFd69fC6aeF31dDD21C460158","name":"","metadata_url":"","signed":true,"score":0.9300437694325,"affiliation":"0xD018838832f6112dE72EE6CC9967C56B333a0d1C"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x089B1654325CcE14fb3e2dABCa2803bc489e83e7","name":"","metadata_url":"","signed":true,"score":0.9999975270133,"affiliation":"0xDaDBd6Cfb29b054aDC9c4c2Ef0F21f0BBdb44871"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x474df04481f778b46Fc71204C72B6A8BE396F0FF","name":"","metadata_url":"","signed":false,"score":0.9999887477392,"affiliation":"0x8eB004daD9397B8f23E1279905c584920000756D"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xf6741dC4F5563a67966065d330A4351B410146B7","name":"","metadata_url":"","signed":null,"score":0.7458134171671,"affiliation":"0xbB59448319755708d06DACaAc017308129FffdBb"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xcea07955542618c180b53F80Cecd9481CC70b583","name":"","metadata_url":"","signed":null,"score":0.8146979811145,"affiliation":"0x0000000000000000000000000000000000000000"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x39b01620ecdEB8347270ee78dC962b0EA583b57a","name":"","metadata_url":"","signed":true,"score":0.9999860009734,"affiliation":"0xA432da0Ed5A2c15cbc681227cCec3b375908FdCB"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x1d511366FEB1ed330925B2D51645bb5c607EA6D4","name":"","metadata_url":"","signed":true,"score":0.9999995160952,"affiliation":"0x47b2dB6af05a55d42Ed0F3731735F9479ABF0673"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xc627459BFc70cD7B6719d5b8030C3beA7825CA7e","name":"","metadata_url":"","signed":true,"score":0.9999984323728,"affiliation":"0xbf55dF76204f00AcF296F76cF4Aaf86A866a5eb0"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xAB0C16BBd78D6b9F4503D81D859A3FFB64486F9A","name":"","metadata_url":"","signed":true,"score":0.9999995160952,"affiliation":"0x47b2dB6af05a55d42Ed0F3731735F9479ABF0673"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xeD32008dB382d078bABB0eB6F91Df0207d909899","name":"","metadata_url":"","signed":true,"score":0.9999998512921,"affiliation":"0x98c62d86634bB0E3f818EFC550e2F33369Eae7F3"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x5F49e61f127D315ECDE1702430EC991DAaA9C3bF","name":"","metadata_url":"","signed":true,"score":0.9984988910899,"affiliation":"0x067e453918f2c44D937b05a7eE9DBFB804C54ADd"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x02DC997790352E12fA90eb1A937dFeF4bF8Dbbc0","name":"","metadata_url":"","signed":true,"score":0.8363510168419,"affiliation":"0x34649AdA2cB44D851a2103Feaa8922DedDABfc1c"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x1819b44553Fa39A983D1c92238E1F18AeE30eF51","name":"","metadata_url":"","signed":true,"score":0.9828674323822,"affiliation":"0xC7d5409fEe80B3Ac37Dbc111664dC511a5982469"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x17521F6f262B86b9F69566aB0EddBd96d38ff2D7","name":"","metadata_url":"","signed":null,"score":0.9975622349881,"affiliation":"0x59428ac67d082b71d0a9ECcd75ee0969AE79d929"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x943e9a5c750adcc467575F4fE81bf6b1C3A2aeD7","name":"","metadata_url":"","signed":false,"score":0.9246854051353,"affiliation":"0x15Ed3f6b79F5Fb9Ef1D99D37314Dd626b3005F0b"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x17650cBf3b536B4Ad14CD3347Eb830E27B9c4396","name":"","metadata_url":"","signed":null,"score":0.9999528954112,"affiliation":"0x0000000000000000000000000000000000000000"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x897c683206ddb5F134F451527C2b6f5e837407de","name":"","metadata_url":"","signed":null,"score":0.6444942368716,"affiliation":"0x98c62d86634bB0E3f818EFC550e2F33369Eae7F3"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x3ABE54fe87f77D18b472e47920934CE63b1F6bfc","name":"","metadata_url":"","signed":false,"score":0.9999997984288,"affiliation":"0x23F4877174fF3849a14a591a928DAcf98375288E"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xcED2449cCd1aae8077eC0670224e663CE19C8Fc4","name":"","metadata_url":"","signed":true,"score":0.9999996194296,"affiliation":"0x89d5bd54C43dDd10905A030DE6Ff02EbB6c51654"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xD922294516B8E586aa2511daF89e89aF97A976Ef","name":"","metadata_url":"","signed":null,"score":0.9999964119448,"affiliation":"0x89d5bd54C43dDd10905A030DE6Ff02EbB6c51654"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xDF9121AFFb220e9095C875a79c3D1fA3EBEE4105","name":"","metadata_url":"","signed":true,"score":0.9999991558342,"affiliation":"0x21FB4411FA5828344c2788aB07D4cc12a12571b9"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x5b9F5239b10f1d74Ea89F88FE3d50db7eCD6e450","name":"","metadata_url":"","signed":null,"score":0.5217031,"affiliation":"0x21FB4411FA5828344c2788aB07D4cc12a12571b9"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x6964A0C39FA7f63C59F7dC77aC1802f24E2649Aa","name":"","metadata_url":"","signed":true,"score":0.9992856796759,"affiliation":"0x7dbB949346Aeda9233218831455d57Eb8344Af82"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x233c06EDc757003cA4ec078012F517F21A24C55c","name":"","metadata_url":"","signed":true,"score":0.9999936047278,"affiliation":"0x2fd49E97262D505Fd76BB6E0e06eC10e1fd54589"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xACF0E11ff39EaD797475a1694FCca94A0e94784F","name":"","metadata_url":"","signed":true,"score":0.9990480690334,"affiliation":"0x47b2dB6af05a55d42Ed0F3731735F9479ABF0673"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x6e5a2624Ae582c96c5A12Eb168afA532a85AE829","name":"","metadata_url":"","signed":true,"score":0.9999991861948,"affiliation":"0xbf55dF76204f00AcF296F76cF4Aaf86A866a5eb0"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x1F15d4210e34DfeeEc087C906b426509da1b01f1","name":"","metadata_url":"","signed":true,"score":0.9999983462014,"affiliation":"0x35aE10F412503aBcf9275133613E8df7f56E72Be"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x48dE6c6668c24e5Bd113d5C46d813C50fE2204D1","name":"","metadata_url":"","signed":true,"score":0.9999514457191,"affiliation":"0x35aE10F412503aBcf9275133613E8df7f56E72Be"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x88f243bc0f439549DFFFF3C8c60b82f298116C9d","name":"","metadata_url":"","signed":true,"score":0.9999989777926,"affiliation":"0x6f8e6ff69935F000B09d182A4739342fAEaF0c77"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x1a4f4FD50e236056A188Dd58fcc937E324F35141","name":"","metadata_url":"","signed":null,"score":0.9953616023092,"affiliation":"0xD72Ed2e3db984bAC3bB351FE652200dE527eFfcf"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x4FC4EA624db2E4A1d6195a03744D505CbcD9431b","name":"","metadata_url":"","signed":true,"score":0.9999824444038,"affiliation":"0x7194DFE766a92308880A943fD70F31c8E7c50e66"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xd341b9bEb934207c476bdb618BD372E6Fea21F88","name":"","metadata_url":"","signed":null,"score":0.9998100420166,"affiliation":"0x7194DFE766a92308880A943fD70F31c8E7c50e66"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xAb2fDf3F4802A542754915E04c33a9596B164F31","name":"","metadata_url":"","signed":true,"score":0.9978494771404,"affiliation":"0x2c2B0f71d59B546B2CAfd222696589c13C3c325C"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x2DF505a1f281cd3ba10baA093fa89909C75362b5","name":"","metadata_url":"","signed":true,"score":0.806148406045,"affiliation":"0x8954661e743c60C966E2ff6002B514126bb1cFe2"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xFEA3a9f2b28E9EeA5EB14bE130c7C79459B2AA5e","name":"","metadata_url":"","signed":null,"score":0.19,"affiliation":"0x067e453918f2c44D937b05a7eE9DBFB804C54ADd"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x55564902239df06184357580807FF7b40A75210a","name":"","metadata_url":"","signed":null,"score":0.5210304015916,"affiliation":"0x481EAdE762d6D0b49580189B78709c9347b395bf"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xe34CD052e59fF830b286a125c52Dde568AC8BD48","name":"","metadata_url":"","signed":null,"score":0.9998203838446,"affiliation":"0x34649AdA2cB44D851a2103Feaa8922DedDABfc1c"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x869C3612C54af3F2A41DDe5Da77e6797cF956e0d","name":"","metadata_url":"","signed":null,"score":0.794108867905,"affiliation":"0x6B0f422041a233A89697a0b7187fAB69469baA76"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xb2728EDcc9c255C2D053Ea6Cae31cFd584B758D3","name":"","metadata_url":"","signed":true,"score":0.8129608688845,"affiliation":"0x4dA92da1afbf103F2B52DD29326e34C98cA1E78c"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x92aAe14a531086A665DAFF6eEdb5B71E00aCC6d1","name":"","metadata_url":"","signed":true,"score":0.9999999913897,"affiliation":"0x8a12caB622B8093208931fA008D12D6Ba5AF47E4"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x0F412760759a2fAD4f07ceE36bfdAa218814DE89","name":"","metadata_url":"","signed":true,"score":0.999944113249,"affiliation":"0xB33e9e01E561a1Da60f7Cb42508500e571afb6Eb"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x2bDc5CcdA08A7F821ae0Df72B5Fda60Cd58d6353","name":"","metadata_url":"","signed":true,"score":0.9999985397239,"affiliation":"0x0d4f8cEA48cDaDEAe345431577a64983c0535B12"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x9C542c0B5aF5e04E2D1e67cf1fC176E91bC18dA0","name":"","metadata_url":"","signed":true,"score":0.9779548360321,"affiliation":"0x95aE59515915D6c493a846aE022F93726652b50A"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x7b3859147B1C173FfF7182E58A4Ec81C1d287224","name":"","metadata_url":"","signed":true,"score":0.9999999999919,"affiliation":"0xFaa0b40645Ee5E8D9AE38393e8cDF8e5baA71d13"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x5b38657E507b03355ADD04cDc6e2B92acC12326e","name":"","metadata_url":"","signed":null,"score":0.9977597969896,"affiliation":"0x0000000000000000000000000000000000000000"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xF2aADf8fF2Ad7e5C1efb0d45Cb622618BA6636A7","name":"","metadata_url":"","signed":true,"score":0.9999836398054,"affiliation":"0x8580dB53C3ebC56230662B771ceF2707E92Ef83A"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x5F2E4e239bCD86e1cf97538Ea7D5E2Ec639a3Bc4","name":"","metadata_url":"","signed":true,"score":0.9903475686511,"affiliation":"0x3DcF2ED8dC84a63FfD2bfDc3CDb2fA0B1aeAfE5c"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x77eCf3c7AC7082344Edfee10e41Edb72fA3D1951","name":"","metadata_url":"","signed":true,"score":0.9999950556961,"affiliation":"0xE141831c2c1198d79B9Ff61cD97C3bAca7F071E0"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x43723f3490ed459d519Dfe265BE1a49A91d691ad","name":"","metadata_url":"","signed":null,"score":0.9999932484448,"affiliation":"0x0000000000000000000000000000000000000000"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x3A3FD49F95A7a7E230FA68DA03EF9c6486ebb2fb","name":"","metadata_url":"","signed":null,"score":0.9975349652914,"affiliation":"0x0000000000000000000000000000000000000000"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0xFcE0779607246eb5121a5A4192D6AC4A758C217D","name":"","metadata_url":"","signed":true,"score":0.9999999076663,"affiliation":"0x4dA92da1afbf103F2B52DD29326e34C98cA1E78c"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x1b4A54049a8652c4c3E62C8c6959F06280aCFC6c","name":"","metadata_url":"","signed":null,"score":0.7662002164723,"affiliation":"0xB33e9e01E561a1Da60f7Cb42508500e571afb6Eb"},{"height":311039,"time":"2020-05-10T16:43:31Z","address":"0x7Ff6C32b2CFc9bC6abdDAe17056e6d81c516806b","name":"","metadata_url":"","signed":null,"score":0,"affiliation":"0xc764293De02189e248a8040a3D1b04EeC599Aa31"}]}
+
+'
+  recorded_at: Wed, 24 Mar 2021 14:23:49 GMT
 recorded_with: VCR 6.0.0

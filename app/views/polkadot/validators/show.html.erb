@@ -34,7 +34,7 @@
         <div class='col-md-12 col-lg-6 mb-4 pb-2'>
           <div class='d-flex data-block flex-wrap align-items-end'>
             <div class='mr-5'>
-              <%= render layout: 'shared/redesign/data_block', locals: { header: 'Total stake' } do %>
+              <%= render layout: 'shared/data_block', locals: { header: 'Total stake' } do %>
                 <div class='data-block__large-number d-flex'>
                   <%= format_amount(@validator.total_stake, @chain, denom: @chain.class::DEFAULT_TOKEN_REMOTE) %>
                 </div>
@@ -42,7 +42,7 @@
             </div>
 
             <div class='ml-5'>
-              <%= render layout: 'shared/redesign/data_block', locals: { header: 'Own stake' } do %>
+              <%= render layout: 'shared/data_block', locals: { header: 'Own stake' } do %>
                 <div class='data-block__large-number d-flex'>
                   <%= format_amount(@validator.own_stake, @chain, denom: @chain.class::DEFAULT_TOKEN_REMOTE, precision: 0) %>
                 </div>
@@ -52,7 +52,7 @@
 
           <div class='d-flex data-block'>
             <div class='mr-5'>
-              <%= render layout: 'shared/redesign/data_block', locals: { header: 'Lifetime' } do %>
+              <%= render layout: 'shared/data_block', locals: { header: 'Lifetime' } do %>
                 <label class='text-label m-0'>First Seen:</label>
                 <div class='stat-value'>
                   <%= @validator.started_at.try(:strftime, '%B %d, %Y at %H:%M %Z') || 'Never' %>
@@ -60,7 +60,7 @@
               <% end %>
             </div>
             <div class='mr-5'>
-              <%= render layout: 'shared/redesign/data_block', locals: { header: 'Commission' } do %>
+              <%= render layout: 'shared/data_block', locals: { header: 'Commission' } do %>
                 <div class='data-block__large-number'>
                   <%= rounded_percentage(@validator.factored_commission) %> %
                 </div>

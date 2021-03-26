@@ -4,7 +4,7 @@ class Celo::ValidatorsController < Celo::BaseController
     raise ActiveRecord::RecordNotFound unless @validator
 
     @validator_scores = client.validator_daily_score(@validator.address).map do |validator_summary|
-      Common::SummaryChartDecorator.new(validator_summary).point(@chain)
+      Celo::ScoresChartDecorator.new(validator_summary).point
     end
     @validator_hourly_uptime = client.validator_hourly_uptime(@validator.address).map do |validator_summary|
       Common::UptimeChartDecorator.new(validator_summary).point

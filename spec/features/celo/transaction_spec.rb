@@ -2,14 +2,14 @@ require 'features_helper'
 
 describe 'celo transaction details', :vcr do
   let(:chain) { create(:celo_chain) }
-  let(:block_id) { 1614760 }
+  let(:block_id) { 290813 }
 
   before do
     visit "/celo/chains/#{chain.slug}/blocks/#{block_id}/transactions/#{transaction_id}"
   end
 
   context 'transfer' do
-    let(:transaction_id) { '0x929145bcb26a7f14fbf0758105b7a778da760453c0c7640e3a5d83fb78a0459c' }
+    let(:transaction_id) { '0x50bfadecfebb773b01b9f0e5a171eaca58e2ac6e3024609d7997320d920b84c7' }
 
     it 'visiting transaction page' do
       expect(page).to have_content('Transfers')

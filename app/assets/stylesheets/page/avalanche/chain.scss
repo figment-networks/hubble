@@ -16,10 +16,14 @@
   }
 }
 
+.charts {
+  height: 80px;
+}
+
 .chain-show {
   .small-average-block-time-chart-container,
   .small-average-voting-power-last30d-chart-container,
-  .small-average-voting-power-last48h-chart-container {
+  .small-average-voting-power-last24h-chart-container {
     height: 50px;
   }
   .tiny-average-active-validators-chart-container {
@@ -37,4 +41,9 @@
     margin-top: 4px;
     margin-bottom: 12px;
   }
+}
+
+.sparkline-button:focus, .sparkline-button:active {
+  box-shadow: none;
+  outline: none;
 }

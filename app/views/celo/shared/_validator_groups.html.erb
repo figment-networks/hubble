@@ -12,7 +12,7 @@
         <th>Address/Name</th>
         <th>Votes</th>
         <th>Commission</th>
-        <th>Uptime</th>
+        <th>State</th>
         <th class='d-none'></th>
       </tr>
       </thead>
@@ -30,13 +30,17 @@
           <td class="text-right technical" data-order='<%= rounded_percentage(validator_group.factored_commission) %>'>
             <%= rounded_percentage(validator_group.factored_commission) %> %
           </td>
-          <td class="text-right technical" data-order='<%= validator_group.uptime %>'>
-            <%= round_if_whole(validator_group.uptime * 100, 2) %> %
+          <td class="technical" data-order='<%= validator_group.online? %>'>
+            <% if validator_group.online? -%>
+              <span class='badge badge-lg badge-success'>UP</span>
+            <% else -%>
+              <span class='badge badge-lg badge-danger'>DOWN</span>
+            <% end -%>
           </td>
           <td class='d-none'>
             <%= validator_group.address %>
             <%= validator_group.display_name %>
-            <%= validator_group.uptime %>
+            <%= validator_group.online? %>
           </td>
         </tr>
       <% end -%>

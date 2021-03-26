@@ -1,4 +1,4 @@
-class Livepeer::Queries::SharesQuery < Livepeer::Queries::ReportQuery
+class Livepeer::Queries::SharesQuery < Livepeer::Queries::DelegatorListReportQuery
   FIELDS = [
     'delegator_address',
     'SUM(livepeer_shares.fees) AS fees',

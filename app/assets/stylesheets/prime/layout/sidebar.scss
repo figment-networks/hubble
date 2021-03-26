@@ -1,0 +1,147 @@
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  min-width: 256px;
+  background: #111111;
+  z-index: 99;
+
+  @include media(m, 124px) {
+    display: none;
+  }
+}
+
+.sidebar.active {
+  @include media(m, 124px) {
+    display: block;
+    top: 72px;
+  }
+
+
+  @include media(s) {
+    top: 65px;
+  }
+}
+
+.sidebar__header {
+  padding: 24px 24px 40px;
+
+  @include media(m, 124px) {
+    display: none;
+  }
+}
+
+.nav__item:nth-child(5) {
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid #1f1e19;
+}
+
+.nav__link {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 16px 22px 16px 67px;
+  font-size: 14px;
+  text-align: left;
+  line-height: 24px;
+  color: #FFFFFF;
+  border: 1px solid transparent;
+  border-left: 4px solid transparent;
+
+  @include media(s) {
+    font-size: 14px;
+    line-height: 24px;
+  }
+}
+
+.nav__link:hover {
+  color: #FFF29B;
+}
+
+.nav__link:focus {
+  outline: none;
+  border: 1px solid #FFF29B;
+  border-left: 4px solid #FFF29B;
+  background: #212529;
+}
+
+.nav__link.active {
+  background: #212529;
+  border-left: 4px solid #FFF29B;
+}
+
+.nav__link::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 24px;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  background-repeat: no-repeat;
+}
+
+.home-btn::before {
+  background-image: image-url("prime/icons/home.svg");
+}
+
+.home-btn:hover::before,
+.home-btn.active::before {
+  background-image: image-url("prime/icons/home-active.svg");
+}
+
+.dashboard-btn::before {
+  background-image: image-url('prime/icons/layout.svg');
+}
+
+.dashboard-btn:hover::before,
+.dashboard-btn.active::before {
+  background-image: image-url('prime/icons/layout-active.svg');
+}
+
+.rewards-btn::before {
+  background-image: image-url("prime/icons/rewards.svg");
+}
+
+.rewards-btn:hover::before,
+.rewards-btn.active::before {
+  background-image: image-url("prime/icons/rewards-active.svg");
+}
+
+.validator-btn::before {
+  background-image: image-url("prime/icons/checkmark.svg");
+}
+
+.validator-btn:hover::before,
+.validator-btn.active::before {
+  background-image: image-url("prime/icons/checkmark-active.svg");
+}
+
+.network-btn::before {
+  background-image: image-url("prime/icons/window.svg");
+}
+
+.network-btn:hover::before,
+.network-btn.active::before {
+  background-image: image-url("prime/icons/window-active.svg");
+}
+
+.addresses-btn::before {
+  background-image: image-url("prime/icons/contacts.svg");
+}
+
+.addresses-btn:hover::before,
+.addresses-btn.active::before {
+  background-image: image-url("prime/icons/contacts-active.svg");
+}
+
+.profile-btn::before {
+  background-image: image-url("prime/icons/user.svg");
+}
+
+.profile-btn:hover::before,
+.profile-btn.active::before {
+  background-image: image-url("prime/icons/user-active.svg");
+}

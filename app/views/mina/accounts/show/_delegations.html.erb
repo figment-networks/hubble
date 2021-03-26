@@ -1,24 +1,32 @@
-<%= render_card "Delegations", class: "account-delegations", body_class: "no-padding" do %>
-  <% if delegations.any? %>
-    <table class="table table-striped delegations">
-      <thead>
-        <tr role="row">
-          <th>Account</th>
-          <th>Amount</th>
-          <th>Share</th>
+<div class='data-table account-delegations'>
+  <div class='data-table__header'>
+    <h3 class='data-table__title'>Delegations</h3>
+  </div>
+  <table class="table delegations  m-0">
+    <thead>
+    <tr role="row">
+      <th>Validator</th>
+      <th>Amount</th>
+      <th>Share</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% if delegations.any? %>
+      <% delegations_total = delegations.sum(&:balance) %>
+      <% delegations.each do |delegation| %>
+        <tr>
+          <td><%= link_to delegation.delegate.truncate(20), mina_chain_validator_path(chain, delegation.delegate) %></td>
+          <td><%= format_amount(delegation.balance) %></td>
+          <td><%= mina_delegation_share(delegation.balance, delegations_total) %></td>
         </tr>
-      </thead>
-      <tbody>
-        <% delegations.each do |delegation| %>
-          <tr>
-            <td><%= link_to delegation.account.truncate(30), mina_chain_account_path(chain, delegation.account) %></td>
-            <td><%= format_amount(delegation.balance, denom: "mina") %></td>
-            <td><%= mina_delegation_share(delegation.balance, account.delegated_amount) %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  <% else %>
-    <div class="text-empty">Account does not have any delegations</div>
-  <% end %>
-<% end %>
+      <% end %>
+    <% else %>
+      <tr>
+        <td colspan='3' class='data-table__empty'>
+          Account does not have any delegations
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

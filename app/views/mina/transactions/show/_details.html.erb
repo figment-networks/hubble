@@ -1,12 +1,12 @@
-<div class="card">
-  <header class="card-header d-flex align-items-center justify-content-between">
-    <h4 class="m-0">Transaction Details</h4>
-      <span class="d-none d-md-flex badge badge-pill badge-light text-uppercase">Type: <%= transaction.formatted_type %></span>
+<div class="data-table m-0 mb-4">
+  <header class="data-table__header d-flex align-items-center justify-content-between">
+    <h4 class="data-table__title m-0">Transaction Details</h4>
+      <span class="d-none d-md-flex badge badge-pill badge-dark text-uppercase">Type: <%= transaction.formatted_type %></span>
     </h4>
   </header>
   <div class="card-body no-padding">
     <div class="table-responsive">
-      <table class="table table-sm">
+      <table class="table table-sm m-0">
         <thead>
           <tr class="text-uppercase text-secondary">
             <th width="30%">Parameter</th>
@@ -31,19 +31,41 @@
           <tr>
             <td class="text-nowrap">Amount</td>
             <td>
-              <span data-toggle="tooltip" data-tooltip-side="right" title="<%= format_amount transaction.amount, denom: "mina" %>">
-                <%= transaction.amount %>
+              <span data-toggle="tooltip" data-tooltip-side="right" title="<%= format_amount transaction.amount, precision: @chain.class::DEFAULT_TOKEN_FACTOR %>">
+                <%= format_amount transaction.amount, precision: 4 %>
               </span>
             </td>
           </tr>
-          <% if transaction.has_fee? %>
-            <tr>
-              <td class="text-nowrap">Fee</td>
-              <td>
-                <span data-toggle="tooltip" data-tooltip-side="right" title="<%= format_amount transaction.fee, denom: "mina" %>">
-                  <%= transaction.fee %>
+          <tr>
+            <td class="text-nowrap">Fee</td>
+            <td>
+              <% if transaction.fee %>
+                <span data-toggle="tooltip" data-tooltip-side="right" title="<%= format_amount transaction.fee, precision: @chain.class::DEFAULT_TOKEN_FACTOR %>">
+                  <%= format_amount transaction.fee, precision: 4 %>
                 </span>
-              </td>
+              <% else %>
+                N/A
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td class="text-nowrap">Nonce</td>
+            <td><%= transaction.nonce || "N/A" %></td>
+          </tr>
+          <tr>
+            <td class="text-nowrap">Seq. Number</td>
+            <td><%= transaction.sequence_number || "N/A" %></td>
+          </tr>
+          <tr>
+            <td class="text-nowrap">Status</td>
+            <td>
+              <span class='badge badge-<%= transaction.applied? ? 'success' : 'danger' %>'><%= transaction.status || "N/A" %></span>
+            </td>
+          </tr>
+          <% if transaction.failure_reason %>
+            <tr>
+              <td class="text-nowrap">Failure Reason</td>
+              <td><%= transaction.failure_reason || "N/A" %></td>
             </tr>
           <% end %>
           <% if transaction.memo %>

@@ -33,15 +33,17 @@ module Near
     end
 
     # Get block stats for a given time interval
+    def block_stats_charts(opts = {})
+      get_collection(Near::BlockStat, '/block_stats', opts)
+    end
+
     def block_stats(period: '48', interval: 'h')
-      get('/block_stats', limit: period, bucket: interval).map do |record|
-        Near::BlockStat.new(record)
-      end
+      get_collection(Near::BlockStat, '/block_stats', limit: period, bucket: interval)
     end
 
     # Get validators
     def validators
-      get('/validators').map { |v| Near::Validator.new(v) }
+      get_collection(Near::Validator, '/validators')
     end
 
     # Get validator by hash or height
@@ -62,6 +64,10 @@ module Near
     # Get account by name
     def account(id)
       Near::Account.new(get("/accounts/#{id}"))
+    end
+
+    def delegations(id)
+      get_collection(Near::Delegation, "/delegations/#{id}")
     end
   end
 end

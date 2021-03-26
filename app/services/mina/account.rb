@@ -2,6 +2,7 @@ module Mina
   class Account < Common::Resource
     field :public_key
     field :delegate
+    field :stake, type: :integer
     field :balance, type: :integer
     field :balance_unknown, type: :integer
     field :start_time, type: :timestamp

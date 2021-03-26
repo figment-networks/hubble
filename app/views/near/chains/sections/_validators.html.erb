@@ -12,7 +12,7 @@
         <div class="custom-control custom-radio mr-4">
           <input class="custom-control-input" type="radio" name="validator-filter" id="filterAll" value='_all_' checked>
           <label class="custom-control-label" for="filterAll">All</label>
-        </div>    
+        </div>
         <div class="custom-control custom-radio mr-4">
           <input class="custom-control-input" type="radio" name="validator-filter" id="filterActive" value='_active_'>
           <label class="custom-control-label" for="filterActive">
@@ -24,7 +24,7 @@
           <label class="custom-control-label" for="filterInactive">
             Inactive
           </label>
-        </div>  
+        </div>
       </div>
     </div>
 
@@ -38,6 +38,7 @@
           <th width="20%">Blocks</th>
           <th width="15%">Efficiency</th>
           <th>Stake</th>
+          <th>Reward Fee</th>
           <th class='d-none'></th>
         </tr>
       </thead>
@@ -63,6 +64,9 @@
             </td>
             <td data-order='<%= v.stake %>'>
               <%= format_amount(v.stake, denom: "near") %>
+            </td>
+            <td data-order='<%= v.reward_fee %>'>
+              <%= v.reward_fee %>
             </td>
             <td class='d-none'>
               _all_ <%= v.active? ? '_active_' : '_inactive_' %>

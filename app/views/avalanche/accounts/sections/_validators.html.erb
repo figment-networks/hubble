@@ -21,10 +21,10 @@
           <td class='technical'>
             <%= link_to validator.node_id, avalanche_chain_validator_path(@chain, validator.node_id) %>
           </td>
-          <td class='technical'><small><%= remaining_time(validator.active_end_time) %></small></td></td>
-          <td class='technical'><small><%= format_amount(validator.total_stake, denom: @chain.class::DEFAULT_TOKEN_REMOTE) %></small></td></td>
-          <td class='technical'><small><%= validator.uptime %>%</small></td></td>
-          <td class='technical'><small><%= capacity_remaining(validator.capacity_percent) %>%</small></td></td>
+          <td class='technical'><small><%= remaining_time(validator.active_end_time) %></small></td>
+          <td class='technical'><small><%= format_amount(validator.total_stake, denom: @chain.class::DEFAULT_TOKEN_REMOTE) %></small></td>
+          <td class='technical'><small><%= validator.uptime %>%</small></td>
+          <td class='technical'><small><%= capacity_remaining(validator.capacity_percent) %>%</small></td>
         </tr>
       <% end %>
 

@@ -24,6 +24,7 @@ class Mina::ValidatorStatsDecorator < SimpleDelegator
     format_amount(val,
                   denom: 'mina',
                   html: false,
-                  hide_units: true).sub(',', '').to_f
+                  hide_units: true,
+                  thousands_delimiter: false).to_f
   end
 end

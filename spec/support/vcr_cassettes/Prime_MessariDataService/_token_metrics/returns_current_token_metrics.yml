@@ -1,0 +1,54 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://data.messari.io/api/v1/assets/polkadot/metrics
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (linux-gnu x86_64) ruby/2.6.6p146
+      X-Messari-Api-Key:
+      - ''
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - data.messari.io
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 19 Feb 2021 01:32:06 GMT
+      Content-Type:
+      - application/json; charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      Vary:
+      - Accept-Encoding,Origin
+      X-Ratelimit-Limit:
+      - '4000'
+      X-Ratelimit-Remaining:
+      - '3987'
+      X-Ratelimit-Reset:
+      - '1613763883'
+      X-Envoy-Upstream-Service-Time:
+      - '15'
+      Server:
+      - istio-envoy
+      X-Envoy-Decorator-Operation:
+      - meridian-service.meridian.svc.cluster.local:8080/*
+    body:
+      encoding: UTF-8
+      string: '{"status":{"elapsed":14,"timestamp":"2021-02-19T01:32:06.912370696Z"},"data":{"id":"da6a0575-ec95-4c47-855d-5fc6a3e22ada","symbol":"DOT","name":"Polkadot","slug":"polkadot","_internal_temp_agora_id":"06b2065f-b4c4-4932-8737-23226fb73668","market_data":{"price_usd":30.621353819415237,"price_btc":0.0005948616448619127,"price_eth":0.015974803999964073,"volume_last_24_hours":1935859787.5139575,"real_volume_last_24_hours":565018862.9517678,"volume_last_24_hours_overstatement_multiple":3.4261861230626027,"percent_change_usd_last_1_hour":-1.6987719624726645,"percent_change_usd_last_24_hours":-5.007485446579492,"percent_change_btc_last_24_hours":-3.375632660947238,"percent_change_eth_last_24_hours":-4.840976530258297,"ohlcv_last_1_hour":{"open":31.155211784905372,"high":31.215020750340166,"low":30.532914105483513,"close":30.61876699512266,"volume":39852549.05801531},"ohlcv_last_24_hour":{"open":32.35155376075952,"high":32.366519090084346,"low":30.530811239179435,"close":30.62135381941524,"volume":752909701.7005978},"last_trade_at":"2021-02-19T01:32:01.771Z"},"marketcap":{"marketcap_dominance_percent":1.7629106213729113,"current_marketcap_usd":27831132913.628834,"y_2050_marketcap_usd":512161203392.98975,"y_plus10_marketcap_usd":84770295355.55238,"liquid_marketcap_usd":32703946386.808434,"realized_marketcap_usd":null,"volume_turnover_last_24_hours_percent":1.7276779269051017},"supply":{"y_2050":16703146221,"y_plus10":2764619087,"liquid":1066575904,"circulating":907658525.2314156,"y_2050_issued_percent":6.385479058185155,"annual_inflation_percent":9.992824289418786,"stock_to_flow":10.007180863360933,"y_plus10_issued_percent":38.579488545649326},"blockchain_stats_24_hours":{"count_of_active_addresses":null,"transaction_volume":null,"adjusted_transaction_volume":null,"adjusted_nvt":null,"median_tx_value":null,"median_tx_fee":null,"count_of_tx":null,"count_of_payments":null,"new_issuance":null,"average_difficulty":null,"kilobytes_added":null,"count_of_blocks_added":null},"market_data_liquidity":{"clearing_prices_to_sell":null,"marketcap":null,"asset_bid_depth":null,"usd_bid_depth":null,"updated_at":"0001-01-01T00:00:00Z"},"all_time_high":{"price":null,"at":null,"days_since":null,"percent_down":null,"breakeven_multiple":null},"cycle_low":{"price":null,"at":null,"percent_up":null,"days_since":null},"token_sale_stats":{"sale_proceeds_usd":null,"sale_start_date":null,"sale_end_date":null,"roi_since_sale_usd_percent":null,"roi_since_sale_btc_percent":null,"roi_since_sale_eth_percent":null},"staking_stats":{"staking_yield_percent":5,"staking_type":null,"staking_minimum":null,"tokens_staked":null,"tokens_staked_percent":null,"real_staking_yield_percent":-4.53922721223714},"mining_stats":{"mining_algo":null,"network_hash_rate":null,"available_on_nicehash_percent":null,"1_hour_attack_cost":null,"24_hours_attack_cost":null,"attack_appeal":null,"mining_revenue_native":null,"mining_revenue_usd":null,"average_difficulty":null},"developer_activity":{"stars":null,"watchers":null,"commits_last_3_months":null,"commits_last_1_year":null,"lines_added_last_3_months":null,"lines_added_last_1_year":null,"lines_deleted_last_3_months":null,"lines_deleted_last_1_year":null},"roi_data":{"percent_change_last_1_week":8.095672131108886,"percent_change_last_1_month":72.3959694094966,"percent_change_last_3_months":437.5211685580592,"percent_change_last_1_year":null,"percent_change_btc_last_1_week":-0.9296651413870866,"percent_change_btc_last_1_month":18.372532106214933,"percent_change_btc_last_3_months":94.15642393574876,"percent_change_btc_last_1_year":null,"percent_change_eth_last_1_week":2.817766461300299,"percent_change_eth_last_1_month":22.540910280028783,"percent_change_eth_last_3_months":53.01050837808674,"percent_change_eth_last_1_year":null,"percent_change_month_to_date":88.56680370485347,"percent_change_quarter_to_date":273.9951234722208,"percent_change_year_to_date":273.9951234722208},"roi_by_year":{"2020_usd_percent":null,"2019_usd_percent":null,"2018_usd_percent":null,"2017_usd_percent":null,"2016_usd_percent":null,"2015_usd_percent":null,"2014_usd_percent":null,"2013_usd_percent":null,"2012_usd_percent":null,"2011_usd_percent":null},"risk_metrics":{"sharpe_ratios":{"last_30_days":6.492165488773215,"last_90_days":4.873680767928119,"last_1_year":1.678924266743766,"last_3_years":null},"volatility_stats":{"volatility_last_30_days":1.3933836404511073,"volatility_last_90_days":1.8048500891376762,"volatility_last_1_year":2.212785252216319,"volatility_last_3_years":null}},"misc_data":{"private_market_price_usd":80,"vladimir_club_cost":null,"btc_current_normalized_supply_price_usd":null,"btc_y2050_normalized_supply_price_usd":null,"asset_created_at":null,"asset_age_days":null,"categories":["Infrastructure"],"sectors":["Smart
+        Contract Platforms"],"tags":[""]},"lend_rates":null,"borrow_rates":null,"loan_data":{"originated_last_24_hours_usd":null,"outstanding_debt_usd":null,"repaid_last_24_hours_usd":null,"collateralized_last_24_hours_usd":null,"collateral_liquidated_last_24_hours_usd":null},"reddit":{"active_user_count":null,"subscribers":null},"on_chain_data":{"txn_count_last_24_hours":null,"transfer_count_last_24_hours":null,"txn_volume_last_24_hours_usd":null,"active_addresses":null,"total_fees_last_24_hours_usd":null,"total_fees_last_24_hours":null,"average_fee_usd":null,"median_fee_usd":null,"average_transfer_value_usd":null,"median_transfer_value_usd":null,"adjusted_nvt":null,"issuance_last_24_hours_usd":null,"issuance_rate":null,"hash_rate":null,"blocks_added_last_24_hours":null,"block_size_bytes_total":null,"block_size_bytes_average":null},"exchange_flows":{"supply_exchange_usd":null,"flow_in_exchange_native_units_inclusive":null,"flow_in_exchange_usd_inclusive":null,"flow_in_exchange_native_units":null,"flow_in_exchange_usd":null,"flow_out_exchange_native_units_inclusive":null,"flow_out_exchange_usd_inclusive":null,"flow_out_exchange_native_units":null,"flow_out_exchange_usd":null},"alert_messages":null}}'
+  recorded_at: Fri, 19 Feb 2021 01:32:05 GMT
+recorded_with: VCR 6.0.0

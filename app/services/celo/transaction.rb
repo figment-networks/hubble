@@ -9,20 +9,23 @@ module Celo
     field :transaction_hash
     field :amount, type: :integer
     field :height, type: :integer
-    field :time, type: :unix_timestamp
-    collection :transfers, type: Celo::Transfer
+    field :time, type: :timestamp
+    collection :operations, type: Celo::Operation
 
     alias is_success success
     alias block height
 
-    # TODO: remove when real indexer returns height in all endpoints
-    def height
-      @height || 113
-    end
-
     # Some endpoints return `hash`, some return `transaction_hash`...
     def hash
       @hash || @transaction_hash
+    end
+
+    def transfers
+      operations.select(&:transfer?)
+    end
+
+    def other_operations
+      operations.reject(&:transfer?)
     end
   end
 end

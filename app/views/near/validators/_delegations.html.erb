@@ -1,0 +1,38 @@
+<section class='data-table'>
+  <div class='data-table__header'>
+    <h3 class="data-table__title">
+      Delegations
+    </h3>
+  </div>
+  <div>
+    <table class="w-100">
+      <thead>
+        <tr role="row">
+          <th>Address/Name</th>
+          <th>Unstaked Balance</th>
+          <th>Staked Balance</th>
+          <th>Can Withdraw?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% delegations.each do |delegation| %>
+          <tr class=''>
+            <td class='technical'><small><%= delegation.account %></small></td>
+            <td class='technical'><small><%= format_amount(delegation.unstaked_balance, denom: "near") %></small></td>
+            <td class='technical'><small><%= format_amount(delegation.staked_balance, denom: "near") %></small></td>
+            <td class='technical'><small><%= delegation.can_withdraw ? "Yes" : "No" %></small></td>
+          </tr>
+        <% end %>
+
+        <% if @pagination_delegations.pages > 1 %>
+        <tr>
+          <td colspan="3">
+            <%= raw(pagy_bootstrap_nav(@pagination_delegations)) %>
+          </td>
+        </tr>
+      <% end -%>
+      </tbody>
+      </tbody>
+    </table>
+  </div>
+</section>

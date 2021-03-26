@@ -1,0 +1,41 @@
+<div class='data-table mb-5'>
+  <div class='data-table__header'>
+    <h4 class='data-table__title'>Operations</h4>
+  </div>
+  <div>
+    <table class='w-100' data-empty='<%= operations.blank? %>'>
+      <thead>
+      <tr>
+        <th>Hash</th>
+        <th>Kind</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% if operations.nil? %>
+        <tr>
+          <td class='data-table__empty' colspan='5'>Unable to retrieve operation data.</td>
+        </tr>
+      <% elsif operations.empty? %>
+        <tr>
+          <td class='data-table__empty' colspan='5'>No operations.</td>
+        </tr>
+      <% else %>
+        <% operations.each_with_index do |operation, operation_index| %>
+          <tr>
+            <td class='text-sm'>
+              <%= link_to operation.transaction_hash.truncate(20), namespaced_path('block_transaction', operation.height, operation.transaction_hash) %>
+            </td>
+            <td class='text-sm'>
+              <%= operation.kind %>
+            </td>
+            <td class='text-right'>
+              <%= link_to 'JSON details...', namespaced_path('block_transaction_operation', operation.height, operation.transaction_hash, operation_index, format: :json), class: 'btn btn-outline-primary btn-sm' %>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

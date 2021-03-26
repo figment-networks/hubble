@@ -1,11 +1,12 @@
-<%= render_card "Average Block Time", class: "chain-block-times" do %>
-  <label>Last <%= block_times.count %> blocks:</label>
-  <div class="stat-value technical">
-    <%= block_times.avg %> seconds
+<div class='data-block chain-block-times'>
+  <h3 class='data-block__title'>Average Block Time</h3>
+  <div class='d-flex flex-wrap align-items-baseline justify-content-between'>
+    <div class="data-block__value"> <%= block_times.minutes_avg %><span class="data-block__label"> minutes</span></div>
+    <label class='text-small'>Past 48 hours:</label>
   </div>
 
-  <label>Past 48 hours:</label>
-  <div class="small-average-block-time-chart-container">
+  <div class="small-average-block-time-chart-container data-block__chart">
     <canvas class="sparkline-chart average-block-time-chart" data-chart="<%= block_intervals.to_json %>"></canvas>
   </div>
-<% end %>
+</div>
+

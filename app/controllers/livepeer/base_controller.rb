@@ -1,8 +1,6 @@
 class Livepeer::BaseController < Hubble::ApplicationController
   private
 
-  layout 'redesign/application'
-
   def require_chain
     @chain = Livepeer::Chain.find_by!(slug: params[:chain_id])
   end

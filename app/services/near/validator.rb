@@ -20,6 +20,7 @@ module Near
     field :epoch
     field :created_at
     field :updated_at
+    field :reward_fee, type: :integer
 
     # Associated resources
     field :epochs
@@ -40,6 +41,10 @@ module Near
 
     def status
       active? ? STATUS_ONLINE : STATUS_OFFLINE
+    end
+
+    def reward_fee
+      @reward_fee ? "#{@reward_fee}%" : 'Not Available'
     end
   end
 end

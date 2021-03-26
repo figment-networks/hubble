@@ -1,7 +1,7 @@
 <div class='validators'>
   <div class='validator-table-header'>
     <h4>Validators</h4>
-    <input type='text' class='validator-search' placeholder='search...'>
+    <input type='text' class='validator-search ml-auto' placeholder='search...'>
   </div>
   <div class='validator-table'>
     <table>
@@ -12,23 +12,19 @@
           <th>State</th>
         </tr>
         <tbody>
-          <% @chain.active_validators_at_height(@block.height).each do |v| -%>
-            <% up = @block.precommitters.include?(v.address) -%>
-            <% proposer = @block.proposer_address == v.address -%>
+          <% @chain.active_validators_at_height(@block.height).each do |validator| -%>
+            <% up = @block.precommitters.include?(validator.address) -%>
+            <% proposer = @block.proposer_address == validator.address -%>
 
             <tr>
               <td>
-                <a href='<%= namespaced_path( 'validator', v ) %>'>
-                  <% if v.moniker -%>
-                    <strong><%= v.moniker.truncate(40) %></strong>
-                  <% else %>
-                    <span class='technical'><%= (v.owner || v.address).truncate(40) %></span>
-                  <% end -%>
-                </a>
+                <%= link_to namespaced_path('validator', validator) do %>
+                  <span><%= validator.short_name(40) %></span>
+                <% end -%>
               </td>
 
-              <td data-order='<%= v.current_voting_power %>'>
-                <%= format_amount(v.voting_power_at_height(@block.height), denom: @chain.token_map[@chain.primary_token]['display']) %>
+              <td data-order='<%= validator.current_voting_power %>'>
+                <%= format_amount(validator.voting_power_at_height(@block.height), denom: @chain.token_map[@chain.primary_token]['display']) %>
               </td>
 
               <td data-order='<%= proposer ? -1 : (up ? 0 : 1) %>'>
@@ -45,8 +41,8 @@
               </td>
 
               <td class='d-none'>
-                ⭐️ <%= v.active? ? '✔' : '𐄂' %> <!-- for the gear toggles -->
-                <%= v.owner %> <%= v.address %> <!-- so you can paste your address into search -->
+                _all_ <%= validator.active? ? "_active_" : "_inactive_" %>
+                <%= validator.owner %> <%= validator.address %> <!-- so you can paste your address into search -->
               </td>
             </tr>
           <% end -%>
@@ -54,7 +50,7 @@
       </thead>
     </table>
     <script>
-      App.config.currentValidatorFilter = '⭐️'
+      App.config.currentValidatorFilter = '_all_'
     </script>
   </div>
 </div>

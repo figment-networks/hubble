@@ -1,7 +1,7 @@
 require 'cryptocompare'
 
 class HomeController < Hubble::ApplicationController
-  layout 'redesign/home'
+  layout 'home'
 
   TOKEN_PRICE_LIST = %i[ATOM LPT KAVA DOT XTZ LUNA IRIS CELO NEAR AVAX MINA ROSE].freeze
 

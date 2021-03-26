@@ -11,11 +11,11 @@ class Mina::TransactionsStatsDecorator < SimpleDelegator
   end
 
   def fees_chart_data
-    serialize(:fees_amount)
+    serialize(:fee_transfers_amount)
   end
 
   def work_fees_chart_data
-    serialize(:snark_fees_amount)
+    serialize(:jobs_amount)
   end
 
   private
@@ -27,6 +27,6 @@ class Mina::TransactionsStatsDecorator < SimpleDelegator
   end
 
   def amount(val)
-    format_amount(val, denom: 'mina', html: false, hide_units: true)
+    format_amount(val, denom: 'mina', html: false, hide_units: true, thousands_delimiter: false)
   end
 end

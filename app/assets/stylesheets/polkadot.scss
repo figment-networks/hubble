@@ -1,5 +1,3 @@
-// TODO: remove this file when Redesign is finished
-
 // TODO: DRY these with other networks/cosmoslike. Up to `network-chain-header`.
 // Review which are actually needed
 @import 'common/bootstrap-variables';
@@ -10,20 +8,25 @@
 @import 'common/datatables-overrides';
 
 @import 'tooltipster/dist/css/tooltipster.bundle.min';
+@import 'flatpickr/dist/flatpickr.min';
 
 @import 'common/nav';
 @import 'common/footer';
 @import 'common/typography';
 @import 'common/misc';
 @import 'common/error-content';
+@import 'common/logotypes';
 
 //TODO: move to shared? most of transaction view css is relevant to all networks
 @import 'page/cosmoslike/transaction';
-@import 'page/polkadot/validator';
 
 // components
 @import 'components/network-chain-header';
+@import 'components/data-block';
+@import 'components/data-table';
+@import 'components/validator-header';
 @import 'components/validator-table';
 @import 'components/transactions-table';
 @import 'components/delegations-table';
-
+@import 'components/search-bar';
+@import 'components/event-history';

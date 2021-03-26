@@ -1,0 +1,36 @@
+<%
+  @page_title = 'Portfolio'
+  @new_account_modal = true
+  @network_info_modal = true
+%>
+
+<div class="section">
+  <div class="page__container">
+    <div class="section__header">
+      <h2 class="section__title">Networks Overview</h2>
+      <div class="arrows">
+        <button class="arrows__prev" id="slideBack">
+          <%= image_tag 'prime/icons/angle-active.svg', alt: 'arrow left' %>
+        </button>
+        <button class="arrows__next" id="slideForward">
+          <%= image_tag 'prime/icons/angle-active.svg', alt: 'arrow right' %>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div id="slider" class="slider">
+    <%= render enabled_networks, show_add_account_button: true %>
+  </div>
+</div>
+
+<div class="section">
+  <div class="page__container">
+    <div class="section__header">
+      <h2 class="section__title">PORTFOLIO Overview - Current Total: <%= number_to_currency(portfolio_balance_usd(enabled_networks, @network_token_balances))%></h2>
+    </div>
+    <div class="section__row">
+      <%= render 'portfolio_distribution_chart' %>
+      <%= render 'portfolio_performance_chart' %>
+    </div>
+  </div>
+</div>

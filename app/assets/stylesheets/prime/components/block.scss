@@ -1,0 +1,85 @@
+.block {
+  min-width: 258px;
+  max-width: 258px;
+  width: 100%;
+  background: #FFFFFF;
+  border: 1px solid #E9E9E9;
+  border-radius: 12px;
+}
+
+.block__header {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  border-bottom: 1px solid #E9E9E9;
+}
+
+.block__img {
+  width: 40px;
+  height: 40px;
+  max-width: 100%;
+  margin-right: 16px;
+}
+
+.block__title {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  color: #000000;
+}
+
+.block__content {
+  padding: 8px 16px;
+}
+
+.block__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.block__section + .block__section {
+  margin-top: 8px;
+}
+
+.block__data {
+  display: flex;
+  align-items: center;
+}
+
+.block__label {
+  font-size: 14px;
+  line-height: 24px;
+  color: #777777;
+  margin-right: 0.25em;
+}
+
+.block__value {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  color: #000000;
+}
+
+.block__value--danger {
+  color: #E7736C;
+}
+
+.block__value--success {
+  color: #3BB086;
+}
+
+.add-address-btn {
+  margin-top: 24px;
+  margin-left: auto;
+}
+
+.more-info-div {
+  width: 100%;
+}
+
+.more-info-btn {
+  float: right;
+  font-size: 70%;
+  text-decoration: none;
+}

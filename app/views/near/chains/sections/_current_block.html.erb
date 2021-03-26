@@ -2,7 +2,7 @@
   <h3 class='data-block__title'>Current Block</h3>
   <% if block %>
     <div class='large-number'>
-      <span class='technical'><%= block.height %></span>
+      <span class='technical'><%= link_to block.id, near_chain_block_path(@chain, block.id) %></span>
     </div>
     <div class='sub-info'>
       <small class='text-muted'>

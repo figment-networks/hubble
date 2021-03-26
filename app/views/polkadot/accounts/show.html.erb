@@ -20,7 +20,7 @@
       <div class='d-flex flex-wrap mt-4'>
         <% @account_details.balances.each do |balance| %>
           <div class='mr-5 mb-3'>
-            <%= render layout: 'shared/redesign/data_block', locals: { header: balance[:header] } do %>
+            <%= render layout: 'shared/data_block', locals: { header: balance[:header] } do %>
                 <%= format_amount(balance[:value], @chain, denom: @chain.class::DEFAULT_TOKEN_REMOTE) %>
             <% end %>
           </div>

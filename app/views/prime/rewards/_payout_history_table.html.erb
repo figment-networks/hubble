@@ -1,0 +1,35 @@
+<div class="section">
+  <div class="page__container">
+    <div class="section__header">
+      <h2 class="section__title">Rewards Payout History - Last 30 Days</h2>
+    </div>
+    <div class="table-filters" hidden>
+      <div id="date_filter_wrapper">
+        <label for="datepicker_from" class="label">Filter by date</label>
+        <p id="date_filter" class="data-filter">
+          <input class="date_range_filter date" type="text" id="datepicker_from" />
+          <input class="date_range_filter date" type="text" id="datepicker_to" />
+        </p>
+      </div>
+    </div>
+    <table id="rewards_history_table" class="table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Network</th>
+          <th>Address</th>
+          <th>Amount</th>
+          <th>USD Equivalent</th>
+          <th>Validator</th> 
+        </tr>
+      </thead>
+      <tbody>
+        <% rewards.each do |reward| %>
+          <%= render 'payout_history_row', reward: reward %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<link data-require="jqueryui@*" data-semver="1.10.0" rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.0/css/smoothness/jquery-ui-1.10.0.custom.min.css" />

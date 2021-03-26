@@ -28,11 +28,11 @@
 // = require page/cosmoslike/account-show
 //
 // = require components/common/auto-alert-hide
-// = require components/common/small-average-block-time-chart
 //
 // = require components/oasis/validator-table
 // = require components/oasis/validator-voting-power-history
 // = require components/oasis/small-average-voting-power-chart
+// = require components/common/small-average-block-time-chart
 //
 // = require components/cosmoslike/transactions-table
 // = require components/cosmoslike/validator-uptime-history

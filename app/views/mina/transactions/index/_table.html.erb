@@ -1,4 +1,4 @@
-<table class="table table-striped">
+<table class="table mb-0">
   <thead>
     <tr role="row">
       <th>Type</th>
@@ -9,6 +9,7 @@
       <th>Amount</th>
       <th>Fee</th>
       <th>Memo</th>
+      <th>Result</th>
       <th></th>
     </tr>
   </thead>
@@ -17,12 +18,17 @@
       <tr data-id="<%= tx.id %>">
         <td><%= tx.formatted_type %></td>
         <td><%= link_to tx.height.truncate(10), mina_chain_block_path(@chain, tx.height) %></td>
-        <td><%= tx.time.strftime("%b %d, %Y %H:%m %Z") %></td>
+        <td><%= tx.time.strftime("%b %d, %Y %H:%M %Z") %></td>
         <td><%= link_to tx.sender.truncate(10), mina_chain_account_path(@chain, tx.sender) if tx.sender %></td>
         <td><%= link_to tx.receiver.truncate(10), mina_chain_account_path(@chain, tx.receiver) %></td>
-        <td><%= format_amount(tx.amount, denom: "mina") %></td>
-        <td><%= format_amount(tx.fee, denom: "mina") if tx.has_fee? %></td>
+        <td><%= format_amount(tx.amount) %></td>
+        <td><%= format_amount(tx.fee) if tx.fee %></td>
         <td class="text-muted"><small><%= tx.memo %></small></td>
+        <td>
+          <% if tx.status %>
+            <span class='badge badge-sm badge-<%= tx.applied? ? 'success' : 'danger' %>'><%= tx.status %></span>
+          <% end %>
+        </td>
         <td class="text-right">
           <%= link_to "details", mina_chain_transaction_path(@chain, tx.hash), class: "btn btn-outline-primary btn-sm" %>
         </td>

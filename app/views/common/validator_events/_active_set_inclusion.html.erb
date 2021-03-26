@@ -1,15 +1,17 @@
-<div>
+<% if @validator.nil? %>
+  <td>
+    <span class='paragraph font-weight-bold'>
+      <%= link_to event.validatorlike.short_name, namespaced_path( 'validator', event.validatorlike ) %>
+    </span>
+  </td>
+<% end -%>
+<td>
   <span class='d-inline d-md-none <%= icon_classes %> mr-1'></span>
-  <span class='font-weight-bold'>
-    <% if @validator.nil? %>
-      <%= link_to event.validatorlike.short_name, namespaced_path( 'validator', event.validatorlike ) %> <%= event.added? ? 'added to' : 'removed from' %>
-    <% else -%>
-      <%= event.added? ? 'Added to' : 'Removed from' %>
-    <% end -%>
+  <span class='paragraph'>
+    <%= event.added? ? 'Added to' : 'Removed from' %>
     active set
   </span>
-  <span class='text-muted'>
-    at block
-    <%= link_to event.height, namespaced_path( 'block', event.height ), class: 'technical' %>
-  </span>
-</div>
+</td>
+<td>  
+  <%= link_to event.height, namespaced_path( 'block', event.height ), class: 'technical event-history__block' %>
+</td>

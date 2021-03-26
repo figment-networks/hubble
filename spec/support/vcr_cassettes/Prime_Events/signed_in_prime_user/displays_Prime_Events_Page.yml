@@ -1,0 +1,841 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://data.messari.io/api/v1/assets/polkadot/metrics
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (linux-gnu x86_64) ruby/2.6.6p146
+      X-Messari-Api-Key:
+      - ''
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - data.messari.io
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 18 Feb 2021 20:26:07 GMT
+      Content-Type:
+      - application/json; charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      Vary:
+      - Accept-Encoding,Origin
+      X-Envoy-Upstream-Service-Time:
+      - '0'
+      Server:
+      - istio-envoy
+      X-Envoy-Decorator-Operation:
+      - meridian-service.meridian.svc.cluster.local:8080/*
+    body:
+      encoding: UTF-8
+      string: '{"status":{"elapsed":0,"timestamp":"2021-02-18T20:26:07.901378745Z"},"data":{"id":"da6a0575-ec95-4c47-855d-5fc6a3e22ada","symbol":"DOT","name":"Polkadot","slug":"polkadot","_internal_temp_agora_id":"06b2065f-b4c4-4932-8737-23226fb73668","market_data":{"price_usd":30.834022584234855,"price_btc":0.0005924067863426423,"price_eth":0.01593042346029977,"volume_last_24_hours":2171343089.968086,"real_volume_last_24_hours":662831109.296498,"volume_last_24_hours_overstatement_multiple":3.2758617685773097,"percent_change_usd_last_1_hour":-0.790900201159574,"percent_change_usd_last_24_hours":-2.9391664447403842,"percent_change_btc_last_24_hours":-2.5469496934851015,"percent_change_eth_last_24_hours":-8.226834102798705,"ohlcv_last_1_hour":{"open":31.08079911193562,"high":31.274744927768868,"low":30.64265978474724,"close":30.836534467184023,"volume":30030896.660604637},"ohlcv_last_24_hour":{"open":31.79703077500631,"high":32.61710135764711,"low":30.593207717915934,"close":30.834022584234855,"volume":853189950.0819194},"last_trade_at":"2021-02-18T20:26:04.686Z"},"marketcap":{"marketcap_dominance_percent":1.7551484129000605,"current_marketcap_usd":27920126537.57225,"y_2050_marketcap_usd":513798904656.3416,"y_plus10_marketcap_usd":85019171027.86934,"liquid_marketcap_usd":32799961365.73728,"realized_marketcap_usd":null,"volume_turnover_last_24_hours_percent":2.0117235782459044},"supply":{"y_2050":16703146221,"y_plus10":2763897767,"liquid":1066297623,"circulating":907658525.2314156,"y_2050_issued_percent":6.383813018767681,"annual_inflation_percent":9.99282420795568,"stock_to_flow":10.007180944941076,"y_plus10_issued_percent":38.57948856615578},"blockchain_stats_24_hours":{"count_of_active_addresses":null,"transaction_volume":null,"adjusted_transaction_volume":null,"adjusted_nvt":null,"median_tx_value":null,"median_tx_fee":null,"count_of_tx":null,"count_of_payments":null,"new_issuance":null,"average_difficulty":null,"kilobytes_added":null,"count_of_blocks_added":null},"market_data_liquidity":{"clearing_prices_to_sell":null,"marketcap":null,"asset_bid_depth":null,"usd_bid_depth":null,"updated_at":"0001-01-01T00:00:00Z"},"all_time_high":{"price":null,"at":null,"days_since":null,"percent_down":null,"breakeven_multiple":null},"cycle_low":{"price":null,"at":null,"percent_up":null,"days_since":null},"token_sale_stats":{"sale_proceeds_usd":null,"sale_start_date":null,"sale_end_date":null,"roi_since_sale_usd_percent":null,"roi_since_sale_btc_percent":null,"roi_since_sale_eth_percent":null},"staking_stats":{"staking_yield_percent":5,"staking_type":null,"staking_minimum":null,"tokens_staked":null,"tokens_staked_percent":null,"real_staking_yield_percent":-4.53922721223714},"mining_stats":{"mining_algo":null,"network_hash_rate":null,"available_on_nicehash_percent":null,"1_hour_attack_cost":null,"24_hours_attack_cost":null,"attack_appeal":null,"mining_revenue_native":null,"mining_revenue_usd":null,"average_difficulty":null},"developer_activity":{"stars":null,"watchers":null,"commits_last_3_months":null,"commits_last_1_year":null,"lines_added_last_3_months":null,"lines_added_last_1_year":null,"lines_deleted_last_3_months":null,"lines_deleted_last_1_year":null},"roi_data":{"percent_change_last_1_week":23.62389817165573,"percent_change_last_1_month":88.63566236243788,"percent_change_last_3_months":492.43039518186464,"percent_change_last_1_year":null,"percent_change_btc_last_1_week":14.63875766705946,"percent_change_btc_last_1_month":30.591876297796716,"percent_change_btc_last_3_months":113.31597980412553,"percent_change_btc_last_1_year":null,"percent_change_eth_last_1_week":14.777477479990608,"percent_change_eth_last_1_month":33.93953897259086,"percent_change_eth_last_3_months":57.04812672728464,"percent_change_eth_last_1_year":null,"percent_change_month_to_date":88.09957127786319,"percent_change_quarter_to_date":273.06843518038363,"percent_change_year_to_date":273.06843518038363},"roi_by_year":{"2020_usd_percent":null,"2019_usd_percent":null,"2018_usd_percent":null,"2017_usd_percent":null,"2016_usd_percent":null,"2015_usd_percent":null,"2014_usd_percent":null,"2013_usd_percent":null,"2012_usd_percent":null,"2011_usd_percent":null},"risk_metrics":{"sharpe_ratios":{"last_30_days":6.492165488773215,"last_90_days":4.873680767928119,"last_1_year":1.678924266743766,"last_3_years":null},"volatility_stats":{"volatility_last_30_days":1.3933836404511073,"volatility_last_90_days":1.8048500891376762,"volatility_last_1_year":2.212785252216319,"volatility_last_3_years":null}},"misc_data":{"private_market_price_usd":80,"vladimir_club_cost":null,"btc_current_normalized_supply_price_usd":null,"btc_y2050_normalized_supply_price_usd":null,"asset_created_at":null,"asset_age_days":null,"categories":["Infrastructure"],"sectors":["Smart
+        Contract Platforms"],"tags":[""]},"lend_rates":null,"borrow_rates":null,"loan_data":{"originated_last_24_hours_usd":null,"outstanding_debt_usd":null,"repaid_last_24_hours_usd":null,"collateralized_last_24_hours_usd":null,"collateral_liquidated_last_24_hours_usd":null},"reddit":{"active_user_count":null,"subscribers":null},"on_chain_data":{"txn_count_last_24_hours":null,"transfer_count_last_24_hours":null,"txn_volume_last_24_hours_usd":null,"active_addresses":null,"total_fees_last_24_hours_usd":null,"total_fees_last_24_hours":null,"average_fee_usd":null,"median_fee_usd":null,"average_transfer_value_usd":null,"median_transfer_value_usd":null,"adjusted_nvt":null,"issuance_last_24_hours_usd":null,"issuance_rate":null,"hash_rate":null,"blocks_added_last_24_hours":null,"block_size_bytes_total":null,"block_size_bytes_average":null},"exchange_flows":{"supply_exchange_usd":null,"flow_in_exchange_native_units_inclusive":null,"flow_in_exchange_usd_inclusive":null,"flow_in_exchange_native_units":null,"flow_in_exchange_usd":null,"flow_out_exchange_native_units_inclusive":null,"flow_out_exchange_usd_inclusive":null,"flow_out_exchange_native_units":null,"flow_out_exchange_usd":null},"alert_messages":null}}'
+  recorded_at: Thu, 18 Feb 2021 20:26:07 GMT
+- request:
+    method: get
+    uri: https://data.messari.io/api/v1/intel/events?asset=polkadot
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (linux-gnu x86_64) ruby/2.6.6p146
+      X-Messari-Api-Key:
+      - ''
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - data.messari.io
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 18 Feb 2021 20:26:08 GMT
+      Content-Type:
+      - application/json; charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      Vary:
+      - Accept-Encoding,Origin
+      X-Envoy-Upstream-Service-Time:
+      - '74'
+      Server:
+      - istio-envoy
+      X-Envoy-Decorator-Operation:
+      - meridian-service.meridian.svc.cluster.local:8080/*
+    body:
+      encoding: UTF-8
+      string: "{\"status\":{\"elapsed\":30,\"timestamp\":\"2021-02-18T20:26:08.329660987Z\"},\"data\":[{\"eventId\":\"664d6977-424f-4c21-b3d9-47815c386b36\",\"authorId\":\"google-oauth2|113893247094344112466\",\"createDate\":\"2020-07-27T04:00:00Z\",\"updateDate\":\"2020-07-27T04:00:00Z\",\"createAuthorName\":\"Wilson
+        Withiam\",\"updateAuthorName\":\"Wilson Withiam\",\"eventName\":\"DOT Token
+        Sale\",\"assets\":[\"polkadot\"],\"details\":\"The Web3 Foundation and Parity
+        Technologies raised just shy of 4,000 BTC (totaling $44 million at the close
+        of the sale) in a thee-day token sale ending on Jul. 27, 2020. The offering
+        listed DOTs at $125 per token but geo-blocked certain jurisdictions from participating,
+        including the United States and Japan. The sold tokens are also subject to
+        a [five-month lockup](https://www.reddit.com/r/dot/comments/hxbxl6/get_polkadot/)
+        that will begin once DOT transfers go live at block #1,205,128 (estimated
+        to arrive on Aug. 18).\",\"eventDate\":\"2020-07-27T04:00:00Z\",\"softDate\":\"\",\"status\":\"Completed\",\"category\":\"Project
+        Funding\",\"subcategory\":\"Token Sale\",\"tags\":[\"\"],\"importance\":\"Medium\",\"resources\":[{\"name\":\"Messari
+        Analysis\",\"link\":\"https://messari.io/article/polkadot-raises-over-40-million-in-its-latest-token-sale\"}],\"activationBlock\":null,\"update\":\"\",\"submissionId\":\"d576539a-1076-4c22-9e1c-2a45952e91d4\"},{\"eventId\":\"61779e48-4061-4768-923d-30e5a0dcf5fb\",\"authorId\":\"google-oauth2|113893247094344112466\",\"createDate\":\"2020-04-14T04:00:00Z\",\"updateDate\":\"2020-04-14T04:00:00Z\",\"createAuthorName\":\"Wilson
+        Withiam\",\"updateAuthorName\":\"Wilson Withiam\",\"eventName\":\"Coinbase
+        Custody Staking Support\",\"assets\":[\"polkadot\"],\"details\":\"Coinbase
+        Custody partnered with infrastructure provider Bison Trails to give clients
+        the ability to start staking Polkadot’s DOT tokens once the protocol goes
+        live. The news comes a few months after Coinbase’s custody arm [launched support](https://messari.io/article/web3-foundation-partners-with-coinbase-custody-and-allows-polkadot-investors-to-start-claiming-their-dot-tokens)
+        for DOTs, allowing investors to claim their token allocations from Polkadot’s
+        previous funding rounds.\",\"eventDate\":\"2020-04-14T04:00:00Z\",\"softDate\":\"\",\"status\":\"Completed\",\"category\":\"Token
+        Listing\",\"subcategory\":\"Staking Service Listing\",\"tags\":[\"\"],\"importance\":\"Low\",\"resources\":[{\"name\":\"Messari
+        Analysis\",\"link\":\"https://messari.io/article/coinbase-custody-teams-up-with-bison-trails-to-offer-polkadot-staking-to-clients\"}],\"activationBlock\":null,\"update\":\"\",\"submissionId\":\"9c904108-440a-4876-ae1a-f57cdecc6cf8\"},{\"eventId\":\"5c240db8-f284-4b0d-984f-40fc62edacdf\",\"authorId\":\"google-oauth2|113893247094344112466\",\"createDate\":\"2020-06-15T04:00:00Z\",\"updateDate\":\"2020-06-15T04:00:00Z\",\"createAuthorName\":\"Wilson
+        Withiam\",\"updateAuthorName\":\"Wilson Withiam\",\"eventName\":\"Kraken Staking
+        Support\",\"assets\":[\"polkadot\"],\"details\":\"Kraken announced that it
+        will allow Polkadot token sale investors to claim their DOTs on its exchange.
+        DOT claims on Kraken officially became available on Jun. 25, 2020. The crypto
+        exchange also said the move comes in advance of its launch of DOT staking,
+        which we become available once Polkadot unlocks token transfers.\",\"eventDate\":\"2020-08-18T04:00:00Z\",\"softDate\":\"\",\"status\":\"Pending\",\"category\":\"Token
+        Listing\",\"subcategory\":\"Staking Service Listing\",\"tags\":[\"\"],\"importance\":\"Low\",\"resources\":[{\"name\":\"Kraken
+        Announcement\",\"link\":\"https://blog.kraken.com/post/5335/you-can-now-claim-polkadots-dot-tokens-on-kraken/\"}],\"activationBlock\":null,\"update\":\"\",\"submissionId\":\"384b603a-bb10-408f-8555-dd232c022b68\"},{\"eventId\":\"c4c990fe-1d3a-4d3e-bd17-5c1fe05a86b9\",\"authorId\":\"google-oauth2|113893247094344112466\",\"createDate\":\"2020-05-25T04:00:00Z\",\"updateDate\":\"2020-05-25T04:00:00Z\",\"createAuthorName\":\"Wilson
+        Withiam\",\"updateAuthorName\":\"Wilson Withiam\",\"eventName\":\"Mainnet
+        Rollout Phase 1: PoA Launch\",\"assets\":[\"polkadot\"],\"details\":\"Phase
+        1 of Polkadot's mainnet rollout plan marks the launch of the first mainnet
+        chain candidate for Polkadot. During the first phase, Polkadot will operate
+        as a Proof-of-Authority (PoA) chain that is maintained by six validators belonging
+        to Web3 Foundation. The chain’s limitations will only allow users to claim
+        DOT tokens as well as submit their intention to validate or nominate.\\n\\nThe
+        Web3 Foundation official [launched](https://polkadot.network/web3-foundation-initiates-launch-polkadot-is-live/)
+        Polkadot's first mainnet chain candidate on May 25, 2020. \",\"eventDate\":\"2020-05-25T04:00:00Z\",\"softDate\":\"\",\"status\":\"Completed\",\"category\":\"Network
+        Change\",\"subcategory\":\"Mainnet Launch\",\"tags\":[\"\"],\"importance\":\"High\",\"resources\":[{\"name\":\"Polkadot
+        Announcement\",\"link\":\"https://polkadot.network/web3-foundation-initiates-launch-polkadot-is-live/\"},{\"name\":\"Messari
+        Analysis\",\"link\":\"https://messari.io/article/polkadot-goes-live-with-the-release-of-its-first-mainnet-chain-candidate\"}],\"activationBlock\":null,\"update\":\"\",\"submissionId\":\"fe4eb154-9037-4d4a-8eb8-df9225f08c12\"},{\"eventId\":\"25eda302-2d93-47b5-8e9c-14bf9a3f19b9\",\"authorId\":\"google-oauth2|113893247094344112466\",\"createDate\":\"2020-06-18T04:00:00Z\",\"updateDate\":\"2020-06-18T04:00:00Z\",\"createAuthorName\":\"Wilson
+        Withiam\",\"updateAuthorName\":\"Wilson Withiam\",\"eventName\":\"Mainnet
+        Rollout Phase 2: NPoS\",\"assets\":[\"polkadot\"],\"details\":\"The Web3 Foundation
+        initiated the first validator election to launch Phase 2 of Polkadot's mainnet
+        rollout, in which validators voted to switch the Polkadot network from Proof-of-Authority
+        (PoA) to its proposed NPoS (Nominated Proof-of-Stake) design. This phase will
+        enable Polkadot to take a step towards decentralizing the network by increasing
+        the active validator set from 20 to almost 200 active community validator
+        nodes. More importantly, it allows DOT token sale purchasers to start staking
+        their tokens with elected validators [in exchange](https://figment.network/resources/polkadot-guide-to-staking-nominating-dot/)
+        for a portion of inflation reward payouts.\\n\\nEventually, Polkadot will
+        start progressively increasing the validator set, reaching as high as 1,000
+        validators possibly [by November.](https://figment.network/resources/polkadot-guide-to-staking-nominating-dot/)\",\"eventDate\":\"2020-06-18T04:00:00Z\",\"softDate\":\"\",\"status\":\"Completed\",\"category\":\"Network
+        Change\",\"subcategory\":\"On-Chain Upgrade\",\"tags\":[\"\"],\"importance\":\"High\",\"resources\":[{\"name\":\"Polkadot
+        Launch: Phase 2 Explanation\",\"link\":\"https://medium.com/polkadot-network/polkadot-launch-phase-2-e45c635031ef\"},{\"name\":\"Guide
+        to Staking \\u0026 Nominating DOT\",\"link\":\"https://figment.network/resources/polkadot-guide-to-staking-nominating-dot/\"}],\"activationBlock\":null,\"update\":\"\",\"submissionId\":\"341a254d-5a6a-4f9c-b293-b6926c6a84dc\"},{\"eventId\":\"4f2263c9-15b1-4d60-bf9f-5e4dce57c390\",\"authorId\":\"google-oauth2|113893247094344112466\",\"createDate\":\"2020-07-20T04:00:00Z\",\"updateDate\":\"2020-07-20T04:00:00Z\",\"createAuthorName\":\"Wilson
+        Withiam\",\"updateAuthorName\":\"Wilson Withiam\",\"eventName\":\"Mainnet
+        Rollout Phase 3: Unlock Governance\",\"assets\":[\"polkadot\"],\"details\":\"The
+        Web3 Foundation used its \\\"superuser\\\" (aka Sudo) key to upgrade the network
+        and unlock full governance functionality. This move gave the newly elected
+        13-member Council and DOT token holders the ability to propose and vote on
+        protocol improvements or changes. Polkadot also has a three-member Technical
+        Committee, with two seats held by the Parity and another one managed by the
+        Web3 Foundation. Technical Committee members can carry out protocol changes
+        quickly should a network issue arise. But this proposal must be officially
+        approved by an accelerated Council vote before upgrading.\\n\\nMost believe
+        that the first action taken by the Council would be to remove the Sudo privileges
+        from the Web3 Foundation and hand power over the protocol to the Council and
+        the token holder community.\",\"eventDate\":\"2020-07-20T04:00:00Z\",\"softDate\":\"\",\"status\":\"Completed\",\"category\":\"Network
+        Change\",\"subcategory\":\"Software Release\",\"tags\":[\"\"],\"importance\":\"Medium\",\"resources\":[{\"name\":\"Polkadot
+        Launch Phases 3 \\u0026 4 Explanation\",\"link\":\"https://medium.com/polkadot-network/polkadot-launch-phases-3-4-8cb2e8c2a187\"},{\"name\":\"Messari
+        Analysis\",\"link\":\"https://messari.io/article/polkadot-unlocks-on-chain-governance-features-and-completes-first-community-led-upgrade\"}],\"activationBlock\":null,\"update\":\"\",\"submissionId\":\"9298d44d-cf97-4bae-8fa1-ffe51203f347\"},{\"eventId\":\"ec98c3b7-5789-4eb0-90ba-b683627a84cd\",\"authorId\":\"google-oauth2|113893247094344112466\",\"createDate\":\"2020-02-09T05:00:00Z\",\"updateDate\":\"2020-02-09T05:00:00Z\",\"createAuthorName\":\"Wilson
+        Withiam\",\"updateAuthorName\":\"Wilson Withiam\",\"eventName\":\"Coinbase
+        Custody Support\",\"assets\":[\"polkadot\"],\"details\":\"The Web3 Foundation
+        announced it [partnered](https://web3.foundation/download/press/Polkadot_Claims_Process.pdf)
+        with Coinbase’s custody subsidiary to offer a custody solution for Polkadot’s
+        native token, DOT. Institutional investors that participated in Polkadot’s
+        previous token sales can now claim their DOT allocations with their existing
+        Coinbase Custody accounts.\\n\\nThe Web3 Foundation simultaneously launched
+        a [dedicated website](https://claims.polkadot.network/) that lists a few alternative
+        claims processes for those investors without a Coinbase Custody account.\",\"eventDate\":\"2020-02-09T05:00:00Z\",\"softDate\":\"\",\"status\":\"Completed\",\"category\":\"Token
+        Listing\",\"subcategory\":\"Custody Platform Listing\",\"tags\":[\"\"],\"importance\":\"Low\",\"resources\":[{\"name\":\"Messari
+        Analysis\",\"link\":\"https://messari.io/article/web3-foundation-partners-with-coinbase-custody-and-allows-polkadot-investors-to-start-claiming-their-dot-tokens\"},{\"name\":\"Polkadot
+        Announcement\",\"link\":\"https://polkadot.network/web3-foundation-launches-polkadot-claims-process-partners-with-coinbase-custody-for-claiming-dots/\"}],\"activationBlock\":null,\"update\":\"\",\"submissionId\":\"9f9ecefb-d32b-426b-b2ab-e5dc016eb9d6\"},{\"eventId\":\"0d0a734a-399d-4dc4-ac37-90539ce67adb\",\"authorId\":\"google-oauth2|113893247094344112466\",\"createDate\":\"2020-06-25T04:00:00Z\",\"updateDate\":\"2020-06-25T04:00:00Z\",\"createAuthorName\":\"Wilson
+        Withiam\",\"updateAuthorName\":\"Wilson Withiam\",\"eventName\":\"Staking
+        Reward Curve Update\",\"assets\":[\"polkadot\"],\"details\":\"The Polkadot
+        team opted to modify the staking reward curve in the next runtime upgrade.
+        The change will increase the optimal staking percentage from 50% to 75%. Now
+        if the percentage of DOT tokens staked relative to the total supply rises
+        above 75%, the annual inflation rate will decrease. If the percentage of network
+        staked falls below 75%, then the annual inflation rate will increase to incentivize
+        holders to start staking. The Polkadot team expects to keep this new optimal
+        staking percentage at least until parachains are active.\",\"eventDate\":\"2020-06-25T04:00:00Z\",\"softDate\":\"\",\"status\":\"Proposed\",\"category\":\"Network
+        Change\",\"subcategory\":\"Software Release\",\"tags\":[\"\"],\"importance\":\"Medium\",\"resources\":[{\"name\":\"Staking
+        Reward Curve Update Pull Request\",\"link\":\"https://github.com/paritytech/polkadot/pull/1302\"},{\"name\":\"Staking
+        Reward Curve Update Explanation\",\"link\":\"https://twitter.com/BillLaboon/status/1275345730627084289\"}],\"activationBlock\":null,\"update\":\"\",\"submissionId\":\"38eb810c-e2c8-4c90-bcfe-4509bd3ea334\"},{\"eventId\":\"7666b32b-404f-466c-941f-d8ecd1505468\",\"authorId\":\"google-oauth2|114485335826372423133\",\"createDate\":\"2020-05-08T04:00:00Z\",\"updateDate\":\"2020-08-18T15:13:08Z\",\"createAuthorName\":\"Wilson
+        Withiam\",\"updateAuthorName\":\"Eric Turner\",\"eventName\":\"Mainnet Rollout
+        Phase 5: Unlock DOT transfers\",\"assets\":[\"polkadot\"],\"details\":\"Phase
+        5 of Polkadot’s mainnet rollout plan will involve unlocking DOT token transfers.
+        This upgrade should be one of the first proposals put up for a vote after
+        Polkadot's newly anointed Council removes Web3 Foundation's superuser (Sudo)
+        privileges. Once token transfers are live, exchanges will be able to start
+        listing DOT.\",\"eventDate\":\"2020-08-18T04:00:00Z\",\"softDate\":\"\",\"status\":\"Completed\",\"category\":\"Network
+        Change\",\"subcategory\":\"On-Chain Upgrade\",\"tags\":[\"\"],\"importance\":\"High\",\"resources\":[{\"name\":\"Polkadot
+        Mainnet Rollout Roadmap\",\"link\":\"https://medium.com/polkadot-network/explaining-the-polkadot-launch-process-f3925b40dbd\"},{\"name\":\"Messari
+        Analysis\",\"link\":\"https://messari.io/article/polkadot-goes-live-with-the-release-of-its-first-mainnet-chain-candidate\"},{\"name\":\"Referendum
+        Vote\",\"link\":\"https://polkadot.polkassembly.io/referendum/1\"}],\"activationBlock\":1205128,\"update\":\"Polkadot
+        [confirmed](https://polkadot.network/transferability-and-redenomination-public-notice/)
+        that token transferability will be enabled at block #1,205,128, which is expected
+        to arrive around 16:40 UTC (12:40 pm ET) on Aug. 18, 2020. This event will
+        not coincide with DOT's redenomination, which won't take place until 72 hours
+        after token transfers are unlocked (around 16:40 UTC on Aug. 21, 2020, at
+        block #1,248,328).\",\"submissionId\":\"039ccb6e-6aa1-4673-b552-d29f87a314e4\"},{\"eventId\":\"5012f626-67fe-402c-ba48-f5602d5a3515\",\"authorId\":\"google-oauth2|113893247094344112466\",\"createDate\":\"2020-08-07T13:47:10Z\",\"updateDate\":\"2020-08-28T15:06:54Z\",\"createAuthorName\":\"Wilson
+        Withiam\",\"updateAuthorName\":\"Wilson Withiam\",\"eventName\":\"Polkadot
+        v0.8.22\",\"assets\":[\"polkadot\",\"kusama\"],\"details\":\"The Polkadot
+        team released protocol [v0.8.22](https://github.com/paritytech/polkadot/releases/tag/v0.8.22)
+        on Aug. 7, 2020, to reduce the slash defer duration and add support for the
+        [Rococo testnet](https://polkadot.network/introducing-rococo-polkadots-parachain-testnet/),
+        among other improvements and bug fixes. The team said this is a high priority
+        upgrade and encourages node operators to upgrade to the latest version at
+        their earliest convenience.\",\"eventDate\":\"2020-08-07T04:00:00Z\",\"softDate\":\"\",\"status\":\"Pending\",\"category\":\"Network
+        Change\",\"subcategory\":\"Software Release\",\"tags\":[\"\"],\"importance\":\"High\",\"resources\":[{\"name\":\"Release
+        Notes\",\"link\":\"https://github.com/paritytech/polkadot/releases/tag/v0.8.22\"}],\"activationBlock\":null,\"update\":\"This
+        release, which introduced a new network runtime as well as DOT transfers,
+        [also changed](https://dotleap.substack.com/p/dot-leap-16) the Council terms
+        to a seven-day duration. Therefore, anyone who’s elected has seven days to
+        prove their worth to earn a second nomination. Council members are voted in
+        by DOT holders to oversee the on-chain governance system and fast-track upgrade
+        proposals that are time-sensitive.\",\"submissionId\":\"ede4bce0-2cef-4a95-aedd-5898b2513e40\"},{\"eventId\":\"ef5e8aa9-99cd-4c49-ae90-292e386d6edf\",\"authorId\":\"google-oauth2|114485335826372423133\",\"createDate\":\"2020-08-14T13:11:57Z\",\"updateDate\":\"2020-08-14T13:11:57Z\",\"createAuthorName\":\"Wilson
+        Withiam\",\"updateAuthorName\":\"Eric Turner\",\"eventName\":\"Deprecation
+        of Sentry Nodes\",\"assets\":[\"polkadot\",\"kusama\"],\"details\":\"Polkadot
+        sentry nodes have provided DoS (Denial of Service) and other types of protection
+        to validators within the network. However, project developers have determined
+        these nodes make the DHT routing process overly complicated and introduce
+        some potentially harmful latency into the information relaying process. Therefore,
+        the project intends to deprecate sentry nodes sometime in Oct. 2020 with additional
+        plans to revamp the [secure validator setup](https://wiki.polkadot.network/docs/en/maintain-guides-secure-validator).\",\"eventDate\":null,\"softDate\":\"October
+        2020\",\"status\":\"Discussed\",\"category\":\"Network Change\",\"subcategory\":\"Software
+        Release\",\"tags\":[\"\"],\"importance\":\"Medium\",\"resources\":[{\"name\":\"Deprecation
+        of Sentry Nodes Discussion\",\"link\":\"https://github.com/paritytech/substrate/issues/6845\"}],\"activationBlock\":null,\"update\":\"\",\"submissionId\":\"016f3279-0437-4fa3-af27-d318c57f6a3d\"},{\"eventId\":\"3272d97c-4d5d-4ec2-bcca-bc22b88b79a7\",\"authorId\":\"google-oauth2|113893247094344112466\",\"createDate\":\"2019-11-12T05:00:00Z\",\"updateDate\":\"2020-08-13T20:51:00Z\",\"createAuthorName\":\"Wilson
+        Withiam\",\"updateAuthorName\":\"Wilson Withiam\",\"eventName\":\"Pact Integration
+        on Polkadot\",\"assets\":[\"kadena\",\"polkadot\"],\"details\":\"Kadena signed
+        an agreement with the Web3 Foundation to explore implementing Pact (Kadena's
+        native smart contracting language) on Polkadot. According to the agreement,
+        the technical feasibility study was set to begin \\\"immediately.\\\" If successful,
+        both parties will consider further steps towards a mainnet deployment.\",\"eventDate\":null,\"softDate\":\"TBD\",\"status\":\"Pending\",\"category\":\"Network
+        Change\",\"subcategory\":\"Network Integration\",\"tags\":[\"\"],\"importance\":\"Low\",\"resources\":[{\"name\":\"Announcement\",\"link\":\"https://medium.com/kadena-io/kadena-to-explore-implementation-of-pact-for-polkadot-ecosystem-be2253d84a6c\"},{\"name\":\"Public
+        Discussion\",\"link\":\"https://github.com/kadena-io/KIPs/pull/8\"}],\"activationBlock\":null,\"update\":\"Kadena
+        provided an update on its work with the Web3 Foundation and Polkadot on Aug.
+        12, 2020. The two co-developed Pact Core, which is an on-chain interpreter
+        that would allow Polkadot or any WASM-compatible platform to execute Pact
+        smart contract code natively. Kadena and Polkadot agreed to open an RFC (Request
+        for Comment) where community members can participate in the Pact Core design
+        process. The public discussion can be viewed [here](https://github.com/kadena-io/KIPs/pull/8).\\n\\nKadena
+        also presented an alternative proposal that could accelerate its integration
+        with Polkadot. In this second proposal, the Kadena team would designate its
+        permissioned blockchain, Kuro, to operate as a parachain within the Polkadot
+        ecosystem. This setup would allow for a connection between Kadena and Polkadot
+        using the Kuro parachain, called KadenaDOT, acting as the cross-chain bridge.
+        The Kadena team would prefer to solicit feedback from its community on the
+        idea of bringing KadenaDOT to market first before Pact Core. No decision has
+        been made at the moment.\",\"submissionId\":\"b72baeca-70c1-4115-967e-67e96e6d0c2a\"},{\"eventId\":\"03d13e60-fe5d-40e5-8f7d-75331a512a12\",\"authorId\":\"google-oauth2|113893247094344112466\",\"createDate\":\"2020-09-01T15:15:14Z\",\"updateDate\":\"2020-09-15T17:11:50Z\",\"createAuthorName\":\"Wilson
+        Withiam\",\"updateAuthorName\":\"Wilson Withiam\",\"eventName\":\"Polkadot
+        v0.8.23\",\"assets\":[\"polkadot\",\"kusama\"],\"details\":\"The Polkadot
+        team released protocol [v0.8.23](https://github.com/paritytech/polkadot/releases/tag/v0.8.23)
+        on Aug. 31, 2020, which added a [limit](https://github.com/paritytech/substrate/pull/6398)
+        to the block packet size, [refactored](https://github.com/paritytech/substrate/pull/6759)
+        the global snapshot, and [updated](https://github.com/paritytech/substrate/pull/6870)
+        Substrate's libp2p network framework to v0.23. It also introduced native runtimes
+        23 for Polkadot and 2023 for Kusama. The Polkadot team considered this release
+        to be a medium priority upgrade and is therefore recommended but not mandatory.\",\"eventDate\":\"2020-09-15T00:00:00Z\",\"softDate\":\"\",\"status\":\"Completed\",\"category\":\"Network
+        Change\",\"subcategory\":\"Software Release\",\"tags\":[\"\"],\"importance\":\"Medium\",\"resources\":[{\"name\":\"Release
+        Notes\",\"link\":\"https://github.com/paritytech/polkadot/releases/tag/v0.8.23\"}],\"activationBlock\":1402736,\"update\":\"After
+        a two-week delay, Polkadot has [officially upgraded](https://twitter.com/gavofyork/status/1305806445510823936?s=20)
+        to runtime 23 on Sep. 15, 2020. The reason for the delay was a [pending audit](https://dotleap.substack.com/p/dot-leap-17)
+        of the [new codec for NPoS](https://github.com/paritytech/substrate/pull/6720)
+        (Nominated Proof-of-Stake) selection process, which added support for paying
+        out staking rewards to any account. Since Polkadot's Council already approved
+        the upgrade proposal (detailed in [Motion 13](https://polkadot.polkassembly.io/referendum/3))
+        back on Sep. 1, 2020, the Polkadot's Technical Committee stepped in to speed
+        up the execution process on Sep. 15, 2020.\",\"submissionId\":\"80be1dff-f257-49ab-8560-833b05e76500\"},{\"eventId\":\"11986bfe-fd7e-4685-94ec-53c1b395530e\",\"authorId\":\"google-oauth2|113893247094344112466\",\"createDate\":\"2020-07-21T04:00:00Z\",\"updateDate\":\"2020-07-21T04:00:00Z\",\"createAuthorName\":\"Wilson
+        Withiam\",\"updateAuthorName\":\"Wilson Withiam\",\"eventName\":\"Mainnet
+        Rollout Phase 4: Remove Sudo\",\"assets\":[\"polkadot\"],\"details\":\"After
+        receiving governance responsibilities, the Council submitted the first Polkadot
+        referendum to remove the \\\"superuser\\\" privileges (aka Sudo) held by the
+        Web3 Foundation. This Sudo ability allowed the Foundation to manage the chain
+        and initiate runtime upgrades during Polkadot's early phases, such as when
+        the network converted to its Nominated Proof-of-Stake (NPoS) protocol. With
+        the removal of these admin keys, Polkadot has now transitioned from a candidate
+        chain to its official mainnet and no longer operates similarly to a permissioned
+        network.\\n\\nThe network's future direction is now in the hands of its on-chain
+        governance system, a three-chamber model consisting of a Council, a [Technical
+        Committee](https://polkascan.io/polkadot/account/tech-comm), and DOT token
+        holders. The Web3 Foundation also said, \\\"one of the first post-Sudo upgrades
+        will likely enable balance transfers in the network.\\\"\",\"eventDate\":\"2020-07-21T04:00:00Z\",\"softDate\":\"\",\"status\":\"Completed\",\"category\":\"Network
+        Change\",\"subcategory\":\"On-Chain Upgrade\",\"tags\":[\"\"],\"importance\":\"High\",\"resources\":[{\"name\":\"Polkadot
+        Launch Phases 3 \\u0026 4 Explanation\",\"link\":\"https://medium.com/polkadot-network/polkadot-launch-phases-3-4-8cb2e8c2a187\"},{\"name\":\"Messari
+        Analysis\",\"link\":\"https://messari.io/article/polkadot-unlocks-on-chain-governance-features-and-completes-first-community-led-upgrade\"}],\"activationBlock\":null,\"update\":\"\",\"submissionId\":\"e9762be6-ad39-45af-ac87-278c97ce842f\"},{\"eventId\":\"a1707a6b-8ae8-462e-97d7-91479f03baf0\",\"authorId\":\"auth0|5f15970d7c4a0f00130fbdca\",\"createDate\":\"2020-10-22T00:00:00Z\",\"updateDate\":\"2020-10-22T00:00:00Z\",\"createAuthorName\":\"aidan@messari.io\",\"updateAuthorName\":\"aidan@messari.io\",\"eventName\":\"Bitfinex
+        Staking Support \",\"assets\":[\"polkadot\"],\"details\":\"Bitfinex is now
+        offering staking rewards for Polkadot (DOT). The staked tokens will be held
+        in Bitfinex's cold wallets.\",\"eventDate\":\"2020-10-22T00:00:00Z\",\"softDate\":\"\",\"status\":\"Completed\",\"category\":\"Token
+        Listing\",\"subcategory\":\"Staking Service Listing\",\"tags\":[\"\"],\"importance\":\"Low\",\"resources\":[{\"name\":\"Bitfinex
+        Announcement\",\"link\":\"https://www.bitfinex.com/posts/544\"}],\"activationBlock\":null,\"update\":\"\",\"submissionId\":\"40ce221e-9987-41fc-998f-05a6adf8f270\"},{\"eventId\":\"2de5622e-a09f-4d81-a69a-2279443fa9d9\",\"authorId\":\"auth0|5f15970d7c4a0f00130fbdca\",\"createDate\":\"2020-07-12T04:00:00Z\",\"updateDate\":\"2020-08-21T17:12:30Z\",\"createAuthorName\":\"Wilson
+        Withiam\",\"updateAuthorName\":\"aidan@messari.io\",\"eventName\":\"DOT Redenomination\",\"assets\":[\"polkadot\"],\"details\":\"The
+        Web3 Foundation plans to submit the first proposal for a Polkadot community
+        vote. It will give DOT holders the option to change the denomination between
+        DOT and its smallest unit, Plancks, by a factor of 10, 100, 1000, or keep
+        it the same. If the community votes for a change, it will also increase the
+        initial supply of DOTs by the same number. It is a purely cosmetic change,
+        as the supply increase should come with a respective decrease in the dollar
+        amount of each token. If a change is approved, the redenomination will officially
+        occur after token transfers go live.\",\"eventDate\":\"2020-08-21T04:00:00Z\",\"softDate\":\"\",\"status\":\"Pending\",\"category\":\"Token
+        Supply\",\"subcategory\":\"Other Token Change\",\"tags\":[\"Governance Vote\"],\"importance\":\"Very
+        High\",\"resources\":[{\"name\":\"Proposal Announcement\",\"link\":\"https://polkadot.network/the-first-polkadot-vote/\"},{\"name\":\"Messari
+        Analysis\",\"link\":\"https://messari.io/article/dot-will-have-a-new-initial-supply-after-token-transfers-go-live-in-august\"},{\"name\":\"Redenomination
+        Guide\",\"link\":\"https://docs.google.com/document/d/1yAzoDh99PgR_7dYAKTWLMVu2Fy5Ga-J6t9lof4f4JUw/edit#heading=h.nn6lodwu31m3\"}],\"activationBlock\":1248328,\"update\":\"Polkadot
+        announced that the network [completed](https://twitter.com/Polkadot/status/1296853096799309824)
+        the redenomination process at block #1,248,328 on Aug. 21, 2020 (at 16:48
+        UTC), as expected. '\U0001D615\U0001D626\U0001D638 \U0001D60B\U0001D616\U0001D61B'
+        is now 100x smaller than 'DOT (old)'. Therefore, DOT account balances are
+        now 100x higher, and the price per DOT is 100x lower. Eventually, the '\U0001D615\U0001D626\U0001D638
+        \U0001D60B\U0001D616\U0001D61B' will assume the ticker DOT while 'DOT (old)'
+        will be deprecated.  Exchanges and wallet providers should adjust their DOT
+        price and supply displays accordingly. The list of best practices for redenominating
+        DOT c[an b](https://medium.com/polkadot-network/denomination-day-ecosystem-project-guidance-de9b7d1768aa)e
+        found here. The full redenomination guide i[s av](https://docs.google.com/document/d/1yAzoDh99PgR_7dYAKTWLMVu2Fy5Ga-J6t9lof4f4JUw/edit#heading=h.nn6lodwu31m3)ailable
+        here.\",\"submissionId\":\"90bfbf51-df60-4f18-af5f-64f4d2d01818\"},{\"eventId\":\"0804d4de-d6a0-4785-bf30-18f149624d8b\",\"authorId\":\"google-oauth2|113893247094344112466\",\"createDate\":\"2020-05-05T04:00:00Z\",\"updateDate\":\"2020-08-28T03:07:32Z\",\"createAuthorName\":\"Eric
+        Turner\",\"updateAuthorName\":\"Wilson Withiam\",\"eventName\":\"Polkadot
+        Bridge\",\"assets\":[\"cosmos\",\"polkadot\"],\"details\":\"The Web3 Foundation,
+        the non-profit that helps fund development for Polkadot, issued a grant to
+        staking provider and development group Chorus One to build a bridge between
+        Cosmos and Polkadot. From a more general perspective, this effort will enable
+        all Substrate and Cosmos SDK-based blockchains to interoperate.\",\"eventDate\":null,\"softDate\":\"TBD\",\"status\":\"Pending\",\"category\":\"Network
+        Change\",\"subcategory\":\"Network Integration\",\"tags\":[\"\"],\"importance\":\"Low\",\"resources\":[{\"name\":\"Announcement\",\"link\":\"https://medium.com/chorus-one/chorus-one-receives-web3-foundation-grant-to-bridge-polkadot-and-cosmos-ecosystems-270fa52cf922\"},{\"name\":\"ICF
+        Funds cdot\",\"link\":\"\"}],\"activationBlock\":null,\"update\":\"The Interchain
+        Foundation (ICF), the non-profit organization that helps fund Cosmos ecosystem
+        development, recently funded development group cdot to build an IBC Substrate
+        pallet, which will serve as a bridge between Polkadot and Cosmos. cdot has
+        also joined forces with Chorus One and Informal Systems to form the Substrate
+        IBC Working Group. These three development teams will work to coordinate their
+        individual efforts to bridge the Polkadot and Cosmos ecosystems.\",\"submissionId\":\"6e89e3b0-8ab0-4d86-a631-04d591c8700f\"},{\"eventId\":\"ac35db31-955e-4d17-8029-1d57086a5e29\",\"authorId\":\"google-oauth2|113893247094344112466\",\"createDate\":\"2020-08-28T15:51:31Z\",\"updateDate\":\"2020-08-28T15:51:31Z\",\"createAuthorName\":\"Wilson
+        Withiam\",\"updateAuthorName\":\"Wilson Withiam\",\"eventName\":\"Reduce Existential
+        Deposit\",\"assets\":[\"polkadot\"],\"details\":\"Polkadot (and Kusama) requires
+        users to have an \\\"[existential deposit](https://wiki.polkadot.network/docs/en/learn-accounts#existential-deposit-and-reaping)\\\"
+        when generating a new address or to avoid their account from being \\\"reaped.\\\"
+        This existential deposit serves as a minimum balance that user accounts must
+        have to submit transactions. Polkadot and Kusama wipe addresses with balances
+        below the existential deposit minimum from the blockchain's state to conserve
+        space. Users don't lose access to their funds as long as they still have the
+        corresponding private key or seed phase, but users will need to top-off their
+        account with new DOT or KSM for it to register on the network.\\n\\nThe recent
+        DOT redenomination increased Polkadot's existential deposit minimum from 0.01
+        DOT (old) to 1 DOT, which might be too expensive for some new DOT holders.
+        Therefore, the community is discussing [a proposal](https://polkadot.polkassembly.io/post/24)
+        to reduce the existential deposit from 1 DOT to 0.05 DOT.\",\"eventDate\":null,\"softDate\":\"TBD\",\"status\":\"Discussed\",\"category\":\"Network
+        Change\",\"subcategory\":\"Software Release\",\"tags\":[\"\"],\"importance\":\"Medium\",\"resources\":[{\"name\":\"Reduce
+        Existential Deposit Proposal Discussion\",\"link\":\"https://polkadot.polkassembly.io/post/24\"},{\"name\":\"Explanation
+        of Existential Deposit and Reaping\",\"link\":\"https://wiki.polkadot.network/docs/en/learn-accounts#existential-deposit-and-reaping\"}],\"activationBlock\":null,\"update\":\"\",\"submissionId\":\"daf7fc97-7e5d-4f5d-b7b8-a592366d2283\"},{\"eventId\":\"d6754457-173e-4fa2-9e4d-2da65f2d64ed\",\"authorId\":\"google-oauth2|113893247094344112466\",\"createDate\":\"2020-08-19T00:00:00Z\",\"updateDate\":\"2020-08-19T00:00:00Z\",\"createAuthorName\":\"Wilson
+        Withiam\",\"updateAuthorName\":\"Wilson Withiam\",\"eventName\":\"Automated
+        Increase in Validator Count\",\"assets\":[\"polkadot\"],\"details\":\"The
+        Polkadot community has opened a discussion on potentially increasing the validator
+        count at specified time increments (for instance, two validators per day)
+        until the network reaches its current max target of 1,000 validators. If implemented,
+        this change could shorten the time and lessen the number of subsequent proposals
+        required to achieve this validator count. Kusama has already implemented a
+        similar change without any ramifications to date.\\n\\nWhile favorable to
+        prospective validators, some community members [warn](https://dotleap.substack.com/p/dot-leap-16)
+        that mirroring Kusama might not be the best idea until Polkadot activates
+        parachain support. Moving fast and breaking things is fine on Kusama, but
+        security and stability is paramount for Polkadot\",\"eventDate\":null,\"softDate\":\"TBD\",\"status\":\"Discussed\",\"category\":\"Network
+        Change\",\"subcategory\":\"Software Release\",\"tags\":[\"\"],\"importance\":\"Low\",\"resources\":[{\"name\":\"Automated
+        Increase in Validator Count Discussion\",\"link\":\"https://polkadot.polkassembly.io/post/25\"},{\"name\":\"Community
+        Pushback\",\"link\":\"https://dotleap.substack.com/p/dot-leap-16\"}],\"activationBlock\":null,\"update\":\"\",\"submissionId\":\"e1e653ff-ccba-46b4-8ed7-86a59d066791\"},{\"eventId\":\"5039f5b5-bc30-411b-90de-d0720ee09f82\",\"authorId\":\"google-oauth2|113893247094344112466\",\"createDate\":\"2020-08-27T00:00:00Z\",\"updateDate\":\"2020-08-27T00:00:00Z\",\"createAuthorName\":\"Wilson
+        Withiam\",\"updateAuthorName\":\"Wilson Withiam\",\"eventName\":\"Polkadot-Ethereum
+        Bridge\",\"assets\":[\"polkadot\",\"ethereum\"],\"details\":\"Development
+        group Snowfork is working with the Web3 Foundation to build a [\\\"trustless\\\"
+        bridge between Ethereum and Polkadot](https://snowfork.substack.com/p/a-trustless-general-purpose-polkadot),
+        one that can facilitate the transfer of arbitrary state, messages, and assets
+        across the two chains. The team will launch the bridge in phases, with Phase
+        1, a Proof-of-Concept (PoC), expected to go live around mid-September 2020.
+        Phase 2, anticipated for Nov. 2020, will enable the bridge to read the state
+        of the Ethereum blockchain. Snowfork expects the bridge to be production-ready
+        (Phase 3) by Feb. or Mar. of 2021.\",\"eventDate\":null,\"softDate\":\"Sep.
+        2020\",\"status\":\"Pending\",\"category\":\"Network Change\",\"subcategory\":\"Network
+        Integration\",\"tags\":[\"\"],\"importance\":\"Low\",\"resources\":[{\"name\":\"Announcement\",\"link\":\"https://snowfork.substack.com/p/a-trustless-general-purpose-polkadot\"},{\"name\":\"CoinDesk
+        Coverage\",\"link\":\"https://www.coindesk.com/ethereum-polkadot-bridge-proof-of-concept\"}],\"activationBlock\":null,\"update\":\"\",\"submissionId\":\"e32db178-1da7-4694-bfa1-e57e824dd728\"},{\"eventId\":\"e7904d2e-8b38-4623-84c0-65cd73af2b5d\",\"authorId\":\"google-oauth2|113893247094344112466\",\"createDate\":\"2020-09-25T00:00:00Z\",\"updateDate\":\"2020-09-25T00:00:00Z\",\"createAuthorName\":\"Wilson
+        Withiam\",\"updateAuthorName\":\"Wilson Withiam\",\"eventName\":\"Referendum
+        6: Time Delay Proxy Fix\",\"assets\":[\"polkadot\"],\"details\":\"The Polkadot
+        Council passed and executed Referendum 6 on Sep. 24, 2020. The proposed offered
+        a fix for a bug in the time delay proxy feature first introduced in Polkdot
+        v0.8.23. This bug was not addressed before the upgrade to Polkdot v0.8.24,
+        leading the runtime upgrade to put incorrect information in the Proxy pallet's
+        storage. The bug did not impact any validator or nominator accounts or balances.
+        This fix was a preventative measure to remove the risk of any related issues
+        during the next runtime upgrade.\",\"eventDate\":\"2020-09-24T00:00:00Z\",\"softDate\":\"\",\"status\":\"Completed\",\"category\":\"Network
+        Change\",\"subcategory\":\"On-Chain Upgrade\",\"tags\":[\"\"],\"importance\":\"Low\",\"resources\":[{\"name\":\"Referendum
+        6 Details\",\"link\":\"https://polkadot.polkassembly.io/referendum/6\"}],\"activationBlock\":null,\"update\":\"\",\"submissionId\":\"077f591d-3edf-4de0-8084-2ada24fa6366\"},{\"eventId\":\"3963fff1-e0fd-4929-bddd-e26b99e371a4\",\"authorId\":\"google-oauth2|113893247094344112466\",\"createDate\":\"2020-08-13T00:01:21Z\",\"updateDate\":\"2020-09-11T04:13:54Z\",\"createAuthorName\":\"Wilson
+        Withiam\",\"updateAuthorName\":\"Wilson Withiam\",\"eventName\":\"Validator
+        Slashings\",\"assets\":[\"polkadot\"],\"details\":\"On Aug. 11, 2020, the
+        Polkadot network slashed at least one validator (WEB3ITALYDOT) that impacted
+        this validator and 29 nominators. In total, 5,271.567 DOT were slashed, which
+        is worth about $600,000 as of Polkadot's last rumored private valuation. There
+        is no explanation as to why WEB3ITALYDOT got slashed, but [here](https://wiki.polkadot.network/docs/en/learn-staking#slashing)
+        are the different levels of slashable offenses within Polkadot.\\n\\nAs with
+        all Polkadot slashing events, there is a 28 day deferral period during which
+        the Polkadot Council can cancel the slash and return the lost funds to the
+        validator and nominators if they so choose. If the 28 days expire without
+        a Council intervention, the funds will go to Polkadot's on-chain treasury
+        (controlled by DOT holders) or the reports of the event should the slashing
+        be the result of an equivocation. There are more details on Polkadot's slashing
+        design [here](https://wiki.polkadot.network/docs/en/learn-staking#slashing).\",\"eventDate\":\"2020-08-11T04:00:00Z\",\"softDate\":\"\",\"status\":\"Completed\",\"category\":\"Token
+        Supply\",\"subcategory\":\"Other Token Change\",\"tags\":[\"\"],\"importance\":\"Low\",\"resources\":[{\"name\":\"Polkadot
+        Explorer Slash Tracker\",\"link\":\"https://polkadot.js.org/apps/#/staking/slashes\"},{\"name\":\"What
+        is Polkadot's Slashing Design?\",\"link\":\"https://wiki.polkadot.network/docs/en/learn-staking#slashing\"}],\"activationBlock\":null,\"update\":\"One
+        of the validators impacted by the slashing event that occurred between Polkadot
+        eras 69 and 70, Web3Italy, submitted a [Council-only governance proposal](https://polkadot.polkassembly.io/motion/16)
+        to cancel the slash events carried out against it. On Sep. 10, 2020, the Council
+        approved and executed the proposal, meaning the previously slashed assets
+        belonging to Web3Italy validators will be returned. All of the other slashed
+        DOT will remain in Polkadot's community governed treasury. This vote could
+        set a precedent for future slashing events and cancellation proposals.\",\"submissionId\":\"155d1762-53ae-4bed-861a-533bc8a41ee9\"},{\"eventId\":\"295e137e-603e-46f8-9070-8197b6681642\",\"authorId\":\"google-oauth2|113893247094344112466\",\"createDate\":\"2020-09-11T07:06:24Z\",\"updateDate\":\"2020-10-06T21:56:16Z\",\"createAuthorName\":\"Wilson
+        Withiam\",\"updateAuthorName\":\"Wilson Withiam\",\"eventName\":\"Parachain
+        Support\",\"assets\":[\"polkadot\",\"kusama\"],\"details\":\"Parachains are
+        application-specific chains built using the Substrate blockchain framework
+        that can plug into Polkadot's foundational layer (known as the Relay Chain).
+        Substrate-based chains can operate independently, but by connecting to Polkadot's
+        Relay Chain, they rent security and transaction guarantees from Polkadot and
+        communicate with other bonded parachains. The addition of parachains is one
+        of the final stages in Polkadot's early roadmap to becoming feature-complete.\\n\\nPolkadot
+        did not support parachains at launch, but project developers have a three-phase
+        plan for launching parachains on the Kusama and Polkadot main networks. As
+        mentioned previously by the team, developers will add support for parachains
+        on Kusama first to test-run this new feature before launching them on Polkadot.\\n-
+        Phase 0: Early support for parachains (more like a Proof-of-Concept) but will
+        not include slashing penalties or cross-chain messaging\\n- Phase 1: Enhance
+        parachain security by adding slashing and will include a primitive, albeit
+        non-functional, version of Polkadot's cross-chain communication protocol (XCMP)\\n-
+        Phase 2: Full support for cross-chain messaging\",\"eventDate\":null,\"softDate\":\"Q4
+        2020\",\"status\":\"Pending\",\"category\":\"Network Change\",\"subcategory\":\"Software
+        Release\",\"tags\":[\"\"],\"importance\":\"Medium\",\"resources\":[{\"name\":\"Parachain
+        Roadmap\",\"link\":\"https://github.com/paritytech/polkadot/blob/master/roadmap/parachains.md\"},{\"name\":\"Parachain
+        Documentation\",\"link\":\"https://wiki.polkadot.network/docs/en/learn-parachains\"},{\"name\":\"Obtaining
+        a Parachain Slot\",\"link\":\"https://polkadot.network/obtaining-a-parachain-slot-on-polkadot/\"}],\"activationBlock\":null,\"update\":\"Polkadot
+        released new details on how Substrate-based chains can obtain and keep a parachain
+        slot once the feature is live. Polkadot will auction off these slots to prospective
+        parachains via [\\\"unpermissioned candle auctions\\\"](https://wiki.polkadot.network/docs/en/learn-auction#how-its-used-in-polkadot)
+        where the winning bid will be a function of time (when the auction ends) and
+        the size of the bid (submitted in the form of DOTs). Projects can acquire
+        these DOTs outright or raise funds in an Initial Parachain Offering where
+        projects can crowdsource enough DOT loans to win a slot. More details of Initial
+        Parachain Offerings are available [here](https://polkadot.network/obtaining-a-parachain-slot-on-polkadot/).\\n\\nProjects
+        can rent out a slot for a maximum of two years, after which the slot will
+        go back up for auction. The Polkadot team said that projects with a native
+        token could set up an on-chain fund (such as [Acala's decentralized Sovereign
+        Wealth Fund](https://medium.com/acalanetwork/building-a-decentralized-sovereign-wealth-fund-6a5a0ae995b1#:~:text=Consider%20Acala%20Network%20as%20its,a%20well%2Dmanaged%20dSWF%20could))
+        that uses a percentage of network transaction fees and inflation to acquire
+        new DOTs. This system could allow projects to independently fund a higher
+        portion of their own parachain slot over time. There are other options, such
+        as [Parathreads](https://wiki.polkadot.network/docs/en/learn-parathreads)
+        or Kusama, for those chains that can't afford a standalone parachain slot
+        on Polkadot.\\n\\nPolkadot eventually plans to support up 100 parachains but
+        will start with limited availability. The goal would be to gradually add new
+        slots over \\\"the next couple of years\\\" until the target number of 100
+        is reached. Of these available slots, the Web3 Foundation (W3F) said it could
+        reserve up to [20%](https://research.web3.foundation/en/latest/polkadot/Parachain-Allocation.html)
+        of parachain slots for community beta parachain projects that the W3F will
+        deploy or support. Polkadot also mentioned that parachain support would likely
+        be added before the end of 2020.\",\"submissionId\":\"f6c13f74-791c-4510-abe8-17bf02240932\"},{\"eventId\":\"578ca0d6-97ec-4367-a6a0-56d507c875d8\",\"authorId\":\"google-oauth2|113893247094344112466\",\"createDate\":\"2020-08-21T13:12:05Z\",\"updateDate\":\"2020-09-16T18:54:58Z\",\"createAuthorName\":\"Wilson
+        Withiam\",\"updateAuthorName\":\"Wilson Withiam\",\"eventName\":\"Referendum
+        2: Increase Validator Count to 236\",\"assets\":[\"polkadot\"],\"details\":\"Referendum
+        2 seeks to increase the maximum validators allowed on the network from 197
+        to 236. Polkadot has always planned to increase the validator count at least
+        until the network hits an upper bound around 1,000 validators.\\n\\nThe vote
+        is [currently live](https://polkadot.polkassembly.io/referendum/2) and should
+        end around Sep. 15, 2020. It will require a supermajority approval to pass.\",\"eventDate\":\"2020-08-18T00:00:00Z\",\"softDate\":\"\",\"status\":\"Rejected\",\"category\":\"Network
+        Change\",\"subcategory\":\"On-Chain Upgrade\",\"tags\":[\"Governance Vote\"],\"importance\":\"Medium\",\"resources\":[{\"name\":\"Referenda
+        List\",\"link\":\"https://polkadot.js.org/apps/#/democracy\"},{\"name\":\"Polkassembly
+        Referenda Voting Platform\",\"link\":\"https://polkadot.polkassembly.io/referendum/2\"}],\"activationBlock\":null,\"update\":\"Referendum
+        2 [did not pass](https://polkadot.polkassembly.io/referendum/2) an on-chain
+        vote. Therefore, the maximum validator count for Polkadot will remain at 197.\\n\\nOf
+        note, there are four current proposals (numbers [4](https://polkadot.polkassembly.io/proposal/4),
+        [5](https://polkadot.polkassembly.io/proposal/5), [6](https://polkadot.polkassembly.io/proposal/6),
+        and [7](https://polkadot.polkassembly.io/proposal/7)) that aim to increase
+        Polkadot's validator count in increments of 100 validators (e.g., Proposal
+        7 would up the max to 599 validators). None of these proposals have received
+        enough \\\"Second\\\" votes to enter a Referendum voting period.\",\"submissionId\":\"35998b6a-d717-42ef-ad02-ed346deb12dc\"},{\"eventId\":\"a7df2bc7-d015-4f92-a5f4-311db98f9343\",\"authorId\":\"auth0|5f15970d7c4a0f00130fbdca\",\"createDate\":\"2020-10-16T16:00:51Z\",\"updateDate\":\"2020-10-16T16:00:51Z\",\"createAuthorName\":\"aidan@messari.io\",\"updateAuthorName\":\"aidan@messari.io\",\"eventName\":\"PolkaBTC\",\"assets\":[\"polkadot\",\"bitcoin\"],\"details\":\"Interlay
+        has announced plans to create trustless wrapped Bitcoin (PolkaBTC) on the
+        Polkadot network through a BTC Parachain, expected to launch in early 2021.
+        An Alpha testnet is scheduled for Nov. 2020, and a feature-ready Beta in Jan.
+        2021. The BTC-Parachain includes a Bitcoin cross-chain SPV client and integrations
+        with price oracles. \",\"eventDate\":null,\"softDate\":\"Q1 2021\",\"status\":\"Pending\",\"category\":\"Network
+        Change\",\"subcategory\":\"Network Integration\",\"tags\":[\"\"],\"importance\":\"Low\",\"resources\":[{\"name\":\"Announcement\",\"link\":\"https://polkadot.network/bitcoin-is-coming-to-polkadot/\"}],\"activationBlock\":null,\"update\":\"\",\"submissionId\":\"33ca244e-5173-43be-a669-d3f938a5cfb6\"},{\"eventId\":\"c1a65101-4280-488a-a712-dc432ca2b830\",\"authorId\":\"google-oauth2|113893247094344112466\",\"createDate\":\"2020-09-18T03:17:51Z\",\"updateDate\":\"2020-10-14T00:00:00Z\",\"createAuthorName\":\"Wilson
+        Withiam\",\"updateAuthorName\":\"Wilson Withiam\",\"eventName\":\"Polkadot
+        v0.8.24\",\"assets\":[\"polkadot\",\"kusama\"],\"details\":\"The Polkadot
+        team released protocol [v0.8.24 ](https://github.com/paritytech/polkadot/releases/tag/v0.8.24)on
+        Sep. 17, 2020, which will introduce native runtimes 24 for Polkadot and 2024
+        for Kusama. Once approved by an on-chain vote, v0.8.24 will bump the nominator
+        reward limit (i.e., the number of nominators each validator can pay rewards
+        to) from [64 to 256](https://github.com/paritytech/polkadot/pull/1668). It
+        will also fix a bug associated with [incoming node notifications](https://github.com/paritytech/substrate/pull/6979)
+        and update Substrate's libp2p network framework to [v0.28](https://github.com/paritytech/substrate/pull/7077).
+        The Polkadot team considered this release to be a medium priority upgrade,
+        and a timely upgrade is recommended.\",\"eventDate\":\"2020-09-22T00:00:00Z\",\"softDate\":\"\",\"status\":\"Completed\",\"category\":\"Network
+        Change\",\"subcategory\":\"On-Chain Upgrade\",\"tags\":[\"\"],\"importance\":\"Medium\",\"resources\":[{\"name\":\"Release
+        Notes\",\"link\":\"https://github.com/paritytech/polkadot/releases/tag/v0.8.24\"},{\"name\":\"Polkadot
+        Nominator Reward Limit Explanation\",\"link\":\"https://wiki.polkadot.network/docs/en/learn-staking#4-rewards-mechanism\"},{\"name\":\"Referendum
+        5 Vote Tracking\",\"link\":\"https://polkadot.polkassembly.io/referendum/5\"}],\"activationBlock\":null,\"update\":\"Parity
+        Technology developers [have proposed](https://dotleap.substack.com/p/dot-leap-21)
+        a change to Substrate that will break network compatibility with all node
+        versions below v0.8.24. This change could come in the next Polkadot runtime
+        upgrade (the network's currently running v25), which does not have an exact
+        timeline. In the meantime, node operators [should upgrade](https://twitter.com/BillLaboon/status/1316300577949855747)
+        their clients to at least v0.8.24 to prepare for the next network upgrade.\",\"submissionId\":\"2e4da483-4b0c-4726-aaef-cc178e92cd12\"},{\"eventId\":\"bbc0ee49-102e-4cdd-8467-c437b58f07eb\",\"authorId\":\"google-oauth2|113893247094344112466\",\"createDate\":\"2019-12-13T00:00:00Z\",\"updateDate\":\"2020-10-15T00:00:00Z\",\"createAuthorName\":\"Wilson
+        Withiam\",\"updateAuthorName\":\"Wilson Withiam\",\"eventName\":\"Substrate
+        2.0\",\"assets\":[\"polkadot\",\"kusama\"],\"details\":\"Substrate is a modular
+        toolkit that allows developers to select pre-built components when developing
+        a new chain. It forms the foundation of the Polkadot and Kusama relay chains
+        and prospective parachains. Substrate 2.0 is the next iteration of this blockchain
+        framework, which intends to introduce a wide array of new modules that developers
+        can add to their networks.\\n\\nParity Technologies launched the first release
+        candidate for Substrate 2.0 on Dec. 13, 2019. The first stable release of
+        Substrate 2.0 launched on Sep. 22, 2020.\",\"eventDate\":\"2020-09-22T00:00:00Z\",\"softDate\":\"\",\"status\":\"Completed\",\"category\":\"Network
+        Change\",\"subcategory\":\"Software Release\",\"tags\":[\"\"],\"importance\":\"Low\",\"resources\":[{\"name\":\"Substrate
+        v2.0.0 Release Candidate 1 Release Notes\",\"link\":\"https://github.com/paritytech/substrate/releases/tag/subkey2.0.0rc\"},{\"name\":\"Substrate
+        v2.0.0 Release Notes\",\"link\":\"https://github.com/paritytech/substrate/releases/tag/v2.0.0\"},{\"name\":\"Substrate
+        2.0 Announcement\",\"link\":\"https://www.parity.io/substrate-2-0-is-here/\"}],\"activationBlock\":null,\"update\":\"Polkadot
+        received [several reports](https://twitter.com/BillLaboon/status/1316702601145131008)
+        about wallets displaying a larger amount of DOTs than users had. The inconsistent
+        display [was the result](https://polkadot.js.org/docs/api/FAQ/#on-a-non-current-non-substrate-20-branch-my-balances-are-wrong)
+        of these accounts running on outdated, non-Substrate 2.0 branches. The Substrate
+        2.0 released changed the RefCount type from u8 to u32, and wallet APIs (which
+        track and report account balances) started applying this change by default
+        to all Substrate-based chains. Those using an older Substrate version can
+        either apply the older u8 RefCount type or (preferably) upgrade to Substrate
+        2.0.\",\"submissionId\":\"47b10167-0085-4cc2-b242-aff9503abbed\"},{\"eventId\":\"aa86f077-d95e-4568-a530-587fef21401d\",\"authorId\":\"auth0|5f15970d7c4a0f00130fbdca\",\"createDate\":\"2020-08-21T13:28:17Z\",\"updateDate\":\"2020-08-21T13:28:17Z\",\"createAuthorName\":\"Wilson
+        Withiam\",\"updateAuthorName\":\"aidan@messari.io\",\"eventName\":\"Patract
+        Labs Treasury Proposal\",\"assets\":[\"polkadot\"],\"details\":\"Patract Labs,
+        a company working with smart contracts, has submitted the first community
+        treasury proposal. The team wants to develop helper tools for smart contract
+        development, use, and debugging (called Redspot) that are similar to the likes
+        of Truffle and Ganache from Ethereum. Patract Labs is asking for a 100 DOT
+        (old) donation, worth about $29,000 at the time, from the treasury. The full
+        proposal is available [here](https://polkadot.polkassembly.io/post/15). It
+        is pending a vote from the Council.\",\"eventDate\":\"2020-08-14T00:00:00Z\",\"softDate\":\"\",\"status\":\"Pending\",\"category\":\"Project
+        Operations\",\"subcategory\":\"Grant Program\",\"tags\":[\"Governance Vote\"],\"importance\":\"Low\",\"resources\":[{\"name\":\"Full
+        Patract Labs Proposal\",\"link\":\"https://polkadot.polkassembly.io/post/15\"},{\"name\":\"Council
+        Vote Status\",\"link\":\"https://polkadot.polkassembly.io/motion/7\"}],\"activationBlock\":null,\"update\":\"\",\"submissionId\":\"947d5448-6885-4cd7-a134-e019c933306d\"},{\"eventId\":\"2b1fa503-4d27-4f87-a9d6-de51c55cb398\",\"authorId\":\"google-oauth2|113893247094344112466\",\"createDate\":\"2020-10-10T00:00:00Z\",\"updateDate\":\"2020-10-14T00:00:00Z\",\"createAuthorName\":\"Wilson
+        Withiam\",\"updateAuthorName\":\"Wilson Withiam\",\"eventName\":\"Polkadot
+        v0.8.25\",\"assets\":[\"polkadot\",\"kusama\"],\"details\":\"The Polkadot
+        team released protocol [v0.8.25 ](https://github.com/paritytech/polkadot/releases/tag/v0.8.24)on
+        Oct. 9, 2020, which aims to introduce native runtimes 25 for Polkadot and
+        2025 for Kusama. Once voted in by the Council and Polkadot's on-chain governance
+        system, the version will reduce the maximum nominators allowed per validator
+        to 128 (from 256), add the ability to cancel or remove a proposal (pending
+        a code audit), and will offer a fix for off-chain elections. It will also
+        bump the [jsonrpc-core to v15](https://github.com/paritytech/polkadot/pull/1737).
+        The full list of changes is available [here](https://github.com/paritytech/polkadot/releases/tag/v0.8.25).\",\"eventDate\":\"2020-10-09T00:00:00Z\",\"softDate\":\"\",\"status\":\"Completed\",\"category\":\"Network
+        Change\",\"subcategory\":\"Software Release\",\"tags\":[\"\"],\"importance\":\"Medium\",\"resources\":[{\"name\":\"Release
+        Notes\",\"link\":\"https://github.com/paritytech/polkadot/releases/tag/v0.8.25\"},{\"name\":\"Referendum
+        8\",\"link\":\"https://polkadot.polkassembly.io/referendum/8\"}],\"activationBlock\":null,\"update\":\"[Referendum
+        8](https://polkadot.polkassembly.io/referendum/9) passed on Oct. 13, 2020,
+        which upgraded the network to runtime v25. Of note, the staking algorithm
+        changes recently introduced in runtimes 24 and 25 have [unexpectedly stopped](https://dotleap.substack.com/p/dot-leap-21)
+        sending inflation rewards to nominators staking less than 200 DOT. Polkadot
+        developers are still researching potential fixes.\",\"submissionId\":\"188df95b-ba73-42fe-afc1-868007aac1c4\"},{\"eventId\":\"32407fa7-9f38-4ed7-b516-e33eb97c1f0b\",\"authorId\":\"google-oauth2|113893247094344112466\",\"createDate\":\"2020-10-07T00:00:00Z\",\"updateDate\":\"2020-10-19T14:01:40Z\",\"createAuthorName\":\"Wilson
+        Withiam\",\"updateAuthorName\":\"Wilson Withiam\",\"eventName\":\"Staking
+        Rewards Issue\",\"assets\":[\"polkadot\"],\"details\":\"Polkadot nominators
+        with less than DOT staked have not received any inflation rewards due to the
+        network's technical limitations. Project developers are still researching
+        a potential fix. In the meantime, developers recommend that nominators use
+        off-chain staking methods for nominations that are less than 200 DOTs.\",\"eventDate\":\"2020-10-05T00:00:00Z\",\"softDate\":\"\",\"status\":\"In-Progress\",\"category\":\"Token
+        Supply\",\"subcategory\":\"Supply Distribution\",\"tags\":[\"\"],\"importance\":\"Medium\",\"resources\":[{\"name\":\"Polkadot
+        Digest Oct. 6, 2020\",\"link\":\"https://twitter.com/BillLaboon/status/1313424759804383232\"},{\"name\":\"Polkadot
+        Staking Issue Update\",\"link\":\"https://polkadot.network/polkadot-staking-an-update/\"}],\"activationBlock\":null,\"update\":\"Polkadot
+        provided [an update](https://polkadot.network/polkadot-staking-an-update/)
+        on the issue of nominators not receiving rewards. The issue stemmed from the
+        number of DOT nominators growing beyond a point the network could maintain
+        while still functioning at its desired level. As the number of nominators
+        grew, block times increased, and the network began experiencing some instability.
+        In response, Polkadot has a limit on DOT nominations that will eliminate the
+        smallest nominations (these will not receive rewards) to maintain network
+        stability and normal block times. Developers have since dropped the minimum
+        nomination amount from 200 to 35 DOT; therefore, users with less than 35 DOT
+        staking are not receiving any rewards. Polkadot is still working on a permanent
+        fix. In the meantime, stakers with less than 35 DOT can use exchange-based
+        staking services, which pool user funds together and shouldn't lose any rewards
+        due to the nomination limit.\",\"submissionId\":\"81cd9f1d-84ab-4d24-b315-5162e9c47b7b\"},{\"eventId\":\"48565eec-fa70-46c8-80ca-f5d73a28a93e\",\"authorId\":\"google-oauth2|113893247094344112466\",\"createDate\":\"2020-10-02T00:00:00Z\",\"updateDate\":\"2020-12-07T23:23:35Z\",\"createAuthorName\":\"Wilson
+        Withiam\",\"updateAuthorName\":\"Wilson Withiam\",\"eventName\":\"Referendum
+        9: Gradual Increase of Validator Set\",\"assets\":[\"polkadot\"],\"details\":\"First
+        introduced as Motion 25 on Sep. 21, 2020, this proposal aims to increase the
+        number of validator slots on Polkadot's relay chain gradually. If passed,
+        this change would increase the number of validator slots by one at the end
+        of every era (14,400 blocks or approximately 24 hours), a procedure that would
+        continue uninterrupted for 100 eras. This mechanism can be canceled or completed
+        after 100 eras, which would give the community time to review network metrics
+        before increasing the validator set again. A gradual increase might be a more
+        secure way to introduce network changes instead of an abrupt one-time increase.\\n\\nReferendum
+        9 supersedes Referendum 7, which passed an on-chain vote but failed to execute
+        due to an error in the proposal. Polkadot's Technical Committee intends to
+        fast track Referendum 9 because the proposed change has already been vetted
+        by network stakeholders.\",\"eventDate\":\"2020-10-13T00:00:00Z\",\"softDate\":\"\",\"status\":\"Completed\",\"category\":\"Network
+        Change\",\"subcategory\":\"On-Chain Upgrade\",\"tags\":[\"\"],\"importance\":\"Medium\",\"resources\":[{\"name\":\"Referendum
+        7\",\"link\":\"https://polkadot.polkassembly.io/referendum/7\"},{\"name\":\"Referendum
+        9\",\"link\":\"https://polkadot.polkassembly.io/referendum/9\"},{\"name\":\"Original
+        Proposal\",\"link\":\"https://polkadot.polkassembly.io/post/93\"},{\"name\":\"Tracking
+        the Scheduled Change\",\"link\":\"https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fcc1-1.polkadot.network#/democracy/dispatch\"}],\"activationBlock\":null,\"update\":\"The
+        gradual increase in the maximum number of validators in the active set [began](https://twitter.com/BillLaboon/status/1335879294313263106)
+        on Dec. 7, 2020, almost two months after Referendum 9 was passed. According
+        to the Web3 Foundation, the code change came with an enactment delay, hence
+        the multi-month wait between the on-chain vote and actual implementation.
+        As of Dec. 7, 2020, the maximum number of validators in the active set will
+        increase by [one each era](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fcc1-1.polkadot.network#/democracy/dispatch)
+        (about 24 hours) for 44 eras, leading to a new maximum of 296 (the current
+        validator set is 252). Network stakeholders should be able to vote for another
+        round of gradual validator set increases once this current round is complete.\",\"submissionId\":\"5dfba469-8d1d-47b0-b415-854f63fff754\"},{\"eventId\":\"93aa111e-9c09-4bb2-bc6f-d1573d5cc61d\",\"authorId\":\"auth0|5f15970d7c4a0f00130fbdca\",\"createDate\":\"2020-08-21T13:40:30Z\",\"updateDate\":\"2020-08-21T13:40:30Z\",\"createAuthorName\":\"Wilson
+        Withiam\",\"updateAuthorName\":\"aidan@messari.io\",\"eventName\":\"Polkascan
+        Foundation Treasury Proposal\",\"assets\":[\"polkadot\"],\"details\":\"The
+        Polkascan Foundation, which oversees and funds the maintenance of the Polkascan
+        block explorer, submitted a treasury proposal on Aug. 14, 2020, asking for
+        34.316505 DOT (old) to pay for its operational expenses. The proposal was
+        based on a [social contract](https://github.com/polkascan/social-contract)
+        discussed with the Polkadot and Kusama community during Kusama’s evolution.
+        The Council later approved Polkascan's proposal on Aug. 19, 2020.\\n\\nThe
+        Polkascan Foundation actually submitted two treasury proposals. However, the
+        foundation modified its original request and asked the Council to reject it,
+        which the Council did.\",\"eventDate\":\"2020-08-14T00:00:00Z\",\"softDate\":\"\",\"status\":\"Completed\",\"category\":\"Project
+        Operations\",\"subcategory\":\"Grant Program\",\"tags\":[\"Governance Vote\"],\"importance\":\"Low\",\"resources\":[{\"name\":\"Rejected
+        Proposal\",\"link\":\"https://polkadot.polkassembly.io/motion/6\"},{\"name\":\"Approved
+        Proposal\",\"link\":\"https://polkadot.polkassembly.io/motion/5\"},{\"name\":\"Polkascan
+        Foundation Social Contract\",\"link\":\"https://github.com/polkascan/social-contract\"}],\"activationBlock\":null,\"update\":\"\",\"submissionId\":\"dc1f2125-9c83-40e3-8069-2e235b2d8c91\"},{\"eventId\":\"81eb742c-9dc2-44fd-9dba-662ae04a55f7\",\"authorId\":\"google-oauth2|113893247094344112466\",\"createDate\":\"2020-10-15T00:00:00Z\",\"updateDate\":\"2020-11-11T17:05:25Z\",\"createAuthorName\":\"Wilson
+        Withiam\",\"updateAuthorName\":\"Wilson Withiam\",\"eventName\":\"Referendum
+        10: Forced Account Transfer to Recover Funds\",\"assets\":[\"polkadot\"],\"details\":\"Referendum
+        10 aims to help recover the funds (~8,254 DOT) a user reportedly sent to an
+        address owned by a scammer. If approved, the proposal will force the transfer
+        of assets from the alleged scammer's address back to the original account.
+        The user's claim on the fraud and lost funds is available [here](https://docs.google.com/document/d/1WnNJQdBjMScGw33Uk5KU-v60FW2U75NpxyJK9bY250w/edit).
+        There's a longer discussion on the topic [here](https://polkadot.polkassembly.io/post/96).\\n\\nAs
+        of Oct. 13, 2020, Referendum 10 is up for an official community vote. It is
+        currently failing as almost 99% of participants have voted against the proposal.
+        Track the voting process [here](https://polkadot.polkassembly.io/referendum/10).\",\"eventDate\":\"2020-10-13T00:00:00Z\",\"softDate\":\"\",\"status\":\"Rejected\",\"category\":\"Project
+        Governance\",\"subcategory\":\"Other Network Change\",\"tags\":[\"Governance
+        Vote\"],\"importance\":\"Low\",\"resources\":[{\"name\":\"Referendum 10 Proposal\",\"link\":\"https://polkadot.polkassembly.io/referendum/10\"},{\"name\":\"Original
+        Proposal\",\"link\":\"https://polkadot.polkassembly.io/post/96\"}],\"activationBlock\":null,\"update\":\"Referendum
+        10 [has failed](https://polkadot.polkassembly.io/referendum/10) its on-chain
+        vote as of Nov. 11, 2020. Stakeholders will not support a forced transfer
+        of funds from an alleged scammer's address back to the original account.\",\"submissionId\":\"cf150d32-c55a-4e82-b6a6-ac8345921de8\"},{\"eventId\":\"c8e2a9fb-afe7-43fd-8e06-4c3feff09e8b\",\"authorId\":\"google-oauth2|113893247094344112466\",\"createDate\":\"2020-11-05T14:38:03Z\",\"updateDate\":\"2020-11-12T00:00:00Z\",\"createAuthorName\":\"aidan@messari.io\",\"updateAuthorName\":\"Wilson
+        Withiam\",\"eventName\":\"Polkadot v0.8.26\",\"assets\":[\"polkadot\"],\"details\":\"Polkadot
+        v0.8.26 has been released. This version is a medium priority upgrade due to
+        the following changes included in the release: fixes logging of target names
+        with dashes, no longer actively opens legacy substreams, and makes queryStorage
+        and storagePairs unsafe RPC functions.\",\"eventDate\":\"2020-11-05T00:00:00Z\",\"softDate\":\"\",\"status\":\"Completed\",\"category\":\"Network
+        Change\",\"subcategory\":\"Software Release\",\"tags\":[\"\"],\"importance\":\"High\",\"resources\":[{\"name\":\"Release
+        Notes\",\"link\":\"https://github.com/paritytech/polkadot/releases/tag/v0.8.26\"},{\"name\":\"Release
+        Notes v0.8.26-1\",\"link\":\"https://github.com/paritytech/polkadot/releases/tag/v0.8.26-1\"},{\"name\":\"Referendum
+        11\",\"link\":\"https://polkadot.polkassembly.io/referendum/11\"}],\"activationBlock\":null,\"update\":\"[Referendum
+        11](https://polkadot.polkassembly.io/referendum/11) was passed and executed
+        on Nov. 12, 2020, upgrading Polkadot to runtime v26 (introduced by Polkadot
+        client v0.8.26-1). Validators and node operators should upgrade to client
+        [v0.8.26-1](https://github.com/paritytech/polkadot/releases/tag/v0.8.26-1)
+        if they haven't already.\",\"submissionId\":\"cd4b5e44-2d4d-46f3-947c-e4eed7d40b44\"},{\"eventId\":\"7cd83cb8-9788-4899-ac89-255026c3a99f\",\"authorId\":\"google-oauth2|113893247094344112466\",\"createDate\":\"2021-02-01T16:03:45Z\",\"updateDate\":\"2021-02-01T16:03:45Z\",\"createAuthorName\":\"aidan@messari.io\",\"updateAuthorName\":\"Wilson
+        Withiam\",\"eventName\":\"Polkadot Cross-Chain Bridge\",\"assets\":[\"bancor\",\"polkadot\"],\"details\":\"The
+        Bancor team announced that they are working with development firm [LiquidApps](https://liquidapps.io/)
+        to build a bridge that would allow Bancor to integrate its AMM with the Polkadot
+        ecosystem. Bridge operators (validators), who listen for incoming transactions
+        and relay transactions, may be compensated in BNT, and validator collateral
+        may be staked in BNT. The team said that this bridge would be the first step
+        towards Bancor pursuing integrations with other Layer-1 networks.\",\"eventDate\":null,\"softDate\":\"TBD\",\"status\":\"Discussed
+        \",\"category\":\"Network Change\",\"subcategory\":\"Network Integration\",\"tags\":[\"\"],\"importance\":\"Low\",\"resources\":[{\"name\":\"Bancor
+        Blog\",\"link\":\"https://bancor.medium.com/bringing-bancor-to-polkadot-4a9a0e996916\"}],\"activationBlock\":null,\"update\":\"\",\"submissionId\":\"db297920-b49e-486d-8e21-eaa0636d2508\"},{\"eventId\":\"ce49806f-f505-49dd-8199-b3c0b3bde86b\",\"authorId\":\"auth0|5fa00daef31afd00709964ef\",\"createDate\":\"2020-08-18T14:53:18Z\",\"updateDate\":\"2020-08-18T14:53:18Z\",\"createAuthorName\":\"aidan@messari.io\",\"updateAuthorName\":\"tomas@messari.io\",\"eventName\":\"Binance
+        Listing\",\"assets\":[\"polkadot\"],\"details\":\"Binance will list DOT with
+        markets for DOT/BTC, DOT/BNB. DOT/BUSD and DOT/UDST trading pairs. Trading
+        opens Aug. 18, 2020, at 11 PM (UTC), and users will be to start depositing
+        DOT after Polkadot block #1,205,128 (Estimated to be Aug. 18, 2020, at 4:40
+        PM (UTC)). Binance will support the DOT redenominated (by a factor of 100),
+        set to occur at block #1,248,328. As such, all deposits made to Binance after
+        block #1,205,128 will be multiplied by a coefficient of 100.\",\"eventDate\":\"2020-08-18T04:00:00Z\",\"softDate\":\"\",\"status\":\"Pending\",\"category\":\"Token
+        Listing\",\"subcategory\":\"Centralized Exchange Listing\",\"tags\":[\"\"],\"importance\":\"Low\",\"resources\":[{\"name\":\"Binance
+        Announcement\",\"link\":\"https://www.binance.com/en/support/articles/0c0e20f3e1584d579448a000fe5a0350\"}],\"activationBlock\":null,\"update\":\"\",\"submissionId\":\"2688592c-f93b-4104-a717-a7f955db18ee\"},{\"eventId\":\"aa772ffa-e0c6-4012-b247-fa88ce6a5ee7\",\"authorId\":\"google-oauth2|113893247094344112466\",\"createDate\":\"2021-01-21T01:57:52Z\",\"updateDate\":\"2021-01-21T01:57:52Z\",\"createAuthorName\":\"Wilson
+        Withiam\",\"updateAuthorName\":\"Wilson Withiam\",\"eventName\":\"Next Steps
+        for Increasing Validator Set\",\"assets\":[\"polkadot\"],\"details\":\"As
+        of Jan. 20, 2021, Polkadot is operating with 300 validators. The network reached
+        this number after DOT holders passed Referendum 9 to gradually increase the
+        validator set once every epoch for about 100 epochs (ending on 300). The Polkadot
+        team released a \\\"Performance Report\\\" that tracked standard network statistics,
+        and the report said that network bandwidth the number of GrandPa messages
+        increased alongside the validator set. While not unexpected, these changes
+        will also increase the cost requirements of running a validator. In response,
+        Polkadot's parachains team has suggested that the network should only use
+        a subset of validators (around 50-200) each session to reach a consensus on
+        parachain transactions. The selected validators within these subsets will
+        receive the bulk of the rewards for a given session, but rewards should be
+        relatively equal over time.\\n\\nThe Polkadot team also said that the validator
+        set should remain relatively low and estimated that a reasonable number for
+        the next gradual validator set increase is up to 500. Keeping this number
+        low may not only help network stability and reward variation but could also
+        lead to \\\"an earlier launch of parachains.\\\"\\n\\n\\n\",\"eventDate\":\"2021-01-20T00:00:00Z\",\"softDate\":\"\",\"status\":\"Completed\",\"category\":\"Project
+        Operations\",\"subcategory\":\"Report\",\"tags\":[\"\"],\"importance\":\"Medium\",\"resources\":[{\"name\":\"Forum
+        Announcement\",\"link\":\"https://polkadot.polkassembly.io/post/263\"},{\"name\":\"Jan.
+        2021 Performance Report\",\"link\":\"https://drive.google.com/file/d/1_Z7AWK_5e2IcDQV7_G7ViX6YEerot2mB/view\"}],\"activationBlock\":null,\"update\":\"\",\"submissionId\":\"fd34266d-9684-4c80-8455-0876a94edcf4\"},{\"eventId\":\"c82e9004-6481-4abd-bca5-80f504eb8261\",\"authorId\":\"google-oauth2|102613934931574875430\",\"createDate\":\"2021-01-11T12:05:31Z\",\"updateDate\":\"2021-01-11T12:05:31Z\",\"createAuthorName\":\"Aditya
+        Sharma\",\"updateAuthorName\":\"Aditya Sharma\",\"eventName\":\"Polkadot v0.8.27\",\"assets\":[\"polkadot\"],\"details\":\"The
+        Polkadot team released protocol v0.8.27 on Jan. 11, 2021. This version's upgrade
+        priority has been marked '*low*' by the team, and users can upgrade at their
+        own convenience. It includes minor fix and improvements on localkeystore,
+        inclusion of '*salt*' argument to contract instantiation, among other changes.
+        The full list of changes and fixes is available [here](https://github.com/paritytech/polkadot/releases/tag/v0.8.27).\",\"eventDate\":\"2021-01-11T00:00:00Z\",\"softDate\":\"\",\"status\":\"Completed\",\"category\":\"Network
+        Change\",\"subcategory\":\"Software Release\",\"tags\":[\"\"],\"importance\":\"Medium\",\"resources\":[{\"name\":\"Release
+        Notes\",\"link\":\"https://github.com/paritytech/polkadot/releases/tag/v0.8.27\"}],\"activationBlock\":null,\"update\":\"\",\"submissionId\":\"0a9a7bd1-c00b-4fc4-8aef-9c27a30dde1a\"},{\"eventId\":\"5d55e715-0b00-462a-a3bb-796e5e48152c\",\"authorId\":\"google-oauth2|113893247094344112466\",\"createDate\":\"2020-12-10T03:27:33Z\",\"updateDate\":\"2021-01-06T16:10:35Z\",\"createAuthorName\":\"Wilson
+        Withiam\",\"updateAuthorName\":\"Wilson Withiam\",\"eventName\":\"Referendum
+        13: Reimburse Incorrect Slashings\",\"assets\":[\"polkadot\"],\"details\":\"Referendum
+        13 aims to reimburse the accounts that got slashed due to a bug in Polkadot's
+        v25 runtime. The [bug](https://github.com/paritytech/substrate/pull/7384)
+        resided in Substrate's elections-phragmen pallet and led to the premature
+        slashing of several runners-ups in the Council Election held back in mid-to-late
+        October 2020. Polkadot development teams have since fixed the bug in its current
+        v26 runtime (introduced via Polkadot v0.8.26).\\n\\nThe voting period for
+        Referendum 13 is live as of Dec. 9, 2020, and will end in about 28 days (Jan.
+        6, 2021).\",\"eventDate\":\"2020-12-09T00:00:00Z\",\"softDate\":\"\",\"status\":\"Completed\",\"category\":\"Token
+        Supply\",\"subcategory\":\"Other Token Change\",\"tags\":[\"Governance Vote\"],\"importance\":\"Low\",\"resources\":[{\"name\":\"Referendum
+        13\",\"link\":\"https://polkadot.polkassembly.io/referendum/13\"},{\"name\":\"Original
+        Proposal\",\"link\":\"https://polkadot.polkassembly.io/post/165\"}],\"activationBlock\":null,\"update\":\"Referendum
+        13 aimed to reimburse slashed accounts passed its on-chain vote on Jan. 6,
+        2021. Reimbursement will happen by wrapping all of the reimbursement calls
+        inside a *utility.batch*, creating a single batch of force transfers from
+        the treasury to the affected accounts, to be voted by the community.\",\"submissionId\":\"ba947ce3-7332-4425-b992-7c6bdb54f758\"},{\"eventId\":\"d3d06ade-027e-4789-9614-6ed93d6f4f13\",\"authorId\":\"google-oauth2|113893247094344112466\",\"createDate\":\"2020-08-04T18:50:52Z\",\"updateDate\":\"2021-01-12T19:40:23Z\",\"createAuthorName\":\"Eric
+        Turner\",\"updateAuthorName\":\"Wilson Withiam\",\"eventName\":\"Rococo Testnet\",\"assets\":[\"polkadot\",\"kusama\"],\"details\":\"Rococo
+        is Polkadot's testnet for testing parachain communication and activity. Parity
+        Technologies and Polkadot released the first version of Rococo (v0) on Aug.
+        4, 2020. This initial release allowed users to send messages across chains
+        via a testnet relay chain, meaning that tokens can be transferred across the
+        parachains. It also includes three chains: Tick, Trick, and Track.\",\"eventDate\":\"2020-08-04T04:00:00Z\",\"softDate\":\"\",\"status\":\"Completed\",\"category\":\"Network
+        Change\",\"subcategory\":\"Testnet Launch\",\"tags\":[\"\"],\"importance\":\"Medium\",\"resources\":[{\"name\":\"Rococo
+        V0 Release Notes\",\"link\":\"https://github.com/paritytech/cumulus/releases/tag/rococo_v1\"},{\"name\":\"Rococo
+        V1 Launch\",\"link\":\"https://polkadot.network/rococo-v1-a-holiday-gift-to-the-polkadot-community/\"},{\"name\":\"Guide
+        for Running Rococo Parachains\",\"link\":\"https://wiki.polkadot.network/docs/en/build-parachains-rococo#rococo-v1-parachain-requirements\"}],\"activationBlock\":null,\"update\":\"The
+        Polkadot team [opened registration](https://twitter.com/polkadot/status/1349075068920467457?s=21)s
+        for parachains on the Rococo V1 testnet on Jan. 12, 2021. The guide for projects
+        or developers looking to register their testnet parachain is available [here](https://wiki.polkadot.network/docs/en/build-parachains-rococo#rococo-v1-parachain-requirements).
+        At the moment, eight parachains are running on Rococo V1, including the testnet's
+        three test parachains (Tick, Trick, and Track).\",\"submissionId\":\"486e6c98-ac9b-48fb-bd8e-5292d6e2260e\"},{\"eventId\":\"c8405fff-759a-4242-a377-08d0e55954e1\",\"authorId\":\"google-oauth2|113893247094344112466\",\"createDate\":\"2021-01-06T16:20:28Z\",\"updateDate\":\"2021-02-03T20:27:58Z\",\"createAuthorName\":\"Wilson
+        Withiam\",\"updateAuthorName\":\"Wilson Withiam\",\"eventName\":\"Referendum
+        14: Lock Up Stolen DOT\",\"assets\":[\"polkadot\"],\"details\":\"Referendum
+        14 is a request to lock a specific Polkadot address that allegedly holds stolen
+        DOT. The proposer of this request claims that someone else stole their Ethereum
+        private key (the one used to buy DOT in a pre-launch token sale) and used
+        it to claim the DOT associated with that address once Polkadot's mainnet launched.
+        The proposal also includes a final request to return these DOTS (520,695.7
+        in total) to the proposer's new Polkadot address f their claims are verified.\\n\\nThe
+        voting period for Referendum 14 went live on Jan. 6, 2021, and will end in
+        about four weeks (Feb. 3, 2021).\",\"eventDate\":\"2021-01-06T00:00:00Z\",\"softDate\":\"\",\"status\":\"Rejected\",\"category\":\"Token
+        Supply\",\"subcategory\":\"Other Token Change\",\"tags\":[\"Governance Vote\"],\"importance\":\"Low\",\"resources\":[{\"name\":\"Referendum
+        14\",\"link\":\"https://polkadot.polkassembly.io/referendum/14\"},{\"name\":\"Proposal
+        Details\",\"link\":\"https://polkadot.polkassembly.io/post/26\"}],\"activationBlock\":null,\"update\":\"Referendum
+        14 did not pass its voting period, which ended on Feb. 3, 2021. The DOT that
+        was allegedly stolen will remain unlocked in their current address.\",\"submissionId\":\"4d5f95c4-3d8c-4483-8529-60a21e29e114\"},{\"eventId\":\"996577bb-918f-4e30-a29c-da66eb04c361\",\"authorId\":\"google-oauth2|102613934931574875430\",\"createDate\":\"2021-01-29T00:00:00Z\",\"updateDate\":\"2021-02-01T06:47:16Z\",\"createAuthorName\":\"Wilson
+        Withiam\",\"updateAuthorName\":\"Aditya Sharma\",\"eventName\":\"Referendum
+        15: Upgrade to Polkadot Runtime v27\",\"assets\":[\"polkadot\"],\"details\":\"Referendum
+        15 aims to upgrade the network's runtime to v27, which was introduced through
+        [Polkadot v0.8.27](https://messari.io/intel/event/c82e9004-6481-4abd-bca5-80f504eb8261)
+        release on Jan. 11, 2021. The release includes a minor fix and some improvements
+        to the localkeystore and introduces the '*salt*' argument to contract instantiation,
+        among other changes. The Parity team labeled it a low priority upgrade.\\n\\nThe
+        voting period for Referendum 15 began on Jan. 28, 2021. It will end on Jan.
+        31, 2021, and if approved by DOT holders, it will activate once the voting
+        period closes.\",\"eventDate\":\"2021-01-28T00:00:00Z\",\"softDate\":\"\",\"status\":\"Completed\",\"category\":\"Network
+        Change\",\"subcategory\":\"On-Chain Upgrade\",\"tags\":[\"Governance Vote\"],\"importance\":\"Medium\",\"resources\":[{\"name\":\"Referendum
+        15\",\"link\":\"https://polkadot.polkassembly.io/referendum/15\"},{\"name\":\"Polkadot
+        v0.8.27 Details\",\"link\":\"https://messari.io/intel/event/c82e9004-6481-4abd-bca5-80f504eb8261\"}],\"activationBlock\":null,\"update\":\"[Referendum
+        15](http://polkadot.polkassembly.io) was passed and executed on Jan. 31, 2021,
+        upgrading Polkadot runtime to v27.\",\"submissionId\":\"729634cb-ed69-4118-ae06-710ba0462b53\"},{\"eventId\":\"3c9b849b-11ec-41ac-b77a-db9779eca573\",\"authorId\":\"google-oauth2|113893247094344112466\",\"createDate\":\"2021-02-04T01:46:40Z\",\"updateDate\":\"2021-02-05T05:21:15Z\",\"createAuthorName\":\"Wilson
+        Withiam\",\"updateAuthorName\":\"Wilson Withiam\",\"eventName\":\"Referendum
+        16: Set Validator count to 599\",\"assets\":[\"polkadot\"],\"details\":\"Referendum
+        16 proposes to increase Polkadot's max validator count from 297 to 599. This
+        referendum's voting period went live on Feb. 3, 2021, and it will end on Mar.
+        3, 2021. Voters should note that a large increase in the validator set is
+        not advisable, [according to Polkadot's parachain development team](https://messari.io/intel/event/aa772ffa-e0c6-4012-b247-fa88ce6a5ee7).
+        In a network performance report released in Jan. 2021, the team suggested
+        that the validator set should remain at or below 500, and any increases to
+        the set should be gradual. Keeping this number relatively low may help network
+        stability and could enable \\\"an earlier launch of parachains.\\\"\",\"eventDate\":\"2021-02-03T00:00:00Z\",\"softDate\":\"\",\"status\":\"In-Progress\",\"category\":\"Network
+        Change\",\"subcategory\":\"Other Network Change\",\"tags\":[\"Governance Vote\"],\"importance\":\"Medium\",\"resources\":[{\"name\":\"Referendum
+        16 Vote Tracking\",\"link\":\"https://polkadot.polkassembly.io/referendum/16\"},{\"name\":\"Jan.
+        2021 Network Performance Report\",\"link\":\"https://drive.google.com/file/d/1_Z7AWK_5e2IcDQV7_G7ViX6YEerot2mB/view\"}],\"activationBlock\":null,\"update\":\"The
+        Polkadot Council has executed [Motion 58](https://polkadot.polkassembly.io/motion/58),
+        which is a conflicting proposal to Referendum 16. Motion 58 aims to increase
+        the number of validators to 397 gradually by adding a new validator each era
+        (about one day). Now that the Council has passed the Motion, it will eventually
+        become a Referendum, potentially once the voting period for Referendum 16
+        ends. Voters should consider the implications of both proposals before casting
+        their vote.\",\"submissionId\":\"d586cab9-d19c-410d-b430-4ba2ce2796ae\"},{\"eventId\":\"65deb10b-0ffa-4d28-b523-60de21fac88e\",\"authorId\":\"google-oauth2|113893247094344112466\",\"createDate\":\"2021-02-05T13:03:17Z\",\"updateDate\":\"2021-02-09T21:02:00Z\",\"createAuthorName\":\"Aditya
+        Sharma\",\"updateAuthorName\":\"Wilson Withiam\",\"eventName\":\"Polkadot
+        v0.8.28\",\"assets\":[\"polkadot\",\"kusama\"],\"details\":\"The Polkadot
+        team released protocol v0.8.28 on Feb. 5, 2021. This version's upgrade priority
+        has been marked *low* by the team, and users can upgrade at their own convenience.
+        This release includes a breaking change to the database format. Once upgraded
+        to v0.8.28, users would not be able to revert to v0.8.27 without re-syncing
+        the database. It also contains changes for new session keys. There are some
+        changes to the slashable Parachain ID key and non-slashable new 6th key and
+        approval keys. Validators will need to rotate their keys to generate a new
+        set to validate on parachains. Polkadot v28 runtime upgrade is tentatively
+        planned between Feb. 15, 2021 - Feb. 19. 2021. The full changelog is available
+        [here](https://github.com/paritytech/polkadot/releases/tag/v0.8.28).\",\"eventDate\":\"2021-02-05T00:00:00Z\",\"softDate\":\"\",\"status\":\"Completed\",\"category\":\"Network
+        Change\",\"subcategory\":\"Software Release\",\"tags\":[\"\"],\"importance\":\"Medium\",\"resources\":[{\"name\":\"v0.8.28
+        Release Notes\",\"link\":\"https://github.com/paritytech/polkadot/releases/tag/v0.8.28\"},{\"name\":\"v0.8.28-1
+        Release Notes\",\"link\":\"https://github.com/paritytech/polkadot/releases/tag/v0.8.28-1\"}],\"activationBlock\":null,\"update\":\"Polkadot
+        developers released [Polkadot v0.8.28-1](https://github.com/paritytech/polkadot/releases/tag/v0.8.28-1)
+        on Feb. 9, 2021. It is a bugfix release that addresses an issue in the client
+        where some nodes lost the ability to send transactions following long periods
+        of uptime. In the most extreme circumstances, this issue could lead to a validator
+        being chilled or slashed if they could not send a heartbeat transaction (signal
+        to the network that a validator is not experiencing any downtime). Polkadot
+        developers have labeled the upgrade priority for this release as medium, and
+        they advise all node operators to update their nodes at their earliest convenience.
+        Upgrading to this version is not a runtime upgrade, as this release also operators
+        on Polkadot native runtime 28.\",\"submissionId\":\"d1b1e228-284e-4f91-893a-4b986f3a97ca\"},{\"eventId\":\"6eae8b8f-f5a4-4397-8f42-3ae203edfcf9\",\"authorId\":\"google-oauth2|113893247094344112466\",\"createDate\":\"2021-02-17T17:29:37Z\",\"updateDate\":\"2021-02-17T17:29:37Z\",\"createAuthorName\":\"Wilson
+        Withiam\",\"updateAuthorName\":\"Wilson Withiam\",\"eventName\":\"Cryptium
+        Labs Ceases Validator Activity\",\"assets\":[\"tezos\",\"cosmos\",\"near-protocol\",\"polkadot\",\"kusama\"],\"details\":\"Professional
+        validator Cryptium Labs informed customers that it would cease its activity
+        as a validator in all networks on Mar. 15, 2021. The company is currently
+        a top ten validator for the Tezos network (excluding Tezos Foundation validators).
+        It also runs staking services for Cosmos, Near Protocol, Polkadot, Kusama,
+        and e-Money. Any user delegating to Cryptium Labs' validators should redelegate
+        their holdings to a new validator before Mar. 15, 2021.\\n\\nCoincidentally,
+        the former Cryptium Labs development team, which rebranded as Metastate, [halted
+        its support](https://messari.io/intel/event/f44b9f12-a6cd-4920-a2ed-b79e506bcce3)
+        for the core development of Tezos on Jan. 31, 2021. However, these developers
+        will continue to support Juvix’s Michelson backend (Juvix is a Tezos-compatible
+        smart contract language).\",\"eventDate\":\"2021-03-15T00:00:00Z\",\"softDate\":\"\",\"status\":\"Pending\",\"category\":\"Project
+        Operations\",\"subcategory\":\"Other Project Change\",\"tags\":[\"\"],\"importance\":\"Low\",\"resources\":[{\"name\":\"Cryptium
+        Labs Announcement\",\"link\":\"https://twitter.com/CryptiumLabs/status/1362014832594210823\"}],\"activationBlock\":null,\"update\":\"\",\"submissionId\":\"68407ee2-3969-4db5-81a0-66aa79258d41\"},{\"eventId\":\"72c9b100-2992-4af8-a31a-b4d563106661\",\"authorId\":\"auth0|5f15970d7c4a0f00130fbdca\",\"createDate\":\"2021-01-22T16:34:42Z\",\"updateDate\":\"2021-02-11T18:05:21Z\",\"createAuthorName\":\"aidan@messari.io\",\"updateAuthorName\":\"aidan@messari.io\",\"eventName\":\"Grayscale
+        Trust Filings \",\"assets\":[\"chainlink\",\"basic-attention-token\",\"decentraland\",\"livepeer\",\"tezos\",\"polkadot\",\"cosmos\",\"monero\",\"aave\",\"cardano\",\"yearn-finance\"],\"details\":\"Grayscale's
+        \\\"statutory trustee\\\" Deleware Trust Company has filled trusts for Chainlink,
+        Basic Attention Token, Decentraland, Livepeer, and Tezos.  In an email to
+        Coindesk, Grayscale stated, \\\"Occasionally, we will make reservation fillings,
+        though a filing does not mean we will bring a product to market. Grayscale
+        has and will continue to announce when new products are made available to
+        investors.\\\"\",\"eventDate\":\"2021-01-22T00:00:00Z\",\"softDate\":\"\",\"status\":\"Discussed
+        \",\"category\":\"Legal and Regulatory \",\"subcategory\":\"Regulatory Status
+        \",\"tags\":[\"\"],\"importance\":\"Low\",\"resources\":[{\"name\":\"CoinDesk
+        First Article\",\"link\":\"https://www.coindesk.com/grayscale-may-have-laid-groundwork-for-5-more-potential-crypto-trusts\"},{\"name\":\"CoinDesk
+        Second Article\",\"link\":\"https://www.coindesk.com/digital-asset-manager-grayscale-eyes-defi-space-with-new-trust-filings\"},{\"name\":\"Filling
+        Search (File Number: 5061770)\",\"link\":\"https://icis.corp.delaware.gov/eCorp/EntitySearch/NameSearch.aspx\"}],\"activationBlock\":null,\"update\":\"Grayscale's
+        \\\"statutory trustee,\\\" Deleware Trust Company, has filed a trust for Yearn
+        Finance (YFI). This filling does not mean a product will be brought to market.
+        Grayscale has and will continue to announce when new products are made available
+        to investors. \",\"submissionId\":\"69fd656c-70d5-4bcf-b784-f9bc68d11ade\"},{\"eventId\":\"021a3176-9bf9-466c-bbc8-bbd34d7d0aa5\",\"authorId\":\"auth0|5f15970d7c4a0f00130fbdca\",\"createDate\":\"2021-02-18T17:09:15Z\",\"updateDate\":\"2021-02-18T17:09:15Z\",\"createAuthorName\":\"aidan@messari.io\",\"updateAuthorName\":\"aidan@messari.io\",\"eventName\":\"Multi-Blockchain
+        Support \",\"assets\":[\"the-graph\",\"polkadot\",\"solana\",\"near-protocol\",\"celo\"],\"details\":\"The
+        Graph has revealed a list of additional Layer 1 blockchains supported by the
+        protocol: Polkdadot, Near, Solana, and Celo.\",\"eventDate\":\"2021-02-18T00:00:00Z\",\"softDate\":\"\",\"status\":\"Completed\",\"category\":\"Network
+        Change\",\"subcategory\":\"Network Integration\",\"tags\":[\"\"],\"importance\":\"Medium\",\"resources\":[{\"name\":\"Announcement
+        \",\"link\":\"https://thegraph.com/blog/multiblockchain-support\"}],\"activationBlock\":null,\"update\":\"\",\"submissionId\":\"c9a25f5d-cb7d-4f6b-9a39-0e986b790ca2\"}]}"
+  recorded_at: Thu, 18 Feb 2021 20:26:07 GMT
+recorded_with: VCR 6.0.0

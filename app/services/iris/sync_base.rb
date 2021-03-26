@@ -52,4 +52,13 @@ class Iris::SyncBase < Cosmoslike::SyncBase
   def get_validator_rewards(_validator_operator_id)
     nil # unsupported
   end
+
+  def get_governance
+    {}
+  end
+
+  # Iris returns 404 on lcd_get('staking/pool') endpoint
+  def get_staking_pool
+    nil
+  end
 end

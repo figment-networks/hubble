@@ -1,0 +1,27 @@
+<% if round_range? -%>
+  <div class='data-block'>
+    <h5 class='data-block__title'>Round</h5>
+    <%= link_to namespaced_path('round', params[:round_number]), class: 'data-block__large-number' do %>
+      <span class='technical'><%= params[:round_number] %></span>
+    <% end -%>
+  </div>
+<% end -%>
+
+<% if date_range? -%>
+  <div class='data-block'>
+    <h5 class='data-block__title'>Date Range</h5>
+    <div>
+      <label class='d-inline'>Start date:</label>
+      <span class='technical'><%= params[:start_date] %></span>
+    </div>
+    <div>
+      <label class='d-inline'>End date:</label>
+      <span class='technical'><%= params[:end_date] %></span>
+    </div>
+  </div>
+<% end -%>
+
+<div class='data-block'>
+  <h5 class='data-block__title'>CSV</h5>
+  <%= link_to 'Export CSV', report_params.merge(format: 'csv'), class: 'button-secondary' %>
+</div>

@@ -18,7 +18,13 @@
             <% else -%>
               <p class='logo-fallback'><%= chain.network_name %></p>
             <% end -%>
-            <p class='chains-list__launch'>Launched in <%= chain.created_at.strftime("%B %Y") %></p>
+            <p class='chains-list__launch'>
+              <% if chain.try(:testnet?) %>
+                Testnet
+              <% else %>
+                Launched in <%= chain.created_at.strftime("%B %Y") %>
+              <% end %>
+            </p>
             <ul class='d-flex list-unstyled justify-content-between flex-wrap mt-4'>
               <% if chain.validator_count -%>
                 <li class='col-6 p-0 mt-3'>
@@ -40,12 +46,14 @@
               <% if chain.avg_block_time -%>
                 <li class='col-6 p-0 mt-3'>
                   <p class='chains-list__label m-0'>Block Time</p>
-                  <p class='chains-list__data m-0'><%= chain.avg_block_time.round(2) %><sup class='sup'>SEC</sup></p>
+                  <p class='chains-list__data m-0'>
+                    <%= chain.avg_block_time.round(2) %><sup class='sup'><%= chain.avg_block_time_units %></sup>
+                  </p>
                 </li>
               <% end -%>
 
               <% if chain.rewards_rate && chain.daily_rewards -%>
-                <% cache("#{chain.cache_key}-#{Date.today.cweek}-rewards") do %>
+                <% cache("#{chain.cache_key}-rewards", expires_in: 1.hour) do %>
                   <li class='col-6 p-0 mt-3'>
                     <p class='chains-list__label m-0'>Rewards</p>
                     <p class='chains-list__data m-0'><%= chain.rewards_rate.round(2) %>%</p>
@@ -60,7 +68,7 @@
               <% end %>
 
               <% if chain.staking_participation %>
-                <% cache("#{chain.cache_key}-#{Date.today.cweek}-staking_participation") do %>
+                <% cache("#{chain.cache_key}-staking_participation", expires_in: 1.hour) do %>
                   <li class='col-6 p-0 mt-3'>
                     <p class='chains-list__label m-0'>Staking Participation</p>
                     <p class='chains-list__data m-0'><%= chain.staking_participation.truncate(2) %>%</p>

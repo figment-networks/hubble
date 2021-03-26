@@ -8,27 +8,22 @@ describe 'mina block', :vcr do
   end
 
   it 'displays block details' do
-    expect(page).to have_text '3j7Fqw9esogUaXtzjE1CtnR24pc1tRReFHHV'
+    expect(page).to have_text '3NLUNGXBvXsdMxktBWZYR9ZjTwBWDCYh6WRtp7SbPxNEzMQ...'
     expect(page).to have_text 'Block Details'
     expect(page).to have_text 'Transactions'
     expect(page).to have_text 'SNARK Jobs'
-    expect(page).to have_text 'Height'
-    expect(page).to have_text 'Timestamp'
+    expect(page).to have_text 'HEIGHT'
+    expect(page).to have_text 'TIMESTAMP'
 
     within '.block-details' do
       expect(page).to have_text 'Producer'
-      expect(page).to have_text '4vsRCVaJmjRqg6SvTcMLwNfpTLP2XwdUNN943vK7gGSeXtj'
+      expect(page).to have_text 'B62qmfS8M6naWa1jNeZT12jfxLmngSdg2TZzTcz7skt5Czm...'
 
       expect(page).to have_text 'Total Currency'
-      expect(page).to have_text '23,576,900.002 MINA'
     end
 
     within 'table.transactions' do
-      expect(page.all('tbody > tr').size).to eq 10
-    end
-
-    within 'table.snarkers' do
-      expect(page.all('tbody > tr').size).to eq 1
+      expect(page.all('tbody > tr').size).to eq 29
     end
 
     within '.block-height' do

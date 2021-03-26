@@ -18,10 +18,11 @@
               Jump
             </a>
             <div class='dropdown-menu' aria-labelledby='admin-menu-link'>
-              <a class='dropdown-item' href='<%= root_path %>'>Homepage</a>
-              <a class='dropdown-item' href='<%= admin_root_path %>'>Admin Home</a>
-              <a class='dropdown-item' href='<%= admin_users_path %>'>Users</a>
-              <a class='dropdown-item' href='<%= admin_administrators_path %>'>Admins</a>
+              <%= link_to 'Homepage', root_path, class: 'dropdown-item' %>
+              <%= link_to 'Admin Home', admin_root_path, class: 'dropdown-item' %>
+              <%= link_to 'Prime Admin', prime_admin_root_path, class: 'dropdown-item' %>
+              <%= link_to 'Users', admin_users_path, class: 'dropdown-item' %>
+              <%= link_to 'Admins', admin_administrators_path, class: 'dropdown-item' %>
             </div>
           </li>
           <li class='sep'>|</li>

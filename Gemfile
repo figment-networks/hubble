@@ -10,6 +10,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'rails', '~> 5.2'
 gem 'sass-rails', '~> 5.0'
+gem 'webpacker', '~>5.2'
 
 gem 'actionmailer_inline_css'
 gem 'babel-transpiler'
@@ -31,7 +32,6 @@ gem 'redcarpet'
 gem 'rest-client'
 gem 'rinku'
 gem 'suo'
-gem 'typhoeus'
 gem 'useragent'
 
 gem 'postmark-rails'
@@ -64,6 +64,11 @@ gem 'gqli', '~> 1.0.0'
 gem 'rash_alt', '~> 0.4.8', require: 'rash'
 gem 'validate_url', '~> 1.0.8'
 
+# Prime
+gem 'apexcharts'
+gem 'groupdate'
+gem 'jquery-ui-rails'
+
 group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'web-console', '>= 3.3.0'
@@ -81,6 +86,7 @@ group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'guard-rspec'
   gem 'letter_opener_web', '~> 1.0'
+  gem 'parallel_tests'
   gem 'pry'
   gem 'rspec-rails', '~> 4.0.0'
   gem 'rubocop'
@@ -95,10 +101,11 @@ group :test do
   gem 'database_cleaner'
   gem 'factory_bot_rails', '~> 5.1.1'
   gem 'rails-controller-testing'
+  gem 'rspec-retry', '>= 0.6.2'
   gem 'selenium-webdriver', '~> 3.142'
   gem 'vcr', '~> 6.0'
   gem 'webdrivers', '~> 4.3'
-  gem 'webmock', '~> 3.8.2'
+  gem 'webmock', '~> 3.11'
 end
 
 group :production do

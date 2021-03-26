@@ -1,3 +1,4 @@
+<h2 class='page-title text-center d-block'>Sign up</h2>
 <div class='row clearfix pt-3'>
   <div class='col-12 col-md-4 offset-md-4'>
     <%= form_for @user, as: 'new_signup' do |f| -%>
@@ -13,17 +14,17 @@
       <% end -%>
 
       <div class='form-group'>
-        <%= f.text_field :name, placeholder: 'Your Name', class: 'form-control form-control-lg' %>
+        <%= f.text_field :name, placeholder: 'Your Name', class: 'form-control form-input' %>
       </div>
       <div class='form-group'>
-        <%= f.email_field :email, placeholder: 'your@email.com', class: 'form-control form-control-lg' %>
+        <%= f.email_field :email, placeholder: 'your@email.com', class: 'form-control form-input' %>
       </div>
       <div class='form-group'>
-        <%= f.password_field :password, placeholder: 'password', class: 'form-control form-control-lg' %>
+        <%= f.password_field :password, placeholder: 'password', class: 'form-control form-input' %>
       </div>
 
       <div class='d-flex justify-content-center'>
-        <%= f.submit class: 'btn btn-primary', value: @user.persisted? ? 'Update' : 'Sign Up' %>
+        <%= f.submit class: 'button-primary', value: @user.persisted? ? 'Update' : 'Sign Up' %>
       </div>
     <% end -%>
   </div>

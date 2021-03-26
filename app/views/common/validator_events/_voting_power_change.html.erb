@@ -1,22 +1,22 @@
-<div>
-  <span class='d-inline d-md-none <%= icon_classes %> mr-1'></span>
-  <span class='font-weight-bold'>
-    <% if @validator.nil? %>
-      <%= link_to event.validatorlike.short_name, namespaced_path( 'validator', event.validatorlike ) %> voting
-    <% else -%>
-      Voting
-    <% end -%>
-    power <%= event.positive? ? 'increased' : 'reduced' %></span>
-  <span class='text-muted'>
-    at block
-    <%= link_to event.height, namespaced_path( 'block', event.height ), class: 'technical' %>
-  </span>
-</div>
-<div class='from-to d-flex align-items-center'>
-  <div class='font-weight-bold'><%= format_amount(event.from, hide_units: true, denom: @chain.token_map[@chain.primary_token]['display']) %></div>
-  <div class='text-muted text-sm ml-3 mr-3'><span class='fas fa-arrow-right'></span></div>
-  <div class='font-weight-bold'><%= format_amount(event.to, hide_units: true, denom: @chain.token_map[@chain.primary_token]['display']) %></div>
-  <div class='ml-3'>
-    <small class='text-muted font-size-sm technical text-nowrap'>( <%= sprintf("%+d", event.delta) %> / <%= sprintf("%+.1f%%", event.percentage_change) %> )</small>
+<% if @validator.nil? %>
+  <td>
+    <span class='paragraph font-weight-bold'>
+    <%= link_to event.validatorlike.short_name, namespaced_path( 'validator', event.validatorlike ) %>
+    </span>
+  </td>
+<% end -%>
+<td>
+  <div class="d-flex align-items-center">
+    <%= image_tag "#{event.positive? ? 'increased' : 'reduced'}.svg", alt: "#{event.positive? ? 'increased' : 'reduced'}", class: 'event-history__arrow mr-2' %>
+    <p class="event-history__value technical m-0">
+      <%= sprintf("%+d", event.delta) %><span>/</span><%= sprintf("%+.1f%%", event.percentage_change) %>
+    </p>
   </div>
-</div>
+  <div class="event-history__amount technical">
+    <%= format_amount(event.from, hide_units: true, denom: @chain.token_map[@chain.primary_token]['display']) %>
+    <%= format_amount(event.to, hide_units: true, denom: @chain.token_map[@chain.primary_token]['display']) %>
+  </div>
+</td>
+<td>
+  <%= link_to event.height, namespaced_path('block', event.height), class: "technical event-history__block" %>
+</td>

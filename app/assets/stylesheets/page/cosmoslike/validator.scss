@@ -6,7 +6,6 @@
 
   .block-heatmap-container {
     position: relative;
-    margin-bottom: 10px;
     #chartjs-tooltip-bhm div {
       display: flex;
       align-items: center;
@@ -19,17 +18,32 @@
     .block {
       width: 2%;
       height: 30px;
+      margin-right: 1px;
       background: black;
       border-right: 1px solid white;
-      &.ok { background: $success; &:hover { background: lighten($success, 10%); } }
+      &.ok {
+        border: 1px solid $success;
+        background: #fff;
+        &:hover {
+          background: lighten($success, 10%);
+          border: 1px solid lighten($success, 10%);
+        }
+      }
       &.missed { background: $danger; &:hover { background: lighten($danger, 10%); } }
-      &.proposed { background: $primary; &:hover { background: lighten($primary, 10%); } }
-      &:last-child {
-        border-right: none;
+      &.proposed {
+        border: 3px solid $primary;
+        &:hover {
+          background: lighten($primary, 10%);
+          border: 1px solid lighten($primary, 10%);
+        }
       }
     }
   }
-
+  .voting-power-block {
+    margin-top: 25px;
+    padding-top: 30px;
+    border-top: 1px solid $border-color;
+  }
   .voting-power-history-chart-container {
     height: 150px;
   }
@@ -37,21 +51,12 @@
   .uptime-history-alltime-chart-container {
     height: 100px;
   }
-  .gov-proposals-table, .delegations-table {
-    table.dataTable {
-      thead {
-        th {
-          background-color: $gray-200;
-          color: $primary;
-          border-bottom: none;
-          &:first-child { padding-left: 20px; }
-        }
-      }
-      tbody {
-        td:first-child {
-          padding-left: 20px;
-        }
-      }
+  .data-block__large-number {
+    display: flex;
+    align-items: flex-start;
+
+    .sup {
+      margin: 7px 0 0 4px;
     }
   }
 }

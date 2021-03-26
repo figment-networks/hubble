@@ -130,13 +130,4 @@ describe Mina::Client do
       expect(result).to be_a Mina::Transaction
     end
   end
-
-  describe '#transaction_stats' do
-    let(:result) { client.transactions_stats }
-
-    it 'returns transactions stats' do
-      expect(result).to be_a Array
-      expect(result.first).to be_a Mina::TransactionStat
-    end
-  end
 end

@@ -2,10 +2,10 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'common/bootstrap-overrides';
 
-@import 'redesign/common/nav';
-@import 'redesign/common/footer';
+@import 'common/nav';
+@import 'common/footer';
 @import 'common/typography';
-@import 'redesign/components/errors';
+@import 'components/errors';
 
 .error-page {
   display: flex;

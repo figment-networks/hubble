@@ -1,6 +1,9 @@
-<div class='card'>
-  <h5 class='card-header'>Voting Power History <small>&mdash; All Changes</small></h5>
-  <div class='card-body'>
+<div class='data-block voting-power-block '>
+  <div class="d-flex justify-content-between align-content-center mb-3">
+    <h3 class='data-block__title m-0'>Voting Power History</h3>
+    <span class='text-label'>All Changes</span>
+  </div>
+  <div>
     <div class='voting-power-history-chart-container'>
       <canvas class='voting-power-history-chart'></canvas>
       <script>
@@ -11,20 +14,12 @@
   </div>
 </div>
 
-<div class='card'>
-  <h5 class='card-header'>
-    <div class='card-header-parts'>
-      <div>Uptime History <small>&mdash; Last 48 Hours</small></div>
-      <!-- <div class='validator-uptime-switcher btn-group btn-group-sm'>
-        <button type='button' data-target='alltime' class='btn btn-outline-light'>All Time</button>
-        <button type='button' data-target='last48h' class='btn btn-outline-light'>Past 48h</button>
-      </div> -->
-    </div>
-  </h5>
-  <div class='card-body'>
-    <!-- <div class='uptime-history-alltime-chart-container'>
-      <canvas class='uptime-history-alltime-chart'></canvas>
-    </div> -->
+<div class='data-block'>
+  <div class="d-flex justify-content-between align-content-center mb-3">
+    <h3 class='data-block__title m-0'>Uptime History</h3>
+    <span class='text-label'>Last 48 Hours</span>
+  </div>
+  <div>
     <div class='uptime-history-last48h-chart-container'>
       <canvas class='uptime-history-last48h-chart'></canvas>
     </div>

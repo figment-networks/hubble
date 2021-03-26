@@ -1,0 +1,26 @@
+<div class="section__item section__item--wide">
+  <div class="chart-box">
+    <div class="chart-box__header">
+      <p class="chart-box__text">Portfolio Performance</p>
+      <p class="chart-box__text">Performance (1 Month):
+        <span class="color-<%= price_change_color(portfolio_one_month_roi(enabled_networks, @network_token_balances)) %>">
+          <%= portfolio_one_month_roi(enabled_networks, @network_token_balances) %>%
+        </span>
+      </p>
+    </div>
+    <div class="chart-box__content">
+      <div class="chart">
+        <div id="performance-chart">
+          <%= line_chart(build_portfolio_timeseries_data(enabled_networks, @network_token_balances),
+                        title: { text: 'Stake Value per Network', align: 'center' },
+                        zoom: false,
+                        tooltip: tooltips_to_usd,
+                        yaxis: labels_to_usd,
+                        data_labels: false,
+                        theme: 'figment',
+                        stroke: { curve: 'smooth', width: 3 }) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

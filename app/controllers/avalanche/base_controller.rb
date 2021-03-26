@@ -1,6 +1,4 @@
 class Avalanche::BaseController < Indexer::BaseController
-  layout 'redesign/application'
-
   private
 
   def page_title(value)

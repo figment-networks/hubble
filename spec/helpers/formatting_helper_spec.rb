@@ -5,14 +5,14 @@ describe FormattingHelper do
     context 'with in_millions' do
       subject { format_amount(amount, chain, in_millions: true) }
 
-      let(:amount) { 123000000 }
+      let(:amount) { 123000000000000 }
       let(:chain) do
         double(token_map: { 'ungm' => { 'factor' => 6, 'display' => 'NGM', 'primary' => true } },
                primary_token: 'ungm')
       end
 
       it 'returns a value formatted in millions' do
-        expect(subject).to eq "<span class='text-monospace'>123M</span> <span class='text-sm text-muted sup'>{\"factor\"=>6, \"display\"=>\"NGM\", \"primary\"=>true}</span>"
+        expect(subject).to eq "<span class='text-monospace'>123M</span> <span class='text-sm text-muted sup'>NGM</span>"
       end
     end
   end

@@ -1,6 +1,15 @@
 <% content_for :body_class, 'admin-users-index' %>
 
-<h2>Users</h2>
+<div class='container'>
+  <div class='row'>
+    <div class='col-9'>
+      <h2>Users</h2>
+    </div>
+    <div class='col-3'>
+      <%= link_to user_index_prime_filter_text, request.params.merge(prime_only: user_index_prime_filter_value), class: 'btn btn-sm btn-outline-success' %>
+    </div>
+  </div>
+</div>
 
 <table class='table table-sm'>
   <thead class='thead-light'>
