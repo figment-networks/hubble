@@ -68,11 +68,15 @@ class Util::SubscriptionsController < Hubble::ApplicationController
     event_kinds = params[:alert_subscription][:event_kinds] rescue []
     return [] if event_kinds.empty?
 
-    defn = @chain.validator_event_defs.find { |defn| defn['kind'].in?(event_kinds) }
+    valid_kinds = @chain.validator_event_defs.map { |defn| defn['kind'] }
+    selected_valid_kinds = event_kinds.intersection(valid_kinds)
 
-    case defn['kind']
-    when 'voting_power_change' then %i[percent_change]
+    fields = []
+    if selected_valid_kinds.include?('voting_power_change') || selected_valid_kinds.include?('balance_change')
+      fields << :percent_change
     end
+    fields = nil if fields.empty?
+    return fields
   end
 
   def set_chain_and_validator

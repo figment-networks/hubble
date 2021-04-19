@@ -13,7 +13,8 @@ module HomeHelper
       *Mina::Chain.enabled.primary,
       *Polkadot::Chain.enabled.primary,
       *Celo::Chain.enabled.primary,
-      *Avalanche::Chain.enabled.primary
+      *Avalanche::Chain.enabled.primary,
+      *Skale::Chain.enabled.primary
     ]
   end
 
@@ -37,7 +38,8 @@ module HomeHelper
     'Terra' => 'terra.svg',
     'Tezos' => 'tezos.png',
     'Celo' => 'celo.svg',
-    'Avalanche' => 'avalanche.svg'
+    'Avalanche' => 'avalanche.svg',
+    'Skale' => 'skale.svg'
   }.freeze
 
   def network_has_image?(network_name)

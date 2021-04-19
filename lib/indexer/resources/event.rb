@@ -12,7 +12,12 @@ module Indexer
                   :receiver_name,
                   :priority,
                   :slot,
-                  :reward
+                  :reward,
+                  :to,
+                  :from,
+                  :delta,
+                  :percentage_change,
+                  :initial
 
     def self.list(cycle_id: 'current', page: nil, types: nil, before_timestamp: nil, after_timestamp: nil, after_height: nil, paginate: true)
       url = if cycle_id.present?
@@ -72,6 +77,10 @@ module Indexer
       offender_name.presence || offender_address.truncate(30)
     end
 
+    def percentage_change
+      @percentage_change.to_f
+    end
+
     def subscription_address
       case type
       when 'missed_endorsement'
@@ -115,6 +124,8 @@ module Indexer
         "Baker #{baker_long_name} accused #{offender_long_name} of a Double Bake at block #{related_block_id}"
       when 'double_endorsement'
         "Baker #{baker_long_name} accused #{offender_long_name} of a Double Endorsement at block #{related_block_id}"
+      when 'balance_change'
+        "Baker #{baker_long_name}'s balance changed from #{from} to #{to}"
       end
     end
   end

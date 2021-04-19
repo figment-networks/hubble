@@ -1,0 +1,16 @@
+<div class='data-block validator-blocks'>
+  <div class='d-flex justify-content-between align-content-center mb-2'>
+    <h3 class='data-block__title'>Blocks</h3>
+    <label class="text-label">Last <%= blocks.size %></label>
+  </div>
+  <div class="block-heatmap-container">
+    <div class="block-heatmap validator-blocks-heatmap">
+      <% blocks.each do |block| %>
+        <%= link_to "", namespaced_path("block", block['height']),
+                    class: "block #{block['signed'] ? "ok" : "missed"}",
+                    title: celo_block_heatmap_title(block)
+        %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,50 @@
+<div class='data-table m-0'>
+  <div class='data-table__header'>
+    <h3 class="data-table__title">Transactions</h3>
+  </div>
+  <div class='table-responsive'>
+    <table class='w-100'>
+      <thead>
+      <tr>
+        <th>Hash</th>
+        <th>Gas Burnt</th>
+        <th>Transaction Fee</th>
+        <th>Result</th>
+        <th class='text-right'>More Information</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% if @transactions.records.blank? -%>
+        <tr>
+          <td class='data-table__empty' colspan='3'>No transactions for this block.</td>
+        </tr>
+      <% else -%>
+        <% @transactions.records.each do |transaction| -%>
+          <tr class="events-table">
+            <td>
+              <%= transaction.hash %>
+            </td>
+            <td>
+              <%= format_amount(transaction.gas_burnt, denom: 'gas') %>
+            </td>
+            <td>
+              N/A
+            </td>
+            <td>
+              <% if !transaction.success -%>
+                <span class='badge badge-danger'>FAILED</span>
+              <% else -%>
+                <span class='badge badge-success'>SUCCESS</span>
+              <% end -%>
+            </td>
+            <td class='text-right'>
+              <a class='btn btn-outline-primary btn-sm' href='<%= near_chain_block_transaction_path(@chain, @block.id, transaction.hash) %>'>Details...</a>
+            </td>
+          </tr>
+        <% end -%>
+      <% end -%>
+      </tbody>
+    </table>
+  </div>
+</div>
+<%= render 'near/shared/transactions_pagination' %>

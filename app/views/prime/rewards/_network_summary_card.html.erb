@@ -7,7 +7,7 @@
     <div class="block__section">
       <div class="block__row">
         <div>
-          <p class="block__value"><%= number_with_precision(reward_total, precision: 2) %> <%= network.primary.reward_token_display %></p>
+          <p class="block__value"><%= number_with_delimiter(reward_total.round(2)) %> <%= network.primary.reward_token_display %></p>
           <p class="block__label">(<%= number_to_currency(reward_total * network.price_usd) %>)</p>
         </div>
 

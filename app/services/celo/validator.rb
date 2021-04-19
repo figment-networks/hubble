@@ -11,6 +11,7 @@ module Celo
     field :affiliation
     field :score, type: :float, default: 0
     field :validator_group
+    field :last_sequences
 
     def factored_commission
       validator_group&.factored_commission

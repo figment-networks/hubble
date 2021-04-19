@@ -10,7 +10,7 @@
       .badge { font-size: $font-size-base * 1.1; }
     }
   }
-  
+
   .block-heatmap {
     display: flex;
 
@@ -53,4 +53,9 @@
       font-family: $font-family-monospace;
     }
   }
+}
+
+
+.events-table {
+  font-size: 12px;
 }

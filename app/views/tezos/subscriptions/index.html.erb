@@ -55,13 +55,29 @@
                   </div>
                 </div>
                 <div class='card-body'>
+                  <% if event_kind == "balance_change" %>
+                  <div class='controls d-flex align-items-start align-items-md-center flex-column flex-md-row mb-4'>
+                    <span class='text-muted text-nowrap mr-4'>Notify on</span>
+                    <div class='input-group input-group-lg'>
+                      <input type='text' class='form-control' autocomplete='off'
+                            name='alert_subscription[data][percent_change]'
+                            value='<%= @subscription && @subscription.data['percent_change'] %>'
+                            placeholder='percentage' />
+                      <div class='input-group-append'>
+                        <span class='input-group-text'>%</span>
+                      </div>
+                    </div>
+                    <span class='text-muted text-nowrap ml-md-4'>Change (<span class='technical text-lg font-weight-bold'>+</span>/<span class='technical text-lg font-weight-bold'>-</span>)</span>
+                  </div>
+                  <% end %>
+
                   <div class='info'>
                     You will receive an email up to once every <%= time_ago_in_words(ALERT_MINIMUM_TIMEOUT.ago) %>
                     about this type of event.
                   </div>
                 </div>
               </div>
-            <% end -%>
+            <% end %>
           </div>
         <% end -%>
       </div>

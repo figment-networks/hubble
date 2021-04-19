@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://min-api.cryptocompare.com/data/pricemulti?fsyms=ATOM,LPT,KAVA,DOT,XTZ,LUNA,IRIS,CELO,NEAR,AVAX,MINA,ROSE&tsyms=USD
+    uri: https://min-api.cryptocompare.com/data/pricemulti?fsyms=ATOM,LPT,KAVA,DOT,XTZ,LUNA,IRIS,CELO,NEAR,AVAX,MINA,ROSE,SKL&tsyms=USD
     body:
       encoding: US-ASCII
       string: ''
@@ -48,6 +48,6 @@ http_interactions:
       - ccc-api17
     body:
       encoding: UTF-8
-      string: '{"ATOM":{"USD":8.41},"LPT":{"USD":4.749},"KAVA":{"USD":2.456},"DOT":{"USD":18.45},"XTZ":{"USD":3.134},"LUNA":{"USD":0.9224},"IRIS":{"USD":0.06712},"CELO":{"USD":2.915},"NEAR":{"USD":2.533},"AVAX":{"USD":12.85},"ROSE":{"USD":0.06283}}'
+      string: '{"ATOM":{"USD":8.41},"LPT":{"USD":4.749},"KAVA":{"USD":2.456},"DOT":{"USD":18.45},"XTZ":{"USD":3.134},"LUNA":{"USD":0.9224},"IRIS":{"USD":0.06712},"CELO":{"USD":2.915},"NEAR":{"USD":2.533},"AVAX":{"USD":12.85},"ROSE":{"USD":0.06283},"SKL":{"USD":0.72}}'
   recorded_at: Mon, 25 Jan 2021 12:57:34 GMT
 recorded_with: VCR 6.0.0

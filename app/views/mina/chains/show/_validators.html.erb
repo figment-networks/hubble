@@ -45,7 +45,7 @@
       <tbody>
         <% @validators.each do |validator| %>
           <tr>
-            <td class='col-address'>
+            <td class='col-address' nowrap>
               <span
                 class="fa fa-circle status-icon <%= validator.status %>"
                 data-toggle="tooltip"
@@ -53,7 +53,7 @@
                 title="Last seen active <%= time_ago_in_words validator.last_time %> ago">
               </span>
               <a href="<%= mina_chain_validator_path(@chain, id: validator.public_key) %>">
-                <%= validator.display_name.truncate(20) %>
+                <%= validator.display_name.truncate(35) %>
               </a>
             </td>
             <td>

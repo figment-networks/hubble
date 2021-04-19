@@ -75,6 +75,8 @@
       </div>
 
       <div class='col-md-12 col-lg-6 mb-4 pb-2'>
+        <%= render partial: 'blocks', locals: {blocks: @validator.last_sequences.reverse, chain: @chain} %>
+
         <div class='data-block'>
           <h5 class='data-block__title'>Scores History <small>&mdash; Last <%= @validator_scores.count %> Days</small>
           </h5>

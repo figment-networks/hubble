@@ -1,7 +1,13 @@
 module Prime::HomeHelper
   NETWORK_IMAGES = {
     'polkadot': 'polkadot.svg',
-    'oasis': 'oasis@1x.png'
+    'oasis': 'oasis.svg',
+    'cosmos': 'cosmos.svg',
+    'terra': 'terra.svg',
+    'kava': 'kava.svg',
+    'near': 'near.svg',
+    'livepeer': 'livepeer.svg',
+    'celo': 'celo.svg'
   }.freeze
 
   def active_nav_tab?(route)

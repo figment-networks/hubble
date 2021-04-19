@@ -9,7 +9,8 @@ class Mina::ValidatorsController < Mina::BaseController
     @blocks = client.blocks
     @transactions = client.transactions(account: @account.public_key)
     @staking_pool = client.validators.sum(&:stake)
-    @stats = Mina::ValidatorStatsDecorator.new(@chain, @details.stats)
+    @stats_daily = Mina::ValidatorStatsDecorator.new(@chain, @details.stats_daily)
+    @stats_hourly = Mina::ValidatorStatsDecorator.new(@chain, @details.stats_hourly)
 
     page_title 'Validator'
     meta_description "Validator #{@validator.public_key}"

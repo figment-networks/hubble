@@ -37,6 +37,10 @@ class AlertSubscription < ApplicationRecord
     if !ignored_event && event.is_a?(Common::ValidatorEvents::VotingPowerChange)
       puts "\t\tSend voting power change? #{event.percentage_change.abs} >= #{data['percent_change']}" if ENV['DEBUG']
       good_enough = event.percentage_change.abs >= data['percent_change']
+    elsif !ignored_event && event.is_a?(Indexer::Event) && event.type == 'balance_change'
+      # Tezos Balance Change events return percentage change as a decimal (0.05 = 5%)
+      puts "\t\tSend balance change? #{event.percentage_change.abs} >= #{data['percent_change']}" if ENV['DEBUG']
+      good_enough = event.percentage_change.abs * 100 >= data['percent_change']
     else
       good_enough = true
     end

@@ -2,9 +2,6 @@
   <td><%= network_event.network.name.capitalize %></td>
   <td><%= network_event.decorated_date %></td>
   <td>
-    <%= link_to ((defined?(truncate_titles) && truncate_titles) ? network_event.title.truncate(35) : network_event.title),
-                network_event.source,
-                class: 'link',
-                target: 'blank' %>
+    <button data-target="<%= network_event.event_id %>-info-modal" class="link"><%= network_event.title %></button>
   </td>
 </tr>

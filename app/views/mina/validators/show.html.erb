@@ -8,7 +8,7 @@
     <div class='d-flex flex-wrap'>
       <div class='mr-auto pb-4'>
         <h2 class="validator-header__title">Validator</h2>
-        <%= @validator.display_name.truncate(30) %>
+        <%= @validator.display_name.truncate(50) %>
       </div>
       <div class='pb-4'>
         <ul class='validator-info__list'>
@@ -40,7 +40,8 @@
           ledger:    @chain.supports_ledger?
         %>
         <%= render "mina/validators/show/lifetime", validator: @validator %>
-        <%= render "mina/validators/show/balance_stats", stats: @stats %>
+        <%= render "mina/validators/show/balance_stats", stats: @stats_daily %>
+        <%= render "mina/validators/show/block_stats", stats_daily: @stats_daily, stats_hourly: @stats_hourly %>
         <%= render "mina/validators/show/transactions", chain: @chain, validator: @validator, transactions: @transactions %>
       </div>
       <div class="col-md-12 col-lg-5">

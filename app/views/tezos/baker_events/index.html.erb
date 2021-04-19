@@ -52,7 +52,7 @@
           <tr class="linked">
             <td>
               <%= link_to tezos_baker_path(event.baker_address) do %>
-                <i class="fas fa-fw mr-2 <%= event_icon(event.type) %>"></i>
+                <i class="fas fa-fw mr-2 <%= event_icon(event) %>"></i>
                 <%= event.type.titleize %>
               <% end %>
             </td>
@@ -63,7 +63,18 @@
             </td>
             <td><%= link_to number_with_delimiter(event.block_id, delimiter: ","), tezos_baker_path(event.baker_address) %></td>
             <td>
-              <% if event.related_block_id.present?  %>
+              <% if event.type == "balance_change" %>
+                <%= link_to tezos_baker_path(event.baker_address) do %>
+                  <%= '+' if event.delta.positive? %><%= event.delta %> /
+                  <%= '+' if event.delta.positive? %><%= number_to_percentage(event.percentage_change.to_f * 100, precision: 2) %>
+                  <br>
+                  <div class="event-history__amount technical">
+                    <span class="text-monospace small">
+                      <%= event.from %> <%= event.to %>
+                    </span>
+                  </div>
+                <% end %>
+              <% elsif event.related_block_id.present?  %>
                 <%= link_to "In block #{number_with_delimiter(event.related_block_id, delimiter: ",")}", tezos_baker_path(event.baker_address) %>
               <% elsif event.slot.present? %>
                 <%= link_to "Slot #{event.slot}", tezos_baker_path(event.baker_address) %>

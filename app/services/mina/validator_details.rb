@@ -4,6 +4,7 @@ module Mina
     field :account, type: Mina::Account
 
     collection :delegations, type: Mina::Account
-    collection :stats, type: Mina::ValidatorStat
+    collection :stats_daily, type: Mina::ValidatorStat
+    collection :stats_hourly, type: Mina::ValidatorStat
   end
 end

@@ -1,4 +1,44 @@
 .validator-show {
+  // TODO: this is a copy paste, could use a bit of a cleanup
+  .block-heatmap-container {
+    position: relative;
+    margin-bottom: 10px;
+
+    #chartjs-tooltip-bhm div {
+      display: flex;
+      align-items: center;
+      .fa { margin: 0 8px; }
+      .badge { font-size: $font-size-base * 1.1; }
+    }
+  }
+
+  .block-heatmap {
+    display: flex;
+    .block {
+      width: 2%;
+      height: 30px;
+      margin-right: 1px;
+      background: black;
+      border-right: 1px solid white;
+      &.ok {
+        border: 1px solid $success;
+        background: #fff;
+        &:hover {
+          background: lighten($success, 10%);
+          border: 1px solid lighten($success, 10%);
+        }
+      }
+      &.missed { background: $danger; &:hover { background: lighten($danger, 10%); } }
+      &.proposed {
+        border: 3px solid $primary;
+        &:hover {
+          background: lighten($primary, 10%);
+          border: 1px solid lighten($primary, 10%);
+        }
+      }
+    }
+  }
+
   .validator-info__label {
     min-width: 86px;
   }

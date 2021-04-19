@@ -3,7 +3,7 @@ require 'cryptocompare'
 class HomeController < Hubble::ApplicationController
   layout 'home'
 
-  TOKEN_PRICE_LIST = %i[ATOM LPT KAVA DOT XTZ LUNA IRIS CELO NEAR AVAX MINA ROSE].freeze
+  TOKEN_PRICE_LIST = %i[ATOM LPT KAVA DOT XTZ LUNA IRIS CELO NEAR AVAX MINA ROSE SKL].freeze
 
   def index
     page_title 'Hubble'
