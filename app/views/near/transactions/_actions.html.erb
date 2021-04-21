@@ -1,0 +1,23 @@
+<div class='data-table'>
+  <div class='data-table__header'>
+    <h3 class="data-table__title">Actions</h3>
+  </div>
+  <div class='table-responsive'>
+    <table class='w-100'>
+      <thead>
+      <tr>
+        <th>Details</th>
+      </tr>
+      </thead>
+      <tbody>
+        <% actions.each do |action| -%>
+          <tr class="events-table">
+            <td>
+              <%= action_response(action, @transaction.receiver).html_safe %>
+            </td>
+          </tr>
+        <% end -%>
+      </tbody>
+    </table>
+  </div>
+</div>

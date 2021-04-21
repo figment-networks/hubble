@@ -1,8 +1,11 @@
 module TezosHelper
   include Pagy::Frontend
 
-  def event_icon(type)
-    case type
+  def event_icon(event)
+    return 'fa-arrow-up' if event.type == 'balance_change' && event.delta.positive?
+    return 'fa-arrow-down' if event.type == 'balance_change' && event.delta.negative?
+
+    case event.type
     when 'missed_bake' then 'fa-bread-slice'
     when 'steal' then 'fa-mask'
     when 'missed_endorsement' then 'fa-check-double'
@@ -10,6 +13,7 @@ module TezosHelper
     when 'double_endorsement' then 'fa-exclamation'
     when 'baker_activated' then 'fa-toggle-on'
     when 'baker_deactivated' then 'fa-toggle-off'
+    when 'balance_change' then 'fa-arrows-alt-v'
     end
   end
 

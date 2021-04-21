@@ -50,7 +50,7 @@ describe 'Prime My Addressess' do
       expect(page).to have_content('181.86 DOT')
       expect(page).to have_content('Oasis')
       expect(page).to have_content('oasis1qzkdwhw4hnu2pl49c6kpm...')
-      expect(page).to have_content('16,558.35 ROSE')
+      expect(page).to have_content('0.0 ROSE')
     end
   end
 end

@@ -1,0 +1,27 @@
+<div class='data-block validator-block-history'>
+  <div class="charts">
+    <div class="d-flex justify-content-between align-items-baseline">
+      <h3 class='data-block__title'>Blocks produced</h3>
+      <div class='block-time-switcher btn-group btn-group-sm'>
+        <button type='button' data-target='last30d' class='bg-transparent border-0 p-0 text-small timeline-button'>
+          Past <%= stats_daily.blocks_chart_data.count %>d</button>
+        <button type='button' data-target='last48h' class='bg-transparent border-0 p-0 ml-2 text-small timeline-button'>
+          Past <%= stats_hourly.blocks_chart_data.count %>h</button>
+      </div>
+    </div>
+    <div class='last30d-chart-container'>
+      <canvas
+        class='timeline-chart last30d-chart'
+        data-name="daily"
+        data-chart="<%= stats_daily.blocks_chart_data.to_json %>">
+      </canvas>
+    </div>
+    <div class='last48h-chart-container'>
+      <canvas
+        class='timeline-chart last48h-chart'
+        data-name="hourly"
+        data-chart="<%= stats_hourly.blocks_chart_data.to_json %>">
+      </canvas>
+    </div>
+  </div>
+</div>

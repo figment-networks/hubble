@@ -1,0 +1,59 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://localhost:8080/health
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (darwin20.3.0 x86_64) ruby/2.7.2p137
+      Content-Length:
+      - '0'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - skale--mainnet--indexer.datahub.figment.io
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 24 Mar 2021 14:21:43 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '0'
+      Connection:
+      - keep-alive
+      X-Ratelimit-Remaining-Minute:
+      - '1998'
+      X-Ratelimit-Limit-Minute:
+      - '2000'
+      Ratelimit-Remaining:
+      - '1998'
+      Ratelimit-Limit:
+      - '2000'
+      Ratelimit-Reset:
+      - '17'
+      X-Quota-Limit-Day:
+      - '10000000'
+      Quota-Remaining:
+      - '9999979'
+      X-Quota-Remaining-Day:
+      - '9999979'
+      Quota-Reset:
+      - '34697'
+      Quota-Limit:
+      - '10000000'
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Wed, 24 Mar 2021 14:21:43 GMT
+recorded_with: VCR 6.0.0

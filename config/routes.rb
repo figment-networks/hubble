@@ -100,8 +100,12 @@ Rails.application.routes.draw do
       end
 
       resources :validators, only: :show, constraints: { id: /[^\/]+/ }
-      resources :blocks, only: :show, constraints: { id: /[^\/]+/ }
+      resources :blocks, only: :show, constraints: { id: /[^\/]+/ } do
+        resources :transactions, only: :show, constraints: { id: /[^\/]+/ }
+      end
+      resources :events, only: :index
     end
+
     root to: 'chains#show'
   end
 
@@ -115,6 +119,11 @@ Rails.application.routes.draw do
       resources :validators, only: :show, constraints: { id: /[^\/]+/ }
       resources :accounts, only: :show
     end
+    root to: 'chains#show'
+  end
+
+  namespace :skale, network: 'skale' do
+    resources :chains, constraints: { id: /[^\/]+/ }
     root to: 'chains#show'
   end
 
@@ -309,6 +318,10 @@ Rails.application.routes.draw do
     end
 
     namespace :avalanche do
+      resources :chains, except: [:index]
+    end
+
+    namespace :skale do
       resources :chains, except: [:index]
     end
 

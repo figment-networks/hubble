@@ -1,6 +1,6 @@
 <% content_for :body_class, 'block-show' %>
 
-<%= render partial: '/shared/chain_header', locals: { active_tab: '' } %>
+<%= render partial: 'near/base/chain_header', locals: { active_tab: '' } %>
 
 <div class="content">
   <div class="container">
@@ -35,6 +35,8 @@
       <% else -%>
         <span class='text-muted'>&mdash;</span>
       <% end -%>
+      <%= render "near/blocks/transactions" %>
+      <%= render "near/blocks/events" %>
     </div>
   </div>
 </div>

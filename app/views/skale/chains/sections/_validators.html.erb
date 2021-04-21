@@ -1,0 +1,57 @@
+<section class="data-table validators">
+  <div class='validator-table-header justify-content-between py-1 flex-wrap'>
+    <div class="d-flex align-items-center flex-grow-1 py-2">
+      <h4>
+        Validators
+      </h4>
+      <input type='text' class='form-control form-control-sm validator-search' placeholder='filter validators...'>
+    </div>
+  </div>
+
+  <div class='validator-table'>
+    <table>
+      <thead>
+        <tr>
+          <th width="2%">ID</th>
+          <th width="15%">Validator</th>
+          <th width="10%">Staked</th>
+          <th width="10%">Active Nodes</th>
+          <th width="10%">Fee Rate</th>
+          <th width="10%">Accepting?</th>
+          <th class='d-none'></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @validators.each do |validator| %>
+          <tr>
+            <td data-order='<%= validator.id %>'>
+              <%= validator.id %>
+            </td>
+            <td class='col-address' data-order='<%= validator.name %>'>
+              <%= validator.name %>
+            </td>
+            <td data-order='<%= validator.staked %>'>
+              <%= format_amount(validator.staked, denom: @chain.class::DEFAULT_TOKEN_REMOTE) %>
+            </td>
+            <td data-order='<%= validator.active_nodes %>'>
+              <%= validator.active_nodes %>
+            </td>
+            <td data-order='<%= validator.fee_rate %>'>
+              <%= validator.fee_rate %>%
+            </td>
+            <td data-order='<%= validator.accept_new_requests %>'>
+              <span class='badge badge-<%= validator.accepting? ? 'success' : 'danger' %>'><%= validator.accept_new_requests ? 'Yes' : 'No' %></span>
+            </td>
+            <td class='d-none'>
+              _all_ <%= validator.active? ? '_active_' : '_inactive_' %>
+              <%= validator.name %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</section>
+<script>
+    App.config.currentValidatorFilter = "<%= validators.count(&:authorized) > 0 ? "_active_" : "_all_" %>"
+</script>

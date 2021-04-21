@@ -48,18 +48,23 @@ class Tezos::Chain < ApplicationRecord
 
   def validator_event_defs
     [
-      { kind: 'missed_bake' },
-      { kind: 'missed_endorsement' },
-      { kind: 'steal' },
-      { kind: 'double_bake' },
-      { kind: 'double_endorsement' },
-      { kind: 'baker_activated' },
-      { kind: 'baker_deactivated' }
+      { kind: 'missed_bake', filter: true },
+      { kind: 'missed_endorsement', filter: true },
+      { kind: 'steal', filter: true },
+      { kind: 'double_bake', filter: true },
+      { kind: 'double_endorsement', filter: true },
+      { kind: 'baker_activated', filter: true },
+      { kind: 'baker_deactivated', filter: true },
+      { kind: 'balance_change', filter: true }
     ].map(&:with_indifferent_access)
   end
 
   def event_kinds
     validator_event_defs.map { |e| e[:kind] }
+  end
+
+  def event_filters
+    validator_event_defs.select { |e| e[:filter] }.map { |e| e[:kind] }
   end
 
   def failing_sync?

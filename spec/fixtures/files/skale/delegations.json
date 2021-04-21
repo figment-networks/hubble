@@ -1,0 +1,16 @@
+[
+  {
+    "id": 4534,
+    "holder": "0x0c4c5509929475bff676b5fc62879f8ea4b84d11",
+    "transaction_hash": "0x6749c10944ff15e77d6f0ebfc95147c782188077009830bda31223802d6f0ee9",
+    "validator_id": 21,
+    "block_height": 12140414,
+    "amount": "38731000000000000000000",
+    "period": 2,
+    "created": "2021-03-30T11:44:52Z",
+    "started": 0,
+    "finished": 0,
+    "info": "Activate",
+    "state": "PROPOSED"
+  }
+]

@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "name": "validator-1",
+    "description": "",
+    "validator_address": "0xd57ec37128ca6b52f226574e396f43a01d831b65",
+    "requested_address": "0x0000000000000000000000000000000000000000",
+    "fee_rate": 150,
+    "registration_time": "2020-06-30T15:53:53Z",
+    "minimum_delegation_amount": 1000001,
+    "accept_new_requests": true,
+    "authorized": false,
+    "active_nodes": 0,
+    "linked_nodes": 0,
+    "staked": "0"
+  }
+]

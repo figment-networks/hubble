@@ -1,0 +1,25 @@
+<% content_for :body_class, 'chain-show' %>
+
+<%= render "/shared/dh_banner_script" %>
+<%= render partial: "shared/chain_header", locals: { active_tab: 'Validators' } %>
+<div class='content'>
+  <div class='container'>
+    <%= render_flash_messages %>
+    <div class='row info-cards'>
+      <div class='col-12 col-md-9 order-1 order-md-0'>
+        <div>
+          <%= render "skale/chains/sections/validators",
+                        validators: @validators
+          %>
+        </div>
+      </div>
+      <div class='col-12 col-md-3 order-0 order-md-1 info-cards'>
+        <%= render "skale/chains/sections/network_stats",
+                   validators: @validators,
+                    delegations: @delegations
+        %>
+        <%= render "/shared/dh_sidebar_banner" %>
+      </div>
+    </div>
+  </div>
+</div>

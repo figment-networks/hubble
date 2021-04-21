@@ -1,0 +1,15 @@
+<% if @events.pages > 1 %>
+  <div class="col-12 d-flex justify-content-center mt-2">
+    <% if @events.page > 1 %>
+      <%= link_to request.params.merge(events_page: @events.page - 1), id: 'prev-page', class: "btn btn-outline-secondary btn-sm" do %>
+        <span class="fas fa-fw fa-chevron-left" ></span>
+      <% end %>
+    <% end %>
+    <span class="mr-3 ml-3 align-self-center" > Page <%= @events.page %></span>
+    <% if @events.page < @events.pages %>
+      <%= link_to request.params.merge(events_page: @events.page + 1), id: 'next-page', class: "btn btn-outline-secondary btn-sm" do %>
+        <span class="fas fa-fw fa-chevron-right"></span>
+      <% end %>
+    <% end  %>
+  </div>
+<% end %>

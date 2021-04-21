@@ -32,5 +32,6 @@
 // = require components/mina/validators-chart
 // = require components/mina/validator-delegation-modal
 // = require components/mina/validator-balance-chart
+// = require components/mina/validator-block-chart
 // = require components/mina/block-times-chart
 // = require components/mina/transactions-volume-chart

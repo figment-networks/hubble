@@ -13,5 +13,10 @@ describe 'celo validator details' do
     expect(page).to have_content('COMMISSION')
     expect(page).to have_content('SCORES HISTORY')
     expect(page).to have_content('UPTIME HISTORY')
+
+    within '.validator-blocks' do
+      block_link = page.all('a').last[:href]
+      expect(block_link).to include celo_chain_block_path(chain, '311039')
+    end
   end
 end

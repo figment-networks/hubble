@@ -1,7 +1,7 @@
 <% content_for :body_class, 'chain-show' %>
 
 <%= render "/shared/dh_banner_script" %>
-<%= render partial: "shared/chain_header", locals: { active_tab: 'Validators' } %>
+<%= render partial: "near/base/chain_header", locals: { active_tab: 'Validators' } %>
 <%= render "chain_status", status: @status %>
 
 <div class='content'>

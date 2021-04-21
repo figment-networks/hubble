@@ -1,0 +1,7 @@
+<% content_for :body_class, 'events-index' %>
+<%= render partial: 'near/base/chain_header', locals: { active_tab: 'Events' } %>
+<div class='content'>
+  <div class='container'>
+    <%= render partial: 'near/events/events' %>
+  </div>
+</div>

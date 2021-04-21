@@ -16,13 +16,15 @@ describe 'mina validator', :vcr do
     expect(page).to have_text 'STAKING BALANCE'
     expect(page).to have_text 'LIFETIME'
     expect(page).to have_text 'BLOCKS'
+    expect(page).to have_text 'STAKING BALANCE HISTORY'
+    expect(page).to have_text 'BLOCKS PRODUCED'
 
     within '.recent-transactions' do
       expect(page).to have_link 'Search Transactions', href: mina_chain_transactions_path(chain,
                                                                                           account: public_key)
 
       within 'table.transactions' do
-        expect(page.all('tbody tr').size).to eq 18
+        expect(page.all('tbody tr').size).to eq 25
       end
     end
 
@@ -42,7 +44,7 @@ describe 'mina validator', :vcr do
 
     within '.validator-blocks' do
       block_link = page.all('a').last[:href]
-      expect(block_link).to include mina_chain_block_path(chain, '540')
+      expect(block_link).to include mina_chain_block_path(chain, '4990')
     end
   end
 end
