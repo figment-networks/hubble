@@ -1,0 +1,58 @@
+<% content_for :body_class, 'admin-chain-show' %>
+
+<h2 class='header'>
+  <span>
+    <%= @chain.network_name %> / <%= @chain.name %>
+    <%= @chain.testnet? ? "<span class='fas fa-vial text-info' title='Testnet Chain'></span>".html_safe : "<span class='fas fa-link text-success' title='Mainnet Chain'></span>".html_safe %>
+  </span>
+  <div class='buttons'>
+    <%= link_to('back', admin_root_path, class: 'btn btn-sm btn-outline-secondary') %>
+  </div>
+</h2>
+
+<table class='table table-sm mb-5'>
+  <tbody>
+    <tr>
+      <th class='align-middle' style='border-top: none;'>Status:</th>
+      <td style='border-top: none;'>
+        <div class='chain-status d-flex'>
+          <% if @chain.enabled? %>
+            <div class='sync-status text-muted'><span class='fas fa-sync fa-spin text-success'></span> Syncing</div>
+
+            <%= form_for [:admin, @chain] do |f| %>
+              <%= f.hidden_field :disabled, value: true %>
+              <%= f.button "<span class='fas fa-exclamation-triangle'></span> disable".html_safe, class: 'btn btn-sm btn-warning', data: @chain.primary? ? { toggle: 'tooltip' } : nil, title: @chain.primary? ? "Warning, this is the primary #{@chain.network_name} chain!" : nil %>
+            <% end -%>
+
+          <% else %>
+            <div class='sync-status text-muted'><span class='fas fa-exclamation-triangle text-warning'></span> Disabled</div>
+
+            <%= form_for [:admin, @chain] do |f| %>
+              <%= f.hidden_field :disabled, value: false %>
+              <%= f.button "<span class='fas fa-play-circle'></span> enable".html_safe, class: 'btn btn-sm btn-primary', data: { toggle: 'tooltip' }, title: 'Node is up and ready to enable syncing.' %>
+            <% end -%>
+
+            <%= button_to namespaced_path( admin: true ), method: 'delete', class: 'btn btn-sm btn-danger action-delete-confirmation' do "<span class='fas fa-times'></span> delete".html_safe end %>
+          <% end -%>
+            <%= link_to edit_admin_skale_chain_path(@chain), class: 'button_to btn btn-sm btn-secondary' do %>
+              <span class='fas fa-edit'></span> edit
+            <% end %>
+        </div>
+      </td>
+    </tr>
+
+    <tr>
+      <th class='align-middle'>Indexer API URL:</th>
+      <td>
+        <%= @chain.api_url %>
+      </td>
+    </tr>
+    <tr>
+      <th class='align-middle'>Primary?</th>
+      <td>
+        <%= @chain.primary? ? "Yes" : "No" %>
+      </td>
+    </tr>
+
+  </tbody>
+</table>

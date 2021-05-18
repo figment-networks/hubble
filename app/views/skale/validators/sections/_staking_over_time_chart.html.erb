@@ -1,0 +1,15 @@
+<div class='data-block'>
+  <h3 class="data-block__title">Total Amount Staked: (Last 6 months)</h3>
+  <% if staked_stats.empty? %>
+    <div class="text-label">Statistics are currently unavailable for this validator</div>
+  <% else %>
+    <div class='staked-validator-chart-container data-block__chart'>
+      <canvas
+        class="sparkline-chart staked-time-chart"
+        data-chart="<%= staked_stats.to_json %>"
+        data-name="staked-time-chart"
+        data-token="<%= @chain.class::DEFAULT_TOKEN_DISPLAY %>">
+      </canvas>
+    </div>
+  <% end %>
+</div>

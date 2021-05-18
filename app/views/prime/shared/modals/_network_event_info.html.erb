@@ -1,0 +1,29 @@
+<div id="<%= event.event_id %>-info-modal" class="modal network-info hidden">
+  <div class="network-info__header">
+    <button class="modal__close">
+      <%= image_tag 'prime/icons/cross.svg', alt: "close" %>
+    </button>
+    <h3 class="network-info__title">
+      <%= image_tag prime_network_image(event.network), alt: event.network.name.capitalize, class: "network-info__logo" %>
+      <%= event.network.name.capitalize %>
+    </h3>
+    <div class="copy network-info__copy">
+      <h3 class='network-event__title'><%= event.title %></h3>
+    </div>
+    <div class='copy network-info__copy'>
+      <h5 class='network-event__date'><%= event.create_date %></h5>
+    </div>
+    <div class="network-event-info__content">
+      <p><%= event.details.truncate(350) %></p>
+    </div>
+  </div>
+  <hr class="modal__divider">
+  <div class='network-event__footer'>
+    <div class="copy network-info__copy">
+      <%= link_to 'View the full article on Messari', "https://messari.io/intel/event/#{event.event_id}", class: "link network-info__link messari-link", target: 'blank' %>
+    </div>
+    <div class="copy network-info__copy">
+      <p class='messari-tagline'>Use code FIGMENT15 for 15% off your Messari Enterprise membership!</p>
+    </div>
+  </div>
+</div>

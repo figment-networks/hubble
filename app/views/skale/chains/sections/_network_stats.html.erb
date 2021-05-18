@@ -1,0 +1,35 @@
+<div class='data-block'>
+  <h3 class='data-block__title'>Network Statistics</h3>
+    <div class="row">
+      <div class="col-xl-6 col-lg-12 col-md-12 col-sm-6  mt-4">
+        <p class="text-small m-0">Total Staked</p>
+        <p class="data-block__value m-0">
+          <%= format_amount((validators.sum(&:staked)), denom: @chain.class::DEFAULT_TOKEN_REMOTE, in_billions: true) %>
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-6 col-lg-12 col-md-12 col-sm-6  mt-4">
+        <p class="text-small m-0">Active Delegations</p>
+        <p class="data-block__value m-0">
+          <%= delegations.count(&:open_delegation) %>
+        </p>
+      </div>
+    </div>
+    <div class="row f-wrap justify-content-between">
+      <div class="col-xl-6 col-lg-12 col-md-12 col-sm-6  mt-4">
+        <p class="text-small m-0">Active Nodes</p>
+        <p class="data-block__value m-0 word-break">
+          <%= validators.sum(&:active_nodes) %>
+        </p>
+      </div>
+    </div>
+    <div class="row f-wrap justify-content-between">
+      <div class="col-xl-6 col-lg-12 col-md-12 col-sm-6  mt-4">
+        <p class="text-small m-0">Active Validators</p>
+        <p class="data-block__value m-0">
+          <%= validators.count(&:authorized) %>
+        </p>
+      </div>
+    </div>
+</div>

@@ -1,7 +1,7 @@
 <% content_for :body_class, "validator-show" %>
 
 <%= render "/shared/dh_banner_script" %>
-<%= render partial: "shared/chain_header", locals: { active_tab: '' } %>
+<%= render partial: "near/base/chain_header", locals: { active_tab: '' } %>
 
 <div class='validator-header'>
   <div class='container'>
@@ -44,7 +44,10 @@
         <%= render "delegations", delegations: @delegations %>
       <% end -%>
       <div class='mt-2'>
-        <%= render "epochs", epochs: @validator.epochs %>
+        <%= render "epochs", epochs: @epochs %>
+      </div>
+      <div class='mt-2'>
+        <%= render "events" %>
       </div>
     </div>
   </div>

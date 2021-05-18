@@ -2,17 +2,19 @@
   <div class="block__header">
     <%= image_tag prime_network_image(network), alt: network.name.capitalize, class: "block__img" %>
     <h3 class="block__title"><%= network.name.capitalize %></h3>
-    <div class='more-info-div'>
-      <button data-target="<%= network.name %>-info-modal" class="link more-info-btn">More info</button>
-    </div>
+    <% if enabled %>
+      <div class='more-info-div'>
+        <button data-target="<%= network.name %>-info-modal" class="link more-info-btn">More info</button>
+      </div>
+    <% end %>
   </div>
   <div class="block__content">
 
     <div class="block__section">
       <div class="block__row">
         <div class="block__data">
-          <p class="block__label">Rewards: </p>
-          <p class="block__value"> 1,234.56</p>
+          <p class="block__label <%= enabled ? '' : 'coming-soon-label' %>">My Rewards: </p>
+            <p class="block__value"> <%= enabled ? decorate_user_network_reward(network) : '' %></p>
         </div>
 
       </div>
@@ -20,23 +22,29 @@
 
     <div class="block__section">
       <div class="block__data">
-        <p class="block__label">Price: </p>
-        <p class="block__value"> <%= number_to_currency(network.price_usd) %></p>
+        <p class="block__label <%= enabled ? '' : 'coming-soon-label' %>">Price: </p>
+        <p class="block__value"> <%= enabled ? number_to_currency(network.price_usd) : '' %></p>
       </div>
     </div>
 
     <div class="block__section">
       <div class="block__data">
-        <p class="block__label">1-Day Performance: </p>
-        <p class="block__value block__value--<%= price_change_color(network.one_day_roi) %>"> <%= number_with_delimiter(network.one_day_roi.round(2)) %>%</p>
+        <p class="block__label <%= enabled ? '' : 'coming-soon-label' %>">1-Day Performance: </p>
+        <p class="block__value block__value--<%= enabled ? price_change_color(network.one_day_roi) : price_change_color(1) %>"> <%= enabled ? "#{number_with_delimiter(network.one_day_roi.round(2))} %" : '' %></p>
       </div>
     </div>
 
     <% if defined?(show_add_account_button) && show_add_account_button %>
-      <button class="button button--secondary add-address-btn" data-target="add-<%= network.name %>-modal">
-        <%= image_tag 'prime/icons/plus.svg', alt: "plus", class: "button__icon" %>
-        Add address
-      </button>
+      <% if enabled %>
+        <button class="button button--secondary add-address-btn" data-target="add-<%= network.name %>-modal">
+          <%= image_tag 'prime/icons/plus.svg', alt: "plus", class: "button__icon" %>
+          Add address
+        </button>
+      <% else %>
+        <button class="button button--secondary add-address-btn coming-soon" >
+          Coming to Prime Soon!
+        </button>
+      <% end %>
     <% end %>
   </div>
 </div>

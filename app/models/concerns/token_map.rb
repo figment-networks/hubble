@@ -5,6 +5,10 @@ module TokenMap
     self.class::DEFAULT_TOKEN_DISPLAY
   end
 
+  def token_factor
+    self.class::DEFAULT_TOKEN_FACTOR
+  end
+
   def primary_token
     self.class::DEFAULT_TOKEN_REMOTE
   end

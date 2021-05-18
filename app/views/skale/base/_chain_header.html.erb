@@ -1,0 +1,53 @@
+<header class='network-chain-header pt-4'>
+  <div class="container">
+    <div class='d-block d-lg-none mb-3'>
+      <%= render partial: '/shared/search-bar' %>
+    </div>
+    <%= render "/shared/dh_chain_header_banner" %>
+    <div class="d-flex align-items-center flex-wrap">
+      <% if network_has_image?(@chain.network_name) -%>
+        <%= link_to namespaced_path(chain: @chain), class: 'chains-list__card-link' do %>
+          <%= image_tag network_image(@chain.network_name), class: "#{@chain.network_name.downcase}-img" %>
+        <% end -%>
+      <% else -%>
+        <p class='logo-fallback'><%= @chain.network_name %></p>
+      <% end -%>
+      <div class="network-chain-header-arrow mx-3">→</div>
+      <% if !@no_chain_select && grouped_visible_chains.any? %>
+        <div class='dropdown chain-select'>
+          <button class='dropdown-toggle' id='chain-menu-link' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+            <%= @chain.name %>
+          </button>
+          <div class='dropdown-menu' aria-labelledby='chain-menu-link'>
+            <% grouped_visible_chains.each do |network, chains| -%>
+              <div class='dropdown-label'><%= network %></div>
+              <% chains.each do |chain| -%>
+                <% path = controller_name == 'dashboard' ? namespaced_path('dashboard', chain: chain) : namespaced_path(chain: chain) -%>
+                <%= link_to path, class: "dropdown-item #{'current-chain' if chain == @chain}" do %>
+                  <%= chain.name %>
+                <% end -%>
+              <% end -%>
+              <div class='dropdown-divider'></div>
+            <% end -%>
+          </div>
+        </div>
+      <% end -%>
+    </div>
+
+    <% if @chain.testnet? %>
+      <div class="mt-1">
+        <span class='p-0 d-none d-md-inline badge badge-pill badge-light'>TESTNET</span>
+        <span class='p-0 d-inline d-md-none text-muted'><span class='fas fa-vial'></span></span>
+      </div>
+    <% end -%>
+
+    <div class='tabs mt-4'>
+      <% if current_admin -%>
+        <%= link_to 'Admin', namespaced_path(admin: true), class: "tabs__link" %>
+      <% end -%>
+      <% if defined?(summary_link) -%>
+        <%= link_to 'Summary', namespaced_path, class: "tabs__link" %>
+      <% end -%>
+    </div>
+  </div>
+</header>

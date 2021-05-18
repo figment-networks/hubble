@@ -3,6 +3,7 @@
   @page_title = 'Home'
   @new_account_modal = true
   @network_info_modal = true
+  @network_event_info_modal = true
 %>
 
 <div class="section">
@@ -20,7 +21,8 @@
     </div>
   </div>
   <div id="slider" class="slider">
-    <%= render enabled_networks, show_add_account_button: true %>
+    <%= render enabled_networks, show_add_account_button: true, enabled: true %>
+    <%= render testing_networks, show_add_account_button: true, enabled: false %>
   </div>
 </div>
 

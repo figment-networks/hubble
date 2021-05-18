@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_17_012023) do
+ActiveRecord::Schema.define(version: 2021_04_15_124531) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
@@ -921,6 +921,7 @@ ActiveRecord::Schema.define(version: 2021_01_17_012023) do
     t.integer "position"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "graphql_api_url"
     t.index ["slug"], name: "index_mina_chains_on_slug"
   end
 
@@ -1014,6 +1015,20 @@ ActiveRecord::Schema.define(version: 2021_01_17_012023) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_prime_networks_on_name"
+  end
+
+  create_table "skale_chains", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "slug", null: false
+    t.string "api_url", null: false
+    t.boolean "testnet", null: false
+    t.boolean "primary", default: false, null: false
+    t.boolean "disabled", default: true
+    t.boolean "dead", default: false
+    t.integer "position"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["slug"], name: "index_skale_chains_on_slug"
   end
 
   create_table "stats_average_snapshots", force: :cascade do |t|

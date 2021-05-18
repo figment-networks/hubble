@@ -20,7 +20,7 @@
       </button>
       <h3 class="modal__title">Add An Address to your Portfolio</h3>
       <ul class="add-address-modal__list">
-        <%= render enabled_networks, show_add_account_button: true %>
+        <%= render enabled_networks, show_add_account_button: true, enabled: true %>
       </ul>
     </div>
   </div>
@@ -29,5 +29,11 @@
 <% if @delete_account_modal %>
   <% user_accounts.each do |account| %>
     <%= render '/prime/shared/modals/delete_account', account: account %>
+  <% end %>
+<% end %>
+
+<% if @network_event_info_modal %>
+  <% network_events.each do |event| %>
+    <%= render '/prime/shared/modals/network_event_info', event: event %>
   <% end %>
 <% end %>

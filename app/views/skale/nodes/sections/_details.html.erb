@@ -1,0 +1,57 @@
+<div class="data-table m-0 mb-4">
+  <header class="data-table__header d-flex align-items-center justify-content-between">
+    <h4 class="data-table__title m-0">Node Information</h4>
+  </header>
+  <div class="no-padding">
+    <div class="table-responsive">
+      <table class="table table-sm m-0">
+        <thead>
+          <tr class="text-uppercase text-secondary">
+            <th width="30%">Parameter</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="text-nowrap">Node ID</td>
+            <td><%= node.id %></td>
+          </tr>
+          <tr>
+            <td class="text-nowrap">Address</td>
+            <td><%= node.address %></td>
+          </tr>
+          <tr>
+            <td class="text-nowrap">IP</td>
+            <td><%= node.public_ip %></td>
+          </tr>
+          <tr>
+            <td class="text-nowrap">Next Reward Date</td>
+            <td>
+              <% if node.status == 'Active' %>
+                <%= format_date(node.next_reward_date) %>
+              <% else %>
+                No upcoming reward dates
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td class="text-nowrap">Last Reward Date</td>
+            <td>
+              <%= format_date(node.last_reward_date) %>
+            </td>
+          </tr>
+          <tr>
+            <td class="text-nowrap">Node Status</td>
+            <td>
+              <% if node.status == 'Active'-%>
+                <span class='badge badge-success'>ACTIVE</span>
+              <% else -%>
+                <span class='badge badge-danger'>INACTIVE</span>
+              <% end -%>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

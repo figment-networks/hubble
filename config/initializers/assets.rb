@@ -26,4 +26,5 @@ Rails.application.config.assets.precompile += %w[
   tezos.js
   mina.scss
   mina.js
+  skale.scss skale.js
 ]

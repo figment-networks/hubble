@@ -1,0 +1,22 @@
+<section class="login-section login-section--right">
+  <div class="login-section__content">
+    <div class="login-section__header">
+      <h2 class="login-section__title">Log in to the Prime Dashboard</h2>
+    </div>
+    <div class='form__wrapper'>
+      <%= form_with url: login_submit_path, method: 'post', local: true do %>
+        <input type='hidden' name='return_path' value='<%= @return_path || params[:return_path] %>' />
+        <input type='hidden' name='prime' value='true' />
+        <input type='email' name='email' placeholder='your@email.com' />
+        <input type='password' name='password' placeholder='password' />
+        <input type='submit' value='Log In' class="btn" />
+        <a href='<%= forgot_password_path %>' class="form__link">Forgot your password?</a>
+      <% end -%>
+    </div>
+    <div class="login-section__header">
+      <h1 class="login-section__title">Not a Prime customer?</h1>
+      <p class="login-section__lead">Contact us to unlock the full power of the Prime Dashboard.</p>
+      <%= link_to 'Contact Us', prime_contact_path, class: 'btn' %>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,89 @@
+<% content_for :modals do -%>
+  <div class='modal fade' id='delegation-modal' tabindex='-1' role='dialog'>
+    <div class='modal-dialog modal-dialog-centered' role='document'>
+      <div class='modal-content'>
+        <div class='modal-body'>
+          <button type='button' class='close float-right' data-dismiss='modal' aria-label='Close'>
+            <span aria-hidden='true'>&times;</span>
+          </button>
+
+          <%= render "shared/modals/delegation_steps/error" %>
+
+          <%= render partial: "shared/modals/delegation_steps/setup", locals: { app_name: chain.network_name } %>
+
+          <div class='delegation-step step-account text-center p-5'>
+            <h3>Select your account number</h3>
+            <p>Default account number is 0.<br/>
+              If you created your wallet with a different account index, you can change it now.</p>
+
+            <form class='account-form mt-3'>
+              <label class='text-muted mb-0 d-inline'>Account number:</label>
+              <input class='form-control' name="account-number" type="number" min="0" value='0'/>
+              <div class='text-center'>
+                <button type='submit' class='mt-4 btn-primary btn-lg'>Continue</button>
+              </div>
+            </form>
+          </div>
+
+          <div class='delegation-step step-confirm-account text-center p-5'>
+            <h3>Address confirmation</h3>
+            <p>Generate and confirm your public address on your Ledger</p>
+            <div class='p-4'>
+              <span class='fas fa-spin fa-slash text-muted'></span>
+            </div>
+          </div>
+
+          <div class='delegation-step step-new-delegation text-center py-5 px-3'>
+            <h3>New Delegation</h3>
+
+            <form class='delegation-form mt-3'>
+              <div class='d-flex align-items-center'>
+                <div class='w-100'>
+                  <div class='d-flex flex-column mt-3'>
+                    <label class='text-muted mb-0'>Validator:</label>
+                    <span class='validator-name text-monospace'><%= validator.display_name %></span>
+                  </div>
+                  <div class='d-flex flex-column mt-3'>
+                    <label class='text-muted mb-0'>Your Account Address:</label>
+                    <span class='account-address text-monospace'></span>
+                  </div>
+                  <div class='d-flex flex-column mt-3'>
+                    <label class='text-muted mb-0'>Your Account Balance:</label>
+                    <span class='account-balance text-monospace'></span>
+                  </div>
+                  <div class='d-flex flex-column mt-3'>
+                    <label class='text-muted mb-0'>Transaction Fee:</label>
+                    <span class='transaction-fee text-monospace'></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class='text-center'>
+                <button type='submit' class='mt-4 btn-lg btn-primary submit-delegation'>Sign with Ledger</button>
+              </div>
+            </form>
+          </div>
+
+          <div class='delegation-step step-confirm text-center'>
+            <div class='p-5'>
+              <h3>Confirm Transaction</h3>
+              <p>Review the details on your Ledger and sign the transaction.</p>
+              <div class='p-4'>
+                <span class='fas fa-spin fa-slash text-muted'></span>
+              </div>
+            </div>
+          </div>
+
+          <div class='delegation-step step-complete text-center p-5'>
+            <h3>Success</h3>
+            <p>Delegation successfully submitted!</p>
+            <p>In a couple of minutes it'll be available under this link:</p>
+            <div class='p-4 text-center'>
+              <%= link_to 'View Transaction', '#', class: "btn-lg btn-primary view-transaction", target: '_blank' %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end -%>

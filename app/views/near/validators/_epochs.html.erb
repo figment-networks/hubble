@@ -17,14 +17,21 @@
       </thead>
       <tbody>
         <% epochs.each_with_index do |epoch, idx| %>
-          <tr class='<%= near_epoch_efficiency_color(epoch.efficiency) %>'>
+          <tr class='<%= near_epoch_efficiency_color(epoch.efficiency) %> events-table'>
             <td class='technical' data-order="<%= idx %>"><%= epoch.last_time %></td>
-            <td class='technical'><small><%= epoch.epoch.truncate(30) %></small></td>
+            <td class='technical'><%= epoch.epoch.truncate(30) %></td>
             <td class='technical'><%= epoch.expected_blocks %></td>
             <td class='technical'><%= epoch.produced_blocks %></td>
             <td class='technical' data-order="<%= epoch.efficiency %>"><%= epoch.efficiency.round(2) %>%</td>
           </tr>
         <% end %>
+        <% if @pagination_epochs.pages > 1 %>
+        <tr>
+          <td colspan="3">
+            <%= raw(pagy_bootstrap_nav(@pagination_epochs)) %>
+          </td>
+        </tr>
+      <% end -%>
       </tbody>
     </table>
   </div>

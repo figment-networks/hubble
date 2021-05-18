@@ -2,6 +2,7 @@ module Prime
   class NetworkEvent < Common::Resource
     field :create_date, type: :timestamp
     field :update_date, type: :timestamp
+    field :event_id
     field :title
     field :assets
     field :details
@@ -20,6 +21,7 @@ module Prime
       super(attr)
       @network = network
       if success
+        @event_id = attr['eventId']
         @title = attr['eventName']
         @source = attr['resources'][0]['link']
         @create_date = Time.zone.parse(attr['createDate'])

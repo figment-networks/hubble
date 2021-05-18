@@ -7,6 +7,14 @@ class Prime::Network < ApplicationRecord
 
   scope :enabled, -> { joins(:chains).where(prime_chains: { primary: true }).where(prime_chains: { active: true }) }
 
+  def self.testing
+    all - enabled
+  end
+
+  def enabled?
+    primary ? primary.active : false
+  end
+
   def to_param
     name
   end

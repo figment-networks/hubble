@@ -28,5 +28,6 @@
 // = require components/celo/validator-score-chart
 // = require components/celo/validator-groups-table
 // = require components/celo/validator-table
+// = require components/common/blocks-heatmap
 //
 // = require components/common/small-average-block-time-chart

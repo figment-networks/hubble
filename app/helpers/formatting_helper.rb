@@ -1,7 +1,7 @@
 module FormattingHelper
   include ActionView::Helpers::NumberHelper
 
-  def format_amount(amount, chain = nil, denom: nil, thousands_delimiter: true, hide_units: false, html: true, precision: 3, in_millions: false)
+  def format_amount(amount, chain = nil, denom: nil, thousands_delimiter: true, hide_units: false, html: true, precision: 3, in_millions: false, in_billions: false)
     chain ||= @chain
     denom ||= chain.primary_token
 
@@ -13,9 +13,9 @@ module FormattingHelper
       amount /= 10 ** chain.token_map[denom]['factor'].to_f
       denom = chain.token_map[denom]['display']
     end
-
     # 'amount' here can be huge, so let's decide on a denomination to display
     val, scale = if amount >= MEGA && in_millions then [(amount / MEGA), 'M']
+                 elsif amount >= GIGA && in_billions then [(amount / GIGA), 'B']
                  elsif amount >= GIGA then [(amount / KILO), 'k']
                  else [amount, '']
                  end

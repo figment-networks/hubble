@@ -41,6 +41,14 @@ module Near
       get_collection(Near::BlockStat, '/block_stats', limit: period, bucket: interval)
     end
 
+    def paginate(resource_class, path, opts = {})
+      Near::PaginatedResponse.new(resource_class, get(path, opts))
+    end
+
+    def transaction(id)
+      Near::Transaction.new(get("/transactions/#{id}"))
+    end
+
     # Get validators
     def validators
       get_collection(Near::Validator, '/validators')

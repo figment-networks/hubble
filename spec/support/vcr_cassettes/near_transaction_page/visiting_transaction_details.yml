@@ -1,0 +1,71 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://localhost:8080/blocks/30025735
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (darwin20.3.0 x86_64) ruby/2.7.2p137
+      Content-Length:
+      - '0'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - localhost:8080
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Thu, 25 Mar 2021 17:30:28 GMT
+      Content-Length:
+      - '402'
+    body:
+      encoding: UTF-8
+      string: '{"id":30025735,"time":"2021-02-15T22:48:36.070405Z","producer":"01node.poolv1.near","hash":"9vGmeLkXDGvakWgdqnMRp18Jb7K445CKVrDDpRNja4NE","epoch":"BpsWQdCwpRDvkBQugeUBKgtVTR8EvK2ak3aNNzGMUKoB","gas_price":"100000000","gas_allowed":0,"gas_used":0,"total_supply":"1015959436305314236504611184830089","chunks_count":1,"transactions_count":1,"approvals_count":59,"created_at":"2021-02-15T22:49:26.940822Z"}'
+  recorded_at: Thu, 25 Mar 2021 17:30:28 GMT
+- request:
+    method: get
+    uri: http://localhost:8080/transactions/BUUDuAJMVJuwc7Rk3ERHtog5n1UDYHj6B19JZW1o5Y1N
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (darwin20.3.0 x86_64) ruby/2.7.2p137
+      Content-Length:
+      - '0'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - localhost:8080
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Thu, 25 Mar 2021 17:30:29 GMT
+      Content-Length:
+      - '498'
+    body:
+      encoding: UTF-8
+      string: '{"id":550677,"created_at":"2021-02-15T22:49:26.949733Z","updated_at":"2021-02-15T22:49:26.949733Z","time":"2021-02-15T22:48:36.070405Z","height":30025735,"hash":"BUUDuAJMVJuwc7Rk3ERHtog5n1UDYHj6B19JZW1o5Y1N","block_hash":"9vGmeLkXDGvakWgdqnMRp18Jb7K445CKVrDDpRNja4NE","sender":"waverlymaven.near","receiver":"ethdenver.sputnikdao.near","gas_burnt":"2427981370218","actions":[{"data":{"gas":30000000000000,"deposit":"0","method_name":"vote"},"type":"FunctionCall"}],"actions_count":1,"success":true}'
+  recorded_at: Thu, 25 Mar 2021 17:30:29 GMT
+recorded_with: VCR 6.0.0

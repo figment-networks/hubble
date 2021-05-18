@@ -28,7 +28,8 @@ describe 'Prime Homepage' do
 
       expect(page).to have_content('Figment Prime')
       expect(page).to have_content('Polkadot')
-      expect(page).not_to have_content('Oasis')
+      expect(page).to have_content('Oasis')
+      expect(page).to have_content('Coming to Prime Soon!')
       expect(page).to have_content('1-Day Performance:')
       expect(page).to have_content('NETWORK UPDATES')
       expect(page).to have_content('Multi-Blockchain Support')

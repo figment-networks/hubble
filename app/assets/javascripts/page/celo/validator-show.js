@@ -3,6 +3,7 @@ $(document).ready(function() {
     return;
   }
 
+  new App.Common.BlocksHeatmap($('.validator-blocks-heatmap')).render();
   new App.Celo.ValidatorScoreChart($('.validator-score-chart')).render();
   new App.Common.HourlyUptimeChart($('.validator-hourly-uptime-chart')).render();
 });

@@ -16,7 +16,8 @@ module HubbleHelper
       Polkadot: {},
       Mina: {},
       Celo: {},
-      Avalanche: {}
+      Avalanche: {},
+      Skale: {}
     }
 
     if @chain.try(:primary_token)

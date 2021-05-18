@@ -145,6 +145,16 @@
       <div class='card-body p-0'><%= render '/admin/avalanche/chains/quick_info', chains: Avalanche::Chain.all %></div>
     </div>
 
+    <div class='card'>
+      <h5 class='card-header header mb-0'>
+        Skale
+        <div class='buttons text-right'>
+          <%= link_to('+ new', new_admin_skale_chain_path, class: 'btn btn-sm btn-light') %>
+        </div>
+      </h5>
+      <div class='card-body p-0'><%= render '/admin/skale/chains/quick_info', chains: Skale::Chain.all %></div>
+    </div>
+
   </div>
 </div>
 

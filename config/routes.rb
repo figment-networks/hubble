@@ -28,6 +28,9 @@ Rails.application.routes.draw do
     get :profile, to: 'profile#show'
     get :validators, to: 'validators#index'
     get :rewards, to: 'rewards#index'
+    get :login, to: 'sessions#new'
+    get :contact, to: 'contact#index'
+    post :contact, to: 'contact#create', as: 'contact_submit'
 
     namespace :admin do
       root to: 'main#index'
@@ -100,8 +103,12 @@ Rails.application.routes.draw do
       end
 
       resources :validators, only: :show, constraints: { id: /[^\/]+/ }
-      resources :blocks, only: :show, constraints: { id: /[^\/]+/ }
+      resources :blocks, only: :show, constraints: { id: /[^\/]+/ } do
+        resources :transactions, only: :show, constraints: { id: /[^\/]+/ }
+      end
+      resources :events, only: :index
     end
+
     root to: 'chains#show'
   end
 
@@ -118,6 +125,14 @@ Rails.application.routes.draw do
     root to: 'chains#show'
   end
 
+  namespace :skale, network: 'skale' do
+    resources :chains, constraints: { id: /[^\/]+/ } do
+      resources :validators, only: :show, constraints: { id: /[^\/]+/ }
+      resources :nodes, only: :show, constraints: { id: /[^\/]+/ }
+    end
+    root to: 'chains#show'
+  end
+
   namespace :mina, network: 'mina' do
     resources :chains do
       member do
@@ -125,10 +140,12 @@ Rails.application.routes.draw do
         get :search
       end
 
-      resources :blocks,       only: :show
-      resources :accounts,     only: :show
-      resources :validators,   only: :show
+      resources :blocks, only: :show
+      resources :accounts, only: :show
+      resources :validators, only: :show
       resources :transactions, only: %i[index show]
+      resources :transaction_broadcasts, only: :create
+      resources :account_balances, only: :show
     end
   end
 
@@ -309,6 +326,10 @@ Rails.application.routes.draw do
     end
 
     namespace :avalanche do
+      resources :chains, except: [:index]
+    end
+
+    namespace :skale do
       resources :chains, except: [:index]
     end
 

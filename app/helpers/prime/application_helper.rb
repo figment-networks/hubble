@@ -27,6 +27,10 @@ module Prime::ApplicationHelper
     @enabled_networks ||= decorate_networks(Prime::Network.enabled.order(name: :asc))
   end
 
+  def testing_networks
+    @testing_networks ||= Prime::Network.testing
+  end
+
   def user_accounts
     @user_accounts ||= @current_user.prime_accounts.on_enabled_networks.includes([:network]).map do |account|
       "Prime::#{account.network.name.capitalize}::AccountDecorator".constantize.new(account)
@@ -34,11 +38,15 @@ module Prime::ApplicationHelper
   end
 
   def user_networks
-    @user_networks ||= decorate_networks(Prime::Network.find(@current_user.prime_accounts.distinct.pluck(:prime_network_id)))
+    @user_networks ||= decorate_networks(Prime::Network.find(@current_user.prime_accounts.on_enabled_networks.distinct.pluck(:prime_network_id)))
   end
 
   def user_rewards
     @user_rewards ||= user_accounts.map(&:rewards).flatten.sort_by!(&:time).reverse!
+  end
+
+  def user_network_rewards(network)
+    user_rewards.select { |reward| reward.account.network.name == network.name }.sum(&:amount) / (10 ** network.primary.reward_token_factor)
   end
 
   def network_events
