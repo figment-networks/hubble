@@ -244,7 +244,7 @@ GEM
       nokogiri (~> 1)
       rake
     mini_mime (1.0.2)
-    mini_portile2 (2.5.0)
+    mini_portile2 (2.5.1)
     minitest (5.14.3)
     money-tree (0.10.0)
       ffi
@@ -258,7 +258,7 @@ GEM
     net-ssh (5.0.1)
     netrc (0.11.0)
     nio4r (2.5.4)
-    nokogiri (1.11.2)
+    nokogiri (1.11.4)
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
     notiffany (0.1.3)
