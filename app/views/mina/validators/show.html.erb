@@ -3,12 +3,14 @@
 <%= render partial: '/mina/base/chain_header', locals: { active_tab: '' } %>
 <%= render_flash_messages %>
 
-<div class="validator-header pb-4">
+<div class="validator-header">
   <div class="container">
     <div class='d-flex flex-wrap'>
       <div class='mr-auto pb-4'>
-        <h2 class="validator-header__title">Validator</h2>
-        <%= @validator.display_name.truncate(50) %>
+        <div class='d-flex align-items-center flex-wrap'>
+          <h2 class="validator-header__title">Validator</h2>
+          <%= @validator.display_name.truncate(50) %>
+        </div>
       </div>
       <div class='pb-4'>
         <ul class='validator-info__list'>
@@ -21,23 +23,30 @@
         </ul>
       </div>
     </div>
+    <% if @chain.supports_ledger? %>
+      <div class="d-flex flex-row">
+        <div class="d-flex ml-auto pb-4">
+          <button class='stake-button' data-modal='#delegation-modal'
+                  data-validator="<%= @validator.public_key %>"
+                  data-endpoint="<%= mina_chain_path(@chain) %>"
+                  data-token-display="<%= @chain.token_display %>"
+                  data-token-factor="<%= @chain.token_factor %>"
+                  data-testnet="<%= @chain.testnet? %>">
+            Stake Now
+          </button>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>
 <div class='container'>
   <div class='content'>
-    <div class="row mb-4">
-      <div class="col-12 col-md-4">
-        <%= render "mina/validators/show/ledger" if @chain.supports_ledger? %>
-      </div>
-    </div>
-
     <div class="row info-cards">
       <div class="col-md-12 col-lg-7 mb-4 pb-2">
         <%= render "mina/validators/show/staking",
-          validator: @validator,
-          account:   @account,
-          total:     @staking_pool,
-          ledger:    @chain.supports_ledger?
+                   validator: @validator,
+                   account: @account,
+                   total: @staking_pool
         %>
         <%= render "mina/validators/show/lifetime", validator: @validator %>
         <%= render "mina/validators/show/balance_stats", stats: @stats_daily %>
@@ -45,9 +54,11 @@
         <%= render "mina/validators/show/transactions", chain: @chain, validator: @validator, transactions: @transactions %>
       </div>
       <div class="col-md-12 col-lg-5">
-        <%= render "mina/validators/show/blocks",   blocks: @blocks.reverse, account: @validator.public_key %>
-        <%= render "mina/validators/show/delegations",  delegations: @delegations, validator: @validator, account: @account, chain: @chain %>
+        <%= render "mina/validators/show/blocks", blocks: @blocks.reverse, account: @validator.public_key %>
+        <%= render "mina/validators/show/delegations", delegations: @delegations, validator: @validator, account: @account, chain: @chain %>
       </div>
     </div>
   </div>
 </div>
+
+<%= render "mina/validators/show/delegation_modal", chain: @chain, validator: @validator %>

@@ -7,6 +7,10 @@ class Skale::Chain < ApplicationRecord
   DEFAULT_TOKEN_REMOTE = 'skl'.freeze
   DEFAULT_TOKEN_FACTOR = 18
 
+  # Extract in future if used elsewhere
+  ETHEREUM_MAINNET_CHAIN_ID = 1
+  ETHEREUM_RINKEBY_CHAIN_ID = 4
+
   validates :name, presence: true
   validates :slug, format: { with: /\A[a-z0-9-]+\z/ }, uniqueness: true, presence: true
   validates :api_url, presence: true
@@ -33,5 +37,13 @@ class Skale::Chain < ApplicationRecord
 
   def status
     @client_status ||= client.status
+  end
+
+  def supports_ledger?
+    !testnet?
+  end
+
+  def ethereum_chain_id
+    Rails.env.production? ? ETHEREUM_MAINNET_CHAIN_ID : ETHEREUM_RINKEBY_CHAIN_ID
   end
 end

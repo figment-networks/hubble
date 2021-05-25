@@ -3,7 +3,6 @@ module Mina
     TYPE_NAMES = {
       'coinbase' => 'Coinbase',
       'delegation' => 'Delegation',
-      'snark_fee' => 'Snark Fee',
       'fee_transfer_via_coinbase' => 'Fee Transfer via Coinbase',
       'payment' => 'Payment',
       'fee_transfer' => 'Fee Transfer'

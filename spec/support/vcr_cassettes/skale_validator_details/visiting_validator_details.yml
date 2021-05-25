@@ -1,0 +1,267 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://localhost:8080/validators/15
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (darwin20.3.0 x86_64) ruby/2.7.2p137
+      Content-Length:
+      - '0'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - skale--mainnet--indexer.datahub.figment.io
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 19 Apr 2021 19:48:19 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '433'
+      Connection:
+      - keep-alive
+      X-Ratelimit-Remaining-Minute:
+      - '1999'
+      X-Ratelimit-Limit-Minute:
+      - '2000'
+      Ratelimit-Remaining:
+      - '1999'
+      Ratelimit-Limit:
+      - '2000'
+      Ratelimit-Reset:
+      - '41'
+      Access-Control-Allow-Headers:
+      - Content-Type
+      Access-Control-Allow-Methods:
+      - POST, GET, OPTIONS, PUT, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Authorization
+      X-Quota-Limit-Day:
+      - '10000000'
+      Quota-Remaining:
+      - '9999799'
+      X-Quota-Remaining-Day:
+      - '9999799'
+      Quota-Reset:
+      - '15101'
+      Quota-Limit:
+      - '10000000'
+    body:
+      encoding: UTF-8
+      string: '[{"id":15,"name":"Figment Networks","description":"https://figment.io","validator_address":"0x82697068ef6be38a79af90efcd675e5cf792287c","requested_address":"0x0000000000000000000000000000000000000000","fee_rate":150,"registration_time":"2020-09-21T20:08:00Z","minimum_delegation_amount":10000000000000000000000,"accept_new_requests":true,"authorized":true,"active_nodes":11,"linked_nodes":11,"staked":"225669405000000000000000000"}]
+
+        '
+  recorded_at: Mon, 19 Apr 2021 17:17:40 GMT
+- request:
+    method: get
+    uri: https://localhost:8080/nodes?validator_id=15
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (darwin20.3.0 x86_64) ruby/2.7.2p137
+      Content-Length:
+      - '0'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - skale--mainnet--indexer.datahub.figment.io
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 19 Apr 2021 19:48:19 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Ratelimit-Remaining-Minute:
+      - '1998'
+      X-Ratelimit-Limit-Minute:
+      - '2000'
+      Ratelimit-Remaining:
+      - '1998'
+      Ratelimit-Limit:
+      - '2000'
+      Ratelimit-Reset:
+      - '41'
+      Access-Control-Allow-Headers:
+      - Content-Type
+      Access-Control-Allow-Methods:
+      - POST, GET, OPTIONS, PUT, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Authorization
+      X-Quota-Limit-Day:
+      - '10000000'
+      Quota-Remaining:
+      - '9999798'
+      X-Quota-Remaining-Day:
+      - '9999798'
+      Quota-Reset:
+      - '15101'
+      Quota-Limit:
+      - '10000000'
+    body:
+      encoding: UTF-8
+      string: '[{"id":39,"name":"figment-1","ip":"127.0.0.1","public_ip":"127.0.0.1","port":10000,"start_block":10967057,"next_reward_date":"2021-04-26T00:02:33Z","last_reward_date":"2021-03-26T00:02:33Z","finish_time":0,"validator_id":15,"status":"Active","address":"0x568332521e6a5fc10711d24b10a73d9766fcef7a"},{"id":53,"name":"figment-2","ip":"127.0.0.1","public_ip":"127.0.0.1","port":10000,"start_block":10967117,"next_reward_date":"2021-04-26T00:02:47Z","last_reward_date":"2021-03-26T00:02:47Z","finish_time":0,"validator_id":15,"status":"Active","address":"0x19d10f981e25cdc12079671497351b682f49e68b"},{"id":54,"name":"figment-3","ip":"127.0.0.1","public_ip":"127.0.0.1","port":10000,"start_block":10967128,"next_reward_date":"2021-04-26T00:02:47Z","last_reward_date":"2021-03-26T00:02:47Z","finish_time":0,"validator_id":15,"status":"Active","address":"0x5111ff85606a89d7fd39b8ce7b5b42702ca703ba"},{"id":57,"name":"figment-4","ip":"127.0.0.1","public_ip":"127.0.0.1","port":10000,"start_block":10967142,"next_reward_date":"2021-04-26T00:02:47Z","last_reward_date":"2021-03-26T00:02:47Z","finish_time":0,"validator_id":15,"status":"Active","address":"0xed4dd20a901c44217bbd045f7c1869f49f9cd3fe"},{"id":59,"name":"figment-5","ip":"127.0.0.1","public_ip":"127.0.0.1","port":10000,"start_block":10967155,"next_reward_date":"2021-04-26T00:03:49Z","last_reward_date":"2021-03-26T00:03:49Z","finish_time":0,"validator_id":15,"status":"Active","address":"0x83ae3c7c85b41087e0118e5f05828bc154f873d4"},{"id":61,"name":"figment-6","ip":"127.0.0.1","public_ip":"127.0.0.1","port":10000,"start_block":10967169,"next_reward_date":"2021-04-26T00:03:01Z","last_reward_date":"2021-03-26T00:03:01Z","finish_time":0,"validator_id":15,"status":"Active","address":"0x21ee06e903900de744dc6b8769b26e8e3da0b6b3"},{"id":64,"name":"figment-7","ip":"127.0.0.1","public_ip":"127.0.0.1","port":10000,"start_block":10967181,"next_reward_date":"2021-04-26T00:01:36Z","last_reward_date":"2021-03-26T00:01:36Z","finish_time":0,"validator_id":15,"status":"Active","address":"0x8546880aea3579ed87149d0db311d8c6d69e69b1"},{"id":66,"name":"figment-8","ip":"127.0.0.1","public_ip":"127.0.0.1","port":10000,"start_block":10967193,"next_reward_date":"2021-04-26T00:02:47Z","last_reward_date":"2021-03-26T00:02:47Z","finish_time":0,"validator_id":15,"status":"Active","address":"0xa9e40de507405a403e89274c307fec2b700022d6"},{"id":157,"name":"figment-9","ip":"127.0.0.1","public_ip":"127.0.0.1","port":10000,"start_block":11174232,"next_reward_date":"2021-04-26T00:03:01Z","last_reward_date":"2021-03-26T00:03:01Z","finish_time":0,"validator_id":15,"status":"Active","address":"0x9a612dea10fa6270a23a5773a24f38bd60a1e496"},{"id":158,"name":"figment-10","ip":"127.0.0.1","public_ip":"127.0.0.1","port":10000,"start_block":11174242,"next_reward_date":"2021-04-26T00:01:55Z","last_reward_date":"2021-03-26T00:01:55Z","finish_time":0,"validator_id":15,"status":"Active","address":"0x2aaa817b85f3a2c730e7d97847a722a227c1ca5d"},{"id":159,"name":"figment-11","ip":"127.0.0.1","public_ip":"127.0.0.1","port":10000,"start_block":11174251,"next_reward_date":"2021-04-26T00:01:36Z","last_reward_date":"2021-03-26T00:01:36Z","finish_time":0,"validator_id":15,"status":"Active","address":"0x99538d711d3a05efaad9af40498cc9f89feb4b94"}]
+
+        '
+  recorded_at: Mon, 19 Apr 2021 17:17:40 GMT
+- request:
+    method: get
+    uri: https://localhost:8080/validators/statistics?from=2020-10-19T17:17:40Z&id=15&timeline=true&to=2021-04-19T17:17:40Z&type=TOTAL_STAKE
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (darwin20.3.0 x86_64) ruby/2.7.2p137
+      Content-Length:
+      - '0'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - skale--mainnet--indexer.datahub.figment.io
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 19 Apr 2021 19:48:20 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '782'
+      Connection:
+      - keep-alive
+      X-Ratelimit-Remaining-Minute:
+      - '1997'
+      X-Ratelimit-Limit-Minute:
+      - '2000'
+      Ratelimit-Remaining:
+      - '1997'
+      Ratelimit-Limit:
+      - '2000'
+      Ratelimit-Reset:
+      - '40'
+      Access-Control-Allow-Headers:
+      - Content-Type
+      Access-Control-Allow-Methods:
+      - POST, GET, OPTIONS, PUT, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Authorization
+      X-Quota-Limit-Day:
+      - '10000000'
+      Quota-Remaining:
+      - '9999797'
+      X-Quota-Remaining-Day:
+      - '9999797'
+      Quota-Reset:
+      - '15100'
+      Quota-Limit:
+      - '10000000'
+    body:
+      encoding: UTF-8
+      string: '[{"id":15,"amount":"225669405000000000000000000","block_height":12150251,"block_time":"2021-04-01T00:01:00Z","type":"TOTAL_STAKE"},{"id":15,"amount":"225665870000000000000000000","block_height":11948980,"block_time":"2021-03-01T00:05:53Z","type":"TOTAL_STAKE"},{"id":15,"amount":"225978982000000000000000000","block_height":11766952,"block_time":"2021-02-01T00:04:18Z","type":"TOTAL_STAKE"},{"id":15,"amount":"228734351000000000000000000","block_height":11565073,"block_time":"2021-01-01T00:12:41Z","type":"TOTAL_STAKE"},{"id":15,"amount":"228233773000000000000000000","block_height":11363270,"block_time":"2020-12-01T00:00:06Z","type":"TOTAL_STAKE"},{"id":15,"amount":"231353510000000000000000000","block_height":11167871,"block_time":"2020-11-01T00:12:12Z","type":"TOTAL_STAKE"}]
+
+        '
+  recorded_at: Mon, 19 Apr 2021 17:17:40 GMT
+- request:
+    method: get
+    uri: https://localhost:8080/summary?time_at=2021-04-19T17:17:40Z&validator_id=15
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (darwin20.3.0 x86_64) ruby/2.7.2p137
+      Content-Length:
+      - '0'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - skale--mainnet--indexer.datahub.figment.io
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 19 Apr 2021 19:48:20 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '374'
+      Connection:
+      - keep-alive
+      X-Ratelimit-Remaining-Minute:
+      - '1996'
+      X-Ratelimit-Limit-Minute:
+      - '2000'
+      Ratelimit-Remaining:
+      - '1996'
+      Ratelimit-Limit:
+      - '2000'
+      Ratelimit-Reset:
+      - '40'
+      Access-Control-Allow-Headers:
+      - Content-Type
+      Access-Control-Allow-Methods:
+      - POST, GET, OPTIONS, PUT, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Authorization
+      X-Quota-Limit-Day:
+      - '10000000'
+      Quota-Remaining:
+      - '9999796'
+      X-Quota-Remaining-Day:
+      - '9999796'
+      Quota-Reset:
+      - '15100'
+      Quota-Limit:
+      - '10000000'
+    body:
+      encoding: UTF-8
+      string: '{"delegation_summary":[{"count":219341000000000000000000,"amount":219341000000000000000000,"state":"DELEGATED"},{"count":27769000000000000000000,"amount":27769000000000000000000,"state":"PROPOSED"},{"count":103305000000000000000000,"amount":103305000000000000000000,"state":"REJECTED"},{"count":32812000000000000000000,"amount":32812000000000000000000,"state":"CANCELED"}]}
+
+        '
+  recorded_at: Mon, 19 Apr 2021 17:17:40 GMT
+recorded_with: VCR 6.0.0

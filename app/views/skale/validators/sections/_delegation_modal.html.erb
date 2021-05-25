@@ -1,0 +1,81 @@
+<% content_for :modals do -%>
+  <div class='modal fade' id='delegation-modal' tabindex='-1' role='dialog'>
+    <div class='modal-dialog modal-dialog-centered' role='document'>
+      <div class='modal-content'>
+        <div class='modal-body'>
+          <button type='button' class='close float-right' data-dismiss='modal' aria-label='Close'>
+            <span aria-hidden='true'>&times;</span>
+          </button>
+
+          <%= render "shared/modals/delegation_steps/error" %>
+
+          <div class='delegation-step step-instructions text-center p-5'>
+            <h3>How staking Skale works</h3>
+
+            <p>1. Connect Hubble with your MetaMask account</p>
+            <p>2. Input the amount you want to delegate</p>
+            <p>3. Sign your delegation with MetaMask</p>
+            <p>4. If the validator approves your request, your delegation will start with the beginning of next month
+              and will take two months to complete</p>
+            <p>5. If the validator rejects your request, you can delegate to a different validator</p>
+            <div class='text-center'>
+              <button type='submit' class='mt-4 btn-lg btn-primary start-delegation'>Start staking</button>
+            </div>
+          </div>
+
+          <%= render partial: "shared/modals/delegation_steps/spinning_step",
+                     locals: { step_name: 'setup', title: 'Connecting...',
+                               content: 'Connect Hubble with your MetaMask account.' } %>
+
+          <div class='delegation-step step-new-delegation text-center py-5 px-3'>
+            <h3>New Delegation</h3>
+
+            <form class='delegation-form mt-3'>
+              <div class='d-flex align-items-center'>
+                <div class='w-100'>
+                  <div class='d-flex flex-column mt-3'>
+                    <label class='text-muted mb-0'>Validator:</label>
+                    <span class='validator-name'><%= validator.display_name %></span>
+                  </div>
+                  <div class='d-flex flex-column mt-3'>
+                    <label class='text-muted mb-0'>Your account address:</label>
+                    <span class='account-address text-monospace'></span>
+                  </div>
+                  <div class='d-flex flex-column mt-3'>
+                    <label class='text-muted mb-0'>Your account balance:</label>
+                    <span class='account-balance text-monospace'></span>
+                  </div>
+                  <div class='d-flex flex-column mt-3'>
+                    <label class='text-muted mb-0'>Your locked balance (pending or staked):</label>
+                    <span class='account-locked-balance text-monospace'></span>
+                  </div>
+                  <div class='d-flex flex-column mt-3'>
+                    <label class='text-muted mb-0'>Minimum delegation amount:</label>
+                    <span class='minimum-delegation-amount text-monospace'></span>
+                  </div>
+                  <div class='d-flex flex-column mt-3'>
+                    <label class='text-muted mb-0 d-inline'>Amount to delegate:</label>
+                    <div class='d-flex align-items-center justify-content-center'>
+                      <input type="number" step="any" class='form-control delegation-amount w-third text-monospace'/>
+                      <span class='ml-2 text-monospace'><%= chain.token_map[chain.primary_token]['display'] %></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class='text-center'>
+                <button type='submit' class='mt-4 btn-lg btn-primary submit-delegation'>Sign with MetaMask</button>
+              </div>
+            </form>
+          </div>
+
+          <%= render partial: "shared/modals/delegation_steps/spinning_step",
+                     locals: { step_name: 'confirm', title: 'Confirm Transaction',
+                               content: 'Review the details in MetaMask and confirm the transaction.' } %>
+
+          <%= render "shared/modals/delegation_steps/complete" %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end -%>

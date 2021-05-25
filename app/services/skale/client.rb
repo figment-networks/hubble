@@ -18,8 +18,33 @@ module Skale
       end
     end
 
+    def validator(id)
+      Skale::Validator.new(get("/validators/#{id}").first)
+    end
+
     def delegations(opts = {})
       get_collection(Skale::Delegation, '/delegations', opts)
+    end
+
+    def nodes(opts = {})
+      get_collection(Skale::Node, '/nodes', opts)
+    end
+
+    def staked_over_time(opts = {})
+      get_collection(Skale::ValidatorStatistics, '/validators/statistics', opts)
+    end
+
+    def delegation_summary(opts = {})
+      data = get('/summary', opts)['delegation_summary'] || []
+      data.map { |n| Skale::DelegationSummary.new(n) }
+    end
+
+    def node(opts)
+      Skale::Node.new(get('/nodes', opts).first)
+    end
+
+    def accounts(opts = {})
+      get_collection(Skale::Account, '/accounts', opts)
     end
   end
 end

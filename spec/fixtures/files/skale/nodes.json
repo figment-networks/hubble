@@ -1,0 +1,16 @@
+[
+  {
+    "id": 39,
+    "name": "figment-1",
+    "ip": "127.0.0.1",
+    "public_ip": "127.0.0.1",
+    "port": 10000,
+    "start_block": 10967057,
+    "next_reward_date": "2021-04-26T00:02:33Z",
+    "last_reward_date": "2021-03-26T00:02:33Z",
+    "finish_time": 0,
+    "validator_id": 15,
+    "status": "Active",
+    "address": "0x568332521e6a5fc10711d24b10a73d9766fcef7a"
+  }
+]

@@ -18,11 +18,11 @@
       <meta name='description' content='<%= meta_description %>' />
     <% end -%>
 
-    <%= stylesheet_link_tag "#{@chain.class::ASSET}", media: 'all' %>
+    <%= stylesheet_link_tag @chain.class::ASSET, media: 'all' %>
 
     <%= js_namespace %>
-    <%= javascript_include_tag "#{@chain.class::ASSET}", media: 'all' %>
-    <%= javascript_pack_tag 'application' %>
+    <%= javascript_include_tag @chain.class::ASSET, media: 'all' %>
+    <%= javascript_pack_tag @chain.class::ASSET %>
     <%= yield :promo_wc_script %>
   </head>
 
@@ -31,7 +31,7 @@
       <%= render partial: '/shared/nav' %>
 
       <div class='main'>
-        <%= yield %>  
+        <%= yield %>
       </div>
 
       <div class="footer-wrapper">

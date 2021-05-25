@@ -1,3 +1,5 @@
+require 'indexer/resources/event'
+
 class AlertSubscription < ApplicationRecord
   belongs_to :user
   belongs_to :alertable, polymorphic: true

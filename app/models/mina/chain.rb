@@ -32,7 +32,7 @@ class Mina::Chain < ApplicationRecord
   end
 
   def supports_ledger?
-    false
+    graphql_api_url.present?
   end
 
   def out_of_sync?

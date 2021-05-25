@@ -5,7 +5,6 @@ $(document).ready(function() {
 
   new App.Common.BlocksHeatmap($('.validator-blocks-heatmap')).render();
   new App.Mina.ValidatorBalanceChart($('.validator-balance-chart')).render();
-  new App.Mina.ValidatorDelegationModal($('.validator-ledger')).render();
 
   const switcherButtons = $('.block-time-switcher button');
   const charts = {

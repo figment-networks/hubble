@@ -13,6 +13,8 @@ class Prime::Chain < ApplicationRecord
 
   alias_attribute :primary_token_divisor, :reward_token_factor
 
+  scope :active, -> { where(active: true) }
+
   def to_param
     slug
   end

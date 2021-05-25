@@ -1,0 +1,135 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://localhost:8080/nodes?id=39
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (darwin20.3.0 x86_64) ruby/2.7.2p137
+      Content-Length:
+      - '0'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - skale--mainnet--indexer.datahub.figment.io
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 09 Apr 2021 13:38:03 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '305'
+      Connection:
+      - keep-alive
+      X-Ratelimit-Remaining-Minute:
+      - '1999'
+      X-Ratelimit-Limit-Minute:
+      - '2000'
+      Ratelimit-Remaining:
+      - '1999'
+      Ratelimit-Limit:
+      - '2000'
+      Ratelimit-Reset:
+      - '57'
+      Access-Control-Allow-Headers:
+      - Content-Type
+      Access-Control-Allow-Methods:
+      - POST, GET, OPTIONS, PUT, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Authorization
+      X-Quota-Limit-Day:
+      - '10000000'
+      Quota-Remaining:
+      - '9999935'
+      X-Quota-Remaining-Day:
+      - '9999935'
+      Quota-Reset:
+      - '37317'
+      Quota-Limit:
+      - '10000000'
+    body:
+      encoding: UTF-8
+      string: '[{"id":39,"name":"figment-1","ip":"127.0.0.1","public_ip":"127.0.0.1","port":10000,"start_block":10967057,"next_reward_date":"2021-04-26T00:02:33Z","last_reward_date":"2021-03-26T00:02:33Z","finish_time":0,"validator_id":15,"status":"Active","address":"0x568332521e6a5fc10711d24b10a73d9766fcef7a"}]
+
+        '
+  recorded_at: Fri, 09 Apr 2021 13:38:03 GMT
+- request:
+    method: get
+    uri: https://localhost:8080/validators/15
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (darwin20.3.0 x86_64) ruby/2.7.2p137
+      Content-Length:
+      - '0'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - skale--mainnet--indexer.datahub.figment.io
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 09 Apr 2021 13:38:03 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '433'
+      Connection:
+      - keep-alive
+      X-Ratelimit-Remaining-Minute:
+      - '1998'
+      X-Ratelimit-Limit-Minute:
+      - '2000'
+      Ratelimit-Remaining:
+      - '1998'
+      Ratelimit-Limit:
+      - '2000'
+      Ratelimit-Reset:
+      - '57'
+      Access-Control-Allow-Headers:
+      - Content-Type
+      Access-Control-Allow-Methods:
+      - POST, GET, OPTIONS, PUT, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Authorization
+      X-Quota-Limit-Day:
+      - '10000000'
+      Quota-Remaining:
+      - '9999934'
+      X-Quota-Remaining-Day:
+      - '9999934'
+      Quota-Reset:
+      - '37317'
+      Quota-Limit:
+      - '10000000'
+    body:
+      encoding: UTF-8
+      string: '[{"id":15,"name":"Figment Networks","description":"https://figment.io","validator_address":"0x82697068ef6be38a79af90efcd675e5cf792287c","requested_address":"0x0000000000000000000000000000000000000000","fee_rate":150,"registration_time":"2020-09-21T20:08:00Z","minimum_delegation_amount":10000000000000000000000,"accept_new_requests":true,"authorized":true,"active_nodes":11,"linked_nodes":11,"staked":"225669405000000000000000000"}]
+
+        '
+  recorded_at: Fri, 09 Apr 2021 13:38:03 GMT
+recorded_with: VCR 6.0.0

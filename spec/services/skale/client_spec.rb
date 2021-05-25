@@ -9,6 +9,9 @@ describe Skale::Client do
     stub_endpoint('/health', {}, 'status')
     stub_endpoint('/validators', {}, 'validators')
     stub_endpoint('/delegations', {}, 'delegations')
+    stub_endpoint('/nodes', {}, 'nodes')
+    stub_endpoint('/summary', {}, 'delegation_summary')
+    stub_endpoint('/accounts', {}, 'accounts')
   end
 
   describe '#status' do
@@ -34,6 +37,33 @@ describe Skale::Client do
     it 'returns delegations' do
       expect(result).to be_a Array
       expect(result.first).to be_a Skale::Delegation
+    end
+  end
+
+  describe '#nodes' do
+    let(:result) { client.nodes }
+
+    it 'returns nodes' do
+      expect(result).to be_a Array
+      expect(result.first).to be_a Skale::Node
+    end
+  end
+
+  describe '#summary' do
+    let(:result) { client.delegation_summary }
+
+    it 'returns summary' do
+      expect(result).to be_a Array
+      expect(result.first).to be_a Skale::DelegationSummary
+    end
+  end
+
+  describe '#accounts' do
+    let(:result) { client.accounts }
+
+    it 'returns accounts' do
+      expect(result).to be_a Array
+      expect(result.first).to be_a Skale::Account
     end
   end
 end

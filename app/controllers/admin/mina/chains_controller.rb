@@ -31,4 +31,8 @@ class Admin::Mina::ChainsController < Admin::BaseChainsController
 
     updates
   end
+
+  def chain_params
+    params.require(chain_class.model_name.param_key).permit(:name, :slug, :api_url, :graphql_api_url, :testnet, :disabled, :primary)
+  end
 end

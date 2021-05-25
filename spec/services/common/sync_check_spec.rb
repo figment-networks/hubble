@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Common::SyncChecker do
-  subject { described_class.new('cosmos', notifier) }
+  subject { described_class.new('cosmos', 1, notifier) }
 
   let(:notifier) { double('Slack::Notifier') }
   let!(:chain) { create(:cosmos_chain) }

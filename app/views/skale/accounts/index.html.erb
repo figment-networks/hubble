@@ -1,0 +1,14 @@
+<% content_for :body_class, "account-show" %>
+
+<%= render "/shared/dh_banner_script" %>
+<% content_for :additional_header_tabs do %>
+  <%= render partial: 'shared/chain_header_link', locals: { active_tab: 'Accounts', link_text: 'Accounts', link_path:  skale_chain_accounts_path(@chain) } %>
+<% end %>
+<%= render partial: "shared/chain_header", locals: { active_tab: 'Accounts' } %>
+
+<%= render_flash_messages %>
+<div class='container'>
+  <div class="row info-cards">
+    <%= render 'skale/accounts/sections/accounts' %>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <title><%= prime_page_title %></title>
+    <%= csrf_meta_tags %>
+
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+
+    <link rel='icon' type='image/png' sizes='32x32' href='<%= asset_path('icons/favicon-32x32.png') %>' />
+    <link rel='icon' type='image/png' sizes='96x96' href='<%= asset_path('icons/favicon-96x96.png') %>' />
+    <link rel='apple-touch-icon' sizes='180x180' href='<%= asset_path('icons/apple-icon-180x180.png') %>' />
+
+    <link rel='preconnect' href='https://fonts.gstatic.com'>
+    <link href='https://fonts.googleapis.com/css2?family=Inter:wght@500;600&display=swap' rel='stylesheet'>
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.2/css/all.css' integrity='sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr' crossorigin='anonymous'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <link rel='canonical' href='<%= ((canonical = yield(:canonical_url)).blank? ? request.url : canonical).chomp('/') %>' />
+    <% if meta_description? -%>
+      <meta name='description' content='<%= meta_description %>' />
+    <% end -%>
+
+    <%= stylesheet_link_tag 'prime', media: 'all' %>
+    <%= prime_js_namespace %>
+    <%= javascript_include_tag 'prime', media: 'all' %>
+  </head>
+
+  <body class='<%= yield :body_class %> <%= monitor_body_classes %> full__height'>
+
+    <div class='login-page'>
+      <%= render 'prime/sessions/marketing_block' %>
+      <%= yield %>
+    </div>
+  </body>
+</html>

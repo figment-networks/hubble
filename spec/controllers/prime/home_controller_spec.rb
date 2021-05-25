@@ -7,7 +7,7 @@ RSpec.describe Prime::HomeController do
   describe 'GET #index' do
     context 'not signed in' do
       it 'redirects to login' do
-        expect(get(:index)).to redirect_to(login_path)
+        expect(get(:index)).to redirect_to(prime_login_path)
         expect(flash[:warning]).to eq('You must be logged in to access the Prime Dashboard.')
       end
     end
@@ -15,8 +15,7 @@ RSpec.describe Prime::HomeController do
     context 'signed in non-prime user' do
       it 'redirects to hubble' do
         session[:uid] = user.id
-        expect(get(:index)).to redirect_to(root_path)
-        expect(flash[:warning]).to eq('To access Prime Dashboard, please contact andres@figment.io.')
+        expect(get(:index)).to redirect_to(prime_contact_path)
       end
     end
 

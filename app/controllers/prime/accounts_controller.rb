@@ -10,6 +10,7 @@ class Prime::AccountsController < Prime::ApplicationController
 
   def create
     unless account_valid?
+      flash[:error] = 'That does not appear to be a valid address.'
       return redirect_to prime_root_path
     end
 

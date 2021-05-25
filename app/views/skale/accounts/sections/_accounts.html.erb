@@ -1,0 +1,44 @@
+<div class="col-md-12 col-lg-12 mb-4 pb-2">
+  <section class="data-table account">
+    <div class="data-table__header d-flex align-items-center justify-content-between">
+      <h3 class='data-table__title pr-2'>Accounts</h3>
+        <input type='text' class='form-control form-control-sm account-search' placeholder='filter accounts...'>
+    </div>
+    <div class='no-padding account-table'>
+      <table>
+        <thead>
+          <tr role="row account-header">
+            <th width="80%">Address</th>
+            <th width="20%">Type</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if !@accounts.empty? %>
+            <% @accounts.each do |account| %>
+              <tr>
+                <% if account.type == 'delegator' %>
+                  <td data-order='<%= account.address %>'>
+                    <%= link_to account.address, skale_chain_account_path(@chain, account.address) %>
+                  </td>
+                <% else %>
+                  <td data-order='<%= account.address %>'>
+                    <%= link_to account.address, skale_chain_validator_path(@chain, account.address, accounts_page: true) %>
+                  </td>
+                <% end %>
+                <td data-order='<%= account.type %>'>
+                  <%= account.type.titleize %>
+                </td>
+              </tr>
+            <% end %>
+          <% else %>
+            <tr>
+              <td colspan='6'>
+                Account information is currently unavailable
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>

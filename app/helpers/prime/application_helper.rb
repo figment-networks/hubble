@@ -38,7 +38,7 @@ module Prime::ApplicationHelper
   end
 
   def user_networks
-    @user_networks ||= decorate_networks(Prime::Network.find(@current_user.prime_accounts.distinct.pluck(:prime_network_id)))
+    @user_networks ||= decorate_networks(Prime::Network.find(@current_user.prime_accounts.on_enabled_networks.distinct.pluck(:prime_network_id)))
   end
 
   def user_rewards

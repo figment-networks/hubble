@@ -34,7 +34,7 @@ gem 'rinku'
 gem 'suo'
 gem 'useragent'
 
-gem 'postmark-rails'
+gem 'postmark-rails', '~> 0.21.0'
 gem 'twitter', '~> 6.1.0'
 
 # used for notifing when Chains are out of sync
