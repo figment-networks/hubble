@@ -1,17 +1,21 @@
 .validator-show {
-  .block-heatmap-container {
-    position: relative;
-    margin-bottom: 10px;
+  .staked-validator-chart-container {
+    height: 70px;
 
-    #chartjs-tooltip-bhm div {
-      display: flex;
-      align-items: center;
-      .fa { margin: 0 8px; }
-      .badge { font-size: $font-size-base * 1.1; }
+    .chartjs-tooltip {
+      color: $body-color;
+      font-size: 14px;
+      font-family: $font-family-monospace;
     }
   }
 }
 
-.sup {
-  vertical-align: baseline;
+.delegations-count-table {
+  .sup {
+    vertical-align: middle;
+  }
+}
+
+table.dataTable.no-footer {
+    border-bottom: 1px solid $gray-200;
 }

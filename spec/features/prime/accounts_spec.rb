@@ -47,10 +47,10 @@ describe 'Prime My Addressess' do
       expect(page).to have_content('Figment Prime')
       expect(page).to have_content('Polkadot')
       expect(page).to have_content('138QdRbUTB9eNY94Q4Mj5r39Fkg...')
-      expect(page).to have_content('181.86 DOT')
+      expect(page).to have_content('101.85 DOT')
       expect(page).to have_content('Oasis')
       expect(page).to have_content('oasis1qzkdwhw4hnu2pl49c6kpm...')
-      expect(page).to have_content('0.0 ROSE')
+      expect(page).to have_content('26,745.46 ROSE')
     end
   end
 end

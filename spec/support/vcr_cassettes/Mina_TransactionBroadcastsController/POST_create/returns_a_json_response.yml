@@ -1,0 +1,55 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://localhost:8082/graphql
+    body:
+      encoding: UTF-8
+      string: '{"query":"    mutation($fee: UInt64, $validator: PublicKey, $accountAddress:
+        PublicKey, $memo: String, $nonce: UInt32, $signature: String) {\n      sendDelegation(\n        input:
+        {fee: $fee, to: $validator, from: $accountAddress, memo: $memo, \n          nonce:
+        $nonce, validUntil: \"4294967295\"}, \n        signature: {rawSignature: $signature}\n      )
+        {\n        delegation {\n          hash\n        }\n      }\n    }\n","variables":{"accountAddress":"B62qjrNteTPA2h225Zos7Xr1z8SXBf9GdtTh8NSHZiT24a6YpH2zL91","validator":"B62qoERu6rA6UUxk6yNYN9CfrvXwNB7tBF94TQucZNRkabQNiDJoMiR","fee":"1000000","memo":"https://hubble.figment.io","nonce":"7","signature":"39603762bc8aa733734fef3eeb7e3911c94ce40fa0329c4108359be43d35bc620be2bd56b75985a176e5ed14e4b2156bd227bcb5ae2036220799be04ea5f6ad2"}}'
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (darwin20.1.0 arm) ruby/2.7.2p137
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '792'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - localhost:8082
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 19 Apr 2021 14:54:41 GMT
+      Content-Type:
+      - text/plain; charset=utf-8
+      Content-Length:
+      - '107'
+      Connection:
+      - close
+      X-Mina-Proxy:
+      - 0.6.0
+      X-Quota-Limit-Day:
+      - '10000000'
+      Quota-Remaining:
+      - '9999896'
+      X-Quota-Remaining-Day:
+      - '9999896'
+      Quota-Reset:
+      - '32719'
+      Quota-Limit:
+      - '10000000'
+    body:
+      encoding: UTF-8
+      string: '{"data":{"sendDelegation":{"delegation":{"hash":"CkpZ61dxrgYs1CdaC2iuW9eLSi2ePVTXTBbQrE7tNbrcwrJj7qMrk"}}}}'
+  recorded_at: Mon, 19 Apr 2021 14:54:41 GMT
+recorded_with: VCR 6.0.0

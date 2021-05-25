@@ -23,9 +23,7 @@
                   Account
                 </a>
                 <div class='dropdown-menu dropdown-menu-right' aria-labelledby='account-menu-link'>
-                  <% if current_user.prime? %>
-                    <%= link_to 'Prime', prime_root_path, class: "dropdown-item link" %>
-                  <% end %>
+                  <%= link_to 'Prime', prime_root_path, class: "dropdown-item link" %>
                   <%= link_to 'Settings', settings_users_path, class: "dropdown-item link" %>
                   <%= link_to 'Telegram Account', telegram_account_path, class: "dropdown-item link" %>
                   <%= link_to 'Logout', logout_path, class: "dropdown-item link" %>

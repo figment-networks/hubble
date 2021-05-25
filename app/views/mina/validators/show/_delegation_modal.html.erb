@@ -1,0 +1,74 @@
+<% content_for :modals do -%>
+  <div class='modal fade' id='delegation-modal' tabindex='-1' role='dialog'>
+    <div class='modal-dialog modal-dialog-centered' role='document'>
+      <div class='modal-content'>
+        <div class='modal-body'>
+          <button type='button' class='close float-right' data-dismiss='modal' aria-label='Close'>
+            <span aria-hidden='true'>&times;</span>
+          </button>
+
+          <%= render "shared/modals/delegation_steps/error" %>
+
+          <%= render partial: "shared/modals/delegation_steps/spinning_step",
+                     locals: { step_name: 'setup', title: 'Connecting...',
+                               content: "Connect, unlock, and open the #{chain.network_name} app on your Ledger." } %>
+
+          <div class='delegation-step step-account text-center p-5'>
+            <h3>Select your account number</h3>
+            <p>Default account number is 0.<br/>
+              If you created your wallet with a different account index, you can change it now.</p>
+
+            <form class='account-form mt-3'>
+              <label class='text-muted mb-0 d-inline'>Account number:</label>
+              <input class='form-control' name="account-number" type="number" min="0" value='0'/>
+              <div class='text-center'>
+                <button type='submit' class='mt-4 btn-primary btn-lg'>Continue</button>
+              </div>
+            </form>
+          </div>
+
+          <%= render partial: "shared/modals/delegation_steps/spinning_step",
+                     locals: { step_name: 'confirm-account', title: 'Address confirmation',
+                               content: 'Generate and confirm your public address on your Ledger' } %>
+
+          <div class='delegation-step step-new-delegation text-center py-5 px-3'>
+            <h3>New Delegation</h3>
+
+            <form class='delegation-form mt-3'>
+              <div class='d-flex align-items-center'>
+                <div class='w-100'>
+                  <div class='d-flex flex-column mt-3'>
+                    <label class='text-muted mb-0'>Validator:</label>
+                    <span class='validator-name text-monospace'><%= validator.display_name %></span>
+                  </div>
+                  <div class='d-flex flex-column mt-3'>
+                    <label class='text-muted mb-0'>Your Account Address:</label>
+                    <span class='account-address text-monospace'></span>
+                  </div>
+                  <div class='d-flex flex-column mt-3'>
+                    <label class='text-muted mb-0'>Your Account Balance:</label>
+                    <span class='account-balance text-monospace'></span>
+                  </div>
+                  <div class='d-flex flex-column mt-3'>
+                    <label class='text-muted mb-0'>Transaction Fee:</label>
+                    <span class='transaction-fee text-monospace'></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class='text-center'>
+                <button type='submit' class='mt-4 btn-lg btn-primary submit-delegation'>Sign with Ledger</button>
+              </div>
+            </form>
+          </div>
+
+          <%= render partial: "shared/modals/delegation_steps/spinning_step",
+                     locals: { step_name: 'confirm', title: 'Confirm Transaction',
+                               content: 'Review the details on your Ledger and sign the transaction.' } %>
+
+          <%= render "shared/modals/delegation_steps/complete" %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end -%>

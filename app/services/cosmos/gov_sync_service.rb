@@ -8,7 +8,7 @@ class Cosmos::GovSyncService < Cosmoslike::GovSyncService
       h = {
         ext_id: proposal['id'].to_i,
         proposal_type: proposal['content']['type'],
-        proposal_status: proposal['status'],
+        proposal_status: proposal_status(proposal['status']),
         title: proposal['content']['value']['title'],
         description: proposal['content']['value']['description'],
         additional_data: proposal['content']['value'].except('title', 'description'),
@@ -96,6 +96,25 @@ class Cosmos::GovSyncService < Cosmoslike::GovSyncService
                  voting_start_time: DateTime.parse(start_date),
                  voting_end_time: DateTime.parse(end_date)
                }).stringify_keys
+    end
+  end
+
+  def proposal_status(status)
+    case status
+    when 0
+      ''
+    when 1
+      'DepositPeriod'
+    when 2
+      'VotingPeriod'
+    when 3
+      'Passed'
+    when 4
+      'Rejected'
+    when 5
+      'Failed'
+    else
+      ''
     end
   end
 end

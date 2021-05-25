@@ -17,4 +17,8 @@ module Prime::HomeHelper
   def prime_network_image(network)
     "prime/networks/#{NETWORK_IMAGES[network.name.to_sym]}"
   end
+
+  def decorate_user_network_reward(network)
+    "#{number_with_delimiter(user_network_rewards(network).round(2))} #{network.primary.reward_token_display}"
+  end
 end

@@ -47,3 +47,8 @@
   box-shadow: none;
   outline: none;
 }
+
+.last24h-chart, .last30d-chart, .validators-chart, .delegations-chart {
+  border-top: 1px solid $gray-200;
+  border-bottom: 1px solid $gray-200;
+}

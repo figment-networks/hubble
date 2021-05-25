@@ -1,0 +1,25 @@
+<section class="login-section login-section--right">
+  <div class="login-section__content">
+    <div class="login-section__header">
+      <h2 class="login-section__title">Become a Prime Member</h2>
+    </div>
+    <div class='form__wrapper'>
+      <%= form_with url: prime_contact_submit_path, method: 'post', local: true do %>
+        <label for='form[name]'>Full Name:</label>
+        <input type='text' name='form[name]' placeholder='' />
+        <label for='form[company]'>Company:</label>
+        <input type='text' name='form[company]' placeholder='' />
+        <label for='form[email]'>Email:</label>
+        <input type='email' name='form[email]' placeholder='your@email.com' />
+        <label for='form[tokens]'>Networks of Interest:</label>
+        <input type='text' name='form[tokens]' placeholder='What networks do you plan to stake on?' />
+        <label for='form[name]'>Total USD:</label>
+        <input type='text' name='form[balance]' placeholder='Total value (USD) of tokens to be staked.' />
+        <input type='submit' value='Submit' class="btn" />
+      <% end -%>
+      <div class='text-center mt-2 mb-5'>
+        <%= link_to 'Back to Prime Login', prime_login_path, class: 'text-muted small' %>
+      </div>
+    </div>
+  </div>
+</section>

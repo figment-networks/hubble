@@ -27,7 +27,7 @@
     height: 50px;
   }
   .tiny-average-active-validators-chart-container {
-    height: 30px;
+    height: 48px;
     .chartjs-tooltip {
       color: $body-color;
       font-size: 14px;
@@ -50,4 +50,11 @@
 
 .last30d-chart, .last48h-chart {
   height: 50px;
+  border-top: 1px solid $gray-200;
+  border-bottom: 1px solid $gray-200;
+}
+
+.average-active-validators-chart {
+  border-top: 1px solid $gray-200;
+  border-bottom: 1px solid $gray-200;
 }

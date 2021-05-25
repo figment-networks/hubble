@@ -15,7 +15,6 @@ feature "mina transactions", :vcr do
 
     within ".transactions-search-form" do
       expect(page).to have_text "Account"
-      expect(page).to have_text "Snark Fee"
       expect(page).to have_text "Payment"
       expect(page).to have_text "Fee Transfer"
       expect(page).to have_text "Start Date"

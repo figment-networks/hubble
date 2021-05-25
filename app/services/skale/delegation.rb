@@ -7,6 +7,7 @@ module Skale
     field :block_height
     field :amount, type: :integer
     field :period
+    field :validator_name
     field :created, type: :timestamp
     field :started
     field :finished

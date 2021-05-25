@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
 
     if user.nil?
       flash[:error] = 'Invalid email or password.'
-      redirect_to login_path
+      redirect_to params[:prime] == 'true' ? prime_login_path : login_path
       return
     end
 
@@ -29,10 +29,19 @@ class SessionsController < ApplicationController
       session[:uid] = user.id
       session[:masq] = nil
       user.update_for_login ua: request.env['HTTP_USER_AGENT'], ip: current_ip
-      redirect_to params_return_path || root_path
+      if params[:prime] == 'true'
+        redirect_to prime_root_path
+      else
+        redirect_to params_return_path || root_path
+      end
       return
     else
-      redirect_to login_path(return_path: params_return_path)
+      flash[:error] = 'Invalid email or password.'
+      if params[:prime] == 'true'
+        redirect_to prime_login_path(return_path: params_return_path)
+      else
+        redirect_to login_path(return_path: params_return_path)
+      end
     end
   end
 

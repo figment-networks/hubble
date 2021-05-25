@@ -1,7 +1,6 @@
 <% content_for :body_class, 'validator-show' %>
 
 <%= render partial: '/cosmoslike/shared/chain_header', locals: { active_tab: '', events_link: true, tx_search_link: true, reports_link: true } %>
-<%= render_flash_messages %>
 
 <div class='validator-header'>
   <div class='container'>
@@ -58,6 +57,7 @@
 
 <div class='content'>
   <div class='container'>
+    <%= render_flash_messages %>
     <%= render partial: '/cosmoslike/shared/sync_errors' %>
 
     <div class='row'>
@@ -103,24 +103,11 @@
                 <span aria-hidden='true'>&times;</span>
               </button>
 
-              <div class='delegation-step step-error text-center p-5'>
-                <h3>An Error Occurred</h3>
-                <p>
-                  Sorry, something went wrong. Please disconnect
-                  your Ledger, refresh the page, and try again.
-                </p>
-                <div class='alert alert-danger mt-4 mb-0'>
-                  <p class='delegation-error mb-0'></p>
-                </div>
-              </div>
+              <%= render "shared/modals/delegation_steps/error" %>
 
-              <div class='delegation-step step-setup text-center p-5'>
-                <h3>Connecting...</h3>
-                <p>Connect, unlock, and open the Cosmos app on your ledger.</p>
-                <div class='p-4'>
-                  <span class='fas fa-spin fa-slash text-muted'></span>
-                </div>
-              </div>
+              <%= render partial: "shared/modals/delegation_steps/spinning_step",
+                         locals: { step_name: 'setup', title: 'Connecting...',
+                                   content: "Connect, unlock, and open the #{@chain.network_name} app on your Ledger." } %>
 
               <div class='delegation-step step-choice text-center p-5'>
                 <div class='d-flex flex-column align-items-center'>

@@ -1,0 +1,28 @@
+<% content_for :body_class, "account-show" %>
+
+<%= render "/shared/dh_banner_script" %>
+<% content_for :additional_header_tabs do %>
+  <%= render partial: 'shared/chain_header_link', locals: { active_tab: '', link_text: 'Accounts', link_path:  skale_chain_accounts_path(@chain) } %>
+<% end %>
+<%= render partial: "shared/chain_header", locals: { active_tab: '' } %>
+
+<%= render_flash_messages %>
+
+<div class='container'>
+  <div class='content'>
+    <%= link_to skale_chain_accounts_path(@chain), class: "link text-uppercase" do %>
+      <span class="fas fa-chevron-left"></span> back
+    <% end %>
+    <div class="data-block my-2 pb-0">
+      <label class="data-block__title">Account Address - <%= @account.type %></label>
+      <div class='data-block__value d-block word-break'>
+        <%= params[:id] %>
+      </div>
+    </div>
+    <div class="row info-cards">
+      <div class="col-12 col-md-12 order-1 order-md-0">
+        <%= render "skale/accounts/sections/account_data", delegations: @delegations %>
+      </div>
+    </div>
+  </div>
+</div>

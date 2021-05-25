@@ -1,0 +1,90 @@
+<% content_for :body_class, "validator-show" %>
+
+<%= render "/shared/dh_banner_script" %>
+<% content_for :additional_header_tabs do %>
+  <%= render partial: 'shared/chain_header_link', locals: { active_tab: '', link_text: 'Accounts', link_path:  skale_chain_accounts_path(@chain) } %>
+<% end %>
+<%= render partial: "shared/chain_header", locals: { active_tab: '' } %>
+<div class="validator-header pb-2">
+  <div class="container">
+    <div class='d-flex flex-wrap flex-lg-nowrap flex-xl-nowrap'>
+      <div class='mr-auto pb-2'>
+        <h2 class="validator-header__title"><%= @validator.name %></h2>
+        <%= @validator.description %>
+      </div>
+      <div class='pb-4'>
+        <ul class='validator-info__list'>
+          <li class='validator-info__item'>
+            <p class='text-label validator-info__label'>Account</p>
+            <p class='validator-info__value technical'>
+              <%= @validator.validator_address %>
+            </p>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <% if @chain.supports_ledger? %>
+      <div class="d-flex flex-row">
+        <div class="d-flex ml-auto pb-4">
+          <button class='stake-button'
+                  data-modal='#delegation-modal'
+                  data-validator="<%= @validator.id %>"
+                  data-endpoint="<%= skale_chain_path(@chain) %>"
+                  data-token-display="<%= @chain.token_display %>"
+                  data-minimum-delegation-amount="<%= @validator.minimum_delegation_amount %>"
+                  data-ethereum-chain-id="<%= @chain.ethereum_chain_id %>"
+                  data-token-factor="<%= @chain.token_factor %>">
+            Stake Now
+          </button>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+<%= render_flash_messages %>
+
+<div class='content pt-4'>
+  <div class='container'>
+      <div class="row">
+        <div class="col-md-12 col-lg-7">
+          <div class='data-block'>
+            <div class="pb-lg-0">
+            <h3 class='data-block__title'>Staking Balance</h3>
+              <div class='d-flex flex-wrap align-items-end'>
+                <div class='data-block__large-number mr-4'>
+                  <%= format_amount(@validator.staked, denom: @chain.class::DEFAULT_TOKEN_REMOTE) %>
+                </div>
+              </div>
+            </div>
+            <div class='row'>
+              <div class="col-lg-9">
+                <span class='d-block text-label'>Started On</span>
+                <span class='data-block'><%= @validator.registration_time.to_date.strftime('%B %d, %Y') %></span>
+              </div>
+              <div class="col-lg-3">
+                <span class='d-block text-label'>Fee Rate</span>
+                <span class='data-block'><%= @validator.fee_rate %>%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12 col-lg-5 pt-sm-4">
+          <%= render "skale/validators/sections/staking_over_time_chart", staked_stats: @staked_stats %>
+        </div>
+      </div>
+  </div>
+</div>
+<div class='container'>
+  <div class="row info-cards">
+    <div class="col-md-12 col-lg-7 mb-4 pb-2">
+      <%= render "skale/validators/sections/nodes", nodes: @nodes %>
+    </div>
+    <div class="col-md-12 col-lg-5 mb-4 pb-2">
+      <%= render "skale/validators/sections/delegations_counts", delegation_summary: @delegation_summary %>
+    </div>
+  </div>
+</div>
+
+<%= render "skale/validators/sections/delegation_modal", chain: @chain, validator: @validator %>

@@ -14,7 +14,7 @@
       <div class="block__row">
         <div class="block__data">
           <p class="block__label <%= enabled ? '' : 'coming-soon-label' %>">My Rewards: </p>
-            <p class="block__value"> <%= enabled ? number_with_delimiter(user_network_rewards(network).round(2)) : '' %></p>
+            <p class="block__value"> <%= enabled ? decorate_user_network_reward(network) : '' %></p>
         </div>
 
       </div>

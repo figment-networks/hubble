@@ -1,0 +1,52 @@
+<div class="data-table nodes">
+  <div class="data-table__header d-flex align-items-center justify-content-between">
+    <h3 class='data-table__title'>Nodes</h3>
+    <span>Currently active: <%= @validator.active_nodes %></span>
+  </div>
+  <div class="no-padding node-table">
+    <table>
+      <thead>
+        <tr role="row">
+          <th>Name</th>
+          <th>Next Reward Date</th>
+          <th>Status</th>
+          <th>Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if !nodes.empty? %>
+          <% nodes.each do |node| %>
+            <tr>
+              <td>
+                <%= node.name %>
+              </td>
+              <td>
+                <% if node.status == 'Active' %>
+                  <%= format_date(node.next_reward_date) %>
+                <% else %>
+                  No upcoming reward dates
+                <% end %>
+              </td>
+              <td>
+                <% if node.status == 'Active'-%>
+                  <span class='badge badge-success'>ACTIVE</span>
+                <% else -%>
+                  <span class='badge badge-danger'>LEFT</span>
+                <% end -%>
+              </td>
+              <td>
+                <%= link_to "details", skale_chain_node_path(@chain, node.id), class: "btn btn-outline-primary btn-sm" %>
+              </td>
+            </tr>
+          <% end %>
+        <% else %>
+          <tr>
+            <td colspan='6' class='data-table__empty'>
+              No nodes currently listed for this validator
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

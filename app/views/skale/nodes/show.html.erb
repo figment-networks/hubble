@@ -1,0 +1,30 @@
+<% content_for :body_class, "node-show" %>
+
+<% content_for :additional_header_tabs do %>
+  <%= render partial: 'shared/chain_header_link', locals: { active_tab: '', link_text: 'Accounts', link_path:  skale_chain_accounts_path(@chain) } %>
+<% end %>
+<%= render partial: "shared/chain_header", locals: { active_tab: '' } %>
+<%= render_flash_messages %>
+
+<div class='container'>
+  <div class='content'>
+    <%= link_to skale_chain_validator_path(@chain, @node.validator_id), class: "link text-uppercase" do %>
+      <span class="fas fa-chevron-left"></span> back
+    <% end %>
+    <div class="data-block my-4">
+      <label class="data-block__title">Node Name</label>
+      <div class='data-block__value d-block word-break'>
+        <%= @node.name %>
+      </div>
+    </div>
+    <div class="row info-cards">
+      <div class="col-12 col-md-9 order-1 order-md-0">
+        <%= render "skale/nodes/sections/details", node: @node%>
+      </div>
+      <div class="col-12 col-md-3 order-0 order-md-1 info-cards">
+        <%= render "skale/nodes/sections/height", node: @node %>
+        <%= render "skale/nodes/sections/validator" %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -28,7 +28,7 @@
               <%= validator.id %>
             </td>
             <td class='col-address' data-order='<%= validator.name %>'>
-              <%= validator.name %>
+              <%= link_to validator.name, skale_chain_validator_path(@chain, validator.id) %>
             </td>
             <td data-order='<%= validator.staked %>'>
               <%= format_amount(validator.staked, denom: @chain.class::DEFAULT_TOKEN_REMOTE) %>
