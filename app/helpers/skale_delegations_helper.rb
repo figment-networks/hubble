@@ -10,6 +10,7 @@ module SkaleDelegationsHelper
     'CANCELED' => 'secondary',
     'COMPLETED' => 'success',
     'DELEGATED' => 'primary',
+    'PROPOSED' => 'secondary',
     'REJECTED' => 'danger',
     'UNDELEGATION_REQUESTED' => 'warning'
   }.freeze

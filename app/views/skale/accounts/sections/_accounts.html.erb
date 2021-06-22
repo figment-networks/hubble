@@ -16,15 +16,9 @@
           <% if !@accounts.empty? %>
             <% @accounts.each do |account| %>
               <tr>
-                <% if account.type == 'delegator' %>
-                  <td data-order='<%= account.address %>'>
-                    <%= link_to account.address, skale_chain_account_path(@chain, account.address) %>
-                  </td>
-                <% else %>
-                  <td data-order='<%= account.address %>'>
-                    <%= link_to account.address, skale_chain_validator_path(@chain, account.address, accounts_page: true) %>
-                  </td>
-                <% end %>
+                <td data-order='<%= account.address %>'>
+                  <%= link_to account.address, skale_chain_account_path(@chain, account.address) %>
+                </td>
                 <td data-order='<%= account.type %>'>
                   <%= account.type.titleize %>
                 </td>

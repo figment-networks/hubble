@@ -8,7 +8,9 @@ class Skale::AccountsController < Skale::BaseController
 
   def show
     @account = client.accounts(address: params[:id]).first
+
     @delegations = client.delegations(holder: params[:id]).sort_by(&:state)
+    @validator = client.validators(address: params[:id]).first
 
     page_title 'Account Information'
     meta_description 'Skale Account Page'

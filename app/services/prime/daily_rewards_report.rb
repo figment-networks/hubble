@@ -3,6 +3,7 @@ class Prime::DailyRewardsReport
     date
     address
     reward
+    currency
     token_price
     usd_equivalent
     validator
@@ -35,8 +36,9 @@ class Prime::DailyRewardsReport
           date: reward.time,
           address: account.address,
           reward: factored_reward,
+          currency: reward.token_display,
           token_price: token_price(reward.time, token_hash),
-          usd_equivalent: factored_reward * token_price(reward.time, token_hash),
+          usd_equivalent: usd_equivalent(account.network.primary, reward, token_hash),
           validator: reward.validator_address
         }
       end
@@ -50,5 +52,13 @@ class Prime::DailyRewardsReport
 
   def token_price(stamp, token_hash)
     token_hash[format_timestamp(stamp.to_i)] || 0
+  end
+
+  def usd_equivalent(primary, reward, token_hash)
+    if reward.token_display == primary.reward_token_display
+      reward.amount.to_f * token_price(reward.time, token_hash) / (10 ** primary.reward_token_factor)
+    elsif reward.token_display == 'USD'
+      reward.amount.to_f / (10 ** primary.reward_token_factor)
+    end
   end
 end

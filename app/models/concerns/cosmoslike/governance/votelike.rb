@@ -13,6 +13,11 @@ module Cosmoslike::Governance::Votelike
   def short_option
     case option.downcase
     when 'nowithveto' then 'veto'
+    when '0' then 'EMPTY'
+    when '1' then 'YES'
+    when '2' then 'ABSTAIN'
+    when '3' then 'NO'
+    when '4' then 'veto'
     else option
     end
   end

@@ -1,0 +1,132 @@
+.validator-delegations-table-header {
+  margin-top: 0px;
+  background: $primary;
+  color: white;
+  padding: 4px 6px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+
+  h4 {
+    max-width: 100%;
+    margin-top: 6px;
+    margin-bottom: 2px;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+
+    small { display: none; }
+    @include media-breakpoint-up(md) {
+      align-items: flex-end;
+      flex-direction: row;
+      small { display: block; }
+    }
+  }
+
+  .controls {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.validator-delegations-table {
+  margin: 0 auto 0 auto;
+  .dataTables_length{
+    padding-left: 18px;
+  }
+
+  .dataTables_wrapper {
+    overflow-x: auto;
+    .dataTables_info {
+      display: block;
+      width: 100%;
+      padding: 10px 10px;
+      font-size: $font-size-sm;
+      color: $gray-300;
+    }
+    .dataTables_paginate {
+      float: none;
+      text-align: center;
+      padding-bottom: 4px;
+      .paginate_button {
+        border: 1px solid $gray-200;
+        margin: 0;
+        border-radius: 0;
+        &:hover {
+          background: $gray-200;
+        }
+        &.disabled {
+          color: $gray-200;
+        }
+        &.previous {
+          border-radius: 6px 0 0 6px;
+        }
+        &.current {
+          color: white !important;
+          background: black;
+        }
+        &.next {
+          border-radius: 0 6px 6px 0;
+        }
+      }
+    }
+  }
+
+  table.dataTable {
+    &.no-footer {
+      border-bottom: 1px solid $gray-200;
+    }
+    thead {
+      th {
+        background-color: white !important;
+        color: black !important;
+      }
+    }
+    tbody {
+      tr {
+        td {
+          border-bottom: 1px solid $gray-200;
+          padding-left: 16px;
+        }
+        &:last-child {
+          td { border-bottom: none; }
+        }
+      }
+
+      td {
+        span.status-icon {
+          font-size: 10px;
+          color: $gray-300;
+          margin-right: 8px;
+
+          &.online {
+            @extend .text-success;
+          }
+
+          &.offline {
+            @extend .text-danger;
+            opacity: 0.5;
+          }
+        }
+
+        &.timestamp {
+          white-space: nowrap;
+          font-size: $font-size-sm;
+        }
+      }
+    }
+
+    thead {
+      th {
+        padding: 4px 6px;
+        background-color: $primary;
+        color: white;
+        border-bottom: 1px solid $gray-200;
+      }
+    }
+  }
+}

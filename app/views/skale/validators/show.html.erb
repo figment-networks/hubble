@@ -17,7 +17,7 @@
           <li class='validator-info__item'>
             <p class='text-label validator-info__label'>Account</p>
             <p class='validator-info__value technical'>
-              <%= @validator.validator_address %>
+              <%= link_to @validator.validator_address, skale_chain_account_path(@chain, @validator.validator_address) %>
             </p>
           </li>
         </ul>
@@ -82,7 +82,8 @@
       <%= render "skale/validators/sections/nodes", nodes: @nodes %>
     </div>
     <div class="col-md-12 col-lg-5 mb-4 pb-2">
-      <%= render "skale/validators/sections/delegations_counts", delegation_summary: @delegation_summary %>
+      <%= render "skale/validators/sections/delegations_counts", delegation_summary: @delegation_summary%>
+      <%= render "skale/validators/sections/delegations_details", delegations: @delegations %>
     </div>
   </div>
 </div>

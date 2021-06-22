@@ -1,11 +1,6 @@
 class Skale::ValidatorsController < Skale::BaseController
   def show
-    if params[:accounts_page].present?
-      @validator = client.validators(address: params[:id]).first
-      params[:id] = @validator.id
-    else
-      @validator = client.validator(params[:id])
-    end
+    @validator = client.validator(params[:id])
     raise ActiveRecord::RecordNotFound unless @validator
 
     staked_from = 6.months
@@ -13,6 +8,7 @@ class Skale::ValidatorsController < Skale::BaseController
     @nodes = client.nodes(validator_id: @validator.id)
     @staked_stats = total_staked(staked_from)
     @delegation_summary = client.delegation_summary(validator_id: @validator.id, time_at: Time.now.iso8601)
+    @delegations = client.delegations(validator_id: @validator.id, timeline: 'false').sort_by(&:state)
 
     page_title 'Validator'
     meta_description "Validator #{@validator.name}"

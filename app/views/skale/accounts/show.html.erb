@@ -14,10 +14,18 @@
       <span class="fas fa-chevron-left"></span> back
     <% end %>
     <div class="data-block my-2 pb-0">
-      <label class="data-block__title">Account Address - <%= @account.type %></label>
+      <% if @account %>
+        <label class="data-block__title"><%= @account.type %></label>
+      <% end %>
       <div class='data-block__value d-block word-break'>
         <%= params[:id] %>
       </div>
+      <% if @validator %>
+        <h5 class='pt-4'>
+          <label class='text-muted'>Validator Details - </label>
+          <%= link_to @validator.name, skale_chain_validator_path(@chain, @validator.id), class: 'technical' %>
+        </h5>
+      <% end %>
     </div>
     <div class="row info-cards">
       <div class="col-12 col-md-12 order-1 order-md-0">

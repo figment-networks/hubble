@@ -1,0 +1,41 @@
+<div>
+  <section class="data-table validator-delegations">
+    <div class="data-table__header d-flex align-items-center justify-content-between">
+      <input type='text' class='form-control form-control-sm validator-delegations-search' placeholder='filter delegations...'>
+    </div>
+    <div class='no-padding validator-delegations-table'>
+      <table>
+        <thead>
+          <tr role="row validator-delegations-header">
+            <th>Account</th>
+            <th>Amount</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if delegations.empty? %>
+            <tr>
+              <td colspan='6' class='data-table__empty'>
+                Delegation are currently unavailable for this validator
+              </td>
+            </tr>
+          <% else %>
+            <% delegations.each do |delegation| %>
+              <tr>
+                <td>
+                  <%= link_to delegation.holder.truncate(12), skale_chain_account_path(@chain, delegation.holder) %>
+                </td>
+                <td>
+                  <%= format_amount(delegation.amount,  denom: @chain.class::DEFAULT_TOKEN_REMOTE) %>
+                </td>
+                <td>
+                  <%= account_delegation_state_tab(delegation.state).html_safe %>
+                </td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>

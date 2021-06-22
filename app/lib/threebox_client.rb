@@ -12,7 +12,7 @@ class ThreeboxClient
     response = RestClient.get(url, params: params)
 
     Hashie::Mash::Rash.new(JSON.parse(response.body))
-  rescue RestClient::NotFound
+  rescue RestClient::NotFound, RestClient::InternalServerError
     Hashie::Mash::Rash.new({})
   end
 

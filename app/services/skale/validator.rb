@@ -26,7 +26,7 @@ module Skale
     end
 
     def active?
-      @authorized ? true : false
+      @authorized && @accept_new_requests ? true : false
     end
   end
 end

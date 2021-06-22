@@ -26,7 +26,11 @@ $(document).ready(function() {
     container.siblings().hide().end().show();
 
     if (!charts[target]) {
-      charts[target] = new App.Mina.TransactionsVolumeChart(chart).render();
+      if (target === 'payments') {
+        charts[target] = new App.Mina.TransactionsVolumeChart(chart, {scale: true}).render();
+      } else {
+        charts[target] = new App.Mina.TransactionsVolumeChart(chart, {scale: false}).render();
+      }
     }
   });
 

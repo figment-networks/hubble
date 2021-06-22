@@ -25,23 +25,23 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 19 Apr 2021 19:48:19 GMT
+      - Tue, 25 May 2021 16:31:28 GMT
       Content-Type:
       - application/json
       Content-Length:
       - '433'
       Connection:
       - keep-alive
-      X-Ratelimit-Remaining-Minute:
-      - '1999'
       X-Ratelimit-Limit-Minute:
       - '2000'
-      Ratelimit-Remaining:
-      - '1999'
       Ratelimit-Limit:
       - '2000'
+      Ratelimit-Remaining:
+      - '1996'
+      X-Ratelimit-Remaining-Minute:
+      - '1996'
       Ratelimit-Reset:
-      - '41'
+      - '32'
       Access-Control-Allow-Headers:
       - Content-Type
       Access-Control-Allow-Methods:
@@ -50,19 +50,19 @@ http_interactions:
       - "*"
       Access-Control-Expose-Headers:
       - Authorization
-      X-Quota-Limit-Day:
-      - '10000000'
-      Quota-Remaining:
-      - '9999799'
-      X-Quota-Remaining-Day:
-      - '9999799'
-      Quota-Reset:
-      - '15101'
       Quota-Limit:
       - '10000000'
+      X-Quota-Remaining-Day:
+      - '9999864'
+      X-Quota-Limit-Day:
+      - '10000000'
+      Quota-Reset:
+      - '26912'
+      Quota-Remaining:
+      - '9999864'
     body:
       encoding: UTF-8
-      string: '[{"id":15,"name":"Figment Networks","description":"https://figment.io","validator_address":"0x82697068ef6be38a79af90efcd675e5cf792287c","requested_address":"0x0000000000000000000000000000000000000000","fee_rate":150,"registration_time":"2020-09-21T20:08:00Z","minimum_delegation_amount":10000000000000000000000,"accept_new_requests":true,"authorized":true,"active_nodes":11,"linked_nodes":11,"staked":"225669405000000000000000000"}]
+      string: '[{"id":15,"name":"Figment Networks","description":"https://figment.io","validator_address":"0x82697068ef6be38a79af90efcd675e5cf792287c","requested_address":"0x0000000000000000000000000000000000000000","fee_rate":150,"registration_time":"2020-09-21T20:08:00Z","minimum_delegation_amount":10000000000000000000000,"accept_new_requests":true,"authorized":true,"active_nodes":10,"linked_nodes":11,"staked":"225650274000000000000000000"}]
 
         '
   recorded_at: Mon, 19 Apr 2021 17:17:40 GMT
@@ -91,23 +91,23 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 19 Apr 2021 19:48:19 GMT
+      - Tue, 25 May 2021 16:31:29 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
       - chunked
       Connection:
       - keep-alive
-      X-Ratelimit-Remaining-Minute:
-      - '1998'
       X-Ratelimit-Limit-Minute:
       - '2000'
-      Ratelimit-Remaining:
-      - '1998'
       Ratelimit-Limit:
       - '2000'
+      Ratelimit-Remaining:
+      - '1995'
+      X-Ratelimit-Remaining-Minute:
+      - '1995'
       Ratelimit-Reset:
-      - '41'
+      - '31'
       Access-Control-Allow-Headers:
       - Content-Type
       Access-Control-Allow-Methods:
@@ -116,19 +116,19 @@ http_interactions:
       - "*"
       Access-Control-Expose-Headers:
       - Authorization
-      X-Quota-Limit-Day:
-      - '10000000'
-      Quota-Remaining:
-      - '9999798'
-      X-Quota-Remaining-Day:
-      - '9999798'
-      Quota-Reset:
-      - '15101'
       Quota-Limit:
       - '10000000'
+      X-Quota-Remaining-Day:
+      - '9999863'
+      X-Quota-Limit-Day:
+      - '10000000'
+      Quota-Reset:
+      - '26911'
+      Quota-Remaining:
+      - '9999863'
     body:
       encoding: UTF-8
-      string: '[{"id":39,"name":"figment-1","ip":"127.0.0.1","public_ip":"127.0.0.1","port":10000,"start_block":10967057,"next_reward_date":"2021-04-26T00:02:33Z","last_reward_date":"2021-03-26T00:02:33Z","finish_time":0,"validator_id":15,"status":"Active","address":"0x568332521e6a5fc10711d24b10a73d9766fcef7a"},{"id":53,"name":"figment-2","ip":"127.0.0.1","public_ip":"127.0.0.1","port":10000,"start_block":10967117,"next_reward_date":"2021-04-26T00:02:47Z","last_reward_date":"2021-03-26T00:02:47Z","finish_time":0,"validator_id":15,"status":"Active","address":"0x19d10f981e25cdc12079671497351b682f49e68b"},{"id":54,"name":"figment-3","ip":"127.0.0.1","public_ip":"127.0.0.1","port":10000,"start_block":10967128,"next_reward_date":"2021-04-26T00:02:47Z","last_reward_date":"2021-03-26T00:02:47Z","finish_time":0,"validator_id":15,"status":"Active","address":"0x5111ff85606a89d7fd39b8ce7b5b42702ca703ba"},{"id":57,"name":"figment-4","ip":"127.0.0.1","public_ip":"127.0.0.1","port":10000,"start_block":10967142,"next_reward_date":"2021-04-26T00:02:47Z","last_reward_date":"2021-03-26T00:02:47Z","finish_time":0,"validator_id":15,"status":"Active","address":"0xed4dd20a901c44217bbd045f7c1869f49f9cd3fe"},{"id":59,"name":"figment-5","ip":"127.0.0.1","public_ip":"127.0.0.1","port":10000,"start_block":10967155,"next_reward_date":"2021-04-26T00:03:49Z","last_reward_date":"2021-03-26T00:03:49Z","finish_time":0,"validator_id":15,"status":"Active","address":"0x83ae3c7c85b41087e0118e5f05828bc154f873d4"},{"id":61,"name":"figment-6","ip":"127.0.0.1","public_ip":"127.0.0.1","port":10000,"start_block":10967169,"next_reward_date":"2021-04-26T00:03:01Z","last_reward_date":"2021-03-26T00:03:01Z","finish_time":0,"validator_id":15,"status":"Active","address":"0x21ee06e903900de744dc6b8769b26e8e3da0b6b3"},{"id":64,"name":"figment-7","ip":"127.0.0.1","public_ip":"127.0.0.1","port":10000,"start_block":10967181,"next_reward_date":"2021-04-26T00:01:36Z","last_reward_date":"2021-03-26T00:01:36Z","finish_time":0,"validator_id":15,"status":"Active","address":"0x8546880aea3579ed87149d0db311d8c6d69e69b1"},{"id":66,"name":"figment-8","ip":"127.0.0.1","public_ip":"127.0.0.1","port":10000,"start_block":10967193,"next_reward_date":"2021-04-26T00:02:47Z","last_reward_date":"2021-03-26T00:02:47Z","finish_time":0,"validator_id":15,"status":"Active","address":"0xa9e40de507405a403e89274c307fec2b700022d6"},{"id":157,"name":"figment-9","ip":"127.0.0.1","public_ip":"127.0.0.1","port":10000,"start_block":11174232,"next_reward_date":"2021-04-26T00:03:01Z","last_reward_date":"2021-03-26T00:03:01Z","finish_time":0,"validator_id":15,"status":"Active","address":"0x9a612dea10fa6270a23a5773a24f38bd60a1e496"},{"id":158,"name":"figment-10","ip":"127.0.0.1","public_ip":"127.0.0.1","port":10000,"start_block":11174242,"next_reward_date":"2021-04-26T00:01:55Z","last_reward_date":"2021-03-26T00:01:55Z","finish_time":0,"validator_id":15,"status":"Active","address":"0x2aaa817b85f3a2c730e7d97847a722a227c1ca5d"},{"id":159,"name":"figment-11","ip":"127.0.0.1","public_ip":"127.0.0.1","port":10000,"start_block":11174251,"next_reward_date":"2021-04-26T00:01:36Z","last_reward_date":"2021-03-26T00:01:36Z","finish_time":0,"validator_id":15,"status":"Active","address":"0x99538d711d3a05efaad9af40498cc9f89feb4b94"}]
+      string: '[{"id":39,"name":"figment-1","ip":"127.0.0.1","public_ip":"127.0.0.1","port":10000,"start_block":10967057,"next_reward_date":"2021-05-26T00:03:07Z","last_reward_date":"2021-04-26T00:03:07Z","finish_time":0,"validator_id":15,"status":"Active","address":"0x568332521e6a5fc10711d24b10a73d9766fcef7a"},{"id":53,"name":"figment-2","ip":"127.0.0.1","public_ip":"127.0.0.1","port":10000,"start_block":10967117,"next_reward_date":"2021-05-26T00:03:43Z","last_reward_date":"2021-04-26T00:03:43Z","finish_time":0,"validator_id":15,"status":"Active","address":"0x19d10f981e25cdc12079671497351b682f49e68b"},{"id":54,"name":"figment-3","ip":"127.0.0.1","public_ip":"127.0.0.1","port":10000,"start_block":10967128,"next_reward_date":"2021-05-26T00:03:43Z","last_reward_date":"2021-04-26T00:03:43Z","finish_time":0,"validator_id":15,"status":"In_Maintenance","address":"0x5111ff85606a89d7fd39b8ce7b5b42702ca703ba"},{"id":57,"name":"figment-4","ip":"127.0.0.1","public_ip":"127.0.0.1","port":10000,"start_block":10967142,"next_reward_date":"2021-05-26T00:03:43Z","last_reward_date":"2021-04-26T00:03:43Z","finish_time":0,"validator_id":15,"status":"Active","address":"0xed4dd20a901c44217bbd045f7c1869f49f9cd3fe"},{"id":59,"name":"figment-5","ip":"127.0.0.1","public_ip":"127.0.0.1","port":10000,"start_block":10967155,"next_reward_date":"2021-05-26T00:04:42Z","last_reward_date":"2021-04-26T00:04:42Z","finish_time":0,"validator_id":15,"status":"Active","address":"0x83ae3c7c85b41087e0118e5f05828bc154f873d4"},{"id":61,"name":"figment-6","ip":"127.0.0.1","public_ip":"127.0.0.1","port":10000,"start_block":10967169,"next_reward_date":"2021-05-26T00:04:15Z","last_reward_date":"2021-04-26T00:04:15Z","finish_time":0,"validator_id":15,"status":"Active","address":"0x21ee06e903900de744dc6b8769b26e8e3da0b6b3"},{"id":64,"name":"figment-7","ip":"127.0.0.1","public_ip":"127.0.0.1","port":10000,"start_block":10967181,"next_reward_date":"2021-05-26T00:02:31Z","last_reward_date":"2021-04-26T00:02:31Z","finish_time":0,"validator_id":15,"status":"Active","address":"0x8546880aea3579ed87149d0db311d8c6d69e69b1"},{"id":66,"name":"figment-8","ip":"127.0.0.1","public_ip":"127.0.0.1","port":10000,"start_block":10967193,"next_reward_date":"2021-05-26T00:03:43Z","last_reward_date":"2021-04-26T00:03:43Z","finish_time":0,"validator_id":15,"status":"Active","address":"0xa9e40de507405a403e89274c307fec2b700022d6"},{"id":157,"name":"figment-9","ip":"127.0.0.1","public_ip":"127.0.0.1","port":10000,"start_block":11174232,"next_reward_date":"2021-05-26T00:04:15Z","last_reward_date":"2021-04-26T00:04:15Z","finish_time":0,"validator_id":15,"status":"Active","address":"0x9a612dea10fa6270a23a5773a24f38bd60a1e496"},{"id":158,"name":"figment-10","ip":"127.0.0.1","public_ip":"127.0.0.1","port":10000,"start_block":11174242,"next_reward_date":"2021-05-26T00:02:31Z","last_reward_date":"2021-04-26T00:02:31Z","finish_time":0,"validator_id":15,"status":"Active","address":"0x2aaa817b85f3a2c730e7d97847a722a227c1ca5d"},{"id":159,"name":"figment-11","ip":"127.0.0.1","public_ip":"127.0.0.1","port":10000,"start_block":11174251,"next_reward_date":"2021-05-26T00:02:31Z","last_reward_date":"2021-04-26T00:02:31Z","finish_time":0,"validator_id":15,"status":"Active","address":"0x99538d711d3a05efaad9af40498cc9f89feb4b94"}]
 
         '
   recorded_at: Mon, 19 Apr 2021 17:17:40 GMT
@@ -157,23 +157,23 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 19 Apr 2021 19:48:20 GMT
+      - Tue, 25 May 2021 16:31:29 GMT
       Content-Type:
       - application/json
       Content-Length:
       - '782'
       Connection:
       - keep-alive
-      X-Ratelimit-Remaining-Minute:
-      - '1997'
       X-Ratelimit-Limit-Minute:
       - '2000'
-      Ratelimit-Remaining:
-      - '1997'
+      Ratelimit-Reset:
+      - '31'
       Ratelimit-Limit:
       - '2000'
-      Ratelimit-Reset:
-      - '40'
+      Ratelimit-Remaining:
+      - '1994'
+      X-Ratelimit-Remaining-Minute:
+      - '1994'
       Access-Control-Allow-Headers:
       - Content-Type
       Access-Control-Allow-Methods:
@@ -182,16 +182,16 @@ http_interactions:
       - "*"
       Access-Control-Expose-Headers:
       - Authorization
-      X-Quota-Limit-Day:
-      - '10000000'
-      Quota-Remaining:
-      - '9999797'
-      X-Quota-Remaining-Day:
-      - '9999797'
-      Quota-Reset:
-      - '15100'
       Quota-Limit:
       - '10000000'
+      X-Quota-Remaining-Day:
+      - '9999862'
+      X-Quota-Limit-Day:
+      - '10000000'
+      Quota-Reset:
+      - '26911'
+      Quota-Remaining:
+      - '9999862'
     body:
       encoding: UTF-8
       string: '[{"id":15,"amount":"225669405000000000000000000","block_height":12150251,"block_time":"2021-04-01T00:01:00Z","type":"TOTAL_STAKE"},{"id":15,"amount":"225665870000000000000000000","block_height":11948980,"block_time":"2021-03-01T00:05:53Z","type":"TOTAL_STAKE"},{"id":15,"amount":"225978982000000000000000000","block_height":11766952,"block_time":"2021-02-01T00:04:18Z","type":"TOTAL_STAKE"},{"id":15,"amount":"228734351000000000000000000","block_height":11565073,"block_time":"2021-01-01T00:12:41Z","type":"TOTAL_STAKE"},{"id":15,"amount":"228233773000000000000000000","block_height":11363270,"block_time":"2020-12-01T00:00:06Z","type":"TOTAL_STAKE"},{"id":15,"amount":"231353510000000000000000000","block_height":11167871,"block_time":"2020-11-01T00:12:12Z","type":"TOTAL_STAKE"}]
@@ -223,23 +223,23 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 19 Apr 2021 19:48:20 GMT
+      - Tue, 25 May 2021 16:31:30 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '374'
+      - '220'
       Connection:
       - keep-alive
-      X-Ratelimit-Remaining-Minute:
-      - '1996'
       X-Ratelimit-Limit-Minute:
       - '2000'
-      Ratelimit-Remaining:
-      - '1996'
       Ratelimit-Limit:
       - '2000'
+      Ratelimit-Remaining:
+      - '1993'
+      X-Ratelimit-Remaining-Minute:
+      - '1993'
       Ratelimit-Reset:
-      - '40'
+      - '30'
       Access-Control-Allow-Headers:
       - Content-Type
       Access-Control-Allow-Methods:
@@ -248,19 +248,300 @@ http_interactions:
       - "*"
       Access-Control-Expose-Headers:
       - Authorization
-      X-Quota-Limit-Day:
-      - '10000000'
-      Quota-Remaining:
-      - '9999796'
-      X-Quota-Remaining-Day:
-      - '9999796'
-      Quota-Reset:
-      - '15100'
       Quota-Limit:
       - '10000000'
+      X-Quota-Remaining-Day:
+      - '9999861'
+      X-Quota-Limit-Day:
+      - '10000000'
+      Quota-Reset:
+      - '26910'
+      Quota-Remaining:
+      - '9999861'
     body:
       encoding: UTF-8
-      string: '{"delegation_summary":[{"count":219341000000000000000000,"amount":219341000000000000000000,"state":"DELEGATED"},{"count":27769000000000000000000,"amount":27769000000000000000000,"state":"PROPOSED"},{"count":103305000000000000000000,"amount":103305000000000000000000,"state":"REJECTED"},{"count":32812000000000000000000,"amount":32812000000000000000000,"state":"CANCELED"}]}
+      string: '{"delegation_summary":[{"count":3,"amount":219341000000000000000000,"state":"DELEGATED"},{"count":5,"amount":131074000000000000000000,"state":"REJECTED"},{"count":2,"amount":32812000000000000000000,"state":"CANCELED"}]}
+
+        '
+  recorded_at: Mon, 19 Apr 2021 17:17:40 GMT
+- request:
+    method: get
+    uri: https://localhost:8080/delegations?timeline=false&validator_id=15
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (darwin20.3.0 x86_64) ruby/2.7.2p137
+      Content-Length:
+      - '0'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - skale--mainnet--indexer.datahub.figment.io
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 25 May 2021 16:31:30 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Ratelimit-Limit-Minute:
+      - '2000'
+      Ratelimit-Limit:
+      - '2000'
+      Ratelimit-Remaining:
+      - '1992'
+      X-Ratelimit-Remaining-Minute:
+      - '1992'
+      Ratelimit-Reset:
+      - '30'
+      Access-Control-Allow-Headers:
+      - Content-Type
+      Access-Control-Allow-Methods:
+      - POST, GET, OPTIONS, PUT, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Authorization
+      Quota-Limit:
+      - '10000000'
+      X-Quota-Remaining-Day:
+      - '9999860'
+      X-Quota-Limit-Day:
+      - '10000000'
+      Quota-Reset:
+      - '26910'
+      Quota-Remaining:
+      - '9999860'
+    body:
+      encoding: UTF-8
+      string: '[{"id":4673,"holder":"0xb3dd838bb74a390d2a29b0c065d005b92a319b45","transaction_hash":"0xefc18a752a63aa20254358e971fac173ecf4a7be2c18f54f45f49a721d72ab37","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12503864,"amount":"94847000000000000000000","period":2,"created":"2021-05-25T13:48:43Z","started":0,"finished":0,"info":"","state":"PROPOSED"},{"id":4670,"holder":"0x6dfebeb63e04fccbdf224004869be42fb2001ddd","transaction_hash":"0x93a3d8e8f5b27487b83af41de74eda7de9c144b5e8467d56add2e964de2fc367","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12496155,"amount":"16530000000000000000000","period":2,"created":"2021-05-24T09:20:42Z","started":0,"finished":0,"info":"Activate","state":"PROPOSED"},{"id":4666,"holder":"0x731952327f7b0e1073931c8460c493d18cb07c02","transaction_hash":"0x4abb67c59cc7ef804ce8af954c53ad8ac834475a846994ba6f75d02bc03e089a","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12493874,"amount":"10047000000000000000000","period":2,"created":"2021-05-24T00:39:22Z","started":0,"finished":0,"info":"Activate","state":"PROPOSED"},{"id":4651,"holder":"0xff93e0fa6c821c7eb0cfb8c38c821f1ea9f3542c","transaction_hash":"0xad48c0c44cf9e17fd4a9a78892530f33c2df1800947ef534ac71f96bf5aa3c11","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12473901,"amount":"26594000000000000000000","period":2,"created":"2021-05-20T22:12:54Z","started":0,"finished":0,"info":"Activate","state":"PROPOSED"},{"id":4642,"holder":"0xa96ae873500a167a7a28bc67720102e7e714c90b","transaction_hash":"0x3f85798ae22fafd8350723e0acddb9aea51aff26fea9f38c6de96498cc4f80fa","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12435991,"amount":"20678000000000000000000","period":2,"created":"2021-05-15T01:15:17Z","started":0,"finished":0,"info":"Activate","state":"PROPOSED"},{"id":4621,"holder":"0xb3ffbb4a5cb594565307324a8f02ae875d1ca00e","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"20362000000000000000000","period":2,"created":"2021-04-30T19:46:50Z","started":0,"finished":0,"info":"Activate","state":"REJECTED"},{"id":4618,"holder":"0x2d30bc34e20efb0fe23138fb954d49dee8d1918c","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"12593000000000000000000","period":2,"created":"2021-04-30T15:56:01Z","started":0,"finished":0,"info":"Activate","state":"REJECTED"},{"id":4560,"holder":"0x09fc79ba6fb244daef946d77c5c0d49879cc5e66","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"27769000000000000000000","period":2,"created":"2021-04-10T16:14:55Z","started":0,"finished":0,"info":"Activate","state":"REJECTED"},{"id":4541,"holder":"0x8b528353d736278d1592c04c71012012674b927c","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"22796000000000000000000","period":2,"created":"2021-04-01T10:26:54Z","started":0,"finished":15,"info":"Activate","state":"CANCELED"},{"id":4536,"holder":"0x6ef02c2310187f0a7180f97676b24e03a061eb17","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"19538000000000000000000","period":2,"created":"2021-03-30T23:36:31Z","started":0,"finished":0,"info":"Activate","state":"REJECTED"},{"id":4533,"holder":"0xedd571048ab9927029165c41449b341c55a7b552","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"14088000000000000000000","period":2,"created":"2021-03-30T11:34:18Z","started":0,"finished":0,"info":"Activate","state":"REJECTED"},{"id":4509,"holder":"0x13c69d603c84a5610cda25df09667e39d6dc4def","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"10016000000000000000000","period":2,"created":"2021-03-27T18:43:36Z","started":0,"finished":14,"info":"Activate","state":"CANCELED"},{"id":4504,"holder":"0x8b528353d736278d1592c04c71012012674b927c","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"22796000000000000000000","period":2,"created":"2021-03-23T16:49:01Z","started":0,"finished":0,"info":"Activate","state":"REJECTED"},{"id":4496,"holder":"0xec7dca25111e11fdd84a91be207b177a0d9b0b58","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"30000000000000000000000","period":2,"created":"2021-03-19T15:51:33Z","started":15,"finished":0,"info":"Activate","state":"DELEGATED"},{"id":4481,"holder":"0x4b5d6e3fdc0bcdd15004348d7349e8da30596c5e","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"170285000000000000000000","period":2,"created":"2021-03-11T19:23:19Z","started":15,"finished":0,"info":"Delegation
+        UI","state":"DELEGATED"},{"id":4452,"holder":"0xe61d6538c850725199ecd825d4e5de898991901a","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"19056000000000000000000","period":2,"created":"2021-03-01T06:58:13Z","started":15,"finished":0,"info":"Activate","state":"DELEGATED"},{"id":4432,"holder":"0xc0911a0445134b5df787067a5612b00769fab949","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"46883000000000000000000","period":2,"created":"2021-02-26T19:25:08Z","started":0,"finished":0,"info":"Delegation
+        UI","state":"REJECTED"},{"id":4363,"holder":"0x288dad15557bb7c58f3077a39332b9e79642288f","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38719000000000000000000","period":2,"created":"2021-01-21T03:07:47Z","started":13,"finished":15,"info":"Activate","state":"COMPLETED"},{"id":4350,"holder":"0x7973564428b118d4b9fb68e5d69eb8b717f23d3d","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"19110000000000000000000","period":2,"created":"2021-01-10T07:25:50Z","started":13,"finished":15,"info":"Activate","state":"COMPLETED"},{"id":4316,"holder":"0xcfed8f8d7856b188b1f5f0d697648df57ab96498","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"158450000000000000000000","period":2,"created":"2020-12-29T07:56:09Z","started":12,"finished":14,"info":"Activate","state":"COMPLETED"},{"id":4280,"holder":"0xf1a77a3365555c3859b2c4f81ee4daab2f335b94","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"10615000000000000000000","period":2,"created":"2020-12-24T19:49:08Z","started":12,"finished":0,"info":"Activate","state":"DELEGATED"},{"id":4274,"holder":"0x1755cff12a88289f2a884a240e5b1b58ac3a0e58","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"39303000000000000000000","period":2,"created":"2020-12-22T19:42:11Z","started":12,"finished":0,"info":"Activate","state":"DELEGATED"},{"id":4256,"holder":"0x32b2f69b2d2c27973fc28cabd153314f77ad8cdd","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"19360000000000000000000","period":2,"created":"2020-12-14T08:33:42Z","started":0,"finished":11,"info":"Activate","state":"CANCELED"},{"id":4255,"holder":"0x019c199f89b8a374e87b70597bbca748ac084587","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"67137000000000000000000","period":2,"created":"2020-12-13T22:54:51Z","started":12,"finished":0,"info":"Activate","state":"DELEGATED"},{"id":4238,"holder":"0x5bbbe5c5f0487377664f637c627628bc6d0acb06","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"100000000000000000000000","period":2,"created":"2020-12-10T20:56:27Z","started":12,"finished":0,"info":"Delegation
+        UI","state":"DELEGATED"},{"id":4199,"holder":"0xe6edab836662a5a9f8624f3aa4c12a53595ebb56","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"19131000000000000000000","period":2,"created":"2020-12-04T08:51:59Z","started":12,"finished":16,"info":"Activate","state":"COMPLETED"},{"id":4197,"holder":"0x7973564428b118d4b9fb68e5d69eb8b717f23d3d","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"19111000000000000000000","period":2,"created":"2020-12-04T07:51:30Z","started":12,"finished":14,"info":"Activate","state":"COMPLETED"},{"id":4165,"holder":"0xd9b3346a1c5fc1cd9578d5f6303e3326893093a6","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38719000000000000000000","period":2,"created":"2020-12-02T07:13:22Z","started":12,"finished":14,"info":"Activate","state":"COMPLETED"},{"id":4125,"holder":"0x9e6f4c45f869c77e7bc9e28676f22577b64ac082","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38461000000000000000000","period":2,"created":"2020-12-01T03:27:05Z","started":12,"finished":14,"info":"Activate","state":"COMPLETED"},{"id":4112,"holder":"0x235b977815a06ccbaaf6b7aeaa2724fd3048515a","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"20000000000000000000000","period":2,"created":"2020-12-01T01:25:19Z","started":12,"finished":14,"info":"Activate","state":"COMPLETED"},{"id":4105,"holder":"0x55220156016fcbf7f56f8ad627380ecf6e9905ae","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38371000000000000000000","period":2,"created":"2020-12-01T00:59:15Z","started":12,"finished":14,"info":"Activate","state":"COMPLETED"},{"id":4103,"holder":"0x13f2ca08112fd5b5df3c78c5e583d95d69900235","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38380000000000000000000","period":2,"created":"2020-12-01T00:47:40Z","started":0,"finished":11,"info":"Activate","state":"CANCELED"},{"id":4088,"holder":"0x58af9b49a88fbe581956201fb90c7cf3512503b1","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38414000000000000000000","period":2,"created":"2020-11-30T13:53:14Z","started":0,"finished":0,"info":"Activate","state":"REJECTED"},{"id":4087,"holder":"0x7cf4bf49675ec763af02b2d9d85c90ce2852dc37","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"393342000000000000000000","period":2,"created":"2020-11-30T13:20:02Z","started":0,"finished":0,"info":"Activate","state":"REJECTED"},{"id":4048,"holder":"0xbe36155b02bd34a15bb6f325e2f90f8704ddc827","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"2000000000000000000000000","period":2,"created":"2020-11-11T00:38:29Z","started":11,"finished":0,"info":"Delegation
+        UI","state":"DELEGATED"},{"id":4039,"holder":"0xbe36155b02bd34a15bb6f325e2f90f8704ddc827","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"2000000000000000000000000","period":2,"created":"2020-10-31T16:04:35Z","started":0,"finished":0,"info":"Delegation
+        UI","state":"REJECTED"},{"id":4038,"holder":"0x07ecc4e90151e7cf11fff6d88895ef769093267e","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38719000000000000000000","period":2,"created":"2020-10-31T13:38:08Z","started":10,"finished":12,"info":"Activate","state":"COMPLETED"},{"id":4030,"holder":"0x183ed81b383eaa1181495ad9bad927c34f104258","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"4000000000000000000000000","period":2,"created":"2020-10-30T19:58:31Z","started":10,"finished":0,"info":"","state":"DELEGATED"},{"id":4029,"holder":"0xb72a5fd8b10825b0aa3db1325438f4b0c2e17c21","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"20000000000000000000000000","period":2,"created":"2020-10-30T18:09:42Z","started":10,"finished":0,"info":"","state":"DELEGATED"},{"id":4005,"holder":"0x7b91930ab67d99d46a904c44616e819b20986f5a","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"20000000000000000000000000","period":2,"created":"2020-10-28T02:35:49Z","started":10,"finished":0,"info":"","state":"DELEGATED"},{"id":3989,"holder":"0x5e1539ecb4260f2e7df43650e27f03cd8b71e5b6","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"13157895000000000000000000","period":2,"created":"2020-10-23T21:07:05Z","started":10,"finished":0,"info":"","state":"DELEGATED"},{"id":3968,"holder":"0xef555099e23c76509954804d4a22275e5ba06314","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"19116000000000000000000","period":2,"created":"2020-10-13T01:31:25Z","started":10,"finished":0,"info":"Activate","state":"DELEGATED"},{"id":3936,"holder":"0x6fb9dfe12afa228767cc6410671fe73d3b74c759","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"10001000000000000000000","period":2,"created":"2020-10-02T02:43:23Z","started":10,"finished":12,"info":"Activate","state":"COMPLETED"},{"id":3914,"holder":"0xbe36155b02bd34a15bb6f325e2f90f8704ddc827","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"2000000000000000000000000","period":2,"created":"2020-09-30T23:58:13Z","started":0,"finished":0,"info":"Delegation
+        UI","state":"REJECTED"},{"id":3903,"holder":"0x7879123e3f7b8b1ff146e6e552d47dcb82a30b22","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"44576452000000000000000000","period":2,"created":"2020-09-30T20:59:43Z","started":9,"finished":0,"info":"description","state":"DELEGATED"},{"id":3899,"holder":"0x615c9ff5d423f186adcfa71375229f63b2955ac1","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"1200000000000000000000000","period":2,"created":"2020-09-30T19:53:03Z","started":9,"finished":0,"info":"Delegation
+        UI","state":"DELEGATED"},{"id":3870,"holder":"0xb4926dea9bc87d795a3ba49d2307c49c94a3ac4a","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"36880000000000000000000","period":2,"created":"2020-09-30T12:41:37Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":3842,"holder":"0x15ed833007b34c2ce1dacc52602a9d8d2337f60e","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"19359000000000000000000","period":2,"created":"2020-09-30T04:06:01Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":3839,"holder":"0xdeac1eb18efc459a8e4c4e653ac2579be2e20647","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"3822827000000000000000000","period":2,"created":"2020-09-30T03:56:47Z","started":9,"finished":0,"info":"Delegation
+        UI","state":"DELEGATED"},{"id":3824,"holder":"0xf0427162e6a4701be0a66e639d156b7eadacb4a6","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38286000000000000000000","period":2,"created":"2020-09-29T23:35:23Z","started":9,"finished":15,"info":"Activate","state":"COMPLETED"},{"id":3779,"holder":"0x994468a19ba4264bedb78961dcf2f598d2c1c612","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38318000000000000000000","period":2,"created":"2020-09-29T20:54:36Z","started":9,"finished":0,"info":"Activate","state":"DELEGATED"},{"id":3741,"holder":"0xc4e4a79ab18cdab4c91d5d2f8b870d350bfc106e","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"19359000000000000000000","period":2,"created":"2020-09-29T17:57:24Z","started":9,"finished":0,"info":"Activate","state":"DELEGATED"},{"id":3712,"holder":"0xb3b448833324511ab1e32ea4a28c39a02201e7be","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"65722952000000000000000000","period":2,"created":"2020-09-29T16:33:20Z","started":9,"finished":0,"info":"Delegation
+        UI","state":"DELEGATED"},{"id":3673,"holder":"0x79a9aebeb5e02f624af66cb91c5da2f146722398","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"29040000000000000000000","period":2,"created":"2020-09-29T13:45:26Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":3664,"holder":"0x22d02f386b48dd3d05f3d7ab732e0907aaadc5d8","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"4000000000000000000000000","period":2,"created":"2020-09-29T12:39:56Z","started":9,"finished":0,"info":"Delegation
+        UI","state":"DELEGATED"},{"id":3645,"holder":"0xb9d586540cdd612c837808bdce7de90d2e1dbcf8","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38719000000000000000000","period":2,"created":"2020-09-29T11:21:31Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":3644,"holder":"0xa9d55647e8e3b2435b8bc89bdcd8f1aa3dc5b908","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"35677000000000000000000","period":2,"created":"2020-09-29T11:15:57Z","started":9,"finished":15,"info":"Activate","state":"COMPLETED"},{"id":3594,"holder":"0xbe8e75c88c414787d8709b0fbf897d47201e2fa7","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"500000000000000000000000","period":2,"created":"2020-09-29T04:29:57Z","started":9,"finished":0,"info":"Delegation
+        UI","state":"DELEGATED"},{"id":3574,"holder":"0x9da664859cc4e0f5f36c24f976558f6af5a27b66","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38719000000000000000000","period":2,"created":"2020-09-29T01:30:35Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":3567,"holder":"0xff256709fd69d596b5ea19edbcb2d35e5b49c135","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"2000000000000000000000000","period":2,"created":"2020-09-29T00:04:36Z","started":9,"finished":13,"info":"Delegation
+        UI","state":"COMPLETED"},{"id":3545,"holder":"0xd996ef0107a81705da0768f89a2845c05f84fa3f","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"19150000000000000000000","period":2,"created":"2020-09-28T22:50:45Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":3521,"holder":"0xe2cea50ba5a302a691b93692e74786d6484db295","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"786332000000000000000000","period":2,"created":"2020-09-28T20:23:25Z","started":9,"finished":0,"info":"","state":"DELEGATED"},{"id":3491,"holder":"0xf9c48fe2b43e5231cfa8a68d00a4cb56b9c6cfb7","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38719000000000000000000","period":2,"created":"2020-09-28T18:59:38Z","started":9,"finished":0,"info":"Activate","state":"DELEGATED"},{"id":3459,"holder":"0x6a7502bba38960d8358c975c3b90391b7a3cc23c","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"31518000000000000000000","period":2,"created":"2020-09-28T18:24:40Z","started":9,"finished":0,"info":"Activate","state":"DELEGATED"},{"id":3440,"holder":"0xc316289cecabf45a64376ca729cdc269da2d0ee4","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"22000000000000000000000000","period":2,"created":"2020-09-28T18:00:46Z","started":9,"finished":0,"info":"Delegation
+        UI","state":"DELEGATED"},{"id":3427,"holder":"0x8a9bdb89d5311f5e5b61f99cfc3dca4a291addb7","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"23000000000000000000000000","period":2,"created":"2020-09-28T17:52:05Z","started":9,"finished":0,"info":"Delegation
+        UI","state":"DELEGATED"},{"id":3396,"holder":"0x1b0f605e4c0f7f7dc57a4503a31bb86d9fbd2dfd","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"19538000000000000000000","period":2,"created":"2020-09-28T16:47:26Z","started":9,"finished":0,"info":"Activate","state":"DELEGATED"},{"id":3373,"holder":"0xe61d6538c850725199ecd825d4e5de898991901a","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"19058000000000000000000","period":2,"created":"2020-09-28T14:34:48Z","started":9,"finished":0,"info":"Activate","state":"DELEGATED"},{"id":3243,"holder":"0x6a69c29627b1427e93153c3bd8c0a9aff13bb060","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"17589000000000000000000","period":2,"created":"2020-09-28T04:24:54Z","started":9,"finished":0,"info":"Activate","state":"DELEGATED"},{"id":3233,"holder":"0xbc47884512abd059ac420f25ec1f949f592afd0d","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38509000000000000000000","period":2,"created":"2020-09-28T03:07:04Z","started":9,"finished":13,"info":"Activate","state":"COMPLETED"},{"id":3225,"holder":"0x1ad60130a2528c6f73a8c6e50758532949627dfd","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"19360000000000000000000","period":2,"created":"2020-09-28T02:20:48Z","started":9,"finished":13,"info":"Activate","state":"COMPLETED"},{"id":3171,"holder":"0xd417dcdc4073bb4a3fd0bb0d5c17df66c17e9d89","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"34286000000000000000000","period":2,"created":"2020-09-27T21:43:50Z","started":9,"finished":0,"info":"Activate","state":"DELEGATED"},{"id":3164,"holder":"0x25e6c5a2a60c960e5b0708c9c500c89e46399e22","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"19149000000000000000000","period":2,"created":"2020-09-27T21:28:59Z","started":9,"finished":15,"info":"Activate","state":"COMPLETED"},{"id":3157,"holder":"0x9445ef14b581e5c538197fa0699004f98a3f1c8a","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"11000000000000000000000","period":2,"created":"2020-09-27T21:19:31Z","started":9,"finished":0,"info":"Activate","state":"DELEGATED"},{"id":3091,"holder":"0x487a2e1ce5c2be9edbeee7ca4277ed9ccb25da25","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"393344000000000000000000","period":2,"created":"2020-09-27T18:20:40Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":3054,"holder":"0x8e50404daffd5730b7fd5b8af711f9c8a991e440","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38422000000000000000000","period":2,"created":"2020-09-27T16:54:48Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":3041,"holder":"0xc4e4a79ab18cdab4c91d5d2f8b870d350bfc106e","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"19360000000000000000000","period":2,"created":"2020-09-27T16:22:11Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":3038,"holder":"0xa23e3b20e0dc6405ee209601c9d210145e03604b","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38719000000000000000000","period":2,"created":"2020-09-27T16:15:02Z","started":9,"finished":0,"info":"","state":"DELEGATED"},{"id":3036,"holder":"0x990b937e6a4a3585258d59566222d887dd95d11a","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38341000000000000000000","period":2,"created":"2020-09-27T15:54:54Z","started":9,"finished":13,"info":"Activate","state":"COMPLETED"},{"id":3004,"holder":"0x8743b3cd78ddc550d7ff0bb93081b39a48f961e9","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"20241000000000000000000","period":2,"created":"2020-09-27T13:46:02Z","started":9,"finished":11,"info":"","state":"COMPLETED"},{"id":2973,"holder":"0x3077583a8c349ed1a84c7d0dab860515a4e25fd0","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"16607000000000000000000","period":2,"created":"2020-09-27T12:17:09Z","started":9,"finished":0,"info":"Activate","state":"DELEGATED"},{"id":2951,"holder":"0x364f01b0d0df8c1aaeb7942984a54b1b17ce6684","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38469000000000000000000","period":2,"created":"2020-09-27T10:40:29Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":2806,"holder":"0xbc0227fda9950e2e1b5e2302a33d60ec9020e8a5","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38719000000000000000000","period":2,"created":"2020-09-27T03:14:56Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":2779,"holder":"0x196cb6769fe04f20617d4dd5761590a292e4803c","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"19304000000000000000000","period":2,"created":"2020-09-27T00:28:49Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":2734,"holder":"0xa7cbe59f4f6a39ace67defe064a1ccf4d3588d4c","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"11687000000000000000000","period":2,"created":"2020-09-26T21:21:05Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":2730,"holder":"0xe40c9db4b30c32dfb29f48379c21fc459337ea95","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38719000000000000000000","period":2,"created":"2020-09-26T20:52:31Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":2693,"holder":"0x1ccd8ff59612d4108d9bbe5f16add545efc6fdbe","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"18980000000000000000000","period":2,"created":"2020-09-26T18:23:20Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":2682,"holder":"0x65ab6bb9e3c14d6ac221a17fe66f01e3ce6566d4","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"25000000000000000000000","period":2,"created":"2020-09-26T17:40:12Z","started":9,"finished":13,"info":"Activate","state":"COMPLETED"},{"id":2665,"holder":"0xb65aca2c4210efd9af4f52b09c8bc190799c3adb","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"37960000000000000000000","period":2,"created":"2020-09-26T16:46:59Z","started":0,"finished":8,"info":"Activate","state":"CANCELED"},{"id":2646,"holder":"0x1aaf5787c2e3f654c9d4854824bc5bb01092b65b","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38719000000000000000000","period":2,"created":"2020-09-26T16:09:48Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":2609,"holder":"0xc60adb8763b15e6c0649f3bb2ef8bb19e248a9cf","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"34756000000000000000000","period":2,"created":"2020-09-26T15:02:59Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":2568,"holder":"0x4af3bee5863498f1f137193f475967808d39fa36","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"19360000000000000000000","period":2,"created":"2020-09-26T12:54:50Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":2562,"holder":"0x01b7b3225d875dd7a02fc895decb31d3f15c7de8","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"37971000000000000000000","period":2,"created":"2020-09-26T12:27:31Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":2531,"holder":"0xa50bfdfaeb89a49cdc74e5931cf7b026c69186fe","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"28661000000000000000000","period":2,"created":"2020-09-26T11:26:15Z","started":9,"finished":0,"info":"Activate","state":"DELEGATED"},{"id":2498,"holder":"0x3e0516fddf594ff2b513e4b2f34d957e33a1c8dd","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"37182000000000000000000","period":2,"created":"2020-09-26T10:00:19Z","started":9,"finished":13,"info":"Activate","state":"COMPLETED"},{"id":2460,"holder":"0x23e01e05aa1376fa3ac83c954816b967a7302891","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38155000000000000000000","period":2,"created":"2020-09-26T08:38:49Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":2458,"holder":"0x0a9ab4c587e1081ad11c33c2f3e6df23b30cbbb4","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38719000000000000000000","period":2,"created":"2020-09-26T08:36:25Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":2384,"holder":"0x4094ddfe1c84df4a17f1de8c98af3b3c409418ae","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38719000000000000000000","period":2,"created":"2020-09-26T05:14:02Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":2379,"holder":"0xbdfb5554314aeb0eaeed5a00c067cba51e4a615f","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"19246000000000000000000","period":2,"created":"2020-09-26T04:54:29Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":2371,"holder":"0xf0cea347d5ca8ca7c3f0ef0301a47779002f304d","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"19108000000000000000000","period":2,"created":"2020-09-26T04:20:48Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":2366,"holder":"0xdde57bbf9acc12b6e14a81d1acf70096f622b43e","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38719000000000000000000","period":2,"created":"2020-09-26T03:52:39Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":2325,"holder":"0x290fde91935c31cea3ee5bea98450f97b95980e5","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"77438000000000000000000","period":2,"created":"2020-09-26T01:19:55Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":2299,"holder":"0xc5c35e43c7323784cfb762a75636d0bbac06d79b","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"18935000000000000000000","period":2,"created":"2020-09-26T00:35:52Z","started":9,"finished":13,"info":"Activate","state":"COMPLETED"},{"id":2262,"holder":"0x931a4115d4a82c968efa38716a025259b1b2d398","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38719000000000000000000","period":2,"created":"2020-09-25T22:57:38Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":2260,"holder":"0xfda26a8caa19cb0b7b60394150581ed5d78e5d7a","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"19089000000000000000000","period":2,"created":"2020-09-25T22:49:32Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":2216,"holder":"0xe388fe0003702ec51d61fa80f37b68b781ae434a","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38719000000000000000000","period":2,"created":"2020-09-25T21:24:33Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":2201,"holder":"0x2988959e46bdb31a54835b4957b62ba8847d3e36","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"19085000000000000000000","period":2,"created":"2020-09-25T21:01:06Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":2142,"holder":"0x2839b696c72365d47c9bc15e897e24628d2dd3d9","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"26292000000000000000000","period":2,"created":"2020-09-25T19:46:39Z","started":9,"finished":15,"info":"Activate","state":"COMPLETED"},{"id":2106,"holder":"0xa8d393dae2afd8b4dc6f446f28a006b716471466","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"19210000000000000000000","period":2,"created":"2020-09-25T18:58:10Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":2104,"holder":"0xc006c52ac731f12be9480b5681e18dbdcea99ae0","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38519000000000000000000","period":2,"created":"2020-09-25T18:54:59Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":2076,"holder":"0x30f93cd7ee2a2c13dbc5fde3d1ed06d4be0f12b8","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38234000000000000000000","period":2,"created":"2020-09-25T18:06:02Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":2052,"holder":"0xc762a1962947d70402a8b057ab0d72c19e32e192","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38719000000000000000000","period":2,"created":"2020-09-25T17:47:35Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":2044,"holder":"0xe37d6f56b78341bd46e71c8a763af5de99262462","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38203000000000000000000","period":2,"created":"2020-09-25T17:38:35Z","started":9,"finished":11,"info":"","state":"COMPLETED"},{"id":2028,"holder":"0x37ee048b78d54ef3b402804bbf2140d3d373912a","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38719000000000000000000","period":2,"created":"2020-09-25T17:13:52Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":2002,"holder":"0x7510fdaad513daddf13176c35ece685132978bdc","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38719000000000000000000","period":2,"created":"2020-09-25T16:46:59Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":1971,"holder":"0x45645c8edd908a5143a1c0132ffd93324a431c52","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38719000000000000000000","period":2,"created":"2020-09-25T16:17:43Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":1963,"holder":"0x48c4a49d0eed51553524dc211f6a091fc640a4fa","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38719000000000000000000","period":2,"created":"2020-09-25T16:06:58Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":1950,"holder":"0x270978ceee056d9dacea2367e517f765e05f9974","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"37950000000000000000000","period":2,"created":"2020-09-25T15:57:28Z","started":9,"finished":0,"info":"Activate","state":"DELEGATED"},{"id":1921,"holder":"0x637e970155f0305461099bf654ec92181cd94829","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38719000000000000000000","period":2,"created":"2020-09-25T15:12:23Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":1903,"holder":"0xb74349bd5011ece14b43c58cbb651613dd83ff29","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"19359000000000000000000","period":2,"created":"2020-09-25T14:57:23Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":1901,"holder":"0xd8a7505ca62ded0c922725f22445b485a1792f51","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"19326000000000000000000","period":2,"created":"2020-09-25T14:57:03Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":1896,"holder":"0x633c2ece13b33502d6cfb8d054821625600c7bc6","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"32922000000000000000000","period":2,"created":"2020-09-25T14:50:09Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":1890,"holder":"0x2e9b46ddfc4e317c26c34cdf0068ed8958daa752","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"19309000000000000000000","period":2,"created":"2020-09-25T14:42:27Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":1873,"holder":"0xab6f4556cc5006bd4334e4a787ae44f2bc309243","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38719000000000000000000","period":2,"created":"2020-09-25T14:29:07Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":1845,"holder":"0xb80b753bada0b32b03147e5a4d50c37829500027","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38386000000000000000000","period":2,"created":"2020-09-25T14:00:06Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":1841,"holder":"0xe3ce0ab69bbcf986a5a1f7826f58205048d62d60","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38719000000000000000000","period":2,"created":"2020-09-25T13:55:14Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":1830,"holder":"0xd28fb1a280c8817b35edc8ba4725329bb04890ec","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38512000000000000000000","period":2,"created":"2020-09-25T13:48:55Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":1803,"holder":"0x88e48bcfec35f58898e9efb52da295e59df79893","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38344000000000000000000","period":2,"created":"2020-09-25T13:28:33Z","started":0,"finished":8,"info":"Activate","state":"CANCELED"},{"id":1800,"holder":"0xe5cf39005e0143685772b505b5ac8cee16db7f3f","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"19371000000000000000000","period":2,"created":"2020-09-25T13:26:42Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":1794,"holder":"0xb4499ef5fb555f4f1de2150458d4ee9fe5a34e63","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"18846000000000000000000","period":2,"created":"2020-09-25T13:23:45Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":1787,"holder":"0xa79da05566ea8ffd181c45efd6f484616f6eadef","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"19233000000000000000000","period":2,"created":"2020-09-25T13:10:15Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":1766,"holder":"0xcda9bfe9d578003e9dbdc90a5dd1e9b0f52c01f6","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38719000000000000000000","period":2,"created":"2020-09-25T12:48:36Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":1762,"holder":"0x7b7d48bfb20344c1ea58335b1df979513eeb87f1","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38719000000000000000000","period":2,"created":"2020-09-25T12:45:35Z","started":0,"finished":8,"info":"Activate","state":"CANCELED"},{"id":1760,"holder":"0x76d204f78bd76685a6c48001c2d7b3a696c96b12","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38187000000000000000000","period":2,"created":"2020-09-25T12:44:09Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":1727,"holder":"0xbb344fa8e698998a3f3fd04eb931835403f8d9de","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38719000000000000000000","period":2,"created":"2020-09-25T12:02:07Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":1712,"holder":"0x3f499888d2a619b36e88e59dfe851a722c7f12a5","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38300000000000000000000","period":2,"created":"2020-09-25T11:46:49Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":1677,"holder":"0x8aa58412bedc9b4203c91a5b1f728bd8f3afa5ad","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"34852000000000000000000","period":2,"created":"2020-09-25T11:14:13Z","started":9,"finished":11,"info":"","state":"COMPLETED"},{"id":1641,"holder":"0xd00aa07614318eb4d0b1643b5fe09fbd65e1b4ef","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"35493000000000000000000","period":2,"created":"2020-09-25T10:46:25Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":1612,"holder":"0x1755cff12a88289f2a884a240e5b1b58ac3a0e58","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"19158000000000000000000","period":2,"created":"2020-09-25T10:26:29Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":1503,"holder":"0x4b80e19015458c87805e96be9298487d3a09fc35","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"19360000000000000000000","period":2,"created":"2020-09-25T09:26:55Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":1488,"holder":"0x6032cc6c2d95817034c987c826c999077cff9ae0","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38279000000000000000000","period":2,"created":"2020-09-25T09:15:52Z","started":9,"finished":13,"info":"Activate","state":"COMPLETED"},{"id":1459,"holder":"0x90e6eb4994199d7b8b16950ca2ee919db88cd98e","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"19359000000000000000000","period":2,"created":"2020-09-25T08:50:53Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":1395,"holder":"0xfad5d29649512ea6c54710c06a480f4ee79d347a","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38097000000000000000000","period":2,"created":"2020-09-25T08:08:03Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":1307,"holder":"0xf67c9fa0abf1b088bd3f657e3f418f8a0d661974","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38719000000000000000000","period":2,"created":"2020-09-25T07:08:09Z","started":9,"finished":11,"info":"","state":"COMPLETED"},{"id":1299,"holder":"0xd12a2d8a6e3c2d22c5acb538dc0e5128c954c467","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"19241000000000000000000","period":2,"created":"2020-09-25T07:00:04Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":1200,"holder":"0xf4e0829de9d009fb953ec6afde545392def5215d","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38367000000000000000000","period":2,"created":"2020-09-25T06:12:12Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":1159,"holder":"0x1cca968bff57effdbd1aa6fde5c58f48d2a3bfe6","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"37960000000000000000000","period":2,"created":"2020-09-25T05:40:40Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":1109,"holder":"0x6866803a570d6bed1d55f22e80dacaceeeea93d6","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"19359000000000000000000","period":2,"created":"2020-09-25T04:46:22Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":1106,"holder":"0xc7b2d05c3f28e8de67fc94dc8863291cba6ca70f","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"37570000000000000000000","period":2,"created":"2020-09-25T04:44:08Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":1070,"holder":"0x1953f26d07c4dd57943349edc87cedb87cdb1c21","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38107000000000000000000","period":2,"created":"2020-09-25T04:19:47Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":1068,"holder":"0x6fb9dfe12afa228767cc6410671fe73d3b74c759","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"19306000000000000000000","period":2,"created":"2020-09-25T04:18:42Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":1049,"holder":"0xc3e2e816f919b06f124ac7a7f180db3374e9874e","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"19158000000000000000000","period":2,"created":"2020-09-25T04:08:29Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":1038,"holder":"0xc3e2e816f919b06f124ac7a7f180db3374e9874e","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"19157000000000000000000","period":2,"created":"2020-09-25T03:59:21Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":1006,"holder":"0xbf3d5fabb01428d1ea16744963d88b2de1e222a1","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38719000000000000000000","period":2,"created":"2020-09-25T03:36:55Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":1000,"holder":"0x087f0f9cda9eea70a2df8f7aaee7c07d2196654b","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"600000000000000000000000","period":2,"created":"2020-09-25T03:31:55Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":991,"holder":"0x32519a4e46fe578d06064c2183dd7bcd633d24a9","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"19359000000000000000000","period":2,"created":"2020-09-25T03:26:29Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":975,"holder":"0x757686c9a85abc24ea0e7945be7b2156a58e427c","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38719000000000000000000","period":2,"created":"2020-09-25T03:20:34Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":966,"holder":"0xd5845bc1da4d484c31ef406fb3eba3bc2ae47ae5","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38719000000000000000000","period":2,"created":"2020-09-25T03:15:31Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":964,"holder":"0x9ce18e8158ec508137312117d269dd57c1e6e950","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38719000000000000000000","period":2,"created":"2020-09-25T03:14:08Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":961,"holder":"0x1c9133f417f4e94fd64bb3c2fb0b523e07dfd10b","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38719000000000000000000","period":2,"created":"2020-09-25T03:12:15Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":955,"holder":"0xc31db2e710192791b65de43d4b84886a6d770322","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38719000000000000000000","period":2,"created":"2020-09-25T03:10:01Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":952,"holder":"0x097df964c10a3921133cfca8e70df99d4951c3d3","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38719000000000000000000","period":2,"created":"2020-09-25T03:09:02Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":949,"holder":"0x6ef02c2310187f0a7180f97676b24e03a061eb17","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"19537000000000000000000","period":2,"created":"2020-09-25T03:07:31Z","started":9,"finished":0,"info":"","state":"DELEGATED"},{"id":892,"holder":"0x21271500be1638e05e6fba300520f4f019f34a4e","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38304000000000000000000","period":2,"created":"2020-09-25T02:34:51Z","started":9,"finished":13,"info":"Activate","state":"COMPLETED"},{"id":848,"holder":"0x335c0552eb130f3dfbe6efcb4d2895aed1e9938b","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38331000000000000000000","period":2,"created":"2020-09-25T02:05:11Z","started":9,"finished":13,"info":"Activate","state":"COMPLETED"},{"id":847,"holder":"0xd08382e481f50a9b52cb512335a73d4210a1ee54","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38412000000000000000000","period":2,"created":"2020-09-25T02:04:28Z","started":9,"finished":0,"info":"Activate","state":"DELEGATED"},{"id":825,"holder":"0x4e481165b434eb76d09e82bd16b6b649c01c664a","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38246000000000000000000","period":2,"created":"2020-09-25T01:54:27Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":811,"holder":"0x0f2e3e67cb000993d07e60261748963d3f4bd6d9","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"37960000000000000000000","period":2,"created":"2020-09-25T01:50:10Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":766,"holder":"0x7045ba1a3dab1da17bda91b46e121fbb4a5f054b","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38719000000000000000000","period":2,"created":"2020-09-25T01:15:31Z","started":9,"finished":13,"info":"Activate","state":"COMPLETED"},{"id":763,"holder":"0x70e703ba15c43aa6d043b8c29e60927e3b01df73","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"37960000000000000000000","period":2,"created":"2020-09-25T01:15:06Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":659,"holder":"0xaeee2b619d9c39d2e8b9a0025bed0aef095ab495","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38719000000000000000000","period":2,"created":"2020-09-25T00:08:13Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":647,"holder":"0x0598d2c365a5661032a91da03ed74e298ceea67b","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38719000000000000000000","period":2,"created":"2020-09-24T23:57:47Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":611,"holder":"0x1a3f00a013670becaf3e51b5db8c0a530b5bf08f","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38100000000000000000000","period":2,"created":"2020-09-24T23:31:35Z","started":9,"finished":13,"info":"Activate","state":"COMPLETED"},{"id":601,"holder":"0x7c1e6eec212f88b9aab1da347748c7ceb370c054","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38719000000000000000000","period":2,"created":"2020-09-24T23:26:08Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":589,"holder":"0x43fb70a5474442514e740978c486f583dafe78ff","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"12564000000000000000000","period":2,"created":"2020-09-24T23:21:01Z","started":9,"finished":13,"info":"Activate","state":"COMPLETED"},{"id":559,"holder":"0xa95efe8672144c036895d568ca1ef269abcc9849","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38469000000000000000000","period":2,"created":"2020-09-24T23:01:38Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":515,"holder":"0x6db82468a924f70ef0830935bd3276bf0f823e01","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"19160000000000000000000","period":2,"created":"2020-09-24T22:37:46Z","started":9,"finished":13,"info":"Activate","state":"COMPLETED"},{"id":457,"holder":"0xfc0c2b5ad9bb2409290a4809a7c0d9f297f44ef9","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"786686000000000000000000","period":2,"created":"2020-09-24T22:10:44Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":438,"holder":"0x72ecbc71922c7ae8d9d3de00e8000afd4aba9406","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38557000000000000000000","period":2,"created":"2020-09-24T22:04:13Z","started":0,"finished":8,"info":"Activate","state":"CANCELED"},{"id":429,"holder":"0x5a2473b6544ec760a0d950a6649a043756afd5e9","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38719000000000000000000","period":2,"created":"2020-09-24T22:00:51Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":409,"holder":"0x762a5737eec2391f69d3ff39d64e581edca436f6","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"19033000000000000000000","period":2,"created":"2020-09-24T21:52:12Z","started":9,"finished":0,"info":"Activate","state":"DELEGATED"},{"id":402,"holder":"0xb36a051bf399febf6aa30eff9e65ce57288afecc","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"28694000000000000000000","period":2,"created":"2020-09-24T21:49:26Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":396,"holder":"0xf9107317b0ff77ed5b7adea15e50514a3564002b","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38719000000000000000000","period":2,"created":"2020-09-24T21:47:46Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":368,"holder":"0x650c5e22141deb5860898e85cedefd534156024a","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"15245000000000000000000","period":2,"created":"2020-09-24T21:37:03Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":359,"holder":"0x82b1fdccdb19463dcb9b0ecd82a999d692ae0881","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"19359000000000000000000","period":2,"created":"2020-09-24T21:35:26Z","started":9,"finished":13,"info":"Activate","state":"COMPLETED"},{"id":356,"holder":"0xe2040a7808c57e5bc41b3af235a2e309cf23c3b8","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"37275000000000000000000","period":2,"created":"2020-09-24T21:35:05Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":340,"holder":"0x636f1c6cfb2a3977a59e2261f303b11f72dbe25c","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38215000000000000000000","period":2,"created":"2020-09-24T21:28:06Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":324,"holder":"0xa656855336c8b4e48dd7be334ce935cfee90f761","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38719000000000000000000","period":2,"created":"2020-09-24T21:25:03Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":308,"holder":"0x198c113f45db37ab370ad366ed9e750d4b277b19","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"393055000000000000000000","period":2,"created":"2020-09-24T21:23:14Z","started":9,"finished":13,"info":"Activate","state":"COMPLETED"},{"id":271,"holder":"0x4a6ec3f21c89c279359265f6da74770e0e4763e8","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"17630000000000000000000","period":2,"created":"2020-09-24T21:16:11Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":264,"holder":"0x111b46246ba9bf46ef15dca39ab7775897271951","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"19235000000000000000000","period":2,"created":"2020-09-24T21:11:12Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":253,"holder":"0x66dcebfc01f21834083f6520e30a486b0360b127","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"37960000000000000000000","period":2,"created":"2020-09-24T21:04:54Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":225,"holder":"0x9d15e548d702eb322d7a2c4bea117c35ab7259c4","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"10789000000000000000000","period":2,"created":"2020-09-24T20:56:58Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":156,"holder":"0x6fb8479a3bbb7a4ed8395af47916d9a51b7ba038","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"24733000000000000000000","period":2,"created":"2020-09-24T20:35:34Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":151,"holder":"0xb0f9e24fc04b7fd4b17d0fb7b1427c6cbda24b1c","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"24815000000000000000000","period":2,"created":"2020-09-24T20:34:06Z","started":9,"finished":11,"info":"","state":"COMPLETED"},{"id":114,"holder":"0x64ddae291eaff1c56d986c8343fb1bd405b61ee4","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"37960000000000000000000","period":2,"created":"2020-09-24T20:19:59Z","started":9,"finished":11,"info":"","state":"COMPLETED"},{"id":99,"holder":"0xcd7caf8a104d33a029cfc5bc890db1c0ecb29a35","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38122000000000000000000","period":2,"created":"2020-09-24T20:03:53Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":49,"holder":"0x60718c1430f8c770182cf79f5adbbee8d4d96dce","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"37681000000000000000000","period":2,"created":"2020-09-24T19:33:00Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":34,"holder":"0xeeb930d6169a215b22f38c025bfa838cfb1a97ac","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38719000000000000000000","period":2,"created":"2020-09-24T19:23:05Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":26,"holder":"0x7b2f0d8d16b95ce0b3a70c013d5e98e5fc94d62b","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38633000000000000000000","period":2,"created":"2020-09-24T19:18:06Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"},{"id":6,"holder":"0xfa055e8b535a63df132949a47718080bdef07fc2","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":15,"validator_name":"Figment
+        Networks","block_height":12344949,"amount":"38573000000000000000000","period":2,"created":"2020-09-24T18:48:50Z","started":9,"finished":15,"info":"Activate","state":"COMPLETED"}]
 
         '
   recorded_at: Mon, 19 Apr 2021 17:17:40 GMT
