@@ -2,6 +2,7 @@
   <table class='border-0' data-empty='<%= proposals.empty? %>' data-with-validator='<%= !!defined?(with_validator) %>'>
     <thead>
       <tr role='row'>
+        <th>ID</th>
         <th>Title</th>
         <th>Status</th>
         <% if defined? with_validator -%>
@@ -32,6 +33,9 @@
         </script>
         <% proposals.select(&:valid_proposal?).each do |proposal| -%>
           <tr>
+            <td data-order='proposal.ext_id'>
+              <%= proposal.ext_id %>
+            </td>
             <td data-order='<%= proposal.title %>'>
               <%= link_to proposal.title, namespaced_path( 'governance_proposal', proposal ) %>
             </td>

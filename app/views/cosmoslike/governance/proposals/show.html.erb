@@ -238,11 +238,7 @@
           <div class='data-block__value'>
             <%= round_if_whole(@chain.governance_params.tally_param_veto * 100, 2) %>%
           </div>
-
-          <label class='text-small mb-0 mt-3'>Governance Penalty</label>
-          <div class='data-block__value'>
-            <%= @chain.governance_params.tally_param_governance_penalty %>
-          </div>
+          <%= render 'governance_penalty' unless @penalty.zero? %>
         </div>
       </div>
     </div>

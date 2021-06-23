@@ -16,28 +16,30 @@
       <tbody>
         <% if !nodes.empty? %>
           <% nodes.each do |node| %>
-            <tr>
-              <td>
-                <%= node.name %>
-              </td>
-              <td>
-                <% if node.status == 'Active' %>
-                  <%= format_date(node.next_reward_date) %>
-                <% else %>
-                  No upcoming reward dates
-                <% end %>
-              </td>
-              <td>
-                <% if node.status == 'Active'-%>
-                  <span class='badge badge-success'>ACTIVE</span>
-                <% else -%>
-                  <span class='badge badge-danger'>LEFT</span>
-                <% end -%>
-              </td>
-              <td>
-                <%= link_to "details", skale_chain_node_path(@chain, node.id), class: "btn btn-outline-primary btn-sm" %>
-              </td>
-            </tr>
+            <% if node_visible?(node.status) %>
+              <tr>
+                <td>
+                  <%= node.name %>
+                </td>
+                <td>
+                  <% if node.status == 'Active' %>
+                    <%= format_date(node.next_reward_date) %>
+                  <% else %>
+                    No upcoming reward dates
+                  <% end %>
+                </td>
+                <td>
+                  <% if node.status == 'Active'-%>
+                    <span class='badge badge-success'>Active</span>
+                  <% else -%>
+                    <span class='badge badge-danger'>In Maintenance</span>
+                  <% end -%>
+                </td>
+                <td>
+                  <%= link_to "details", skale_chain_node_path(@chain, node.id), class: "btn btn-outline-primary btn-sm" %>
+                </td>
+              </tr>
+            <% end %>
           <% end %>
         <% else %>
           <tr>

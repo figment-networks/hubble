@@ -80,10 +80,8 @@
         <% if @chain.governance_params_synced? -%>
           <%= render partial: 'governance' %>
         <% end -%>
-        <% # This causes an eager load warning in dev, but we temporarily want to disable delegations in Cosmos 4 %>
-        <% unless @chain.ext_id == 'cosmoshub-4' %>
-          <%= render partial: 'delegations' %>
-        <% end -%>
+        <%# This causes an eager load warning in dev, but we temporarily want to disable delegations in Cosmos 4 and Columbus 4 %>
+        <%= render partial: 'delegations' unless disabled_delegations?(@chain) %>
       </div>
 
       <div class='col-md-12 col-lg-6'>

@@ -44,9 +44,9 @@
             <td class="text-nowrap">Node Status</td>
             <td>
               <% if node.status == 'Active'-%>
-                <span class='badge badge-success'>ACTIVE</span>
+                <span class='badge badge-success'><%= node.status.titleize %></span>
               <% else -%>
-                <span class='badge badge-danger'>INACTIVE</span>
+                <span class='badge badge-danger'><%= node.status.titleize %></span>
               <% end -%>
             </td>
           </tr>

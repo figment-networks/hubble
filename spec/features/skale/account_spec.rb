@@ -6,7 +6,7 @@ describe 'skale account details' do
 
   it 'visiting account details', :vcr do
     visit "/skale/chains/#{chain.slug}/accounts/#{account}"
-    expect(page).to have_content('ACCOUNT ADDRESS - DELEGATOR')
+    expect(page).to have_content('DELEGATOR')
     expect(page).to have_content(account)
     expect(page).to have_content('DELEGATION INFO')
   end

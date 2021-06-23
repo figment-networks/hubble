@@ -25,23 +25,23 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 10 May 2021 08:59:54 GMT
+      - Tue, 25 May 2021 16:43:09 GMT
       Content-Type:
       - application/json
       Content-Length:
       - '78'
       Connection:
       - keep-alive
+      X-Ratelimit-Limit-Minute:
+      - '2000'
+      Ratelimit-Reset:
+      - '51'
       Ratelimit-Limit:
       - '2000'
       Ratelimit-Remaining:
       - '1999'
       X-Ratelimit-Remaining-Minute:
       - '1999'
-      Ratelimit-Reset:
-      - '6'
-      X-Ratelimit-Limit-Minute:
-      - '2000'
       Access-Control-Allow-Headers:
       - Content-Type
       Access-Control-Allow-Methods:
@@ -50,22 +50,22 @@ http_interactions:
       - "*"
       Access-Control-Expose-Headers:
       - Authorization
-      Quota-Reset:
-      - '54006'
-      X-Quota-Remaining-Day:
-      - '9999967'
       Quota-Limit:
       - '10000000'
-      Quota-Remaining:
-      - '9999967'
+      X-Quota-Remaining-Day:
+      - '9999854'
       X-Quota-Limit-Day:
       - '10000000'
+      Quota-Reset:
+      - '26211'
+      Quota-Remaining:
+      - '9999854'
     body:
       encoding: UTF-8
       string: '[{"address":"0x004302ff315df99e7a200d3f21bf5b85f747dae9","type":"delegator"}]
 
         '
-  recorded_at: Mon, 10 May 2021 08:59:54 GMT
+  recorded_at: Tue, 25 May 2021 16:43:09 GMT
 - request:
     method: get
     uri: https://localhost:8080/delegations?holder=0x004302ff315df99e7a200d3f21bf5b85f747dae9
@@ -91,22 +91,22 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 10 May 2021 08:59:54 GMT
+      - Tue, 25 May 2021 16:43:09 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '341'
+      - '370'
       Connection:
       - keep-alive
+      Ratelimit-Limit:
+      - '2000'
       Ratelimit-Remaining:
       - '1998'
       X-Ratelimit-Remaining-Minute:
       - '1998'
-      X-Ratelimit-Limit-Minute:
-      - '2000'
       Ratelimit-Reset:
-      - '6'
-      Ratelimit-Limit:
+      - '51'
+      X-Ratelimit-Limit-Minute:
       - '2000'
       Access-Control-Allow-Headers:
       - Content-Type
@@ -118,18 +118,82 @@ http_interactions:
       - Authorization
       Quota-Limit:
       - '10000000'
-      X-Quota-Remaining-Day:
-      - '9999966'
+      Quota-Remaining:
+      - '9999853'
       X-Quota-Limit-Day:
       - '10000000'
       Quota-Reset:
-      - '54006'
-      Quota-Remaining:
-      - '9999966'
+      - '26211'
+      X-Quota-Remaining-Day:
+      - '9999853'
     body:
       encoding: UTF-8
-      string: '[{"id":2404,"holder":"0x004302ff315df99e7a200d3f21bf5b85f747dae9","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":19,"block_height":12344949,"amount":"38719000000000000000000","period":2,"created":"2020-09-26T06:18:09Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"}]
+      string: '[{"id":2404,"holder":"0x004302ff315df99e7a200d3f21bf5b85f747dae9","transaction_hash":"0x0000000000000000000000000000000000000000000000000000000000000000","validator_id":19,"validator_name":"ChorusOne","block_height":12344949,"amount":"38719000000000000000000","period":2,"created":"2020-09-26T06:18:09Z","started":9,"finished":11,"info":"Activate","state":"COMPLETED"}]
 
         '
-  recorded_at: Mon, 10 May 2021 08:59:54 GMT
+  recorded_at: Tue, 25 May 2021 16:43:09 GMT
+- request:
+    method: get
+    uri: https://localhost:8080/validators?address=0x004302ff315df99e7a200d3f21bf5b85f747dae9
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (darwin20.3.0 x86_64) ruby/2.7.2p137
+      Content-Length:
+      - '0'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - skale--mainnet--indexer.datahub.figment.io
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 25 May 2021 16:43:10 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '3'
+      Connection:
+      - keep-alive
+      X-Ratelimit-Limit-Minute:
+      - '2000'
+      Ratelimit-Reset:
+      - '50'
+      Ratelimit-Limit:
+      - '2000'
+      Ratelimit-Remaining:
+      - '1997'
+      X-Ratelimit-Remaining-Minute:
+      - '1997'
+      Access-Control-Allow-Headers:
+      - Content-Type
+      Access-Control-Allow-Methods:
+      - POST, GET, OPTIONS, PUT, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Authorization
+      Quota-Limit:
+      - '10000000'
+      X-Quota-Remaining-Day:
+      - '9999852'
+      X-Quota-Limit-Day:
+      - '10000000'
+      Quota-Reset:
+      - '26210'
+      Quota-Remaining:
+      - '9999852'
+    body:
+      encoding: UTF-8
+      string: "[]\n"
+  recorded_at: Tue, 25 May 2021 16:43:10 GMT
 recorded_with: VCR 6.0.0

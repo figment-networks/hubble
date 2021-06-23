@@ -15,7 +15,13 @@ module Prime::RewardsHelper
   end
 
   def usd_equivalent(reward)
-    number_to_currency(reward_in_usd(reward.time, [reward], reward.account.network))
+    if reward.token_display == reward.account.network.primary.reward_token_display
+      return number_to_currency(reward_in_usd(reward.time, [reward], reward.account.network))
+    elsif reward.token_display == 'USD'
+      return number_to_currency(reward.amount.to_f / (10 ** reward.account.network.primary.reward_token_factor))
+    else
+      return nil
+    end
   end
 
   def payout_display_time

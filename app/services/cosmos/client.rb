@@ -1,7 +1,7 @@
 module Cosmos
   class Client < Common::IndexerClient
     DEFAULT_TIMEOUT = 30
-    DEFAULT_REWARDS_REQUEST_LENGTH = 180.days
+    DEFAULT_REWARDS_REQUEST_LENGTH = 90.days
 
     def account(address)
       Cosmos::AccountDecorator.new(Cosmos::Chain.primary, address)

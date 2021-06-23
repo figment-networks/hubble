@@ -134,10 +134,10 @@
       font-weight: bold;
       vertical-align: middle;
     }
-    .vote-yes { color: $success; }
-    .vote-abstain { color: $secondary; }
-    .vote-no { color: $danger; }
-    .vote-nowithveto { color: $veto; }
+    .vote-yes, .vote-1 { color: $success; }
+    .vote-abstain, .vote-2 { color: $secondary; }
+    .vote-no, .vote-3{ color: $danger; }
+    .vote-nowithveto, .vote-4 { color: $veto; }
   }
   .param-changes-table {
     &.table-sm td, &.table-sm th {

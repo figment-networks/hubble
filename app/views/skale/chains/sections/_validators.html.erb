@@ -17,7 +17,6 @@
           <th width="10%">Staked</th>
           <th width="10%">Active Nodes</th>
           <th width="10%">Fee Rate</th>
-          <th width="10%">Accepting?</th>
           <th class='d-none'></th>
         </tr>
       </thead>
@@ -38,9 +37,6 @@
             </td>
             <td data-order='<%= validator.fee_rate %>'>
               <%= validator.fee_rate %>%
-            </td>
-            <td data-order='<%= validator.accept_new_requests %>'>
-              <span class='badge badge-<%= validator.accepting? ? 'success' : 'danger' %>'><%= validator.accept_new_requests ? 'Yes' : 'No' %></span>
             </td>
             <td class='d-none'>
               _all_ <%= validator.active? ? '_active_' : '_inactive_' %>
